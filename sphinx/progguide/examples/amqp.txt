@@ -25,8 +25,8 @@ The request will be in self.request.payload.
 
 .. _progguide-examples-amqp-sending:
 
-Receiving messages from queues
-------------------------------
+Sending messages to exchanges
+-----------------------------
 
 Create a new 
 :doc:`outgoing AMQP connection <../../web-admin/outgoing/amqp>`

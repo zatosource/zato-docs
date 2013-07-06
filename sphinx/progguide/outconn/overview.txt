@@ -13,14 +13,6 @@ documented in subsequent chapters.
 Some of the protocols are synchronous while communicating over the rest is 
 performed asynchronously, in a fire-and-forget manner.
 
-:doc:`AMQP <./amqp>`,
-:doc:`JMS WebSphere MQ <./jms-wmq>`
-or
-:doc:`ZeroMQ <./zmq>` outgoing connections block the current server's thread
-for as long as it's needed to publish a messages on Redis. This is few milliseconds
-but still needs to be taken into account by making sure there are enough
-:ref:`main.gunicorn_workers <admin-guide-config-server-main.gunicorn_workers>` running in parallel to handle the load.
-
 Note that you always need to take 
 :doc:`high-availability (HA) <../../admin/guide/ha>`
 into account, particularly so 
