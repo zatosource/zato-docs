@@ -28,6 +28,17 @@ Note that if you'd like to install Zato on other systems you need to make sure
 they have Python 2.7.x. None other version can be used, only the latest Python
 version in the 2.7 series is supported.
 
+.. _admin-guide-install-under-the-hood:
+
+.. note:: Under the hood
+
+  Zato `installer <https://github.com/zatosource/zato/blob/master/code/install.sh>`_ 
+  downloads all the dependencies, installs a couple of system-wide
+  packages, creates a
+  `virtualenv <http://www.virtualenv.org/en/latest/>`_
+  and uses buildout to store everything in a way
+  that is as isolated from the operating system as possible.
+
 .. _admin-guide-install-zato-steps:
 
 Steps

@@ -153,6 +153,8 @@ but basically, you need Linux Ubuntu/Mint/Fedora or OS X, install rsync and curl
   Zato 1.1
   $
 
+(You can :ref:`click here <admin-guide-install-under-the-hood>` for an overview
+of how the installer works under the hood)
 
 
 .. note ::
