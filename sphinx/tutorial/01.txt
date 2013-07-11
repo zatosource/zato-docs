@@ -135,7 +135,23 @@ will be simulated by
 Installing Zato and creating a quickstart cluster
 -------------------------------------------------
 
-First thing needed is installing Zato itself. There's 
+As prerequisites - you need access to `Redis <http://redis.io>`_ and 
+a `PostgreSQL <http://postgresql.org>`_ instance - these are external components
+that are not shipped with Zato and need to be installed separately. You could also
+use `Oracle <http://www.oracle.com/us/products/database/>`_ instead of Postgres
+but to keep it simple, let's use the latter for the tutorial.
+
+* Install Redis and Postgres binaries and start both
+* Redis needs no users but Postgres does so issue the following commands
+
+  ::
+  
+    $ sudo su - postgres # OS X users may skip it
+    $ createuser --no-superuser --no-createdb --no-createrole zato1
+    $ createdb --owner=zato1 zato1
+    $ psql --dbname zato1 --command="ALTER ROLE zato1 WITH PASSWORD 'zato1'"
+
+Now you can install Zato itself. There's 
 :doc:`a short chapter <../admin/guide/install-zato>`
 on doing just that
 in the administration guide and you're encouraged to get through it now
@@ -153,24 +169,8 @@ but basically, you need Linux Ubuntu/Mint/Fedora or OS X, install rsync and curl
   Zato 1.1
   $
 
-
-
-.. note ::
-
-  You'll also need access to `Redis <http://redis.io>`_ and 
-  a `PostgreSQL <http://postgresql.org>`_ instance. You could also
-  use `Oracle <http://www.oracle.com/us/products/database/>`_ instead of Postgres
-  but to keep it simple, let's use the latter for the tutorial.
-  
-  * Install Redis and Postgres binaries and start both
-  * Redis needs no users but Postgres does so issue the following commands
-  
-    ::
-    
-      $ sudo su - postgres # OS X users may skip it
-      $ createuser --no-superuser --no-createdb --no-createrole zato1
-      $ createdb --owner=zato1 zato1
-      $ psql --dbname zato1 --command="ALTER ROLE zato1 WITH PASSWORD 'zato1'"
+(You can :ref:`click here <admin-guide-install-under-the-hood>` for an overview
+of how the installer works under the hood)
 
 Done yet? OK, so let's create a quickstart cluster, which is a sort of a cluster
 created by running the 
