@@ -116,14 +116,6 @@ withstand hundreds and thousands of connections on just a few CPU so it's
 recommended that you start
 with a smaller number of processors and add more only when they're needed.
 
-Note however that the scheduler and channel connectors invoke services that 
-block the server threads - this needs to be taken into account and is explained
-in the 
-:doc:`HA guide <./ha>`.
-In short, you need to **make sure you have enough CPU to handle** all **the scheduler**
-jobs **and services initiated by connectors** in parallel. They will compete for CPU
-with HTTP and FTP.
-
 Assuming the load-balancer has its own dedicated system, that system 
 should have one fast CPU only, more CPUs aren't needed and indeed, won't be used.
 
