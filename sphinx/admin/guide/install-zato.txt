@@ -37,7 +37,7 @@ version in the 2.7 series is supported.
   packages, creates a
   `virtualenv <http://www.virtualenv.org/en/latest/>`_
   and uses buildout to store everything in a way
-  that is as isolated from the operating system as possible.
+  that is as isolated from other packages already installed in the operating system as possible.
 
 .. _admin-guide-install-zato-steps:
 
@@ -153,5 +153,4 @@ Steps
     zato-1.1$
   
 * That's all, Zato has been successfully installed in the system. 
-  You can now visit :doc:`the main documentation index <../../index>` and have 
-  fun with the next generation ESB and application server!
+  You can now visit :doc:`the main documentation index <../../index>`.
