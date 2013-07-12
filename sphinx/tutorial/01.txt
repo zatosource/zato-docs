@@ -187,8 +187,11 @@ You need to prepare:
   ($kvdb_host, $kvdb_port and $kvdb_password)
   
 Now run the following command, substituting placeholders with the information
-you've prepared. You'll be asked for passwords and they won't be echoed. Note 
-that a Redis password can be empty.
+you've prepared. You'll be asked for passwords and they won't be echoed.
+
+Note 
+that a Redis password can be empty - indeed, if you've just installed Redis without
+configuring anything, it must be empty because by default Redis doesn't require it.
 
 ::
 
@@ -287,14 +290,14 @@ Invoking services with cURL
 
   ::  
   
-    $ zato check-config server1
+    $ zato check-config /path/to/server1
     SQL ODB connection OK
     Redis connection OK
     $
   
   ::
   
-    $ zato check-config server2
+    $ zato check-config /path/to/server2
     SQL ODB connection OK
     Redis connection OK
     $
