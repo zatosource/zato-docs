@@ -1,5 +1,5 @@
-Security - HTTP Basic Auth
-==========================
+Security - WS-Security
+======================
 
 Overview
 --------
