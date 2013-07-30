@@ -1,0 +1,75 @@
+Guaranteed delivery
+===================
+
+Guaranteed delivery allows one to deal with communication issues that are of *transient*
+nature.
+
+It is meant to aid in cases where temporary lack of access to certain resources
+can be tolerated and the required action on Zato's part is to store data persistently and 
+repeat invocations periodically for a specified time, giving up eventually if the resource
+to be accessed is still not available after a configured number of attempts.
+
+The chapter presents the feature, lists requirements on user's part
+and goes through a life-cycle each guaranteed delivery is subject to along with an explanation
+what is to be expected with regards to where and how data is stored on each stage.
+
+When to use guaranteed delivery and when not to
+-----------------------------------------------
+
+Enabling the feature implies certain overhead which may be non-negligible. Redis needs
+to be re-configured in a way that guarantees fsync gets called on each write, background checks are started,
+more data is stored in Redis and all that represents additional costs that may influence
+also these services that don't require guaranteed delivery themselves.
+
+Typically, you won't use it for:
+
+* Get/read operations - returning any objects can be almost always repeated by clients
+* Updates that are soon repeated anyway - if there's a stream of information and each 10 minutes
+  the same set of data is repeated till midnight, you don't need to guarantee its delivery
+  as it will be repeated soon
+* Anything that is easily repeated on client side
+
+When to usually use it:
+
+* If requests can't be conveniently repeated and transient errors are to be expected
+
+Note that each guaranteed delivery effort ultimately ends in one of well-defined states.
+This may mean Zato's retrying the same request for hours or days, however it's configured,
+but still the feature is not meant to deal with permanent issues that need compensating
+actions. In that case, higher-level processes outside of Zato's guaranteed delivery should be introduced.
+
+Each delivery always deal with one source and one target. There's no notion of group deliveries
+confirmed as a whole although a target may always initiate communication with multiple
+recipients each within its own confirmed delivery task.
+
+Configuring Redis
+-----------------
+
+zzz
+
+Message flow
+------------
+
+Actors involved are:
+
+* Redis - where data is kept
+* delivery store - Zato's mechanism to ensure the delivery
+* scheduler jobs - run periodically to re-submit delivery tasks that were stopped unexpectedly
+* startup services - run when a server is starting up, also resubmit interrupted tasks 
+
+* source - the end initiating a delivery
+
+  * a service deployed in Zato
+  * an HTTP client
+  * AMQP queue
+  * WebSphere MQ queue
+  * ZeroMQ socket
+
+* target - the delivery's recipient, this is one of
+
+  * a service deployed in Zato
+  * an HTTP resource
+  * an FTP server
+  * AMQP exchange
+  * WebSphere MQ queue
+  * ZeroMQ socket
