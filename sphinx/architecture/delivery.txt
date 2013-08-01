@@ -45,7 +45,15 @@ recipients each within its own confirmed delivery task.
 Configuring Redis
 -----------------
 
-zzz
+Guaranteed delivery data is stored in Redis and Redis by default is configured
+in a mode that makes it possible to lose at most 2 seconds worth of data. If that is accceptable
+in your environments, then you don't need to reconfigure anything.
+
+If on the other hand you can't afford any loses, **configure Redis** so it calls 
+**fsync on each write**, as
+`explained <antirez.com/post/redis-persistence-demystified.html>`_ in its
+`documentation <http://www.redis.io/topics/persistence>`_,
+**otherwise you can't be sure data won't be lost**.
 
 Message flow
 ------------
