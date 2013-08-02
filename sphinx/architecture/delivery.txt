@@ -49,19 +49,19 @@ Guaranteed delivery data is stored in Redis and Redis by default is configured
 in a mode that makes it possible to lose at most 2 seconds worth of data. If that is accceptable
 in your environments, then you don't need to reconfigure anything.
 
-If on the other hand you can't afford any loses, **configure Redis** so it calls 
+On the other hand, **if you can't afford any loses, configure Redis** so it calls 
 **fsync on each write**, as
 `explained <http://antirez.com/post/redis-persistence-demystified.html>`_ in its
 `documentation <http://www.redis.io/topics/persistence>`_,
 **otherwise you can't be sure data won't be lost**.
 
-Message flow
-------------
+Delivery mechanism
+------------------
 
 Actors involved are:
 
 * Redis - where data is kept
-* delivery store - Zato's mechanism to ensure the delivery
+* delivery store - Zato's central code to coordinate delivery effort
 * scheduler jobs - run periodically to re-submit delivery tasks that were stopped unexpectedly
 * startup services - run when a server is starting up, also resubmit interrupted tasks 
 
@@ -81,3 +81,9 @@ Actors involved are:
   * AMQP exchange
   * WebSphere MQ queue
   * ZeroMQ socket
+  
+* wrapper - provides access to both delivery store and target - from source's
+  point of view wrapper looks as though it was target directly
+  
+.. image:: /gfx/arch/delivery-flow.png
+   :align: center
