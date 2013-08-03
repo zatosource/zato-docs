@@ -16,7 +16,7 @@ what is to be expected with regards to where and how data is stored on each stag
 When to use guaranteed delivery and when not to
 -----------------------------------------------
 
-Enabling the feature implies certain overhead which may be non-negligible. Redis needs
+Making use of the feature implies certain overhead which may be non-negligible. Redis needs
 to be re-configured in a way that guarantees fsync gets called on each write, background checks are started,
 more data is stored in Redis and all that represents additional costs that may influence
 also these services that don't require guaranteed delivery themselves.
@@ -54,6 +54,9 @@ On the other hand, **if you can't afford any loses, configure Redis** so it call
 `explained <http://antirez.com/post/redis-persistence-demystified.html>`_ in its
 `documentation <http://www.redis.io/topics/persistence>`_,
 **otherwise you can't be sure data won't be lost**.
+
+How to make Redis backups or choosing hardware components such as disks with 
+battery-backed caches are beyond the scope of this document.
 
 Delivery mechanism
 ------------------
