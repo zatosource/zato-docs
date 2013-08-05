@@ -106,6 +106,38 @@ Note that self.wsgi_environ will be empty if the service wasn't invoked over HTT
    INFO - wsgi.url_scheme:http
    INFO - wsgi.version:(1, 0)
    INFO - zato.http.response.headers:{'X-Zato-CID':'K307616012828167595790695840344328947136'}
+   
+.. _progguide-examples-http-access-url-query:
+
+Accessing request URL query parameters
+--------------------------------------
+
+URL query parameters are part of the `WSGI <https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface>`_
+environment, available under the QUERY_STRING key.
+
+Note that self.wsgi_environ will be empty if the service wasn't invoked over HTTP.
+
+::
+
+   # stdlib
+   from urlparse import parse_qs
+   
+   # Zato
+   from zato.server.service import Service
+   
+   class MyService(Service):
+       def handle(self):
+           qs = parse_qs(self.wsgi_environ['QUERY_STRING'])
+           self.logger.info(qs['foo']) 
+
+::
+
+   $ curl http://localhost:11223/example?foo=bar
+   $
+   
+.. code-block:: text
+
+   INFO - ['bar']
 
 .. _progguide-examples-http-response-headers:
 
