@@ -42,6 +42,7 @@ Topic                                       Examples
 :doc:`HTTP <./http>`                        * :ref:`Exposing a service over HTTP <progguide-examples-http-exposing>`
                                             * :ref:`Accessing raw request <progguide-examples-http-raw-request>`
                                             * :ref:`Accessing request headers <progguide-examples-http-request-headers>`
+                                            * :ref:`Accessing request URL query parameters <progguide-examples-http-access-url-query>`
                                             * :ref:`Setting response headers <progguide-examples-http-response-headers>`
                                             * :ref:`Setting content type and status code <progguide-examples-http-content-type-status-code>`
                                             * :ref:`Returning attachments <progguide-examples-http-attachments>`
