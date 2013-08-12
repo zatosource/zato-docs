@@ -1,3 +1,5 @@
 sphinx/_build/
 *.*~
+*.pyc
+*.pyo
 ~

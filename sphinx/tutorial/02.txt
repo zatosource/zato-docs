@@ -744,9 +744,6 @@ covered but you should already have a solid understanding of some of the core ap
   or hot-something-else - this is one of the areas where Zato will usually go out of 
   its way to give you a platform that introduces as little downtime as possible.
   It's not always doable but this is the goal.
-  
-At that point, a question you may have is whether Zato really is the long sought 
-best thing since the sliced bread? Glad you asked it because the answer is yes, indeed it is :-)
 
 What next?
 

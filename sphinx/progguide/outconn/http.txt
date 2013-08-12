@@ -93,7 +93,8 @@ session attribute A handle to the underlying `Requests <http://docs.python-reque
 
 .. py:method:: ping(cid):
 
-  Uses HTTP HEAD to chech whether the remote server is alive, returns a text 
+  Uses an HTTP method (such as HEAD) the connection was configured to use to check
+  whether the remote server is alive, returns a text 
   report on how long it took for the other end to reply.
   
   :param cid: A correlation ID that can be used to establish a connection between

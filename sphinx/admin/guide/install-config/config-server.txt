@@ -299,6 +299,20 @@ Backed-up services are compressed using this format which may be one of the
 values Python's `shutil.make_archive <http://docs.python.org/2.7/library/shutil.html#archiving-operations>`_
 accepts.
 
+.. _admin-guide-config-server-hot_deploy.delete_after_pick_up:
+
+hot_deploy.delete_after_pick_up
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+.. versionadded:: 1.2
+
+Whether Python code should be deleted after it's been deployed through a pickup dir.
+It's convenient to set it to False at least during development as it will make Zato
+deploy a service module being developed after each save. 
+
+The previous deployment must be finished before a new is started otherwise import
+errors and conflicts may begin to appear.
+
 hot_deploy.current_work_dir
 @@@@@@@@@@@@@@@@@@@@@@@@@@@
 

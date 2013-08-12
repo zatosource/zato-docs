@@ -5,8 +5,12 @@ Overview
 --------
 
 Pings an outgoing plain HTTP or SOAP connection by its ID. The server this connection
-points to will receive an HTTP HEAD request and its response, along with the time
-it took for the HEAD to complete, will be returned.
+points to will receive an HTTP request using the method an outgoing connection
+:doc:`was <./zato.http-soap.create>`
+:doc:`configured <./zato.http-soap.edit>`
+(such as HEAD)
+to use and its response, along with the time
+it took for the request to complete, will be returned.
 
 * List response: No
 * SOAP action: zato.http-soap.ping

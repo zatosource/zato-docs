@@ -1,3 +1,29 @@
+1.2 - Currently in development
+==============================
+
+* Added a :ref:`hot_deploy.delete_after_pick_up <admin-guide-config-server-hot_deploy.delete_after_pick_up>` flag,
+  setting of which to False will prevent Zato from deleting hot-deployed Python code effectively
+  making servers work in a live-reload mode
+
+* Made 
+  :doc:`HTTP Basic Auth <../web-admin/security/basic-auth>` passwords optional, including the 
+  :doc:`underlying API <../public-api/details/zato.security.basic-auth.change-password>`
+
+* Made it possible to specify an HTTP method to ping outgoing
+  :doc:`HTTP <../web-admin/outgoing/plain-http>`/:doc:`SOAP <../web-admin/outgoing/soap>`
+  connections with
+
+* Added the ability to specify the size of each outgoing 
+  :doc:`HTTP <../web-admin/outgoing/plain-http>`/:doc:`SOAP <../web-admin/outgoing/soap>`
+  connection's pool size  (this is a per-worker setting)
+
+* Made :ref:`Service.log_input <progguide-write-service-log_input>`/:ref:`output <progguide-write-service-log_output>` 
+  log the user_msg as a prefix of the dictionary of data to write out, not as part
+  of its keys
+  
+* Added a Python package index at `http://extlibs.zato.io/dependencies/ <http://extlibs.zato.io/dependencies/>`_
+
+
 1.1 - 2013-06-02
 ================
 

@@ -38,6 +38,8 @@ soap_action  string   Yes      〃
 soap_version string   Yes      〃
 data_format  string   Yes      〃
 host         string   Yes      〃
+ping_method  string   Yes      〃
+pool_size    int      Yes      〃
 ============ ======== ======== ================================================================
             
 
@@ -73,6 +75,7 @@ SOAP example
             <zato:soap_action>myservice1</zato:soap_action>
             <zato:soap_version>1.1</zato:soap_version>
             <zato:data_format>xml</zato:data_format>
+            <zato:ping_method>OPTIONS</zato:ping_method>
          </zato:zato_http_soap_edit_request>
       </soapenv:Body>
    </soapenv:Envelope>
@@ -106,7 +109,8 @@ JSON example
      "connection": "outgoing",
      "transport": "plain_http",
      "url_path": "/json",
-     "host": "10.152.11.182:9093"
+     "host": "10.152.11.182:9093",
+     "ping_method": "HEAD"
    }
 
    {

@@ -37,6 +37,10 @@ Active              Whether the connection can be used by services or not.
                     
 Host                HTTP server's host, may include a port
 URL path            Path a resource to be invoked is mounted on
+Ping method         (New in 1.2) HTTP method to use for pinging the connection (defaults to HEAD).
+Pool size           (New in 1.2) How big an underlying connection pool can be, any requests above it will be discarded and a warning
+                    will be logged. This setting is per each server worker and connections are created on demand, when they're actually
+                    needed.
 Security            Name of a security definition - 
                     :doc:`HTTP Basic Auth <../security/basic-auth>`,
                     :doc:`technical account <../security/tech-account>`
@@ -53,9 +57,9 @@ Security            Name of a security definition -
 Ping
 ----
 
-.. image:: /gfx/web-admin/outgoing/plain-http-ping.png
+.. image:: /gfx/web-admin/outgoing/plain-http-soap-ping.png
 
-A connection can be pinged - this sends an HTTP HEAD request from one of a 
+A connection can be pinged - this sends an HTTP request (HEAD by default) from one of a 
 cluster's servers to a location specified by the connection's definition. 
 This can be used to check whether a given resource is reachable by Zato servers.
 

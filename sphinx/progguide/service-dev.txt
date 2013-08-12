@@ -26,6 +26,11 @@ it's still a valid service.
        def handle(self):
            pass
            
+.. note:: Looking for a set of scaled-down practical examples to study?
+
+   :doc:`Click here <./examples/index>` to visit a separate chapter with sample services.
+
+           
 .. _progguide-conventions:
            
 Programming conventions
@@ -1069,6 +1074,8 @@ log_input
   :param suppress_keys: A list of keys which shouldn't be logged
   :rtype: A dictionary of information which was logged
   
+.. versionchanged:: 1.2
+  
 Note that below the service has been expoxed through a plain HTTP channel
 at /service-api.my-service so it can be invoked from curl in order to show
 input HTTP headers which log_input has access to.
@@ -1087,7 +1094,8 @@ input HTTP headers which log_input has access to.
   
 ::
 
-  INFO - {u'impl_name': u'req_resp.MyService', u'name': u'req-resp.my-service', 
+  INFO - Let's find out what the input was {u'impl_name': u'req_resp.MyService', 
+      u'name': u'req-resp.my-service', 
       u'cid': u'K003047659946670542740630609961875870964', 
       u'invocation_time': datetime.datetime(2013, 2, 19, 8, 16, 56, 253101), 
       u'job_type': None, u'data_format': None, 
@@ -1100,7 +1108,7 @@ input HTTP headers which log_input has access to.
         'QUERY_STRING': '', 'HTTP_ACCEPT': '*/*', 'HTTP_USER_AGENT': 
         'curl/7.22.0', 'wsgi.version': (1, 0), 'REMOTE_PORT': '38617', 
         'RAW_URI': '/service-api.my-service', 'REMOTE_ADDR': '127.0.0.1', 
-        'wsgi.run_once': False, u'user_msg': "Let's find out what the input was",
+        'wsgi.run_once': False, 
         'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7f3c8f65d270>, 
         'wsgi.multiprocess': True, 'wsgi.url_scheme': 'http', 
         'gunicorn.socket': <socket at 0x525cb10 fileno=13 sock=127.0.0.1:17010 peer=127.0.0.1:38617>, 
@@ -1117,6 +1125,8 @@ log_output
 
   Akin to :ref:`log_input <progguide-write-service-log_output>` but deals
   with the output data instead. Note that suppress_keys isn't None by default.
+
+.. versionchanged:: 1.2
   
 ::
 
@@ -1141,7 +1151,7 @@ log_output
   
 ::
 
-  DEBUG - {u'response.payload': 'Greetings!', 
+  DEBUG - What was the output? {u'response.payload': 'Greetings!', 
       u'handle_return_time': datetime.datetime(2013, 2, 19, 8, 37, 36, 469453), 
       u'impl_name': u'(suppressed)', u'channel': u'http-soap',
       u'cid': u'K190324097308368662541391425956165369564', 
@@ -1149,8 +1159,7 @@ log_output
       u'invocation_time': datetime.datetime(2013, 2, 19, 8, 37, 36, 469320), 
       u'processing_time_raw': datetime.timedelta(0, 0, 133), 
       u'job_type': None, u'data_format': None, u'slow_threshold': 99999, 
-      u'environ': {}, u'user_msg': 'What was the output?', 
-      u'usage': 8}
+      u'environ': {}, u'usage': 8}
 
 .. _progguide-write-service-translate:
 
