@@ -103,6 +103,11 @@ There is no custom application packaging format nor does Zato know that what
 you call an application is more than just one or more services that are logically
 grouped together.
 
+Programming examples
+====================
+
+:doc:`Click here <./examples/index>` to visit a chapter with programming examples.
+
 Read next
 =========
 
@@ -137,3 +142,20 @@ Read next
       
     * **Customizing web admin:**
       :doc:`Making sure you work on the right environment<./web-admin-settings>`
+
+    * **Examples**
+      :doc:`Overview <./examples/index>` | 
+      :doc:`HTTP <./examples/http>` | 
+      :doc:`SimpleIO (SIO) <./examples/sio>` | 
+      :doc:`JSON <./examples/json>` | 
+      :doc:`XML <./examples/xml>` | 
+      :doc:`SOAP <./examples/soap>` | 
+      :doc:`CSV <./examples/csv>` | 
+      :doc:`Other data formats <./examples/other-formats>` | 
+      :doc:`AMQP <./examples/amqp>` |
+      :doc:`FTP <./examples/ftp>` |
+      :doc:`JMS WebSphere MQ <./examples/jms-wmq>` |
+      :doc:`Redis <./examples/redis>` |
+      :doc:`Scheduler <./examples/scheduler>` |
+      :doc:`SQL <./examples/sql>` |
+      :doc:`ZeroMQ <./examples/zmq>`

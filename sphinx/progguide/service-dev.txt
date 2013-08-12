@@ -26,6 +26,11 @@ it's still a valid service.
        def handle(self):
            pass
            
+.. note:: Looking for a set of scaled-down practical examples to study?
+
+   :doc:`Click here <./examples/index>` to visit a separate chapter with sample services.
+
+           
 .. _progguide-conventions:
            
 Programming conventions
