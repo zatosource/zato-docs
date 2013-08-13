@@ -370,7 +370,7 @@ In-progress<y:LabelModel>
           <y:BorderStyle hasColor="false" type="line" width="1.0"/>
           <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="87.8125" modelName="custom" textColor="#000000" visible="true" width="150.056640625" x="5.9716796875" y="3.873332366589352">hset(in-doubt-details)
 zadd(in-doubt-list)
-hset(in-doubt-list-key)
+hset(in-doubt-list-idx)
 hmset(by-target-type)
 delete(payload)
 srem(uq-by-target-type)<y:LabelModel>
@@ -471,7 +471,7 @@ and last attempt<y:LabelModel>
           <y:Geometry height="68.87238979118331" width="148.9999999999999" x="708.3489559164733" y="954.2004640371231"/>
           <y:Fill color="#99CC00" transparent="false"/>
           <y:BorderStyle hasColor="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="59.875" modelName="custom" textColor="#000000" visible="true" width="137.880859375" x="5.5595703125" y="4.498694895591598">hmset(by-target-type)
+          <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="59.875" modelName="custom" textColor="#000000" visible="true" width="137.880859375" x="5.559570312499886" y="4.498694895591598">hmset(by-target-type)
 hmset(arch)
 expire(arch)
 delete(payload)<y:LabelModel>
@@ -568,7 +568,7 @@ retrying?<y:LabelModel>
           <y:Geometry height="40.0" width="87.0" x="436.5" y="229.116241299304"/>
           <y:Fill color="#CC99FF" transparent="false"/>
           <y:BorderStyle hasColor="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" modelName="custom" textColor="#000000" visible="true" width="59.705078125" x="13.6474609375" y="4.03125">State:
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" modelName="custom" textColor="#000000" visible="true" width="59.705078125" x="13.6474609375" y="4.031249999999972">State:
 Unknown<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
@@ -628,7 +628,7 @@ Unknown<y:LabelModel>
           <y:Geometry height="17.651972157772548" width="22.5127610208815" x="805.0" y="890.3106728538285"/>
           <y:Fill hasColor="false" transparent="false"/>
           <y:BorderStyle hasColor="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="11" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="16.8046875" modelName="custom" textColor="#000000" visible="true" width="24.904296875" x="-1.1957679270592507" y="0.4236423288863307">End<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="11" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="16.8046875" modelName="custom" textColor="#000000" visible="true" width="24.904296875" x="-1.1957679270592507" y="0.423642328886217">End<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -804,7 +804,7 @@ retry<y:LabelModel>
           <y:Geometry height="48.556844547563855" width="80.5" x="454.69083526682135" y="1108.636658932715"/>
           <y:Fill color="#FFFF00" transparent="false"/>
           <y:BorderStyle hasColor="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="45.90625" modelName="custom" textColor="#000000" visible="true" width="71.822265625" x="4.3388671875" y="1.3252972737819846">Find
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="45.90625" modelName="custom" textColor="#000000" visible="true" width="71.822265625" x="4.3388671875" y="1.325297273781871">Find
 interrupted
 tasks<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
@@ -1235,7 +1235,6 @@ services<y:LabelModel>
       </data>
     </edge>
     <edge id="e24" source="n31" target="n30">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -1246,7 +1245,6 @@ services<y:LabelModel>
       </data>
     </edge>
     <edge id="e25" source="n2" target="n48">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="25.5" sy="7.853596287702999" tx="0.0" ty="0.0">
@@ -1259,7 +1257,6 @@ services<y:LabelModel>
       </data>
     </edge>
     <edge id="e26" source="n2" target="n13">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
