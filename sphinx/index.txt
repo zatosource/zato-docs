@@ -7,7 +7,7 @@ Getting help
 
 * Read the :doc:`no-nonsense intro to ESB and SOA <intro/esb-soa>`
 
-* `Download <https://zato.io/download/zato-latest.tar.bz2>`_ and :doc:`install<admin/guide/install-zato>` the latest version
+* :doc:`Download and install<admin/guide/install-zato>` the latest version
 
 * `Priority commercial support and training <https://zato.io/support>`_
 
@@ -133,6 +133,23 @@ Web admin
 Programming guide
 =================
 
+    * **Examples**
+      :doc:`Overview <progguide/examples/index>` | 
+      :doc:`HTTP <progguide/examples/http>` | 
+      :doc:`SimpleIO (SIO) <progguide/examples/sio>` | 
+      :doc:`JSON <progguide/examples/json>` | 
+      :doc:`XML <progguide/examples/xml>` | 
+      :doc:`SOAP <progguide/examples/soap>` | 
+      :doc:`CSV <progguide/examples/csv>` | 
+      :doc:`Other data formats <progguide/examples/other-formats>` | 
+      :doc:`AMQP <progguide/examples/amqp>` |
+      :doc:`FTP <progguide/examples/ftp>` |
+      :doc:`JMS WebSphere MQ <progguide/examples/jms-wmq>` |
+      :doc:`Redis <progguide/examples/redis>` |
+      :doc:`Scheduler <progguide/examples/scheduler>` |
+      :doc:`SQL <progguide/examples/sql>` |
+      :doc:`ZeroMQ <progguide/examples/zmq>`
+
     * **Developing services and applications:**
       :doc:`Overview <progguide/overview>` |
       :doc:`Developing services <progguide/service-dev>` |
@@ -166,23 +183,6 @@ Programming guide
     * **Customizing web admin:**
       :doc:`Making sure you work on the right environment<progguide/web-admin-settings>`
       
-    * **Examples**
-      :doc:`Overview <progguide/examples/index>` | 
-      :doc:`HTTP <progguide/examples/http>` | 
-      :doc:`SimpleIO (SIO) <progguide/examples/sio>` | 
-      :doc:`JSON <progguide/examples/json>` | 
-      :doc:`XML <progguide/examples/xml>` | 
-      :doc:`SOAP <progguide/examples/soap>` | 
-      :doc:`CSV <progguide/examples/csv>` | 
-      :doc:`Other data formats <progguide/examples/other-formats>` | 
-      :doc:`AMQP <progguide/examples/amqp>` |
-      :doc:`FTP <progguide/examples/ftp>` |
-      :doc:`JMS WebSphere MQ <progguide/examples/jms-wmq>` |
-      :doc:`Redis <progguide/examples/redis>` |
-      :doc:`Scheduler <progguide/examples/scheduler>` |
-      :doc:`SQL <progguide/examples/sql>` |
-      :doc:`ZeroMQ <progguide/examples/zmq>`
-
 Administration guide
 ====================
 
