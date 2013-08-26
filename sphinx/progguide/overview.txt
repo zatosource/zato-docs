@@ -111,6 +111,23 @@ Programming examples
 Read next
 =========
 
+    * **Examples**
+      :doc:`Overview <./examples/index>` | 
+      :doc:`HTTP <./examples/http>` | 
+      :doc:`SimpleIO (SIO) <./examples/sio>` | 
+      :doc:`JSON <./examples/json>` | 
+      :doc:`XML <./examples/xml>` | 
+      :doc:`SOAP <./examples/soap>` | 
+      :doc:`CSV <./examples/csv>` | 
+      :doc:`Other data formats <./examples/other-formats>` | 
+      :doc:`AMQP <./examples/amqp>` |
+      :doc:`FTP <./examples/ftp>` |
+      :doc:`JMS WebSphere MQ <./examples/jms-wmq>` |
+      :doc:`Redis <./examples/redis>` |
+      :doc:`Scheduler <./examples/scheduler>` |
+      :doc:`SQL <./examples/sql>` |
+      :doc:`ZeroMQ <./examples/zmq>`
+
     * **Developing services and applications:**
       :doc:`Developing services <./service-dev>` |
       :doc:`Request and response objects<./request-response>` |
