@@ -315,10 +315,13 @@ First off, let's start the thing we've just brought to this world:
 
   $ ./zato-qs-start.sh 
   Starting the Zato quickstart environment
-  [1/4] Load-balancer started
-  [2/4] server1 started
-  [3/4] server2 started
-  [4/4] Web admin started
+  Running sanity checks
+  [1/6] Redis connection OK
+  [2/6] SQL ODB connection OK 
+  [3/6] Load-balancer started
+  [4/6] server1 started
+  [5/6] server2 started
+  [6/6] Web admin started
   Zato quickstart environment started
   Visit https://zato.io/support for more information and support options
   $
