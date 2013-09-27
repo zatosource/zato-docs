@@ -57,6 +57,13 @@ Introduction
       :doc:`Part 1<tutorial/01>` |
       :doc:`Part 2<tutorial/02>`
       
+I18N
+====
+
+    * **中文:** 
+      `Zato—基于Python的ESB和后端应用服务器 <http://www.infoq.com/cn/articles/zato>`_ | 
+      `Python 发送 AMQP 消息 <http://www.oschina.net/translate/howto-sending-amqp-messages>`_
+
 Web admin
 =========
 
