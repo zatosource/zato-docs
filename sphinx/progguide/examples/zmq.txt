@@ -25,8 +25,8 @@ The request will be in self.request.payload.
 
 .. _progguide-examples-zmq-sending:
 
-Receiving messages from sockets
--------------------------------
+Sending  messages to sockets
+----------------------------
 
 Create a new 
 :doc:`outgoing ZeroMQ connection <../../web-admin/outgoing/zmq>`
