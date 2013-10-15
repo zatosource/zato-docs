@@ -56,7 +56,7 @@ An unformatted JSON document for each server the service has been deployed on.
 Header       Notes
 ============ =============================================================================
 current_user OS-level user of a process which deployed the service
-current_host Hostname and FQDN of a system the server is runnin on
+current_host Hostname and FQDN of a system the server is running on
 timestamp    Where was the service deployed (in UTC)
 fs_location  Where was the Python class the service is in found
 object       Name of a Python class the service is implemented as

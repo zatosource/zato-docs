@@ -21,5 +21,5 @@ Header    Notes
 ========= ==============================================
 Command   HAProxy command to execute
 Timeout   How long to wait for a reply
-Paramater Any extra parameters that a command may expect
+Parameter Any extra parameters that a command may expect
 ========= ==============================================

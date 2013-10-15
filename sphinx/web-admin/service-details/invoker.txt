@@ -13,7 +13,7 @@ or not.
 .. image:: /gfx/web-admin/service-details/invoker.png
    :width: 95%
 
-Data format choosen will populate a service instance's
+Data format chosen will populate a service instance's
 :ref:`data_format <progguide-write-service-data_format>` attribute
 while transport will make Zato understand it needs to parse the request 
 out of an envelope, if any.
