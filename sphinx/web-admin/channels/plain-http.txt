@@ -9,7 +9,7 @@ Used to create, update, delete and browse through plain HTTP channels.
 A plain HTTP channel is a means of accepting synchronous HTTP service invocations.
 Contrary to what :doc:`SOAP channels <./soap>` assume, plain HTTP ones don't except
 the data to be in any particular format, it can be anything that can be
-transfered over HTTP, including JSON, CSV, XML or virtually anything.
+transferred over HTTP, including JSON, CSV, XML or virtually anything.
 
 * Menu path: Connections -> Channels -> Plain HTTP
 * Example address: http://localhost:8183/zato/http-soap/?cluster=1&connection=channel&transport=plain_http
