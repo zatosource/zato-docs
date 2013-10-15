@@ -49,7 +49,7 @@ The difference between the two is that trends charts are generated on fly
 and they're a heavy-weight operation. Trends should not be used for checking 
 more than just a few hours worth of data.
 
-Summaries are pre-computed, have no charts, and can span aribitrary datetime
+Summaries are pre-computed, have no charts, and can span arbitrary datetime
 ranges, hours, days, months or even years.
 
 .. warning ::
@@ -58,7 +58,7 @@ ranges, hours, days, months or even years.
   of statistics - doing so is a very intensive operation which effectively works
   as a DoS attack which needs restarting a server.
 
-Understanding the inteface
+Understanding the interface
 --------------------------
 
 .. image:: /gfx/stats/overview.png
@@ -68,13 +68,13 @@ Understanding the inteface
    :alt:
    :scale: 50%
 
-* Both trends and summaries present a unified inteface with the whole exception
+* Both trends and summaries present a unified interface with the whole exception
   being that summaries have no charts
   
 * Statistics can always be downloaded in CSV
   
 * There are always at least two groups of statistics. If a side-by-side
-  comparison has been choosen, there are also two groups of relevant statistics
+  comparison has been chosen, there are also two groups of relevant statistics
   for the time period to compare with.
   
   Each column in each group can be clicked to make the stats sorted by the column.

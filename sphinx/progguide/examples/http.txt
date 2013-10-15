@@ -192,7 +192,7 @@ take precedence over what Zato would've set by default.
 Setting content type and status code
 ------------------------------------
 
-self.response.status_code is where the status code can be set using contstans
+self.response.status_code is where the status code can be set using constants
 from Python's builtin 
 `httlib <docs.python.org/2.7/library/httplib.html>`_
 module. 

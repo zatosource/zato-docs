@@ -26,7 +26,7 @@ doesn't really matter):
 
 1) is from a CRM running on Linux and Oracle
 2) is from a COBOL system on z/OS mainframe
-3) is said to be from a mainframe but they're too tightlipped to tell you anything, only that
+3) is said to be from a mainframe but they're too tight-lipped to tell you anything, only that
    they prefer CSV over anything else
 4) is from a mix of PHP and Ruby running on Windows
 5) is from PostgreSQL, Python and Java running on Linux and Solaris
@@ -90,7 +90,7 @@ A service is something interesting, reusable and atomic that is offered by one
 system to other applications willing to make a good use of it, but it's never
 exposed directly in a point-to-point manner. This is the shortest meaningful definition possible.
 
-If a given functionality of a system fulfils these 3 requirements, that is, if it's:
+If a given functionality of a system fulfills these 3 requirements, that is, if it's:
 
 * **I** nteresting
 
@@ -132,7 +132,7 @@ Is it reusable?     Funnily enough, not exactly. There will be very few applicat
 Is it atomic?       Definitely not. This monster functionality is bound to be logically composed of dozens
                     of smaller parts.
 How to make it IRA? * Split it into smaller pieces. Think what describes a customer - they have their addresses,
-                      phones, favourite products, contact methods they prefer and so on - each of these
+                      phones, favorite products, contact methods they prefer and so on - each of these
                       should be turned into an independent service. 
                     * Use ESB to create composite services out of the atomic ones  
 =================== =============================================================================================
@@ -163,7 +163,7 @@ Is it interesting?  Extremely so. Everyone wants to use it, through text message
 Is it reusable?     Very reusable, it can take part in all sort of higher-level processes 
 Is it atomic?       Yes, from the calling application's point of view, it can either refill a card or not. That
                     a billing system will implement this functionality as a series of steps is irrelevant.
-                    From a business perspective it's an atomic, undividable service offered by a billing system.
+                    From a business perspective it's an atomic, indivisible service offered by a billing system.
 How to make it IRA? It already is IRA.
 =================== =============================================================================================
 

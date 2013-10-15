@@ -10,7 +10,7 @@ solution in an organization, it's not really recommended and there are no plans
 to develop the CA into a more feature-rich solution.
 
 The CA is used through :doc:`the command line </admin/cli/ca>` and works by executing
-`openssl <https://openssl.org/>`_ commans in subprocesses.
+`openssl <https://openssl.org/>`_ commands in subprocesses.
 
 While purposefully limited in its extent, the CA still allows one to customize
 the output of running the commands by updating the ./ca-material/openssl-template.conf

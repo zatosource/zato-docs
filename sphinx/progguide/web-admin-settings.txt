@@ -14,7 +14,7 @@ so that, for instance, a production cluster will be in yellow while development
 will use green.
 
 If you pick any, a horizontal bar of that color will be prominently displayed
-to make sure you remeber which environment you currently work with. Each web admin
+to make sure you remember which environment you currently work with. Each web admin
 user has their own set of colors.
 
 ::

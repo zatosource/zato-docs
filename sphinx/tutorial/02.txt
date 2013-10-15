@@ -13,7 +13,7 @@ Calling other systems
   Many concepts and ideas previously explained over there are not repeated here.
 
 You'll recall from the :doc:`previous part <./01>` that we've already created
-a cluster, a skeleton service and the service has been invoked succesfully.
+a cluster, a skeleton service and the service has been invoked successfully.
 
 Now we'll make it use external systems' services through HTTP, ZeroMQ and JSON. 
 :ref:`Head on <tutorial-01-message-flow>` to the part 1 if you need a recap
@@ -226,7 +226,7 @@ server does with it isn't a service's concern.
                     
 Such a system will do perfectly. After all, that's the whole point of async
 messaging, you just fire a message and forget about it. That in this particular
-case, the recpient only logs all the requests received is not our business.
+case, the recipient only logs all the requests received is not our business.
 
 Assuming you've installed Zato binaries in $install_dir, you can run the server
 like below - note that the command really is 'py', not 'python':
@@ -492,7 +492,7 @@ self.request.payload *directly as is* and that's it. Zato will understand how
 to serialize it properly for each channel.
 
 To make a service SIO-aware it needs to have an inner SimpleIO class. The class
-lists what is requried or optional on input/output and what specific data types 
+lists what is required or optional on input/output and what specific data types 
 to use - by default, everything is translated into strings but you can force
 serialization into a concrete type if you need it.
 
@@ -628,7 +628,7 @@ Our original JSON channel is still there:
     "2013-05-14T10:42:14.401555"}}
  $ 
  
-So there you have it. When using doc:`SIO <../progguide/sio>` you are not required
+So there you have it. When using :doc:`SIO <../progguide/sio>` you are not required
 to directly deal with any specific data format, you just treat everything as though
 it were all dicts or bunches and Zato converts it to and fro for you.
 
@@ -697,7 +697,7 @@ Wrapping it all up
 ------------------
 
 So that would be it for the tutorial. A small part of Zato's features have been 
-covered but you should already have a solid understanding of some of the core apects:
+covered but you should already have a solid understanding of some of the core aspects:
 
 * Zato is open-source software, licensed under a commercial friendly 
   `LGPL <https://en.wikipedia.org/wiki/LGPL>`_ license
