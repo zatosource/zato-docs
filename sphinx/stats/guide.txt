@@ -59,7 +59,7 @@ ranges, hours, days, months or even years.
   as a DoS attack which needs restarting a server.
 
 Understanding the interface
---------------------------
+---------------------------
 
 .. image:: /gfx/stats/overview.png
    :alt:
