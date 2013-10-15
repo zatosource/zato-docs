@@ -31,7 +31,7 @@ or workers would make them compete for CPU too strenuously.
 Singletons
 ----------
 
-For each cluster, exactly one sever will be designated to a role of the singleton
+For each cluster, exactly one server will be designated to a role of the singleton
 server. This is be the sever that will be responsible for managing the tasks
 that must not be run in more than one instance - 
 :ref:`a cluster's scheduler <arch-servers-scheduler>` and :ref:`connectors <arch-servers-connectors>`.
