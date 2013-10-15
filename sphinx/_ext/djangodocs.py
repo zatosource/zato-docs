@@ -243,7 +243,7 @@ class DjangoStandaloneHTMLBuilder(StandaloneHTMLBuilder):
                         if t == "templatefilter" and l == "ref/templates/builtins"],
         }
         outfilename = os.path.join(self.outdir, "templatebuiltins.js")
-        f = open(outfilename, 'wb')
+        f = open(outfilename, 'w')
         f.write('var django_template_builtins = ')
         json.dump(templatebuiltins, f)
         f.write(';\n')
