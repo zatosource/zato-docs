@@ -12,7 +12,7 @@ are one-time, interval-based and cron-style.
 Among other things, the cluster's :doc:`singleton server </architecture/servers>`
 runs a background thread whose sole purpose is to publish messages on 
 :doc:`Redis </architecture/redis>` when a service should be invoked. The message
-is picked up by on of servers and Zato invokes the service specified. 
+is picked up by one of servers and Zato invokes the service specified. 
 
 It's worth emphasizing that publishing a message that a service should be run
 and actually running it can be performed by two different servers, the process
