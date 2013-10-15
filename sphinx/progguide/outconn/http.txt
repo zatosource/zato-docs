@@ -100,7 +100,7 @@ session attribute A handle to the underlying `Requests <http://docs.python-reque
               the Zato request and any entries in the logs the other end may produce
   :type cid: string
   
-  :rtype: (A text report regarding how long it took for the othe side to reply)
+  :rtype: (A text report regarding how long it took for the other side to reply)
 
 
 .. _progguide-outconn-get:

@@ -76,7 +76,7 @@ will be published to Redis and a server will receive it asynchronously.
 Connectors are the other part of a Zato cluster that use Redis. Message exchanging
 using AMQP, WebSphere MQ and ZeroMQ is never performed directly between services
 and external applications - services send messages to Redis, connectors pick
-them up and send them over to queues. Conversly, when a connector receives a 
+them up and send them over to queues. Conversely, when a connector receives a 
 message on queue, the message is published on Redis and one of the server subscribed
 receives it asynchronously.
 

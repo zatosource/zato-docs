@@ -43,7 +43,7 @@ Programming conventions
   
 * All input and output is always in UTF-8. Zato doesn't use nor support any other 
   encoding. Each request and response must always be in UTF-8. Being a subset
-  of UTF-8, ASCII will also be accepted but you're advised to alwys use UTF-8 anyway.
+  of UTF-8, ASCII will also be accepted but you're advised to always use UTF-8 anyway.
   Any other encodings, such as ISO-8859-1 or EBCDIC, are invalid.
 
 * You are strongly encouraged to use the following header in each source code
@@ -125,7 +125,7 @@ and
 a service can make use of during processing of the messages.
 
 Save the following code in service_api.py and :doc:`hot-deploy <../admin/guide/installing-services>` it - this will be
-the servce that will be modified throughout the rest of the text.
+the service that will be modified throughout the rest of the text.
 
 ::
 

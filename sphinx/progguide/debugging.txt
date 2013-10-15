@@ -24,7 +24,7 @@ critical situations.
 
 Always provide context when logging information. There's no joy in spending
 a night on diagnosing an issue at a client's site because a service's author decided
-it was best to log information that 'An unexpected error has been encoutered'. With Zato,
+it was best to log information that 'An unexpected error has been encountered'. With Zato,
 it's trivial to log 
 :ref:`input <progguide-write-service-log_input>`/:ref:`output <progguide-write-service-log_output>` 
 and the current stacktrace and these two pieces of information are usually the very 

@@ -12,7 +12,7 @@ Asynchronously sends a message to a WebSphere MQ queue manager using
 :doc:`parameters <../../web-admin/outgoing/jms-wmq>`
 specified.
 
-The application on the receiving end is assummed to have been written in Java
+The application on the receiving end is assumed to have been written in Java
 using MQ JMS API. This allows for seamless integration with Java JMS WMQ systems -
 from their point of view Zato, despite being written in Python, will appear to be
 a Java application.

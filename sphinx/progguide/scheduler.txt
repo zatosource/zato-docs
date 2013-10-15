@@ -19,7 +19,7 @@ and actually running it can be performed by two different servers, the process
 is asynchronous. 
 
 Because Zato won't wait for a previous execution of a service to
-complete before the next one can be started, mutiple instances of a service 
+complete before the next one can be started, multiple instances of a service 
 triggered by a scheduler's job are able to run in parallel.
 
 From the perspective of a service, being triggered by a job is like any other

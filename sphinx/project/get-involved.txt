@@ -3,7 +3,7 @@ Getting involved
 
 Want to help? **Superb!**
 
-* Programmers should famliarize themselves with 
+* Programmers should familiarize themselves with 
   `the source code on GitHub <https://github.com/zatosource/zato/>`_.
   Fork and send patches at will! :-)
   

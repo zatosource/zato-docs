@@ -179,7 +179,7 @@ Producing response
 *
 
    You just need to assign a unicode string representing an XML document to
-   self.response.payload and it's completely up to you how the string is proccured.
+   self.response.payload and it's completely up to you how the string is procured.
    
    Using `lxml <http://lxml.de>`_ is one easy way:
    

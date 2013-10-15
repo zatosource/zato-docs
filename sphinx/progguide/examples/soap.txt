@@ -139,7 +139,7 @@ online:
  </soap:Envelope>
  
 It doesn't matter how a request is produced as long as an outgoing connection
-is invoked with its string represenation. 
+is invoked with its string representation. 
 
 Sample code to invoke the service and get the conversion rate:
 

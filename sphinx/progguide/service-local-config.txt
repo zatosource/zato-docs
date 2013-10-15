@@ -174,7 +174,7 @@ services are deployed on servers.
        @staticmethod
        def before_add_to_store(logger):
            # Imagine LDAP or any other data source is queried here and it returns
-           # a dictionary of configuation.
+           # a dictionary of configuration.
            external_config = get_config()
            
            # Set config to whatever was fetched
