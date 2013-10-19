@@ -200,8 +200,8 @@ There are only few conventions to understand before making use of the Zato publi
 zato_env
 ========
 
-zato_env is a technical evelope carrying useful information in each response.
-It is available if the service has been successfuly invoked and can be used,
+zato_env is a technical envelope carrying useful information in each response.
+It is available if the service has been successfully invoked and can be used,
 for instance, for correlating responses received by clients with messages
 written out to Zato server logs.
 
@@ -292,7 +292,7 @@ The API
       :doc:`zato.kvdb.data-dict.translation.*</public-api/details/zato.kvdb.data-dict.translation>` |
       :doc:`zato.kvdb.remote-command.*</public-api/details/zato.kvdb.remote-command>`
       
-    * **Ougoing connections:**
+    * **Outgoing connections:**
       :doc:`zato.outgoing.amqp.*</public-api/details/zato.outgoing.amqp>` |
       :doc:`zato.outgoing.ftp.*</public-api/details/zato.outgoing.ftp>` |
       :doc:`zato.outgoing.jms-wmq.*</public-api/details/zato.outgoing.jms-wmq>` |

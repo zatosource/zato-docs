@@ -2,7 +2,7 @@ Synchronous and asynchronous message flow
 =========================================
 
 In order to maximize the throughput of a Zato cluster and indeed, of the whole
-environment Zato is a part of, it's usually desirable to consider whether the procesess,
+environment Zato is a part of, it's usually desirable to consider whether the processes,
 even synchronous ones, shouldn't be in fact implemented in an asynchronous, non-blocking,
 fashion.
 

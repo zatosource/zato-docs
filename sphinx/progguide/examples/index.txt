@@ -5,7 +5,7 @@ Programming examples
 ====================
 
 Subsequent chapters present how a typical code to perform a given operation,
-such as manipulating JSON or XML, will look like. It is assummed the reader has already
+such as manipulating JSON or XML, will look like. It is assumed the reader has already
 completed
 :doc:`the tutorial <../../tutorial/01>`, 
 is familiar with Zato's

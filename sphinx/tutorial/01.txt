@@ -175,7 +175,7 @@ of how the installer works under the hood)
 Done yet? OK, so let's create a quickstart cluster, which is a sort of a cluster
 created by running the 
 :doc:`CLI commands <../../admin/cli/index>`,
-appropiately called 
+appropriately called 
 :doc:`zato quickstart create <../../admin/cli/quickstart-create>`.
 
 You need to prepare:
@@ -362,7 +362,7 @@ The response produced by zato.ping happens to be a JSON document.
 Hot-deploying your first service
 --------------------------------
 
-Fire up you favourite programming editor and let's finally create our own Zato service.
+Fire up you favorite programming editor and let's finally create our own Zato service.
 
 Save the following code as my_service.py
 

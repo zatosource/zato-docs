@@ -8,7 +8,7 @@ User settings
    
 Clicking 'My settings' allows you to update:
 
-* Your timezone and preffered date/time format. This will be used throughout
+* Your timezone and preferred date/time format. This will be used throughout
   the whole of the web admin except for a few places that are explicitly 
   documented to use UTC.
   

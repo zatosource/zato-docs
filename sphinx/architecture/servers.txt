@@ -31,7 +31,7 @@ or workers would make them compete for CPU too strenuously.
 Singletons
 ----------
 
-For each cluster, exactly one sever will be designated to a role of the singleton
+For each cluster, exactly one server will be designated to a role of the singleton
 server. This is be the sever that will be responsible for managing the tasks
 that must not be run in more than one instance - 
 :ref:`a cluster's scheduler <arch-servers-scheduler>` and :ref:`connectors <arch-servers-connectors>`.
@@ -47,7 +47,7 @@ Load-balancer
 -------------
 
 In front of each cluster is a :doc:`high-availability load-balancer <./load-balancer>`, implemented
-using an HAProxy instance running in a subprocces. The load-balancer makes sure
+using an HAProxy instance running in a subprocess. The load-balancer makes sure
 the incoming HTTP traffic is evenly distributed across all the servers in a cluster
 while allowing the servers to join or leave the cluster without interrupting
 the message flow.
@@ -127,7 +127,7 @@ Services and connectors communicate indirectly through Redis.
 If a channel receives a new message, the message is taken off a queue,
 published on Redis, one of the servers subscribed receives it and a service is invoked.
 
-Conversly, if a service needs to put a message on a queue, the message is first
+Conversely, if a service needs to put a message on a queue, the message is first
 published to Redis, a connector pick it up and the message is sent to its destination.
 
 Note that connectors are never redundant and there are always at least 2 clusters

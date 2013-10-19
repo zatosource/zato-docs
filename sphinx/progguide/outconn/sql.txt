@@ -95,7 +95,7 @@ You can use SQLAlchemy models:
   # stdlib
   from contextlib import closing
   
-  # Let's imagine your application defines an SQLAlchemy Customer model somwhere
+  # Let's imagine your application defines an SQLAlchemy Customer model somewhere
   # from myapp.model import Customer
   
   # Zato
@@ -126,7 +126,7 @@ of the former's models:
   # stdlib
   from contextlib import closing
   
-  # Let's imagine your application defines an SQLAlchemy Customer model somwhere
+  # Let's imagine your application defines an SQLAlchemy Customer model somewhere
   # from myapp.model import Customer
   
   # Zato

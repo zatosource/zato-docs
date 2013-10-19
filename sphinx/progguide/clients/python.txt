@@ -73,7 +73,7 @@ Each client class accepts the same set of arguments when creating an instance.
                         printed on either end of a CID. For instance, if CID is
                         K149081821097240318192876103867382447697 and max_cid_repr is 5,
                         __repr__ will use 'K1490..47697' with any characters in between
-                        surpressed. max_cid_repr defaults to 5 and you can use the `zato.client.CID_NO_CLIP <https://github.com/zatosource/zato/blob/master/code/zato-client/src/zato/client/__init__.py>`_ constant to turn the clipping
+                        suppressed. max_cid_repr defaults to 5 and you can use the `zato.client.CID_NO_CLIP <https://github.com/zatosource/zato/blob/master/code/zato-client/src/zato/client/__init__.py>`_ constant to turn the clipping
                         feature off.
   :type max_cid_repr: int                        
 
@@ -600,7 +600,7 @@ details  (depends)            Error details in format depending on the client cl
                                 
                               * :ref:`XMLClient <progguide-clients-python-XMLClient>`- 
                                 Python traceback as a string resulting from a failed attempt to 
-                                convert the service respose into an
+                                convert the service response into an
                                 `ObjectifiedElement <http://lxml.de/objectify.html>`_ 
                               
                               * :ref:`SOAPClient <progguide-clients-python-SOAPClient>` - 

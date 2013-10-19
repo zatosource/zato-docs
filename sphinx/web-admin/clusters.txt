@@ -20,7 +20,7 @@ Cluster       Cluster's name and textual description
 Addresses     * HTTP - address the cluster will accept incoming HTTP
                 connections on, as returned by the load-balancer.
                        
-                This is the information external appications should 
+                This is the information external applications should 
                 be given.
                        
               * LB XML-RPC agent - address the load-balancer's agent listens on

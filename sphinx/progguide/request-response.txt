@@ -24,7 +24,7 @@ and
 a service has access to.
 
 Save the following code in req_resp.py and :doc:`hot-deploy <../admin/guide/installing-services>` 
-it - this will be the servce that will be modified later in the chapter. 
+it - this will be the service that will be modified later in the chapter. 
 
 You'll also need to create a new plain HTTP channel so that the service can be easily accessed
 through `curl <http://curl.haxx.se>`_.

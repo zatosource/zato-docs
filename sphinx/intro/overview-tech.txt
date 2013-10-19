@@ -20,7 +20,7 @@ one.
 
 
 The load balancer is smart enough to realize, in case of a failure, whether a server
-has gone down, and stops forwarding messages to it. Conversly, when a server comes up,
+has gone down, and stops forwarding messages to it. Conversely, when a server comes up,
 the load balancer automatically recognizes it and starts dispatching requests.
 There is no limit to the number of servers in a cluster and administrators
 have the ability to take servers offline or online without disrupting message processing.
@@ -71,6 +71,6 @@ mode by default. This allows Zato to easily handle thousands of incoming connect
 a second is easily within Zato's reach.
 
 Programmers use `Python <http://python.org>`_ to develop services. Python is a very high-level and
-powerful programming language, famously known for its ease of use and readibility, both of which greatly reduce
+powerful programming language, famously known for its ease of use and readability, both of which greatly reduce
 the Zato services' maintenance costs.
 
