@@ -11,6 +11,7 @@ The current version of |version| has been tested on the following systems:
 
 * `Ubuntu Linux 12.04 LTS <http://www.ubuntu.com/>`_
 * `Linux Mint 13 LTS <http://www.linuxmint.com/index.php>`_
+* `Debian 7 Wheezy <http://http://www.debian.org/>`_
 * `Fedora 18 <https://fedoraproject.org/>`_
 * `OS X <https://en.wikipedia.org/wiki/OS_X>`_
 
@@ -38,6 +39,9 @@ version in the 2.7 series is supported.
   `virtualenv <http://www.virtualenv.org/en/latest/>`_
   and uses buildout to store everything in a way
   that is as isolated from other packages already installed in the operating system as possible.
+  
+  On Debian, /usr/sbin/haproxy is symlinked (ln -sf) to /usr/bin/haproxy so that
+  it's on everybody's PATH.
 
 .. _admin-guide-install-zato-steps:
 
@@ -55,7 +59,11 @@ Steps
   `curl <https://en.wikipedia.org/wiki/CURL>`_
 
 * (OS X only) Install `homebrew <http://brew.sh/>`_
-  
+
+* (Debian only) Add `Debian-backports <http://backports.debian.org/Instructions/>`_
+  to APT sources so that HAProxy is available as 
+  `it isn't in Wheezy's repository <http://comments.gmane.org/gmane.comp.web.haproxy/12277>`_.
+
 * Download 
   `the installation package <https://zato.io/download/zato-1.1.tar.bz2>`_, e.g.:
 
