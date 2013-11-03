@@ -64,6 +64,9 @@ I18N
       `Zato—基于Python的ESB和后端应用服务器 <http://www.infoq.com/cn/articles/zato>`_ | 
       `Python 发送 AMQP 消息 <http://www.oschina.net/translate/howto-sending-amqp-messages>`_
       
+    * Português: 
+      :doc:`O que ESB e SOA são, afinal?<intro/esb-soa-pt>`
+      
     * ру́сский: 
       :doc:`Что такое ESB и SOA<intro/esb-soa-ru>`
 
