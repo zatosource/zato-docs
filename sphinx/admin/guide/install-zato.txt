@@ -62,7 +62,7 @@ Steps
 
 * (Debian only) Add `Debian-backports <http://backports.debian.org/Instructions/>`_
   to APT sources so that HAProxy is available as 
-  `it isn't in Wheezy's repository <http://comments.gmane.org/gmane.comp.web.haproxy/12277>`_.
+  `it isn't in Wheezy's repository <http://comments.gmane.org/gmane.comp.web.haproxy/12277>`_
 
 * Download 
   `the installation package <https://zato.io/download/zato-1.1.tar.bz2>`_, e.g.:
