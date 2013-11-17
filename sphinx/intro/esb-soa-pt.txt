@@ -1,6 +1,52 @@
-============================                                   
+============================
 O que ESB e SOA são, afinal?
 ============================
+
+.. raw:: html
+
+    <style type="text/css">
+    blockquote {
+        font-family: Georgia, serif;
+        font-size: 18px;
+        font-style: italic;
+        width: 500px;
+        margin: 0.25em 0;
+        padding: 0.35em 40px;
+        line-height: 1.45;
+        position: relative;
+        color: #383838;
+        text-align:center
+    }
+
+    blockquote:before {
+        display: block;
+        padding-left: 10px;
+        content: "  \201C";
+        font-size: 80px;
+        position: absolute;
+        left: 20px;
+        top: -20px;
+        color: #7a7a7a;
+    }
+
+    blockquote cite {
+        color: #999999;
+        font-size: 14px;
+        display: block;
+        margin-top: 5px;
+        }
+
+    blockquote cite:before {
+        content: "\2014 \2009";
+    }
+    </style>
+
+    <blockquote>
+    An excellent description of system-of-systems thinking
+    <br/>
+      <a href="https://twitter.com/ncoghlan_dev/status/337907854944129025">Nick Coghlan</a>, Core Python developer
+    </blockquote>
+    <br/>
 
 Translated from :doc:`English <./esb-soa>` by
 `Allan Douglas R. de Oliveira <https://github.com/douglaz>`_,
@@ -44,7 +90,7 @@ No diagrama abaixo, cada invocação de um serviço que outro sistema fornece é
 .. image:: /gfx/intro/mess1.png
    :alt:
 
-Note que nem sequer são mostrados os processos de alto nível (App1 invoca App2 e App3 ou App5 dependendo se uma resposta anterior da App6 foi bem sucedida 
+Note que nem sequer são mostrados os processos de alto nível (App1 invoca App2 e App3 ou App5 dependendo se uma resposta anterior da App6 foi bem sucedida
 de forma que a App4 pode em uma etapa posterior obter dados produzidos pela App2 mas só se a App1 permitir, etc.).
 
 Também note que não estamos falando de servidores - cada um dos sistemas pode estar sendo executado em 10 servidores físicos, portanto haverá pelo menos 60 componentes físicos falando entre si.
@@ -67,7 +113,7 @@ Há um bom nome para esta situação: Se chama uma confusão.
 Como você pode limpar a confusão?
 ---------------------------------
 
-A primeira coisa é honestamente admitir que a situação ficou fora de controle. 
+A primeira coisa é honestamente admitir que a situação ficou fora de controle.
 Isto permite que se procure um remédio sem sentir demasiada culpa. OK, aconteceu, você não sabia como fazer melhor, mas há um jeito de resolver.
 
 Isso pode significar uma mudança organizacional na abordagem à TI, mas outro passo é lembrar que sistemas e aplicativos não são criados apenas para trocar dados entre si.
@@ -125,7 +171,7 @@ Variável            Notas
 Ambiente            Qualquer CRM em qualquer lugar
 Funcionalidade      Atualizar a coluna CUST_AR_ZN na tabela C_NAZ_AJ após alguém criar uma conta
 É interessante?     Absolutamente não. Esta é uma função interna do CRM. Nenhuma pessoa sã no mundo quer lidar com uma funcionalidade de tão baixo nível.
-É reutilizável?     Sim, provavelmente. Uma conta pode ser criada através de múltiplos canais então parece algo que pode ser reutilizável. 
+É reutilizável?     Sim, provavelmente. Uma conta pode ser criada através de múltiplos canais então parece algo que pode ser reutilizável.
 É atômico?          Parece que sim. É apenas uma simples atualização em uma coluna em uma tabela.
 Como fazê-la IRA?   Nem tente transformá-la em um serviço. Ela não é interessante. Ninguém quer pensar
                     em uma particular coluna ou tabela de um sistema. Este é um detalhe intrínseco do CRM, então mesmo
@@ -140,7 +186,7 @@ Ambiente            Uma operadora de celular
 Funcionalidade      Recarregar uma cartão pré-pago em um sistema de faturamento
 É interessante?     Extremamente. Todo mundo quer usar-la através de mensagens de texto, mensagens instantâneas, portais, cartões de presente
                     etc.
-É reutilizável?     Muito reutilizável, ela pode participar em todos os tipos de processos de alto nível 
+É reutilizável?     Muito reutilizável, ela pode participar em todos os tipos de processos de alto nível
 É atômica?          Sim. Do ponto de vista da aplicação que chama, ela pode recarregar o cartão ou não. É irrelevante que
                     um sistema de faturamento vai implementar essa funcionalidade como uma série de passos.
                     Do ponto de vista de negócio, isso é um serviço atômico e indivisível oferecido pelo sistema de faturamento.
@@ -161,7 +207,7 @@ você entende o que um serviço é, você pode começar a usar um ESB.
 
 .. image:: /gfx/intro/esb-ok.png
    :alt:
-   
+
 Agora se torna o trabalho do ESB expor e invocar serviços dos sistemas
 integrados. Desta forma, na maioria dos casos, apenas um método de acesso, uma interface, precisa
 ser definida entre cada sistema e o ESB.
@@ -227,7 +273,7 @@ ESB como uma novidade, mas depois ele vai se tornar motivo de piada.
 
 Essas consequências são inevitáveis se o ESB não for parte de uma plano maior de realmente
 fazer as coisas avançarem.
-   
+
 -------------------------------------------------------
 Um ESB é somente para bancos e coisas parecidas, então?
 -------------------------------------------------------
