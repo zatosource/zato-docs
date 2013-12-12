@@ -40,7 +40,7 @@ version in the 2.7 series is supported.
   and uses buildout to store everything in a way
   that is as isolated from other packages already installed in the operating system as possible.
 
-  On Debian, /usr/sbin/haproxy is symlinked (ln -sf) to /usr/bin/haproxy so that
+  On Ubuntu and Debian, /usr/sbin/haproxy is symlinked (ln -sf) to /usr/bin/haproxy so that
   it's on everybody's PATH.
 
 .. _admin-guide-install-zato-steps:
