@@ -27,7 +27,7 @@ Reminding a couple of facts will make it easier to discuss the matter:
   One of the servers in the cluster assumes a role of the connector server
   and every connector process runs on the system this particular server is on.
   
-  Connectos are never redundant, there is always one copy of a given connector
+  Connectors are never redundant, there is always one copy of a given connector
   process in a given cluster.
   
   When a connector receives interal request to update its configuration, it is stopped
@@ -69,7 +69,7 @@ on a case by case basis and is well beyond the scope of this document.
 Clusters with connectors
 ------------------------
 
-If there are AMQP, JMS WebSphere MQ or ZeroMQ connectos running in a given Zato
+If there are AMQP, JMS WebSphere MQ or ZeroMQ connectors running in a given Zato
 environment, it's recommended that there be at least 2 clusters to handle the traffic.
 This is because there's a certain gap possible - the value of which depends on 
 :ref:`how servers have been configured <admin-guide-config-server-singleton.connector_server_keep_alive_job_time>`
