@@ -135,7 +135,7 @@ Steps
   :doc:`the docs <../../index>`?
 
 
-* Add zato-1.1/bin to $PATH so that the zato command is available in the shell, e.g.
+* (Optionally) Add zato-1.1/bin to $PATH so that the zato command is available in the shell, e.g.
 
   * Linux:
 
@@ -152,7 +152,8 @@ Steps
       zato-1.1$ source ~/.profile
 
 
-* Confirm the zato command can be executed
+* Confirm the zato command can be executed, either calling zato command directly as shown below
+  or specifying its full path if the optional step above of putting it on $PATH has not been completed
 
   .. parsed-literal::
 
