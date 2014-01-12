@@ -68,7 +68,7 @@ Steps
 
   .. parsed-literal::
 
-    $ cd ~/zato-bin && cd ~/zato-bin
+    $ mkdir ~/zato-bin && cd ~/zato-bin
 
 * Download
   `the installation package <https://zato.io/download/zato-1.1.tar.bz2>`_, e.g.:
