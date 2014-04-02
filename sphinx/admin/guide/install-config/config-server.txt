@@ -116,7 +116,7 @@ Host and port to bind to. Note that it always needs to synchronized with
 main.gunicorn_worker_class
 @@@@@@@@@@@@@@@@@@@@@@@@@@
 
-Main worker class - using 'gevent', the defualt value makes Zato servers non-blocking
+Main worker class - using 'gevent', the default value makes Zato servers non-blocking
 asynchronous ones however advanced users may wish to use 
 `any other value gunicorn support <http://docs.gunicorn.org/en/latest/configure.html#worker-processes>`_
 
