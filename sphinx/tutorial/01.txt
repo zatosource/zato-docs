@@ -142,36 +142,29 @@ use `Oracle <http://www.oracle.com/us/products/database/>`_ instead of Postgres
 but to keep it simple, let's use the latter for the tutorial.
 
 * Install Redis and Postgres binaries and start both
+
 * Redis needs no users but Postgres does so issue the following commands
 
-  ::
+::
 
-    $ sudo su - postgres # OS X users may skip it
+    $ sudo su - postgres
     $ createuser --no-superuser --no-createdb --no-createrole zato1
     $ createdb --owner=zato1 zato1
     $ psql --dbname zato1 --command="ALTER ROLE zato1 WITH PASSWORD 'zato1'"
 
-Now you can install Zato itself. There's
-:doc:`a short chapter <../admin/guide/install-zato>`
-on doing just that
-in the administration guide and you're encouraged to get through it now
-but basically, you need Linux Ubuntu/Mint/Fedora or OS X, install rsync and curl, and issue the commands:
+Now you can install Zato itself - there are package repositories prepared for:
 
-.. parsed-literal::
+* :doc:`RHEL/CentOS <../admin/guide/install-rhel>`
+* :doc:`Ubuntu <../admin/guide/install-ubuntu>`
+* :doc:`Debian <../admin/guide/install-debian>`
 
-  $ cd ~/zato-bin && cd ~/zato-bin
-  $ curl -O https://zato.io/download/zato-1.1.tar.bz2
-  $ tar xjvf zato-1.1.tar.bz2 && cd zato-1.1
-  $ curl -O https://zato.io/hotfixes/hotfixman.sh && bash hotfixman.sh
-  $ ./install.sh
-  [snip output]
-  OK
-  $ ./bin/zato --version
-  Zato 1.1
-  $
-
-(You can :ref:`click here <admin-guide-install-under-the-hood>` for an overview
-of how the installer works under the hood)
+Windows and OS X users are recommended to install
+`Ubuntu 12.04 LTS <http://ubuntu.com>`_
+under
+`VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_
+and proceed to
+:doc:`installation instructions <../admin/guide/install-ubuntu>`
+for Ubuntu.
 
 Done yet? OK, so let's create a quickstart cluster, which is a sort of a cluster
 created by running the

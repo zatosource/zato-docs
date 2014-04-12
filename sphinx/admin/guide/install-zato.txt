@@ -1,164 +1,19 @@
 Installing Zato binaries
 ========================
 
-Overview
---------
+Operating system considerations
+-------------------------------
 
-The same binaries need to be installed in each operation system that any Zato component
-- such as servers - will be running on.
+The following systems are supported:
 
-The current version of |version| has been tested on the following systems:
-
-* `Ubuntu Linux 12.04 LTS <http://www.ubuntu.com/>`_
-* `Linux Mint 13 LTS <http://www.linuxmint.com/index.php>`_
-* `Debian 7 Wheezy <http://http://www.debian.org/>`_
-* `Fedora 18 <https://fedoraproject.org/>`_
-* `OS X <https://en.wikipedia.org/wiki/OS_X>`_
-
-CentOS/RHEL users - please visit
-`ticket #68 <https://github.com/zatosource/zato/issues/68>`_
-on GitHub. Zato 1.2 will add an installer for your systems.
-
-There is nothing Linux or OS X-specific to Zato's codebase and future Zato versions
-will certainly add installers for additional platforms and systems.
-
-Please :doc:`let the project know <../../project/get-involved>`
-what operating system you're using Zato on or where you'd like to see it run.
-
-Note that if you'd like to install Zato on other systems you need to make sure
-they have Python 2.7.x. None other version can be used, only the latest Python
-version in the 2.7 series is supported.
-
-.. _admin-guide-install-under-the-hood:
-
-.. note:: Under the hood
-
-  Zato `installer <https://github.com/zatosource/zato/blob/master/code/install.sh>`_
-  downloads all the dependencies, installs a couple of system-wide
-  packages, creates a
-  `virtualenv <http://www.virtualenv.org/en/latest/>`_
-  and uses buildout to store everything in a way
-  that is as isolated from other packages already installed in the operating system as possible.
-
-  On Ubuntu and Debian, /usr/sbin/haproxy is symlinked (ln -sf) to /usr/bin/haproxy so that
-  it's on everybody's PATH.
-
-.. _admin-guide-install-zato-steps:
-
-Steps
------
-
-* Prepare a system with Python 2.7 and at least 300 MB of disk space
-* Ensure you have root/sudo permissions on that system
-* Make sure the system will let the installer establish outgoing connections to the Internet,
-  this is needed in order to download all the dependencies required
-
-* Install
-  `rsync <https://en.wikipedia.org/wiki/Rsync>`_
-  and
-  `curl <https://en.wikipedia.org/wiki/CURL>`_
-
-* (OS X only) Install `homebrew <http://brew.sh/>`_
-
-* (Debian only) Add `Debian-backports <http://backports.debian.org/Instructions/>`_
-  to APT sources so that HAProxy is available as
-  `it isn't in Wheezy's repository <http://comments.gmane.org/gmane.comp.web.haproxy/12277>`_
-
-* Create a new directory to keep Zato binaries in and navigate into it
-
-  .. parsed-literal::
-
-    $ mkdir ~/zato-bin && cd ~/zato-bin
-
-* Download
-  `the installation package <https://zato.io/download/zato-1.1.tar.bz2>`_, e.g.:
-
-  .. parsed-literal::
-
-    $ curl -O https://zato.io/download/zato-1.1.tar.bz2
-
-* Decompress the package and enter the newly created directory, e.g.:
-
-  .. parsed-literal::
-
-    $ tar -xjf zato-|version|.tar.bz2 && cd zato-|version|
-
-* Install :doc:`latest hotfixes <./hotfixes>`
-
-  .. parsed-literal::
-
-    zato-1.1$ curl -O https://zato.io/hotfixes/hotfixman.sh && bash hotfixman.sh
-
-* Run the installer
-
-  .. parsed-literal::
-
-    zato-1.1$ ./install.sh
-
-  There will be a lot of output written out to stdout and on a successful completion
-  you will see OK printed out, e.g.
-
-  .. parsed-literal::
-
-    zato-1.1$ ./install.sh
-    [sudo] password for user:
-    Reading package lists... Done
-    Building dependency tree
-
-    ..
-    .. (snipped output)
-    ..
-
-    patch: in zato-1.1/code/eggs/ ..
-    patch: processing 1/1:	 zato-1.1/code/eggs/ ..
-    patch: successfully patched zato-1.1/code/eggs/ ..
-
-    OK
-    zato-1.1$
-
-  Depending on how fast the system is and on the quality of the
-  Internet connectivity, it will take at least several minutes for the installer
-  to complete so in that time, why don't you have a look at
-  :doc:`the tutorial <../../tutorial/01>`,
-  :doc:`Zato's <../../intro/overview-high-level>`
-  :doc:`overview <../../intro/overview-tech>`,
-  :doc:`its architecture <../../architecture/overview>`,
-  :doc:`the web-admin <../../web-admin/intro>`,
-  :doc:`programming documentation<../../progguide/overview>`
-  and
-  :doc:`several  <../../admin/cli/index>`
-  :doc:`of  <../../admin/guide/install-config/overview>`
-  :doc:`the  <../../admin/guide/ha>`
-  :doc:`admin  <../../admin/guide/capacity>`
-  :doc:`guides <../../admin/guide/installing-services>`
-  or something else in
-  :doc:`the docs <../../index>`?
-
-
-* Add zato-1.1/bin to $PATH so that the zato command is available in the shell, e.g.
-
-  * Linux:
-
-    .. parsed-literal::
-
-      zato-1.1$ echo export 'PATH=$PATH:'$(pwd)/bin >> ~/.bashrc
-      zato-1.1$ source ~/.bashrc
-
-  * OS X:
-
-    .. parsed-literal::
-
-      zato-1.1$ echo export 'PATH=$PATH:'$(pwd)/bin >> ~/.profile
-      zato-1.1$ source ~/.profile
-
-
-* Confirm the zato command can be executed
-
-  .. parsed-literal::
-
-    zato-1.1$ zato --version
-    Zato |version|
-    zato-1.1$
-
-* That's all, Zato has been successfully installed in the system.
-  You can now visit :doc:`the main documentation index <../../index>`.
+=========== ================= ==============================================================================
+System      Version           Notes
+=========== ================= ==============================================================================
+Windows     (n/a)             Install `Ubuntu 12.04 LTS <http://ubuntu.com>`_
+                              under `VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_ and proceed to
+                              :doc:`installation instructions on Ubuntu <install-ubuntu>`
+OS X        (n/a)             (ditto)
+RHEL/CentOS 6                 :doc:`Installation instructions <install-rhel>`
+Ubuntu      12.04 LTS         :doc:`Installation instructions <install-ubuntu>`
+Debian      6 (Wheezy)        :doc:`Installation instructions <install-debian>`
+=========== ================= ==============================================================================

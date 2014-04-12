@@ -200,7 +200,6 @@ Administration guide
 ====================
 
     * :doc:`Installing Zato binaries<admin/guide/install-zato>` |
-      :doc:`Installing hotfixes<admin/guide/hotfixes>` |
       :doc:`Components<admin/guide/install-config/overview>` |
       :doc:`Command line interface (CLI)<admin/cli/index>` |
       :doc:`High availability<admin/guide/ha>` |
