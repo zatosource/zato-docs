@@ -356,7 +356,7 @@ The response produced by zato.ping happens to be a JSON document.
 Hot-deploying your first service
 --------------------------------
 
-Fire up you favorite programming editor and let's finally create our own Zato service.
+Fire up your favorite programming editor and let's finally create our own Zato service.
 
 Save the following code as my_service.py
 
