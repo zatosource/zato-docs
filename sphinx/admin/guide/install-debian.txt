@@ -4,7 +4,7 @@ Installation on Debian
 Requirements
 ------------
 
-* Debian 6 Wheezy
+* Debian 7 Wheezy
 * Root access
 
 Installation steps
