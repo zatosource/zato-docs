@@ -1,6 +1,6 @@
 
-The next generation ESB and application server. Open-source. In Python.
-------------------------------------------------------------------------------------
+Open-source ESB, SOA, REST, APIs and cloud integrations in Python
+-----------------------------------------------------------------
 
 Getting help
 ============
@@ -28,7 +28,7 @@ Getting help
 What makes Zato unique
 ======================
 
-* **Open-source ESB** and **app server** written in **Python**
+* **Open-source ESB**, **SOA**, **REST**, **APIs** and **cloud integrations** in **Python**
 
 * Using Python alone gives you **increased productivity**
 
