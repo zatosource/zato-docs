@@ -14,7 +14,7 @@ Installation steps
 
 .. code-block:: sh
 
-    debian# su -
+    debian$ su -
 
 * Install helper programs and add backports for HAProxy
 
@@ -47,9 +47,9 @@ Installation steps
 .. code-block:: sh
 
     debian# sudo su - zato
-    debian# zato --version
+    debian$ zato --version
     Zato 1.1
-    debian#
+    debian$
 
 That concludes the process - you can refer to the main
 :doc:`documentation index <../../index>`

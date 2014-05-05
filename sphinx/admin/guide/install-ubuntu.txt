@@ -4,7 +4,7 @@ Installation on Ubuntu
 Requirements
 ------------
 
-* Ubuntu 12.04 LTS
+* Ubuntu 12.04 LTS or 14.04 LTS
 * Sudo rights
 
 Installation steps
