@@ -630,7 +630,7 @@ Our original JSON channel is still there:
  
 So there you have it. When using :doc:`SIO <../progguide/sio>` you are not required
 to directly deal with any specific data format, you just treat everything as though
-it were all dicts or bunches and Zato converts it to and fro for you.
+it were all dicts or bunches and Zato converts it to and for you.
 
 .. note ::
 
