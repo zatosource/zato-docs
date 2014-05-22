@@ -15,7 +15,7 @@ Installation steps
 .. code-block:: sh
 
     ubuntu$ sudo apt-get install apt-transport-https
-    ubuntu$ sudo apt-get install python-software-properties
+    ubuntu$ sudo apt-get install python-software-properties software-properties-common
 
 * Add the package signing key
 

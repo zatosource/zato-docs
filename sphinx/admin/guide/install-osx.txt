@@ -1,0 +1,37 @@
+Installation on OS X
+====================
+
+Requirements
+------------
+
+* Any OS X version supported by Vagrant
+
+Installation steps
+------------------
+
+* Install `VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_ and `Vagrant <http://www.vagrantup.com/downloads>`_
+
+* Download the Vagrantfile and install Zato
+
+.. code-block:: sh
+
+    osx$ mkdir ~/zato && cd ~/zato
+    osx$ curl -O https://zato.io/download/osx/Vagrantfile
+    osx$ vagrant up
+    [snip output]
+
+* ssh into the newly provisioned virtual machine - Zato is installed in /opt/zato, default username/password zato/zato
+
+.. code-block:: sh
+
+    osx$ vagrant ssh
+
+That concludes the process - you can refer to the main
+:doc:`documentation index <../../index>`
+now.
+
+.. image:: /gfx/admin/vagrant-up.jpg
+   :width: 95%
+   
+.. image:: /gfx/admin/vagrant-ssh.jpg
+   :width: 95%
