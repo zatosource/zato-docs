@@ -29,7 +29,7 @@ Sending messages to queues
 --------------------------
 
 Create a new 
-:doc:`outgoing AMQP connection <../../web-admin/outgoing/jms-wmq>`
+:doc:`outgoing JMS WebSphere MQ connection <../../web-admin/outgoing/jms-wmq>`
 and send a message like in the example below. 
 
 The :doc:`full API <../outconn/jms-wmq>`
