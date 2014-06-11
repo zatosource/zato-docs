@@ -27,7 +27,8 @@ name             string    ---      Name of the job to create
 is_active        boolean   ---      Whether the job should be active upon its creation
 job_type         string    ---      Job type depending on which certaing optional attributes will be required. Must be one of 'one_time', 'interval_based' or 'cron_style'.
 service          string    ---      Name of an already existing service to invoke for each execution of the job
-start_date       datetime  ---      When the job should be first time started
+start_date       datetime  ---      When the job should be first time started. Format is "YYYY-MM-DDTHH:mm:ss", for instance "2014-05-31T15:37:11". Note that
+                                    start_date must be in UTC, not in the local timezone of an application issuing the request.
 extra            string    Yes      Extra data passed into the service as-is. May be multiline.
 weeks            int       Yes      How often to execute the job, in weeks
 days             int       Yes      How often to execute the job, in days
