@@ -70,6 +70,9 @@ I18N
     * ру́сский: 
       :doc:`Что такое ESB и SOA<intro/esb-soa-ru>`
 
+    * Català: 
+      :doc:`Què és un ESB i què és SOA<intro/esb-soa-ca>`
+
 Web admin
 =========
 
