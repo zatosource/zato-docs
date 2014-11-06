@@ -1,3 +1,4 @@
 sphinx/_build/
+sphinx/zato_docs_env/
 *.*~
 ~
