@@ -172,10 +172,10 @@ Funcionalitat       Retornar una llista de clients que eren actius en un portal 
 És atòmic?          Probablement sí. Si hi ha serveis similars per la resta de trimestres, serà possible
                     fer una ullada a tot l'any.
 Com fer-ho IRA?     * Fer que accepti dates d'inici i final del període en comptes de limitar-ho a només un
-                    trimestre.
+                      trimestre.
                     * Fer que accepti aplicacions arbitràries, no només el portal web, fent que l'aplicació
-                    en la que estem interessats sigui un paràmetre d'entrada en comptes d'un valor de
-                    codificació fixa.
+                      en la que estem interessats sigui un paràmetre d'entrada en comptes d'un valor de
+                      codificació fixa.
 =================== =============================================================================================
 
 =================== =============================================================================================
@@ -367,7 +367,7 @@ Altres temes, no tractats aquí, inclouen, però no es limiten a:
 * Introduir un Model de Dades Canònic (Canonical Data Model - CDM) en una organització
 * Indicadors de Rendiment Clau (Key Performance Indicators - KPI) - ara que disposeu d'un mètode comú i unificat
   d'oferir serveis entre diversos sistemes, hauríeu de començar a supervisar
-  i avaluar què us està arribant realment.
+  i avaluar què us està arribant realment.zato_docs_env
 * Gestió de Processos de Negoci (Business Process Management - BPM) - com i quan escollir una plataforma BPM
   per orquestrar els serveis (resposta - no massa aviat, més val familiritzar-se primer
   amb com construir serveis macos i adorables)
