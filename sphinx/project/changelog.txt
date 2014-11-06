@@ -1,4 +1,4 @@
-1.2 - Currently in development
+2.0 - Currently in development
 ==============================
 
 * Added a :ref:`hot_deploy.delete_after_pick_up <admin-guide-config-server-hot_deploy.delete_after_pick_up>` flag,

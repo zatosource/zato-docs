@@ -47,7 +47,7 @@ Steps
     INSTALL_DIR$ curl -O https://zato.io/hotfixes/hotfixman.sh
     INSTALL_DIR$ chmod u+x ./hotfixman.sh
     
-  (Note: Zato 1.2 will ship with hotfixman.sh out of the box)
+  (Note: Zato 2.0 will ship with hotfixman.sh out of the box)
   
 * Run the hotfix installer 
 

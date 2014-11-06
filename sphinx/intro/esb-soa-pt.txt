@@ -54,7 +54,7 @@ Translated from :doc:`English <./esb-soa>` by
 and
 `Danilo Chilene <https://twitter.com/danilochilene>`_.
 
-Also available in :doc:`ру́сский <esb-soa-ru>`.
+Also available in :doc:`Català <./esb-soa-ca>` and :doc:`ру́сский <esb-soa-ru>`.
 
 A sigla ESB, e outra relacionada - SOA - podem ser uma fonte de confusão. ESB se expande para Enterprise Service Bus. SOA significa Arquitetura Orientada a Serviços.
 

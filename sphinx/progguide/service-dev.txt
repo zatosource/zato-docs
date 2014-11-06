@@ -1074,7 +1074,7 @@ log_input
   :param suppress_keys: A list of keys which shouldn't be logged
   :rtype: A dictionary of information which was logged
   
-.. versionchanged:: 1.2
+.. versionchanged:: 2.0
   
 Note that below the service has been expoxed through a plain HTTP channel
 at /service-api.my-service so it can be invoked from curl in order to show
@@ -1126,7 +1126,7 @@ log_output
   Akin to :ref:`log_input <progguide-write-service-log_output>` but deals
   with the output data instead. Note that suppress_keys isn't None by default.
 
-.. versionchanged:: 1.2
+.. versionchanged:: 2.0
   
 ::
 

@@ -304,7 +304,7 @@ accepts.
 hot_deploy.delete_after_pick_up
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-.. versionadded:: 1.2
+.. versionadded:: 2.0
 
 Whether Python code should be deleted after it's been deployed through a pickup dir.
 It's convenient to set it to False at least during development as it will make Zato
