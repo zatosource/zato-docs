@@ -15,6 +15,8 @@ Windows     (n/a)             Install `Ubuntu 12.04 LTS <http://ubuntu.com>`_
 OS X        (n/a)             (ditto)
 RHEL/CentOS 6                 :doc:`Installation instructions <install-rhel>`
 Ubuntu      12.04 LTS         :doc:`Installation instructions <install-ubuntu>`
-Debian      6 (Wheezy)        :doc:`Installation instructions <install-debian>`
+Ubuntu      12.04 LTS         :doc:`Installation instructions <install-ubuntu>`
+            14.04 LTS
+Debian      7 (Wheezy)        :doc:`Installation instructions <install-debian>`
 =========== ================= ==============================================================================
 

@@ -4,7 +4,7 @@ Installation on Debian
 Requirements
 ------------
 
-* Debian 6 Wheezy
+* Debian 7 Wheezy
 * Root access
 
 Installation steps
@@ -20,14 +20,14 @@ Installation steps
 
 .. code-block:: sh
 
-    debian# sudo apt-get install apt-transport-https
-    debian# sudo apt-get install python-software-properties
+    debian# sudo apt-get install apt-transport-https python-software-properties
+    debian# apt-add-repository 'deb http://ftp.is.debian.org/debian wheezy-backports main'
 
 * Add the package signing key
 
 .. code-block:: sh
 
-    debian# curl -s https://zato.io/repo/zato-0CBD7F72.pgp.asc | sudo apt-key add -
+    debian# curl -s https://zato.io/repo/zato-0CBD7F72.pgp.asc | apt-key add -
 
 * Add Zato repo and update sources
 
