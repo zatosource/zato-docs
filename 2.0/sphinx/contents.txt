@@ -1,0 +1,20 @@
+.. _contents:
+
+=============================
+Zato documentation contents
+=============================
+
+.. toctree::
+    :hidden:
+    :glob:
+
+    *
+    security/*
+    progguide/sync-async/*
+
+Indices, glossary and tables
+============================
+
+* :ref:`genindex`
+* :ref:`modindex`
+

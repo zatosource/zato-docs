@@ -1,0 +1,63 @@
+Installation on RHEL/CentOS
+===========================
+
+Requirements
+------------
+
+* RHEL/CentOS 6
+* Root access
+
+Installation steps
+------------------
+
+* Log on as root
+
+.. code-block:: sh
+
+    rhel$ su -
+
+* Add the package signing key
+
+.. code-block:: sh
+
+    rhel# curl -sO https://zato.io/repo/zato-0CBD7F72.pgp.asc
+    rhel# rpm --import ~/zato-0CBD7F72.pgp.asc
+
+* Add the following repository definition
+
+.. code-block:: sh
+
+    rhel# vim /etc/yum.repos.d/zato-stable.repo
+
+    [zato-stable]
+    name=zato-stable
+    baseurl=https://zato.io/repo/stable/rhel
+    enabled=1
+    gpgcheck=1
+    gpgkey=file:///root/zato-F02084DF.gpg.asc
+
+* Refresh the package list
+
+.. code-block:: sh
+
+    rhel# yum clean expire-cache
+    rhel# yum check-update
+
+* Install Zato
+
+.. code-block:: sh
+
+    rhel# yum install zato
+
+* Confirm the installation
+
+.. code-block:: sh
+
+    rhel# su - zato
+    rhel$ zato --version
+    Zato 1.1
+    rhel$
+
+That concludes the process - you can refer to the main
+:doc:`documentation index <../../index>`
+now.

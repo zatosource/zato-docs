@@ -1,0 +1,92 @@
+Installing hotfixes
+===================
+
+Overview
+--------
+
+Hotfixes are a means used to distribute fixes to confirmed and
+important issues without a need for users to install a new Zato version. No new
+user-visible features are delivered in that way, only code changes that truly fix
+a significant situtation are installed.
+
+Hotfixes always need to be installed on each operating system Zato binaries have
+been installed in.
+
+After installing hotfixes, you need to use
+:doc:`zato stop <../cli/stop>`
+and
+:doc:`zato start <../cli/start>`
+to restart each Zato component running so the hotfixes are picked up.
+
+INSTALL_DIR is a directory where Zato binaries are kept in, e.g. if full path to
+zato is /opt/zato-install/bin/zato then INSTALL_DIR is /opt/zato-install.
+
+Files are always backed up and stored in INSTALL_DIR/hotfixes/backups-YOUR_ZATO_VERSION before they're
+updated however no files are backed up if a hotfix has been already applied.
+
+Running hotfixman.sh, as below, will always connect to the hotfix repository,
+download the latest bundle of hotfixes and install them all. There is no support
+for installing only a partial list of fixes.
+
+.. _admin-guide-hotfixes-steps:
+
+Steps
+-----
+
+* Ensure you have curl and rsync installed on each system you will install hotfixes
+  on
+
+* Go to INSTALL_DIR
+  
+* Download 
+  `the hotfix installer <https://zato.io/hotfixes/hotfixman.sh>`_
+  and make it executable, e.g.:
+
+  .. parsed-literal::
+      
+    INSTALL_DIR$ curl -O https://zato.io/hotfixes/hotfixman.sh
+    INSTALL_DIR$ chmod u+x ./hotfixman.sh
+    
+  (Note: Zato 2.0 will ship with hotfixman.sh out of the box)
+  
+* Run the hotfix installer 
+
+  .. parsed-literal::
+      
+    INSTALL_DIR$ ./hotfixman.sh
+    
+* Make sure the output doesn't mention any warnings or errors, if it does,
+  open a ticket on `GitHub <https://github.com/zatosource/zato/issues>`_.
+  
+  A normal output will be similar to the one below, i.e. only informational
+  messages have been written out:
+  
+  ::
+  
+    INSTALL_DIR$ ./hotfixman.sh
+      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                     Dload  Upload   Total   Spent    Left  Speed
+    100  4177  100  4177    0     0   3695      0  0:00:01  0:00:01 --:--:--  4693
+    hotfixes-1.1/
+    hotfixes-1.1/versions.cfg
+    hotfixes-1.1/zato-client/
+    hotfixes-1.1/zato-client/src/
+    hotfixes-1.1/zato-client/src/zato/
+    hotfixes-1.1/zato-client/src/zato/client/
+    hotfixes-1.1/zato-client/src/zato/client/__init__.py
+    backup_dir is ./hotfixes/backups-1.1/
+    sending incremental file list
+    delta-transmission disabled for local transfer or --whole-file
+    versions.cfg
+    zato-client/src/zato/client/__init__.py is uptodate
+    backed up versions.cfg to ./hotfixes/backups-1.1/versions.cfg_20130605_18_17_56
+    total: matches=0  hash_hits=0  false_alarms=0 data=1240
+    
+    sent 1483 bytes  received 53 bytes  3072.00 bytes/sec
+    total size is 14811  speedup is 9.64
+    INSTALL_DIR$
+  
+* Use :doc:`zato stop <../cli/stop>` and :doc:`zato start <../cli/start>` to restart each Zato
+  component running so the hotfixes are picked up.
+  
+* (end of steps)
