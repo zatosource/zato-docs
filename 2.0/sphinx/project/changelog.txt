@@ -1,6 +1,131 @@
 2.0 - Currently in development
 ==============================
 
+* REST
+  :doc:`services <../progguide/rest/services>`,
+  :doc:`channels <progguide/rest/channels>`,
+  :doc:`outgoing connections <progguide/rest/outconns>`
+  and
+  :doc:`a helper JSON adapter <progguide/rest/json-adapter>`
+
+* Redis-based REST publish/subscribe
+
+* RESTful HTTP channels
+
+* OAuth
+
+* XPath-based security
+
+* API Keys-based security
+
+* NTLM security
+
+* Amazon AWS security
+
+* SSL/TLS for channels and outgoing connections
+
+* Role-based access control (RBAC) for HTTP channels
+
+* OpenID in web admin
+
+* Cassandra connections and pre-compiled query templates
+
+* Cloud OpenStack Swift connections
+
+* Cloud Amazon S3
+
+* Solr
+
+* ElasticSearch
+
+* Odoo/OpenERP connections
+
+* Support for SQLite
+
+* Support for MySQL
+
+* HTTP GUI Audit Log for requests and responses
+
+* SMTP
+
+* IMAP
+
+* JSON Pointers
+
+* XPath and XML namespaces
+
+* JSON serialization in HTTP outconns
+
+* SOAP invocations with suds and WSDL prefetching
+
+* Outgoing JSON adapters
+
+* Outgoing HTTP timeouts
+
+* SQL notifications
+
+* OpenStack Swift notifications
+
+* New Relic integration
+
+* Redis clustering
+
+* Statistics in Redis pruned periodically
+
+* New SIO types: CSV, Dict, Float, ForceType, List, ListOfDicts, Opaque
+
+* Message mappers
+
+* Distributed locks
+
+* Date/time utils
+
+* Dictionary and list message navigation
+
+* Bash completion
+
+* Ability to specify user locale in servers (i.e. en_GB.UTF-8)
+
+* Startup scripts to start Zato environments when an OS starts
+
+* Framework for API testing (https://github.com/zatosource/zato-apitest)
+
+* Ability to output HTML in services using Django templates
+
+* Logging configuration migrated to YAML
+
+* Ability to hot-deploy code directly from a repository checkout (i.e. from GitHub)
+
+* Improved logging * components have their own log files
+
+* Web-admin's logs showing IP of the user connecting to it
+
+* Apache-like HTTP access log for servers, compatible with popular log parsing tools
+
+* Ability for users to store config in their own ini-like files
+
+* zato --version is clearer what exact git commit was used to build it
+
+* Removing of stale pid files in quickstart scripts
+
+* Started using async Postgres driver to improve performance
+
+* Made 'zato start' work much faster
+
+* Alembic migrations to ease with upgrades across releases
+
+* Ability to run servers in Python shell
+
+* Made service listings in web admin much faster
+
+* Ability to dump threads on a user signal
+
+* New tests prior to starting of components make sure they are correctly configured
+
+* Command to run ipython with Zato-related packages on PYTHONPATH
+
+* Startup services invoked when a server is starting
+
 * Added a :ref:`hot_deploy.delete_after_pick_up <admin-guide-config-server-hot_deploy.delete_after_pick_up>` flag,
   setting of which to False will prevent Zato from deleting hot-deployed Python code effectively
   making servers work in a live-reload mode
@@ -20,8 +145,6 @@
 * Made :ref:`Service.log_input <progguide-write-service-log_input>`/:ref:`output <progguide-write-service-log_output>` 
   log the user_msg as a prefix of the dictionary of data to write out, not as part
   of its keys
-  
-* Added a Python package index at `http://extlibs.zato.io/dependencies/ <http://extlibs.zato.io/dependencies/>`_
 
 
 1.1 - 2013-06-02

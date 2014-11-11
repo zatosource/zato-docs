@@ -40,8 +40,9 @@ What makes Zato unique
 * Written **by pragmatists for pragmatists** - you'll never have to spend an entire
   night debugging a horror system running on an exotic platform again
   
-* **Protocols**, **industry standards** and **data formats** - HTTP, JSON, SOAP, AMQP,
-  JMS WebSphere MQ, ZeroMQ, Redis, SQL, FTP, security and more
+* **Protocols**, **industry standards** and **data formats** - HTTP, REST, JSON, SOAP, AMQP,
+  JMS WebSphere MQ, ZeroMQ, Redis, SQL, Cassandra, Amazon S3, OpenStack Swift, Odoo/OpenERP,
+  SMTP, IMAP, publish/subscribe, FTP, RBAC, security and more
   
 * **Commercial support** and **training** available. Growing **community** around the project.
 
@@ -179,7 +180,13 @@ Programming guide
       :doc:`Security<progguide/security>` |
       :doc:`Where to keep service-local config<progguide/service-local-config>` |
       :doc:`Documenting<progguide/documenting>`
-      
+
+    * **REST**
+      :doc:`Services <progguide/rest/services>` |
+      :doc:`Channels <progguide/rest/channels>` |
+      :doc:`Outgoing connections <progguide/rest/channels>` |
+      :doc:`JSON adapter<progguide/rest/json-adapter>`
+
     * **Request/response documents:**
       :doc:`SimpleIO (SIO) <progguide/sio>` | 
       :doc:`JSON <progguide/json>` |
@@ -319,6 +326,7 @@ Zato, the open-source project
    progguide/clients/*
    progguide/examples/*
    progguide/outconn/*
+   progguide/rest/*
    project/*
    public-api/*
    public-api/details/*
