@@ -21,6 +21,18 @@ a:hover { color:#ffe761; }
 h2 a, h3 a, h4 a { text-decoration:none !important; }
 a.reference em { font-style: normal; }
 
+p > em, li > em {
+     font-style: normal;
+     background-color:#e6e6e6;
+     background-color:#d6d6d6;
+     padding:4px;
+     padding-bottom:1px;
+     padding-top:1px;
+     -moz-border-radius: 3px;
+     border-radius: 3px;
+     border:1px solid #bbb;
+}
+
 /*** sidebar ***/
 #sidebar div.sphinxsidebarwrapper { font-size:92%; margin-right: 14px; }
 #sidebar h3, #sidebar h4 { color: white; font-size: 125%; }

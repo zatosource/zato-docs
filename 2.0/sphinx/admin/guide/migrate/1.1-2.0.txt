@@ -1,0 +1,130 @@
+Migrating from Zato 1.1 to 2.0
+------------------------------
+
+.. _admin-guide-migrate-1.1-2.0-overview:
+
+Overview
+========
+
+Migrating from 1.1 to 2.0 is a process that requires a full shutdown of an environment. Depending on the number of components
+involved, manual steps take at least an hour if performed the first time.
+
+Users are highly recommended to carry them out on side environments first to become familiar with all the aspects involved.
+
+Please visit the `support options page <https://zato.io/support.html>`_ if any sort of assistance is required.
+
+The steps are executed in this order:
+
+* :ref:`Stopping components <admin-guide-migrate-1.1-2.0-stop-components>`
+* :ref:`Installing binaries <admin-guide-migrate-1.1-2.0-install-binaries>`
+* :ref:`Updating ODB schema <admin-guide-migrate-1.1-2.0-update-odb>`
+* :ref:`Running zato migrate<admin-guide-migrate-1.1-2.0-update-odb>`
+* :ref:`Starting components<admin-guide-migrate-1.1-2.0-start-components>`
+
+.. _admin-guide-migrate-1.1-2.0-stop-components:
+
+Stopping components
+===================
+
+* On each operating system Zato 1.1 runs, switch current user to *zato*, for instance:
+
+  ::
+  
+    $ sudo su - zato
+    $ whoami
+    zato
+    $
+
+* Use :doc:`zato stop <../../cli/stop>` to stop each and every Zato 1.1 component in the environment being migrated over
+  to 2.0 - stop the web-admin console, the load-balancer and all the servers.
+
+* For each of the components stopped, use :doc:`zato info <../../cli/info>` to confirm that it is not running anymore -
+  consult the component_running row, such as below:
+
+  .. code-block:: text
+      :emphasize-lines: 14
+  
+      $ zato info /opt/zato/cluster1
+  
+      +--------------------------------+-----------------------------------------------+
+      |              Key               |                     Value                     |
+      +================================+===============================================+
+      | component_details              | {"created_user_host": "zato@myhost",          |
+      |                                | "version": "1.1", "component": "SERVER",      |
+      |                                | "created_ts": "2014-11-13T07:57:52.704605"}   |
+      +--------------------------------+-----------------------------------------------+
+      | component_full_path            | /opt/zato/cluster1/server1                    |
+      +--------------------------------+-----------------------------------------------+
+      | component_host                 | myhost/myhost                                 |
+      +--------------------------------+-----------------------------------------------+
+      | component_running              | False                                         |
+      +--------------------------------+-----------------------------------------------+
+      | current_time                   | 2014-11-13T12:26:50.572272                    |
+      +--------------------------------+-----------------------------------------------+
+      | current_time_utc               | 2014-11-13T11:26:50.572293                    |
+      +--------------------------------+-----------------------------------------------+
+      | master_proc_connections        | None                                          |
+      +--------------------------------+-----------------------------------------------+
+      | master_proc_create_time        | None                                          |
+      +--------------------------------+-----------------------------------------------+
+      | master_proc_create_time_utc    | None                                          |
+      +--------------------------------+-----------------------------------------------+
+      | master_proc_name               | None                                          |
+      +--------------------------------+-----------------------------------------------+
+      | master_proc_pid                | None                                          |
+      +--------------------------------+-----------------------------------------------+
+      | master_proc_username           | None                                          |
+      +--------------------------------+-----------------------------------------------+
+      | master_proc_workers_no         | None                                          |
+      +--------------------------------+-----------------------------------------------+
+      | master_proc_workers_pids       | None                                          |
+      +--------------------------------+-----------------------------------------------+
+
+
+.. _admin-guide-migrate-1.1-2.0-install-binaries:
+
+Installing binaries
+===================
+
+* As root or an equivalent user, :doc:`install Zato 2.0 <./../install-zato>` alongside 1.1 on each operating system any Zato
+  component is on.
+
+* Switch current user to *zato*.
+
+* Confirm the *zato --version* command returns 2.0, such as below. Note that the
+  exact sub-release and revision change with time and may differ. In the example below it's important for the command
+  to return *Zato 2.0* followed by any sub-release and revision number.
+
+  ::
+  
+    $ zato --version
+    Zato 2.0.0pre0.rev-9c9e147b
+    $
+
+.. _admin-guide-migrate-1.1-2.0-update-odb:
+
+Updating ODB schema
+===================
+
+* Log on to any system 2.0 binaries have been installed to.
+
+* Switch current user to *zato*.
+
+* Open */opt/zato/2.0/alembic.ini* in a text editor and find the *sqlalchemy.url* key.
+
+* Update the key so it contains the information on how to connect to the environment's ODB. For instance, if:
+
+  * The database is on PostgreSQL
+  * Username is zatouser1
+  * Password is d0f836f96e6441
+  * DB host is 10.19.32.17
+  * DB port is 5432
+  * DB name is zatodb1
+
+  the key should read:
+
+  :: 
+
+    sqlalchemy.url = postgres://zatouser1:d0f836f96e6441@10.19.32.17:5432/zatodb1
+
+* Save the file and close the editor.

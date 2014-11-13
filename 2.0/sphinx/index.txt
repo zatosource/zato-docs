@@ -209,16 +209,21 @@ Programming guide
 Administration guide
 ====================
 
-    * :doc:`Installing Zato binaries<admin/guide/install-zato>` |
+    * **Installation and management:**
+      :doc:`Installing Zato binaries<admin/guide/install-zato>` |
       :doc:`Components<admin/guide/install-config/overview>` |
       :doc:`Command line interface (CLI)<admin/cli/index>` |
       :doc:`High availability<admin/guide/ha>` |
       :doc:`Capacity planning<admin/guide/capacity>` |
       :doc:`Installing services<admin/guide/installing-services>` |
       :doc:`Enabling extra libraries <admin/guide/enabling-extra-libs>` |
-      :doc:`Migrating between releases <admin/guide/migrating>` |
       :doc:`Managing server objects en masse<admin/guide/enmasse>`
-      
+
+    * **Migrating between releases:**
+      :doc:`Overview<admin/guide/migrate/overview>` |
+      :doc:`From 1.0 to 1.1<admin/guide/migrate/1.0-1.1>` |
+      :doc:`From 1.1 to 2.0<admin/guide/migrate/1.1-2.0>`
+
 Architecture
 ============
 
@@ -320,6 +325,7 @@ Zato, the open-source project
    admin/cli/*
    admin/guide/*
    admin/guide/install-config/*
+   admin/guide/migrate/*
    architecture/*
    intro/*
    progguide/*
