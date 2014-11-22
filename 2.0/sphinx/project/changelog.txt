@@ -120,6 +120,8 @@
 
 * Ability to dump threads on a user signal
 
+* User-defined Lua functions for Redis
+
 * New tests prior to starting of components make sure they are correctly configured
 
 * Command to run ipython with Zato-related packages on PYTHONPATH
