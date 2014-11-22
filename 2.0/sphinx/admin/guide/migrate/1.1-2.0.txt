@@ -7,7 +7,7 @@ Overview
 ========
 
 Migrating from 1.1 to 2.0 is a process that requires a full shutdown of an environment. Depending on the number of components
-involved, manual steps take at least an hour if performed the first time.
+involved, the steps take at least an hour if performed the first time.
 
 Users are highly recommended to carry them out on side environments first to become familiar with all the aspects involved.
 
