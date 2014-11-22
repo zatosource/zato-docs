@@ -128,6 +128,9 @@
 
 * Startup services invoked when a server is starting
 
+* Constants in `zato.common.broker_message <https://github.com/zatosource/zato/blob/master/code/zato-common/src/zato/common/broker_message.py>`_
+  became wrappers around integers - use *.value* attribute to reference them. For instance, SERVICE.PUBLISH.value instead of SERVICE.PUBLISH.
+
 * Added a :ref:`hot_deploy.delete_after_pick_up <admin-guide-config-server-hot_deploy.delete_after_pick_up>` flag,
   setting of which to False will prevent Zato from deleting hot-deployed Python code effectively
   making servers work in a live-reload mode

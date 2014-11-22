@@ -139,7 +139,6 @@ Web admin
       :doc:`Main view<web-admin/scheduler/main>`
       
     * **Statistics:**
-      *(Documented in their own section)*
       :doc:`Guide<stats/guide>` |
       :doc:`Maintenance<stats/maintenance>` | 
       :doc:`Load-balancer's statistics<stats/lb>`

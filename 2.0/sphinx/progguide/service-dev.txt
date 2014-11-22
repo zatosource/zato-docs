@@ -206,11 +206,11 @@ without prior notice.
 Note that when 
 :ref:`publishing <progguide-write-service-broker-client-publish>`
 a 
-`SERVICE.PUBLISH <https://github.com/zatosource/zato/blob/master/code/zato-common/src/zato/common/broker_message.py>`_
+`SERVICE.PUBLISH.value <https://github.com/zatosource/zato/blob/master/code/zato-common/src/zato/common/broker_message.py>`_
 message to more than one server, each server worker will receive a request
 with the same CID.
 
-CID has always 40 characters.
+CID has always 28 characters.
 
 .. warning ::
 
@@ -1215,7 +1215,7 @@ from the
 module.
 
 If you want to publish or send messages to all workers that contain your own services,
-the action must be SERVICE.PUBLISH, this which will in turn publish the message to Zato's 
+the action must be SERVICE.PUBLISH.value, this which will in turn publish the message to Zato's 
 :doc:`zato.service.invoke </public-api/details/zato.service.invoke>` service 
 which will next invoke the service of your choice by its 
 :ref:`name <progguide-write-service-name>`.
@@ -1252,7 +1252,7 @@ could be delivered - the message will be lost.
   class MyService(Service):
       def handle(self):
           msg = {
-              'action': SERVICE.PUBLISH,
+              'action': SERVICE.PUBLISH.value,
               'service': 'zato.helpers.input-logger',
               'payload': 'My payload',
               'cid': new_cid()
@@ -1319,7 +1319,7 @@ convenience wrapper to send a message to a single worker only.
   class MyService(Service):
       def handle(self):
           msg = {
-              'action': SERVICE.PUBLISH,
+              'action': SERVICE.PUBLISH.value,
               'service': 'zato.helpers.input-logger',
               'payload': 'My payload',
               'cid': new_cid()
@@ -1328,7 +1328,7 @@ convenience wrapper to send a message to a single worker only.
 
 ::
 
-  $ zato service invoke /opt/zato/server1 service-api.my-service
+  $ zato service invoke /opt/zato/server1 service-api.my-servicePUBLISH
 
 Note the data has been written out to logs once only even though the cluster
 consisted of two servers, each running one worker.
