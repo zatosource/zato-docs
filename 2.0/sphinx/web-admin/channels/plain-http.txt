@@ -22,34 +22,51 @@ Create and Edit
 
 .. image:: /gfx/web-admin/channels/plain-http-update.png
 
-=================== ===================================================================
-Header              Notes
-=================== ===================================================================
-Name                Channel name
-Active              :ref:`Documented below <web-admin-channels-plain-http-active>`
-URL path            A path to mount this channel on. Must be unique in a cluster.
-Method              *(Optional)* An HTTP method that must be used by clients to invoke
-                    this particular channel. It can be any string and Zato won't check
-                    if it's a valid HTTP 1.1 method. Leave empty to allow any method
-                    be used.
-Service             Name of an already existing service to invoke for
-                    each HTTP request received
-Data format         *(Optional)* The expected data format Zato should parse
-                    incoming messages as. This will also populate a service's
-                    :ref:`data_format attribute <progguide-write-service-data_format>`.
-Security            Name of a security definition - 
-                    :doc:`HTTP Basic Auth <../security/basic-auth>`,
-                    :doc:`technical account <../security/tech-account>`
-                    or a 
-                    :doc:`WS-Security <../security/ws-security>` definition
-                    - to use for securing the access to the channel. 
+========================= ======================================================================================
+Header                    Notes
+========================= ======================================================================================
+Name                      Channel name
+Active                    :ref:`Documented below <web-admin-channels-plain-http-active>`
+URL path                  A path to mount this channel on. Must be unique in a cluster. May 
+                          include patterns - for instance */cust/{cust_id}/program/{prog_id}*
+                          will let the service access self.request.input.cust_id
+                          and self.request.input.prog_id if
+                          using :doc:`SimpleIO <../../progguide/sio>`
+Merge URL params to req   If using :doc:`SimpleIO <../../progguide/sio>`, should URL parameters be
+                          taken into account when constructing the input to the service
+
+URL params priority       Used to decide which parameters will take precedence if URL parameters
+                          are considered part of the input to the service
+                          and both URL parameters and the payload contain parameters of the same name.
+
+Method                    *(Optional)* An HTTP method that must be used by clients to invoke
+                          this particular channel. It can be any string and Zato won't check
+                          if it's a valid HTTP 1.1 method. Leave empty to allow any method
+                          be used.
+Service                   Name of an already existing service to invoke for
+                          each HTTP request received
+Data format               *(Optional)* The expected data format Zato should parse
+                          incoming messages as. This will also populate a service's
+                          :ref:`data_format attribute <progguide-write-service-data_format>`.
+Security definition       Name of a security definition - 
+                          :doc:`API keys <../security/api-key>`,
+                          :doc:`HTTP Basic Auth <../security/basic-auth>`,
+                          :doc:`OAuth <../security/oauth>`,
+                          :doc:`SSL/TLS <../security/ssl/tls>`,
+                          :doc:`technical account <../security/tech-account>`,
+                          :doc:`XPath <../security/xpath>`
+                          or a 
+                          :doc:`WS-Security <../security/ws-security>` definition
+                          - to use for securing the access to the channel. 
                     
-                    Pick 'No security' explicitly to indicate that no such definition
-                    should be used.  This can be used to expose certain services 
-                    without any 
-                    usernames or to indicate that a service will implement a custom
-                    security scheme itself.
-=================== ===================================================================
+                          Pick 'No security' explicitly to indicate that no such definition
+                          should be used.  This can be used to expose certain services 
+                          without any 
+                          usernames or to indicate that a service will implement a custom
+                          security scheme itself.
+RBAC                      *(Optional)* Whether the channel uses
+                          :doc:`Role-Based Access Control (RBAC) <../../admin/guide/rbac/overview>`
+========================= ======================================================================================
 
 
 Delete
@@ -67,3 +84,29 @@ The 'Active' flag
 
 If a channel is made inactive, an attempt to invoke it will result in an HTTP
 404 error. 
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added new fields:
+
+                    * Merge URL params to req
+                    * URL params priority
+                    * RBAC
+
+                    Changed fields:
+
+                    * URL path now accepts patterns
+                    * Renamed 'Security' to 'Security definition'
+                    * Added new security definition types:
+                      :doc:`API keys <../security/api-key>`,
+                      :doc:`OAuth <../security/oauth>`,
+                      :doc:`SSL/TLS <../security/ssl/tls>`
+                      and
+                      :doc:`XPath <../security/xpath>`
+
+1.0                 Added initially
+=================== ===================================================================

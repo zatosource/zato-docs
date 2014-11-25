@@ -3,10 +3,10 @@
 
 * REST
   :doc:`services <../progguide/rest/services>`,
-  :doc:`channels <progguide/rest/channels>`,
-  :doc:`outgoing connections <progguide/rest/outconns>`
+  :doc:`channels <../progguide/rest/channels-todo>`,
+  :doc:`outgoing connections <../progguide/rest/outconns-todo>`
   and
-  :doc:`a helper JSON adapter <progguide/rest/json-adapter>`
+  :doc:`a helper JSON adapter <../progguide/rest/json-adapter-todo>`
 
 * Redis-based REST publish/subscribe
 

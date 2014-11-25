@@ -9,7 +9,7 @@ Getting help
 
 * :doc:`Download and install<admin/guide/install-zato>` the latest version
 
-* `Priority commercial support and training <https://zato.io/support>`_
+* `Priority commercial support and training <https://zato.io/support.html>`_
 
 * `Visit GitHub <https://github.com/zatosource/zato>`_ to fork code or submit issues
 
@@ -52,7 +52,8 @@ Introduction
     * **Basic concepts:**
       :doc:`No-nonsense intro to ESB and SOA<intro/esb-soa>` |
       :doc:`High-level overview <intro/overview-high-level>` | 
-      :doc:`Technical overview <intro/overview-tech>`
+      :doc:`Technical overview <intro/overview-tech>` |
+      :doc:`What's new in 2.0 <project/changelog>`
 
     * **Tutorial:**
       :doc:`Part 1<tutorial/01>` |
@@ -182,9 +183,9 @@ Programming guide
 
     * **REST**
       :doc:`Services <progguide/rest/services>` |
-      :doc:`Channels <progguide/rest/channels>` |
-      :doc:`Outgoing connections <progguide/rest/channels>` |
-      :doc:`JSON adapter<progguide/rest/json-adapter>`
+      :doc:`Channels <progguide/rest/channels-todo>` |
+      :doc:`Outgoing connections <progguide/rest/channels-todo>` |
+      :doc:`JSON adapter<progguide/rest/json-adapter-todo>`
 
     * **Request/response documents:**
       :doc:`SimpleIO (SIO) <progguide/sio>` | 
@@ -313,8 +314,7 @@ Public SOAP and JSON server API
 Zato, the open-source project
 ==============================
 
-    * :doc:`Getting involved<project/get-involved>` | :doc:`Diversity statement<project/diversity>` |
-      :doc:`Changelog<project/changelog>`
+    * :doc:`Getting involved<project/get-involved>` | :doc:`Diversity statement<project/diversity>`
     
 .. toctree::
    :hidden:
