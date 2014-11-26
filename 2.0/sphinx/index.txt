@@ -183,7 +183,7 @@ Programming guide
 
     * **REST**
       :doc:`Services <progguide/rest/services>` |
-      :doc:`Channels <progguide/rest/channels-todo>` |
+      :doc:`Channels <progguide/rest/channels>` |
       :doc:`Outgoing connections <progguide/rest/channels-todo>` |
       :doc:`JSON adapter<progguide/rest/json-adapter-todo>`
 

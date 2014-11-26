@@ -31,13 +31,16 @@ URL path                  A path to mount this channel on. Must be unique in a c
                           include patterns - for instance */cust/{cust_id}/program/{prog_id}*
                           will let the service access self.request.input.cust_id
                           and self.request.input.prog_id if
-                          using :doc:`SimpleIO <../../progguide/sio>`
+                          using :doc:`SimpleIO <../../progguide/sio>`.
 Merge URL params to req   If using :doc:`SimpleIO <../../progguide/sio>`, should URL parameters be
                           taken into account when constructing the input to the service
 
-URL params priority       Used to decide which parameters will take precedence if URL parameters
-                          are considered part of the input to the service
-                          and both URL parameters and the payload contain parameters of the same name.
+URL params priority       Used to decide which parameters will take precedence if both URL parameters
+                          and path patterns are used as part of the input to a service.
+
+Params priority           Used to decide which parameters will take precedence if URL parameters and/or path
+                          parameters are considered part of the input to the service
+                          and both URL/path parameters and the payload contain parameters of the same name.
 
 Method                    *(Optional)* An HTTP method that must be used by clients to invoke
                           this particular channel. It can be any string and Zato won't check
@@ -65,7 +68,7 @@ Security definition       Name of a security definition -
                           usernames or to indicate that a service will implement a custom
                           security scheme itself.
 RBAC                      *(Optional)* Whether the channel uses
-                          :doc:`Role-Based Access Control (RBAC) <../../admin/guide/rbac/overview>`
+                          :doc:`Role-Based Access Control (RBAC) <../../admin/guide/rbac/overview>`.
 ========================= ======================================================================================
 
 
