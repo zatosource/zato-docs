@@ -20,3 +20,12 @@ Note that the link to statistics requires a username/password combination be set
 Please refer to 
 `HAProxy's docs <http://haproxy.1wt.eu/#docs>`_ for more information regarding
 how to use and interpret the stats.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+1.0                 Added initially
+=================== ===================================================================

@@ -57,3 +57,12 @@ how they looked like.
   As with :doc:`sample requests/responses <./sample-req-resp>` - only the actual
   payload the service received/produced is shown - this is a caveat only
   services invoked through SOAP XML channels should be concerned with.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+1.0                 Added initially
+=================== ===================================================================

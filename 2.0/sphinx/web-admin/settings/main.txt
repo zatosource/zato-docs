@@ -14,3 +14,12 @@ Clicking 'My settings' allows you to update:
   
 * Cluster color markers - a feature that lets you easily tell one cluster from
   another which is documented in :doc:`its own chapter <../../progguide/web-admin-settings>`.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+1.0                 Added initially
+=================== ===================================================================

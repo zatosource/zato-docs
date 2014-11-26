@@ -62,3 +62,12 @@ Deletes an AMQP definition and all the connections that make use of it.
 
   It needs to be emphasized that any channels or outgoing
   connections that were using the definition will also be deleted automatically.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+1.0                 Added initially
+=================== ===================================================================

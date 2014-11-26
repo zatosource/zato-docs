@@ -63,3 +63,12 @@ The 'Active' flag
 
 If a channel is made inactive, its underlying MQ connection
 will be stopped but the connector itself will be still running.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+1.0                 Added initially
+=================== ===================================================================

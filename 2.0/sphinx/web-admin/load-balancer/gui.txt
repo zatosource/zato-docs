@@ -103,3 +103,12 @@ Choosing 'Validate and safe' will first validate the config as above and then
 HAProxy will be hot-reloaded, without disrupting any ongoing connections.
 
 .. image:: /gfx/web-admin/load-balancer/validate-save.png
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+1.0                 Added initially
+=================== ===================================================================

@@ -54,3 +54,12 @@ from one of a  cluster's servers. This can be used to check whether a given
 database is reachable by Zato servers.
 
 The feature is available even if a connection is inactive.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+1.0                 Added initially
+=================== ===================================================================

@@ -204,3 +204,13 @@ Attention grabbers -> Top service usage threshold
 
 If a given service's usage share is more than this value, an attention grabber will
 be displayed to the left of the service name in summaries.
+
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+1.0                 Added initially
+=================== ===================================================================

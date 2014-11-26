@@ -20,3 +20,12 @@ out of an envelope, if any.
 
 Note that if you select a data format and transport you need to make sure the input
 data actually conforms to it.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+1.0                 Added initially
+=================== ===================================================================

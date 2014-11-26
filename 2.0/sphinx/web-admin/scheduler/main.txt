@@ -35,3 +35,12 @@ Cron-style     Similar to interval-based one but uses
 .. image:: /gfx/web-admin/scheduler/scheduler-interval-based.png
 
 .. image:: /gfx/web-admin/scheduler/scheduler-cron-style.png
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+1.0                 Added initially
+=================== ===================================================================

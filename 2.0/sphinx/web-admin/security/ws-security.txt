@@ -61,3 +61,12 @@ Deletes a security definition and all the connections that make use of it.
 
   It needs to be emphasized that any plain HTTP or SOAP channels and outgoing
   connections that were using the definition will also be deleted automatically.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+1.0                 Added initially
+=================== ===================================================================

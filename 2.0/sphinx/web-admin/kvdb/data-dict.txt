@@ -66,3 +66,12 @@ import it onto environment it needs to be bzip2-compressed again.
 
 Import is an either-or operation performed as an atomic Redis transaction.
 Either all translations are imported or none is.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+1.0                 Added initially
+=================== ===================================================================

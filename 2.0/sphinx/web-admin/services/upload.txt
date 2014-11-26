@@ -30,3 +30,12 @@ confirmations of  a successful deployment in server logs as there are
   Only flat Python modules can be hot-deployed - 
   :doc:`visit here <../../admin/guide/installing-services>`
   for information on how to make more complex service packages available to Zato.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+1.0                 Added initially
+=================== ===================================================================

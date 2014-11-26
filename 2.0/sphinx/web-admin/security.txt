@@ -38,8 +38,5 @@ The credentials can be added and updated using the command line.
 
 
 .. note ::
-   There are no roles nor user groups, every user is treated equally. There is no
-   way to delete a user - set its password to a random string if you'd like to
-   block the access. 
-   
-   Future Zato versions will certainly add a lot in this area.
+   There are no roles nor user groups, every user is treated equally. Instead of deleting
+   a user - set their password to a random string if you'd like to block the access. 
