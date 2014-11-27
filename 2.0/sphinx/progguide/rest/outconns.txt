@@ -1,5 +1,62 @@
 .. highlight:: python
    :linenothreshold: 0
 
-REST channels
-=============
+REST outgoing connections
+=========================
+
+:doc:`Plain HTTP outgoing connections <../../web-admin/outgoing/plain-http>` allow one to invoke REST-based endpoints and:
+
+* URL paths can include patterns
+* Query string parameters are built from user-provided dictionaries
+* Payload can be automatically serialized to JSON or XML
+* Services can produce any and all headers the endpoint expects
+
+Suppose there's a POST REST endpoint at http://example.com which expects:
+
+* A URL path in the format of */customer/{cust_id}/phone_no/{phone_no}*
+* Query string *?priority=normal*
+* JSON payload *{"billing":"395.7", "currency":"EUR"}*
+* Custom HTTP headers, *X-App-Name: Zato* and *X-Environment: Production*
+
+An outgoing connection and a service using it would read as follows:
+
+.. image:: /gfx/progguide/rest/outconn.png
+   :width: 95%
+
+::
+
+        # -*- coding: utf-8 -*-
+
+        from __future__ import absolute_import, division, print_function, unicode_literals
+
+        # Zato
+        from zato.server.service import Service
+        
+        class SetBillingInfo(Service):
+            """ Updates a customer's billing information.
+            """
+            def handle(self):
+
+                # Python dict representing the payload we want to send across
+                payload = {'billing':'395.7', 'currency':'EUR'}
+
+                # Python dict with all the query parameters, including path and query string
+                params = {'cust_id':'39175', 'phone_no':'271637517', 'priority':'normal'}
+
+                # Headers the endpoint expects
+                headers = {'X-App-Name': 'Zato', 'X-Environment':'Production'}
+
+                # Obtains a connection object
+                conn = self.outgoing.plain_http['SetBillingInfo'].conn
+
+                # Invoke the resource providing all the information on input
+                response = conn.post(self.cid, payload, params, headers=headers)
+
+Notes:
+
+* As a programmer you never need to leave Python land, (de-)serialization is automatic and one can work with Python dictionaries only
+
+* The response object offers :doc:`access <../request-response>` to the whole of the body, headers and other metadata the endpoint returns
+
+* Most of the code presented will work with both JSON and XML but for JSON endpoints in particular, accessing  them can be further
+  simplified using the dedicated :doc:`JSON adapter <json-adapter>`

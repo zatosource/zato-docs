@@ -4,7 +4,7 @@
 * REST
   :doc:`services <../progguide/rest/services>`,
   :doc:`channels <../progguide/rest/channels>`,
-  :doc:`outgoing connections <../progguide/rest/outconns-todo>`
+  :doc:`outgoing connections <../progguide/rest/outconns>`
   and
   :doc:`a helper JSON adapter <../progguide/rest/json-adapter-todo>`
 
