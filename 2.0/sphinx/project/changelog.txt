@@ -10,7 +10,7 @@
 
 * Redis-based REST publish/subscribe
 
-* OAuth
+* :doc:`OAuth <../web-admin/security/oauth>`
 
 * XPath-based security
 
@@ -55,8 +55,6 @@
 * JSON serialization in HTTP outconns
 
 * SOAP invocations with suds and WSDL prefetching
-
-* Outgoing JSON adapters
 
 * Outgoing HTTP timeouts
 

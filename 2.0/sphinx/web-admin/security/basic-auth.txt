@@ -42,8 +42,6 @@ Updates a definition's password - the password is stored in the ODB along with
 other details of a security definition. This is not a required field and the password
 can be omitted altogether if it's not needed at all.
 
-.. versionchanged:: 2.0
-
 Delete
 ------
 

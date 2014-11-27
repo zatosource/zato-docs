@@ -1,0 +1,62 @@
+Security - OAuth
+================
+
+Overview
+--------
+
+Used to create, update, delete and browse `OAuth 1.0 <https://en.wikipedia.org/wiki/OAuth>`_
+security definitions that can be used by  :doc:`plain HTTP <../channels/plain-http>` channels.
+
+* Menu path: Security -> OAuth
+* Example address: http://localhost:8183/zato/security/oauth/?cluster=1
+
+.. image:: /gfx/web-admin/security/oauth.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/security/oauth-create.png
+
+================ =========================================================================================================
+Header           Notes
+================ =========================================================================================================
+Name             Connection name
+Username         OAuth username
+Signature method Either HMAC-SHA1 or PLAINTEXT
+Max nonce log    How many request nonces to keep in the cache of nonces already seen. A request reusing a nonce will
+                 be rejected as long as the nonce is still kept in the cache.
+================ =========================================================================================================
+
+A newly created security definition has a secret set a random UUID4 and needs to be changed in order for 
+the definition to be usable.
+
+Change secret
+---------------
+
+.. image:: /gfx/web-admin/security/oauth-change-secret.png
+
+Updates a definition's secret - the secret is stored in the ODB along with
+other details of a security definition. This is not a required field and the secret
+can be omitted altogether if it's not needed at all.
+
+Delete
+------
+
+.. image:: /gfx/web-admin/security/oauth-delete.png
+
+Deletes a security definition and all the connections that make use of it.
+
+.. note ::
+
+  It needs to be emphasized that any plain HTTP channels that were using the
+  definition will also be deleted automatically.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================
