@@ -179,13 +179,14 @@ Programming guide
       :doc:`Python client<progguide/clients/python>` |
       :doc:`Security<progguide/security>` |
       :doc:`Where to keep service-local config<progguide/service-local-config>` |
+      :doc:`Helpers<progguide/helpers>` |
       :doc:`Documenting<progguide/documenting>`
 
     * **REST**
       :doc:`Services <progguide/rest/services>` |
       :doc:`Channels <progguide/rest/channels>` |
       :doc:`Outgoing connections <progguide/rest/outconns>` |
-      :doc:`JSON adapter<progguide/rest/json-adapter-todo>`
+      :doc:`JSON adapter<progguide/rest/json-adapter>`
 
     * **Request/response documents:**
       :doc:`SimpleIO (SIO) <progguide/sio>` | 

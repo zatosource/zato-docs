@@ -6,7 +6,7 @@
   :doc:`channels <../progguide/rest/channels>`,
   :doc:`outgoing connections <../progguide/rest/outconns>`
   and
-  :doc:`a helper JSON adapter <../progguide/rest/json-adapter-todo>`
+  :doc:`a helper JSON adapter <../progguide/rest/json-adapter>`
 
 * Redis-based REST publish/subscribe
 
