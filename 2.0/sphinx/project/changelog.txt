@@ -10,8 +10,6 @@
 
 * Redis-based REST publish/subscribe
 
-* RESTful HTTP channels
-
 * OAuth
 
 * XPath-based security
