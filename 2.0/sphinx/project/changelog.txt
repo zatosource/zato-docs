@@ -12,7 +12,7 @@
 
 * :doc:`OAuth <../web-admin/security/oauth>`
 
-* XPath-based security
+* :doc:`XPath-based security <../web-admin/security/xpath>`
 
 * API Keys-based security
 

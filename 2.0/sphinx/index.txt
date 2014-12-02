@@ -111,7 +111,8 @@ Web admin
       :doc:`HTTP Basic Auth<web-admin/security/basic-auth>` | 
       :doc:`OAuth<web-admin/security/oauth>` |
       :doc:`Technical accounts<web-admin/security/tech-account>` | 
-      :doc:`WS-Security<web-admin/security/ws-security>`
+      :doc:`WS-Security<web-admin/security/ws-security>` |
+      :doc:`XPath<web-admin/security/xpath>`
       
     * **Connection definitions:**
       :doc:`AMQP<web-admin/conn-def/amqp>` | 
