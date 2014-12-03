@@ -92,3 +92,12 @@ Note that the last response below has been slightly reformatted to improve clari
     {"response": "eyJ6YXRvX3BpbmdfcmVzcG9uc2UiOiB7InBvbmciOiAiemF0byJ9fQ==\n"}}]>]
     $
 
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+1.0                 Added initially
+=================== ===================================================================

@@ -73,7 +73,7 @@ frontend applications with and Zato will be very happy to integrate your applica
 with any other.
 
 But, while technically it is possible (it's all HTTP and other
-protocols Zato supports, after all), you won't write HTML, JS or CSS with Zato.
+protocols Zato supports, after all), you won't typically write HTML, JS or CSS with Zato.
 
 Zato should be used for creating systems of systems, not for frontend programming.
 
@@ -135,22 +135,8 @@ will be simulated by
 Installing Zato and creating a quickstart cluster
 -------------------------------------------------
 
-As prerequisites - you need access to `Redis <http://redis.io>`_ and
-a `PostgreSQL <http://postgresql.org>`_ instance - these are external components
-that are not shipped with Zato and need to be installed separately. You could also
-use `Oracle <http://www.oracle.com/us/products/database/>`_ instead of Postgres
-but to keep it simple, let's use the latter for the tutorial.
-
-* Install Redis and Postgres binaries and start both
-
-* Redis needs no users but Postgres does so issue the following commands
-
-::
-
-    $ sudo su - postgres
-    $ createuser --no-superuser --no-createdb --no-createrole zato1
-    $ createdb --owner=zato1 zato1
-    $ psql --dbname zato1 --command="ALTER ROLE zato1 WITH PASSWORD 'zato1'"
+As a prerequisite - you need access to `Redis 2.8.3+ <http://redis.io>`_ - this is an external component
+which is not shipped with Zato and needs to be installed separately. So first, install Redis and start it.
 
 Now you can install Zato itself - there are package repositories prepared for:
 
@@ -175,38 +161,27 @@ appropriately called
 You need to prepare:
 
 * An empty directory ($path)
-* PostgreSQL's host, port, database and user name along with its password
-  ($odb_host, $odb_port, $odb_db_name, $odb_user and $odb_password)
-* Host, port and a password for connecting to Redis
-  ($kvdb_host, $kvdb_port and $kvdb_password)
+* Host, port and a password for connecting to Redis ($kvdb_host, $kvdb_port and $kvdb_password)
 
 Now run the following command, substituting placeholders with the information
 you've prepared. You'll be asked for passwords and they won't be echoed.
 
-Note
-that a Redis password can be empty - indeed, if you've just installed Redis without
+Note that the Redis password can be empty - indeed, if you've just installed Redis without
 configuring anything, it must be empty because by default Redis doesn't require it.
 
 ::
 
-  $ zato quickstart create $path \
-      postgresql $odb_host $odb_port $odb_user $odb_db_name \
-      $kvdb_host $kvdb_port --verbose
+  $ zato quickstart create $path sqlite $kvdb_host $kvdb_port \
+    --kvdb_password $kvdb_password --verbose
 
 For instance:
 
 .. code-block:: text
-  :emphasize-lines: 20
+  :emphasize-lines: 14
 
-  $ zato quickstart create ~/tmp/qs-1/ \
-      postgresql localhost 5432 zato1 zato1 \
-      localhost 6379 --verbose
+  $ zato quickstart create ~/env/qs-1 sqlite localhost 6379 \
+    --kvdb_password '' --verbose 
 
-  ODB database password (will not be echoed):
-  Enter the odb_password again (will not be echoed):
-
-  Key/value database password (will not be echoed):
-  Enter the kvdb_password again (will not be echoed):
   [1/8] Certificate authority created
   [2/8] ODB schema created
   [3/8] ODB initial data created
@@ -216,9 +191,9 @@ For instance:
   Superuser created successfully.
   [7/8] Web admin created
   [8/8] Management scripts created
-  Quickstart cluster quickstart-34657 created
-  Web admin user:[admin], password:[esou-kozo-unda-snon]
-  Start the cluster by issuing the /home/dsuch/tmp/qs-1/zato-qs-start.sh command
+  Quickstart cluster quickstart-962637 created
+  Web admin user:[admin], password:[gunn-equi-moni-onio]
+  Start the cluster by issuing the /opt/zato/env/qs-1/zato-qs-start.sh command
   Visit https://zato.io/support for more information and support options
   $
 
@@ -236,7 +211,7 @@ What was created by invoking zato quickstart create:
 * 2 servers
 * An HA load-balancer in front of the two
 * A web-admin panel instance and an admin user
-* ODB structure in Postgres and Redis
+* ODB structure in SQLite and Redis
 * Scripts to (re-)start the environment and stop it
 
 The whole of it uses randomly generated crypto material (keys and certificates),
@@ -276,9 +251,9 @@ Invoking services with cURL
 
 .. note ::
 
-  At this point, **you need to make sure that Redis and PostgreSQL are up,
-  running and they allow for Zato connections**, i.e. the credentials you provided
-  earlier are valid.
+  At this point, **you need to make sure that Redis is up,
+  running and it allows for Zato connections**, i.e. the credentials you provided
+  earlier, if any, are valid.
 
   You can check it by running these commands:
 
@@ -301,7 +276,7 @@ Invoking services with cURL
   issues in later steps so you'll be scratching your head trying to figure out
   what went wrong.
 
-  **Again, please make sure Redis and PostgreSQL will allow Zato to establish connections.**
+  **Again, please make sure Redis will allow Zato to establish connections.**
 
 First off, let's start the thing we've just brought to this world:
 
@@ -326,10 +301,11 @@ can be invoked through the load-balancer using curl (output below is slightly re
 
 ::
 
-  $ curl localhost:11223/zato/ping -d '{}'
-  {"zato_env":
-    {"details": "", "result": "ZATO_OK", "cid": "K215495307960446051245422023713428938487"},
-   "zato_ping_response": {"pong": "zato"}}
+  $ curl localhost:11223/zato/ping ; echo
+  {
+    "zato_env": {"details": "", "result": "ZATO_OK", "cid": "K06KKS03EESNYYPHBWE74ZEJ4X56"},
+    "zato_ping_response": {"pong": "zato"}
+  }
   $
 
 The response produced by zato.ping happens to be a JSON document.

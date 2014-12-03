@@ -68,3 +68,12 @@ Name            Description
 
     All the input parameters stored by the --store-config option are in plain text,
     including passwords and any other secrets.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+1.0                 Added initially
+=================== ===================================================================

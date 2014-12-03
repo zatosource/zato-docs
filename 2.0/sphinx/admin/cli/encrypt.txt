@@ -49,3 +49,12 @@ Usage
     This has been done solely to illustrate the format of a typical Zato secret
     but during the actual command's execution the secret will be provided on a single
     line, without any line breaks.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+1.0                 Added initially
+=================== ===================================================================
