@@ -39,36 +39,43 @@ For now, log into the `web admin <http://localhost:8183/>`_, select
 Connections -> Outgoing -> Plain HTTP and create 2 new outgoing connections.
 
 .. image:: /gfx/tutorial/outconn-plain-http.png
+  :width: 95%
 
 CRM connection
 ~~~~~~~~~~~~~~
 
 .. image:: /gfx/tutorial/outconn-crm.png
 
-======== ========================
-Header   Value
-======== ========================
-Name     CRM
-Active   Yes
-Host     http://tutorial.zato.io
-URL path /get-customer
-Security No security
-======== ========================
+=========== ========================
+Header      Value
+=========== ========================
+Name        CRM
+Active      Yes
+Host        http://tutorial.zato.io
+Data format JSON
+URL path    /get-customer
+Security    No security
+=========== ========================
+
+(Rest of the parameters is left default)
 
 Payments connection
 ~~~~~~~~~~~~~~~~~~~
 
 .. image:: /gfx/tutorial/outconn-payments.png
 
-======== ==========================
-Header   Value
-======== ==========================
-Name     Payments
-Active   Yes
-Host     http://tutorial.zato.io
-URL path /get-last-payment
-Security No security
-======== ==========================
+=========== ========================
+Header      Value
+=========== ========================
+Name        Payments
+Active      Yes
+Host        http://tutorial.zato.io
+Data format JSON
+URL path    /get-last-payment
+Security    No security
+=========== ========================
+
+(Rest of the parameters is left default)
 
 Synchronous invocations
 -----------------------
@@ -100,50 +107,43 @@ information, combine it and produce a nice looking JSON document may look like t
 
 ::
 
-  # stdlib
-  from json import dumps, loads
-  
-  # Zato
-  from zato.server.service import Service
-  
-  class GetClientDetails(Service):
-      def handle(self):
-          
-          self.logger.info('Request: {}'.format(self.request.payload))
-          self.logger.info('Request type: {}'.format(type(self.request.payload)))
-          
-          # Fetch connection to CRM
-          crm = self.outgoing.plain_http.get('CRM')
-          
-          # Fetch connection to Payments
-          payments = self.outgoing.plain_http.get('Payments')
-          
-          # Grab the customer info ..
-          cust = crm.conn.send(dumps(self.request.payload))
-          cust = loads(cust.text)
-          
-          # .. and last payment's details
-          last_payment = payments.conn.send(dumps(self.request.payload))
-          last_payment = loads(last_payment.text)
-          
-          self.logger.info('Customer details: {}'.format(cust))
-          self.logger.info('Last payment: {}'.format(last_payment))
-          
-          response = {}
-          response['first_name'] = cust['firstName']
-          response['last_name'] = cust['lastName']
-          response['last_payment_date'] = last_payment['DATE']
-          response['last_payment_amount'] = last_payment['AMOUNT']
-          response = dumps(response)
-          
-          self.logger.info('Response: {}'.format(response))
-          
-          self.response.payload = response
-        
-Note that in line 35 we're converting the dictionary into a string - keep it 
-in mind because later in the chapter we'll be assigning a dictionary to the response
-and Zato will figure it out itself how to make a string out of it.
-                
+    # Zato
+    from zato.server.service import Service
+
+    class GetClientDetails(Service):
+        def handle(self):
+
+            self.logger.info('Request: {}'.format(self.request.payload))
+            self.logger.info('Request type: {}'.format(type(self.request.payload)))
+
+            # Fetch connection to CRM
+            crm = self.outgoing.plain_http.get('CRM')
+
+            # Fetch connection to Payments
+            payments = self.outgoing.plain_http.get('Payments')
+
+            # Grab the customer info ..
+            response = crm.conn.send(self.cid, self.request.payload)
+            cust = response.data
+
+            # .. and last payment's details
+            response = payments.conn.send(self.cid, self.request.payload)
+            last_payment = response.data
+
+            self.logger.info('Customer details: {}'.format(cust))
+            self.logger.info('Last payment: {}'.format(last_payment))
+
+            response = {}
+            response['first_name'] = cust['firstName']
+            response['last_name'] = cust['lastName']
+            response['last_payment_date'] = last_payment['DATE']
+            response['last_payment_amount'] = last_payment['AMOUNT']
+
+            self.logger.info('Response: {}'.format(response))
+
+            # And return response to the caller
+            self.response.payload = response
+
 Hot-deploy the service:
 
 ::
@@ -157,7 +157,7 @@ And invoke it using curl:
   $ curl localhost:11223/tutorial/first-service -d '{"cust_id":123, "cust_type":"A"}'
     {"first_name": "Sean", "last_name": "O'Brien", 
      "last_payment_date": "2013-05-14T10:42:14.401555", 
-     "last_payment_amount": "357", }
+     "last_payment_amount": "357"}
   $  
 
 As expected, everything has also been logged just fine:
@@ -176,13 +176,15 @@ As expected, everything has also been logged just fine:
 Note a couple of points:
 
 * self.request.input.payload is equal to what we've posted on the command line
+
 * the payload is already a Python dictionary because the channel created in 
   :doc:`part 1 <./01>` was told to expect JSON on input
-* outgoing connections don't know anything about formats of services they 
-  aim at so responses from CRM and Payments need to be parsed manually
-* assigning any string to self.response.payload creates a response that a service
-  will return - there are :doc:`smarter ways <../progguide/sio>` too and we'll
-  get to it later in the chapter but this one is always available just in case.
+
+* outgoing connections know how to de-/seralize requests and responses from/to JSON
+  so we can simply use pass Python dicts in to CRM and Payments
+
+* assigning a dict to self.response.payload is enough - the channel will serialize
+  the response to JSON
 
 Sending messages asynchronously
 -------------------------------
@@ -242,6 +244,7 @@ to an outgoing connection of some sort so let's
 again, go to Connections -> Outgoing -> ZeroMQ ..
 
 .. image:: /gfx/tutorial/outconn-zmq.png
+    :width: 95%
 
 \.\. and create a new one.
 
@@ -251,71 +254,65 @@ Hot-deploy the service below and observe the fraud detection system's logs:
 
 ::
 
-        # stdlib
-        from datetime import datetime
-        from json import dumps, loads
-        
-        # Zato
-        from zato.server.service import Service
-        
-        class GetClientDetails(Service):
-        
-            def should_notify_frauds(self, cust_type):
-                return cust_type in ('A', 'B', 'C')
-            
-            def handle(self):
-                
-                request = dumps(self.request.payload)
-                
-                self.logger.info('Request: {}'.format(self.request.payload))
-                self.logger.info('Request type: {}'.format(type(self.request.payload)))
-                
-                # Fetch connection to CRM
-                crm = self.outgoing.plain_http.get('CRM')
-                
-                # Fetch connection to Payments
-                payments = self.outgoing.plain_http.get('Payments')
-                
-                # Grab the customer info ..
-                cust = crm.conn.send(request)
-                cust = loads(cust.text)
-                
-                # .. and last payment's details
-                last_payment = payments.conn.send(request)
-                last_payment = loads(last_payment.text)
-                
-                self.logger.info('Customer details: {}'.format(cust))
-                self.logger.info('Last payment: {}'.format(last_payment))
-        
-                # Create response
-                
-                response = {}
-                response['first_name'] = cust['firstName']
-                response['last_name'] = cust['lastName']
-                response['last_payment_date'] = last_payment['DATE']
-                response['last_payment_amount'] = last_payment['AMOUNT']
-                response = dumps(response)
-                
-                self.logger.info('Response: {}'.format(response))
-                
-                # Create a request to fraud detection and send it asynchronously
-                # but only if customer is of a certain type.
-                
-                if self.should_notify_frauds(self.request.payload['cust_type']):
-                
-                    fraud_request = {}
-                    fraud_request['timestamp'] = datetime.utcnow().isoformat()
-                    fraud_request['request'] = request
-                    fraud_request['response'] = response
-                    fraud_request = dumps(fraud_request)
-                    
-                    self.outgoing.zmq.send(fraud_request, 'Fraud detection')
-                    
-                else:
-                    self.logger.info('Skipped fraud detection for CID {}'.format(self.cid))
-                
-                # And return response to the caller
-                self.response.payload = response
+    # stdlib
+    from datetime import datetime
+    from json import dumps
+
+    # Zato
+    from zato.server.service import Service
+
+    class GetClientDetails(Service):
+
+        def should_notify_frauds(self, cust_type):
+            config_key = 'myapp:fraud-detection:cust-type'
+            return cust_type in self.kvdb.conn.lrange(config_key, 0, -1)
+
+        def handle(self):
+
+            self.logger.info('Request: {}'.format(self.request.payload))
+            self.logger.info('Request type: {}'.format(type(self.request.payload)))
+
+            # Fetch connection to CRM
+            crm = self.outgoing.plain_http.get('CRM')
+
+            # Fetch connection to Payments
+            payments = self.outgoing.plain_http.get('Payments')
+
+            # Grab the customer info ..
+            response = crm.conn.send(self.cid, self.request.payload)
+            cust = response.data
+
+            # .. and last payment's details
+            response = payments.conn.send(self.cid, self.request.payload)
+            last_payment = response.data
+
+            self.logger.info('Customer details: {}'.format(cust))
+            self.logger.info('Last payment: {}'.format(last_payment))
+
+            response = {}
+            response['first_name'] = cust['firstName']
+            response['last_name'] = cust['lastName']
+            response['last_payment_date'] = last_payment['DATE']
+            response['last_payment_amount'] = last_payment['AMOUNT']
+
+            if self.should_notify_frauds(self.request.payload['cust_type']):
+
+                fraud_request = {}
+                fraud_request['timestamp'] = datetime.utcnow().isoformat()
+                fraud_request['request'] = dumps(self.request.payload)
+                fraud_request['response'] = response
+                fraud_request = dumps(fraud_request)
+
+                self.outgoing.zmq.send(fraud_request, 'Fraud detection')
+
+            else:
+                self.logger.info('Skipped fraud detection for CID {}'.format(self.cid))
+
+            self.logger.info('Response: {}'.format(response))
+
+            # And return response to the caller
+            self.response.payload = response
+
 
 
 ::
@@ -427,8 +424,6 @@ all the config values:
                         response['last_payment_amount'] = last_payment['AMOUNT']
                         response = dumps(response)
                         
-                        self.logger.info('Response: {}'.format(response))
-                        
                         # Create a request to fraud detection and send it asynchronously
                         # but only if a customer is of a certain type.
                         
@@ -444,7 +439,9 @@ all the config values:
                             
                         else:
                             self.logger.info('Skipped fraud detection for CID {}'.format(self.cid))
-                        
+
+                        self.logger.info('Response: {}'.format(response))
+
                         # And return response to the caller
                         self.response.payload = response
 
@@ -487,7 +484,7 @@ What's more, the input to build responses in a concrete data format can be one o
 * anything that looks like a dict
 * anything that can be getattr'd in search for data attributes
 
-Just imagine - you select an object from an SQL database, assign it to 
+Just realize - you select an object from an SQL database, assign it to 
 self.request.payload *directly as is* and that's it. Zato will understand how
 to serialize it properly for each channel.
 
@@ -502,76 +499,71 @@ will be a boolean and so on. Naturally, this can be turned off.
 
 ::
 
-                # stdlib
-                from datetime import datetime
-                from json import dumps, loads
-                
-                # Zato
-                from zato.server.service import Service
-                
-                class GetClientDetails(Service):
-                    
-                    class SimpleIO:
-                        input_required = ('cust_id', 'cust_type')
-                        output_required = ('first_name', 'last_name', 
-                            'last_payment_date', 'last_payment_amount')
-                
-                    def should_notify_frauds(self, cust_type):
-                        config_key = 'myapp:fraud-detection:cust-type'
-                        return cust_type in self.kvdb.conn.lrange(config_key, 0, -1)
-                    
-                    def handle(self):
-                        
-                        request = dumps(self.request.input)
-                        
-                        self.logger.info('Request: {}'.format(self.request.payload))
-                        self.logger.info('Request type: {}'.format(type(self.request.payload)))
-                        
-                        # Fetch connection to CRM
-                        crm = self.outgoing.plain_http.get('CRM')
-                        
-                        # Fetch connection to Payments
-                        payments = self.outgoing.plain_http.get('Payments')
-                        
-                        # Grab the customer info ..
-                        cust = crm.conn.send(request)
-                        cust = loads(cust.text)
-                        
-                        # .. and last payment's details
-                        last_payment = payments.conn.send(request)
-                        last_payment = loads(last_payment.text)
-                        
-                        self.logger.info('Customer details: {}'.format(cust))
-                        self.logger.info('Last payment: {}'.format(last_payment))
-                
-                        # Create response
-                        
-                        response = {}
-                        response['first_name'] = cust['firstName']
-                        response['last_name'] = cust['lastName']
-                        response['last_payment_date'] = last_payment['DATE']
-                        response['last_payment_amount'] = last_payment['AMOUNT']
-                        
-                        self.logger.info('Response: {}'.format(response))
-                        
-                        # Create a request to fraud detection and send it asynchronously
-                        # but only if a customer is of a certain type.
-                        
-                        if self.should_notify_frauds(self.request.payload['cust_type']):
-                        
-                            fraud_request = {}
-                            fraud_request['timestamp'] = datetime.utcnow().isoformat()
-                            fraud_request['request'] = request
-                            fraud_request['response'] = response
-                            fraud_request = dumps(fraud_request)
-                            
-                            self.outgoing.zmq.send(fraud_request, 'Fraud detection')
-                            
-                        else:
-                            self.logger.info('Skipped fraud detection for CID {}'.format(self.cid))
-                        
-                        # And return response to the caller
-                        self.response.payload = response
+    # stdlib
+    from datetime import datetime
+    from json import dumps
+
+    # Zato
+    from zato.server.service import Service
+
+    class GetClientDetails(Service):
+
+        class SimpleIO:
+            input_required = ('cust_id', 'cust_type')
+            output_required = ('first_name', 'last_name', 'last_payment_date',
+                'last_payment_amount')
+
+        def should_notify_frauds(self, cust_type):
+            config_key = 'myapp:fraud-detection:cust-type'
+            return cust_type in self.kvdb.conn.lrange(config_key, 0, -1)
+
+        def handle(self):
+
+            self.logger.info('Request: {}'.format(self.request.payload))
+            self.logger.info('Request type: {}'.format(type(self.request.payload)))
+
+            # Fetch connection to CRM
+            crm = self.outgoing.plain_http.get('CRM')
+
+            # Fetch connection to Payments
+            payments = self.outgoing.plain_http.get('Payments')
+
+            # Grab the customer info ..
+            response = crm.conn.send(self.cid, self.request.input)
+            cust = response.data
+
+            # .. and last payment's details
+            response = payments.conn.send(self.cid, self.request.input)
+            last_payment = response.data
+
+            self.logger.info('Customer details: {}'.format(cust))
+            self.logger.info('Last payment: {}'.format(last_payment))
+
+            response = {}
+            response['first_name'] = cust['firstName']
+            response['last_name'] = cust['lastName']
+            response['last_payment_date'] = last_payment['DATE']
+            response['last_payment_amount'] = last_payment['AMOUNT']
+
+            if self.should_notify_frauds(self.request.payload['cust_type']):
+
+                fraud_request = {}
+                fraud_request['timestamp'] = datetime.utcnow().isoformat()
+                fraud_request['request'] = dumps(self.request.payload)
+                fraud_request['response'] = response
+                fraud_request = dumps(fraud_request)
+
+                self.outgoing.zmq.send(fraud_request, 'Fraud detection')
+
+            else:
+                self.logger.info('Skipped fraud detection for CID {}'.format(self.cid))
+
+            self.logger.info('Response: {}'.format(response))
+
+            # And return response to the caller
+            self.response.payload = response
+
+
 
 This looks almost the same except that:
 
@@ -590,6 +582,7 @@ our XML friends.
 Go to Connections -> Channels -> Plain HTTP 
 
 .. image:: /gfx/tutorial/web-admin-channels.png
+  :width: 95%
 
 \.\. and add a new channel noting its data format, this time it's XML:
 
@@ -657,6 +650,7 @@ and can be used to diagnose misbehaving nodes in a cluster.
 For instance, when you go to Statistics -> Trends -> Last hour ..
 
 .. image:: /gfx/tutorial/stats-trends-last-hour-menu.png
+     :width: 95%
 
 \.\. you can observe
 that our service was among top 10 slowest services in the cluster with a mean
@@ -704,7 +698,7 @@ covered but you should already have a solid understanding of some of the core as
 
 * the project has excellent `documentation <https://zato.io/docs>`_
   and you can always rely on its commercial and community 
-  `support <https://zato.io/support>`_
+  `support <https://zato.io/support.html>`_
 
 * everything you 
   :doc:`develop <../progguide/overview>`
@@ -713,6 +707,26 @@ covered but you should already have a solid understanding of some of the core as
 * out of the box, you have access to
 
   * :doc:`HTTP <../progguide/outconn/http>`
+  * :doc:`REST <invalid>`
+  * :doc:`XPath and XML <invalid>`
+  * :doc:`JSON Pointers <invalid>`
+  * :doc:`API keys <invalid>`
+  * :doc:`NTLM <invalid>`
+  * :doc:`Amazon AWS security <invalid>`
+  * :doc:`SSL/TLS for channels and outgoing connections <invalid>`
+  * :doc:`Role-based access control (RBAC) for HTTP channels <invalid>`
+  * :doc:`Cassandra <invalid>`
+  * :doc:`Cloud OpenStack Swift <invalid>`
+  * :doc:`Cloud Amazon S3 <invalid>`
+  * :doc:`Solr <invalid>`
+  * :doc:`ElasticSearch <invalid>`
+  * :doc:`Odoo/OpenERP <invalid>`
+  * :doc:`HTTP GUI Audit Log for requests and responses <invalid>`
+  * :doc:`SMTP <invalid>`
+  * :doc:`IMAP <invalid>`
+  * :doc:`OpenStack Swift <invalid>`
+  * :doc:`New Relic <invalid>`
+  * :doc:`Distributed locks <invalid>`
   * :doc:`AMQP <../progguide/outconn/amqp>`
   * :doc:`JMS WebSphere MQ <../progguide/outconn/jms-wmq>`
   * :doc:`ZeroMQ <../progguide/outconn/zmq>`

@@ -425,12 +425,13 @@ OK, the service is deployed so why don't we make it possible for others to invok
 Still in the web admin, navigate to Connections -> Channels -> Plain HTTP
 
 .. image:: /gfx/tutorial/web-admin-channels.png
+  :width: 95%
 
 .. and create a new channel ..
 
 .. image:: /gfx/tutorial/web-admin-channels-new.png
 
-All the fields should be fairly self-explanatory but there is, of course,
+Some of the fields may not be self-explanatory so there is, of course,
 :doc:`a chapter <../web-admin/channels/plain-http>`
 in the
 :doc:`web admin guide <../web-admin/intro>`
@@ -448,7 +449,7 @@ now use curl again to invoke our creation.
 
 ::
 
-  $ curl localhost:11223/tutorial/first-service -d '{}'
+  $ curl localhost:11223/tutorial/first-service
   $
 
 This doesn't produce any output because the service returns none, it's only
@@ -462,44 +463,54 @@ hence you need to grep in both of them and look for an entry similar to the one 
 
 ::
 
-  INFO - {u'impl_name': u'my_service.GetClientDetails',
-      u'name': u'my-service.get-client-details',
-      u'cid': u'K226134078656111264088116403218497665719',
-      u'invocation_time': datetime.datetime(2013, 5, 14, 7, 39, 47, 417059),
-      u'job_type': None, u'data_format': u'json',
-      u'slow_threshold': 99999,
-      u'request.payload': '',
-      u'wsgi_environ': {'SERVER_PROTOCOL': 'HTTP/1.1',
-            'SERVER_SOFTWARE': 'gunicorn/0.16.1',
-            'SCRIPT_NAME': '',
-            'wsgi.input': <gunicorn.http.body.Body object at 0x4396a50>,
-            'REQUEST_METHOD': 'GET',
-            'HTTP_HOST': 'localhost:11223',
-            'PATH_INFO': '/tutorial/first-service',
-            'wsgi.multithread': False,
-            'QUERY_STRING': '',
-            'HTTP_CONNECTION': 'close',
-            'HTTP_ACCEPT': '*/*',
-            'HTTP_USER_AGENT': 'curl/7.22.0',
-            'wsgi.version': (1, 0),
-            'REMOTE_PORT': '42325',
-            'RAW_URI': '/tutorial/first-service',
-            'REMOTE_ADDR': '127.0.0.1',
-            'wsgi.run_once': False,
-            'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7f34db2fe270>,
-            'wsgi.multiprocess': False,
-            'wsgi.url_scheme': 'http',
-            'gunicorn.socket': <socket at 0x42e9290 fileno=25 sock=127.0.0.1:17011
-                                   peer=127.0.0.1:42325>,
-            'SERVER_NAME': 'localhost',
-            'SERVER_PORT': '11223',
-            u'zato.http.response.headers':
-              {u'X-Zato-CID': u'K226134078656111264088116403218497665719'},
-            'wsgi.file_wrapper': <class gunicorn.http.wsgi.FileWrapper at 0x202e390>},
-            u'environ': {},
-            u'user_msg': u'',
-            u'usage': 27,
-            u'channel': u'http-soap'}
+  INFO - 5428:Dummy-178 - my-service.get-client-details:703 - {u'impl_name': u'my_service.GetClientDetails',
+    u'name': u'my-service.get-client-details',
+    u'cid': u'K05A9DMYMJ023SB2E4B57BS6N3FW',
+    u'invocation_time': datetime.datetime(2014, 12, 3, 21, 17, 16, 480128),
+    u'job_type': None, u'data_format': u'json',
+    u'slow_threshold': 99999, u'request.payload': u'',
+    u'wsgi_environ': {u'zato.http.POST': <QueryDict: {}>,
+      u'zato.http.remote_addr': '127.0.0.1',
+      u'zato.request_timestamp_utc': <Arrow [2014-12-03T21:17:16.427072+00:00]>,
+      'SERVER_PROTOCOL': 'HTTP/1.1',
+      'SERVER_SOFTWARE': 'Zato',
+      u'zato.http.channel_item': Bunch(audit_enabled=False, audit_max_payload=0, audit_repl_patt_type=None,
+        connection=u'channel', data_format=u'json', has_rbac=False, host=None, id=536L,
+        impl_name=u'my_service.GetClientDetails', is_active=True, is_internal=False,
+        match_target=u':::/tutorial/first-service',
+        match_target_compiled=<Parser u':::/tutorial/firs...'>,
+        merge_url_params_req=True, method=u'', name=u'Get Client Details',
+        params_pri=u'channel-params-over-msg', ping_method=None,
+        pool_size=None, replace_patterns_json_pointer=[],
+        replace_patterns_xpath=[], service_id=386L,
+        service_impl_name=u'my_service.GetClientDetails',
+        service_name=u'my-service.get-client-details',
+        soap_action=u'', soap_version=None,
+        transport=u'plain_http', url_params_pri=u'qs-over-path',
+        url_path=u'/tutorial/first-service'),
+      'SCRIPT_NAME': '',
+      'wsgi.input': <gunicorn.http.body.Body object at 0x7f3d399f3690>,
+      'REQUEST_METHOD': 'GET', 'HTTP_HOST': 'localhost:11223',
+      'PATH_INFO': '/tutorial/first-service', 'wsgi.multithread': False,
+      'QUERY_STRING': '', 'HTTP_CONNECTION': 'close',
+      u'zato.oauth.post_data': {}, 'HTTP_ACCEPT': '*/*',
+      u'zato.local_tz': <DstTzInfo 'Europe/Berlin' PMT+0:58:00 STD>,
+      'HTTP_USER_AGENT': 'curl/7.35.0', 'wsgi.version': (1, 0),
+      'REMOTE_PORT': '80', 'RAW_URI': '/tutorial/first-service',
+      'REMOTE_ADDR': '127.0.0.1', 'wsgi.run_once': False,
+      'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7f3d5c6631e0>,
+      'wsgi.multiprocess': True,
+      u'zato.request_timestamp': datetime.datetime(
+        2014, 12, 3, 22, 17, 16, 427072, tzinfo=<DstTzInfo 'Europe/Berlin' CET+1:00:00 STD>),
+      u'zato.http.GET': {}, 'wsgi.url_scheme': 'http',
+      'gunicorn.socket': <socket at 0x7f3d397e3050
+        fileno=46 sock=127.0.0.1:17010 peer=127.0.0.1:58083>,
+      'SERVER_NAME': 'localhost', 'SERVER_PORT': '11223',
+      u'zato.http.response.headers': {u'X-Zato-CID': u'K05A9DMYMJ023SB2E4B57BS6N3FW'},
+      'HTTP_X_FORWARDED_FOR': '127.0.0.1',
+      'wsgi.file_wrapper': <class gunicorn.http.wsgi.FileWrapper at 0x7f3d4de107a0>},
+      u'environ': {}, u'usage': 1,
+      u'channel': u'http-soap'}
 
 And that concludes the first part! You've created a cluster, a service, hot-deployed it
 and then invoked it successfully. The :doc:`next part <./02>` will focus much

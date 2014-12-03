@@ -14,7 +14,7 @@
 
 * :doc:`XPath-based security <../web-admin/security/xpath>`
 
-* API Keys-based security
+* API keys-based security
 
 * NTLM security
 
@@ -63,6 +63,8 @@
 * OpenStack Swift notifications
 
 * New Relic integration
+
+* Sentry integration
 
 * Redis clustering
 
