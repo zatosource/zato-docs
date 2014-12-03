@@ -5,58 +5,57 @@ Overview
 --------
 
 Used to create, update, delete and browse `XPath <https://en.wikipedia.org/wiki/XPath>`_
-security definitions that can be used by  :doc:`plain HTTP <../channels/plain-http>` channels.
+security definitions that can be used by  :doc:`plain HTTP <../channels/plain-http>` channels whose data format is XML.
 
 XPath security lets one grant access to services basing on whether incoming XML requests contain custom
 username and password elements or attributes.
 
-Throughout the chapter a hypothetical XML document as below will be used to illustrate the feature:
-
-.. code-block:: xml
-
-        <?xml version="1.0"?>
-        <request username="my-username">
-            <secret>my-secret</secret>
-            <payload action="get-customer" id="1" />
-        </request>
-
 * Menu path: Security -> XPath
 * Example address: http://localhost:8183/zato/security/xpath/?cluster=1
 
-.. image:: /gfx/web-admin/security/oauth.png
+.. image:: /gfx/web-admin/security/xpath.png
    :width: 95%
 
 Create and Edit
 ---------------
 
-.. image:: /gfx/web-admin/security/oauth-create.png
+.. image:: /gfx/web-admin/security/xpath-create.png
 
-================ =========================================================================================================
-Header           Notes
-================ =========================================================================================================
-Name             Connection name
-Username         OAuth username
-Signature method Either HMAC-SHA1 or PLAINTEXT
-Max nonce log    How many request nonces to keep in the cache of nonces already seen. A request reusing a nonce will
-                 be rejected as long as the nonce is still kept in the cache.
-================ =========================================================================================================
+==================== =========================================================================================================
+Header               Notes
+==================== =========================================================================================================
+Name                 Definition name
+Username expression  XPath expression evaluation of which should yield the username provided in the request
+Password expression  XPath expression evaluation of which should yield the password provided in the request
+Username             The username expected to be provided in the request
+==================== =========================================================================================================
 
 A newly created security definition has a secret set a random UUID4 and needs to be changed in order for 
 the definition to be usable.
 
-Change secret
+XPath expressions as presented in the Create form can be used to access credentials such as below, for instance:
+
+.. code-block:: xml
+
+        <?xml version="1.0"?>
+        <request username="my-username">
+            <secret>my-password</secret>
+            <payload action="get-customer" id="1" />
+        </request>
+
+Change password
 ---------------
 
-.. image:: /gfx/web-admin/security/oauth-change-secret.png
+.. image:: /gfx/web-admin/security/xpath-change-password.png
 
-Updates a definition's secret - the secret is stored in the ODB along with
-other details of a security definition. This is not a required field and the secret
+Updates a definition's password - the password is stored in the ODB along with
+other details of a security definition. This is not a required field and the password
 can be omitted altogether if it's not needed at all.
 
 Delete
 ------
 
-.. image:: /gfx/web-admin/security/oauth-delete.png
+.. image:: /gfx/web-admin/security/xpath-delete.png
 
 Deletes a security definition and all the connections that make use of it.
 

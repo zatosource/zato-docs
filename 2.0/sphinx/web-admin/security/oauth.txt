@@ -21,7 +21,7 @@ Create and Edit
 ================ =========================================================================================================
 Header           Notes
 ================ =========================================================================================================
-Name             Connection name
+Name             Definition name
 Username         OAuth username
 Signature method Either HMAC-SHA1 or PLAINTEXT
 Max nonce log    How many request nonces to keep in the cache of nonces already seen. A request reusing a nonce will
