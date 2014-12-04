@@ -109,6 +109,7 @@ Web admin
       
     * **Security:**
       :doc:`API keys<web-admin/security/apikey>` |
+      :doc:`AWS<web-admin/security/aws>` |
       :doc:`HTTP Basic Auth<web-admin/security/basic-auth>` | 
       :doc:`NTLM<web-admin/security/ntlm>` | 
       :doc:`OAuth<web-admin/security/oauth>` |

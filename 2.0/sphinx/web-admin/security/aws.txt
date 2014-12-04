@@ -1,0 +1,60 @@
+Security - AWS
+==============
+
+Overview
+--------
+
+Used to create, update, delete and browse `Amazon AWS <https://aws.amazon.com/>`_
+security definitions that can be used by AWS-related parts of Zato. As of the current version,
+this means :doc:`S3 connections <invalid>`.
+
+* Menu path: Security -> AWS
+* Example address: http://localhost:8183/zato/security/aws/?cluster=1
+
+.. image:: /gfx/web-admin/security/aws.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/security/aws-create.png
+
+====== =======================
+Header Notes
+====== =======================
+Name   Definition name
+Key ID ID of the key to use
+====== =======================
+
+A newly created security definition has its access key set to a random UUID4 and needs to be changed in order for 
+the definition to be usable.
+
+Change access key
+-----------------
+
+.. image:: /gfx/web-admin/security/aws-change-secret.png
+
+Updates a definition's access key - the key is stored in the ODB along with
+other details of a security definition. This is not a required field and the key
+can be omitted altogether if it's not needed at all.
+
+Delete
+------
+
+.. image:: /gfx/web-admin/security/aws-delete.png
+
+Deletes a security definition and all the objects that make use of it.
+
+.. note ::
+
+  It needs to be emphasized that any AWS-related objects that were using the
+  definition will also be deleted automatically.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================

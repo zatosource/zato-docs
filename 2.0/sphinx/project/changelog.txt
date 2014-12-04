@@ -18,7 +18,7 @@
 
 * :doc:`NTLM security <../web-admin/security/ntlm>`
 
-* Amazon AWS security
+* :doc:`Amazon AWS security <../web-admin/security/aws>`
 
 * SSL/TLS for channels and outgoing connections
 
