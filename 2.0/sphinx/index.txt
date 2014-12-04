@@ -223,7 +223,8 @@ Administration guide
       :doc:`Capacity planning<admin/guide/capacity>` |
       :doc:`Installing services<admin/guide/installing-services>` |
       :doc:`Enabling extra libraries <admin/guide/enabling-extra-libs>` |
-      :doc:`Managing server objects en masse<admin/guide/enmasse>`
+      :doc:`Managing server objects en masse<admin/guide/enmasse>` |
+      :doc:`SSL/TLS<admin/guide/tls/overview>`
 
     * **Migrating between releases:**
       :doc:`Overview<admin/guide/migrate/overview>` |

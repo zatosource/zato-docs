@@ -1,5 +1,5 @@
-2.0 - Currently in development
-==============================
+2.0.0 - Currently in development
+================================
 
 * REST
   :doc:`services <../progguide/rest/services>`,
@@ -20,7 +20,7 @@
 
 * :doc:`Amazon AWS security <../web-admin/security/aws>`
 
-* SSL/TLS for channels and outgoing connections
+* :doc:`SSL/TLS for channels and outgoing connections <../admin/guide/tls/overview>`
 
 * Role-based access control (RBAC) for HTTP channels
 
@@ -153,7 +153,6 @@
 1.1 - 2013-06-02
 ================
 
-* `Download 1.1 here <https://zato.io/download/zato-1.1.tar.bz2>`_
 * Unified :doc:`installer <../admin/guide/install-zato>` for Ubuntu, Mint, Fedora and OS X
 * Added the :doc:`zato check-config <../admin/cli/check-config>` command
 * Fixed a bug which lead to double execution of user-defined scheduler jobs
@@ -175,5 +174,4 @@
 1.0 - 2013-05-18 
 ================
 
-* `Download 1.0 here <https://zato.io/download/zato-1.0.tar.bz2>`_
 * Initial release
