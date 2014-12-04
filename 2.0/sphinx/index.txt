@@ -108,7 +108,9 @@ Web admin
       :doc:`Slow responses<web-admin/service-details/slow-responses>`
       
     * **Security:**
+      :doc:`API keys<web-admin/security/apikey>` |
       :doc:`HTTP Basic Auth<web-admin/security/basic-auth>` | 
+      :doc:`NTLM<web-admin/security/ntlm>` | 
       :doc:`OAuth<web-admin/security/oauth>` |
       :doc:`Technical accounts<web-admin/security/tech-account>` | 
       :doc:`WS-Security<web-admin/security/ws-security>` |
@@ -317,7 +319,9 @@ Public SOAP and JSON server API
 Zato, the open-source project
 ==============================
 
-    * :doc:`Getting involved<project/get-involved>` | :doc:`Diversity statement<project/diversity>`
+    * :doc:`Getting involved<project/get-involved>` |
+      :doc:`Diversity statement<project/diversity>` |
+      :doc:`Changelog<project/changelog>`
     
 .. toctree::
    :hidden:

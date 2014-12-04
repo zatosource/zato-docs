@@ -1,0 +1,64 @@
+Security - API keys
+===================
+
+Overview
+--------
+
+Used to create, update, delete and browse API keys-based security definitions 
+that can be used by  :doc:`plain HTTP <../channels/plain-http>` channels whose data format is XML.
+
+Client applications provide API keys in custom, user-defined, HTTP headers forming, essentially, a username/password
+pair where the header's name is a username and the header's value is a password.
+
+It's not possible for two or more API key definitions to share the same header name.
+
+* Menu path: Security -> API keys
+* Example address: http://localhost:8183/zato/security/apikey/?cluster=1
+
+.. image:: /gfx/web-admin/security/apikey.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/security/apikey-create.png
+
+====== ===================================================================
+Header Notes
+====== ===================================================================
+Name    Definition name
+Header  Name of a custom HTTP header that will contain the API key's value
+====== ===================================================================
+
+A newly created security definition has a secret set to a random UUID4 and needs to be changed in order for 
+the definition to be usable.
+
+Change API key
+---------------
+
+.. image:: /gfx/web-admin/security/apikey-change-secret.png
+
+Updates a definition's API key - the key is stored in the ODB along with
+other details of a security definition. This is not a required field and the key
+can be omitted altogether if it's not needed at all.
+
+Delete
+------
+
+.. image:: /gfx/web-admin/security/apikey-delete.png
+
+Deletes a security definition and all the connections that make use of it.
+
+.. note ::
+
+  It needs to be emphasized that any plain HTTP channels that were using the
+  definition will also be deleted automatically.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================

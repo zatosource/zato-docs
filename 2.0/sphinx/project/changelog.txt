@@ -14,9 +14,9 @@
 
 * :doc:`XPath-based security <../web-admin/security/xpath>`
 
-* API keys-based security
+* :doc:`API keys-based security <../web-admin/security/apikey>`
 
-* NTLM security
+* :doc:`NTLM security <../web-admin/security/ntlm>`
 
 * Amazon AWS security
 

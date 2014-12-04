@@ -135,7 +135,7 @@ will be simulated by
 Installing Zato and creating a quickstart cluster
 -------------------------------------------------
 
-As a prerequisite - you need access to `Redis 2.8.3+ <http://redis.io>`_ - this is an external component
+As a prerequisite - you need access to `Redis 2.8.4+ <http://redis.io>`_ - this is an external component
 which is not shipped with Zato and needs to be installed separately. So first, install Redis and start it.
 
 Now you can install Zato itself - there are package repositories prepared for:

@@ -28,7 +28,7 @@ Max nonce log    How many request nonces to keep in the cache of nonces already 
                  be rejected as long as the nonce is still kept in the cache.
 ================ =========================================================================================================
 
-A newly created security definition has a secret set a random UUID4 and needs to be changed in order for 
+A newly created security definition has a secret set to a random UUID4 and needs to be changed in order for 
 the definition to be usable.
 
 Change secret

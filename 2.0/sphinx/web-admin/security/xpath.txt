@@ -30,7 +30,7 @@ Password expression  XPath expression evaluation of which should yield the passw
 Username             The username expected to be provided in the request
 ==================== =========================================================================================================
 
-A newly created security definition has a secret set a random UUID4 and needs to be changed in order for 
+A newly created security definition has a secret set to a random UUID4 and needs to be changed in order for 
 the definition to be usable.
 
 XPath expressions as presented in the Create form can be used to access credentials such as below, for instance:
@@ -63,9 +63,6 @@ Deletes a security definition and all the connections that make use of it.
 
   It needs to be emphasized that any plain HTTP channels that were using the
   definition will also be deleted automatically.
-
-Using namespaces
-----------------
 
 Changelog
 ---------
