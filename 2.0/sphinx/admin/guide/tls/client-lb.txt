@@ -1,0 +1,19 @@
+SSL/TLS traffic from client applications
+========================================
+
+Key features:
+
+* Client applications may invoke services using SSL/TLS
+* Services can be also optionally secured with client certificates
+* Traffic to a Zato cluster is always terminated at the cluster's load-balancer which may 
+  :doc:`optionally re-encrypt <lb-servers>` it using its own crypto material while communicating with servers it fronts for
+* Load-balancer passes SSL/TLS-related information to servers as set of custom HTTP headers that are always available to services
+  through their :ref:`self.wsgi_environ <progguide-write-service-wsgi_environ>` dictionary
+
+
+Tasks
+-----
+
+* Configuring a cluster to accept SSL/TLS connections without client certificates
+* Configuring a cluster to require SSL/TLS client certificates
+* Configuring channels to require specific fields in client certificates

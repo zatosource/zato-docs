@@ -334,6 +334,7 @@ Zato, the open-source project
    admin/guide/*
    admin/guide/install-config/*
    admin/guide/migrate/*
+   admin/guide/tls/*
    architecture/*
    intro/*
    progguide/*
