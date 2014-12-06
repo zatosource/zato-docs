@@ -23,6 +23,7 @@ Request parameters
 ======================== ======== ======== =================================================================
 Name                     Datatype Optional Notes
 ======================== ======== ======== =================================================================
+id                       int      ---      ID of the definition to update
 cluster_id               int      ---      ID of the cluster this definition is configured in
 name                     string   ---      Definition name
 is_active                boolean  ---      Whether the definition should be active upon its creation
