@@ -5,7 +5,7 @@ Key features:
 
 * Client applications may invoke services using SSL/TLS
 * Services can be also optionally secured with client certificates
-* Traffic to a Zato cluster is always terminated at the cluster's load-balancer which may 
+* Traffic to a Zato cluster is always terminated at the cluster's HAProxy load-balancer which may 
   :doc:`optionally re-encrypt <lb-servers>` it using its own crypto material while communicating with servers it fronts for
 * Load-balancer passes SSL/TLS-related information to servers as a set of custom HTTP headers that are always available to services
   through their :ref:`self.wsgi_environ <progguide-write-service-wsgi_environ>` dictionary
@@ -105,6 +105,8 @@ the certificate will be validated against the CA certificates specified in *ca-f
 Requiring specific fields in client certificates
 ------------------------------------------------
 
+
+
 It's possible to configure :ref:`TLS channel security definitions <invalid>` to reject incoming requests unless one or more
 fields, including a fingerprint, are matched.
 
@@ -116,6 +118,11 @@ require any specific fields or not.
 
 The load-balancer's TLS config must contain either the *verify optional* or *verify optional* flag, as in the example
 below which delivers to servers the following fields in custom HTTP headers:
+
+* The certificate's fingerprint in X-Zato-TLS-Fingerprint
+
+The format is X-Zato-TLS-Name where Name is the name of the field that a security definition requires - all fields are always
+uppercased regardless of how they are spelled out in the load-balancer's configuration.
 
 ::
 
@@ -131,3 +138,4 @@ below which delivers to servers the following fields in custom HTTP headers:
 
     bind 0.0.0.0:51223 ssl crt /key-and-cert.pem verify optional ca-file /ca-certs.pem
 
+    http-request set-header X-Zato-TLS-Fingerprint %{+Q}[ssl_c_sha1,hex]
