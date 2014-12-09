@@ -10,6 +10,8 @@ Key features:
 * Load-balancer passes SSL/TLS-related information to servers as a set of custom HTTP headers that are always available to services
   through their :ref:`self.wsgi_environ <progguide-write-service-wsgi_environ>` dictionary
 
+.. image:: /gfx/admin/tls/path-client-lb.png
+
 Tasks
 -----
 
@@ -105,10 +107,9 @@ the certificate will be validated against the CA certificates specified in *ca-f
 Requiring specific fields in client certificates
 ------------------------------------------------
 
-
-
 It's possible to configure :ref:`TLS channel security definitions <invalid>` to reject incoming requests unless one or more
-fields, including a fingerprint, are matched.
+fields, including a fingerprint, are matched. That way Zato can verify not only that a certificate signed off by a known
+CA was used but also that it was a particular certificate out of possibly many more produced by that CA.
 
 The feature requires the load-balancer to pass fields extracted out of a client certificate to servers that in turn
 make decision whether the fields suffice or not, i.e. whether there is a match or not.
@@ -120,9 +121,13 @@ The load-balancer's TLS config must contain either the *verify optional* or *ver
 below which delivers to servers the following fields in custom HTTP headers:
 
 * The certificate's fingerprint in X-Zato-TLS-Fingerprint
+* The certificate subject's common name (CN) in X-Zato-TLS-Common-Name
 
 The format is X-Zato-TLS-Name where Name is the name of the field that a security definition requires - all fields are always
 uppercased regardless of how they are spelled out in the load-balancer's configuration.
+
+All the fields the load-balancer can extract, such as ssl_c_sha1, are provided in
+`HAProxy's documentation <https://cbonte.github.com/haproxy-dconv/configuration-1.5.html>`_.
 
 ::
 
@@ -139,3 +144,37 @@ uppercased regardless of how they are spelled out in the load-balancer's configu
     bind 0.0.0.0:51223 ssl crt /key-and-cert.pem verify optional ca-file /ca-certs.pem
 
     http-request set-header X-Zato-TLS-Fingerprint %{+Q}[ssl_c_sha1,hex]
+    http-request set-header X-Zato-TLS-Common-Name %{+Q}[ssl_c_s_dn(CN)]
+
+Assuming a client certificate with the following fields ..
+
+::
+
+    $ openssl x509 -text -in client.pem -fingerprint | grep -E 'Subject:|Finger'
+    Subject: C=AU, CN=Client4/emailAddress=Client4
+    SHA1 Fingerprint=03:D5:F9:BB:B6:00:3E:86:29:82:3D:6F:81:1D:70:C8:9F:04:0C:2F
+    $
+
+\.\. the load-balancer's configuration allows one to :ref:`require particular fields <invalid>` on input:
+
+.. image:: /gfx/admin/tls/channel-custom-fields.png
+
+Note that the certificate's fingerprint will not contain semicolons unlike in the output from openssl.
+
+Confirming which fields the load-balancer provided
+--------------------------------------------------
+
+:ref:`zato.helpers.tls-logger <invalid>` is a convenient helper service which, having been mounted on
+an HTTP channel, logs to server.log all the SSL/TLS-related fields provided to servers
+by a load-balancer hence allowing users to confirm the load-balancer's configuration, for instance:
+
+::
+
+    INFO - 'HTTP_X_ZATO_TLS_COMMON_NAME': 'Client4'
+    INFO - 'HTTP_X_ZATO_TLS_FINGERPRINT': '03D5F9BBB6003E8629823D6F811D70C89F040C2F'
+
+A warning is printed out if no such fields were provided:
+
+::
+
+  WARNING - No HTTP_X_ZATO_TLS_* headers found

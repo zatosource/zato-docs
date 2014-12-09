@@ -4,7 +4,7 @@ SSL/TLS
 Zato supports SSL/TLS out of the box, including client certificates, and offers means for configuring HTTP channels to allow
 requests in basing on individual fields of certificates provided by client applications.
 
-Encrypted traffic from external applications to a Zato cluster is terminated at the load-balancer and connections
+If traffic from external applications to a Zato cluster is encrypted, it is terminated at the load-balancer and connections
 from the load-balancer to servers and back may optionally use a separate encrypted link.
 
 It's also possible for user services to transparently access SSL/TLS-protected resources, including ones secured with
