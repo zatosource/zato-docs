@@ -107,7 +107,8 @@ the certificate will be validated against the CA certificates specified in *ca-f
 Requiring specific fields in client certificates
 ------------------------------------------------
 
-It's possible to configure :ref:`TLS channel security definitions <invalid>` to reject incoming requests unless one or more
+It's possible to configure :doc:`TLS channel security definitions <../../../web-admin/security/tls/channels>`
+to reject incoming requests unless one or more
 fields, including a fingerprint, are matched. That way Zato can verify not only that a certificate signed off by a known
 CA was used but also that it was a particular certificate out of possibly many more produced by that CA.
 
@@ -155,7 +156,7 @@ Assuming a client certificate with the following fields ..
     SHA1 Fingerprint=03:D5:F9:BB:B6:00:3E:86:29:82:3D:6F:81:1D:70:C8:9F:04:0C:2F
     $
 
-\.\. the load-balancer's configuration allows one to :ref:`require particular fields <invalid>` on input:
+\.\. the load-balancer's configuration allows one to :doc:`require particular fields <../../../web-admin/security/tls/channels>` on input:
 
 .. image:: /gfx/admin/tls/channel-custom-fields.png
 

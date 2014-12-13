@@ -52,10 +52,10 @@ Data format               *(Optional)* The expected data format Zato should pars
                           incoming messages as. This will also populate a service's
                           :ref:`data_format attribute <progguide-write-service-data_format>`.
 Security definition       Name of a security definition - 
-                          :doc:`API keys <../security/api-key>`,
+                          :doc:`API keys <../security/apikey>`,
                           :doc:`HTTP Basic Auth <../security/basic-auth>`,
                           :doc:`OAuth <../security/oauth>`,
-                          :doc:`SSL/TLS <../security/ssl/tls/channels>`,
+                          :doc:`SSL/TLS <../security/tls/channels>`,
                           :doc:`technical account <../security/tech-account>`,
                           :doc:`XPath <../security/xpath>`
                           or a 
