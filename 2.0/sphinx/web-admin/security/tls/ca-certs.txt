@@ -1,0 +1,56 @@
+Security - SSL/TLS - Outgoing - CA certs
+========================================
+
+Overview
+--------
+
+Used to create, update, delete and browse `SSL/TLS <https://en.wikipedia.org/wiki/Transport_Layer_Security>`_
+CA certificates that can be used by :doc:`Plain HTTP <../../outgoing/plain-http>` and :doc:`SOAP <../../outgoing/soap>`
+outgoing connections to validate certificates of external resources.
+
+* Menu path: Security -> SSL/TLS -> Outgoing -> CA certs
+* Example address: http://localhost:8183/zato/security/tls/ca-cert/?cluster=1
+
+.. image:: /gfx/web-admin/security/tls/ca-certs.png
+   :width: 95%
+
+Upload and Edit
+---------------
+
+.. image:: /gfx/web-admin/security/tls/ca-certs-create.png
+
+========== ================================================================================================================
+Header     Notes
+========== ================================================================================================================
+Name       Definition name
+Conditions One or more CA certificates, in PEM.
+========== ================================================================================================================
+
+Each of the servers in a cluster stores the certificate(s) in its own *tls/ca-certs* configuration directory. For instance,
+if a path to the server is /esb/server1 then the full path to the directory is */esb/server1/config/repo/tls/ca-certs*.
+
+Having stored the certificate on file-system a server confirms the full path in server.log, such as below:
+
+::
+
+    INFO - CA certificate saved under `/esb/server1/config/repo/tls/ca-certs/C_AU__CN_CA2.pem`
+
+Delete
+------
+
+.. image:: /gfx/web-admin/security/tls/ca-certs-delete.png
+
+Deletes a security definition and all the objects that make use of it.
+
+.. note ::
+
+  It needs to be emphasized that any outgoing connections that were using the definition will also be deleted automatically.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================

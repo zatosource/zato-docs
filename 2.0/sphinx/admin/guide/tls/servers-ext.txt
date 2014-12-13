@@ -1,0 +1,38 @@
+SSL/TLS traffic to external applications
+========================================
+
+Key features:
+
+* Services can invoke SSL/TLS-protected HTTP resources, including authentication using client certificates
+* Target server certificates can be validated or ignored
+* Everything can be configured on-fly without restarts nor coding
+
+.. image:: /gfx/admin/tls/path-servers-ext.png
+
+Tasks
+-----
+
+* :ref:`Uploading client certificates <admin-tls-upload-client-certs>` for services to use when connecting to external HTTP resources
+* :ref:`Uploading CA certificates <admin-tls-upload-ca-certs>`  used for validation of external applications' certificates
+* Configuring outgoing connections to :ref:`use client certificates <admin-tls-use-client-certs>` 
+* Configuring outgoing connections to :ref:`validate server certificates <admin-tls-validating-ca-certs>`  external applications present
+
+.. _admin-tls-upload-client-certs:
+
+Uploading client certificates
+-----------------------------
+
+.. _admin-tls-upload-ca-certs:
+
+Uploading CA certificates
+-------------------------
+
+.. _admin-tls-use-client-certs:
+
+Using client certificates
+-------------------------
+
+.. _admin-tls-validating-ca-certs:
+
+Validating server certificates
+------------------------------

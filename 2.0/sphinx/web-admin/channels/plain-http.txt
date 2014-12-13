@@ -55,7 +55,7 @@ Security definition       Name of a security definition -
                           :doc:`API keys <../security/api-key>`,
                           :doc:`HTTP Basic Auth <../security/basic-auth>`,
                           :doc:`OAuth <../security/oauth>`,
-                          :doc:`SSL/TLS <../security/ssl/tls>`,
+                          :doc:`SSL/TLS <../security/ssl/tls/channels>`,
                           :doc:`technical account <../security/tech-account>`,
                           :doc:`XPath <../security/xpath>`
                           or a 
@@ -107,7 +107,7 @@ Version             Notes
                     * Added new security definition types:
                       :doc:`API keys <../security/api-key>`,
                       :doc:`OAuth <../security/oauth>`,
-                      :doc:`SSL/TLS <../security/ssl/tls>`
+                      :doc:`SSL/TLS <../security/ssl/tls/channels>`
                       and
                       :doc:`XPath <../security/xpath>`
 

@@ -1,0 +1,13 @@
+Security - SSL/TLS
+==================
+
+Zato services can be secured with SSL/TLS and it's also possible to invoke SSL/TLS-secured resources.
+
+Following chapters go through all the web-admin forms supporting the process of managing the crypto material:
+
+* :doc:`Channels <channels>`
+* Outgoing -> :doc:`CA certs <ca-certs>`
+* Outgoing -> :doc:`Keys and certs <keys-certs>`
+
+:doc:`A dedicated guide <../../../admin/guide/tls/overview>` provides detailed information on performing typical
+tasks related to SSL/TLS keys and certificates.

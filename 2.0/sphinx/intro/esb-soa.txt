@@ -49,9 +49,10 @@ What ESB and SOA are anyway
     <br/>
 
 Also available in
-:doc:`ру́сский <esb-soa-ru>`
+:doc:`Català <esb-soa-ca>`,
+:doc:`Português <./esb-soa-pt>`
 and
-:doc:`Português <./esb-soa-pt>`.
+:doc:`ру́сский <esb-soa-ru>`.
 
 The ESB acronym and a related one - SOA - can be a source of confusion. ESB expands to
 an Enterprise Service Bus. SOA stands for Service Oriented Architecture.
