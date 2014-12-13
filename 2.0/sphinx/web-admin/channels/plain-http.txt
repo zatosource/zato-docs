@@ -105,9 +105,9 @@ Version             Notes
                     * URL path now accepts patterns
                     * Renamed 'Security' to 'Security definition'
                     * Added new security definition types:
-                      :doc:`API keys <../security/api-key>`,
+                      :doc:`API keys <../security/apikey>`,
                       :doc:`OAuth <../security/oauth>`,
-                      :doc:`SSL/TLS <../security/ssl/tls/channels>`
+                      :doc:`SSL/TLS <../security/tls/channels>`
                       and
                       :doc:`XPath <../security/xpath>`
 

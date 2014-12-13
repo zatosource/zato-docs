@@ -18,7 +18,7 @@ that a service intends to send XML.
 Create and Edit
 ---------------
 
-.. image:: /gfx/web-admin/outgoing/soap-update.png
+.. image:: /gfx/web-admin/outgoing/soap-create.png
 
 =================== ======================================================================================================================
 Header              Notes
@@ -34,22 +34,32 @@ Active              Whether the connection can be used by services or not.
                     :ref:`pinged <web-admin-outgoing-soap-ping>`.
                     
 Host                HTTP server's host, may include a port
-URL path            Path a service to be invoked is mounted on
-SOAP action         SOAP action a service to be invoked uses
-SOAP version        SOAP version a service to be invoked uses, can be either 1.1 or 1.2.
-Ping method         (New in 2.0) HTTP method to use for pinging the connection (defaults to HEAD).
-Pool size           (New in 2.0) How big an underlying connection pool can be, any requests above it will be discarded and a warning
+URL path            If serialization type is string, path a service to be invoked is mounted on. If Suds, path a WSDL is under.
+Data format         (Optional) Allows for automatic serialization of outgoing requests to XML if string-based serialization is used.
+SOAP action         SOAP action a service to be invoked uses. Ignored if serialization type is Suds.
+SOAP version        SOAP version a service to be invoked uses, can be either 1.1 or 1.2. Ignored if serialization type is Suds.
+Ping method         HTTP method to use for pinging the connection (defaults to HEAD).
+Pool size           How big an underlying connection pool can be, any requests above it will be discarded and a warning
                     will be logged. This setting is per each server worker and connections are created on demand, when they're actually
                     needed.
+Timeout             Timeout, in seconds, after exceeding of which an exception will be raised without waiting for the external
+                    resource to reply - use *zato.common.TimeoutException* to catch the exception if it's needed.
+                    The value can be expressed in a fraction of a second, e.g. *0.5* to indicate half a second.
+Serialization type  Whether requests will be prepared as strings by services or if `Suds <https://bitbucket.org/jurko/suds>`_
+                    is used which lets one import WSDLs and serialize Python objects to SOAP automatically.
 Security            Name of a security definition - 
-                    :doc:`HTTP Basic Auth <../security/basic-auth>`,
-                    :doc:`technical account <../security/tech-account>`
-                    or a 
-                    :doc:`WS-Security <../security/ws-security>` definition
+                    :doc:`HTTP Basic Auth <../security/basic-auth>`
+                    or
+                    :doc:`SSL/TLS client cert<../security/tls/keys-certs>`
                     - to use for accessing the resource. 
-                    
+
+                    If serialization type is Suds, NTLM can also be used.
+
                     Pick 'No security' explicitly to indicate that no such definition
                     should be used.
+TLS CA certs        (Required if host starts with https://) Which :doc:`CA certs package <../security/tls/ca-certs>` to use for validating
+                    the certificate of the external server. Use 'Skip validation' to explicitly configure the connection not
+                    to validate the server certificate at all. Ignored if serialization type is Suds.
 =================== ======================================================================================================================
 
 .. _web-admin-outgoing-soap-ping:
@@ -65,11 +75,28 @@ This can be used to check whether a given resource is reachable by Zato servers.
 
 The feature is available even if a connection is inactive.
 
+Reload WSDL
+-----------
+
+If an outgoing connection's serialization type is Suds, which implies automatic serialization of requests to SOAP
+out of WSDLs, clicking on *Reload WSDL* refreshes the internal cache - otherwise any updates to the WSDL are not visible to any
+connections using it.
+
+.. image:: /gfx/web-admin/outgoing/soap-reload-wsdl.png
+
 Changelog
 ---------
 
 =================== ===================================================================
 Version             Notes
 =================== ===================================================================
+2.0                 Added new fields:
+
+                    * Data format
+                    * Pool size
+                    * Timeout
+                    * Serialization type
+                    * TLS CA certs
+
 1.0                 Added initially
 =================== ===================================================================

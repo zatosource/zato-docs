@@ -37,19 +37,25 @@ Active              Whether the connection can be used by services or not.
                     
 Host                HTTP server's host, may include a port
 URL path            Path a resource to be invoked is mounted on
-Ping method         (New in 1.2) HTTP method to use for pinging the connection (defaults to HEAD).
-Pool size           (New in 1.2) How big an underlying connection pool can be, any requests above it will be discarded and a warning
+Data format         (Optional) Allows for automatic serialization of outgoing requests to either JSON or XML.
+Ping method         HTTP method to use for pinging the connection (defaults to HEAD).
+Pool size           How big an underlying connection pool can be, any requests above it will be discarded and a warning
                     will be logged. This setting is per each server worker and connections are created on demand, when they're actually
                     needed.
+Timeout             Timeout, in seconds, after exceeding of which an exception will be raised without waiting for the external
+                    resource to reply - use *zato.common.TimeoutException* to catch the exception if it's needed.
+                    The value can be expressed in a fraction of a second, e.g. *0.5* to indicate half a second.
 Security            Name of a security definition - 
-                    :doc:`HTTP Basic Auth <../security/basic-auth>`,
-                    :doc:`technical account <../security/tech-account>`
-                    or a 
-                    :doc:`WS-Security <../security/ws-security>` definition
+                    :doc:`HTTP Basic Auth <../security/basic-auth>`
+                    or
+                    :doc:`SSL/TLS client cert<../security/tls/keys-certs>`
                     - to use for accessing the resource. 
                     
                     Pick 'No security' explicitly to indicate that no such definition
                     should be used.
+TLS CA certs        (Required if host starts with https://) Which :doc:`CA certs package <../security/tls/ca-certs>` to use for validating
+                    the certificate of the external server. Use 'Skip validation' to explicitly configure the connection not
+                    to validate the server certificate at all.
 =================== ======================================================================================================================
 
 .. _web-admin-outgoing-plain-http-ping:
@@ -71,5 +77,12 @@ Changelog
 =================== ===================================================================
 Version             Notes
 =================== ===================================================================
+2.0                 Added new fields:
+
+                    * Data format
+                    * Pool size
+                    * Timeout
+                    * TLS CA certs
+
 1.0                 Added initially
 =================== ===================================================================
