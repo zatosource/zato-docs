@@ -13,7 +13,7 @@ the development of REST channels, including the most popular ones using JSON.
 * Access to a channel can be limited to a selected HTTP verb only
 * Data format can be set to JSON, XML or none in particular at all
 * Services can react to user-chosen HTTP verbs only (documented in :doc:`a separate chapter <services>`)
-* RBAC can be used to assign roles and actions to clients applications and HTTP verbs they use (documented in :doc:`a separate chapter <../../rbac/overview>`)
+* RBAC can be used to assign roles and actions to clients applications and HTTP verbs they use (documented in :doc:`a separate chapter <../../admin/guide/rbac/overview>`)
 
 Note that in order to take advantage of URL path patterns and URL parameters a service needs to use
 :doc:`SimpleIO <../sio>`, such as the one below which will be used throughout the chapter.

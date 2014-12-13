@@ -1,5 +1,5 @@
-Outgoing connections - Plain HTTP
-=================================
+Outgoing connections - Plain HTTP (REST)
+========================================
 
 Overview
 --------

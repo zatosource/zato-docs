@@ -22,7 +22,7 @@
 
 * :doc:`SSL/TLS for channels and outgoing connections <../admin/guide/tls/overview>`
 
-* Role-based access control (RBAC) for HTTP channels
+* :doc:`Role-based access control (RBAC) for HTTP channels <../admin/guide/rbac/overview>`
 
 * OpenID in web admin
 

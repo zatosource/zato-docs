@@ -113,6 +113,7 @@ Web admin
       :doc:`HTTP Basic Auth<web-admin/security/basic-auth>` |
       :doc:`NTLM<web-admin/security/ntlm>` |
       :doc:`OAuth<web-admin/security/oauth>` |
+      :doc:`RBAC (Role-based access control)<web-admin/security/rbac/overview>` |
       :doc:`SSL/TLS <web-admin/security/tls/overview>` |
       :doc:`Technical accounts<web-admin/security/tech-account>` |
       :doc:`WS-Security<web-admin/security/ws-security>` |
@@ -125,7 +126,7 @@ Web admin
     * **Channels:**
       :doc:`AMQP<web-admin/channels/amqp>` |
       :doc:`JMS WebSphere MQ<web-admin/channels/jms-wmq>` |
-      :doc:`Plain HTTP<web-admin/channels/plain-http>` |
+      :doc:`Plain HTTP (REST)<web-admin/channels/plain-http>` |
       :doc:`SOAP<web-admin/channels/soap>` |
       :doc:`ZeroMQ<web-admin/channels/zmq>`
       
@@ -133,7 +134,7 @@ Web admin
       :doc:`AMQP<web-admin/outgoing/amqp>` |
       :doc:`FTP<web-admin/outgoing/ftp>` |
       :doc:`JMS WebSphere MQ<web-admin/outgoing/jms-wmq>` |
-      :doc:`Plain HTTP<web-admin/outgoing/plain-http>` |
+      :doc:`Plain HTTP (REST)<web-admin/outgoing/plain-http>` |
       :doc:`SOAP<web-admin/outgoing/soap>` |
       :doc:`SQL<web-admin/outgoing/sql>` |
       :doc:`ZeroMQ<web-admin/outgoing/zmq>`
@@ -225,6 +226,7 @@ Administration guide
       :doc:`Installing services<admin/guide/installing-services>` |
       :doc:`Enabling extra libraries <admin/guide/enabling-extra-libs>` |
       :doc:`Managing server objects en masse<admin/guide/enmasse>` |
+      :doc:`RBAC (Role-based access control)<admin/guide/rbac/overview>` |
       :doc:`SSL/TLS<admin/guide/tls/overview>`
 
     * **Migrating between releases:**
@@ -335,6 +337,7 @@ Zato, the open-source project
    admin/guide/*
    admin/guide/install-config/*
    admin/guide/migrate/*
+   admin/guide/rbac/*
    admin/guide/tls/*
    architecture/*
    intro/*
@@ -357,6 +360,7 @@ Zato, the open-source project
    web-admin/outgoing/*
    web-admin/scheduler/*
    web-admin/security/*
+   web-admin/security/rbac/*
    web-admin/security/tls/*
    web-admin/servers/*
    web-admin/service-details/*
