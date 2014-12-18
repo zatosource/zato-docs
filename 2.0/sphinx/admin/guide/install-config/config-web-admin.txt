@@ -30,42 +30,45 @@ Example
     "port": 8183,
     "db_type": "postgresql",
     "log_config": "./config/repo/logging.conf",
-  
+
     "DEBUG": 1,
-  
+
     "DATABASE_NAME": "zato1",
     "DATABASE_USER": "zato1",
-    
+
     "DATABASE_PASSWORD": "GlAySrBZGwMVsz+fPAepoqt81wI4vShzqHLWwEFkQlCkK0x0khN
           iP8XFIXvxlROpkq45vu4tLDr38MCfacf0j+mtqkugxSQvMg82h9S6oRXyJYHO9PBy2q
           WWjK7CgY4Kxy5AXPlEwSqRb85tj0fDScSTWLQqr2jP0oDJE3PpaY/Fgqf4mKEY3wHM/
           WQh9jzKln9+7n+IC117nWzISXajiOoOGeJ1I/bHSTYEi7l0/+N5JxTEjbRleFNDN/qd
           d99Lz3rVFVurQWhQFvZZIiqunx8NoWQwdeyCrWpgzIBFKn23g05mzvWQuKFJfs4NRMD
           ZkhWApP5AqwVgaH9SQ6gFxQ==",
-          
+
     "DATABASE_HOST": "localhost",
     "DATABASE_PORT": "5432",
-  
+
     "TIME_ZONE": "America/New_York",
     "LANGUAGE_CODE": "en-us",
     "SITE_ID": 368109,
-    
+
     "SECRET_KEY": "CApjLd5eMLAovOda4HmkyspWKSVlA09DgQC5FYv6qfR88xZ+Ce+R2RyD+7
     ho5GfMh/GpJpuwutR1HKmDSFUUc5PEMDL17dRzLAadZo03GD0TAc5/+Y7AhZMLOCHCpDX2xla
     fzIP9u4Jgk/cvyYBLI2/nUMIptLIbRtimWQzQJrUHgCsqDQAgIunDaDLKH/o4XR0ZXksFidj8
     pN4Hk58iZCs4HnL6R0HORLkP/nbrG4+tafVVteI7hBCvAU2NVoeVXBPgvWvDaS++vn2z9Hx0H
     tBhHOBoACaXWnqQqMo/nqMFQUpKnpMghchMzAUm9fK4LjkFI36SUbUgkL0Zo1MhZg==",
-    
+
     "ADMIN_INVOKE_NAME": "admin.invoke",
-    
+
     "ADMIN_INVOKE_PASSWORD": "d5ZGktt5af597fNQWTSS4y4Jaj4I6Nt/Kr4Ofz2G3/7rtim
     FJKhbK982cfntMjQWToXBy2U5Y76rqH7Vd8aFMX+TBYcBySkYg2lPiSY8Z85AULqIx7oBrfgX
     R8q6KbB6T5vQARGyGJ7dCV4JnQ4QcL5EvT0R1+9noC2+UCrzDkOI4lrcjX5x9/cUG73c9GkFc
     1qbM/4l40iEMV9+fUeyd6YMmqEwiWhlwWLIQRrI83iBu0LJMq4XQ1KoKbkQEaCTVzeaQ5OayP
     0Dha2vqT2Dvk2AYxaDjWsL0dgDIUHrmuvPrS59aRYdnw6kNngQcAlawucz7B4j8cqGugeRQFr
     ZRQ==",
-    
-    "ADMIN_INVOKE_PATH": "/zato/admin/invoke"
+
+    "ADMIN_INVOKE_PATH": "/zato/admin/invoke",
+
+    "OPENID_SSO_SERVER_URL": ""
+
   }
 
 
@@ -186,6 +189,14 @@ ADMIN_INVOKE_PATH
 
 HTTP path admin services the console should invoke are available on.
 
+.. _admin-guide-config-web-admin-open-id:
+
+OPENID_SSO_SERVER_URL
+@@@@@@@@@@@@@@@@@@@@@
+
+URL of an OpenID provider that will be employed to log users into web-admin. A :doc:`CLI command <../../cli/update-openid>`
+is used to assign claimed IDs to already existing web-admin users.
+
 .. _admin-guide-config-web-admin-logging:
 
 Logging configuration - logging.conf
@@ -258,3 +269,16 @@ be password-protected.
 * web-admin-pub-key.pem - public key
 * web-admin-cert.pem - certificate
 * web-admin-ca-certs.pem - a list of CA certificates web admin should trust
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 New web-admin.conf field:
+
+                    * OPENID_SSO_SERVER_URL
+
+1.0                 Added initially
+=================== ===================================================================

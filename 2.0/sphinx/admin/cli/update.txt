@@ -12,3 +12,4 @@ Subcommands
 
 * :doc:`zato update crypto<./update-crypto>`
 * :doc:`zato update password<./update-password>`
+* :doc:`zato update openid<./update-openid>`

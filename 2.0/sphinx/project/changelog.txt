@@ -24,7 +24,7 @@
 
 * :doc:`Role-based access control (RBAC) for HTTP channels <../admin/guide/rbac/overview>`
 
-* OpenID in web admin
+* :ref:`OpenID in web admin <admin-guide-config-web-admin-open-id>`
 
 * Cassandra connections and pre-compiled query templates
 
