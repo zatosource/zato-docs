@@ -72,6 +72,7 @@ Various interfaces that Zato can access allow one for reaching out to any applic
 regardless of its origin and programming language used. The interfaces include:
 
 * the ubiquitous HTTP protocol
+* REST
 * FTP(S)
 * AMQP
 * WebSphere MQ
@@ -79,6 +80,13 @@ regardless of its origin and programming language used. The interfaces include:
 * JMS
 * SOAP
 * SQL
+* Redis
+* Cassandra
+* Amazon S3
+* OpenStack Swift
+* Odoo/OpenERP
+* SMTP
+* IMAP
 
 Web admin
 =========

@@ -50,8 +50,12 @@ with a pinch of of `jQuery <http://jquery.com/>`_ added in for frontend features
 
 :doc:`ODB (Operational database) <../architecture/sql-odb>` is an SQL database used for storing static
 configuration common to all members of the cluster. ODB may be installed on
-`Oracle <http://www.oracle.com/technology/software/products/database/index.html>`_ or
-`PostgreSQL <http://www.postgresql.org/>`_.
+`Oracle <http://www.oracle.com/technology/software/products/database/index.html>`_,
+`PostgreSQL <http://www.postgresql.org/>`_,
+`MySQL <https://www.mysql.com/>`_
+or
+`SQLite <https://sqlite.org>`_.
+
 :doc:`(read more) <../architecture/sql-odb>`
 
 Redis is used to store the more dynamic configuration and to provide quick
