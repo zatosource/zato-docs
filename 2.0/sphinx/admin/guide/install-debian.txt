@@ -1,3 +1,5 @@
+.. highlight:: sh
+
 Installation on Debian
 ======================
 
@@ -12,43 +14,43 @@ Installation steps
 
 * Log on as root
 
-.. code-block:: sh
+::
 
     debian# su -
 
 * Install helper programs
 
-.. code-block:: sh
+::
 
     debian# sudo apt-get install apt-transport-https python-software-properties
     debian# apt-add-repository 'deb http://ftp.is.debian.org/debian wheezy-backports main'
 
 * Add the package signing key
 
-.. code-block:: sh
+::
 
     debian# curl -s https://zato.io/repo/zato-0CBD7F72.pgp.asc | apt-key add -
 
 * Add Zato repo and update sources
 
-.. code-block:: sh
+::
 
-    debian# sudo apt-add-repository https://zato.io/repo/stable/debian
+    debian# sudo apt-add-repository https://zato.io/repo/dev/debian
     debian# sudo apt-get update
 
 * Install Zato
 
-.. code-block:: sh
+::
 
     debian# sudo apt-get install zato
 
 * Confirm the installation
 
-.. code-block:: sh
+::
 
     debian# sudo su - zato
     debian# zato --version
-    Zato 1.1
+    Zato 2.0.0pre1.rev-ac36f862
     debian#
 
 That concludes the process - you can refer to the main

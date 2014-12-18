@@ -1,10 +1,12 @@
+.. highlight:: sh
+
 Installation on Ubuntu
 ======================
 
 Requirements
 ------------
 
-* Ubuntu 12.04 LTS
+* Ubuntu 12.04 LTS, 14.04 LTS
 * Sudo rights
 
 Installation steps
@@ -12,37 +14,37 @@ Installation steps
 
 * Install helper programs
 
-.. code-block:: sh
+::
 
     ubuntu$ sudo apt-get install apt-transport-https
     ubuntu$ sudo apt-get install python-software-properties
 
 * Add the package signing key
 
-.. code-block:: sh
+::
 
     ubuntu$ curl -s https://zato.io/repo/zato-0CBD7F72.pgp.asc | sudo apt-key add -
 
 * Add Zato repo and update sources
 
-.. code-block:: sh
+::
 
-    ubuntu$ sudo apt-add-repository https://zato.io/repo/stable/ubuntu
+    ubuntu$ sudo apt-add-repository https://zato.io/repo/dev/ubuntu
     ubuntu$ sudo apt-get update
 
 * Install Zato
 
-.. code-block:: sh
+::
 
     ubuntu$ sudo apt-get install zato
 
 * Confirm the installation
 
-.. code-block:: sh
+::
 
     ubuntu$ sudo su - zato
     ubuntu$ zato --version
-    Zato 1.1
+    Zato 2.0.0pre1.rev-ac36f862
     ubuntu$
 
 That concludes the process - you can refer to the main
