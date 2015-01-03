@@ -122,6 +122,7 @@ Web admin
       
     * **Connection definitions:**
       :doc:`AMQP<web-admin/conn-def/amqp>` |
+      :doc:`Cassandra<web-admin/conn-def/cassandra>` |
       :doc:`JMS WebSphere MQ<web-admin/conn-def/jms-wmq>`
       
     * **Channels:**
