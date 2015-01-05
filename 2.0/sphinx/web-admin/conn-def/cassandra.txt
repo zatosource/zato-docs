@@ -1,44 +1,41 @@
-Connection definitions - AMQP
-=============================
+Connection definitions - Cassandra
+==================================
 
 Overview
 --------
 
 Used to create, update, delete and browse 
-`AMQP 0.9.1 <http://www.rabbitmq.com/tutorials/amqp-concepts.html>`_
-connection definitions.
+`Cassandra <https://en.wikipedia.org/wiki/Apache_Cassandra>`_
+connection definitions, including connections to `Datastax Enterprise <http://www.datastax.com/>`_.
 
-A definition is a template off of which a concrete connection, either 
-:doc:`channel <../channels/amqp>`
-or an 
-:doc:`outgoing one<../outgoing/amqp>`,
-is created. Merely creating a definition doesn't start a connection to a broker.
+A definition is a template for either preparing :doc:`precompiled CQL queries <invalid>`
+can be created or issuing :doc:`ad-hoc queries <invalud>` with.
 
-One definition can serve to create multiple channels or outgoing connections.
+* Menu path: Connections -> Definitions -> Cassandra
+* Example address: http://localhost:8183/zato/definition/cassandra/?cluster=1
 
-* Menu path: Connections -> Definitions -> AMQP
-* Example address: http://localhost:8183/zato/definition/amqp/?cluster=1
-
-.. image:: /gfx/web-admin/conn-def/amqp.png
+.. image:: /gfx/web-admin/conn-def/cassandra.png
    :width: 95%
 
 Create and Edit
 ---------------
 
-.. image:: /gfx/web-admin/conn-def/amqp-create.png
+.. image:: /gfx/web-admin/conn-def/cassandra-create.png
 
 ============================ ========================================================
 Header                       Notes
 ============================ ========================================================
 Name                         Definition's name
-Host                         AMQP broker's host
-Port                         AMQP broker's port
-Virtual host                 Virtual host to use when connecting
-Username                     Username to log on with
-Max frame size (bytes)       Maximum size of a single AMQP frame, in bytes,
-                             the default is from the AMQP spec.
-Heartbeat interval (seconds) How often to send heartbeats, in seconds. 0 disables
-                             the feature.
+Contact points               A list of Cassandra contact points (nodes) to connect to,
+                             each on its own line
+Port                         Port to connect to
+Executor pool size           Connection pool size (called executor by Cassandra
+                             Python client)
+Protocol version             Version of the connection protocol to use
+CQL version                  Version CQL queries will be in
+Default keyspace             Default keyspace to execute queries in if not overridden
+                             when issuing the query
+Username                     Username to connect with
 ============================ ========================================================
 
 A newly created definition has a password set a random UUID4
@@ -47,21 +44,21 @@ and needs to be changed in order to be usable.
 Change password
 ---------------
 
-.. image:: /gfx/web-admin/conn-def/amqp-change-password.png
+.. image:: /gfx/web-admin/conn-def/cassandra-change-password.png
 
 Updates a definition's password - the password is stored in the ODB.
 
 Delete
 ------
 
-.. image:: /gfx/web-admin/conn-def/amqp-delete.png
+.. image:: /gfx/web-admin/conn-def/cassandra-delete.png
 
-Deletes an AMQP definition and all the connections that make use of it.
+Deletes a Cassandra definition and all the queries that make use of it.
 
 .. note ::
 
-  It needs to be emphasized that any channels or outgoing
-  connections that were using the definition will also be deleted automatically.
+  It needs to be emphasized that any :doc:`precompiled CQL queries <invalid>`
+  that were using the definition will also be deleted automatically.
 
 Changelog
 ---------
@@ -69,5 +66,5 @@ Changelog
 =================== ===================================================================
 Version             Notes
 =================== ===================================================================
-1.0                 Added initially
+2.0                 Added initially
 =================== ===================================================================
