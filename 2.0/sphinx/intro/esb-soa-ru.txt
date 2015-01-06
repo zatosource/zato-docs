@@ -44,7 +44,7 @@
     <blockquote>
     An excellent description of system-of-systems thinking
     <br/>
-      <a href="https://twitter.com/ncoghlan_dev/status/337907854944129025">Nick Coghlan</a>, Core Python developer
+      <a href="https://twitter.com/ncoghlan_dev/status/337907854944129025">Nick Coghlan</a>, Core Python Developer
     </blockquote>
     <br/>
 
