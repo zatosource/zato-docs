@@ -360,6 +360,7 @@ Zato, the open-source project
    web-admin/kvdb/*
    web-admin/load-balancer/*
    web-admin/outgoing/*
+   web-admin/query/*
    web-admin/scheduler/*
    web-admin/security/*
    web-admin/security/rbac/*

@@ -8,8 +8,8 @@ Used to create, update, delete and browse
 `Cassandra <https://en.wikipedia.org/wiki/Apache_Cassandra>`_
 connection definitions, including connections to `Datastax Enterprise <http://www.datastax.com/>`_.
 
-A definition is a template for either preparing :doc:`precompiled CQL queries <invalid>`
-can be created or issuing :doc:`ad-hoc queries <invalud>` with.
+A definition is a template for either preparing :doc:`precompiled CQL queries <../query/cassandra>`
+or to issue ad-hoc CQL queries with.
 
 * Menu path: Connections -> Definitions -> Cassandra
 * Example address: http://localhost:8183/zato/definition/cassandra/?cluster=1
@@ -57,7 +57,7 @@ Deletes a Cassandra definition and all the queries that make use of it.
 
 .. note ::
 
-  It needs to be emphasized that any :doc:`precompiled CQL queries <invalid>`
+  It needs to be emphasized that any :doc:`precompiled CQL queries <../query/cassandra>`
   that were using the definition will also be deleted automatically.
 
 Changelog
