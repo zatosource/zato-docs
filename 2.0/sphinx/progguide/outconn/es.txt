@@ -7,21 +7,21 @@ Elastic Search queries
 Overview
 --------
 
-Synchronously issues queries against ElasticSearch servers.
+Synchronously issues queries against ElasticSearch search servers.
 
 The underlying client ElasticSearch library is `elasticsearch-py <https://elasticsearch-py.readthedocs.org/en/master/>`_.
 
 API
 ---
 
-.. _progguide-outconn-search-es-get:
+.. _progguide-outconn-search-solr-get:
 
 self.search.es.get
 ``````````````````
 
 .. py:method:: get(name):
 
-  Fetches an object representing a connection to one or more ElasticSearch servers.
+  Fetches an object whose .conn attribute represents a connection to one or more ElasticSearch servers.
   The connection supports a range of operations
   explained in the `elasticsearch-py  project's documentation <https://elasticsearch-py.readthedocs.org/en/master/api.html>`_,
   such as .search, .index, .create, .get, .exists and others.
@@ -29,7 +29,7 @@ self.search.es.get
   :param name: Name of the :doc:`ElasticSearch connection <../../web-admin/search/es>`
   :type name: string
   
-  :rtype: (An `elasticsearch.client.ElasticSearch <https://elasticsearch-py.readthedocs.org/en/master/api.html#elasticsearch>`_ object)
+  :rtype: (An object whose .conn attribute is an `elasticsearch.client.ElasticSearch <https://elasticsearch-py.readthedocs.org/en/master/api.html#elasticsearch>`_ instance)
 
 Usage example
 -------------
