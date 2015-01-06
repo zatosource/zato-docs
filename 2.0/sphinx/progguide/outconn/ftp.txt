@@ -32,7 +32,7 @@ self.outgoing.ftp.get
   :param name: Name of the :doc:`FTP connection template <../../web-admin/outgoing/ftp>`
   :type name: string
   
-  :rtype: (A thin wrapper around an `fs.ftpfs.FTPFS <http://pythonhosted.org/fs/ftpfs.html#fs.ftpfs.FTPFS>`_ object)
+  :rtype: (A thin wrapper around an `fs.ftpfs.FTPFS <https://pythonhosted.org/fs/ftpfs.html#fs.ftpfs.FTPFS>`_ object)
 
 Usage example
 -------------
