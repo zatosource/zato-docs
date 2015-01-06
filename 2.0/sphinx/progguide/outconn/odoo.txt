@@ -1,0 +1,50 @@
+.. highlight:: python
+   :linenothreshold: 0
+
+Odoo connections
+================
+
+Overview
+--------
+
+Synchronously issues queries against Odoo (OpenERP) servers.
+
+The underlying client Odoo library is `openerp-client-lib <https://pypi.python.org/pypi/openerp-client-lib/>`_.
+
+API
+---
+
+.. _progguide-outconn-odoo-conn-client:
+
+self.outgoing.odoo[name].conn.client()
+``````````````````````````````````````
+
+.. py:method:: .outgoing.odoo[name].conn.client():
+
+  Returns an object to issue Odoo queries with.
+  
+  :param name: Name of the :doc:`Odoo connection <../../web-admin/search/solr>`
+  :type name: string
+  
+  :rtype: (An `openerplib.main.Connection <https://github.com/nicolas-van/openerp-client-lib/blob/master/openerplib/main.py>`_ instance)
+
+Usage example
+-------------
+
+::
+
+  from zato.server.service import Service
+  
+  class MyService(Service):
+      def handle(self):
+          with self.outgoing.odoo.get('My Connection').conn.client() as conn:
+  
+              model = conn.get_model('res.partner')
+  
+              for model_id in model.search([('name', 'like', 'Name')]):
+                  self.logger.info(model.read(model_id, ['name']))
+
+::
+
+  INFO - 3406:Dummy-260 - odoo1.my-service:22 - {'id': 7, 'name': 'My Name'}
+  INFO - 3406:Dummy-260 - odoo1.my-service:22 - {'id': 6, 'name': 'Another Name'}

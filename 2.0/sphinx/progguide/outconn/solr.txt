@@ -14,10 +14,10 @@ The underlying client Solr library is `pysolr <https://github.com/toastdriven/py
 API
 ---
 
-.. _progguide-outconn-search-es-get:
+.. _progguide-outconn-search-solr-conn-client:
 
-self.search.solr[conn_name].conn.client()
-````````````````````````````````````````````````````
+self.search.solr[name].conn.client()
+````````````````````````````````````
 
 .. py:method:: .search.solr[name].conn.client():
 

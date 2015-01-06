@@ -14,7 +14,7 @@ The underlying client ElasticSearch library is `elasticsearch-py <https://elasti
 API
 ---
 
-.. _progguide-outconn-search-solr-get:
+.. _progguide-outconn-search-es-get:
 
 self.search.es.get
 ``````````````````
