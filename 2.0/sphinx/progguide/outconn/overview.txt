@@ -17,18 +17,23 @@ Note that you always need to take
 :doc:`high-availability (HA) <../../admin/guide/ha>`
 into account, particularly so 
 if you're using 
-:doc:`AMQP <./amqp>`,
+:doc:`AMQP <./amqp>` or
 :doc:`JMS WebSphere MQ <./jms-wmq>`
-or
-:doc:`ZeroMQ <./zmq>` outgoing connections.
+outgoing connections.
 
 =================================== ===========
 Protocol                            Synchronous
 =================================== ===========
-:doc:`AMQP <./amqp>`                ---        
+:doc:`AMQP <./amqp>`                ---
+:doc:`Cassandra CQL <./cassandra>`  Yes
+:doc:`ElasticSearch <./es>`         Yes
 :doc:`FTP <./ftp>`                  Yes
 :doc:`HTTP <./http>`                Yes
+:doc:`IMAP <./imap>`                Yes
 :doc:`JMS WebSphere MQ <./jms-wmq>` ---
+:doc:`Odoo (OpenERP) <./odoo>`      Yes
+:doc:`SMTP <./smtp>`                Yes
+:doc:`Solr <./solr>`                Yes
 :doc:`SQL <./sql>`                  Yes
 :doc:`ZeroMQ <./zmq>`               ---
 =================================== ===========
@@ -37,13 +42,11 @@ Protocol                            Synchronous
 
   There's nothing preventing you from accessing external resources using
   other transfer protocols.
-  
+
   You won't have any particular support for doing
   so from Zato but the platform itself doesn't disallow using any other means of
-  communicating if you establish and maintain the connections yourself. Do keep
-  in mind though that Zato servers use a gevent-based main loop by default which
-  means you shouldn't open TCP connections from extensions written in C, any sockets
-  should be open in Python only.
-  
-  The list above introduces what Zato can offer out of the box in the current version 
-  and will surely grow in future releases.
+  communicating if you establish and maintain the connections yourself.
+
+  Do keep
+  in mind though that Zato servers use a gevent-based main loop so TCP connections
+  should be created in pure-Python code, preferrably, rather than in C.

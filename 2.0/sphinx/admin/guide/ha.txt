@@ -23,7 +23,11 @@ Reminding a couple of facts will make it easier to discuss the matter:
 * If a cluster establishes any AMQP, JMS WebSphere MQ or ZeroMQ connections,
   these are always managed by connector processes - there are as many connectors
   as there are channels and outgoing connections using these 3 technologies.
-  
+
+  As far as AMQP and JMS WebSphere MQ go, connectors are used for both channels
+  and outgoing connections. With ZeroMQ, only channels use connectors and outgoing connections
+  are created from Zato servers directly without connectors.
+
   One of the servers in the cluster assumes a role of the connector server
   and every connector process runs on the system this particular server is on.
   
