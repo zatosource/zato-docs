@@ -1,0 +1,102 @@
+.. highlight:: python
+   :linenothreshold: 0
+
+Cassandra queries
+=================
+
+Overview
+--------
+
+Synchronously sends ad-hoc or precompiled CQL queries to Cassandra nodes.
+
+The underlying client Cassandra library is `python-driver <https://github.com/datastax/python-driver>`_ by Datastax.
+
+API
+---
+
+Ad-hoc queries
+~~~~~~~~~~~~~~
+
+  .. _progguide-outconn-cassandra-conn-get:
+
+self.cassandra_conn.get
+```````````````````````
+
+.. py:method:: get(name):
+
+  Fetches an object representing a connection to a Cassandra server.
+  The object's .execute method lets one issue CQL queries.
+  
+  :param name: Name of the :doc:`Cassandra connection definition <../../web-admin/conn-def/cassandra>` to issue queries with.
+  :type name: string
+  
+  :rtype: (A `cassandra.cluster.Session <https://datastax.github.io/python-driver/api/cassandra/cluster.html#cassandra.cluster.Session>`_ object)
+
+Precompiled queries
+~~~~~~~~~~~~~~~~~~~
+
+  .. _progguide-outconn-cassandra-query-get:
+
+self.cassandra_query.get
+````````````````````````
+
+.. py:method:: get(name):
+
+  Fetches an object representing a previously compiled CQL query to be run against a database pointed to by the query's
+  connection definition.
+
+  The object's .execute method accepts keyword arguments to be substituted in the query.
+
+  :param name: Name of the :doc:`Cassandra precompiled query <../../web-admin/query/cassandra>` to execute.
+  :type name: string
+  
+  :rtype: (An object to issue already existing CQL query templates with)
+
+Usage examples
+--------------
+
+Ad-hoc queries
+~~~~~~~~~~~~~~
+
+::
+
+  from zato.server.service import Service
+  
+  class MyService(Service):
+      def handle(self):
+          conn = self.cassandra_conn.get('My Database').conn
+          result = conn.execute('SELECT * FROM schema_columns')
+  
+          self.logger.info(result)
+
+::
+
+  2015-01-06 16:25:39,601 - INFO - 29854:Dummy-72 - cassandra1.my-service:22 -
+     [{u'index_options': u'null', u'index_name': None, u'keyspace_name': u'system',
+      u'index_type': None, u'validator': u'org.apache.cassandra.db.marshal.BytesType',
+      u'columnfamily_name': u'IndexInfo', u'component_index': None, u'type': u'compact_value'}]
+      
+
+Precompiled queries
+~~~~~~~~~~~~~~~~~~~
+
+Assuming an existing :doc:`query <../../web-admin/query/cassandra>` such as below, stored under 'My Query':
+
+::
+
+  SELECT * FROM account_info WHERE client_id =: client_id AND account_id =: account_id
+
+::
+
+  from zato.server.service import Service
+  
+  class MyService(Service):
+      def handle(self):
+          query = self.cassandra_query.get('My Query')
+          result = query.execute(client_id=123, account_id=456)
+  
+          self.logger.info(result)
+
+::
+
+  2015-01-06 16:40:48,983 - INFO - 30113:Dummy-89 - {"client_name: "Alex Green"}

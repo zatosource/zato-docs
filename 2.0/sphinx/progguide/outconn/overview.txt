@@ -10,6 +10,9 @@ Outgoing connections
 Each service can automatically access external resources using a range of protocols
 documented in subsequent chapters. 
 
+HTTP-based publish/subscribe offers another alternative to direct messaging between applications
+and is :doc:`documented <todo>` separately.
+
 Some of the protocols are synchronous while communicating over the rest is 
 performed asynchronously, in a fire-and-forget manner.
 
