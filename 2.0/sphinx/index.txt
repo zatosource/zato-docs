@@ -137,9 +137,25 @@ Web admin
       :doc:`FTP<web-admin/outgoing/ftp>` |
       :doc:`JMS WebSphere MQ<web-admin/outgoing/jms-wmq>` |
       :doc:`Plain HTTP (REST)<web-admin/outgoing/plain-http>` |
+      :doc:`Odoo (OpenERP)<web-admin/outgoing/odoo>` |
       :doc:`SOAP<web-admin/outgoing/soap>` |
       :doc:`SQL<web-admin/outgoing/sql>` |
       :doc:`ZeroMQ<web-admin/outgoing/zmq>`
+
+    * **Search:**
+      :doc:`ElasticSearch<web-admin/search/es>` |
+      :doc:`Solr<web-admin/search/solr>`
+
+    * **Notifications:**
+      :doc:`Cloud - OpenStack Swift<web-admin/notif/cloud/openstack/swift>` |
+      :doc:`SQL<web-admin/notif/sql>`
+
+    * **Queries:**
+      :doc:`Cassandra (CQL)<web-admin/query/cassandra>`
+
+    * **E-mail:**
+      :doc:`IMAP<web-admin/mail/imap>` |
+      :doc:`SMTP<web-admin/mail/smtp>`
 
     * **Key/value DB (Redis):**
       :doc:`Data dictionaries<web-admin/kvdb/data-dict>` |

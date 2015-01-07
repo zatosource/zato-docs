@@ -32,7 +32,7 @@
 
 * :doc:`Solr <../web-admin/search/solr>`
 
-* ElasticSearch
+* :doc:`ElasticSearch <../web-admin/search/es>`
 
 * Odoo/OpenERP connections
 
