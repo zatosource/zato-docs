@@ -30,7 +30,7 @@
 
 * Cloud Amazon S3
 
-* Solr
+* :doc:`Solr <../web-admin/search/solr>`
 
 * ElasticSearch
 
@@ -96,7 +96,7 @@
 
 * Ability to hot-deploy code directly from a repository checkout (i.e. from GitHub)
 
-* Improved logging * components have their own log files
+* Improved logging - subsystems have their own log files
 
 * Web-admin's logs showing IP of the user connecting to it
 
