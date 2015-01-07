@@ -51,8 +51,8 @@ To set up a completely new Zato environment you need to:
 
   * PostgreSQL 9.x
   * Oracle 11.2.x
-  * MySQL 5.5
-  * SQLite
+  * MySQL 5.5+
+  * SQLite 3.x+
   
 * Make a new cluster by:
 
