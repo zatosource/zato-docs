@@ -44,7 +44,7 @@ Ping
 
 .. image:: /gfx/web-admin/outgoing/odoo-ping.png
 
-A connection can be pinged - this confirms that connections parameters and user credentials are correct.
+A connection can be pinged - this confirms that connection parameters and user credentials are correct.
 
 Delete
 ------

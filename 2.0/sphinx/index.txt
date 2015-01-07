@@ -154,8 +154,8 @@ Web admin
       :doc:`Cassandra (CQL)<web-admin/query/cassandra>`
 
     * **E-mail:**
-      :doc:`IMAP<web-admin/mail/imap>` |
-      :doc:`SMTP<web-admin/mail/smtp>`
+      :doc:`IMAP<web-admin/email/imap>` |
+      :doc:`SMTP<web-admin/email/smtp>`
 
     * **Key/value DB (Redis):**
       :doc:`Data dictionaries<web-admin/kvdb/data-dict>` |
@@ -373,6 +373,7 @@ Zato, the open-source project
    web-admin/*
    web-admin/channels/*
    web-admin/conn-def/*
+   web-admin/email/*
    web-admin/kvdb/*
    web-admin/load-balancer/*
    web-admin/outgoing/*

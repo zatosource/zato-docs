@@ -42,9 +42,9 @@
 
 * HTTP GUI Audit Log for requests and responses
 
-* SMTP
+* :doc:`SMTP <../web-admin/email/smtp>`
 
-* IMAP
+* :doc:`IMAP <../web-admin/email/imap>`
 
 * JSON Pointers
 
