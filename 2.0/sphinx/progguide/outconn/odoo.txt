@@ -23,7 +23,7 @@ self.outgoing.odoo[name].conn.client()
 
   Returns an object to issue Odoo queries with.
   
-  :param name: Name of the :doc:`Odoo connection <../../web-admin/search/solr>`
+  :param name: Name of the :doc:`Odoo connection <../../web-admin/outgoing/odoo>`
   :type name: string
   
   :rtype: (An `openerplib.main.Connection <https://github.com/nicolas-van/openerp-client-lib/blob/master/openerplib/main.py>`_ instance)

@@ -34,7 +34,7 @@
 
 * :doc:`ElasticSearch <../web-admin/search/es>`
 
-* Odoo/OpenERP connections
+* :doc:`Odoo/OpenERP connections <../web-admin/outgoing/odoo>`
 
 * Support for SQLite
 
