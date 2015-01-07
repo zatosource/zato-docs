@@ -110,19 +110,19 @@
 
 * Started using async Postgres driver to improve performance
 
-* Made 'zato start' work much faster
+* Made :doc:`zato start <../admin/cli/start>` command work much faster
 
-* Alembic migrations to ease with upgrades across releases
+* `Alembic migrations <https://github.com/zatosource/zato/tree/master/code/alembic/versions>`_ to ease with :doc:`upgrades across releases <../admin/guide/migrate/overview>`
 
-* Ability to run servers in Python shell
+* Ability to `run servers in Python shell <https://zato.io/blog/posts/running-servers-in-foreground.html>`_
 
-* Made service listings in web admin much faster
+* Made :doc:`service listings in web admin much faster <../web-admin/services/main>`
 
 * Ability to dump threads on a user signal
 
 * User-defined Lua functions for Redis
 
-* New tests prior to starting of components make sure they are correctly configured
+* New :doc:`tests <../admin/cli/check-config>` run prior to starting of components make sure the latter are correctly configured
 
 * Command to run ipython with Zato-related packages on PYTHONPATH
 
