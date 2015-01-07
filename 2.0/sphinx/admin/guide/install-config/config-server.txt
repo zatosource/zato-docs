@@ -35,19 +35,23 @@ Example
     gunicorn_group=
     gunicorn_proc_name=
     gunicorn_logger_class=
-    
+
     deployment_lock_expires=4294967296 # 2 ** 32 seconds ≅ 136 years
     deployment_lock_timeout=180
-    
+
     token=647866dd32744fb2a4cdab3552ce0646
     service_sources=./service-sources.txt
-    
+
     [crypto]
+    use_tls=False
+    tls_protocol=TLSv1
+    tls_ciphers=EECDH+AES:EDH+AES:-SHA1:EECDH+RC4:!aNULL:!eNULL:!EXP:!LOW:!MD5
+    tls_client_certs=optional
     priv_key_location=zato-server-priv-key.pem
     pub_key_location=zato-server-pub-key.pem
     cert_location=zato-server-cert.pem
     ca_certs_location=zato-server-ca-certs.pem
-    
+
     [odb]
     db_name=zato1
     engine=postgresql
@@ -61,36 +65,48 @@ Example
       Rqj1cZ0w9TR0+g==
     pool_size=1
     username=zato1
-    
+    use_async_driver=True
+
     [hot_deploy]
     pickup_dir=../../pickup-dir
     work_dir=../../work
     backup_history=100
     backup_format=bztar
-    
+    delete_after_pick_up=True
+
     # These three are relative to work_dir
     current_work_dir=./hot-deploy/current
     backup_work_dir=./hot-deploy/backup
     last_backup_work_dir=./hot-deploy/backup/last
-    
+
     [singleton]
     initial_sleep_time=500
-    
+
     # If a server doesn't update its keep alive data in 
     # connector_server_keep_alive_job_time * grace_time_multiplier seconds
     # it will be considered down and another server from the cluster will assume
     # the control of connectors
     connector_server_keep_alive_job_time=30 # In seconds
     grace_time_multiplier=3
-    
+
     [spring]
     context_class=zato.server.spring_context.ZatoContext
-    
+
     [misc]
+    return_internal_objects=False
     internal_services_may_be_deleted=False
     initial_cluster_name = quickstart-737709
     initial_server_name = server1
-    
+    queue_build_cap=3 # Queue-based connections need to initialize in that many seconds
+    http_proxy=
+    locale=
+    ensure_sql_connections_exist=True
+    http_server_header=Zato
+    zeromq_connect_sleep=0.1
+
+    [stats]
+    expire_after=168 # In hours, 168 = 7 days = 1 week
+
     [kvdb]
     host=localhost
     port=6379
@@ -100,6 +116,56 @@ Example
     socket_timeout=
     charset=
     errors=
+    use_redis_sentinels=False
+    redis_sentinels=
+    redis_sentinels_master=
+    shadow_password_in_logs=True
+    log_connection_info_sleep_time=5 # In seconds
+
+    [startup_services_first_worker]
+    zato.helpers.input-logger=Sample payload for a startup service (first worker)
+    zato.notif.init-notifiers=
+    zato.pubsub.move-to-target-queues=
+    zato.pubsub.delete-expired=
+    zato.pubsub.invoke-callbacks=
+    zato.kvdb.log-connection-info=
+
+    [startup_services_any_worker]
+    zato.helpers.input-logger=Sample payload for a startup service (any worker)
+
+    [pubsub]
+    move_to_target_queues_interval=3 # In seconds
+    delete_expired_interval=180 # In seconds
+    invoke_callbacks_interval=2 # In seconds
+
+    [profiler]
+    enabled=False
+    profiler_dir=profiler
+    log_filename=profiler.log
+    cachegrind_filename=cachegrind.out
+    discard_first_request=True
+    flush_at_shutdown=True
+    url_path=/zato-profiler
+    unwind=False
+
+    [user_config]
+    # All paths are either absolute or relative to the directory server.conf is in
+    user=./user.conf
+
+    [newrelic]
+    config=
+    environment=
+    ignore_errors=
+    log_file=
+    log_level=
+
+    [sentry]
+    dsn=
+    timeout=5
+    level=WARN
+
+    [rbac]
+    custom_auth_list_service=
 
 
 Discussion
@@ -108,13 +174,13 @@ Discussion
 .. _admin-guide-config-server-main.gunicorn_bind:
 
 main.gunicorn_bind
-@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~
 
 Host and port to bind to. Note that it always needs to synchronized with 
 :ref:`the address the LB will attempt to find a server at <web-admin-load-balancer-servers>`.
 
 main.gunicorn_worker_class
-@@@@@@@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Main worker class - using 'gevent', the default value makes Zato servers non-blocking
 asynchronous ones however advanced users may wish to use 
@@ -123,7 +189,7 @@ asynchronous ones however advanced users may wish to use
 .. _admin-guide-config-server-main.gunicorn_workers:
 
 main.gunicorn_workers
-@@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~~
 
 How many worker processes this server should start - in general, the total number
 of workers in a given system across all servers shouldn't be more than 2 * CPU_COUNT,
@@ -132,7 +198,7 @@ so if there are 4 CPUs and 2 servers, each shouldn't have more than 4 main.gunic
 Note that this is a recommendation only, each particular workload may need different settings.
 
 main.gunicorn_timeout
-@@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~~
 
 After how many seconds a worker should be considered inactive - this should be set
 to at least as many seconds as you expect your slowest service to respond in.
@@ -146,29 +212,29 @@ and each needs 60 s to complete, main.gunicorn_timeout should be set to a higher
 to allow for a long-running service to complete.
 
 main.gunicorn_user
-@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~
 
 Same as `gunicorn's user <http://docs.gunicorn.org/en/latest/configure.html#user>`_.
 
 main.gunicorn_group
-@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~
 
 Same as `gunicorn's group <http://docs.gunicorn.org/en/latest/configure.html#group>`_.
 
 main.gunicorn_proc_name
-@@@@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Same as `gunicorn's proc_name <http://docs.gunicorn.org/en/latest/configure.html#proc-name>`_.
 
 main.gunicorn_logger_class
-@@@@@@@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Same as `gunicorn's logger_class <http://docs.gunicorn.org/en/latest/configure.html#logger-class>`_.
 
 .. _admin-guide-config-server-main.deployment_lock_expires:
 
 main.deployment_lock_expires
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When using a disitributed lock to coordinate a :doc:`hot-deployment <../installing-services>`
 of a service, how many seconds to wait for a server to finish the deployment.
@@ -177,7 +243,7 @@ Should be at least as many seconds as it takes to hot-deploy a service in the wo
 case.
 
 main.deployment_lock_timeout
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When :doc:`hot-deploying <../installing-services>` a service only one server will be allowed to
 actually perform the action. Other servers will wait up that many seconds for their
@@ -185,7 +251,7 @@ try to deploy the service in case the server which was previously attempting to 
 it gave up for any reason.
 
 main.token
-@@@@@@@@@@
+~~~~~~~~~~
 
 A unique token automatically assigned to this server purely for the purpose of 
 identyfying a server in the ODB prior to obtaining the server's ID in the database,
@@ -198,34 +264,82 @@ The default value is a UUID4 and it's recommended that it not be changed.
 .. _admin-guide-config-server-main.service_sources:
 
 main.service_sources
-@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~
 
 Path to the file containing :ref:`service sources <admin-guide-config-server-service-sources>`
 that describe which services to import when the server is starting up.
 
 If not an absolute path, the path is relative to the main server.conf config file.
 
-crypto.*
-@@@@@@@@
+.. _admin-guide-config-server-crypto.use_tls:
 
-Paths to the server's :ref:`crypto material <admin-guide-config-server-crypto>`.
-If not absoulte, the paths are relative to the main config file.
+crypto.use_tls
+~~~~~~~~~~~~~~
+
+If True, the server will listen for connections from the cluster's load-balancer
+on a SSL/TLS socket instead of a plain TCP one.
+Refer to a :doc:`dedicated chapter <../tls/lb-servers>` for details.
+
+crypto.tls_protocol
+~~~~~~~~~~~~~~~~~~~
+
+If :ref:`crypto.use_tls <admin-guide-config-server-crypto.use_tls>` is True, the SSL/TLS protocol to use. Must be one of:
+
+* TLSv1
+* SSLv3
+* SSLv23
+
+Defaults to TLSv1 and using other values is highly discouraged.
+
+crypto.tls_ciphers
+~~~~~~~~~~~~~~~~~~
+
+If :ref:`crypto.use_tls <admin-guide-config-server-crypto.use_tls>` is True, ciphers the server will support,
+in OpenSSL's `format <https://www.openssl.org/docs/apps/ciphers.html>`_.
+
+crypto.tls_client_certs
+~~~~~~~~~~~~~~~~~~~~~~~
+
+One of paths to the server's :ref:`crypto material <admin-guide-config-server-crypto>`.
+If not absolute, the path is relative to the main config file.
+
+crypto.pub_key_location
+~~~~~~~~~~~~~~~~~~~~~~~
+
+One of paths to the server's :ref:`crypto material <admin-guide-config-server-crypto>`.
+If not absolute, the path is relative to the main config file.
+
+crypto.cert_location
+~~~~~~~~~~~~~~~~~~~~
+
+One of paths to the server's :ref:`crypto material <admin-guide-config-server-crypto>`.
+If not absolute, the path is relative to the main config file.
+
+crypto.ca_certs_location
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+One of paths to the server's :ref:`crypto material <admin-guide-config-server-crypto>`.
+If not absolute, the path is relative to the main config file.
 
 odb.db_name
-@@@@@@@@@@@
+~~~~~~~~~~~
 
 ODB database name.
 
+.. _admin-guide-config-server-odb.engine:
+
 odb.engine
-@@@@@@@@@@
+~~~~~~~~~~
 
 ODB type, may be one of:
 
-* postgresql
+* mysql
 * oracle
+* postgresql
+* sqlite
 
 odb.extra
-@@@@@@@@@
+~~~~~~~~~
 
 Extra parameters passed as kwargs directly into 
 `SQLAlchemy's engine initializer <http://docs.sqlalchemy.org/en/rel_0_8/core/engines.html#engine-creation-api>`_.
@@ -240,12 +354,12 @@ For instance, setting the option to
 will make SQLAlchemy log all the SQL statements issued using the log name provided.
 
 odb.host
-@@@@@@@@
+~~~~~~~~
 
 ODB database host.
 
 odb.password
-@@@@@@@@@@@@
+~~~~~~~~~~~~
 
 The ODB user's password to use, encrypted using the server's private key. The password
 can be 
@@ -256,19 +370,19 @@ from command line using
 :doc:`the CLI <../../cli/index>`.
 
 odb.pool_size
-@@@@@@@@@@@@@
+~~~~~~~~~~~~~
 
 ODB connection pool size.
 
 odb.username
-@@@@@@@@@@@@
+~~~~~~~~~~~~
 
 Username to connect to the ODB with.
 
 .. _admin-guide-config-server-hot_deploy.pickup_dir:
 
 hot_deploy.pickup_dir
-@@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~~
 
 A path to the directory that will be used to :doc:`hot-deploy Zato services 
 <../installing-services>` from.
@@ -277,7 +391,7 @@ If not absolute, the path is relative to the main server.conf config file.
 .. _admin-guide-config-server-hot_deploy.work_dir:
 
 hot_deploy.work_dir
-@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~
 
 A path to the directory that will be used to:
 
@@ -287,13 +401,13 @@ A path to the directory that will be used to:
 If not absolute, the path is relative to the main server.conf config file.
 
 hot_deploy.backup_history
-@@@@@@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Before hot-deploying a service, a backup of already existing services is created.
 This setting controls how many backups to keep.
 
 hot_deploy.backup_format
-@@@@@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 Backed-up services are compressed using this format which may be one of the 
 values Python's `shutil.make_archive <http://docs.python.org/2.7/library/shutil.html#archiving-operations>`_
@@ -302,19 +416,21 @@ accepts.
 .. _admin-guide-config-server-hot_deploy.delete_after_pick_up:
 
 hot_deploy.delete_after_pick_up
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-.. versionadded:: 2.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Whether Python code should be deleted after it's been deployed through a pickup dir.
 It's convenient to set it to False at least during development as it will make Zato
-deploy a service module being developed after each save. 
+deploy a service module being developed after each save.
 
-The previous deployment must be finished before a new is started otherwise import
-errors and conflicts may begin to appear.
+This can be used in conjunction with :ref:`hot_deploy.pickup_dir <admin-guide-config-server-hot_deploy.pickup_dir>`
+in order to make hot-deployment work directly from code repository clone.
+
+For instance, hot_deploy.pickup_dir to a directory a GitHub clone with services is in and setting
+hot_deploy.delete_after_pick_up to False means that each time git pull receives new services
+they will automatically deployed onto all servers in a cluster.
 
 hot_deploy.current_work_dir
-@@@@@@@@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A path to the directory that will be used to hot-deploy the services to. 
 
@@ -323,14 +439,14 @@ Must be relative to :ref:`hot_deploy.work_dir <admin-guide-config-server-hot_dep
 .. _admin-guide-config-server-hot_deploy.backup_work_dir:
 
 hot_deploy.backup_work_dir
-@@@@@@@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A path to the directory that will be used to keep a linear log of service backups.
 
 Must be relative to :ref:`hot_deploy.work_dir <admin-guide-config-server-hot_deploy.work_dir>`.
 
 hot_deploy.last_backup_work_dir
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A path to the directory that will be used to keep the last backup only - this is in addition
 to the fact that the backup will be stored in 
@@ -338,7 +454,7 @@ to the fact that the backup will be stored in
 as well.
 
 singleton.initial_sleep_time
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 How many milliseconds to wait before starting a singleton server's thread. May need
 manual tweaking on busy servers.
@@ -346,7 +462,7 @@ manual tweaking on busy servers.
 .. _admin-guide-config-server-singleton.connector_server_keep_alive_job_time:
 
 singleton.connector_server_keep_alive_job_time
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If there are any connectors running in the cluster and the server that is currently 
 the connector server doesn't update its keep-alive status in 
@@ -356,37 +472,131 @@ server is down and will start the connectors itself assuming the role of a new c
 server for this cluster.
 
 singleton.grace_time_multiplier
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Visit :ref:`singleton.connector_server_keep_alive_job_time <admin-guide-config-server-singleton.connector_server_keep_alive_job_time>`
 
 spring.context_class
-@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~
 
 Name of a Python class to create the 
 `Spring Python context <https://github.com/zatosource/zato/blob/master/code/zato-server/src/zato/server/spring_context.py>`_
 from.
 
 misc.internal_services_may_be_deleted
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If a request to delete a Zato's own internal service arrives, whether this server
 should allow for it. The value must be consistent across all servers in a given
 cluster.
 
+misc.return_internal_objects
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When returning listings of objects, such as
+:doc:`services <../../../public-api/details/zato.service.get-list>`,
+whether Zato's own internal objects should be included in results.
+
 misc.initial_cluster_name
-@@@@@@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Name of the cluster this server was initially a part of. Useful if a cluster
 is renamed and there's a need to look up the server's original cluster name.
 
 misc.initial_server_name
-@@@@@@@@@@@@@@@@@@@@@@@@
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 Original name of this server at the time when it was created.
 
+misc.queue_build_cap
+~~~~~~~~~~~~~~~~~~~~
+
+How many seconds queue-based connections will wait for all the connections to be established.
+
+misc.http_proxy
+~~~~~~~~~~~~~~~
+
+HTTP proxy to use in outgoing connections.
+
+.. _admin-guide-config-server-misc.locale:
+
+misc.locale
+~~~~~~~~~~~
+
+Server's locale, such as sv_SE.UTF-8. Default value is inherited from environment.
+
+If not empty, in order to confirm correctness of the setting, a starting server will print out the value of
+*123456* in the locale's currency.
+
+For instance, if set to de_DE.utf8:
+
+::
+
+  INFO - Locale is `de_DE.utf8`, amount of 12345 -> `12.345,00 €`
+
+Yet when set to ja_JP.UTF-8
+
+::
+
+  INFO - Locale is `ja_JP.UTF-8`, amount of 12345 -> `￥12,345`
+
+misc.ensure_sql_connections_exist
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Whether to perform background pings, several seconds apart, of SQL connections in order to make sure they are still alive.
+In particular, useful with MySQL which closes connections after a period of inactivity.
+
+misc.http_server_header
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Value of the HTTP *Server* header sent in responses.
+
+.. code-block:: text
+    :emphasize-lines: 12
+
+    $ curl -v localhost:11223/zato/ping
+    * Hostname was NOT found in DNS cache
+    *   Trying 127.0.0.1...
+    * Connected to localhost (127.0.0.1) port 11223 (#0)
+    > GET /zato/ping HTTP/1.1
+    > User-Agent: curl/7.35.0
+    > Host: localhost:11223
+    > Accept: */*
+    > 
+    < HTTP/1.1 200 OK
+    * Server Zato is not blacklisted
+    < Server: Zato
+    < Date: Wed, 07 Jan 2015 17:59:43 GMT
+    < Connection: close
+    < Transfer-Encoding: chunked
+    < Content-Type: application/json
+    < X-Zato-CID: K06WFRPSGTDF4Z9CVGNZBDFR5TCF
+    < 
+    * Closing connection 0
+    {"zato_env": {"details": "", "result": "ZATO_OK",
+      "cid": "K06WFRPSGTDF4Z9CVGNZBDFR5TCF"}, "zato_ping_response":
+      {"pong": "zato"}}
+    $
+
+misc.zeromq_connect_sleep
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+How long to sleep, in seconds, after initially opening ZeroMQ sockets in messages sent out through
+:doc:`outgoing connections <../../../web-admin/outgoing/zmq>`.
+
+.. _admin-guide-config-stats.expire_after:
+
+stats.expire_after
+~~~~~~~~~~~~~~~~~~
+
+At most how many hours of statistics to keep, excluding aggregated ones. Defaults to 1 week (168 hours). Required
+in order to make sure statistics-related keys in Redis won't grow indefinitely.
+
+
+.. _admin-guide-config-server-kvdb:
+
 kvdb.*
-@@@@@@
+~~~~~~
 
 Settings allowing to connect to the Redis key/value DB which is used as the Zato broker.
 Note that password, if any should be
@@ -396,10 +606,135 @@ and
 from command line using 
 :doc:`the CLI <../../cli/index>`.
 
+* use_redis_sentinels indicates whether to use Redis HA sentinels instead of connecting to nodes directly
+
+* redis_sentinels is a list of IP:PORT entries pointing to Redis HA sentinels
+
+* redis_sentinels_master - name of the master node to connect to
+
+* shadow_password_in_logs - when logging Redis configuration, whether to shadow out password to connect with
+
+* log_connection_info_sleep_time - Redis connections print out their configuration to logs that many seconds apart
+
+.. _admin-guide-config-server-startup_services_first_worker:
+
+startup_services_first_worker.*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Each entry is a service, along with its potentially empty
+input (self.request_raw_request),
+that will be invoked after it is certain that the first
+gunicorn worker of the server is ready and fully initialized. Input can be a list of values separated by commas.
+
+.. _admin-guide-config-server-startup_services_any_worker:
+
+startup_services_any_worker.*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Each entry is a service, along with its potentially empty
+input (self.request_raw_request),
+that will be invoked after it is certain that the first
+gunicorn worker of the server is ready and fully initialized. Input can be a list of values separated by commas.
+
+This lets one run startup code only if the current worker is the first one.
+
+pubsub.move_to_target_queues_interval
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+After receiving a publish message from a producer at least that many seconds will elapse until it will be placed
+on subscriber queues.
+
+pubsub.delete_expired_interval
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+After how many seconds to assume that messages with no subscribers can be deleted.
+
+pubsub.invoke_callbacks_interval
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+How often, in seconds, to attempt to deliver messages to callback-based subscribers.
+
+profiler.*
+~~~~~~~~~~
+
+repoze.profiler-based profiler configuration - consult the underlying implementation's
+`documentation <http://docs.repoze.org/profile/>`_
+for details
+on configuration.
+
+.. _admin-guide-config-server-user_config:
+
+user_config.*
+~~~~~~~~~~~~~
+
+Each entry is a name of a config file while values are paths, possibly relative to the directory the server.conf file is in,
+containing :ref:`INI-style configuration <invalid-user_config-ini>` for services to use in runtime.
+
+.. _admin-guide-config-server-newrelic:
+
+newrelic.*
+~~~~~~~~~~
+
+A set of arguments for integration with
+`NewRelic <https://newrelic.com/>`_,
+passed directly to NewRelic agent's
+`initialize <https://docs.newrelic.com/docs/agents/python-agent/customization-extension/python-management-api#initialize>`_
+function.
+
+.. _admin-guide-config-server-sentry:
+
+sentry.*
+~~~~~~~~
+
+A set of arguments for integration with
+`Sentry <https://www.getsentry.com/>`_
+for the
+`Sentry client <https://raven.readthedocs.org/en/latest/config/index.html>`_
+to use.
+
+rbac.custom_auth_list_service
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Name of a user-defined service that will return a list of applications from arbitrary data sources
+to be consulted in establishing RBAC user permissions.
+
+It's meant to be used if credentials are kept in a data store to which there is no built-in Zato adapter.
+
+The list must contain dictionaries, each with two keys - client_name and client_def - such as follows:
+
+.. code-block:: python
+
+  [
+   {'client_name':'My Client1', 'client_def':'USER:::AUTH_TYPE:::APP_NAME1'},
+   {'client_name':'My Client2', 'client_def':'USER:::AUTH_TYPE:::APP_NAME2'},
+  ]
+
+Where:
+
+* client_name - user-friendly of the application the credentials are for
+* client_def - a triple of an arbitrary user-specific tag, authentication type and application code separated by ':::' (three colons).
+
+For instance, if a user's name is MyCompany, applications are read from DB2 on z/OS and their names are CRM and Billing,
+the list could look like:
+
+.. code-block:: python
+
+    [
+     {'client_name':'CRM', 'client_def':'MYCOMP:::DB2ZOS:::CRM'},
+     {'client_name':'BILLING', 'client_def':'MYCOMP:::DB2ZOS:::BILLING'},
+    ]
+
 .. _admin-guide-config-server-logging:
 
 Logging configuration - logging.conf
 ------------------------------------
+
+Each entry is a service, along with its potentially empty
+input (self.request_raw_request),
+that will be invoked after it is certain that currently starting gunicorn worker is not the first one to run.
+Input can be a list of values separated by commas.
+
+This lets one run startup code only if the current worker is not the first one.
 
 Example
 ```````
@@ -495,3 +830,40 @@ be password-protected.
 * zato-server-pub-key.pem - public key
 * zato-server-cert.pem - certificate
 * zato-server-ca-certs.pem - a list of CA certificates this server should trust
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added new entries:
+
+                    * crypto.use_tls
+                    * crypto.tls_protocol
+                    * crypto.tls_ciphers
+                    * misc.return_internal_objects
+                    * misc.queue_build_cap
+                    * misc.http_proxy
+                    * misc.locale
+                    * misc.ensure_sql_connections_exist
+                    * misc.http_server_header
+                    * misc.zeromq_connect_sleep
+                    * kvdb.use_redis_sentinels
+                    * kvdb.redis_sentinels
+                    * kvdb.redis_sentinels_master
+                    * kvdb.shadow_password_in_logs
+                    * kvdb.log_connection_info_sleep_time
+                    * startup_services_first_worker.*
+                    * startup_services_any_worker.*
+                    * pubsub.*
+                    * profiler.*
+                    * user_config.*
+                    * newrelic.*
+                    * sentry.*
+                    * rbac.*
+
+                    Added new *odb.engine* values: mysql and sqlite
+
+1.0                 Added initially
+=================== ===================================================================

@@ -36,9 +36,9 @@
 
 * :doc:`Odoo/OpenERP connections <../web-admin/outgoing/odoo>`
 
-* Support for SQLite
+* :ref:`Support for SQLite <admin-guide-config-server-odb.engine>`
 
-* Support for MySQL
+* :ref:`Support for MySQL <admin-guide-config-server-odb.engine>`
 
 * HTTP GUI Audit Log for requests and responses
 
@@ -60,13 +60,13 @@
 
 * OpenStack Swift notifications
 
-* New Relic integration
+* :ref:`New Relic integration <admin-guide-config-server-newrelic>`
 
-* Sentry integration
+* :ref:`Sentry integration <admin-guide-config-server-sentry>`
 
-* Redis clustering
+* :ref:`Redis clustering <admin-guide-config-server-kvdb>`
 
-* Statistics in Redis pruned periodically
+* :ref:`Statistics in Redis pruned periodically <admin-guide-config-stats.expire_after>`
 
 * New SIO types: CSV, Dict, Float, ForceType, List, ListOfDicts, Opaque
 
@@ -84,7 +84,7 @@
 
 * Bash completion
 
-* Ability to specify user locale in servers (i.e. en_GB.UTF-8)
+* :ref:`Ability to specify user locale in servers (i.e. en_GB.UTF-8) <admin-guide-config-server-misc.locale>`
 
 * Startup scripts to start Zato environments when an OS starts
 
@@ -94,7 +94,8 @@
 
 * Logging configuration migrated to YAML
 
-* Ability to hot-deploy code directly from a repository checkout (i.e. from GitHub)
+* Ability to :ref:`hot-deploy code directly from a repository checkout <admin-guide-config-server-hot_deploy.delete_after_pick_up>`
+  (i.e. from GitHub)
 
 * Improved logging - subsystems have their own log files
 
@@ -102,11 +103,11 @@
 
 * Apache-like HTTP access log for servers, compatible with popular log parsing tools
 
-* Ability for users to store configutation in their own ini-style files
+* Ability for users to store configutation in their own :ref:`INI-style files <admin-guide-config-server-user_config>`
 
 * zato --version is clearer what exact git commit was used to build it
 
-* Removing of stale pid files in quickstart scripts
+* Quickstart scripts remove stale PID files automatically
 
 * Started using async Postgres driver to improve performance
 
@@ -126,7 +127,7 @@
 
 * Command to run ipython with Zato-related packages on PYTHONPATH
 
-* Startup services invoked when a server is starting
+* :ref:`Startup <admin-guide-config-server-startup_services_first_worker>` :ref:`services <admin-guide-config-server-startup_services_any_worker>` invoked when a server is starting
 
 * :ref:`OpenID in web admin <admin-guide-config-web-admin-open-id>`
 
