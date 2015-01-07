@@ -1,51 +1,52 @@
-E-mail - IMAP
+E-mail - SMTP
 =============
 
 Overview
 --------
 
-Used to create, update, delete and browse through `IMAP <https://en.wikipedia.org/wiki/IMAP>`_ e-mail connections.
+Used to create, update, delete and browse through `SMTP <https://en.wikipedia.org/wiki/SMTP>`_ e-mail connections.
 
-* Menu path: Connections -> E-mail -> IMAP
-* Example address: http://localhost:8183/zato/email/imap/?cluster=1
+* Menu path: Connections -> E-mail -> SMTP
+* Example address: http://localhost:8183/zato/email/smtp/?cluster=1
 
-.. image:: /gfx/web-admin/email/imap.png
+.. image:: /gfx/web-admin/email/smtp.png
    :width: 95%
 
 Create and Edit
 ---------------
 
-.. image:: /gfx/web-admin/email/imap-create.png
+.. image:: /gfx/web-admin/email/smtp-create.png
 
 =================== ======================================================================================================================
 Header              Notes
 =================== ======================================================================================================================
 Name                Connection name
 Active              Whether the connection can be used by services or not.
-Host                IMAP server's host
-Port                IMAP server's port
+Host                SMTP server's host
+Port                SMTP server's port
 Timeout             How long to wait for server responses, in seconds
 Username            A username to connect with
-Mode                Either PLAIN or SSL, depending on IMAP server's configuration
-Get criteria        And-combined set of criteria, each on its own line, from `RFC 3501 <https://tools.ietf.org/html/rfc3501>`_
-                    for the underlying SEARCH command to fetch messages by - such as UNSEEN, TO, SUBJECT and others. Defaults to UNSEEN.
+Mode                Either PLAIN, SSL or STARTTLS, depending on SMTP server's configuration
+Debug mode          If on, SMTP protocol messages will be logged to server.log
+Ping address        An address used for From, To and CC fields and headers in ping messages
 =================== ======================================================================================================================
 
 A newly created connection definition has a password set to a randomly generated UUID4.
 
-.. _web-admin-email-imap-ping:
+.. _web-admin-email-smtp-ping:
 
 Ping
 ----
 
-.. image:: /gfx/web-admin/email/imap-ping.png
+.. image:: /gfx/web-admin/email/smtp-ping.png
 
-A connection can be pinged - this sends a NOOP IMAP command thus confirming that connection parameters and user credentials are correct.
+A connection can be pinged - this sends a message with two attachments to the ping address provided in Create/Edit forms.
+The message contains a combination of ASCII and UTF-8 characters to confirm encoding correctness.
 
 Delete
 ------
 
-.. image:: /gfx/web-admin/email/imap-delete.png
+.. image:: /gfx/web-admin/email/smtp-delete.png
 
 Deletes an IMAP connection.
 
