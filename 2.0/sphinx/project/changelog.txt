@@ -50,11 +50,11 @@
 
 * XPath and XML namespaces
 
-* JSON serialization in HTTP outconns
+* JSON serialization in :doc:`HTTP outconns <../web-admin/outgoing/plain-http>`
 
-* SOAP invocations with suds and WSDL prefetching
+* :doc:`SOAP invocations <../web-admin/outgoing/soap>` with suds and WSDL prefetching
 
-* Outgoing HTTP timeouts
+* :doc:`Outgoing HTTP <../web-admin/outgoing/plain-http>` timeouts
 
 * SQL notifications
 
@@ -78,7 +78,7 @@
 
 * Dictionary and list message navigation
 
-* Added RPM packages for RHEL/CentOS 7
+* Added :doc:`RPM packages for RHEL/CentOS 7 <../admin/guide/install-rhel>`
 
 * Added a set of Dockerfiles
 
@@ -102,7 +102,7 @@
 
 * Apache-like HTTP access log for servers, compatible with popular log parsing tools
 
-* Ability for users to store config in their own ini-like files
+* Ability for users to store configutation in their own ini-style files
 
 * zato --version is clearer what exact git commit was used to build it
 
