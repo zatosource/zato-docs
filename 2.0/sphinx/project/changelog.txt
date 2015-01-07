@@ -80,7 +80,7 @@
 
 * Added :doc:`RPM packages for RHEL/CentOS 7 <../admin/guide/install-rhel>`
 
-* Added a set of Dockerfiles
+* Added a set of :doc:`Dockerfiles <../admin/guide/install-docker>`
 
 * Bash completion
 
