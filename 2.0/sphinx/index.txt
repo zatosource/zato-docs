@@ -264,13 +264,13 @@ Publish/subscribe guide
       :doc:`Introduction <pubsub/index>`
 
     * **REST producers and consumers:**
-      :doc:`Publishing messages <pubsub-invalid>` |
-      :doc:`Subscription keys and message receiving<pubsub-invalid>`
+      :doc:`Publishing messages <pubsub/dev/producer>` |
+      :doc:`Subscription keys and message receiving<pubsub/dev/consumer>`
 
     * **Administration:**
-      :doc:`Producers <pubsub-invalid>` |
-      :doc:`Consumers <pubsub-invalid>` |
-      :doc:`Topic queues<pubsub-invalid>`
+      :doc:`Producers <pubsub/admin/producer>` |
+      :doc:`Consumers <pubsub/admin/consumer>` |
+      :doc:`Topic queues<pubsub/admin/topic>`
 
 Architecture
 ============

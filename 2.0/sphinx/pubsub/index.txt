@@ -3,9 +3,9 @@ Publish/subscribe introduction
 
 .. image:: /gfx/pubsub/overview.png
 
-Publish/subscribe offers advanced messaging means to REST applications - clearly separating producers of messages and applications
-interested in consuming the data, thus forming networks of loosely coupled parties operating asynchronously with regards
-to the others.
+Publish/subscribe offers advanced messaging means to REST applications, both JSON and XML - clearly separating producers
+of messages and applications interested in consuming the data, thus forming networks of loosely coupled
+parties operating asynchronously with regards to the others.
 
 There can be more than one producer of messages to a given topic and similarly, more than one consumer can be subscribed to a topic.
 
@@ -18,9 +18,9 @@ The same application can poll for messages in one topic yet have Zato invoke cal
 Zato retains messages in topics until subscribers are ready to consume them or, alternatively, until messages expire.
 
 Messages can be consumed in either FIFO or LIFO order (First In First Out or Last In First Out). Each consumer can have its
-own preferred consuming order independent of other consumers for the same topic.
+own preferred consuming order independent of, and not interfering with, other consumers for the same topic.
 
-Messages can have priorities assigned, from 1 (lowest) to 9 (highest) that may dictate the order of consumption.
+Messages can have priorities assigned, from 1 (lowest) to 9 (highest) that may dictate the order of retrieval.
 
 Topics and their accompanying producers or consumers can be added at any time allowing to dynamically expand capabilities
 of environments without interrupting other applications.
@@ -29,7 +29,7 @@ Messages are always durable and are kept in topics even if there isn't any subsc
 is being published. Applications subscribing to topics at a later time will receive all such messages available in a topic.
 
 Depending on how the underlying Redis storage server is configured, messages in topics can be persistent - sustaining restarts
-of Redis - or not. Restarts of Zato servers do not influence the state of topic queues.
+of Redis - or not. Restarts of Zato servers do not influence the state of topics with regards to their persistency.
 
 Administrators use web-admin forms to manage
 :doc:`topics <../web-admin/pubsub/topic>`,
@@ -38,12 +38,12 @@ Administrators use web-admin forms to manage
 and check current state of queues, including means
 to publish messages directly from a web browser.
 
-Subsequent chapters go through development usage scenarios and tasks involved in managing a publish/subscribe environment.
+Subsequent chapters go through development and usage scenarios along with tasks involved in managing a publish/subscribe environment.
 
 **Development**:
 
-* :doc:`Publishing messages to topics <./dev/pub>`
-* :doc:`Subscription keys and receiving messages from topics <./dev/sub>`
+* :doc:`Publishing messages to topics <./dev/producer>`
+* :doc:`Subscription keys and receiving messages from topics <./dev/consumer>`
 
 **Administration**:
 

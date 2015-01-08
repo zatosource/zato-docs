@@ -1,0 +1,18 @@
+Pub/sub - REST producers
+========================
+
+Introduction
+~~~~~~~~~~~~
+
+Having been
+:doc:`assigned to a topic <../admin/producer>`,
+REST producers use plain HTTP verbs to publish messages that are routed to queues of consumers subscribed to the topic.
+
+All the examples below assume that there is a */customer/created* topic and the producer used is called *CRM* with its
+HTTP Basic Auth username/password being *crm/pwd*, as in the screenshots below.
+
+.. image:: /gfx/pubsub/producer-topic-producer.png
+
+.. image:: /gfx/pubsub/producer-topic-sec.png
+
+.. image:: /gfx/pubsub/producer-topic.png

@@ -1,3 +1,0 @@
-Pub/sub - publishing messages
-=============================
-
