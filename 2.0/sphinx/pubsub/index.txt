@@ -1,0 +1,29 @@
+Publish/subscribe introduction
+==============================
+
+.. image:: /gfx/pubsub/overview.png
+
+Publish/subscribe offers advanced messaging means to REST applications - clearly separating producers of messages and applications
+interested in consuming the data.
+
+There can be more than one producer of messages to a given topic and similarly, more than one consumer can be subscribed to a topic.
+
+Messages published using regular REST HTTP verbs are stored by Zato in Redis-based queues.
+
+Consumers either poll using HTTP for new data or provide REST callback URLs for Zato to invoke when new messages arrive in topic queues.
+
+The same application can poll for messages in one topic yet have Zato invoke callback URLs for another.
+
+Zato retains messages in topics until subscribers are ready to consume them or, alternatively, until messages expire.
+
+Messages can be consumed in either FIFO or LIFO order (First In First Out or Last In First Out). Each consumer can have its
+own preferred consuming order independent of other consumers for the same topic.
+
+Topics and their accompanying producers or consumers can be added at any time allowing to dynamically expand capabilities
+of environments without interrupting other applications.
+
+Messages are always durable and are kept in topics even if there isn't any subscriber to a topic at the time a mesage
+is being published. Applications subscribing to topics at a later time will receive all such messages available in a topic.
+
+Depending on how the underlying Redis storage server is configured, messages in topics can be persistent - sustaining restarts
+of Redis - or not. Restarts of Zato servers do not influence it.

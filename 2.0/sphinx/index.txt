@@ -76,8 +76,8 @@ I18N
     * ру́сский: 
       :doc:`Что такое ESB и SOA<intro/esb-soa-ru>`
 
-Web admin
-=========
+Web admin reference
+===================
 
     * **Overview:** 
       :doc:`Introduction<web-admin/intro>` |
@@ -160,6 +160,11 @@ Web admin
     * **Key/value DB (Redis):**
       :doc:`Data dictionaries<web-admin/kvdb/data-dict>` |
       :doc:`Remote commands<web-admin/kvdb/remote-commands>`
+
+    * **Publish/subscribe:**
+      :doc:`Topics<web-admin/pubsub/topic>` |
+      :doc:`Producers<web-admin/pubsub/producer>` |
+      :doc:`Consumers<web-admin/pubsub/producer>`
 
     * **Scheduler:**
       :doc:`Main view<web-admin/scheduler/main>`
@@ -252,6 +257,21 @@ Administration guide
       :doc:`From 1.0 to 1.1<admin/guide/migrate/1.0-1.1>` |
       :doc:`From 1.1 to 2.0<admin/guide/migrate/1.1-2.0>`
 
+Publish/subscribe guide
+=======================
+
+    * **Overview:**
+      :doc:`Introduction <pubsub/index>`
+
+    * **Administration:**
+      :doc:`Producers <pubsub-invalid>` |
+      :doc:`Consumers <pubsub-invalid>` |
+      :doc:`Topic queues<pubsub-invalid>`
+
+    * **REST producers and consumers:**
+      :doc:`Publishing messages <pubsub-invalid>` |
+      :doc:`Subscription keys and message receiving<pubsub-invalid>`
+
 Architecture
 ============
 
@@ -286,7 +306,7 @@ Security
 
 .. _index-public-api-toc:
 
-Public SOAP and JSON server API
+Public REST and SOAP server API
 ===============================
 
     * **Overview:**
@@ -367,6 +387,7 @@ Zato, the open-source project
    project/*
    public-api/*
    public-api/details/*
+   pubsub/*
    security/*
    stats/*
    tutorial/*
@@ -377,6 +398,7 @@ Zato, the open-source project
    web-admin/kvdb/*
    web-admin/load-balancer/*
    web-admin/outgoing/*
+   web-admin/pubsub/*
    web-admin/query/*
    web-admin/search/*
    web-admin/scheduler/*
