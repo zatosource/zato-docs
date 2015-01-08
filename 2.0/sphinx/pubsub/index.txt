@@ -19,6 +19,8 @@ Zato retains messages in topics until subscribers are ready to consume them or, 
 Messages can be consumed in either FIFO or LIFO order (First In First Out or Last In First Out). Each consumer can have its
 own preferred consuming order independent of other consumers for the same topic.
 
+Messages can have priorities assigned, from 1 (lowest) to 9 (highest) that may dictate the order of consumption.
+
 Topics and their accompanying producers or consumers can be added at any time allowing to dynamically expand capabilities
 of environments without interrupting other applications.
 
