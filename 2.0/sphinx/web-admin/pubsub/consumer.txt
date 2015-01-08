@@ -20,9 +20,8 @@ Create and Edit
 =================== =============================================================================
 Header              Notes
 =================== =============================================================================
-Client              Security definition, such as HTTP Basic Auth or any
-                    other supported by :doc:`plain HTTP channels <../channels/plain-http>`,
-                    the consumer will use.
+Client              An :doc:`HTTP Basic Auth <../security/basic-auth>` security definition
+                    identifying the consumer.
 Delivery mode       Either Pull or Callback URL. Former if the consumer will periodically poll
                     for new messages in the topic. Latter if Zato is to deliver the messages
                     automatically.

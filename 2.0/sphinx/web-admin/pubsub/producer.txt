@@ -23,9 +23,8 @@ Create and Edit
 =================== =============================================================================
 Header              Notes
 =================== =============================================================================
-Client              Security definition, such as HTTP Basic Auth or any
-                    other supported by :doc:`plain HTTP channels <../channels/plain-http>`,
-                    the producer will use.
+Client              An :doc:`HTTP Basic Auth <../security/basic-auth>` security definition
+                    identifying the producer.
 Active              Whether the producer can publish messages to the topic
 =================== =============================================================================
 
