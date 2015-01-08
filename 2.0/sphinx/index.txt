@@ -263,14 +263,14 @@ Publish/subscribe guide
     * **Overview:**
       :doc:`Introduction <pubsub/index>`
 
+    * **REST producers and consumers:**
+      :doc:`Publishing messages <pubsub-invalid>` |
+      :doc:`Subscription keys and message receiving<pubsub-invalid>`
+
     * **Administration:**
       :doc:`Producers <pubsub-invalid>` |
       :doc:`Consumers <pubsub-invalid>` |
       :doc:`Topic queues<pubsub-invalid>`
-
-    * **REST producers and consumers:**
-      :doc:`Publishing messages <pubsub-invalid>` |
-      :doc:`Subscription keys and message receiving<pubsub-invalid>`
 
 Architecture
 ============
@@ -388,6 +388,8 @@ Zato, the open-source project
    public-api/*
    public-api/details/*
    pubsub/*
+   pubsub/dev/*
+   pubsub/admin/*
    security/*
    stats/*
    tutorial/*
