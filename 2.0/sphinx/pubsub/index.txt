@@ -4,7 +4,8 @@ Publish/subscribe introduction
 .. image:: /gfx/pubsub/overview.png
 
 Publish/subscribe offers advanced messaging means to REST applications - clearly separating producers of messages and applications
-interested in consuming the data.
+interested in consuming the data, thus forming networks of loosely coupled parties operating asynchronously with regards
+to the others.
 
 There can be more than one producer of messages to a given topic and similarly, more than one consumer can be subscribed to a topic.
 
@@ -30,7 +31,11 @@ is being published. Applications subscribing to topics at a later time will rece
 Depending on how the underlying Redis storage server is configured, messages in topics can be persistent - sustaining restarts
 of Redis - or not. Restarts of Zato servers do not influence the state of topic queues.
 
-Administrators use web-admin forms to manage topics, producers, consumers and check current state of queues, including means
+Administrators use web-admin forms to manage
+:doc:`topics <../web-admin/pubsub/topic>`,
+:doc:`producers <../web-admin/pubsub/producer>`,
+:doc:`consumers <../web-admin/pubsub/consumer>`
+and check current state of queues, including means
 to publish messages directly from a web browser.
 
 Subsequent chapters go through development usage scenarios and tasks involved in managing a publish/subscribe environment.

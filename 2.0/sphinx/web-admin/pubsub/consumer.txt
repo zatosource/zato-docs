@@ -1,0 +1,86 @@
+Publish/subscribe consumers
+===========================
+
+Overview
+--------
+
+Used to create, update, delete and browse through consumers subscribed to a given topic.
+
+* Menu path: Pub/sub -> Topics -> (Click the link such as '1 consumer')
+* Example address: http://localhost:8183/zato/pubsub/consumers/cluster/1/topic//customer/created
+
+.. image:: /gfx/web-admin/pubsub/consumer.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/pubsub/consumer-create.png
+
+=================== =============================================================================
+Header              Notes
+=================== =============================================================================
+Client              Security definition, such as HTTP Basic Auth or any
+                    other supported by :doc:`plain HTTP channels <../channels/plain-http>`,
+                    the consumer will use.
+Delivery mode       Either Pull or Callback URL. Former if the consumer will periodically poll
+                    for new messages in the topic. Latter if Zato is to deliver the messages
+                    automatically.
+Callback URL        If delivery mode is Callback URL, the name of an
+                    :doc:`outgoing HTTP connection <../outgoing/plain-http>`
+                    to deliver messages through.
+Max depth           The amount after exceeding of which no new messages will be placed
+                    on the consumer's queue.
+Active              Whether the producer can publish messages to the topic
+=================== =============================================================================
+
+The 'Client' field is available on the Create form only.
+
+Delete
+------
+
+.. image:: /gfx/web-admin/pubsub/consumer-delete.png
+
+Deletes the consumer. Doesn't delete the underlying client the consumer was based on.
+
+Clearing messages
+-----------------
+
+Messages can be removed from consumer queues using two means and which one to choose depends on the state of messages
+concerned.
+
+.. image:: /gfx/web-admin/pubsub/consumer-clear.png
+     :width: 95%
+
+=================== =============================================================================
+Option              Notes
+=================== =============================================================================
+Clear msg queue     Removes all the messages that have not yet been seen by the consumer
+Clear in-flight     Removes all the messages that the consumer possibly have seen but for any
+                    reason does not confirm they been read. For instance, if the consumer
+                    uses callback URLs but the URL times out when Zato attempts to deliver
+                    the messages.
+=================== =============================================================================
+
+Message browsing
+----------------
+
+Messages that are still in a consumer's queue can be browsed, including the ability to obtain their payload and metadata.
+
+.. image:: /gfx/web-admin/pubsub/consumer-message-link.png
+     :width: 95%
+
+.. image:: /gfx/web-admin/pubsub/consumer-message.png
+     :width: 95%
+
+.. image:: /gfx/web-admin/pubsub/consumer-message-details.png
+     :width: 95%
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================

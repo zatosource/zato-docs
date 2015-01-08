@@ -1,0 +1,49 @@
+Publish/subscribe producers
+===========================
+
+Overview
+--------
+
+Used to create, update, delete and browse through producers allowed to publish messages to a given topic.
+
+Note that each topic has always automatically assigned a default built-in producer called *zato.pubsub.default-producer*
+allowing one to publish messages from the browser's window.
+
+* Menu path: Pub/sub -> Topics -> (Click the link such as '1 producer')
+* Example address: http://localhost:8183/zato/pubsub/producers/cluster/1/topic//customer/created
+
+.. image:: /gfx/web-admin/pubsub/producer.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/pubsub/producer-create.png
+
+=================== =============================================================================
+Header              Notes
+=================== =============================================================================
+Client              Security definition, such as HTTP Basic Auth or any
+                    other supported by :doc:`plain HTTP channels <../channels/plain-http>`,
+                    the producer will use.
+Active              Whether the producer can publish messages to the topic
+=================== =============================================================================
+
+The 'Client' field is available on the Create form only.
+
+Delete
+------
+
+.. image:: /gfx/web-admin/pubsub/producer-delete.png
+
+Deletes the publisher. Doesn't delete the underlying client the publisher was based on.
+
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================

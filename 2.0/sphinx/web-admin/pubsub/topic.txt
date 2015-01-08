@@ -56,7 +56,8 @@ Header              Notes
 MIME type           MIME of the payload, such as application/json or application/xml, returned to consumers with the payload -
                     there is no validation that the MIME type actually corresponds in any way to what is being submitted
 Priority            Message priority influencing the order of delivery to consumers
-Expiration          After how many seconds the message will expire if not consumed
+Expiration          After how many seconds the message will expire if not consumed. Note that the expiration time starts to tick
+                    only if there is at least one consumer for the topic.
 =================== ======================================================================================================================
 
 

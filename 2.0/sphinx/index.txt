@@ -164,7 +164,7 @@ Web admin reference
     * **Publish/subscribe:**
       :doc:`Topics<web-admin/pubsub/topic>` |
       :doc:`Producers<web-admin/pubsub/producer>` |
-      :doc:`Consumers<web-admin/pubsub/producer>`
+      :doc:`Consumers<web-admin/pubsub/consumer>`
 
     * **Scheduler:**
       :doc:`Main view<web-admin/scheduler/main>`
