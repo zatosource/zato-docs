@@ -1,0 +1,171 @@
+Pub/sub - REST consumers
+========================
+
+Introduction
+------------
+
+Having been
+:doc:`assigned to a topic <../admin/consumer>`,
+REST consumers use plain HTTP verbs to receive messages from topic and either acknowledge or reject them.
+
+On input, consumers provide both credentials and subscription key because the former is used to establish whether the consumer
+can connect to the pub/sub infrastructure at all while the latter grants it access to a particular topic - a subscription
+key given to a consumer is unique for a topic.
+
+All the examples below assume that there is a */customer/created* topic and the consumer is called *ERP* with its
+:doc:`HTTP Basic Auth username/password <../../web-admin/security/basic-auth>`
+being *erp/erp*, while the consumer's subscription key is *K06Y63NEJQYGMQKTP9D4KGQQ0GB2*, as in the screenshots below:
+
+.. image:: /gfx/pubsub/dev/consumer.png
+
+.. image:: /gfx/pubsub/dev/sec.png
+
+Consuming
+---------
+
+Consumers can either provide URL callbacks for Zato to invoke when new messages are in topics or they can
+periodically poll for messages in Pull mode.
+
+A few options can be provided when polling for messages whereas with callback URLs the parameters assume default values.
+
+========== =========================================================== ======================
+Option     Pull mode                                                   Callback URL
+========== =========================================================== ======================
+max        Can be specified in order to return up to *max* messages    Always equal to *100*
+           from a topic. Defaults to 100.
+dir        Can be either *fifo* or *lifo* to specify whether messages  Always equal to *fifo*
+           in a topic should be returned in FIFO or LIFO direction.
+           Defaults to *fifo*.
+format     *json* or *xml* - whether messages returned should be       Always equal to *json*
+           wrapped in a JSON or XML document. Defaults to *json*.
+========== =========================================================== ======================
+
+In Pull mode, the options are provided by consumers as query string parameters.
+
+To poll for messages, use HTTP POST to access the URL in the format as below providng a subscription key in the
+*X-Zato-PubSub-Key* header:
+
+::
+
+  /zato/pubsub/msg/{topic_name}/
+
+::
+
+  $ curl -XPOST -H X-Zato-PubSub-Key:K06Y63NEJQYGMQKTP9D4KGQQ0GB2 \
+      http://erp:erp@localhost:17010/zato/pubsub/msg//customer/created/
+
+Response format is identical in either case and looks like follows in JSON:
+
+.. code-block:: javascript
+
+           {
+             "status": "ZATO_OK", "results_count": 2, "results": 
+           
+             [
+               {"payload": "Hello",
+                "metadata": {"msg_id": "K07XAM7FSMV092YB410XMXDDDYN3",
+                             "topic": "/customer/created",
+                             "creation_time_utc": "2015-01-09T09:21:56.867151",
+                             "expiration": 60,
+                             "expire_at_utc": "2015-01-09T09:22:56.867151",
+                             "producer": "CRM",
+                             "priority": 5,
+                             "mime_type": "text/plain"}},
+           
+               {"payload": "Hi there, again",
+                "metadata": {"msg_id": "K079DEG92NXF3DYE39NM2SAFQKGW",
+                             "topic": "/customer/created",
+                             "creation_time_utc": "2015-01-09T09:22:52.818030",
+                             "expiration": 60,
+                             "expire_at_utc": "2015-01-09T09:22:56.867151",
+                             "producer": "zato.pubsub.default-producer",
+                             "priority": 5,
+                             "mime_type": "text/plain"}}
+           ]}
+
+The contents is:
+
+========================================= ========================================================================================
+Field                                     Notes
+========================================= ========================================================================================
+status                                    Either ZATO_OK or ZATO_ERROR depending on whether the request has succesfully completed
+results_count                             How many results are returned, possibly 0
+results                                   If results_count > 0 - a list of results containing both original payload and its
+                                          associated metadata
+results.[idx].payload                     Message's payload as submitted by its producer
+results.[idx].metadata.msg_id             Message ID
+results.[idx].metadata.topic              Topic the message was published to
+results.[idx].metadata.creation_time_utc  When was the message created, in UTC
+results.[idx].metadata.expiration         After how many seconds the message would have the message expired had it not been
+                                          taken from the topic
+results.[idx].metadata.expire_at_utc      creation_time_utc + expiration, in UTC
+results.[idx].metadata.producer           Name of the producer publishing the message
+results.[idx].metadata.priority           Message priority, 1-9 (lowest to highest)
+results.[idx].metadata.mime_type          Payload's MIME type
+========================================= ========================================================================================
+
+Once a message has been consumed from a topic, no matter if through Pull or Callback URLs, it is considered in-flight
+as regards its status and needs to be either acknowledged or rejected by the consumer.
+
+Zato will keep a backlog of in-flight messages for a given topic up to a configured value (defaults to 1000). After reaching
+the limit, no new messages will be placed on the consumer's queue unless older ones are acknowledged, rejected or the in-flight
+queue is
+:doc:`cleared <../../web-admin/pubsub/consumer>`.
+
+Consumers can acknowledge or reject messages at any time, there is no limit to how long it takes for the consumer to decide
+either way.
+
+Acknowledging
+~~~~~~~~~~~~~
+
+To acknowledge a message by its ID, use HTTP DELETE to access the URL in the format as below providng a subscription key in the
+*X-Zato-PubSub-Key* header along with the *?ack=true* query parameter, as below:
+
+::
+
+  /zato/pubsub/msg/{msg_id}/
+
+::
+
+  $ curl -XDELETE -H X-Zato-PubSub-Key:K06Y63NEJQYGMQKTP9D4KGQQ0GB2 \
+    'http://erp:erp@localhost:17010/zato/pubsub/msg/K04DDZSZAYVQDXDMMAC8G59M2ZPG/?ack=true'
+  {"status": "ZATO_OK", "details": ""}
+  $
+
+Or if a message doesn't exist:
+
+::
+
+  $ curl -XDELETE -H X-Zato-PubSub-Key:K06Y63NEJQYGMQKTP9D4KGQQ0GB2 \
+    'http://erp:erp@localhost:17010/zato/pubsub/msg/123456/?ack=true'
+  {"status": "ZATO_ERROR", "details": "Message not found `123456`"}
+  $
+
+Rejecting
+~~~~~~~~~
+
+To reject a message by its ID, use HTTP DELETE to access the URL in the format as below providng a subscription key in the
+*X-Zato-PubSub-Key* header along with the *?reject=true* query parameter, as below:
+
+::
+
+  $ curl -XDELETE -H X-Zato-PubSub-Key:K068AJW1CAHRHETNXWZTQ5470EXA \
+    'http://erp:erp@localhost:17010/zato/pubsub/msg/K068AJW1CAHRHETNXWZTQ5470EXA/?reject=true'
+  {"status": "ZATO_OK", "details": ""}
+  $
+
+Or if a message doesn't exist:
+
+::
+
+  $ curl -XDELETE -H X-Zato-PubSub-Key:K06Y63NEJQYGMQKTP9D4KGQQ0GB2 \
+    'http://erp:erp@localhost:17010/zato/pubsub/msg/123456/?reject=true'
+  {"status": "ZATO_ERROR", "details": "Message not found `123456`"}
+  $
+
+Rejecting a message places it back on the consumer's queue for the topic making it appear in results the next time
+messages are taken off the topic by the consumer.
+
+Hence rejecting should mean that a message cannot be only temporarily processed
+rather that it's refused for good. In the latter case the message should be instead acknowledged to have been taken - that the
+consumer won't process it is a consumer's internal matter in that situation.

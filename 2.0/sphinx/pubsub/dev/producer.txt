@@ -17,7 +17,7 @@ being *crm/crm*, as in the screenshots below.
 
 .. image:: /gfx/pubsub/dev/producer-topic-producer.png
 
-.. image:: /gfx/pubsub/dev/producer-topic-sec.png
+.. image:: /gfx/pubsub/dev/sec.png
 
 .. image:: /gfx/pubsub/dev/producer-topic.png
 
