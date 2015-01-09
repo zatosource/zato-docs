@@ -1,0 +1,66 @@
+Pub/sub - Administration - Topics
+=================================
+
+As described in the publish/subscribe
+:doc:`overview <../index>`,
+topics are entities through client applications -
+:doc:`producers <./producer>`
+and
+:doc:`consumers <./consumer>` -
+exchange messages in an asynchronous way.
+
+Topics can be  created, updated, deleted while messages stored in topics can be browsed and deleted.
+
+Creating and editing
+--------------------
+
+Use
+:doc:`dedicated web-admin screens and forms <../../web-admin/pubsub/topic>`
+to create or edit a topic.
+
+Topic names can include ASCII letters, digits, dashes and slashes. All of the following names are acceptable:
+
+* /my/topic/1
+* my.topic.1
+* my-topic-1
+
+Topic name must be unique throughout all the clusters sharing a single Redis instance, not only within a Zato cluster.
+If more than one Zato cluster uses the same Redis instance, topic names must be either distinct or the Redis instance
+cannot be shared.
+
+Note that it's not possible to rename a topic once it's been created - it needs to be recreated from scratch.
+
+Deleting
+--------
+
+Before deleting a topic, clear out all queues - both message and in-flight ones - of its consumers. 
+
+:doc:`Deleting a topic <../../web-admin/pubsub/topic>` deletes all of its associated producers and consumers,
+if any, along - the applications will no longer be able to publish or consume messages.
+
+Browsing and deleting messages
+------------------------------
+
+Messages can :doc:`browsed and deleted <../../web-admin/pubsub/topic>`.
+
+During browsing, all the payload and metadata are returned in the same format consumers will receive them.
+
+Deleting a message from topic doesn't delete it from queues of any consumers - instead it makes the message not available
+to any further consumers.
+
+Publishing messages
+-------------------
+
+A set of :doc:`forms <../../web-admin/pubsub/topic>` allows administrators to publish messages to topics - internally,
+it works exactly as though an external producer published a message.
+
+Overflowing
+-----------
+
+Topics have maximum depth (default is 500) and it's possible that messages published will overflow - for example, 
+if the consumption rate is too low, or if there are no consumers at all but producers still publish messages. 
+In that situation messages won't be placed on topics at all but they won't be 100% rejected either.
+
+To ensure no messages will be lost, each overflown message will be stored in a receiving server's *logs/pubsub-overflown.log*
+file out of which users can resubmit them manually. This lets one make sure that messages will not vanish - for instance if producers
+don't have any means to keep the messages themselves around when if a topic reached its maximum depth.

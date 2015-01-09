@@ -268,9 +268,9 @@ Publish/subscribe guide
       :doc:`Subscription keys and message receiving<pubsub/dev/consumer>`
 
     * **Administration:**
+      :doc:`Topics<pubsub/admin/topic>` |
       :doc:`Producers <pubsub/admin/producer>` |
-      :doc:`Consumers <pubsub/admin/consumer>` |
-      :doc:`Topic queues<pubsub/admin/topic>`
+      :doc:`Consumers <pubsub/admin/consumer>`
 
 Architecture
 ============

@@ -47,6 +47,6 @@ Subsequent chapters go through development and usage scenarios along with tasks 
 
 **Administration**:
 
+* :doc:`Topics <./admin/topic>`
 * :doc:`Producers <./admin/producer>`
 * :doc:`Consumers <./admin/consumer>`
-* :doc:`Topic queues <./admin/topic>`
