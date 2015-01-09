@@ -2,17 +2,102 @@ Pub/sub - REST producers
 ========================
 
 Introduction
-~~~~~~~~~~~~
+------------
 
 Having been
 :doc:`assigned to a topic <../admin/producer>`,
 REST producers use plain HTTP verbs to publish messages that are routed to queues of consumers subscribed to the topic.
 
+The chapter deal with REST clients only, consult :doc:`here <invalid-pubsub-service>` for information on how to
+publish messages from Zato services.
+
 All the examples below assume that there is a */customer/created* topic and the producer used is called *CRM* with its
-HTTP Basic Auth username/password being *crm/pwd*, as in the screenshots below.
+:doc:`HTTP Basic Auth username/password <../../web-admin/security/basic-auth>`
+being *crm/crm*, as in the screenshots below.
 
-.. image:: /gfx/pubsub/producer-topic-producer.png
+.. image:: /gfx/pubsub/dev/producer-topic-producer.png
 
-.. image:: /gfx/pubsub/producer-topic-sec.png
+.. image:: /gfx/pubsub/dev/producer-topic-sec.png
 
-.. image:: /gfx/pubsub/producer-topic.png
+.. image:: /gfx/pubsub/dev/producer-topic.png
+
+Publishing messages
+-------------------
+
+To publish a message to a topic, producers POST data to the URL path in the format of:
+
+::
+
+  /zato/pubsub/topic/{topic_name}/
+
+Hence, to send a message to the */customer/created* topic on localhost, the full address,
+including user credentials, would be:
+
+::
+
+  http://crm:crm@127.0.0.1:11223/zato/pubsub/topic//customer/created/
+
+For instance, from command line:
+
+.. code-block:: bash
+
+  $ curl -XPOST http://crm:crm@127.0.0.1:11223/zato/pubsub/topic//customer/created/ \
+      -d 'Hello pub/sub!' ; echo
+  {"status": "ZATO_OK", "msg_id": "K05DD3YFNE4SG592VQBF23ECVD02"}
+  $
+
+The fields returned are:
+
+======= ======== ===============================================================================================================
+Field   Required Notes
+======= ======== ===============================================================================================================
+status  ---      Execution status, either ZATO_OK or ZATO_ERROR. If the former, HTTP response code will be 200 OK. On errors,
+                 dedicated HTTP response codes will be returned.
+msg_id  ---      An identifier assigned to the message - note that the automatically generated ID must not be used for any
+                 cryptographical purposes. It should be used only for correlating messages across applications.
+details No       Returned on errors - details on what led to the error condition.
+======= ======== ===============================================================================================================
+
+It can now be confirmed in web-admin that the message indeed ended up in queues of all the topic's consumers, such as below:
+
+.. image:: /gfx/pubsub/dev/producer-pub.png
+     :width: 90%
+
+.. image:: /gfx/pubsub/dev/producer-pub-details.png
+     :width: 90%
+
+Options
+-------
+
+The following options can be set when publishing a message. All of them are provided in query string. Additionally,
+if not provided in query string, the payload's MIME type is read from the Content-Type HTTP header.
+
+========== ===============================================================================================================
+Option     Notes
+========== ===============================================================================================================
+mime_type  MIME type of the payload being submitted. If not given as a query string option, default value is obtained
+           by reading the Content-Type HTTP header.
+priority   Priority of the message between 1-9 (lowest-highest).
+expiration After how many seconds should the message expire, in seconds.
+msg_id     An application-provided ID of the message. It is the producer's responsibility to ensure that it is unique
+           enough. Results of using duplicate mesage IDs are undefined.
+========== ===============================================================================================================
+
+For example:
+
+::
+
+    $ curl -XPOST -H Content-Type:application/json \
+         http://crm:crm@127.0.0.1:11223/zato/pubsub/topic//customer/created/ \
+        -d '{"Hello":"JSON"}' ; echo
+    {"status": "ZATO_OK", "msg_id": "K05GPBZNN2S1522ZB56FXF8X1MTR"}
+    $
+
+::
+
+    
+    $ export OPTS="?priority=3&msg_id=83672630621&mime_type=text/plain&&expiration=5" && 
+        curl -XPOST http://crm:crm@127.0.0.1:11223/zato/pubsub/topic//customer/created/$OPTS \
+        -d 'I come with custom options' ; echo
+    {"status": "ZATO_OK", "msg_id": "83672630621"}
+    $
