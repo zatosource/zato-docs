@@ -49,13 +49,13 @@ For instance, from command line:
 The fields returned are:
 
 ======= ======== ===============================================================================================================
-Field   Required Notes
+Field   Optional Notes
 ======= ======== ===============================================================================================================
-status  Yes      Execution status, either ZATO_OK or ZATO_ERROR. If the former, HTTP response code will be 200 OK. On errors,
+status  ---      Execution status, either ZATO_OK or ZATO_ERROR. If the former, HTTP response code will be 200 OK. On errors,
                  dedicated HTTP response codes will be returned.
-msg_id  Yes      An identifier assigned to the message - note that the automatically generated ID must not be used for any
+msg_id  ---      An identifier assigned to the message - note that the automatically generated ID must not be used for any
                  cryptographical purposes. It should be used only for correlating messages across applications.
-details --       Returned on errors - details on what led to the error condition.
+details Yes      Returned on errors - details on what led to the error condition.
 ======= ======== ===============================================================================================================
 
 It can now be confirmed in web-admin that the message indeed ended up in queues of all the topic's consumers, such as below:
