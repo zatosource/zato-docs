@@ -8,8 +8,7 @@ If you know you won't need information past or prior to a given date, you can
 use a  maintenance form to delete unneeded data.
 
 .. image:: /gfx/stats/maintenance.png
-   :alt:
-   :scale: 50%
+   :width: 90%
 
 The same can also be achieved using 
 :doc:`the API <../public-api/details/zato.stats.delete>`
@@ -17,8 +16,3 @@ The same can also be achieved using
 :doc:`sheduler's job <../progguide/scheduler>`
 or an external tool
 can invoke the service periodically in order to reclaim space.
-
-.. warning ::
-
- It's guaranteed that without proper maintenance the statistics
- will sooner or later clog up Redis completely.
