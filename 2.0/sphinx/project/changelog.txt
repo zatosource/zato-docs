@@ -50,7 +50,7 @@
 
 * :doc:`JSON Pointers <../web-admin/messages/json-pointer>`
 
-* XPath and XML namespaces
+* :doc:`XPath <../web-admin/messages/xpath>` and :doc:`XML Namespaces<../web-admin/messages/xml-ns>`
 
 * JSON serialization in :doc:`HTTP outconns <../web-admin/outgoing/plain-http>`
 

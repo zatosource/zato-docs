@@ -1,0 +1,45 @@
+Messages - XPath
+================
+
+Overview
+--------
+
+Used to create, update, delete and browse through `XPath <https://en.wikipedia.org/wiki/XPath>`_ expressions
+that in :doc:`run-time resolve <usage-example-xpath>` to elements in XML documents.
+
+XPath expressions can make use of :doc:`previously reigstered <xml-ns>` XML namespaces.
+
+
+* Menu path: Messages -> XML -> XPath
+* Example address: http://localhost:8183/zato/messages/xpath/?cluster=1
+
+.. image:: /gfx/web-admin/messages/xpath.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/messages/xpath-create.png
+
+=================== ======================================================================================================================
+Header              Notes
+=================== ======================================================================================================================
+Name                Definition's name
+Value               An `XPath <https://en.wikipedia.org/wiki/XPath>`_ expression
+=================== ======================================================================================================================
+
+Delete
+------
+
+.. image:: /gfx/web-admin/messages/xpath-delete.png
+
+Deletes an XPath expression definition.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================
