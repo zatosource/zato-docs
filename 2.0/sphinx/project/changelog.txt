@@ -48,7 +48,7 @@
 
 * :doc:`IMAP <../web-admin/email/imap>`
 
-* JSON Pointers
+* :doc:`JSON Pointers <../web-admin/messages/json-pointer>`
 
 * XPath and XML namespaces
 

@@ -624,7 +624,12 @@ startup_services_first_worker.*
 Each entry is a service, along with its potentially empty
 input (self.request_raw_request),
 that will be invoked after it is certain that the first
-gunicorn worker of the server is ready and fully initialized. Input can be a list of values separated by commas.
+gunicorn worker of the server is ready and fully initialized.
+
+Input can be a string, a list of values separated by commas, or if prefixed with file:// - a path to a file whose contents
+will be provided to the service on input.
+
+This lets one run startup code only if the current worker is the first one in a given server.
 
 .. _admin-guide-config-server-startup_services_any_worker:
 
@@ -634,9 +639,12 @@ startup_services_any_worker.*
 Each entry is a service, along with its potentially empty
 input (self.request_raw_request),
 that will be invoked after it is certain that the first
-gunicorn worker of the server is ready and fully initialized. Input can be a list of values separated by commas.
+gunicorn worker of the server is ready and fully initialized.
 
-This lets one run startup code only if the current worker is the first one.
+Input can be a string, a list of values separated by commas, or if prefixed with file:// - a path to a file whose contents
+will be provided to the service on input.
+
+This lets one run startup code by each of a server's gunicorn workers.
 
 pubsub.move_to_target_queues_interval
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

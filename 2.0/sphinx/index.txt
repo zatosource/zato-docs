@@ -108,6 +108,11 @@ Web admin reference
       :doc:`Sample requests/responses<web-admin/service-details/sample-req-resp>` |
       :doc:`Slow responses<web-admin/service-details/slow-responses>`
 
+    * **Messages:**
+      :doc:`JSON Pointers<web-admin/messages/json-pointer>` |
+      :doc:`XML Namespaces<web-admin/messages/xml-ns>` |
+      :doc:`XPath<web-admin/messages/xpath>` |
+
     * **Security:**
       :doc:`API keys<web-admin/security/apikey>` |
       :doc:`AWS<web-admin/security/aws>` |
@@ -237,6 +242,21 @@ Programming guide
     * **Customizing web admin:**
       :doc:`Making sure you work on the right environment<progguide/web-admin-settings>`
 
+Publish/subscribe guide
+=======================
+
+    * **Overview:**
+      :doc:`Introduction <pubsub/index>`
+
+    * **REST producers and consumers:**
+      :doc:`Publishing messages <pubsub/dev/producer>` |
+      :doc:`Subscription keys and message receiving<pubsub/dev/consumer>`
+
+    * **Administration:**
+      :doc:`Topics<pubsub/admin/topic>` |
+      :doc:`Producers <pubsub/admin/producer>` |
+      :doc:`Consumers <pubsub/admin/consumer>`
+
 Administration guide
 ====================
 
@@ -256,21 +276,6 @@ Administration guide
       :doc:`Overview<admin/guide/migrate/overview>` |
       :doc:`From 1.0 to 1.1<admin/guide/migrate/1.0-1.1>` |
       :doc:`From 1.1 to 2.0<admin/guide/migrate/1.1-2.0>`
-
-Publish/subscribe guide
-=======================
-
-    * **Overview:**
-      :doc:`Introduction <pubsub/index>`
-
-    * **REST producers and consumers:**
-      :doc:`Publishing messages <pubsub/dev/producer>` |
-      :doc:`Subscription keys and message receiving<pubsub/dev/consumer>`
-
-    * **Administration:**
-      :doc:`Topics<pubsub/admin/topic>` |
-      :doc:`Producers <pubsub/admin/producer>` |
-      :doc:`Consumers <pubsub/admin/consumer>`
 
 Architecture
 ============
@@ -399,6 +404,7 @@ Zato, the open-source project
    web-admin/email/*
    web-admin/kvdb/*
    web-admin/load-balancer/*
+   web-admin/messages/*
    web-admin/notif/*
    web-admin/outgoing/*
    web-admin/pubsub/*
