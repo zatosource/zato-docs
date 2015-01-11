@@ -399,6 +399,7 @@ Zato, the open-source project
    web-admin/email/*
    web-admin/kvdb/*
    web-admin/load-balancer/*
+   web-admin/notif/*
    web-admin/outgoing/*
    web-admin/pubsub/*
    web-admin/query/*

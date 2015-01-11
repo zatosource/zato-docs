@@ -58,39 +58,44 @@ attributes regarding the input data.
     method.
     
 
-============ ================== =========================================================
-Attribute    Datatype           Notes
-============ ================== =========================================================
-input        :doc:`SIO <./sio>` A :doc:`Simple IO <./sio>` payload object which allows
-                                to directly address request elements regardless
-                                of the data format. Will be behave like an empty
-                                dictionary if the service doesn't use SIO.
-                                
-raw_request  string             Represents the request message exactly as it was received
-                                by Zato, prior to having been parsed, if at all. 
-                                
-                                Always available regardless of the data format
-                                and whether :doc:`SIO <./sio>` was used or not.
-                                
-                                raw_request will be an empty string if there was
-                                no input data at all.
-                                
-payload      (depends)          If data_format is JSON and channel is a plain HTTP one,
-                                the incoming JSON document as a Python dictionary.
+============ ========================= ====================================================================
+Attribute    Datatype                  Notes
+============ ========================= ====================================================================
+input        :doc:`SIO <./sio>`        A :doc:`Simple IO <./sio>` payload object which allows
+                                       to directly address request elements regardless
+                                       of the data format. Will be behave like an empty
+                                       dictionary if the service doesn't use SIO.
 
-                                If data_format is XML and channel is a plain HTTP one,
-                                the root element of the document, an instance of 
-                                `lxml.objectify.ObjectifiedElement <http://lxml.de/objectify.html>`_
-                               
-                                If data_format is XML and channel is a SOAP one,
-                                first child of /soapenv:Envelope/soapenv:Body returned 
-                                as an instance of 
-                                `lxml.objectify.ObjectifiedElement <http://lxml.de/objectify.html>`_
-                                
-                                In all other cases, in particular - when using
-                                :doc:`other data formats <./other-formats>` - 
-                                this will be equal to raw_request.
-============ ================== =========================================================
+raw_request  string or a Python object Represents the request message exactly as it was received
+                                       by Zato, prior to having been parsed, if at all. 
+
+                                       Always available regardless of the data format
+                                       and whether :doc:`SIO <./sio>` was used or not.
+
+                                       With channels,
+                                       raw_request will be an empty string if there was
+                                       no input data at all
+
+                                       If a service was invoked directly,
+                                       it will be a Python object received on input, such as a list
+                                       or dict.
+
+payload      (depends)                 If data_format is JSON and channel is a plain HTTP one,
+                                       the incoming JSON document as a Python dictionary.
+
+                                       If data_format is XML and channel is a plain HTTP one,
+                                       the root element of the document, an instance of 
+                                       `lxml.objectify.ObjectifiedElement <http://lxml.de/objectify.html>`_
+
+                                       If data_format is XML and channel is a SOAP one,
+                                       first child of /soapenv:Envelope/soapenv:Body returned 
+                                       as an instance of 
+                                       `lxml.objectify.ObjectifiedElement <http://lxml.de/objectify.html>`_
+
+                                       In all other cases, in particular - when using
+                                       :doc:`other data formats <./other-formats>` - 
+                                       this will be equal to raw_request.
+============ ========================= ====================================================================
 
 .. note ::
 
