@@ -1,0 +1,29 @@
+Pub/sub - Administration - Producers
+====================================
+
+Producers represent external applications connecting to Zato in order to
+:doc:`publish <../dev/producer>` messages to :doc:`topics <./topic>` using the platform's :doc:`publish/subscribe mechanisms <../index>`.
+
+A producer is identified through its :doc:`HTTP Basic Auth credentials <../../web-admin/security/basic-auth>` - that is,
+to create a producer for a topic:
+
+* Create its HTTP Basic Auth credentials under a chosen name
+* :doc:`Assign <../../web-admin/pubsub/producer>` the credentials to the topic
+
+Given that producers are mere mappings between usernames and topics, they cannot exist in isolation from topics. When a topic
+is deleted, all of its producers, along with :doc:`consumers <./consumer>`, are deleted as well. This only revokes an application's
+rights to publishing - it may very well have other grants still valid, for instance, to invoke Zato services.
+
+An application can be both a producer and a consumer, even for the same topic, and all of the access privileges are
+handled by Zato separately, including the ability to add or delete them without disrupting the other ones.
+
+If an application is to use multiple topics, it needs to be made a producer for each one.
+
+Producers can be made inactive - such producers cannot publish to the topic they are inactive with.
+
+After a message is published, it is kept in RAM by Redis until all of a topic's consumers either acknowledge or reject it.
+Only then the storage the message uses is released.
+
+.. image:: /gfx/pubsub/producer-topic-producer.png
+
+.. image:: /gfx/pubsub/sec.png

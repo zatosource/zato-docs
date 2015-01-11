@@ -15,9 +15,9 @@ All the examples below assume that there is a */customer/created* topic and the 
 :doc:`HTTP Basic Auth username/password <../../web-admin/security/basic-auth>`
 being *crm/crm*, as in the screenshots below.
 
-.. image:: /gfx/pubsub/dev/producer-topic-producer.png
+.. image:: /gfx/pubsub/producer-topic-producer.png
 
-.. image:: /gfx/pubsub/dev/sec.png
+.. image:: /gfx/pubsub/sec.png
 
 .. image:: /gfx/pubsub/dev/producer-topic.png
 
@@ -51,11 +51,11 @@ The fields returned are:
 ======= ======== ===============================================================================================================
 Field   Required Notes
 ======= ======== ===============================================================================================================
-status  ---      Execution status, either ZATO_OK or ZATO_ERROR. If the former, HTTP response code will be 200 OK. On errors,
+status  Yes      Execution status, either ZATO_OK or ZATO_ERROR. If the former, HTTP response code will be 200 OK. On errors,
                  dedicated HTTP response codes will be returned.
-msg_id  ---      An identifier assigned to the message - note that the automatically generated ID must not be used for any
+msg_id  Yes      An identifier assigned to the message - note that the automatically generated ID must not be used for any
                  cryptographical purposes. It should be used only for correlating messages across applications.
-details No       Returned on errors - details on what led to the error condition.
+details --       Returned on errors - details on what led to the error condition.
 ======= ======== ===============================================================================================================
 
 It can now be confirmed in web-admin that the message indeed ended up in queues of all the topic's consumers, such as below:

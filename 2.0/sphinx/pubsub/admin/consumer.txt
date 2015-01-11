@@ -1,0 +1,40 @@
+Pub/sub - Administration - Consumers
+====================================
+
+Consumers represent external applications that either Zato delivers publications to
+or applications that poll for new messages in topics they are interested in.
+
+A consumer is identified through its :doc:`HTTP Basic Auth credentials <../../web-admin/security/basic-auth>` and subscription
+key - that is,
+to create a consumer for a topic:
+
+* Create its HTTP Basic Auth credentials under a chosen name
+* :doc:`Assign <../../web-admin/pubsub/consumer>` the credentials to the topic
+* Note the automatically generated subscription key that consumers need to :doc:`provide in REST requests <../dev/consumer>`
+
+A subscription key is unique for a consumer/topic pair - even if the same application is consuming messages from multiple
+topics, it will have a separate subscription key for each one.
+
+Like :doc:`producers <./producer>`, consumers are only mappings between usernames and topics and  they cannot exist in isolation
+from topics. When a topic is deleted, its consumers, as well as producers, will be deleted as well. Even though may not have
+access to publish/subscribe, applications
+
+An application can be both a producer and a consumer, even for the same topic, and all of the access privileges are
+handled by Zato separately, including the ability to add or delete them without disrupting the other ones.
+
+If an application is to use multiple topics, it needs to be made a consumer for each one.
+
+Consumers can be made inactive - such producers cannot read messages from the topic they are inactive with.
+
+If consumers are in Pull mode, they periodically :doc:`invoke <../dev/consumer>` a dedicated URL to fetch a batch of messages.
+If they work in Callback URL mode, the endpoint for Zato to invoke must be registered in
+:doc:`outgoing plain HTTP connections <../../web-admin/outgoing/plain-http>`.
+
+Consumers need to either acknowledge or reject messages they receive - if they don't, the messages will be kept in per-consumer
+in-flight message queues that can be cleared if need be in order to prevent Redis from growing indefinitely and consuming all the RAM.
+
+After a message is published, all of its consumers must acknowledge or reject it. Only then the RAM the message uses in Redis is freed up.
+
+.. image:: /gfx/pubsub/consumer.png
+
+.. image:: /gfx/pubsub/sec.png

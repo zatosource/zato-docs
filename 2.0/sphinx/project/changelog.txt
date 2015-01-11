@@ -8,7 +8,7 @@
   and
   :doc:`a helper JSON adapter <../progguide/rest/json-adapter>`
 
-* Redis-based REST publish/subscribe
+* :doc:`Redis-based REST publish/subscribe <../pubsub/index>`
 
 * :doc:`OAuth <../web-admin/security/oauth>`
 
@@ -26,7 +26,9 @@
 
 * :doc:`Cassandra connections <../web-admin/conn-def/cassandra>` and :doc:`pre-compiled CQL query templates <../web-admin/query/cassandra>`
 
-* Cloud OpenStack Swift connections
+* SQL notifications
+
+* Cloud OpenStack Swift :doc:`connections <invalid>` and :doc:`notifications <invalid>`
 
 * Cloud Amazon S3
 
@@ -55,10 +57,6 @@
 * :doc:`SOAP invocations <../web-admin/outgoing/soap>` with suds and WSDL prefetching
 
 * :doc:`Outgoing HTTP <../web-admin/outgoing/plain-http>` timeouts
-
-* SQL notifications
-
-* OpenStack Swift notifications
 
 * :ref:`New Relic integration <admin-guide-config-server-newrelic>`
 

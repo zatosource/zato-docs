@@ -16,9 +16,9 @@ All the examples below assume that there is a */customer/created* topic and the 
 :doc:`HTTP Basic Auth username/password <../../web-admin/security/basic-auth>`
 being *erp/erp*, while the consumer's subscription key is *K06Y63NEJQYGMQKTP9D4KGQQ0GB2*, as in the screenshots below:
 
-.. image:: /gfx/pubsub/dev/consumer.png
+.. image:: /gfx/pubsub/consumer.png
 
-.. image:: /gfx/pubsub/dev/sec.png
+.. image:: /gfx/pubsub/sec.png
 
 Consuming
 ---------
