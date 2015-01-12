@@ -30,7 +30,7 @@
 
 * Cloud OpenStack Swift :doc:`connections <invalid>` and :doc:`notifications <invalid>`
 
-* Cloud Amazon S3
+* Cloud :doc:`Amazon S3 <../web-admin/cloud/aws/s3>`
 
 * :doc:`Solr <../web-admin/search/solr>`
 
