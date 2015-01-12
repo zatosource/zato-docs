@@ -1,0 +1,55 @@
+Cloud - AWS S3
+==============
+
+Overview
+--------
+
+Used to create, update, delete and browse through outgoing `Amazon AWS S3 <https://en.wikipedia.org/wiki/Amazon_S3>`_
+connection pools.
+
+Each connection defines a set of credentials and default options or metadata to use when storing keys in S3 buckets
+so that :doc:`in run-time <invalid-s3-example>` services can concern themselves with key names and values only.
+
+* Menu path: Cloud -> AWS -> S3
+* Example address: http://localhost:8183/zato/cloud/aws/s3/?cluster=1
+
+.. image:: /gfx/web-admin/cloud/aws/s3.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/cloud/aws/s3-create.png
+
+======================== ======================================================================================================================
+Header                    Notes
+======================== ======================================================================================================================
+Name                      Connection pool name
+Active                    Whether connections can be used by services or not
+Pool size                 How big the pool will be
+Debug level               If greater than 0, S3 protocol messages will be output to server.log
+Address                   AWS S3 address to connect to
+Default bucket            Bucket to store keys in if not provided in :doc:`in run-time <invalid-s3-example>`
+Default content type      Default content type to store keys with if not provided in :doc:`in run-time <invalid-s3-example>`
+Default storage class     Storage class to use for keys, consult `S3 docs <https://aws.amazon.com/documentation/s3/>`_ for details
+Suppress consec. slashes  If consecutive slashes should be suppressed in key paths
+Encrypt at rest           Whether data stored should be encrypted when stored
+Security                  :doc:`AWS credentials <../../security/aws>` to connect with
+Metadata                  Additional key/value pairs metadata stored along with keys
+======================== ======================================================================================================================
+
+Delete
+------
+
+.. image:: /gfx/web-admin/cloud/aws/s3-delete.png
+
+Deletes the connection pool.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================

@@ -162,6 +162,10 @@ Web admin reference
       :doc:`IMAP<web-admin/email/imap>` |
       :doc:`SMTP<web-admin/email/smtp>`
 
+    * **Cloud:**
+      :doc:`AWS S3<web-admin/cloud/aws/s3>` |
+      :doc:`OpenStack Swift<web-admin/cloud/openstack/swift>`
+
     * **Key/value DB (Redis):**
       :doc:`Data dictionaries<web-admin/kvdb/data-dict>` |
       :doc:`Remote commands<web-admin/kvdb/remote-commands>`
@@ -400,6 +404,8 @@ Zato, the open-source project
    tutorial/*
    web-admin/*
    web-admin/channels/*
+   web-admin/cloud/aws/*
+   web-admin/cloud/openstack/*
    web-admin/conn-def/*
    web-admin/email/*
    web-admin/kvdb/*
