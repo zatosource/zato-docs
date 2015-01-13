@@ -11,13 +11,7 @@ for ensuring that `Zato </docs/>`_ servers have access to Redis nodes - along wi
 Zato to take advantage of an HA
 configuration.
 
-While focused on Zato, many parts of the information can be used in other contexts as well.
-
-It is imperative that users be familiar with Redis 
-`documentation <http://redis.io/topics/sentinel>`_
-`on the subject <http://redis.io/topics/sentinel-clients>`_
-before setting up a production
-environment.
+While focused on Zato, many parts of the document can be used in other contexts as well.
 
 Target environment
 ------------------
