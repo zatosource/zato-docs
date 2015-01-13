@@ -1,0 +1,35 @@
+Redis High Availability (HA) with Sentinels
+===========================================
+
+Overview
+--------
+
+The chapter describes steps necessary to set up a Redis HA environment using
+`sentinels <http://redis.io/topics/sentinel>`_
+- processes responsible
+for ensuring that `Zato </docs/>`_ servers have access to Redis nodes - along with instructions for configuring
+Zato to take advantage of an HA
+configuration.
+
+While focused on Zato, the majority of the information can be used on its own in other contexts as well.
+
+Target environment
+------------------
+
+.. image:: /gfx/admin/redis-ha/sentinels.png
+
+Key concepts:
+
+* Zato servers don't connect to Redis nodes (servers) directly, instead they automatically use sentinels to discover
+  nodes to connect to.
+* Sentinels understand the topology of an HA environment - they aware of all the Redis nodes and other sentinels as well.
+* Redis nodes work in active-standby mode (called `master/slave <http://redis.io/topics/replication>`_ in Redis docs) with
+  standby modes being replicas of the active one ready to become active at any time.
+* Should the current active Redis node go down, sentinels promote one of the remaining ones, if any, to become the active one that servers
+  will fail over to.
+* To make decisions sentinels need a majority of votes across all the sentinels in the environment
+  hence it is compulsory to use at least 3 sentinels.
+* There is not a strict requirement to run sentinels on operating systems other than Redis nodes though separating nodes
+  from sentinels increases HA and, although not documented in this document, can be set up.
+* Sentinels themselves need to be monitored and brought back if they go down for any reason, for instance, by running them
+  under tools such `supervisord <https://supervisord.readthedocs.org/en/latest/>`_, as presented in the document.

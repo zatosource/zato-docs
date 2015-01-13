@@ -138,7 +138,7 @@ Monitoring services
       < Content-Type: application/json
       < X-Zato-CID: K320539453722916924772131370942490069006
       < 
-      * Connection #0 to host localhost left intact
+      * Connection #0 to host localhooverviewst left intact
       * Closing connection #0
       {"zato_env": {"details": "", "result": "ZATO_OK", "cid": 
       "K320539453722916924772131370942490069006"}, "zato_ping_response": {"pong": "zato"}}
@@ -157,3 +157,6 @@ or
 `Oracle <http://www.oracle.com/us/products/database/>`_. These elements should also
 be part of an HA plan, however how they should be
 tackled is something outside the scope of this discussion.
+
+Zato and Redis can be configured in an HA-aware fashion with sentinels, the process is documented
+in :doc:`its own chapter <./redis-ha/sentinels>`.

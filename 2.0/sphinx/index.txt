@@ -269,6 +269,7 @@ Administration guide
       :doc:`Components<admin/guide/install-config/overview>` |
       :doc:`Command line interface (CLI)<admin/cli/index>` |
       :doc:`High availability<admin/guide/ha>` |
+      :doc:`Redis HA with Sentinels<admin/guide/redis-ha/sentinels>` |
       :doc:`Capacity planning<admin/guide/capacity>` |
       :doc:`Installing services<admin/guide/installing-services>` |
       :doc:`Enabling extra libraries <admin/guide/enabling-extra-libs>` |
@@ -385,6 +386,7 @@ Zato, the open-source project
    admin/guide/install-config/*
    admin/guide/migrate/*
    admin/guide/rbac/*
+   admin/guide/redis-ha/*
    admin/guide/tls/*
    architecture/*
    intro/*
