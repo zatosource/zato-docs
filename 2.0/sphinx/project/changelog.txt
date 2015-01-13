@@ -62,7 +62,7 @@
 
 * :ref:`Sentry integration <admin-guide-config-server-sentry>`
 
-* :ref:`Redis clustering <admin-guide-config-server-kvdb>`
+* :doc:`Redis HA with sentinels <../../admin/guide/redis-ha/sentinels>`
 
 * :ref:`Statistics in Redis pruned periodically <admin-guide-config-stats.expire_after>`
 

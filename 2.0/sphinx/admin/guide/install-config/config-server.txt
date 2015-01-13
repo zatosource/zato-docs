@@ -167,6 +167,13 @@ Example
     [rbac]
     custom_auth_list_service=
 
+    [component_enabled]
+    stats=False
+    slow_response=False
+
+    [os_environ]
+    sample_key=sample_value
+
 
 Discussion
 ``````````
@@ -731,6 +738,16 @@ the list could look like:
      {'client_name':'CRM', 'client_def':'MYCOMP:::DB2ZOS:::CRM'},
      {'client_name':'BILLING', 'client_def':'MYCOMP:::DB2ZOS:::BILLING'},
     ]
+
+.. _admin-guide-config-server-component_enabled:
+
+component_enabled.*
+~~~~~~~~~~~~~~~~~~~
+
+Selectively turns off certain Zato compomenets. Currently supported keys are:
+
+* *stats* for :doc:`statistics <../../../stats/guide>`
+* *slow_response* for :doc:`slow responses <../../../web-admin/service-details/slow-responses>`
 
 .. _admin-guide-config-server-logging:
 
