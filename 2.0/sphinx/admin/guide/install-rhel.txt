@@ -1,4 +1,4 @@
-.. highlight:: sh
+    
 
 Installation on RHEL/CentOS
 ===========================
@@ -33,10 +33,10 @@ Installation steps
 
     [zato-dev]
     name=zato-dev
-    baseurl=https://zato.io/repo/dev/rhel
+    baseurl=https://zato.io/repo/dev/rhel/el$releasever/$basearch
     enabled=1
     gpgcheck=1
-    gpgkey=file:///root/zato-F02084DF.gpg.asc
+    gpgkey=https://zato.io/repo/zato-0CBD7F72.pgp.asc
 
 * Refresh the package list
 
