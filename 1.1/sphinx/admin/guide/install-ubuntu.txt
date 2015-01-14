@@ -27,7 +27,7 @@ Installation steps
 
 .. code-block:: sh
 
-    ubuntu$ sudo apt-add-repository https://zato.io/repo/stable/ubuntu
+    ubuntu$ sudo apt-add-repository https://zato.io/repo/stable/1.1/ubuntu
     ubuntu$ sudo apt-get update
 
 * Install Zato

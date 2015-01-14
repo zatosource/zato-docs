@@ -31,10 +31,10 @@ Installation steps
 
     [zato-stable]
     name=zato-stable
-    baseurl=https://zato.io/repo/stable/rhel
+    baseurl=https://zato.io/repo/stable/1.1/rhel
     enabled=1
     gpgcheck=1
-    gpgkey=file:///root/zato-F02084DF.gpg.asc
+    gpgkey=file:///root/zato-0CBD7F72.pgp.asc
 
 * Refresh the package list
 

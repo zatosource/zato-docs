@@ -33,7 +33,7 @@ Installation steps
 
 .. code-block:: sh
 
-    debian# sudo apt-add-repository https://zato.io/repo/stable/debian
+    debian# sudo apt-add-repository https://zato.io/repo/stable/1.1/debian
     debian# sudo apt-get update
 
 * Install Zato
