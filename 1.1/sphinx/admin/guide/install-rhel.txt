@@ -31,7 +31,7 @@ Installation steps
 
     [zato-stable]
     name=zato-stable
-    baseurl=https://zato.io/repo/stable/1.1/rhel
+    baseurl=https://zato.io/repo/stable/1.1/rhel/el6/$basearch
     enabled=1
     gpgcheck=1
     gpgkey=file:///root/zato-0CBD7F72.pgp.asc
