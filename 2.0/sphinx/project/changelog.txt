@@ -10,6 +10,28 @@
 
 * :doc:`Redis-based REST publish/subscribe <../pubsub/index>`
 
+* HTTP GUI Audit Log for requests and responses
+
+* Patterns: fan-out/fan-in and invoke/retry
+
+* Cloud OpenStack Swift :doc:`connections <invalid>` and :doc:`notifications <invalid>`
+
+* :doc:`Cassandra connections <../web-admin/conn-def/cassandra>` and :doc:`pre-compiled CQL query templates <../web-admin/query/cassandra>`
+
+* :doc:`SQL notifications <../web-admin/notif/sql>`
+
+* Cloud :doc:`Amazon S3 <../web-admin/cloud/aws/s3>`
+
+* :doc:`Solr <../web-admin/search/solr>`
+
+* :doc:`ElasticSearch <../web-admin/search/es>`
+
+* :doc:`Odoo/OpenERP connections <../web-admin/outgoing/odoo>`
+
+* :doc:`SSL/TLS for channels and outgoing connections <../admin/guide/tls/overview>`
+
+* :doc:`Role-based access control (RBAC) for HTTP channels <../admin/guide/rbac/overview>`
+
 * :doc:`OAuth <../web-admin/security/oauth>`
 
 * :doc:`XPath-based security <../web-admin/security/xpath>`
@@ -20,29 +42,9 @@
 
 * :doc:`Amazon AWS security <../web-admin/security/aws>`
 
-* :doc:`SSL/TLS for channels and outgoing connections <../admin/guide/tls/overview>`
-
-* :doc:`Role-based access control (RBAC) for HTTP channels <../admin/guide/rbac/overview>`
-
-* :doc:`Cassandra connections <../web-admin/conn-def/cassandra>` and :doc:`pre-compiled CQL query templates <../web-admin/query/cassandra>`
-
-* :doc:`SQL notifications <../web-admin/notif/sql>`
-
-* Cloud OpenStack Swift :doc:`connections <invalid>` and :doc:`notifications <invalid>`
-
-* Cloud :doc:`Amazon S3 <../web-admin/cloud/aws/s3>`
-
-* :doc:`Solr <../web-admin/search/solr>`
-
-* :doc:`ElasticSearch <../web-admin/search/es>`
-
-* :doc:`Odoo/OpenERP connections <../web-admin/outgoing/odoo>`
-
 * :ref:`Support for SQLite <admin-guide-config-server-odb.engine>`
 
 * :ref:`Support for MySQL <admin-guide-config-server-odb.engine>`
-
-* HTTP GUI Audit Log for requests and responses
 
 * :doc:`SMTP <../web-admin/email/smtp>`
 
