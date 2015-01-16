@@ -16,7 +16,7 @@ Please visit the `support options page <https://zato.io/support.html>`_ if any s
 The steps are executed in this order:
 
 * :ref:`Stopping components <admin-guide-migrate-1.1-2.0-stop-components>`
-* :ref:`Updating Redis to 2.8.4+ <admin-guide-migrate-1.1-2.0-update-redis>`
+* :ref:`Upgrading Redis to 2.8.4+ <admin-guide-migrate-1.1-2.0-update-redis>`
 * :ref:`Installing binaries <admin-guide-migrate-1.1-2.0-install-binaries>`
 * :ref:`Updating ODB schema <admin-guide-migrate-1.1-2.0-upgrade-odb>`
 * :ref:`Running zato migrate <admin-guide-migrate-1.1-2.0-zato-migrate>`
