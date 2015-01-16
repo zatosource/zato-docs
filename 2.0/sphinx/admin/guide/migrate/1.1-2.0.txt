@@ -91,7 +91,7 @@ Zato 2.0 requires Redis 2.8.4 or newer.
 
 Depending on the exact OS version used, Redis needs to be installed from additional repositories, such as:
 
-* `Remi <http://blog.famillecollet.com/pages/Config-en>`_ for RedHat/CentOS
+* `Remi <http://blog.famillecollet.com/pages/Config-en>`_ for RedHat/CentOS (direct links to packages - `6.x <http://rpms.famillecollet.com/enterprise/6/remi/x86_64/repoview/redis.html>`_ and `7.x <http://rpms.famillecollet.com/enterprise/7/remi/x86_64/repoview/redis.html>`_)
 * `PPA <https://launchpad.net/~rwky/+archive/ubuntu/redis>`_ for Ubuntu
 * `DotDeb <http://www.dotdeb.org/category/redis/>`_ for Debian
 
