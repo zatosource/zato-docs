@@ -1,5 +1,5 @@
-2.0.0 - Currently in development
-================================
+2.0 - Currently in development
+==============================
 
 * REST
   :doc:`services <../progguide/rest/services>`,
@@ -12,15 +12,15 @@
 
 * HTTP GUI Audit Log for requests and responses
 
-* Patterns: fan-out/fan-in and invoke/retry
+* Patterns: fan-out/fan-in, parallel execution and invoke/retry
 
-* Cloud OpenStack Swift :doc:`connections <invalid>` and :doc:`notifications <invalid>`
+* Cloud :doc:`Amazon S3 <../web-admin/cloud/aws/s3>`
 
-* :doc:`Cassandra connections <../web-admin/conn-def/cassandra>` and :doc:`pre-compiled CQL query templates <../web-admin/query/cassandra>`
+* Cloud OpenStack Swift :doc:`connections <../web-admin/cloud/openstack/swift>` and :doc:`notifications <../web-admin/notif/openstack/swift>`
 
 * :doc:`SQL notifications <../web-admin/notif/sql>`
 
-* Cloud :doc:`Amazon S3 <../web-admin/cloud/aws/s3>`
+* :doc:`Cassandra connections <../web-admin/conn-def/cassandra>` and :doc:`pre-compiled CQL query templates <../web-admin/query/cassandra>`
 
 * :doc:`Solr <../web-admin/search/solr>`
 

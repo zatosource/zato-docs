@@ -1,0 +1,55 @@
+Cloud - OpenStack Swift
+=======================
+
+Overview
+--------
+
+Used to create, update, delete and browse through outgoing `OpenStack Swift <https://en.wikipedia.org/wiki/Amazon_S3>`_
+such as `Rackspace Files <https://www.rackspace.com/cloud/files>`_ and implementations.
+
+Connections can be used by services to access Swift containers and objects :ref:`in run-time <invalud-swift-run-time>`
+or in :doc:`OpenStack Swift notifications <../../notif/openstack/swift>`.
+
+* Menu path: Cloud -> OpenStack -> Swift
+* Example address: http://localhost:8183/zato/cloud/openstack/swift/?cluster=1
+
+.. image:: /gfx/web-admin/cloud/openstack/swift.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/cloud/openstack/swift-create.png
+
+======================== ======================================================================================================================
+Header                    Notes
+======================== ======================================================================================================================
+Name                      Connection pool name
+Active                    Whether connections can be used by services or not
+Pool size                 How big the pool will be
+Debug level               If greater than 0, S3 protocol messages will be output to server.log
+Address                   OpenStack Swift address to connect to
+Default bucket            Bucket to store keys in if not provided in :doc:`in run-time <invalid-s3-example>`
+Default content type      Default content type to store keys with if not provided in :doc:`in run-time <invalid-s3-example>`
+Default storage class     Storage class to use for keys, consult `S3 docs <https://aws.amazon.com/documentation/s3/>`_ for details
+Suppress consec. slashes  If consecutive slashes should be suppressed in key paths
+Encrypt at rest           Whether data stored should be encrypted when stored
+Security                  :doc:`AWS credentials <../../security/aws>` to connect with
+Metadata                  Additional key/value pairs metadata stored along with keys
+======================== ======================================================================================================================
+
+Delete
+------
+
+.. image:: /gfx/web-admin/cloud/openstack/swift-delete.png
+
+Deletes the connection pool.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================
