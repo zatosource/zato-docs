@@ -18,7 +18,7 @@ configured also run asynchronously without blocking each other.
 
 The diagram below depicts the feature in its full scope. A source service fans out to 2 target services, each with a list
 of their completion callbacks. Only when both target services finish execution, the flow of processing fans in to 
-a final a final list of callbacks that are guaranteed that the targets have all been already invoked.
+a final list of callbacks that are guaranteed that the targets have all been already invoked.
 
 .. image:: /gfx/progguide/patterns/fan-out-fan-in.png
    :align: center
@@ -112,7 +112,7 @@ enough and there will be no duplicates, should that happen - results are undefin
                 # User-provided Correlation ID
                 cid = '2963-2645-9715-1719'
 
-                # CID is returned is the one received on input
+                # CID returned is the one received on input
                 cid = self.patterns.fanout.invoke(targets, callbacks, cid=cid)
 
 Authoring callbacks
