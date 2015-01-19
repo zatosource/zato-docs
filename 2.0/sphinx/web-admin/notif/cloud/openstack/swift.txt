@@ -1,0 +1,67 @@
+Notifications - OpenStack Swift
+===============================
+
+Overview
+--------
+
+Used to create, update, delete and browse through
+`OpenStack Swift <https://en.wikipedia.org/wiki/OpenStack#Object_Storage_.28Swift.29>`_
+notifications.
+
+A notification is a definition of one or more Swift containers, including their folders,
+that should be periodically read in order to find out if they contain any files and if so,
+whether to obtain their payload.
+
+A callback service is invoked each time a match is found. The service can be given either file names and metadata as well as
+actual file contents on input. On response, the service can indicate that Zato should the file from Swift storage
+itself, for instance, when it's not needed anymore.
+
+A set of patterns can be applied so that only selected files will be taken into account.
+
+
+* Menu path: Connections -> Notifications -> Cloud -> OpenStack Swift
+* Example address: http://localhost:8183/zato/notif/openstack/swift/?cluster=1
+
+.. image:: /gfx/web-admin/notif/openstack/swift.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/notif/openstack/swift-create.png
+
+=================== ======================================================================================================================
+Header              Notes
+=================== ======================================================================================================================
+Name                Definition's name
+Active              Whether any data will be fetched through the underlying connection or not
+Connection          An :doc:`OpenStack Swift connection <../../cloud/openstack/swift>` to use
+Interval            In seconds. How often to fetch new data. Also, how often to check for changes to the notification's configuration -
+                    it will take up to interval seconds for changes to take any effect.
+Name pattern        Provide to the service only files whose name matches the pattern. If *Neg.?* is checked, match only files
+                    with names that don't correspond to the pattern.
+Service             Service to invoke when a matching file is found. Note that it will be invoked on each server in a cluster,
+                    use self.lock to ensure if only one can processs the file. If the service assigns to self.response.payload
+                    a dictionary with the key of {'delete':True} - the file will be deleted by Zato.
+Containers          A list of one or more containers, along with directories, to read each time the notifier runs. Directories
+                    are optional and if provided, should be separated by colon from the containers. If no directory is provided,
+                    the top-level one is used - in that situation, no colon is needed, the name of a container suffices.
+Get data            If checked, the service will receive the file contents on input. If pattern is provided, it will be given
+                    the contents only if file names match the pattern. *Neg.?* negates the pattern.
+=================== ======================================================================================================================
+
+Delete
+------
+
+.. image:: /gfx/web-admin/notif/openstack/swift-delete.png
+
+Stops and deletes a notification's definition.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================

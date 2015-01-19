@@ -38,7 +38,3 @@ custom-written main loops developed using
 and 
 `ZeroMQ <http://www.zeromq.org/>`_
 itself, respectively.
-
-Note that SQL queries are processor-bound and that you shouldn't start hundreds
-or thousands of scheduler jobs - these limits don't apply to other communication
-methods - HTTP, Redis, AMQP, ZeroMQ, WebSphere MQ or FTP.

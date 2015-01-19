@@ -14,9 +14,18 @@
 
 * Patterns: fan-out/fan-in, parallel execution and invoke/retry
 
+* :doc:`Dockerfile <../admin/guide/install-docker>` to set up a full-featured
+  :doc:`cluster <../architecture/overview>`
+  with 2
+  :doc:`servers <../architecture/servers>`,
+  :doc:`load-balancer <../architecture/load-balancer>`
+  and
+  :doc:`web-admin <../architecture/web-admin>`
+  in 10 minutes
+
 * Cloud :doc:`Amazon S3 <../web-admin/cloud/aws/s3>`
 
-* Cloud OpenStack Swift :doc:`connections <../web-admin/cloud/openstack/swift>` and :doc:`notifications <../web-admin/notif/openstack/swift>`
+* Cloud OpenStack Swift :doc:`connections <../web-admin/cloud/openstack/swift>` and :doc:`notifications <../web-admin/notif/cloud/openstack/swift>`
 
 * :doc:`SQL notifications <../web-admin/notif/sql>`
 
@@ -79,8 +88,6 @@
 * Dictionary and list message navigation
 
 * Added :doc:`RPM packages for RHEL/CentOS 7 <../admin/guide/install-rhel>`
-
-* Added a set of :doc:`Dockerfiles <../admin/guide/install-docker>`
 
 * Bash completion
 

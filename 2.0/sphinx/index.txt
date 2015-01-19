@@ -414,6 +414,7 @@ Zato, the open-source project
    web-admin/load-balancer/*
    web-admin/messages/*
    web-admin/notif/*
+   web-admin/notif/cloud/openstack/*
    web-admin/outgoing/*
    web-admin/pubsub/*
    web-admin/query/*

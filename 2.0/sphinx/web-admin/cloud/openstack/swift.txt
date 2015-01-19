@@ -8,7 +8,7 @@ Used to create, update, delete and browse through outgoing `OpenStack Swift <htt
 such as `Rackspace Files <https://www.rackspace.com/cloud/files>`_ and implementations.
 
 Connections can be used by services to access Swift containers and objects :ref:`in run-time <invalud-swift-run-time>`
-or in :doc:`OpenStack Swift notifications <../../notif/openstack/swift>`.
+or in :doc:`OpenStack Swift notifications <../../notif/cloud/openstack/swift>`.
 
 * Menu path: Cloud -> OpenStack -> Swift
 * Example address: http://localhost:8183/zato/cloud/openstack/swift/?cluster=1
@@ -21,29 +21,34 @@ Create and Edit
 
 .. image:: /gfx/web-admin/cloud/openstack/swift-create.png
 
-======================== ======================================================================================================================
-Header                    Notes
-======================== ======================================================================================================================
-Name                      Connection pool name
-Active                    Whether connections can be used by services or not
-Pool size                 How big the pool will be
-Debug level               If greater than 0, S3 protocol messages will be output to server.log
-Address                   OpenStack Swift address to connect to
-Default bucket            Bucket to store keys in if not provided in :doc:`in run-time <invalid-s3-example>`
-Default content type      Default content type to store keys with if not provided in :doc:`in run-time <invalid-s3-example>`
-Default storage class     Storage class to use for keys, consult `S3 docs <https://aws.amazon.com/documentation/s3/>`_ for details
-Suppress consec. slashes  If consecutive slashes should be suppressed in key paths
-Encrypt at rest           Whether data stored should be encrypted when stored
-Security                  :doc:`AWS credentials <../../security/aws>` to connect with
-Metadata                  Additional key/value pairs metadata stored along with keys
-======================== ======================================================================================================================
+======================== ========================================================================================================================================
+Header                   Notes
+======================== ========================================================================================================================================
+Name                     Connection name
+Active                   Whether connections can be used by services or not
+Auth version             Authentication version used by the remote storage
+Pool size                How big the connection pool will be
+Auth URL                 The main entry point to authenticate in. This is the only URL required in order to use Swift.
+User                     Username to connect with
+Tenant name              Swift tenant, if relevant
+Key/password             Either an API key or password to connect with
+# of retries             How many times to retry if inital connections to Swift fail
+Starting backoff         In seconds, initial delay between connection attempts if not connected immediately
+Max backoff              In seconds, maximum delay between connection attempts if not connected immediately
+Validate TLS certs?      Whether to validate Swift server's certificates
+Path to CA TLS certs     Path to custom CA certs for validation, if relevant
+Is SNET?                 Set to True if running in Rackspace's ServiceNet internal network
+Custom options           Each line is a key=value pair of options passed directly to the underlying
+                         `swiftclient.client.Connection's <http://docs.openstack.org/developer/python-swiftclient/swiftclient.html#module-swiftclient.client>`_
+                         __init__ method as os_options.
+======================== ========================================================================================================================================
 
 Delete
 ------
 
 .. image:: /gfx/web-admin/cloud/openstack/swift-delete.png
 
-Deletes the connection pool.
+Deletes the connection pool. Will also stop any :doc:`notifiers <../../notif/cloud/openstack/swift>` using the connection.
 
 Changelog
 ---------
