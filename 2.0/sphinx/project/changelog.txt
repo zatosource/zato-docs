@@ -10,7 +10,7 @@
 
 * :doc:`Redis-based REST publish/subscribe <../pubsub/index>`
 
-* :doc:`HTTP GUI Audit Log <../web-admin/audit-log/http/channel/index>` for requests and responses
+* :doc:`HTTP GUI Audit Log <../web-admin/audit-log/http/index>` for requests and responses
 
 * Patterns: fan-out/fan-in, parallel execution and invoke/retry
 
@@ -103,6 +103,12 @@
 
 * Ability to :ref:`hot-deploy code directly from a repository checkout <admin-guide-config-server-hot_deploy.delete_after_pick_up>`
   (i.e. from GitHub)
+
+* Configuration :doc:`patterns <../admin/guide/config-patterns>` to fine tune which services can be :ref:`deployed <admin-guide-config-server-deploy_patterns_allowed>` and :ref:`invoked <admin-guide-config-server-invoke_patterns_allowed>`
+
+* Means for invoking services on :ref:`selected servers only <admin-guide-config-server-invoke_target_patterns_allowed>`
+
+* New :doc:`hook <../progguide/service-hooks>` (:ref:`accept <progguide-write-service-accept>`) for filtering out requests that a service cannot process
 
 * Improved logging - subsystems have their own log files
 

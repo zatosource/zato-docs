@@ -732,6 +732,24 @@ as an access method,  wsgi_environ would've been empty.
 Service methods
 ~~~~~~~~~~~~~~~
 
+.. _progguide-write-service-accept:
+
+accept
+``````
+
+.. py:method:: accept()
+
+One of the :doc:`hooks <./service-hooks>`. If a service returns False in this method, the processing stops. It's as though
+the service has never been invoked, for instance, its usage count won't increase. Defaults to True and needs to be overriden
+only if False should be returned.
+
+Note that in accept the service has already full access to
+:doc:`self.request <request-response>`,
+:ref:`self.environ <progguide-write-service-environ>`
+or
+:ref:`self.wsgi_environ <progguide-write-service-wsgi_environ>`.
+and these can be consulted in order to make a choice of returning True or False.
+
 .. _progguide-write-service-after_add_to_store:
 
 after_add_to_store
@@ -918,7 +936,7 @@ Request and response objects are documented in
 
 invoke
 ``````
-.. py:method:: invoke(name[, payload='', channel=CHANNEL.INVOKE, data_format=None, transport=None, serialize=False, as_bunch=False])
+.. py:method:: invoke(name[, payload='', channel=CHANNEL.INVOKE, data_format=None, transport=None, serialize=False, as_bunch=False, environ=None])
 
   Synchronously invokes a service by its :ref:`name <progguide-write-service-name>`. The service
   is invoked in the same operating system's process and thread the current service
@@ -936,7 +954,12 @@ invoke
   Visit :doc:`this chapter <./invoking-services>` for more information on how to invoke
   other services depending on the data format they expect.
   
-  :param name: Name of the service to invoke
+  :param name: Name of the service to invoke.  The name may be followed by an
+               :ref:`invocation target <admin-guide-config-server-invoke_target_patterns_allowed>`, a label
+               assigned to one or more selected servers in a cluster ensuring in that way that only
+               these targets will receive the request. The syntax for using targets is *service_name@target_name*.
+               A `ZatoException <https://github.com/zatosource/zato/blob/master/code/zato-common/src/zato/common/__init__.py>`_
+               will be raised if the server the service is invoked on does not accept the provided target.
   :type name: string
   
   :param payload: Request data to invoke a service with. This can be a regular
@@ -962,7 +985,12 @@ invoke
                     whether to return its response as a 
                     `Bunch <http://pypi.python.org/pypi/bunch>`_ object.
   :type as_bunch: bool
-  
+
+  :param environ: A dictionary of user-provided context that will be available in the receiving service's
+                  :ref:`self.environ <progguide-write-service-environ>`. Must be JSON-serializable. Defaults to an
+                  empty dict.
+  :type environ: {}
+
   :rtype: Response the service being invoked produced
   
 ::
@@ -992,7 +1020,7 @@ invoke
 
 invoke_async
 ````````````
-.. py:method:: invoke_async(name[, payload='', channel=CHANNEL.INVOKE_ASYNC, data_format=None, transport=None, expiration=BROKER.DEFAULT_EXPIRATION, to_json_string=False])
+.. py:method:: invoke_async(name[, payload='', channel=CHANNEL.INVOKE_ASYNC, data_format=None, transport=None, expiration=BROKER.DEFAULT_EXPIRATION, to_json_string=False, environ=None])
 
   Uses a service's :ref:`broker client <progguide-write-service-broker-client>`
   to execute another service asynchronously. It's not defined which server
@@ -1002,7 +1030,10 @@ invoke_async
   
   A service should not invoke asynchronously itself, this would create an infinite loop.
 
-  :param name: Name of the service to invoke
+  :param name: Name of the service to invoke. The name may be followed by an
+               :ref:`invocation target <admin-guide-config-server-invoke_target_patterns_allowed>`, a label
+               assigned to one or more selected servers in a cluster ensuring in that way that only
+               these targets will receive the request. The syntax for using targets is *service_name@target_name*.
   :type name: string
   
   :param payload: Request data to invoke a service with. This can be a regular
@@ -1019,6 +1050,11 @@ invoke_async
   :param to_json_string: Whether payload should be serialized to a JSON string. Should be
                          set to True if payload is a dictionary.
   :type to_json_string: bool
+
+  :param environ: A dictionary of user-provided context that will be available in the receiving service's
+                  :ref:`self.environ <progguide-write-service-environ>`. Must be JSON-serializable. Defaults to an
+                  empty dict.
+  :type environ: {}
   
   :rtype: :ref:`CID <progguide-write-service-cid>` the other service will be
           invoked with

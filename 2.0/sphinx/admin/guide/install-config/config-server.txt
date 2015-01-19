@@ -79,6 +79,18 @@ Example
     backup_work_dir=./hot-deploy/backup
     last_backup_work_dir=./hot-deploy/backup/last
 
+    [deploy_patterns_allowed]
+    order=true_false
+    *=True
+    
+    [invoke_patterns_allowed]
+    order=true_false
+    *=True
+    
+    [invoke_target_patterns_allowed]
+    order=true_false
+    *=True
+
     [singleton]
     initial_sleep_time=500
 
@@ -103,6 +115,8 @@ Example
     ensure_sql_connections_exist=True
     http_server_header=Zato
     zeromq_connect_sleep=0.1
+    aws_host=
+    use_soap_envelope=True
 
     [stats]
     expire_after=168 # In hours, 168 = 7 days = 1 week
@@ -460,6 +474,41 @@ to the fact that the backup will be stored in
 :ref:`hot_deploy.backup_work_dir <admin-guide-config-server-hot_deploy.backup_work_dir>`
 as well.
 
+.. _admin-guide-config-server-deploy_patterns_allowed:
+
+deploy_patterns_allowed.*
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Which services, including Zato's own internal ones, can be deployed on the server. Uses patterns
+documented in
+:doc:`their own chapter <../config-patterns>`.
+
+.. _admin-guide-config-server-invoke_patterns_allowed:
+
+invoke_patterns_allowed.*
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Which services, including Zato's own internal ones, can be invoked on the server. Uses patterns
+documented in
+:doc:`their own chapter <../config-patterns>`.
+
+.. _admin-guide-config-server-invoke_target_patterns_allowed:
+
+invoke_target_patterns_allowed.*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Which targets can be executed using :ref:`invoke <progguide-write-service-invoke>`
+or :ref:`invoke_async <progguide-write-service-invoke_async>` on the server. Uses patterns documented in
+:doc:`their own chapter <../config-patterns>`.
+
+If a service uses a target name, the request will be executed on a server only if the server supports
+the target, that is, if the target provided by the service matches one of the patterns configured for server.
+
+For :ref:`invoke <progguide-write-service-invoke>` - a service will receive a
+`ZatoException <https://github.com/zatosource/zato/blob/master/code/zato-common/src/zato/common/__init__.py>`_
+if the target is not supported. For :ref:`invoke_async <progguide-write-service-invoke_async>`, the request
+will be dropped. Unless on DEBUG level or more verbose the request will be dropped silently.
+
 singleton.initial_sleep_time
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -592,6 +641,21 @@ How long to sleep, in seconds, after initially opening ZeroMQ sockets in message
 :doc:`outgoing connections <../../../web-admin/outgoing/zmq>`.
 
 .. _admin-guide-config-stats.expire_after:
+
+misc.aws_host
+~~~~~~~~~~~~~
+
+In
+:doc:`Amazon S3 connections <../../../web-admin/cloud/aws/s3>`,
+host to connect to, such as *eu-central-1* - may be required if connecting to region Frankfurt.
+Applies to all S3 connections.
+
+misc.use_soap_envelope
+~~~~~~~~~~~~~~~~~~~~~~
+
+In
+:doc:`SOAP channels <../../../web-admin/channels/soap>`,
+whether responses Zato produces should be wrapped in the SOAP Envelope element or not. Applies to all SOAP channels.
 
 stats.expire_after
 ~~~~~~~~~~~~~~~~~~
