@@ -1,6 +1,15 @@
 2.0 - Currently in development
 ==============================
 
+* :doc:`Dockerfile <../admin/guide/install-docker>` to set up a full-featured
+  :doc:`cluster <../architecture/overview>`
+  with 2
+  :doc:`servers <../architecture/servers>`,
+  :doc:`load-balancer <../architecture/load-balancer>`
+  and
+  :doc:`web-admin <../architecture/web-admin>`
+  in 10 minutes
+
 * REST
   :doc:`services <../progguide/rest/services>`,
   :doc:`channels <../progguide/rest/channels>`,
@@ -12,16 +21,11 @@
 
 * :doc:`HTTP GUI Audit Log <../web-admin/audit-log/http/index>` for requests and responses
 
-* Patterns: fan-out/fan-in, parallel execution and invoke/retry
-
-* :doc:`Dockerfile <../admin/guide/install-docker>` to set up a full-featured
-  :doc:`cluster <../architecture/overview>`
-  with 2
-  :doc:`servers <../architecture/servers>`,
-  :doc:`load-balancer <../architecture/load-balancer>`
+* Patterns:
+  :doc:`fan-out/fan-in <../progguide/patterns/fan-out-fan-in>`,
+  :doc:`parallel execution <../progguide/patterns/parallel-exec>`
   and
-  :doc:`web-admin <../architecture/web-admin>`
-  in 10 minutes
+  :doc:`invoke/retry <../progguide/patterns/invoke-retry>`
 
 * Cloud :doc:`Amazon S3 <../web-admin/cloud/aws/s3>`
 
@@ -167,6 +171,17 @@
   log the user_msg as a prefix of the dictionary of data to write out, not as part
   of its keys
 
+.. note::
+
+   Want to quickly install Zato? Check out this :doc:`Dockerfile <../admin/guide/install-docker>` which will set up
+   a fully working
+   :doc:`cluster <../architecture/overview>`
+   with 2
+   :doc:`servers <../architecture/servers>`,
+   :doc:`load-balancer <../architecture/load-balancer>`
+   and
+   :doc:`web-admin <../architecture/web-admin>`
+   in 10 minutes.
 
 1.1 - 2013-06-02
 ================

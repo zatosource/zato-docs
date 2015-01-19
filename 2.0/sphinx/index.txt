@@ -233,14 +233,18 @@ Programming guide
       :doc:`Outgoing connections <progguide/rest/outconns>` |
       :doc:`JSON adapter<progguide/rest/json-adapter>`
 
+    * **Patterns:**
+      :doc:`Fan-out/fan-in <progguide/patterns/fan-out-fan-in>` |
+      :doc:`Parallel execution <progguide/patterns/parallel-exec>` |
+      :doc:`Invoke/retry <progguide/patterns/invoke-retry>` |
+      :doc:`Async invocations with callbacks <progguide/patterns/async-invoke>` |
+      :doc:`Designing sync and async message flow<progguide/sync-async/flow>`
+
     * **Request/response documents:**
       :doc:`SimpleIO (SIO) <progguide/sio>` |
       :doc:`JSON <progguide/json>` |
       :doc:`XML <progguide/xml>` |
       :doc:`Other data formats <progguide/other-formats>`
-
-    * **Sync and async:**
-      :doc:`Synchronous and asynchronous message flow<progguide/sync-async/flow>`
 
     * **Service hooks:**
       :doc:`Hooking into a service's lifecycle <progguide/service-hooks>`
@@ -401,6 +405,7 @@ Zato, the open-source project
    progguide/clients/*
    progguide/examples/*
    progguide/outconn/*
+   progguide/patterns/*
    progguide/rest/*
    project/*
    public-api/*

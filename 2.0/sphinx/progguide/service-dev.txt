@@ -161,11 +161,21 @@ Type of the channel (not its name) a service has been invoked through.
 Can be one of:
 
 * 'amqp'
+* 'audit'
+* 'fanout-call'
+* 'fanout-on-final'
+* 'fanout-on-target'
+* 'internal-check'
 * 'http-soap'
 * 'invoke'
 * 'invoke-async'
+* 'invoke-async-callback'
 * 'jms-wmq'
+* 'notifier-run'
+* 'notifier-target'
 * 'scheduler'
+* 'startup-service'
+* 'worker'
 * 'zmq'
 
 The constants are defined in the 
