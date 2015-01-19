@@ -1,0 +1,15 @@
+HTTP Audit Log - Details
+========================
+
+Each entry stored in the audit log can be displayed, including its payload (if any), HTTP headers and
+`WSGI <https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface>`_
+context.
+
+Note that there is no way to look up original values of elements that have been previously
+masked out in the :doc:`configuration <./config>` screen.
+
+* Menu path: Connections -> Channels -> (Plain HTTP or SOAP) -> (Click a channel's name) -> Audit log -> (Click show) -> (Click a CID)
+* Example address: http://localhost:8183/zato/http-soap/audit/item/channel/plain_http/532/crm.customer.create/1/2/
+
+.. image:: /gfx/web-admin/audit-log/http/channel-log-item.png
+

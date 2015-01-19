@@ -10,7 +10,7 @@
 
 * :doc:`Redis-based REST publish/subscribe <../pubsub/index>`
 
-* HTTP GUI Audit Log for requests and responses
+* :doc:`HTTP GUI Audit Log <../web-admin/audit-log/http/channel/index>` for requests and responses
 
 * Patterns: fan-out/fan-in, parallel execution and invoke/retry
 

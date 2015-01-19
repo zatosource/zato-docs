@@ -147,6 +147,12 @@ Web admin reference
       :doc:`SQL<web-admin/outgoing/sql>` |
       :doc:`ZeroMQ<web-admin/outgoing/zmq>`
 
+    * **HTTP Audit Log:**
+      :doc:`Overview<web-admin/audit-log/http/index>` |
+      :doc:`Configuring<web-admin/audit-log/http/channel/config>` |
+      :doc:`Searching<web-admin/audit-log/http/channel/search>` |
+      :doc:`Displaying details<web-admin/audit-log/http/channel/details>`
+
     * **Search:**
       :doc:`ElasticSearch<web-admin/search/es>` |
       :doc:`Solr<web-admin/search/solr>`
@@ -405,6 +411,8 @@ Zato, the open-source project
    stats/*
    tutorial/*
    web-admin/*
+   web-admin/audit-log/http/*
+   web-admin/audit-log/http/channel/*
    web-admin/channels/*
    web-admin/cloud/aws/*
    web-admin/cloud/openstack/*
