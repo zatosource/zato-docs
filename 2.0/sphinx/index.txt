@@ -11,7 +11,7 @@ Getting help
 
 * `Priority commercial support and training <https://zato.io/support.html>`_
 
-* `Visit GitHub <https://github.com/zatosource/zato>`_ to fork code or submit issues
+* `Visit GitHub <https://github.com/zatosource/zato>`_ to fork code and contribute ideas
 
 * Read the `Zato Blog <https://zato.io/blog/index.html>`_
 

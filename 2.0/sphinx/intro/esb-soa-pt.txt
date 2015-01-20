@@ -292,7 +292,7 @@ para os admins também parece ser uma escolha muito boa.
 Tudo que precisa de integração em um ambiente claro e bem definido é potencialmente
 um bom caso de uso para um serviço ESB mas como sempre, decidir se alguma coisa realmente é
 a escolha ideal vai vir da experiência. Naturalmente, o time por trás do Zato
-`pode ajudar <https://zato.io/support>`_.
+`pode ajudar <https://zato.io/support.html>`_.
 
 -------------------------------------------------------
 Mas eu ouvi que SOA era sobre XML, SOAP e web services

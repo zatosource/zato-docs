@@ -316,7 +316,7 @@ to admins also sounds just fine.
 Everything that needs integration in a clear, well-defined environment is possibly
 a good fit for an ESB service but as always, deciding whether something really is
 a dream fit will follow from one's experience. Naturally, the team behind Zato
-`can help <https://zato.io/support>`_.
+`can help <https://zato.io/support.html>`_.
 
 --------------------------------------------------------
 But I heard SOA was all about XML, SOAP and web services

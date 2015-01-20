@@ -325,7 +325,7 @@ un missatge de text als administradors també sona encertat.
 Tot el que necessiti integrar-se en un entorn clar i ben definit és possiblement
 un bon escenari per un ESB. Però, com sempre, decidir si quelcom és realment la
 peça ideal sorgirà de l'experiència. Naturalment, l'equip que hi ha darrera de Zato
-`pot ajudar <https://zato.io/support>`_. 
+`pot ajudar <https://zato.io/support.html>`_. 
 
 -----------------------------------------------------------
 Però havia sentit que SOA anava de XML, SOAP i web services
