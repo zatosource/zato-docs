@@ -84,7 +84,7 @@ contains the target's name.
                 final_callbacks = ['my.callback1', 'my.callback2']
 
                 # On output a Correlation ID assigned to the call is returned
-                cid = self.patterns.fanout.invoke(targets, callbacks, target_callbacks)
+                cid = self.patterns.fanout.invoke(targets, final_callbacks, target_callbacks)
 
 User-defined Correlation IDs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

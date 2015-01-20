@@ -4,7 +4,7 @@
 FTP usage examples
 ==================
 
-SQL databases are accessed through the
+FTP servers are accessed through the
 `fs <http://pythonhosted.org/fs/>`_
 library and 
 `any method <http://pythonhosted.org/fs/interface.html>`_
