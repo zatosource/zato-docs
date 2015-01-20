@@ -44,14 +44,15 @@ What ESB and SOA are anyway
     <blockquote>
     An excellent description of system-of-systems thinking
     <br/>
-      <a href="https://twitter.com/ncoghlan_dev/status/337907854944129025">Nick Coghlan</a>, Core Python developer
+      <a href="https://twitter.com/ncoghlan_dev/status/337907854944129025">Nick Coghlan</a>, Core Python Developer
     </blockquote>
     <br/>
 
 Also available in
-:doc:`ру́сский <esb-soa-ru>`
+:doc:`Català <esb-soa-ca>`,
+:doc:`Português <./esb-soa-pt>`
 and
-:doc:`Português <./esb-soa-pt>`.
+:doc:`ру́сский <esb-soa-ru>`.
 
 The ESB acronym and a related one - SOA - can be a source of confusion. ESB expands to
 an Enterprise Service Bus. SOA stands for Service Oriented Architecture.
