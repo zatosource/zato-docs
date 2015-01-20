@@ -315,7 +315,7 @@ to admins also sounds just fine.
 
 Everything that needs integration in a clear, well-defined environment is possibly
 a good fit for an ESB service but as always, deciding whether something really is
-a dream fit will follow from one's experience. Naturally, the team behind Zato
+a dream fit will follow from one's experience. Naturally, Zato's authors
 `can help <https://zato.io/support.html>`_.
 
 --------------------------------------------------------
