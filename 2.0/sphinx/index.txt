@@ -43,7 +43,7 @@ What makes Zato unique
 
 * **Protocols**, **industry standards** and **data formats** - HTTP, REST, JSON, SOAP, AMQP,
   JMS WebSphere MQ, ZeroMQ, Redis, SQL, Cassandra, Amazon S3, OpenStack Swift, Odoo/OpenERP,
-  SMTP, IMAP, publish/subscribe, FTP, RBAC, security and more
+  SMTP, IMAP, FTP, Solr, ElasticSearch, publish/subscribe, integration patterns, RBAC, security and more
 
 * **Commercial support** and **training** available. Growing **community** around the project.
 
