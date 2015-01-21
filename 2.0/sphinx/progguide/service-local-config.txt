@@ -12,6 +12,60 @@ In short, you can keep it anywhere you want, in any data source and you're not l
 to the choices described here but these are still recommendations you may want to
 consider using.
 
+.. _progguide-service-local-config-ini:
+
+INI files
+---------
+
+Each server's server.conf  file contains the :ref:`user_config <admin-guide-config-server-user_config>` stanza whose
+keys are labels pointing to paths the contents of which is made available to services in run-time.
+
+Assuming the configuration is:
+
+::
+
+   [user_config]
+   data1=./my1.ini
+   data2=/opt/data/my2.ini
+
+The contents of files will be available to services as:
+
+================= ===========================================
+File              Attribute
+================= ===========================================
+./my1.ini         self.user_config.data1
+/opt/data/my2.ini self.user_config.data2
+================= ===========================================
+
+Now supposing one of the files looks like:
+
+./my1.ini:
+
+::
+
+   [hello]
+   a_string=My string
+   a_list=sample,list,with,elements
+
+The exact values from the INI file will be converted to their expected Python types:
+
+::
+
+   from zato.server.service import Service
+   
+   class MyService(Service):
+   
+       def handle(self):
+           self.logger.info('INI string %r ', self.user_config.data1.my1.hello.a_string)
+           self.logger.info('INI list %r ', self.user_config.data1.my1.hello.a_list)
+
+::
+
+   INFO - INI string 'My string'
+   INFO - INI list ['sample', 'list', 'with', 'elements']
+
+The conversion works for strings and lists. If anything cannot be converted it is treated as a string.
+
 zato_extra_paths
 ----------------
 

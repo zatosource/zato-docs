@@ -747,7 +747,7 @@ user_config.*
 ~~~~~~~~~~~~~
 
 Each entry is a name of a config file while values are paths, possibly relative to the directory the server.conf file is in,
-containing :ref:`INI-style configuration <invalid-user_config-ini>` for services to use in runtime.
+containing :ref:`INI-style configuration <progguide-service-local-config-ini>` for services to use in runtime.
 
 .. _admin-guide-config-server-newrelic:
 

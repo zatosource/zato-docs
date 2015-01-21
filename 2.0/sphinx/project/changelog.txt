@@ -118,7 +118,7 @@
   compatible with popular log parsing tools, logging config uses YAML,
   subsystems have their own log files, web-admin's logs show IP of the user connecting to it
 
-* Ability for users to store configutation in their own :ref:`INI-style files <admin-guide-config-server-user_config>`
+* Ability for users to store configutation in their own :ref:`INI-style files <progguide-service-local-config-ini>`
 
 * :ref:`zato --version <cli_index_zato_version>` is clearer what exact git commit was used to build it
 
