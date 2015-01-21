@@ -114,11 +114,9 @@
 
 * New :doc:`hook <../progguide/service-hooks>` (:ref:`accept <progguide-write-service-accept>`) for filtering out requests that a service cannot process
 
-* Improved logging - subsystems have their own log files
-
-* Web-admin's logs showing IP of the user connecting to it
-
-* Apache-like HTTP access log for servers, compatible with popular log parsing tools
+* :ref:`Improved logging <admin-guide-config-server-logging>`- Apache-like HTTP access log for servers,
+  compatible with popular log parsing tools, logging config uses YAML,
+  subsystems have their own log files, web-admin's logs show IP of the user connecting to it
 
 * Ability for users to store configutation in their own :ref:`INI-style files <admin-guide-config-server-user_config>`
 
