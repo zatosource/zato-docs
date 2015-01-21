@@ -91,3 +91,65 @@ to support several distinct mechanisms:
                         p.delete(key)
                         
                     p.execute()
+
+.. _progguide-kvdb-lua:
+
+Calling Lua functions
+---------------------
+
+Each server contains a *config/repo/lua/user* directory, such as */opt/zato/env1/config/repo/lua/user*. Any Lua program
+placed in the directory in its own file will be available to services through the *self.kvdb.lua_container.run_lua* method.
+
+For example, given the program as below stored in a file called 'mylib.check_if_exists.lua':
+
+.. code-block:: lua
+
+    -- Checks whether a from_key exists and if it does renames it to to_key.
+    -- Returns an error code otherwise.
+    
+    -- Return codes:
+    -- 10 = Ok, renamed from_key -> to_key
+    -- 11 = No such from_key
+    
+    local from_key = KEYS[1]
+    local to_key = KEYS[2]
+    
+    if redis.call('exists', from_key) == 1 then
+        redis.call('rename', from_key, to_key)
+        return 10
+    else
+        return 11
+    end
+
+This is the Python code to invoke it in order to atomically check and rename a Redis key only if it exists.
+
+::
+
+    from zato.server.service import Service
+
+    class MyService(Service):
+        
+        def handle(self):
+
+            # Keys the program operates on, if any
+            keys = ['rename-from', 'rename-to']
+
+            # Value the program operates on, if any
+            values = None
+
+            # Both keys and values can be skipped if not needed,
+            # shown here for completeness.
+            out = self.kvdb.lua_container.run_lua('mylib.rename_if_exists', keys, values)
+
+            # 10 if renamed, 11 otherwise
+            self.logger.info('Rename result: %s', out)
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added means to invoke user-defined Lua functions
+1.0                 Added initially
+=================== ===================================================================

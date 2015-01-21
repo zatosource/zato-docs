@@ -138,7 +138,7 @@
 
 * Ability to dump threads on a user signal
 
-* User-defined Lua functions for Redis
+* User-defined :ref:`Lua functions <progguide-kvdb-lua>` for Redis
 
 * New :doc:`tests <../admin/cli/check-config>` run prior to starting of components make sure the latter are correctly configured
 
