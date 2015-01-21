@@ -50,7 +50,7 @@ they all complete, each of the callbacks is invoked.
                 # Callbacks to invoke when both services above finish
                 callbacks = ['my.callback1', 'my.callback2']
 
-                # On output a Correlation ID assigned to the call is returned
+                # Call's Correlation ID is returned on output
                 cid = self.patterns.fanout.invoke(targets, callbacks)
 
 On-target-completion callbacks
@@ -83,7 +83,7 @@ contains the target's name.
                 # Callbacks to invoke when both services above finish
                 final_callbacks = ['my.callback1', 'my.callback2']
 
-                # On output a Correlation ID assigned to the call is returned
+                # Call's Correlation ID is returned on output
                 cid = self.patterns.fanout.invoke(targets, final_callbacks, target_callbacks)
 
 User-defined Correlation IDs
@@ -125,7 +125,7 @@ Upon execution, each callback's :ref:`self.channel <progguide-write-service-chan
 *FANOUT_ON_FINAL* or *FANOUT_ON_TARGET* from 
 `zato.common.CHANNEL <https://github.com/zatosource/zato/blob/master/code/zato-common/src/zato/common/__init__.py>`_.
 
-On input, a callback's *self.request.payload* attribute will be a Python dictionary with the contents in the format as below:
+On input, a final callback's *self.request.payload* attribute will be a Python dictionary with the contents in the format as below:
 
 ::
 
@@ -135,13 +135,17 @@ On input, a callback's *self.request.payload* attribute will be a Python diction
    'on_final': ['my.cb1', 'zato.helpers.input-logger'],
    'data':
     {'my.service1': {
+      'service': 'my.service1',
       'response': 'My response',
+      'req_ts_utc': '2015-01-19 19:55:45',
       'resp_ts_utc': '2015-01-19 19:55:46',
       'ok': True,
       'exception': None,
       'cid': 'K05129BXK5ZJJABJ41CGPEMZG4J6'},
     'my.service2': {
+      'service': 'my.service2',
       'response': 'My response2',
+      'req_ts_utc': '2015-01-19 19:55:45',
       'resp_ts_utc': '2015-01-19 19:55:46',
       'ok': True,
       'exception': None,
@@ -153,9 +157,11 @@ Key         Notes
 req_ts_utc  When was the initial fan-out call executed, in UTC
 on_target   A list, if any, of callbacks to execute each time a target service completes
 on_final    A list of callbacks to invoke when all the targets complete
-data        A dictionary of data describing responses from target services:
+data        A dictionary of data describing responses from target services keyed by names of targets:
 
+            * service - name of a service (repeated)
             * response - response the service produced
+            * req_ts_utc - request timestamp in UTC (repeated)
             * resp_ts_utc - when was the response created, in UTC
             * ok - True/False depending on whether the call was successful (raised no exceptions) or not
             * exception - exception's traceback as string, if ok is not True
@@ -163,3 +169,24 @@ data        A dictionary of data describing responses from target services:
               *zato.request_ctx.fanout_cid* key -
               this is the same CID the source service was given on output from *self.patterns.fanout.invoke*
 =========== ======================================================================================================================
+
+On-target callbacks receive *self.request.payload* equal to an individual entry in the 'data' key above:
+
+::
+
+  {
+    'service': 'my.service1',
+    'response': 'My response',
+    'req_ts_utc': '2015-01-19 19:55:45',
+    'resp_ts_utc': '2015-01-19 19:55:46',
+    'ok': True,
+    'exception': None,
+    'cid': 'K05129BXK5ZJJABJ41CGPEMZG4J6'
+  }
+
+Similaties to Parallel Execution
+--------------------------------
+
+The feature is very similar to the :doc:`Parallel Execution <./parallel-exec>` pattern - the major difference being only that
+in Fan-out/Fan-in it is the final callbacks that are required while on-target ones are optional while in Parallel Execution
+there are no final callbacks while on-target are required.
