@@ -53,6 +53,8 @@ It's possible to store requests and responses belonging to service invocations t
 these documents you may be able to discover that a slow response stems for a particular
 set of input arguments.
 
+.. _progguide-debugging-run-in-fg:
+
 Running servers in foreground
 -----------------------------
 
