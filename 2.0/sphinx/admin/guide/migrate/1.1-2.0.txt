@@ -16,6 +16,7 @@ Please visit the `support options page <https://zato.io/support.html>`_ if any s
 The steps are executed in this order:
 
 * :ref:`Stopping components <admin-guide-migrate-1.1-2.0-stop-components>`
+* :ref:`Removing 1.1 <admin-guide-migrate-1.1-2.0-remove-1.1>`
 * :ref:`Upgrading Redis to 2.8.4+ <admin-guide-migrate-1.1-2.0-update-redis>`
 * :ref:`Installing binaries <admin-guide-migrate-1.1-2.0-install-binaries>`
 * :ref:`Updating ODB schema <admin-guide-migrate-1.1-2.0-upgrade-odb>`
@@ -81,6 +82,22 @@ Stopping components
       | master_proc_workers_pids       | None                                          |
       +--------------------------------+-----------------------------------------------+
 
+.. _admin-guide-migrate-1.1-2.0-remove-1.1:
+
+Removing 1.1
+============
+
+On each system Zato 1.1 is installed on, execute the following steps:
+
+* Back up any configuration stored in /opt/zato that may be still needed after migrating to 2.0
+
+* As root or an equivalent user, use the operating system's tools, such as *apt-get* to remove the 'zato' package containing Zato 1.1
+
+* Issue the following command, removing /opt/zato from the system
+
+  ::
+  
+    $ sudo rm -rf /opt/zato
 
 .. _admin-guide-migrate-1.1-2.0-update-redis:
 
@@ -100,7 +117,7 @@ Depending on the exact OS version used, Redis needs to be installed from additio
 Installing binaries
 ===================
 
-* As root or an equivalent user, :doc:`install Zato 2.0 <./../install-zato>` alongside 1.1 on each operating system any Zato
+* As root or an equivalent user, :doc:`install Zato 2.0 <./../install-zato>` on each operating system any Zato
   component is on.
 
 * Switch current user to *zato*.
