@@ -47,6 +47,29 @@ Name                                                Description
 :doc:`zato update<./update>`                        Updates parts of a Zato component
 =================================================== ==============================================================================
 
+.. _cli_index_zato_version:
+
+Displaying version
+------------------
+
+::
+
+  $ zato --version
+  Zato 2.0.0pre1.rev-33156d82
+  $ 
+
+Format:
+
+::
+
+  Zato $major.$minor.$micro.rev-$rev_id
+
+* $major - incremented on major releases, adding a lot of new functionality
+* $minor - incremented on minor releases, more gradual than major ones
+* $micro - incremented within minor releases when releasing fixes
+* $rev_id - `git revision ID <https://github.com/zatosource/zato>`_ used to `build <https://github.com/zatosource/zato-build/>`_ the release from
+
+
 .. _cli_index_common_options:
 
 Common options

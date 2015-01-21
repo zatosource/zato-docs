@@ -122,9 +122,9 @@
 
 * Ability for users to store configutation in their own :ref:`INI-style files <admin-guide-config-server-user_config>`
 
-* zato --version is clearer what exact git commit was used to build it
+* :ref:`zato --version <cli_index_zato_version>` is clearer what exact git commit was used to build it
 
-* Quickstart scripts remove stale PID files automatically
+* :doc:`Quickstart scripts <../admin/cli/quickstart-create>` remove stale PID files automatically
 
 * Started using async Postgres driver to improve performance
 
