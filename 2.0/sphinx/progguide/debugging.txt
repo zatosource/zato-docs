@@ -4,8 +4,8 @@
 Debugging
 =========
 
-Despite using Python and Zato, bugs will still happen - this is a reality you need
-to be prepared for and there's a couple of recommendations to make it less bothersome.
+Use logging
+-----------
 
 Upon encountering any abnormal situation you should make sure you know which
 version of the service you're dealing with. Either do it yourself or ask an administrator
@@ -36,13 +36,81 @@ understanding what sort of messages, and on which level, they should be particul
 on the lookout for - either manually or using any automated means. For instance, anything
 that's not WARN or more severe could be ignored by production admins.
 
+Samples
+-------
+
 Remember that Zato is able to collect sample 
 :doc:`service requests and responses <../web-admin/service-details/sample-req-resp>`. If a service
 possibly produces an incorrect response and you have access to other environment the same service
 is deployed in and the latter doesn't cause problems, you can compare its sample response and decide 
 when the former one's is proper or not.
 
+Slow responses
+--------------
+
 It's possible to store requests and responses belonging to service invocations that
 :doc:`took more than a specified amount of time <../web-admin/service-details/slow-responses>` to complete. By comparing
 these documents you may be able to discover that a slow response stems for a particular
 set of input arguments.
+
+Running servers in foreground
+-----------------------------
+
+Start servers using the *--fg* flag so they run in foreground logging to stdout. Afterwards, they can be stopped with Ctrl-C.
+
+::
+
+  $ zato start /path/to/server --fg
+
+.. image:: /gfx/progguide/server-fg.png
+   :align: center
+
+.. _progguide-debugging-dump-signal:
+
+Dumping threads and greenlets
+-----------------------------
+
+Upong receiving SIGURG a server will store information regarding all threads and greenlets in server.log. If running in foreground,
+the data will be displayed on stdout.
+
+The signal needs to be sent to the server's PID. Use :doc:`zato info <../admin/cli/info>` to obtain one, as below:
+
+::
+
+   $ zato info /path/to/server | grep master_proc_pid
+
+Supposing the PID is 7319, to dump all threads and greenlets:
+
+::
+
+   $ kill -SIGURG 7319
+
+This will log everything mentioned, including function parameters, local variables, code frames and the exact source code lines
+the code is currently on so it is possible to find out what was being executed at the moment the signal was received, as below:
+
+::
+
+   +--------------------------------+---------------------------------------------------------+
+   | 7319:<Greenlet at              |  File "/opt/zato/code/eggs/gevent-1.0-py2.7-linux-      |
+   | 0x7fa4c07ed410: <bound method  | x86_64.egg/gevent/greenlet.py", line 327, in run        |
+   | Job.run of                     |  result = self._run(*self.args, **self.kwargs)          |
+   | <zato.common.scheduler.Job     |  Arguments: run(self=<Greenlet at 0x7fa4c07ed410:       |
+   |                                |  <bound method Job.run of                               |
+   | object at 0x7fa4c0e483d0>>>    | <zato.common.scheduler.Job object at 0x7fa4c0e483d0>>>) |
+   |                                |  Local variables:                                       |
+   |                                |  {'self': <Greenlet at 0x7fa4c07ed410:                  |
+   |                                |     <bound method Job.run of                            |
+   |                                |   <zato.common.scheduler.Job                            |
+   |                                | object at 0x7fa4c0e483d0>>>}                            |
+   |                                |  File "/opt/zato/code/zato-                             |
+   |                                | common/src/zato/common/scheduler.py", line 251, in run  |
+   |                                |  self.main_loop()                                       |
+   |                                |  Arguments: run(                                        |
+   |                                |  self=<zato.common.scheduler.Job object at 0x7fa4c0e>)  |
+   |                                |  Local variables:                                       |
+   |                                |  {'_sleep': <function sleep at 0x7fa4de80b668>,         |
+   |                                |   '_utcnow': <built-in method utcnow>,                  |
+   |                                |   'now': datetime.datetime(2015, 1, 21, 9, 54, 30, 32), |
+   |                                |   'self':                                               |
+   |                                |    <zato.common.scheduler.Job object at 0x7fa4c0e>}     |
+   +--------------------------------+---------------------------------------------------------+

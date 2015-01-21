@@ -134,7 +134,7 @@
 
 * Made :doc:`service listings in web admin much faster <../web-admin/services/main>`
 
-* Ability to dump threads on a user signal
+* Ability to :ref:`dump threads and greenlets <progguide-debugging-dump-signal>` on a user signal
 
 * User-defined :ref:`Lua functions <progguide-kvdb-lua>` for Redis
 
