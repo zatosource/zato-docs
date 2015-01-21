@@ -482,12 +482,35 @@ type conversions:
   INFO - name:id, value:u'1', type:<type 'unicode'>
 
 
-======= ============================================================
-Name    Notes
-======= ============================================================
-AsIs    A pass-through marker, no conversions will be performed even
-        though normally one would've been attempted
-Boolean Converted to a bool object
-Integer Converted to an integer
-Unicode Converted to a unicode object
-======= ============================================================
+=========== ====================================================================
+Name        Notes
+=========== ====================================================================
+AsIs        A pass-through marker, no conversions will be performed even
+            though normally one would've been attempted
+Boolean     Converted to a bool object
+CSV         Converted to/from comma-separated values
+Dict        Converted to a dictionary
+Integer     Converted to an integer
+List        Converted to a list
+ListOfDicts Converted to a list of dictionaries
+Opaque      Similar to AsIs but works with arbitrarily nested structures as well
+Unicode     Converted to a unicode object
+=========== ====================================================================
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added new types:
+
+                    * CSV
+                    * Dict
+                    * Float
+                    * List
+                    * ListOfDicts
+                    * Opaque
+
+1.0                 Added initially
+=================== ===================================================================
