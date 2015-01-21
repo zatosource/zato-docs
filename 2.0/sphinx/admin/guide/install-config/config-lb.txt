@@ -130,57 +130,38 @@ Logging configuration - logging.conf
 Example
 ```````
 
+Format
+``````
+
 ::
 
-    [loggers]
-    keys=root,zato
-    
-    [handlers]
-    keys=rotating_file_handler, stdout_handler
-    
-    [formatters]
-    keys=default_formatter, colour_formatter
-    
-    [logger_root]
-    level=WARN
-    handlers=rotating_file_handler, stdout_handler
-    
-    [logger_zato]
-    level=DEBUG
-    handlers=rotating_file_handler, stdout_handler
-    qualname=zato
-    propagate=0
-    
-    [handler_rotating_file_handler]
-    class=logging.handlers.RotatingFileHandler
-    formatter=default_formatter
-    args=('./logs/lb-agent.log', 'a', 20000000, 10)
-    
-    [handler_stdout_handler]
-    class=StreamHandler
-    formatter=colour_formatter
-    args=(sys.stdout,)
-    
-    [formatter_default_formatter]
-    format=%(asctime)s - %(levelname)s - %(message)s
-    
-    [formatter_colour_formatter]
-    format=%(asctime)s - %(levelname)s - %(message)s
-    class=zato.common.util.ColorFormatter
+    loggers:
+        '':
+            level: INFO
+            handlers: [stdout, default]
+        zato:
+            level: INFO
+            handlers: [stdout, default]
+            qualname: zato
+            propagate: false
+        zato_access_log:
+            level: INFO
+            handlers: [http_access_log]
+            qualname: zato_access_log
+            propagate: false
 
 Discussion
 ``````````
+
+The log applies only to load-balancer's agent - not to the load-balancer itself.
 
 Uses `Python's own syntax <http://docs.python.org/2.7/library/logging.config.html#configuration-file-format>`_
 to configure how and where logging messages should be  written to.
 
 Of special interest are keys:
 
-* logger_root.level - sets the log level for anything but Zato 
-* logger_zato.level - sets the log level for Zato and nothing else
-
-By default logs are written out to local files but it's possible to reconfigure
-the logging to use any other destination Python itself supports such as syslog, ZeroMQ etc.
+* ''.level - sets the log level for anything but Zato 
+* zato.level - sets the log level for main Zato logger
 
 .. _admin-guide-config-lb-crypto:
 
@@ -194,3 +175,13 @@ be password-protected.
 * zato-lba-pub-key.pem - public key
 * zato-lba-cert.pem - certificate
 * zato-lba-ca-certs.pem - a list of CA certificates web admin should trust
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Logging configuration's format changed from INI to YAML
+1.0                 Added initially
+=================== ===================================================================

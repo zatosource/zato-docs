@@ -81,8 +81,6 @@
 
 * :ref:`Statistics in Redis pruned periodically <admin-guide-config-stats.expire_after>`
 
-* New SIO types: CSV, Dict, Float, ForceType, List, ListOfDicts, Opaque
-
 * Message mappers
 
 * Distributed locks
@@ -90,6 +88,8 @@
 * Date/time utils
 
 * Dictionary and list message navigation
+
+* New :doc:`Simple IO (SIO) <../progguide/sio>` types: CSV, Dict, Float, List, ListOfDicts, Opaque
 
 * Added :doc:`RPM packages for RHEL/CentOS 7 <../admin/guide/install-rhel>`
 
@@ -103,7 +103,7 @@
 
 * Ability to output HTML in services using Django templates
 
-* Logging configuration migrated to YAML
+* :ref:`Logging configuration <admin-guide-config-server-logging>` migrated to YAML
 
 * Ability to :ref:`hot-deploy code directly from a repository checkout <admin-guide-config-server-hot_deploy.delete_after_pick_up>`
   (i.e. from GitHub)

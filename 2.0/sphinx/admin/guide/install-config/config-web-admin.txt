@@ -205,43 +205,28 @@ Logging configuration - logging.conf
 Example
 ```````
 
+Logging configuration - logging.conf
+------------------------------------
+
+Format
+``````
+
 ::
 
-    [loggers]
-    keys=root,zato
-    
-    [handlers]
-    keys=rotating_file_handler, stdout_handler
-    
-    [formatters]
-    keys=default_formatter, colour_formatter
-    
-    [logger_root]
-    level=WARN
-    handlers=rotating_file_handler, stdout_handler
-    
-    [logger_zato]
-    level=DEBUG
-    handlers=rotating_file_handler, stdout_handler
-    qualname=zato
-    propagate=0
-    
-    [handler_rotating_file_handler]
-    class=logging.handlers.RotatingFileHandler
-    formatter=default_formatter
-    args=('./logs/web-admin.log', 'a', 20000000, 10)
-    
-    [handler_stdout_handler]
-    class=StreamHandler
-    formatter=colour_formatter
-    args=(sys.stdout,)
-    
-    [formatter_default_formatter]
-    format=%(asctime)s - %(levelname)s - %(message)s
-    
-    [formatter_colour_formatter]
-    format=%(asctime)s - %(levelname)s - %(message)s
-    class=zato.common.util.ColorFormatter
+    loggers:
+        '':
+            level: INFO
+            handlers: [stdout, default]
+        zato:
+            level: INFO
+            handlers: [stdout, default]
+            qualname: zato
+            propagate: false
+        zato_access_log:
+            level: INFO
+            handlers: [http_access_log]
+            qualname: zato_access_log
+            propagate: false
 
 Discussion
 ``````````
@@ -251,11 +236,8 @@ to configure how and where logging messages should be  written to.
 
 Of special interest are keys:
 
-* logger_root.level - sets the log level for anything but Zato 
-* logger_zato.level - sets the log level for Zato and nothing else
-
-By default logs are written out to local files but it's possible to reconfigure
-the logging to use any other destination Python itself supports such as syslog, ZeroMQ etc.
+* ''.level - sets the log level for anything but Zato 
+* zato.level - sets the log level for main Zato logger
 
 .. _admin-guide-config-web-admin-crypto:
 
@@ -276,9 +258,8 @@ Changelog
 =================== ===================================================================
 Version             Notes
 =================== ===================================================================
-2.0                 New web-admin.conf field:
-
-                    * OPENID_SSO_SERVER_URL
+2.0                 * New web-admin.conf field: OPENID_SSO_SERVER_URL
+                    * Logging configuration's format changed from INI to YAML
 
 1.0                 Added initially
 =================== ===================================================================

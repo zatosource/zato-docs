@@ -446,9 +446,9 @@ deploy a service module being developed after each save.
 This can be used in conjunction with :ref:`hot_deploy.pickup_dir <admin-guide-config-server-hot_deploy.pickup_dir>`
 in order to make hot-deployment work directly from code repository clone.
 
-For instance, hot_deploy.pickup_dir to a directory a GitHub clone with services is in and setting
+For instance, setting hot_deploy.pickup_dir to a directory of services under a GitHub clone and configuring
 hot_deploy.delete_after_pick_up to False means that each time git pull receives new services
-they will automatically deployed onto all servers in a cluster.
+they will be automatically deployed onto all servers in a cluster.
 
 hot_deploy.current_work_dir
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -818,53 +818,25 @@ Selectively turns off certain Zato compomenets. Currently supported keys are:
 Logging configuration - logging.conf
 ------------------------------------
 
-Each entry is a service, along with its potentially empty
-input (self.request_raw_request),
-that will be invoked after it is certain that currently starting gunicorn worker is not the first one to run.
-Input can be a list of values separated by commas.
-
-This lets one run startup code only if the current worker is not the first one.
-
-Example
-```````
+Format
+``````
 
 ::
 
-    [loggers]
-    keys=root,zato
-    
-    [handlers]
-    keys=rotating_file_handler, stdout_handler
-    
-    [formatters]
-    keys=default_formatter, colour_formatter
-    
-    [logger_root]
-    level=WARN
-    handlers=rotating_file_handler, stdout_handler
-    
-    [logger_zato]
-    level=DEBUG
-    handlers=rotating_file_handler, stdout_handler
-    qualname=zato
-    propagate=0
-    
-    [handler_rotating_file_handler]
-    class=logging.handlers.RotatingFileHandler
-    formatter=default_formatter
-    args=('./logs/server.log', 'a', 20000000, 10)
-    
-    [handler_stdout_handler]
-    class=StreamHandler
-    formatter=colour_formatter
-    args=(sys.stdout,)
-    
-    [formatter_default_formatter]
-    format=%(asctime)s - %(levelname)s - %(message)s
-    
-    [formatter_colour_formatter]
-    format=%(asctime)s - %(levelname)s - %(message)s
-    class=zato.common.util.ColorFormatter
+    loggers:
+        '':
+            level: INFO
+            handlers: [stdout, default]
+        zato:
+            level: INFO
+            handlers: [stdout, default]
+            qualname: zato
+            propagate: false
+        zato_access_log:
+            level: INFO
+            handlers: [http_access_log]
+            qualname: zato_access_log
+            propagate: false
 
 Discussion
 ``````````
@@ -874,11 +846,33 @@ to configure how and where logging messages should be  written to.
 
 Of special interest are keys:
 
-* logger_root.level - sets the log level for anything but Zato 
-* logger_zato.level - sets the log level for Zato and nothing else
+* ''.level - sets the log level for anything but Zato 
+* zato.level - sets the log level for main Zato logger
+
+Log files
+`````````
+
+======================= ==========================================================================================================
+Name                    Notes
+======================= ==========================================================================================================
+admin.log               I/O of admin services used for reconfiguration of running servers 
+connector.log           Messages stored by connectors to AMQP, WebSphere MQ and ZeroMQ
+http_access.log         An Apache-compatible HTTP access log
+kvdb.log                Messages related to key/value DB (Redis)
+pubsub.log              Messages related to publish/subscribe
+pubsub-overflown.log    Publish/subscribe messages that could not be placed on topics because they were full
+rbac.log                Messages related to Role-Based Access Control (RBAC)
+scheduler.log           Messages related to the scheduler
+server.log              Main server log where user services store information using *self.logger*
+singleton.log           Messages related to internal singleton processes
+======================= ==========================================================================================================
+
+
+Using alternative loggers
+`````````````````````````
 
 By default logs are written out to local files but it's possible to reconfigure
-the logging to use any other destination Python itself supports such as syslog, ZeroMQ etc.
+the logging to use any other destination Python itself supports such as syslog or ZeroMQ.
 
 .. _admin-guide-config-server-service-sources:
 
@@ -953,6 +947,8 @@ Version             Notes
                     * rbac.*
 
                     Added new *odb.engine* values: mysql and sqlite
+
+                    Logging configuration's format changed from INI to YAML
 
 1.0                 Added initially
 =================== ===================================================================
