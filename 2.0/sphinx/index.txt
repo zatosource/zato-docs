@@ -224,6 +224,7 @@ Programming guide
       :doc:`Python client<progguide/clients/python>` |
       :doc:`Security<progguide/security>` |
       :doc:`Where to keep service-local config<progguide/service-local-config>` |
+      :doc:`HTML with Django templates<progguide/html>` |
       :doc:`Helpers<progguide/helpers>` |
       :doc:`Documenting<progguide/documenting>`
 

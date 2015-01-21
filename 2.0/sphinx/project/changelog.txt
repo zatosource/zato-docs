@@ -101,7 +101,7 @@
 
 * Framework for API testing (https://github.com/zatosource/zato-apitest)
 
-* Ability to output HTML in services using Django templates
+* Ability to :doc:`output HTML <../progguide/html>` in services using Django templates
 
 * :ref:`Logging configuration <admin-guide-config-server-logging>` migrated to YAML
 
