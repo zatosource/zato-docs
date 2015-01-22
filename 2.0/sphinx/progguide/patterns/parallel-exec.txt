@@ -95,7 +95,8 @@ On input, a callback's *self.request.payload* attribute will be a Python diction
 ::
 
   {
-    'service': 'my.service1',
+    'source': 'parallel1.my-service',
+    'target': 'my.service1',
     'response': 'My response',
     'req_ts_utc': '2015-01-19 19:55:45',
     'resp_ts_utc': '2015-01-19 19:55:46',
@@ -107,7 +108,8 @@ On input, a callback's *self.request.payload* attribute will be a Python diction
 =========== ======================================================================================================================
 Key         Notes
 =========== ======================================================================================================================
-service     Name of the service the callback is executed after
+source      Name of a service originally issuing the parallel execution call
+target      Name of a target service the callback is executed for
 response    Response the service produced
 req_ts_utc  When was the initial parallel execution call issued, in UTC
 resp_ts_utc When was the response created, in UTC

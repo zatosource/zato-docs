@@ -130,12 +130,14 @@ On input, a final callback's *self.request.payload* attribute will be a Python d
 ::
 
   {
+   'source': 'fanout1.my-service',
    'req_ts_utc': '2015-01-19 19:55:46',
    'on_target': '',
    'on_final': ['my.cb1', 'zato.helpers.input-logger'],
    'data':
     {'my.service1': {
-      'service': 'my.service1',
+      'source': 'fanout1.my-service',
+      'target': 'my.service1',
       'response': 'My response',
       'req_ts_utc': '2015-01-19 19:55:45',
       'resp_ts_utc': '2015-01-19 19:55:46',
@@ -143,7 +145,8 @@ On input, a final callback's *self.request.payload* attribute will be a Python d
       'exception': None,
       'cid': 'K05129BXK5ZJJABJ41CGPEMZG4J6'},
     'my.service2': {
-      'service': 'my.service2',
+      'source': 'fanout1.my-service',
+      'target': 'my.service2',
       'response': 'My response2',
       'req_ts_utc': '2015-01-19 19:55:45',
       'resp_ts_utc': '2015-01-19 19:55:46',
@@ -154,12 +157,14 @@ On input, a final callback's *self.request.payload* attribute will be a Python d
 =========== ======================================================================================================================
 Key         Notes
 =========== ======================================================================================================================
+source      Name of the original service issuing the fan-out/fan-in call
 req_ts_utc  When was the initial fan-out call executed, in UTC
 on_target   A list, if any, of callbacks to execute each time a target service completes
 on_final    A list of callbacks to invoke when all the targets complete
 data        A dictionary of data describing responses from target services keyed by names of targets:
 
-            * service - name of a service (repeated)
+            * source - name of the original service issuing the fan-out/fan-in call (repeated)
+            * target - name of a service, one of the targets (repeated)
             * response - response the service produced
             * req_ts_utc - request timestamp in UTC (repeated)
             * resp_ts_utc - when was the response created, in UTC
@@ -175,7 +180,8 @@ On-target callbacks receive *self.request.payload* equal to an individual entry 
 ::
 
   {
-    'service': 'my.service1',
+    'source': 'fanout1.my-service',
+    'target': 'my.service1',
     'response': 'My response',
     'req_ts_utc': '2015-01-19 19:55:45',
     'resp_ts_utc': '2015-01-19 19:55:46',
