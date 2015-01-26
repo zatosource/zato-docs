@@ -680,6 +680,13 @@ How many times the service has run, including the current invocation.
 
   INFO - My usage is 38
 
+.. _progguide-write-service-time:
+
+time
+````
+
+Accesses utilities for working with date/time. Documented in :doc:`their own chapter <./datetime>`.
+
 .. _progguide-write-service-wsgi_environ:
   
 wsgi_environ
@@ -1213,6 +1220,7 @@ log_output
       u'processing_time_raw': datetime.timedelta(0, 0, 133), 
       u'job_type': None, u'data_format': None, u'slow_threshold': 99999, 
       u'environ': {}, u'usage': 8}
+
 
 .. _progguide-write-service-translate:
 

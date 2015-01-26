@@ -222,6 +222,7 @@ Programming guide
       :doc:`Scheduler<progguide/scheduler>` |
       :doc:`Invoking other services <progguide/invoking-services>` |
       :doc:`Distributed locks<progguide/dist-locks>` |
+      :doc:`Date/time utils<progguide/datetime>` |
       :doc:`Python client<progguide/clients/python>` |
       :doc:`Security<progguide/security>` |
       :doc:`Where to keep service-local config<progguide/service-local-config>` |

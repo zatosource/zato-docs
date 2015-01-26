@@ -85,7 +85,7 @@
 
 * :doc:`Distributed locks <../progguide/dist-locks>`
 
-* Date/time utils
+* :doc:`Date/time utils <../progguide/datetime>`
 
 * Dictionary and list message navigation
 
