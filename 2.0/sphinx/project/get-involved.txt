@@ -1,7 +1,8 @@
-Getting involved
-================
+License and getting involved
+============================
 
-Want to help? **Superb!**
+Want to contribute ideas or code? **Superb!** The project is under `LGPL <https://github.com/zatosource/zato/blob/master/LICENSE.txt>`_
+- a liberal license allowing for pretty much unlimited usage and modifications.
 
 * Programmers should familiarize themselves with 
   `the source code on GitHub <https://github.com/zatosource/zato/>`_.
@@ -14,7 +15,7 @@ Want to help? **Superb!**
   
   * All other parts are in Python and make heavy use of other open-source projects,
     there are 
-    `almost 100 dependencies listed in buildout.cfg <https://github.com/zatosource/zato/blob/master/code/buildout.cfg>`_
+    `150+ dependencies listed in buildout.cfg <https://github.com/zatosource/zato/blob/master/code/buildout.cfg>`_
 
 * Designers are always needed to help make 
   `the website <https://zato.io>`_, 

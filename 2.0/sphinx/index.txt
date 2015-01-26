@@ -221,6 +221,7 @@ Programming guide
       :doc:`Key/value DB (Redis)<progguide/kvdb>` |
       :doc:`Scheduler<progguide/scheduler>` |
       :doc:`Invoking other services <progguide/invoking-services>` |
+      :doc:`Distributed locks<progguide/dist-locks>` |
       :doc:`Python client<progguide/clients/python>` |
       :doc:`Security<progguide/security>` |
       :doc:`Where to keep service-local config<progguide/service-local-config>` |
@@ -238,7 +239,7 @@ Programming guide
       :doc:`Fan-out/fan-in <progguide/patterns/fan-out-fan-in>` |
       :doc:`Parallel execution <progguide/patterns/parallel-exec>` |
       :doc:`Invoke/retry <progguide/patterns/invoke-retry>` |
-      :doc:`Async invocations with callbacks <progguide/patterns/async-invoke>` |
+      :doc:`Async invocation with a callback <progguide/patterns/async-invoke>` |
       :doc:`Designing sync and async message flow<progguide/sync-async/flow>`
 
     * **Request/response documents:**
@@ -384,7 +385,7 @@ Public REST and SOAP server API
 Zato, the open-source project
 ==============================
 
-    * :doc:`Getting involved<project/get-involved>` |
+    * :doc:`License and getting involved<project/get-involved>` |
       :doc:`Diversity statement<project/diversity>` |
       :doc:`Changelog<project/changelog>`
 

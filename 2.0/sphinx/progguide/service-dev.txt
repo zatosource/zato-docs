@@ -1104,6 +1104,13 @@ a service's
 instead of its
 :ref:`name <progguide-write-service-name>`.
 
+.. _progguide-write-service-lock:
+
+lock
+````
+
+Creates distributed locks - documented in :doc:`its own chapter <dist-locks>`.
+
 .. _progguide-write-service-log_input:
 
 log_input

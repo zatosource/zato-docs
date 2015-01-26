@@ -83,7 +83,7 @@
 
 * Message mappers
 
-* Distributed locks
+* :doc:`Distributed locks <../progguide/dist-locks>`
 
 * Date/time utils
 

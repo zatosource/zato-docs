@@ -90,7 +90,7 @@ User-defined Correlation IDs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Users can provide their own Correlation IDs to invoke the services with. It is user's responsibility to ensure the IDs are sufficiently
-enough and there will be no duplicates, should that happen - results are undefined.
+unique and there will be no duplicates, should that happen - results are undefined.
 
 ::
 
