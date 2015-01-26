@@ -46,8 +46,8 @@ Usage example
                 # Create an HTML email with attachments
                 msg = SMTPMessage()
                 msg.subject = 'Hello'
-                msg.to = 'dsuch@zato.io'
-                msg.from_ = 'zatobot1@zato.io'
+                msg.to = 'hello@invalid'
+                msg.from_ = 'hello@invalid'
                 msg.body = '<b>Hello, here are the attachments</b>'
                 msg.is_html = True
         

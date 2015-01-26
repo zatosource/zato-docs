@@ -161,21 +161,3 @@ Assuming a client certificate with the following fields ..
 .. image:: /gfx/admin/tls/channel-custom-fields.png
 
 Note that the certificate's fingerprint will not contain semicolons unlike in the output from openssl.
-
-Confirming which fields the load-balancer provided
---------------------------------------------------
-
-:ref:`zato.helpers.tls-logger <invalid>` is a convenient helper service which, having been mounted on
-an HTTP channel, logs to server.log all the SSL/TLS-related fields provided to servers
-by a load-balancer hence allowing users to confirm the load-balancer's configuration, for instance:
-
-::
-
-    INFO - 'HTTP_X_ZATO_TLS_COMMON_NAME': 'Client4'
-    INFO - 'HTTP_X_ZATO_TLS_FINGERPRINT': '03D5F9BBB6003E8629823D6F811D70C89F040C2F'
-
-A warning is printed out if no such fields were provided:
-
-::
-
-  WARNING - No HTTP_X_ZATO_TLS_* headers found

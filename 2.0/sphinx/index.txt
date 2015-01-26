@@ -197,7 +197,8 @@ Programming guide
 
     * **Examples**
       :doc:`Overview <progguide/examples/index>` |
-      :doc:`HTTP <progguide/examples/http>` |
+      :doc:`HTTP (REST) <progguide/examples/http>` |
+      :doc:`REST publish/subscribe <progguide/examples/pubsub>` |
       :doc:`SimpleIO (SIO) <progguide/examples/sio>` |
       :doc:`JSON <progguide/examples/json>` |
       :doc:`XML <progguide/examples/xml>` |
@@ -210,7 +211,17 @@ Programming guide
       :doc:`Redis <progguide/examples/redis>` |
       :doc:`Scheduler <progguide/examples/scheduler>` |
       :doc:`SQL <progguide/examples/sql>` |
-      :doc:`ZeroMQ <progguide/examples/zmq>`
+      :doc:`ZeroMQ <progguide/examples/zmq>` |
+      :doc:`Cassandra CQL <progguide/examples/cassandra>` |
+      :doc:`SMTP <progguide/examples/smtp>` |
+      :doc:`IMAP <progguide/examples/imap>` |
+      :doc:`Amazon S3 <progguide/examples/aws/s3>` |
+      :doc:`OpenStack Swift <progguide/examples/openstack/swift>` |
+      :doc:`ElasticSearch <progguide/examples/es>` |
+      :doc:`Solr <progguide/examples/solr>` |
+      :doc:`Odoo (OpenERP) <progguide/examples/odoo>` |
+      :doc:`JSON Pointers <progguide/examples/json-pointer>` |
+      :doc:`XPath <progguide/examples/json-pointer>`
 
     * **Developing services and applications:**
       :doc:`Overview <progguide/overview>` |

@@ -1,8 +1,8 @@
 .. highlight:: python
    :linenothreshold: 0
 
-HTTP programming examples
-=========================
+HTTP (REST) programming examples
+================================
 
 .. _progguide-examples-http-exposing:
 
@@ -18,6 +18,16 @@ create a
 For any other data format, create a plain 
 :doc:`HTTP channel <../../web-admin/channels/plain-http>`
 without setting a data format.
+
+REST-based services and external resources
+-------------------------------------------
+
+Dedicated chapters go through how to work with:
+
+   * :doc:`REST services <../rest/services>`
+   * :doc:`Channels <../rest/channels>`
+   * :doc:`Outgoing connections <../rest/outconns>`
+   * A convenience :doc:`JSON adapter <../rest/json-adapter>`
 
 .. _progguide-examples-http-raw-request:
 

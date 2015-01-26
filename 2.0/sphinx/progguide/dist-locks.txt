@@ -14,7 +14,7 @@ allows one to form advanced interactions between locks and services.
 
 Services can either wait for a lock to be available or give up immediately if another service is already holding one.
 
-All locks eventually time out and disappear so that, should services fail to release them, they will with time become available again.
+All locks eventually time out and disappear so they with time become available again.
 
 API and usage examples
 ----------------------

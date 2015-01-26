@@ -11,7 +11,7 @@ Each service can automatically access external resources using a range of protoc
 documented in subsequent chapters. 
 
 HTTP-based publish/subscribe offers another alternative to direct messaging between applications
-and is :doc:`documented <todo>` separately.
+and is :doc:`documented <../../pubsub/index>` separately.
 
 Some of the protocols are synchronous while communicating over the rest is 
 performed asynchronously, in a fire-and-forget manner.
