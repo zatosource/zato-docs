@@ -215,8 +215,8 @@ Programming guide
       :doc:`Cassandra CQL <progguide/examples/cassandra>` |
       :doc:`SMTP <progguide/examples/smtp>` |
       :doc:`IMAP <progguide/examples/imap>` |
-      :doc:`Amazon S3 <progguide/examples/aws/s3>` |
-      :doc:`OpenStack Swift <progguide/examples/openstack/swift>` |
+      :doc:`Amazon S3 <progguide/examples/cloud/aws/s3>` |
+      :doc:`OpenStack Swift <progguide/examples/cloud/openstack/swift>` |
       :doc:`ElasticSearch <progguide/examples/es>` |
       :doc:`Solr <progguide/examples/solr>` |
       :doc:`Odoo (OpenERP) <progguide/examples/odoo>` |
@@ -418,6 +418,7 @@ Zato, the open-source project
    progguide/*
    progguide/clients/*
    progguide/examples/*
+   progguide/examples/cloud/aws/*
    progguide/outconn/*
    progguide/patterns/*
    progguide/rest/*

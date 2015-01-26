@@ -1,0 +1,55 @@
+.. highlight:: python
+   :linenothreshold: 0
+
+IMAP
+====
+
+After creating
+:doc:`an IMAP connection <../../web-admin/email/imap>`
+messages can be fetched, mark as seen and deleted as below.
+
+.. _progguide-examples-imap-receive:
+
+Receiving e-mails
+-----------------
+
+::
+
+        from zato.server.service import Service
+        
+        class MyService(Service):
+            def handle(self):
+                conn = self.email.imap.get('My Connection').conn
+        
+                for msg_id, msg in conn.get():
+        
+                    # Access the message
+                    self.logger.info(msg.data)
+
+.. _progguide-examples-imap-mark-seen:
+
+Marking messages seen
+---------------------
+
+Call *.mark_seen()* on a message object to mark it as seen.
+
+::
+
+        from zato.server.service import Service
+        
+        class MyService(Service):
+            def handle(self):
+                conn = self.email.imap.get('My Connection').conn
+        
+                for msg_id, msg in conn.get():
+        
+                    # Access the message
+                    self.logger.info(msg.data)
+        
+                    # To mark the message seen
+                    msg.mark_seen()
+
+.. _progguide-examples-imap-delete:
+
+Deleting messages
+-----------------

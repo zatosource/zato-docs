@@ -107,4 +107,11 @@ Topic                                       Examples
                                             * Sending :ref:`HTML e-mails <progguide-examples-smtp-html>`
                                             * Sending :ref:`e-mails with attachments <progguide-examples-smtp-attachments>`
 
+:doc:`IMAP <./imap>`                        * :ref:`Receiving e-mails <progguide-examples-imap-receive>`
+                                            * :ref:`Marking messages seen <progguide-examples-imap-mark-seen>`
+                                            * :ref:`Deleting messages <progguide-examples-imap-delete>`
+
+:doc:`Amazon S3 <./cloud/aws/s3>`           * :ref:`Creating key/value pairs in S3 buckets <progguide-examples-cloud-aws-s3-create>`
+                                            * :ref:`Accessing Boto <progguide-examples-cloud-aws-s3-boto>`
+
 =========================================== ================================================================================================
