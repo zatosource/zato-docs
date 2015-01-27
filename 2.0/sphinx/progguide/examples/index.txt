@@ -129,4 +129,8 @@ Topic                                             Examples
 
 :doc:`Odoo (OpenERP) <./odoo>`                    * :ref:`Issuing requests <progguide-examples-odoo-req>`
 
+:doc:`JSON Pointers <./json-pointer>`             * :ref:`Evaluating expressions <progguide-examples-json-pointer-expr>`
+
+:doc:`XPath <./xpath>`                            * :ref:`Evaluating expressions <progguide-examples-xpath-expr>`
+
 ================================================= =================================================================================================
