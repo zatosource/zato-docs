@@ -71,7 +71,8 @@ Topic                                             Examples
 
 :doc:`SOAP <./soap>`                              * :ref:`Accessing SOAP request <progguide-examples-soap-request>`
                                                   * :ref:`Creating responses <progguide-examples-soap-response>`
-                                                  * :ref:`Invoking a SOAP service <progguide-examples-soap-invoking>`
+                                                  * :ref:`Invoking a SOAP service (from WSDL) <progguide-examples-soap-invoking-wsdl>`
+                                                  * :ref:`Invoking a SOAP service (no WSDL) <progguide-examples-soap-invoking-no-wsdl>`
 
 :doc:`CSV <./csv>`                                * :ref:`Reading CSV on input <progguide-examples-csv-request>`
                                                   * :ref:`Producing CSV <progguide-examples-csv-response>`
