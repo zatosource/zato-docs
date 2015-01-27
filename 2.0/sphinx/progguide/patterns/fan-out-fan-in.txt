@@ -190,8 +190,8 @@ On-target callbacks receive *self.request.payload* equal to an individual entry 
     'cid': 'K05129BXK5ZJJABJ41CGPEMZG4J6'
   }
 
-Similaties to Parallel Execution
---------------------------------
+Similarities to Parallel Execution
+----------------------------------
 
 The feature is very similar to the :doc:`Parallel Execution <./parallel-exec>` pattern - the major difference being only that
 in Fan-out/Fan-in it is the final callbacks that are required while on-target ones are optional while in Parallel Execution

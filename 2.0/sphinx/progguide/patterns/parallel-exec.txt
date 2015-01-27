@@ -120,8 +120,8 @@ cid         Correlation ID the service was given to its :ref:`self.wsgi_environ 
             this is the same CID the source service was given on output from *self.patterns.parallel.invoke*
 =========== ======================================================================================================================
 
-Similaties to Fan-out/Fan-in
-----------------------------
+Similarities to Fan-out/Fan-in
+------------------------------
 
 The feature is very similar to the :doc:`Fan-out/Fan-in <./parallel-exec>` pattern - in addition to on-target callbacks from
 Parallel Execution, Fan-out/Fan-in adds callbacks that are executed only when all of the targets finish.

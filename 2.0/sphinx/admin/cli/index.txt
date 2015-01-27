@@ -55,7 +55,7 @@ Displaying version
 ::
 
   $ zato --version
-  Zato 2.0.0pre1.rev-33156d82
+  Zato 2.0.0.rev-55e0ec28
   $ 
 
 Format:
