@@ -213,7 +213,7 @@ Programming guide
       :doc:`Solr <progguide/examples/search/solr>` |
       :doc:`Odoo (OpenERP) <progguide/examples/odoo>` |
       :doc:`JSON Pointers <progguide/examples/json-pointer>` |
-      :doc:`XPath <progguide/examples/json-pointer>`
+      :doc:`XPath <progguide/examples/xpath>`
 
     * **Developing services and applications:**
       :doc:`Overview <progguide/overview>` |
