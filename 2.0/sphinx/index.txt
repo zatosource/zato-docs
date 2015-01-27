@@ -419,6 +419,7 @@ Zato, the open-source project
    progguide/clients/*
    progguide/examples/*
    progguide/examples/cloud/aws/*
+   progguide/examples/cloud/openstack/*
    progguide/outconn/*
    progguide/patterns/*
    progguide/rest/*

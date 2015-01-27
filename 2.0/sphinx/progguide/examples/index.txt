@@ -36,82 +36,85 @@ and
   fact they're invoked means that previous authentication/authorization layers granted a client
   application access. You don't need to code security.
 
-=========================================== ================================================================================================
-Topic                                       Examples
-=========================================== ================================================================================================
-:doc:`HTTP (REST) <./http>`                 * :ref:`Exposing a service over HTTP <progguide-examples-http-exposing>`
-                                            * :ref:`Accessing raw request <progguide-examples-http-raw-request>`
-                                            * :ref:`Accessing request headers <progguide-examples-http-request-headers>`
-                                            * :ref:`Accessing request URL query parameters <progguide-examples-http-access-url-query>`
-                                            * :ref:`Setting response headers <progguide-examples-http-response-headers>`
-                                            * :ref:`Setting content type and status code <progguide-examples-http-content-type-status-code>`
-                                            * :ref:`Returning attachments <progguide-examples-http-attachments>`
-                                            * REST services and connections - documented in their own chapters:
+================================================= =================================================================================================
+Topic                                             Examples
+================================================= =================================================================================================
+:doc:`HTTP (REST) <./http>`                       * :ref:`Exposing a service over HTTP <progguide-examples-http-exposing>`
+                                                  * :ref:`Accessing raw request <progguide-examples-http-raw-request>`
+                                                  * :ref:`Accessing request headers <progguide-examples-http-request-headers>`
+                                                  * :ref:`Accessing request URL query parameters <progguide-examples-http-access-url-query>`
+                                                  * :ref:`Setting response headers <progguide-examples-http-response-headers>`
+                                                  * :ref:`Setting content type and status code <progguide-examples-http-content-type-status-code>`
+                                                  * :ref:`Returning attachments <progguide-examples-http-attachments>`
+                                                  * REST services and connections - documented in their own chapters:
 
-                                              * :doc:`Services <../rest/services>`
-                                              * :doc:`Channels <../rest/channels>`
-                                              * :doc:`Outgoing connections <../rest/outconns>`
-                                              * :doc:`JSON adapter <../rest/json-adapter>`
+                                                    * :doc:`Services <../rest/services>`
+                                                    * :doc:`Channels <../rest/channels>`
+                                                    * :doc:`Outgoing connections <../rest/outconns>`
+                                                    * :doc:`JSON adapter <../rest/json-adapter>`
 
-:doc:`REST pub/pub <../../pubsub/index>`    * Publishing messages :doc:`from services <./pubsub>`
-                                            * How to :doc:`publish <../../pubsub/dev/producer>`
-                                              and :doc:`subscribe <../../pubsub/dev/consumer>` from REST clients
+:doc:`REST pub/pub <../../pubsub/index>`          * Publishing messages :doc:`from services <./pubsub>`
+                                                  * How to :doc:`publish <../../pubsub/dev/producer>`
+                                                    and :doc:`subscribe <../../pubsub/dev/consumer>` from REST clients
 
-:doc:`SimpleIO (SIO) <./sio>`               * :ref:`Making a service accept and return JSON/XML/SOAP <progguide-examples-sio-service>`
-                                            
-:doc:`JSON <./json>`                        * :ref:`Accessing JSON request <progguide-examples-json-request>`
-                                            * :ref:`Converting JSON to Bunch <progguide-examples-json-bunch>`
-                                            * :ref:`Returning JSON <progguide-examples-json-responses>`
-                                            * :ref:`Invoking a JSON service using GET <progguide-examples-json-invoking-get>`
-                                            * :ref:`Invoking a JSON service using POST <progguide-examples-json-invoking-post>`
-                                            
-:doc:`XML <./xml>`                          * :ref:`Accessing XML request <progguide-examples-xml-request>`
-                                            * :ref:`Creating responses <progguide-examples-xml-responses>`
-                                            * :ref:`Invoking an XML service<progguide-examples-xml-invoking>`
+:doc:`SimpleIO (SIO) <./sio>`                     * :ref:`Making a service accept and return JSON/XML/SOAP <progguide-examples-sio-service>`
 
-:doc:`SOAP <./soap>`                        * :ref:`Accessing SOAP request <progguide-examples-soap-request>`
-                                            * :ref:`Creating responses <progguide-examples-soap-response>`
-                                            * :ref:`Invoking a SOAP service <progguide-examples-soap-invoking>`
-                                            
-:doc:`CSV <./csv>`                          * :ref:`Reading CSV on input <progguide-examples-csv-request>`
-                                            * :ref:`Producing CSV <progguide-examples-csv-response>`
-                                            
-:doc:`Other data formats <./other-formats>` * :ref:`Reading arbitrary data formats <progguide-examples-other-formats-reading>`
-                                            * :ref:`Accessing BASE64-encoded data <progguide-examples-other-formats-base64>`
-                                            
-:doc:`AMQP <./amqp>`                        * :ref:`Receiving messages from queues <progguide-examples-amqp-receiving>`
-                                            * :ref:`Sending messages to exchanges <progguide-examples-amqp-sending>`
-                                            
-:doc:`FTP <./ftp>`                          * :ref:`Putting files on server <progguide-examples-ftp-putting>`
-                                            * :ref:`Listing directories <progguide-examples-ftp-listing>`
-                                            * :ref:`Reading files <progguide-examples-ftp-reading>`
-                                            
-:doc:`JMS WebSphere MQ <./jms-wmq>`         * :ref:`Receiving messages from queues <progguide-examples-jms-wmq-receiving>`
-                                            * :ref:`Sending messages to queues <progguide-examples-jms-wmq-sending>`
-                                            
-:doc:`Redis <./redis>`                      * :ref:`Simple keys <progguide-examples-redis-simple-keys>`
-                                            * :ref:`Lists <progguide-examples-redis-lists>`
-                                            * :ref:`Dictionaries (hashmaps) <progguide-examples-redis-dictionaries>`
-                                            * :ref:`Transactions <progguide-examples-redis-transactions>`
-                                            
-:doc:`Scheduler <./scheduler>`              * :ref:`Invoking services at predefined intervals <progguide-examples-scheduler-invoking>`
-                                            * :ref:`Scheduling jobs programmatically <progguide-examples-zmq-scheduling-programmatically>`
+:doc:`JSON <./json>`                              * :ref:`Accessing JSON request <progguide-examples-json-request>`
+                                                  * :ref:`Converting JSON to Bunch <progguide-examples-json-bunch>`
+                                                  * :ref:`Returning JSON <progguide-examples-json-responses>`
+                                                  * :ref:`Invoking a JSON service using GET <progguide-examples-json-invoking-get>`
+                                                  * :ref:`Invoking a JSON service using POST <progguide-examples-json-invoking-post>`
 
-:doc:`SQL <./sql>`                          * :ref:`Issuing raw SQL <progguide-examples-sql-raw>`
-                                            * :ref:`SQLAlchemy <progguide-examples-sql-sqlalchemy>`
-                                            
-:doc:`ZeroMQ <./zmq>`                       * :ref:`Receiving messages from sockets <progguide-examples-zmq-receiving>`
-                                            * :ref:`Sending messages to sockets <progguide-examples-zmq-sending>`
+:doc:`XML <./xml>`                                * :ref:`Accessing XML request <progguide-examples-xml-request>`
+                                                  * :ref:`Creating responses <progguide-examples-xml-responses>`
+                                                  * :ref:`Invoking an XML service<progguide-examples-xml-invoking>`
 
-:doc:`SMTP <./smtp>`                        * Sending :ref:`regular e-mails <progguide-examples-smtp-regular>`
-                                            * Sending :ref:`HTML e-mails <progguide-examples-smtp-html>`
-                                            * Sending :ref:`e-mails with attachments <progguide-examples-smtp-attachments>`
+:doc:`SOAP <./soap>`                              * :ref:`Accessing SOAP request <progguide-examples-soap-request>`
+                                                  * :ref:`Creating responses <progguide-examples-soap-response>`
+                                                  * :ref:`Invoking a SOAP service <progguide-examples-soap-invoking>`
 
-:doc:`IMAP <./imap>`                        * :ref:`Receiving e-mails <progguide-examples-imap-receive>`
-                                            * :ref:`Marking messages seen <progguide-examples-imap-mark-seen>`
-                                            * :ref:`Deleting messages <progguide-examples-imap-delete>`
+:doc:`CSV <./csv>`                                * :ref:`Reading CSV on input <progguide-examples-csv-request>`
+                                                  * :ref:`Producing CSV <progguide-examples-csv-response>`
 
-:doc:`Amazon S3 <./cloud/aws/s3>`           * :ref:`Creating key/value pairs in S3 buckets <progguide-examples-cloud-aws-s3-create>`
-                                            * :ref:`Accessing Boto <progguide-examples-cloud-aws-s3-boto>`
+:doc:`Other data formats <./other-formats>`       * :ref:`Reading arbitrary data formats <progguide-examples-other-formats-reading>`
+                                                  * :ref:`Accessing BASE64-encoded data <progguide-examples-other-formats-base64>`
 
-=========================================== ================================================================================================
+:doc:`AMQP <./amqp>`                              * :ref:`Receiving messages from queues <progguide-examples-amqp-receiving>`
+                                                  * :ref:`Sending messages to exchanges <progguide-examples-amqp-sending>`
+
+:doc:`FTP <./ftp>`                                * :ref:`Putting files on server <progguide-examples-ftp-putting>`
+                                                  * :ref:`Listing directories <progguide-examples-ftp-listing>`
+                                                  * :ref:`Reading files <progguide-examples-ftp-reading>`
+
+:doc:`JMS WebSphere MQ <./jms-wmq>`               * :ref:`Receiving messages from queues <progguide-examples-jms-wmq-receiving>`
+                                                  * :ref:`Sending messages to queues <progguide-examples-jms-wmq-sending>`
+
+:doc:`Redis <./redis>`                            * :ref:`Simple keys <progguide-examples-redis-simple-keys>`
+                                                  * :ref:`Lists <progguide-examples-redis-lists>`
+                                                  * :ref:`Dictionaries (hashmaps) <progguide-examples-redis-dictionaries>`
+                                                  * :ref:`Transactions <progguide-examples-redis-transactions>`
+
+:doc:`Scheduler <./scheduler>`                    * :ref:`Invoking services at predefined intervals <progguide-examples-scheduler-invoking>`
+                                                  * :ref:`Scheduling jobs programmatically <progguide-examples-zmq-scheduling-programmatically>`
+
+:doc:`SQL <./sql>`                                * :ref:`Issuing raw SQL <progguide-examples-sql-raw>`
+                                                  * :ref:`SQLAlchemy <progguide-examples-sql-sqlalchemy>`
+
+:doc:`ZeroMQ <./zmq>`                             * :ref:`Receiving messages from sockets <progguide-examples-zmq-receiving>`
+                                                  * :ref:`Sending messages to sockets <progguide-examples-zmq-sending>`
+
+:doc:`SMTP <./smtp>`                              * Sending :ref:`regular e-mails <progguide-examples-smtp-regular>`
+                                                  * Sending :ref:`HTML e-mails <progguide-examples-smtp-html>`
+                                                  * Sending :ref:`e-mails with attachments <progguide-examples-smtp-attachments>`
+
+:doc:`IMAP <./imap>`                              * :ref:`Receiving e-mails <progguide-examples-imap-receive>`
+                                                  * :ref:`Marking messages seen <progguide-examples-imap-mark-seen>`
+                                                  * :ref:`Deleting messages <progguide-examples-imap-delete>`
+
+:doc:`Amazon S3 <./cloud/aws/s3>`                 * :ref:`Creating key/value pairs in S3 buckets <progguide-examples-cloud-aws-s3-create>`
+                                                  * :ref:`Accessing Boto <progguide-examples-cloud-aws-s3-boto>`
+
+:doc:`OpenStack Swift <./cloud/openstack/swift>`  * :ref:`Storing data in containers <progguide-examples-cloud-openstack-swift-store>`
+                                                  * :ref:`Accessing the underlying library <progguide-examples-cloud-lib>`
+
+================================================= =================================================================================================

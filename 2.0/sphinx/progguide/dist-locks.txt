@@ -37,7 +37,7 @@ Using *self.lock()* alone is equal to *self.lock(self.name)* - i.e. the service'
       """
       def handle(self):
 
-          # Any code within the block will not run concurrently because,
+          # A block of code that cannot run concurrently because,
           # for instance, the remote end cannot handle it properly.
           with self.lock():
 
@@ -49,7 +49,7 @@ Using *self.lock()* alone is equal to *self.lock(self.name)* - i.e. the service'
 Serialize access across multiple services
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Locks can be given arbitrary names - that lets them be held by otherwise unrelated service that indeed don't even need to know
+Locks can be given arbitrary names - that lets them be held by otherwise unrelated services that indeed don't even need to know
 of each other's existence.
 
 The name may come from anywhere - below it is taken from a service's :doc:`SimpleIO <./sio>` input with the net result being that for a given
@@ -106,7 +106,8 @@ If longer expiration time is need, provide it on input, as below:
 Waiting for locks
 ~~~~~~~~~~~~~~~~~
 
-By default, if a lock cannot be obtained within 10 seconds an exception will be raised (retools.lock.LockTimeout or a subclass of).
+By default, if a lock cannot be obtained within 10 seconds an exception will be raised - you should catch the
+Python's generic Exception.
 
 It's possible to provide information on how long to wait before giving up or not to wait at all if a lock cannot be created.
 
