@@ -79,7 +79,7 @@ In server.log:
 
   INFO - DELETE http://es:9200/my-idx/my-type/my-id [status:200 request:0.003s]
 
-.. _progguide-examples-search-es-other:
+.. _progguide-examples-search-es-more:
 
 Other features
 --------------

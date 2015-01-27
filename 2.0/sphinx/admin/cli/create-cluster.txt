@@ -32,13 +32,6 @@ tech_account_name                                 Name of a web admin's technica
 Usage
 -----
 
-.. note::
-
-  There is a confirmed, trivial, `bug <https://github.com/zatosource/zato/issues/64>`_ 
-  in the command which requires you to specify broker_host and broker_port (localhost and 6379 below)
-  twice. This will be fixed in Zato 2.0 and :doc:`a hotfix <../../admin/guide/hotfixes>`
-  is available for Zato 1.1.
-
 ::
 
     $ zato create cluster [-h] [--store-log] [--verbose] [--store-config]

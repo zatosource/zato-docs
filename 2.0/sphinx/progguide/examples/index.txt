@@ -127,4 +127,6 @@ Topic                                             Examples
                                                   * :ref:`Deleting <progguide-examples-search-solr-delete>`
                                                   * :ref:`More features <progguide-examples-search-solr-more>`
 
+:doc:`Odoo (OpenERP) <./odoo>`                    * :ref:`Issuing requests <progguide-examples-odoo-req>`
+
 ================================================= =================================================================================================

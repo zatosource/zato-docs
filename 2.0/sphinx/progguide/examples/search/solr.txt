@@ -81,7 +81,7 @@ In server.log:
 
   INFO - Finished 'http://idx/s/c/update/?commit=true' (post) .. in 0.027 seconds.
 
-.. _progguide-examples-search-solr-other:
+.. _progguide-examples-search-solr-more:
 
 Other features
 --------------
