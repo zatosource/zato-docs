@@ -265,7 +265,7 @@ Hot-deploy the service below and observe the fraud detection system's logs:
 
         def should_notify_frauds(self, cust_type):
             config_key = 'myapp:fraud-detection:cust-type'
-            return cust_type in self.kvdb.conn.lrange(config_key, 0, -1)
+            return cust_type in ('A', 'B', 'C')
 
         def handle(self):
 
