@@ -117,4 +117,14 @@ Topic                                             Examples
 :doc:`OpenStack Swift <./cloud/openstack/swift>`  * :ref:`Storing data in containers <progguide-examples-cloud-openstack-swift-store>`
                                                   * :ref:`Accessing the underlying library <progguide-examples-cloud-lib>`
 
+:doc:`ElasticSearch <./search/es>`                * :ref:`Indexing <progguide-examples-search-es-index>`
+                                                  * :ref:`Searching <progguide-examples-search-es-search>`
+                                                  * :ref:`Deleting <progguide-examples-search-es-delete>`
+                                                  * :ref:`More features <progguide-examples-search-es-more>`
+
+:doc:`Solr <./search/solr>`                       * :ref:`Indexing <progguide-examples-search-solr-index>`
+                                                  * :ref:`Searching <progguide-examples-search-solr-search>`
+                                                  * :ref:`Deleting <progguide-examples-search-solr-delete>`
+                                                  * :ref:`More features <progguide-examples-search-solr-more>`
+
 ================================================= =================================================================================================

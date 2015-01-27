@@ -63,18 +63,10 @@ Introduction
 I18N
 ====
 
-    * 中文: 
-      `Zato—基于Python的ESB和后端应用服务器 <http://www.infoq.com/cn/articles/zato>`_ |
-      `Python 发送 AMQP 消息 <http://www.oschina.net/translate/howto-sending-amqp-messages>`_
-
-    * Català:
-      :doc:`Què és un ESB i què és SOA<intro/esb-soa-ca>`
-
-    * Português: 
-      :doc:`O que ESB e SOA são, afinal?<intro/esb-soa-pt>`
-
-    * ру́сский: 
-      :doc:`Что такое ESB и SOA<intro/esb-soa-ru>`
+    * *中文*  `Zato—基于Python的ESB和后端应用服务器 <http://www.infoq.com/cn/articles/zato>`_ · `Python 发送 AMQP 消息 <http://www.oschina.net/translate/howto-sending-amqp-messages>`_ |
+      *Català* :doc:`Què és un ESB i què és SOA<intro/esb-soa-ca>` |
+      *Português*  :doc:`O que ESB e SOA são, afinal?<intro/esb-soa-pt>` |
+      *ру́сский* :doc:`Что такое ESB и SOA<intro/esb-soa-ru>`
 
 Web admin reference
 ===================
@@ -217,8 +209,8 @@ Programming guide
       :doc:`IMAP <progguide/examples/imap>` |
       :doc:`Amazon S3 <progguide/examples/cloud/aws/s3>` |
       :doc:`OpenStack Swift <progguide/examples/cloud/openstack/swift>` |
-      :doc:`ElasticSearch <progguide/examples/es>` |
-      :doc:`Solr <progguide/examples/solr>` |
+      :doc:`ElasticSearch <progguide/examples/search/es>` |
+      :doc:`Solr <progguide/examples/search/solr>` |
       :doc:`Odoo (OpenERP) <progguide/examples/odoo>` |
       :doc:`JSON Pointers <progguide/examples/json-pointer>` |
       :doc:`XPath <progguide/examples/json-pointer>`
@@ -420,6 +412,7 @@ Zato, the open-source project
    progguide/examples/*
    progguide/examples/cloud/aws/*
    progguide/examples/cloud/openstack/*
+   progguide/examples/search/*
    progguide/outconn/*
    progguide/patterns/*
    progguide/rest/*

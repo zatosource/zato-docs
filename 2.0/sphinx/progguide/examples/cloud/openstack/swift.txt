@@ -1,8 +1,8 @@
 .. highlight:: python
    :linenothreshold: 0
 
-Amazon S3
-=========
+OpenStack Swift
+===============
 
 Once
 :doc:`an OpenStack Swift connection <../../../../web-admin/cloud/openstack/swift>`
