@@ -549,7 +549,7 @@ will be a boolean and so on. Naturally, this can be turned off.
 
                 fraud_request = {}
                 fraud_request['timestamp'] = datetime.utcnow().isoformat()
-                fraud_request['request'] = dumps(self.request.payload)
+                fraud_request['request'] = dumps(self.request.input)
                 fraud_request['response'] = response
                 fraud_request = dumps(fraud_request)
 

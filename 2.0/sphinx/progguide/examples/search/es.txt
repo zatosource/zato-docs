@@ -55,9 +55,6 @@ In server.log:
 ::
 
   INFO - GET http://es:9200/_search?q=hello%3A%2A [status:200 request:0.058s]
-
-::
-
   INFO - {u'hits': {u'hits': [{u'_score': 1.0, u'_type': u'my-type', u'_id': u'my-id' ..
 
 .. _progguide-examples-search-es-delete:
