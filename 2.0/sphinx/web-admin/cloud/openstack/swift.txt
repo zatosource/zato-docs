@@ -7,7 +7,7 @@ Overview
 Used to create, update, delete and browse through outgoing `OpenStack Swift <https://en.wikipedia.org/wiki/Amazon_S3>`_
 such as `Rackspace Files <https://www.rackspace.com/cloud/files>`_ and implementations.
 
-Connections can be used by services to access Swift containers and objects :ref:`in run-time <invalud-swift-run-time>`
+Connections can be used by services to access Swift containers and objects :doc:`in run-time <../../../progguide/examples/cloud/openstack/swift>`
 or in :doc:`OpenStack Swift notifications <../../notif/cloud/openstack/swift>`.
 
 * Menu path: Cloud -> OpenStack -> Swift

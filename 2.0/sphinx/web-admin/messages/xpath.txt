@@ -5,7 +5,7 @@ Overview
 --------
 
 Used to create, update, delete and browse through `XPath <https://en.wikipedia.org/wiki/XPath>`_ expressions
-that in :doc:`run-time resolve <usage-example-xpath>` to elements in XML documents.
+that in :doc:`run-time resolve <../../progguide/examples/xpath>` to elements in XML documents.
 
 XPath expressions can make use of :doc:`previously reigstered <xml-ns>` XML namespaces.
 

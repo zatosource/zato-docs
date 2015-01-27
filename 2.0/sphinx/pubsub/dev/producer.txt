@@ -8,7 +8,7 @@ Having been
 :doc:`assigned to a topic <../admin/producer>`,
 REST producers use plain HTTP verbs to publish messages that are routed to queues of consumers subscribed to the topic.
 
-The chapter deal with REST clients only, consult :doc:`here <invalid-pubsub-service>` for information on how to
+The chapter deal with REST clients only, consult :doc:`here <../../progguide/examples/pubsub>` for information on how to
 publish messages from Zato services.
 
 All the examples below assume that there is a */customer/created* topic and the producer used is called *CRM* with its

@@ -5,7 +5,7 @@ Overview
 --------
 
 Used to create, update, delete and browse through `RFC 6901 <https://tools.ietf.org/html/rfc6901>`_ JSON Pointers -
-reusable definitions of path expressions pointing :doc:`in run-time <usage-example-json-pointer>`
+reusable definitions of path expressions pointing :doc:`in run-time <../../progguide/examples/json-pointer>`
 to individual elements in JSON documents.
 
 JSON Pointers lets one define common and oftenly repeated standard paths in a reusable

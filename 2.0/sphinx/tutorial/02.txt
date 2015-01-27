@@ -707,26 +707,15 @@ covered but you should already have a solid understanding of some of the core as
 * out of the box, you have access to
 
   * :doc:`HTTP <../progguide/outconn/http>`
-  * :doc:`REST <invalid>`
-  * :doc:`XPath and XML <invalid>`
-  * :doc:`JSON Pointers <invalid>`
-  * :doc:`API keys <invalid>`
-  * :doc:`NTLM <invalid>`
-  * :doc:`Amazon AWS security <invalid>`
-  * :doc:`SSL/TLS for channels and outgoing connections <invalid>`
-  * :doc:`Role-based access control (RBAC) for HTTP channels <invalid>`
-  * :doc:`Cassandra <invalid>`
-  * :doc:`Cloud OpenStack Swift <invalid>`
-  * :doc:`Cloud Amazon S3 <invalid>`
-  * :doc:`Solr <invalid>`
-  * :doc:`ElasticSearch <invalid>`
-  * :doc:`Odoo/OpenERP <invalid>`
-  * :doc:`HTTP GUI Audit Log for requests and responses <invalid>`
-  * :doc:`SMTP <invalid>`
-  * :doc:`IMAP <invalid>`
-  * :doc:`OpenStack Swift <invalid>`
-  * :doc:`New Relic <invalid>`
-  * :doc:`Distributed locks <invalid>`
+  * REST :doc:`services <../progguide/rest/services>`, :doc:`channels <../progguide/rest/channels>`,
+    :doc:`outgoing connections <../progguide/rest/outconns>` and :doc:`a dedicated JSON adapter <../progguide/rest/json-adapter>`
+  * Redis-based REST :doc:`publish/subscribe <../pubsub/index>`
+  * Messaging patterns: :doc:`fan-out/fan-in <../progguide/patterns/fan-out-fan-in>`,
+    :doc:`parallel execution <../progguide/patterns/parallel-exec>`,
+    :doc:`invoke/retry <../progguide/patterns/invoke-retry>`
+    and
+    :doc:`async invocations with callbacks <../progguide/patterns/async-invoke>`
+  * :doc:`HTTP GUI Audit Log <../web-admin/audit-log/http/index>` for requests and responses
   * :doc:`AMQP <../progguide/outconn/amqp>`
   * :doc:`JMS WebSphere MQ <../progguide/outconn/jms-wmq>`
   * :doc:`ZeroMQ <../progguide/outconn/zmq>`
@@ -734,14 +723,32 @@ covered but you should already have a solid understanding of some of the core as
   * :doc:`JSON <../progguide/json>`
   * :doc:`SOAP <../progguide/xml>`
   * :doc:`SQL <../progguide/outconn/sql>`
-  * :doc:`Redis <../progguide/kvdb>`
+  * :doc:`Redis <../progguide/kvdb>`, including High Availability (HA) with :doc:`sentinels <../admin/guide/redis-ha/sentinels>`
   * :doc:`FTP(S) <../progguide/outconn/ftp>`
+  * :doc:`Cassandra <../web-admin/conn-def/cassandra>`
+  * :doc:`Cloud OpenStack Swift <../web-admin/cloud/openstack/swift>`
+  * :doc:`Cloud Amazon S3 <../web-admin/cloud/aws/s3>`
+  * :doc:`Solr <../web-admin/search/solr>`
+  * :doc:`ElasticSearch <../web-admin/search/es>`
+  * :doc:`Odoo/OpenERP <../web-admin/outgoing/odoo>`
+  * :doc:`SMTP <../web-admin/email/smtp>`
+  * :doc:`IMAP <../web-admin/email/imap>`
+  * :doc:`Distributed locks <../progguide/dist-locks>`
+  * :doc:`XPath <../web-admin/messages/xpath>` and :doc:`XML Namespaces <../web-admin/messages/xml-ns>`
+  * :doc:`JSON Pointers <../web-admin/messages/json-pointer>`
+  * :doc:`API keys <../web-admin/security/apikey>`
+  * :doc:`NTLM <../web-admin/security/ntlm>`
+  * :doc:`Amazon AWS security <../web-admin/security/aws>`
+  * :doc:`SSL/TLS for channels and outgoing connections <../web-admin/security/tls/overview>`
+  * :doc:`Role-based access control (RBAC) for HTTP channels <../web-admin/security/rbac/overview>`
   * :doc:`Basic Auth <../web-admin/security/basic-auth>`
   * :doc:`WS-Security <../web-admin/security/ws-security>`
   * :doc:`technical accounts <../web-admin/security/tech-account>`
   * :doc:`scheduler <../web-admin/scheduler/main>`
   * :doc:`statistics <../stats/guide>`
-  
+  * :ref:`New Relic <admin-guide-config-server-newrelic>` monitoring
+  * :ref:`Sentry <admin-guide-config-server-sentry>` monitoring
+
   and it's trivial to add more transport, connection types, protocols or anything
   you require
   
@@ -764,7 +771,7 @@ What next?
 Well, it would be best if you had a look at the rest of the 
 :doc:`docs <../index>`.
 This is
-some several hundred A4 pages so you don't really need to read it cover to cover
+some several hundred pages so you don't really need to read it cover to cover
 in one go but it would be really beneficial if you could read as much of it 
 as possible - hopefully the docs can offer everything you need. (But if there's
 anything you'd like to have added, please always feel free to add a feature request on 
@@ -780,6 +787,6 @@ all the ideas in details.
 
 And remember - if you're stuck, need a hand or just want to ask anything - be sure
 to check the 
-`support options <http://zato.io/support>`_.
+`support options <http://zato.io/support.html>`_.
 
 Good luck and have fun using Zato!
