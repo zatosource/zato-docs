@@ -29,7 +29,7 @@ Installation steps
 
 ::
 
-    ubuntu$ sudo apt-add-repository https://zato.io/repo/dev/ubuntu
+    ubuntu$ sudo apt-add-repository https://zato.io/repo/stable/2.0/ubuntu
     ubuntu$ sudo apt-get update
 
 * Install Zato
