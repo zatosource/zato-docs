@@ -103,7 +103,7 @@ Web admin reference
     * **Messages:**
       :doc:`JSON Pointers<web-admin/messages/json-pointer>` |
       :doc:`XML Namespaces<web-admin/messages/xml-ns>` |
-      :doc:`XPath<web-admin/messages/xpath>` |
+      :doc:`XPath<web-admin/messages/xpath>`
 
     * **Security:**
       :doc:`API keys<web-admin/security/apikey>` |
