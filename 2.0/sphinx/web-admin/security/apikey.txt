@@ -5,7 +5,7 @@ Overview
 --------
 
 Used to create, update, delete and browse API keys-based security definitions 
-that can be used by  :doc:`plain HTTP <../channels/plain-http>` channels whose data format is XML.
+used by :doc:`plain HTTP <../channels/plain-http>` connections.
 
 Client applications provide API keys in custom, user-defined, HTTP headers forming, essentially, a username/password
 pair where the header's name is a username and the header's value is a password.
