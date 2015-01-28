@@ -1,4 +1,4 @@
-2.0 - 2015-01-27
+2.0 - 2015-01-28
 ================
 
 * :doc:`Dockerfile <../admin/guide/install-docker>` to set up a full-featured
