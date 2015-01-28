@@ -35,7 +35,7 @@ Installation steps
 
 ::
 
-    debian# sudo apt-add-repository https://zato.io/repo/dev/debian
+    debian# sudo apt-add-repository https://zato.io/repo/stable/2.0/debian
     debian# sudo apt-get update
 
 * Install Zato
