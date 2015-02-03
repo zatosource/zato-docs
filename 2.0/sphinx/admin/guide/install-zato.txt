@@ -24,3 +24,8 @@ Debian      7 (Wheezy)        :doc:`Installation instructions <install-debian>`
 
 Docker      0.9.1+            :doc:`Installation instructions <install-docker>`
 =========== ================= ==============================================================================
+
+Migrating from previous releases
+--------------------------------
+
+:doc:`A separate chapter <./migrate/overview>` with upgrade information documents the process of migrating from previous releases to the current one.

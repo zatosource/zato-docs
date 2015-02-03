@@ -227,6 +227,7 @@ Programming guide
       :doc:`Distributed locks<progguide/dist-locks>` |
       :doc:`Date/time utils<progguide/datetime>` |
       :doc:`Python client<progguide/clients/python>` |
+      :doc:`Django and Flask integration<progguide/clients/django-flask>` |
       :doc:`Security<progguide/security>` |
       :doc:`Where to keep service-local config<progguide/service-local-config>` |
       :doc:`HTML with Django templates<progguide/html>` |

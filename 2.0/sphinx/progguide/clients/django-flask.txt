@@ -1,0 +1,55 @@
+.. highlight:: python
+   :linenothreshold: 0
+
+Django and Flask integration
+============================
+
+All Python applications can connect to Zato services using its :doc:`Python clients <./python>` and the following material
+discuss ways of setting up Django and Flask projects in particular.
+
+Note that applications in other programming languages can always connect to Zato using one of its :doc:`channels <../channels>`.
+
+Services and channels
+---------------------
+
+There will be two services used throughout the chapter available as GitHub gists -
+:doc:`deploy <../../admin/guide/installing-services>`
+them on a server before
+continuing with the content that follows:
+
+* `customer.get1 <https://gist.github.com/dsuch/2211f5960d68c03e4621>`_
+* `customer.get2 <https://gist.github.com/dsuch/3fe0b42d73ff2f9aed81>`_
+
+They are pretty much the same except for one difference - customer.get1 produces a string response whereas customer.get2
+produces a dict response that is serialized to string by Zato automatically.
+
+Why two services and when to use either?
+
+Which approach to use, whether serialize manually or let Zato do it, depends on which Python client will be used:
+
+* :ref:`AnyServiceInvoker <progguide-clients-python-AnyServiceInvoker>`
+* :ref:`JSONClient <progguide-clients-python-JSONClient>`
+
+The difference between them is that AnyServiceInvoker connects to a special built-in service which in turn invokes user services
+whereas JSONClient connects to target services directly.
+
+The benefit of using the former is that only one channel is needed for an unlimited number of user services to be invoked
+whereas with the latter each service needs its own channel. The drawback of using the former is that it's slightly slower because
+of the additional level of indirection in using a dispatcher service instead of invoking the target one directly.
+
+Another difference is that RBAC definitions for services are easier to manage when using the latter because the same service can
+be exposed through multiple channels each using its own credentials serving as the basis for RBAC rules.
+
+When using AnyServiceInvoker responses from services *must* be produced as strings. When using JSONClient responses *may* be produced
+as strings but when they are not, serialization to JSON will be performed by Zato.
+
+Django
+------
+
+A sample project is available on GitHub - https://github.com/zatosource/zato-django-integration.
+
+To set it up locally follow the steps below. This will clone the repository, install everything under
+`virtualenv <https://virtualenv.pypa.io/en/latest/>`_ and run a Django development server on http://localhost:8188/
+
+Flask
+-----
