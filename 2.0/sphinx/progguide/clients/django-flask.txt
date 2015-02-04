@@ -43,13 +43,46 @@ be exposed through multiple channels each using its own credentials serving as t
 When using AnyServiceInvoker responses from services *must* be produced as strings. When using JSONClient responses *may* be produced
 as strings but when they are not, serialization to JSON will be performed by Zato.
 
+Both AnyServiceInvoker and JSONClient are based on `requests <https://pypi.python.org/pypi/requests>`_ down under the hood.
+
 Django
 ------
 
-A sample project is available on GitHub - https://github.com/zatosource/zato-django-integration.
+Steps:
 
-To set it up locally follow the steps below. This will clone the repository, install everything under
-`virtualenv <https://virtualenv.pypa.io/en/latest/>`_ and run a Django development server on http://localhost:8188/
+* Make sure both
+  `customer.get1 <https://gist.github.com/dsuch/2211f5960d68c03e4621>`_
+  and
+  `customer.get2 <https://gist.github.com/dsuch/3fe0b42d73ff2f9aed81>`_
+  are deployed
+
+* A sample Django project is available on GitHub - https://github.com/zatosource/zato-django-integration.
+
+* To set it up locally, execute the commands below. This will clone the repository, install everything under
+  `virtualenv <https://virtualenv.pypa.io/en/latest/>`_ and run a Django development server on http://localhost:8188/
+
+  ::
+
+    $ git clone https://github.com/zatosource/zato-django-integration.git
+    $ cd zato-django-integration
+    $ make
+
+* Open http://localhost:8188/ in a browser
+
+* Enter any string that will serve as an ID of a customer whose name to return
+
+* You can also pick whether to use :ref:`AnyServiceInvoker <progguide-clients-python-AnyServiceInvoker>` or
+  :ref:`JSONClient <progguide-clients-python-JSONClient>` for calling Zato - either way the result will be the same.
+
+.. image:: /gfx/progguide/clients/django-flask/django-result.png
+
+Discussion:
+
+* The projects depends on
+  zato-client
+  and
+  zato-common as expressed in its
+  requirements.txt - these libraries Pytho 
 
 Flask
 -----
