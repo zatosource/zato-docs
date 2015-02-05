@@ -25,7 +25,20 @@ Debian      7 (Wheezy)        :doc:`Installation instructions <install-debian>`
 Docker      0.9.1+            :doc:`Installation instructions <install-docker>`
 =========== ================= ==============================================================================
 
-Migrating from previous releases
---------------------------------
+Migrating from major releases
+-----------------------------
 
-:doc:`A separate chapter <./migrate/overview>` with upgrade information documents the process of migrating from previous releases to the current one.
+:doc:`A separate chapter <./migrate/overview>` with upgrade information documents the process of migrating from
+previous major releases to the current one.
+
+Patch releases
+--------------
+
+Each major version, such as 2.0, is periodically updated with newest patches and as whole form patch releases,
+such as 2.0.1 or 2.0.2. Each such release is available in a repository for a given operating system.
+
+Use tools supplied by the OS, such as apt-get or yum, to update to the newest patch release. No migration process is required
+afterwards.
+
+Note that after installing the newest patch release the previous one is kept in */opt/zato/backup* - this is in order to make sure
+that no user customizations are lost after the installation.

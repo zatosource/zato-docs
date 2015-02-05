@@ -44,7 +44,7 @@ Installation steps
 
     ubuntu$ sudo su - zato
     ubuntu$ zato --version
-    Zato 2.0.0.rev-55e0ec28
+    Zato 2.0.1.rev-61cbd0c9
     ubuntu$
 
 That concludes the process - you can refer to the main

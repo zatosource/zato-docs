@@ -5,7 +5,7 @@ Django and Flask integration
 ============================
 
 All Python applications can connect to Zato services using its :doc:`Python clients <./python>` and the following material
-discuss ways of setting up Django and Flask projects in particular.
+discusses ways of setting up Django and Flask projects in particular.
 
 Note that applications in other programming languages can always connect to Zato using one of its :doc:`channels <../channels>`.
 
@@ -19,6 +19,9 @@ continuing with the content that follows:
 
 * `customer.get1 <https://gist.github.com/dsuch/2211f5960d68c03e4621>`_
 * `customer.get2 <https://gist.github.com/dsuch/3fe0b42d73ff2f9aed81>`_
+
+Their purpose is to look up a client's name based on their ID - if a match is found in Redis the response is served from the cache.
+If it's not, it is looked up in backend, cached, and returned.
 
 They are pretty much the same except for one difference - customer.get1 produces a string response whereas customer.get2
 produces a dict response that is serialized to string by Zato automatically.
@@ -56,6 +59,15 @@ Steps:
   `customer.get2 <https://gist.github.com/dsuch/3fe0b42d73ff2f9aed81>`_
   are deployed
 
+* Create HTTP Basic Auth credentials and two Plain HTTP channels as on the screenshots. Set Django Integration's password
+  to *my-password*.
+
+.. image:: /gfx/progguide/clients/django-flask/django-create-security.png
+
+.. image:: /gfx/progguide/clients/django-flask/django-create-channel.png
+
+.. image:: /gfx/progguide/clients/django-flask/django-create-channel2.png
+
 * A sample Django project is available on GitHub - https://github.com/zatosource/zato-django-integration.
 
 * To set it up locally, execute the commands below. This will clone the repository, install everything under
@@ -78,11 +90,140 @@ Steps:
 
 Discussion:
 
-* The projects depends on
-  zato-client
+* The project depends on
+  `zato-client <https://pypi.python.org/pypi/zato-client>`_
   and
-  zato-common as expressed in its
-  requirements.txt - these libraries Pytho 
+  `zato-common <https://pypi.python.org/pypi/zato-common>`_
+  as expressed in its
+  `requirements.txt <https://github.com/zatosource/zato-django-integration/blob/master/requirements.txt>`_
+  -
+  Python projects can add them to their
+  `pip <https://pypi.python.org/pypi/pip>`_,
+  `buildout <https://pypi.python.org/pypi/zc.buildout/2.3.1>`_
+  or
+  `conda <http://conda.pydata.org/>`_
+  dependencies to start using AnyServiceInvoker and JSONClient.
+
+* Both clients need credentials and URLs to connect to - here, they are stored in
+  `settings.py <https://github.com/zatosource/zato-django-integration/blob/master/sampleapp/settings.py#L145>`_
+
+* The clients are added to each Django request in a `custom middleware <https://github.com/zatosource/zato-django-integration/blob/master/sampleapp/middleware.py>`_
+
+::
+
+  # Skip imports
+  # ..
+
+  client_any = AnyServiceInvoker(CLIENT_ADDRESS, CLIENT_PATH_ANY, CLIENT_CREDENTIALS)
+  client_json = JSONClient(CLIENT_ADDRESS, CLIENT_PATH_JSON, CLIENT_CREDENTIALS)
+  
+  class ZatoMiddleware(object):
+      def process_request(self, req):
+          req.client_any = client_any
+          req.client_json = client_json
+
+* Both AnyServiceInvoker and JSONClient are stateless, they don't keep any state around. It's also cheap to create them
+  on fly, they don't need to be instantiated upfront but doing it won't cause any harm either.
+
+* How Django `views <https://github.com/zatosource/zato-django-integration/blob/master/sampleapp/customer/views.py>`_
+  call Zato depend on whether they use AnyServiceInvoker or JSONClient. When using the former
+  the name of the target service needs to be provided on input in addition to the actual request. With the latter, only the
+  request is needed. Regardless of which client is used the response is returned the same way.
+
+::
+
+  if client_type == 'AnyServiceInvoker':
+      response = req.client_any.invoke('customer.get1', request)
+  else:
+      response = req.client_json.invoke(request)
+
+* No matter which client is used requests and responses can always be regular Python dicts - if any serialization is needed,
+  the client performs it itself.
 
 Flask
 -----
+
+Steps:
+
+* Make sure both
+  `customer.get1 <https://gist.github.com/dsuch/2211f5960d68c03e4621>`_
+  and
+  `customer.get2 <https://gist.github.com/dsuch/3fe0b42d73ff2f9aed81>`_
+  are deployed
+
+* Create HTTP Basic Auth credentials and two Plain HTTP channels as on the screenshots. Set Flask Integration's password
+  to *my-password*.
+
+.. image:: /gfx/progguide/clients/django-flask/flask-create-security.png
+
+.. image:: /gfx/progguide/clients/django-flask/flask-create-channel.png
+
+.. image:: /gfx/progguide/clients/django-flask/flask-create-channel2.png
+
+* A sample Flask project is available on GitHub - https://github.com/zatosource/zato-flask-integration.
+
+* To set it up locally, execute the commands below. This will clone the repository, install everything under
+  `virtualenv <https://virtualenv.pypa.io/en/latest/>`_ and run a Django development server on http://localhost:8199/
+
+  ::
+
+    $ git clone https://github.com/zatosource/zato-flask-integration.git
+    $ cd zato-flask-integration
+    $ make
+
+* Open http://localhost:8199/ in a browser
+
+* Enter any string that will serve as an ID of a customer whose name to return
+
+* You can also pick whether to use :ref:`AnyServiceInvoker <progguide-clients-python-AnyServiceInvoker>` or
+  :ref:`JSONClient <progguide-clients-python-JSONClient>` for calling Zato - either way the result will be the same.
+
+.. image:: /gfx/progguide/clients/django-flask/flask-result.png
+
+Discussion:
+
+* The project depends on
+  `zato-client <https://pypi.python.org/pypi/zato-client>`_
+  and
+  `zato-common <https://pypi.python.org/pypi/zato-common>`_
+  as expressed in its
+  `requirements.txt <https://github.com/zatosource/zato-flask-integration/blob/master/requirements.txt>`_
+  -
+  Python projects can add them to their
+  `pip <https://pypi.python.org/pypi/pip>`_,
+  `buildout <https://pypi.python.org/pypi/zc.buildout/2.3.1>`_
+  or
+  `conda <http://conda.pydata.org/>`_
+  dependencies to start using AnyServiceInvoker and JSONClient.
+
+* Both clients need credentials and URLs to connect to - here, they are stored in
+  `the same module the main application is in <https://github.com/zatosource/zato-flask-integration/blob/master/sampleapp/customer.py#L42>`_
+
+* The clients are created upfront in the main module
+
+::
+
+  # Skip imports
+  # ..
+
+  client_any = AnyServiceInvoker(CLIENT_ADDRESS, CLIENT_PATH_ANY, CLIENT_CREDENTIALS)
+  client_json = JSONClient(CLIENT_ADDRESS, CLIENT_PATH_JSON, CLIENT_CREDENTIALS)
+
+* Both AnyServiceInvoker and JSONClient are stateless, they don't keep any state around. They can be simply created once and used
+  when needed.
+
+* How Flask 
+  `calls Zato <https://github.com/zatosource/zato-flask-integration/blob/master/sampleapp/customer.py#L74>`_
+  depends on whether AnyServiceInvoker or JSONClient is used. With the former
+  the name of the target service needs to be provided on input in addition to the actual request. With the latter, only the
+  request is needed. Regardless of which client is used the response is returned the same way.
+
+::
+
+    if client_type == 'AnyServiceInvoker':
+        response = client_any.invoke('customer.get1', zato_request)
+    else:
+        response = client_json.invoke(zato_request)
+
+* No matter which client is used requests and responses can always be regular Python dicts - if any serialization is needed,
+  the client performs it itself.
