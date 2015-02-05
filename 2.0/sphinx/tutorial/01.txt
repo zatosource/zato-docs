@@ -30,13 +30,28 @@ or
 :doc:`accept connections <../progguide/channels>`
 through many
 protocols and transports -
-:doc:`plain HTTP, SOAP, JSON <../progguide/outconn/http>`,
+:doc:`plain HTTP REST, SOAP, JSON <../progguide/outconn/http>`,
+:doc:`REST publish/subscribe <../pubsub/index>`,
 :doc:`AMQP <../progguide/outconn/amqp>`,
 :doc:`JMS WebSphere MQ <../progguide/outconn/jms-wmq>`,
 :doc:`ZeroMQ <../progguide/outconn/zmq>`,
 :doc:`SQL <../progguide/outconn/sql>`,
+:doc:`FTP(S) <../progguide/outconn/ftp>`
+:doc:`Cassandra CQL <../progguide/examples/cassandra>`,
+:doc:`Amazon S3 <../progguide/examples/cloud/aws/s3>`,
+:doc:`OpenStack Swift <../progguide/examples/cloud/openstack/swift>`,
+:doc:`Odoo/OpenERP <../progguide/examples/odoo>`
+:doc:`SMTP <../progguide/examples/smtp>`
+or 
+:doc:`IMAP <../progguide/examples/imap>`
+
+Integration patterns -
+:doc:`fan-out/fan-in <../progguide/patterns/fan-out-fan-in>`,
+:doc:`parallel execution <../progguide/patterns/parallel-exec>`
+:doc:`invoke/retry <../progguide/patterns/invoke-retry>`,
 and
-:doc:`FTP(S) <../progguide/outconn/ftp>`.
+:doc:`invoke with callbacks <../progguide/patterns/async-invoke>`
+let one form complex workflows running asynchronously.
 
 There's also
 :doc:`Redis key/value database <../progguide/kvdb>`
@@ -47,8 +62,16 @@ which is used for executing recurring tasks.
 Services can also make use of
 :doc:`HTTP Basic Auth <../web-admin/security/basic-auth>`,
 :doc:`WS-Security <../web-admin/security/ws-security>`
-and
-:doc:`technical accounts <../web-admin/security/tech-account>`.
+:doc:`technical accounts <../web-admin/security/tech-account>`,
+:doc:`API keys <../web-admin/security/apikey>`,
+:doc:`AWS <../web-admin/security/aws>`,
+:doc:`NTLM <../web-admin/security/ntlm>`,
+:doc:`OAuth <../web-admin/security/oauth>`,
+:doc:`SSL/TLS <../web-admin/security/tls/overview>`,
+:doc:`XPath-based <../web-admin/security/xpath>`,
+or
+:doc:`RBAC (Role-Based Access Control) <../web-admin/security/rbac/overview>`
+security definitions.
 
 And there are
 :doc:`CLI <../admin/cli/index>`,
@@ -72,7 +95,9 @@ project of your liking to create
 frontend applications with and Zato will be very happy to integrate your application
 with any other.
 
-But, while technically it is possible (it's all HTTP and other
+But, while technically
+:doc:`it is possible <../progguide/html>`
+(it's all HTTP and other
 protocols Zato supports, after all), you won't typically write HTML, JS or CSS with Zato.
 
 Zato should be used for creating systems of systems, not for frontend programming.
@@ -152,7 +177,10 @@ and proceed to
 :doc:`installation instructions <../admin/guide/install-ubuntu>`
 for Ubuntu.
 
-Done yet? OK, so let's create a quickstart cluster, which is a sort of a cluster
+You can install Zato :doc:`under Docker <../admin/guide/install-docker>` this will install everything
+including a sample quickstart cluster.
+
+Done yet? OK, so if you are not using Docker, let's create a quickstart cluster, which is a sort of a cluster
 created by running the
 :doc:`CLI commands <../../admin/cli/index>`,
 appropriately called
