@@ -52,9 +52,10 @@ Translated from :doc:`English <./esb-soa>` by
 `Carles Sala Cladellas <https://github.com/csala>`_.
 
 Also available in
+:doc:`Português <./esb-soa-pt>`,
 :doc:`ру́сский <esb-soa-ru>`
 and
-:doc:`Português <./esb-soa-pt>`.
+:doc:`中文 <esb-soa-cn>`.
 
 Els acrònims ESB i SOA, íntimament relacionats, són sovint una font de confusió. ESB correspon
 a Enterprise Service Bus (Bus de Serveis Corporatius), i SOA a Service Oriented Architecture
