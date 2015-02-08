@@ -186,8 +186,8 @@ Discussion:
   `zato-client <https://pypi.python.org/pypi/zato-client>`_
   and
   `zato-common <https://pypi.python.org/pypi/zato-common>`_
-  as expressed in its
-  `requirements.txt <https://github.com/zatosource/zato-flask-integration/blob/master/requirements.txt>`_
+  as expressed in
+  `its requirements.txt <https://github.com/zatosource/zato-flask-integration/blob/master/requirements.txt>`_
   -
   Python projects can add them to their
   `pip <https://pypi.python.org/pypi/pip>`_,
