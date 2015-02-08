@@ -53,3 +53,21 @@ Call *.mark_seen()* on a message object to mark it as seen.
 
 Deleting messages
 -----------------
+
+Call *.delete()* on a message object to mark it as seen.
+
+::
+
+        from zato.server.service import Service
+        
+        class MyService(Service):
+            def handle(self):
+                conn = self.email.imap.get('My Connection').conn
+        
+                for msg_id, msg in conn.get():
+        
+                    # Access the message
+                    self.logger.info(msg.data)
+        
+                    # To delete the message
+                    msg.delete()
