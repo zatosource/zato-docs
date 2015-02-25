@@ -52,55 +52,6 @@ Usage scenarios
   
 .. image:: /gfx/admin/enmasse-env.png
    :alt:
-   
-Installing 
-----------
-
-* Make sure INSTALL_DIR/bin is on $PATH, where INSTALL_DIR is a directory you 
-  :doc:`installed <./install-zato>` Zato binaries to. This is where the 'py' command
-  needed by enmasse resides (note that it's 'py', not 'python').
-  
-* Download `enmasse <https://zato.io/download/enmasse>`_ and display its help to confirm the download was successful
-
-  ::
-  
-      $ curl -O https://zato.io/download/enmasse
-      $ py enmasse --help
-      usage: enmasse [-h] [--store-log] [--verbose] [--store-config]
-                     [--export-local] [--export-odb] [--import]
-                     [--ignore-missing-defs] [--replace-odb-objects] [--input INPUT]
-                     [--cols_width COLS_WIDTH] [--path PATH]
-      
-      Manages server objects en masse.
-      
-      optional arguments:
-        -h, --help            show this help message and exit
-        --store-log           Whether to store an execution log
-        --verbose             Show verbose output
-        --store-config        Whether to store config options in a file for a later
-                              use
-        --export-local        Export local JSON definitions into one file (can be
-                              used with --export-odb)
-        --export-odb          Export ODB definitions into one file (can be used with
-                              --export-local)
-        --import              Import definitions from a local JSON (excludes
-                              --export-*)
-        --ignore-missing-defs
-                              Ignore missing definitions when exporting to JSON
-        --replace-odb-objects
-                              Force replacing objects already existing in ODB during
-                              import
-        --input INPUT         Path to an input JSON document
-        --cols_width COLS_WIDTH
-                              A list of columns width to use for the table output,
-                              default: 15,100
-        --path PATH           Path to a running Zato server
-      $ 
-
-
-.. note ::
-
-   Enmasse will become zato enmasse, part of CLI, in one of the future Zato releases.
 
 
 Workflow
@@ -181,7 +132,7 @@ Usage samples
 
   ::
   
-      $ py enmasse --path /opt/server1/ --input input1.json --export-local
+      $ zato enmasse --path /opt/server1/ --input input1.json --export-local
       Includes merged in successfully
       Data exported to /opt/zato/zato-export-2013-06-12T20_10_19_874355.json
       $
@@ -191,7 +142,7 @@ Usage samples
       
   ::
   
-      $ py enmasse --path /opt/server1/ --input input1.json --export-local --export-odb
+      $ zato enmasse --path /opt/server1/ --input input1.json --export-local --export-odb
       Includes merged in successfully
       ODB objects read
       ODB objects merged in
@@ -203,7 +154,7 @@ Usage samples
 
   ::
   
-    $ py enmasse --path /server1/ --input export.json --import
+    $ zato enmasse --path /server1/ --input export.json --import
     2 warnings and 0 errors found:
     +-----------------+--------------------------------------------------------------+
     |       Key       |                            Value                             |
@@ -233,7 +184,7 @@ Usage samples
 
   ::
   
-    $ py enmasse --path /server1/ --input export.json --import --replace-odb-objects
+    $ zato enmasse --path /server1/ --input export.json --import --replace-odb-objects
     Updated object 'myjmswmq2' (def_jms_wmq)
     Updated object 'myjmswmq3' (def_jms_wmq)
     Updated object 'channel-amqp1' (channel_amqp)

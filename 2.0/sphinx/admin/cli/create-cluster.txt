@@ -15,7 +15,7 @@ Name                                              Description                   
 --postgresql_schema                               PostgreSQL only: database schema to use                                            zato
 --odb_password                                    ODB password                                                                       kf094z203mck2303
 --tech_account_password                           A password for the web admin's technical account user to connect with              jf90234aAZ9770da
-odb_type                                          ODB type, must be one of: ['oracle', 'postgresql']                                 postgresql
+odb_type                                          ODB type, must be one of: ['oracle', 'postgresql', 'mysql', 'sqlite']              postgresql
 odb_host                                          Host the ODB is running on                                                         localhost
 odb_port                                          Port the ODB is listening at                                                       5432
 odb_user                                          Username to connect to ODB with                                                    zato1

@@ -72,32 +72,42 @@ can be used to achieve different ends, such as:
 Request parameters
 ------------------
 
-============ ======== ======== ================================================================================================================================================
-Name         Datatype Optional Notes
-============ ======== ======== ================================================================================================================================================
-cluster_id   int      ---      ID of the cluster this object should be created in
-name         string   ---      Name of the object to create
-is_active    boolean  ---      Whether the object should be active upon its creation, if it can be used
-connection   string   ---      Must be either 'channel' if the object is a channel or 'outgoing' if it's an outgoing connection
-transport    string   ---      Must be either 'plain_http' for plain HTTP connections and 'soap' for SOAP ones
-is_internal  boolean  ---      'true' if it's one of Zato's own internal objects, 'false' otherwise
-url_path     string   ---      URL path to expose if it's a channel, a URL path to invoke if it's an outgoing connection. Must start with a '/'.
-service      string   Yes      A service to invoke on an incoming request if it's a channel
-security_id  int      Yes      If it's a channel, ID of an already existing security definition, one of 
-                               :doc:`HTTP Basic Auth.*<./zato.security.basic-auth>`, 
-                               :doc:`technical account<./zato.security.tech-account>` or 
-                               :doc:`WS-Security</public-api/details/zato.security.wss>`. If not given, from Zato's viewpoint, the channel will be open for everyone to invoke.
-method       string   Yes      If it's a channel, an HTTP method that must be used by clients when invoking the channel. If not given, any method will work.
-soap_action  string   Yes      SOAP action to expose the channel under if it's a channel. SOAP action to use when invoking services if it's an outgoing connections.
-soap_version string   Yes      Must be '1.1' if it's a channel; can be '1.1' or '1.2' if it's an outgoing connection.
-data_format  string   Yes      If given and it's a channel, must be either 'xml' or 'json' - describes the expected data format of incoming requests
-host         string   Yes      If it's an outgoing connection, the host to invoke services on. Must include either 'http://' or 'https://' prefix.
-ping_method  string   Yes      (New in 2.0) If it's an outgoing connection, the HTTP method to use for :doc:`pinging <./zato.http-soap.ping>` the connection. 
-                               HEAD will be used if ping_method is not given.
-pool_size    int      Yes      (New in 2.0) If it's an outgoing connection, how many HTTP connections to keep in a pool at maximum for this particular
-                               outgoing connection. The connections are added to the pool as needed, on fly. Default value of 200
-                               will be used if pool_size is not given.
-============ ======== ======== ================================================================================================================================================
+==================== ========= ======== ================================================================================================================================================
+Name                 Datatype  Optional Notes
+==================== ========= ======== ================================================================================================================================================
+cluster_id            int      ---      ID of the cluster this object should be created in
+name                  string   ---      Name of the object to create
+is_active             boolean  ---      Whether the object should be active upon its creation, if it can be used
+connection            string   ---      Must be either 'channel' if the object is a channel or 'outgoing' if it's an outgoing connection
+transport             string   ---      Must be either 'plain_http' for plain HTTP connections and 'soap' for SOAP ones
+is_internal           boolean  ---      'true' if it's one of Zato's own internal objects, 'false' otherwise
+url_path              string   ---      URL path to expose if it's a channel, a URL path to invoke if it's an outgoing connection. Must start with a '/'.
+service               string   Yes      A service to invoke on an incoming request if it's a channel
+security_id           int      Yes      If it's a channel, ID of an already existing security definition, one of 
+                                        :doc:`HTTP Basic Auth.*<./zato.security.basic-auth>`, 
+                                        :doc:`technical account<./zato.security.tech-account>` or 
+                                        :doc:`WS-Security</public-api/details/zato.security.wss>`. If not given, from Zato's viewpoint, the channel will be open for everyone to invoke.
+method                string   Yes      If it's a channel, an HTTP method that must be used by clients when invoking the channel. If not given, any method will work.
+soap_action           string   Yes      SOAP action to expose the channel under if it's a channel. SOAP action to use when invoking services if it's an outgoing connections.
+soap_version          string   Yes      Must be '1.1' if it's a channel; can be '1.1' or '1.2' if it's an outgoing connection.
+data_format           string   Yes      If given and it's a channel, must be either 'xml' or 'json' - describes the expected data format of incoming requests
+host                  string   Yes      If it's an outgoing connection, the host to invoke services on. Must include either 'http://' or 'https://' prefix.
+ping_method           string   Yes      If it's an outgoing connection, the HTTP method to use for :doc:`pinging <./zato.http-soap.ping>` the connection. 
+                                        HEAD will be used if ping_method is not given.
+pool_size             int      Yes      If it's an outgoing connection, how many HTTP connections to keep in a pool at maximum for this particular
+                                        outgoing connection. The connections are added to the pool as needed, on fly. Default value of 200
+                                        will be used if pool_size is not given.
+has_rbac              boolean  Yes      Required for channels. Whether the channel uses RBAC.
+timeout               string   Yes      Required for outgoing connections. How long to wait, in seconds, for the response to arrive. May contain
+                                        fractions of seconds and will be converted to a float internally.
+sec_tls_ca_cert_id    string   Yes      Required for outgoing connections using SSL/TLS. ID of a set of
+                                        :doc:`CA certs <../../web-admin/security/tls/ca-certs>`
+                                        the resource being invoked uses.
+serialization_type    string   Yes      Required for SOAP outgoing connections - will the requests be produced as string or using suds.
+merge_url_params_req  boolean  Yes      Required for channels. Should URL parameters constitute part of the SimpleIO request if SimpleIO is used
+                                        by the channel's service.
+url_params_pri        string   Yes      Required for channels. Either 'path-over-qs' or 'qs-over-path' - what has priority in resolving parameters, URL path of query string.
+==================== ========= ======== ================================================================================================================================================
             
 
 Response parameters
@@ -165,7 +175,8 @@ JSON example
      "url_path": "/json",
      "host": "http://10.152.11.182:9093",
      "ping_method": "OPTIONS",
-     "pool_size": 90
+     "pool_size": 90,
+     "timeout": "3"
    }
 
    {

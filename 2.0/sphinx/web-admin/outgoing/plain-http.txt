@@ -83,6 +83,7 @@ Version             Notes
                     * Pool size
                     * Timeout
                     * TLS CA certs
+                    * Ping method
 
 1.0                 Added initially
 =================== ===================================================================

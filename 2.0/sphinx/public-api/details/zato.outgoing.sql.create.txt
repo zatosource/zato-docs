@@ -21,7 +21,7 @@ Name       Datatype Optional Notes
 cluster_id int      ---      ID of the cluster this outgoing connection should be created in
 name       string   ---      Name of the outgoing connection to create
 is_active  boolean  ---      Whether the outgoing connection should be active upon its creation. If not true, it won't be possible to connect to the database.
-engine     string   ---      Database engine, its type. Must be one either 'oracle' or 'postgresql'.
+engine     string   ---      Database engine, its type. Must be one one of 'oracle', 'postgresql', 'mysql' or 'sqlite'.
 host       string   ---      Database host
 port       int      ---      Database port
 db_name    string   ---      Database name

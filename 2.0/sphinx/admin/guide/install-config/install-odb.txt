@@ -11,7 +11,10 @@ Steps
 
   * PostgreSQL 9.x
   * Oracle 11.2.x
-  
+  * MySQL 5.5+
+
+Note: SQLite is one of the supported databases as well but doesn't need manual installation beforehand.
+
 * Create a user for Zato servers
 
 * (PostgreSQL only) Create a separate schema for Zato
