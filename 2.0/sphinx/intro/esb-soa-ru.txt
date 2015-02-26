@@ -49,10 +49,11 @@
     <br/>
 
 Also available in
-:doc:`Català <esb-soa-ca>`,
+:doc:`Català <./esb-soa-ca>`,
+:doc:`le français <./esb-soa-fr>`,
 :doc:`Português <./esb-soa-pt>`,
 and
-:doc:`中文 <esb-soa-cn>`.
+:doc:`中文 <./esb-soa-cn>`.
 
 Аббревиатура ESB и связанная с ней SOA - могут стать причиной путаницы. ESB
 расшифровывается как Enterprise Service Bus. SOA - Service Oriented

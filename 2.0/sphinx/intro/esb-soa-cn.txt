@@ -51,10 +51,11 @@ ESB和SOA到底是什么？
 Translated from :doc:`English <./esb-soa>` by `李观平 <https://github.com/kenxinlee>`_.
 
 Also available in
-:doc:`Català <esb-soa-ca>`,
+:doc:`Català <./esb-soa-ca>`,
+:doc:`le français <./esb-soa-fr>`,
 :doc:`Português <./esb-soa-pt>`,
 and
-:doc:`ру́сский <esb-soa-ru>`.
+:doc:`ру́сский <./esb-soa-ru>`.
 
 ESB和其相关缩写SOA，是困惑之源。ESB是企业服务总线的缩写，而SOA的意思是面向服务架构。
 但这样解析并没有太多的内在含义。所以这里尽可能的提供一些更多的信息，而不是仅仅从企业的角度的来介绍ESB和SOA。
