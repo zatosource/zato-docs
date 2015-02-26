@@ -42,13 +42,13 @@ ESB和SOA到底是什么？
     </style>
 
     <blockquote>
-    个关于系统的系统思维方式的优秀表述
+    一个关于系统的系统思维方式的优秀表述, 
     <br/>
-      <a href="https://twitter.com/ncoghlan_dev/status/337907854944129025">Nick Coghlan</a>, 核心Python开发者如是说。
+      <a href="https://twitter.com/ncoghlan_dev/status/337907854944129025">Nick Coghlan</a>核心Python开发者如是说。
     </blockquote>
     <br/>
 
-Translated from :doc:`English <./esb-soa>` by `李观平 <https://github.com/kenxinlee>`_.
+Translated from :doc:`English <./esb-soa>` by `kenxinlee <https://github.com/kenxinlee>`_.
 
 Also available in
 :doc:`Català <./esb-soa-ca>`,
