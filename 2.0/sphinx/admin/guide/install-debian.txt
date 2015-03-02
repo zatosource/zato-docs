@@ -22,7 +22,7 @@ Installation steps
 
 ::
 
-    debian# sudo apt-get install apt-transport-https python-software-properties
+    debian# apt-get install apt-transport-https python-software-properties
     debian# apt-add-repository 'deb http://ftp.is.debian.org/debian wheezy-backports main'
 
 * Add the package signing key
@@ -35,23 +35,23 @@ Installation steps
 
 ::
 
-    debian# sudo apt-add-repository https://zato.io/repo/stable/2.0/debian
-    debian# sudo apt-get update
+    debian# apt-add-repository https://zato.io/repo/stable/2.0/debian
+    debian# apt-get update
 
 * Install Zato
 
 ::
 
-    debian# sudo apt-get install zato
+    debian# apt-get install zato
 
 * Confirm the installation
 
 ::
 
-    debian# sudo su - zato
-    debian# zato --version
+    debian# su - zato
+    debian$ zato --version
     Zato 2.0.2.rev-721c786d
-    debian#
+    debian$
 
 That concludes the process - you can refer to the main
 :doc:`documentation index <../../index>`
