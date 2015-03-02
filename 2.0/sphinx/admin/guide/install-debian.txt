@@ -50,7 +50,7 @@ Installation steps
 
     debian# sudo su - zato
     debian# zato --version
-    Zato 2.0.1.rev-61cbd0c9
+    Zato 2.0.2.rev-721c786d
     debian#
 
 That concludes the process - you can refer to the main
