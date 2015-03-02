@@ -63,10 +63,14 @@ Introduction
 I18N
 ====
 
-    * *中文*  `Zato—基于Python的ESB和后端应用服务器 <http://www.infoq.com/cn/articles/zato>`_ · `Python 发送 AMQP 消息 <http://www.oschina.net/translate/howto-sending-amqp-messages>`_ |
-      *Català* :doc:`Què és un ESB i què és SOA<intro/esb-soa-ca>` |
-      *Português*  :doc:`O que ESB e SOA são, afinal?<intro/esb-soa-pt>` |
-      *ру́сский* :doc:`Что такое ESB и SOA<intro/esb-soa-ru>`
+    * *CN*  
+      :doc:`ESB和SOA到底是什么？ <intro/esb-soa-cn>` ·
+      `Zato—基于Python的ESB和后端应用服务器 <http://www.infoq.com/cn/articles/zato>`_ ·
+      `Python 发送 AMQP 消息 <http://www.oschina.net/translate/howto-sending-amqp-messages>`_ |
+      *CAT* :doc:`Què és un ESB i què és SOA <intro/esb-soa-ca>` |
+      *FR* :doc:`Qu´entend-on á vrai dire par ESB et SOA <intro/esb-soa-fr>` |
+      *PT*  :doc:`O que ESB e SOA são, afinal? <intro/esb-soa-pt>` |
+      *RU* :doc:`Что такое ESB и SOA <intro/esb-soa-ru>`
 
 Web admin reference
 ===================
@@ -229,7 +233,7 @@ Programming guide
       :doc:`Python client<progguide/clients/python>` |
       :doc:`Django and Flask integration<progguide/clients/django-flask>` |
       :doc:`Security<progguide/security>` |
-      :doc:`Where to keep service-local config<progguide/service-local-config>` |
+      :doc:`Where to keep configuration<progguide/service-local-config>` |
       :doc:`HTML with Django templates<progguide/html>` |
       :doc:`Helpers<progguide/helpers>` |
       :doc:`Documenting<progguide/documenting>`

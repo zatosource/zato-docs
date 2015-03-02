@@ -1,8 +1,8 @@
 .. highlight:: python
    :linenothreshold: 0
 
-Where to keep service-local configuration
-=========================================
+Where to keep configuration
+===========================
 
 This chapter discusses several approaches as to where to keep configuration 
 that is specific to services you develop, i.e. it's not about how to configure Zato itself, rather where to
@@ -236,3 +236,13 @@ services are deployed on servers.
            
            # Always return True if you want for the service to be deployed
            return True
+
+Server-wide user context
+------------------------
+
+Users can store any sort of configuration in a dictionary shared by all services on a given server.
+Information retrieval is fast seeing as it is simply a dictionary lookup and allows for updating the dictionary in run-time.
+
+There is
+:doc:`a dedicated chapter <./server-user-ctx>`
+to describe the feature.

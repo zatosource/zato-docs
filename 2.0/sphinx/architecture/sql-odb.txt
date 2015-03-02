@@ -23,6 +23,8 @@ The ODB can be created using one the following SQL databases:
 
 * `Oracle <http://www.oracle.com/us/products/database/overview/index.html>`_
 * `PostgreSQL <http://www.postgresql.org>`_
+* `MySQL <https://en.wikipedia.org/wiki/MySQL>`_
+* `SQLite <https://sqlite.org/>`_
 
 Note that any passwords stored in the ODB are always in clear text, they aren't
 encrypted in any way.

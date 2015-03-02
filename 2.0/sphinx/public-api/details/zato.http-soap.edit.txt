@@ -20,27 +20,33 @@ for a discussion of the service's request parameters.
 Request parameters
 ------------------
 
-============ ======== ======== ================================================================
-Name         Datatype Optional Notes
-============ ======== ======== ================================================================
-id           int      ---      Object ID
-cluster_id   int      ---      ID of the cluster this object is defined on
-name         string   ---      Name of the object to update
-is_active    boolean  ---      Whether the object should be active, if it can be used
-connection   string   ---      Same as for :doc:`zato.http-soap.create <zato.http-soap.create>`
-transport    string   ---      〃
-is_internal  boolean  ---      〃
-url_path     string   ---      〃
-service      string   Yes      〃
-security_id  int      Yes      〃
-method       string   Yes      〃
-soap_action  string   Yes      〃
-soap_version string   Yes      〃
-data_format  string   Yes      〃
-host         string   Yes      〃
-ping_method  string   Yes      〃
-pool_size    int      Yes      〃
-============ ======== ======== ================================================================
+======================= ======== ======== =================================================================================
+Name                    Datatype Optional Notes
+======================= ======== ======== =================================================================================
+id                      int      ---      Object ID
+cluster_id              int      ---      ID of the cluster this object is defined on
+name                    string   ---      Name of the object to update
+is_active               boolean  ---      Whether the object should be active, if it can be used
+connection              string   ---      Same as for :doc:`zato.http-soap.create <zato.http-soap.create>`
+transport               string   ---      〃
+is_internal             boolean  ---      〃
+url_path                string   ---      〃
+service                 string   Yes      〃
+security_id             int      Yes      〃
+method                  string   Yes      〃
+soap_action             string   Yes      〃
+soap_version            string   Yes      〃
+data_format             string   Yes      〃
+host                    string   Yes      〃
+ping_method             string   Yes      〃
+pool_size               int      Yes      〃
+has_rbac                boolean  Yes      〃
+timeout                 string   Yes      〃
+sec_tls_ca_cert_id      string   Yes      〃
+serialization_type      string   Yes      〃
+merge_url_params_req    boolean  Yes      〃
+url_params_pri          string   Yes      〃
+======================= ======== ======== =================================================================================
             
 
 Response parameters
@@ -110,7 +116,9 @@ JSON example
      "transport": "plain_http",
      "url_path": "/json",
      "host": "10.152.11.182:9093",
-     "ping_method": "HEAD"
+     "ping_method": "HEAD",
+     "pool_size": 12,
+     "timeout": "15"
    }
 
    {

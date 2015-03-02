@@ -42,19 +42,20 @@ ESB和SOA到底是什么？
     </style>
 
     <blockquote>
-    个关于系统的系统思维方式的优秀表述
+    一个关于系统的系统思维方式的优秀表述, 
     <br/>
-      <a href="https://twitter.com/ncoghlan_dev/status/337907854944129025">Nick Coghlan</a>, 核心Python开发者如是说。
+      <a href="https://twitter.com/ncoghlan_dev/status/337907854944129025">Nick Coghlan</a>核心Python开发者如是说。
     </blockquote>
     <br/>
 
-Translated from :doc:`English <./esb-soa>` by `李观平 <https://github.com/kenxinlee>`_.
+Translated from :doc:`English <./esb-soa>` by `kenxinlee <https://github.com/kenxinlee>`_.
 
 Also available in
-:doc:`Català <esb-soa-ca>`,
+:doc:`Català <./esb-soa-ca>`,
+:doc:`le français <./esb-soa-fr>`,
 :doc:`Português <./esb-soa-pt>`,
 and
-:doc:`ру́сский <esb-soa-ru>`.
+:doc:`ру́сский <./esb-soa-ru>`.
 
 ESB和其相关缩写SOA，是困惑之源。ESB是企业服务总线的缩写，而SOA的意思是面向服务架构。
 但这样解析并没有太多的内在含义。所以这里尽可能的提供一些更多的信息，而不是仅仅从企业的角度的来介绍ESB和SOA。
@@ -233,7 +234,7 @@ ESB是只为银行或者类似的应用服务的吗？那么？
 
 完全不是。只要是需要多数据源和多访问方法合作去获得一个有趣结果的情况，都是一个好的选择。
 
-例如，从热传感器读取信息，并且发布到几个通道去，比如email警告、iPhone应用。 这听起来就是一个很好的集成应用平台场景。周期性的查询和监控是否某个应用的所有实例都起来了没有，跑一个预配置的脚本去发送文字信息给管理员的应用场景听起来也不错。所有需要集成在一个干净的，定义好的环境，可能都是一个ESB服务的应用场景。但通常，判断某个东西是否真的匹配成一个服务则需要相关人员的经验。当然了，`Zato 后面的团队可以帮助到你。 <https://zato.io/support.html>`_ 
+例如，从热传感器读取信息，并且发布到几个通道去，比如email警告、iPhone应用。 这听起来就是一个很好的集成应用平台场景。周期性的查询和监控是否某个应用的所有实例都起来了没有，跑一个预配置的脚本去发送文字信息给管理员的应用场景听起来也不错。所有需要集成在一个干净的，定义好的环境，可能都是一个ESB服务的应用场景。但通常，判断某个东西是否真的匹配成一个服务则需要相关人员的经验。当然了， `Zato support <https://zato.io/support.html>`_ 后面的团队可以帮助到你。
 
 --------------------------------------------------------
 但是我听说SOA全部都是关于XML，SOAP和Web服务的

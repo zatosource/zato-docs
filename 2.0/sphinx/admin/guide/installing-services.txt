@@ -83,7 +83,7 @@ for a confirmation from.
 Hot-deploying from the web admin
 --------------------------------
 
-Flat Python packages can also be hot-deployed in a cluster using the web admin.
+Flat Python modules can also be hot-deployed in a cluster using the web admin.
 
 .. image:: /gfx/admin-upload-package.png
    :alt:
