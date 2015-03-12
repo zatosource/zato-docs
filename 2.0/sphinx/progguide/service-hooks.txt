@@ -34,11 +34,11 @@ or not.
 ======================================================================== ===================================================================================
 Method                                                                   Notes
 ======================================================================== ===================================================================================
-:ref:`before_add_to_store <progguide-write-service-before_add_to_store>` Class method that will be executed by each worker when a 
+:ref:`before_add_to_store <progguide-write-service-before_add_to_store>` Static method that will be executed by each worker when a 
                                                                          server starts up. A service will be deployed by that worker 
                                                                          only if the method returns True and this is the value
                                                                          before_add_to_store returns by default.
-:ref:`after_add_to_store <progguide-write-service-after_add_to_store>`   Class method that will be executed by each worker right after a
+:ref:`after_add_to_store <progguide-write-service-after_add_to_store>`   Static method that will be executed by each worker right after a
                                                                          service has been successfully deployed.
 
 :ref:`accept <progguide-write-service-accept>`                           If False, the service won't be executed at all. Defaults to True.
