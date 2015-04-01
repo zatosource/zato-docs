@@ -42,20 +42,20 @@ Subcommands
 Command-specific parameters
 ---------------------------
 
-================================================= ================================================== ================
-Name                                              Description                                        Example value
-================================================= ================================================== ================
---json                                            Whether the data returned should be in JSON        True
---cols_width                                      The width of both columns in ASCII table output    30,50
-path                                              Path to a Zato component                           ~/dev3/web-admin
-================================================= ================================================== ================
+================================================= =================================================== ================
+Name                                              Description                                         Example value
+================================================= =================================================== ================
+--format                                          Output format; must be text (default), json or yaml json
+--cols_width                                      The width of both columns in ASCII table output     30,50
+path                                              Path to a Zato component                            ~/dev3/web-admin
+================================================= =================================================== ================
 
 Usage
 -----
 
 ::
 
-    $ zato info [-h] [--store-log] [--verbose] [--store-config] [--json]
+    $ zato info [-h] [--store-log] [--verbose] [--store-config] [--format FORMAT]
         [--cols_width COLS_WIDTH] path
         
 .. note::
