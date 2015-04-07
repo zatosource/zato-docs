@@ -71,14 +71,14 @@ Klartext-Informationen zu dem Thema zu geben, unter Vermeidung allzu vieler Mark
 Die ganze Wahrheit
 ------------------
 
-Stellen Sie sich einmal vor, was im Einzelnen passieren, wenn Sie sich mit der
+Stellen Sie sich einmal vor, was im Einzelnen geschieht, wenn Sie sich mit der
 Benutzeroberfläche Ihrer Banking-Anwendung anmelden:
 
-1) Ihr Name wird angezeigt
-2) Ihr Kontostand erscheint
-3) Ihre EC- und Kreditkarten werden angezeigt
-4) Eine Liste Ihrer Aktienfonts kann erscheinen
-5) Sie erhalten eine vorgefertigte Liste mit attraktiven Krediten, die Sie interessieren könnten
+1) Ihr Name wird angezeigt.
+2) Ihr Kontostand erscheint.
+3) Ihre EC- und Kreditkarten werden angezeigt.
+4) Eine Liste Ihrer Aktienfonds kann erscheinen.
+5) Sie erhalten eine vorgefertigte Liste mit attraktiven Krediten, die Sie interessieren könnten.
 
 Nun ist es sehr wahrscheinlich, dass all diese Teile zu verschiedenen Systemen und Anwendungen gehören,
 von denen jede ihre Daten über irgendeine Art von Schnittstelle zur Verfügung stellt
@@ -123,7 +123,7 @@ Wenn Sie meinen, dass man 6 solcher Anwendungen noch handhaben kann, was machen 
 .. image:: /gfx/intro/mess2.png
    :alt:
 
-Können Sie 400 noch zurechtkommen? Wie ist es mit 2000?
+Können Sie mit 400 noch zurechtkommen? Wie ist es mit 2000?
 Jede Anwendung kann ein besonderes Ökosystem für sich selbst sein, das 10 Server
 oder andere Geräte benötigt, auf denen es läuft, so dass man es mit zwanzigtausend beweglichen Teilen zu tun hat,
 die über Kontinente und alle Arten von technischen und kulturellen Grenzen hinweg verstreut sein können,
@@ -137,7 +137,7 @@ Wie können Sie Ordnung in dieses Kuddelmuddel bringen?
 ------------------------------------------------------
 
 Als erstes sollte man ehrlich zugeben, dass die Situation außer Kontrolle geraten ist.
-Das ermöglicht es einem, ohne allzu viel Schuldgefühle nach Abhilfemaßnahmen auszuschauen.
+Das ermöglicht es einem, ohne allzu große Schuldgefühle nach Abhilfemaßnahmen auszuschauen.
 Ok, es ist eben passiert, Sie hatten keine bessere Lösung gesehen, aber es gibt nun eine Chance, wieder Ordnung in das Chaos zu bringen.
 
 Dies kann eine organisatorische Änderung im Ansatz bedeuten, wie man IT betreibt,
@@ -174,7 +174,7 @@ Umgebung            Das CRM einer Elektrizitätsgesellschaft
 Funktionalität      Eine Liste von Kunden zurückgeben, die in einem Selbstbedienungsportal im Q3 2012 aktiv waren
 Ist es interessant? Ja, sehr interessant. Hieraus können alle möglichen nützlichen Berichte und Statistiken
                     erzeugt werden.
-Wiederverwertbar?   Nein, nicht wirklich. Es erlaubt zwar, übergeordnete Konstruktionen, etwa die Statistik für
+Wiederverwertbar?   Nein, nicht wirklich. Es erlaubt zwar übergeordnete Konstruktionen, etwa die Statistik für
                     ein ganzes Jahr, aber es ist klar, dass es im Jahr 2018 nicht mehr wirklich gebraucht wird.
 Ist es atomar?      Höchstwahrscheinlich ja. Wenn es ähnliche Dienste für andere Quartale gibt, wäre es möglich,
                     eine Übersicht über das ganze Jahr zu bekommen.
@@ -198,7 +198,7 @@ Ist es atomar?      Definitiv nicht. Diese Monster-Funktionalität ist zwangslä
 Wie wird es IWA?    * In kleinere Stücke aufteilen. Überlegen Sie, wodurch Kunden beschrieben werden - sie
                       haben Adressen, Telefonnummern, Lieblingsprodukte, bevorzugte Kontaktmethoden usw. -
                       diese Dinge sollten alle zu unabhängigen Diensten gemacht werden.
-                    * Einen ESB benutzen, um aus den atomaren Diensten einen zusammengesetzten Dienst zu machen
+                    * Einen ESB benutzen, um aus den atomaren Diensten einen zusammengesetzten Dienst zu machen.
 =================== =============================================================================================
 
 =================== =============================================================================================
@@ -206,11 +206,11 @@ Größe               Anmerkungen
 =================== =============================================================================================
 Umgebung            Irgendein CRM irgendwo
 Funktionalität      Die Spalte CUST_AR_ZN in der Tabelle C_NAZ_AJ aktualisieren, nachdem jemand ein Benutzerkonto
-                    eingerichtet hat.
+                    eingerichtet hat
 Ist es interessant? Überhaupt nicht. Dies ist eine interne Funktion eines CRM. Niemand, der recht bei Trost ist,
                     will mit einer Funktionalität auf so einer niedrigen Ebene zu tun haben.
 Wiederverwertbar?   Wahrscheinlich schon. Ein Benutzerkonto kann über verschiedene Kanäle angelegt werden,
-                    das schein also etwas Wiederverwertbares zu sein.
+                    das scheint also etwas Wiederverwertbares zu sein.
 Ist es atomar?      Anscheinend ja. Es ist ja ein einfaches Update einer Spalte in einer Tabelle.
 Wie wird es IWA?    Sie sollten nicht einmal daran denken, daraus einen Dienst zu machen.
                     Es ist nicht interessant. Niemand möchte über bestimmte Spalten und Tabellen in einem System
@@ -271,7 +271,7 @@ zwischen Abteilungen und Herstellern aufgespalten wird, dann ist es die Aufgabe 
 ESB-Leute, Anpassungen für solche Änderungen zu machen. Keines der anderen Systeme wird
 dies auch nur bemerken, weil ihre Schnittstellen mit dem ESB davon völlig unberührt bleiben.
 
-Wenn Sie anfangen, IWA-Dienste als ihr tägliches Brot anzusehen, dann können Sie
+Wenn Sie anfangen, IWA-Dienste als Ihr tägliches Brot anzusehen, dann können Sie
 damit beginnen, an zusammengesetzte Dienste zu denken.
 
 Erinnern Sie sich an den Dienst vom Typ 'gib-mir-alles-was-du-über-den-Kunden-weißt' von vorhin?
@@ -366,7 +366,7 @@ dafür geben, wie ESB und SOA aussehen sollten, und was benötigt wird, um damit
 
 Einige weitere Themen, über die Sie nachdenken sollten, die hier aber nicht behandelt werden:
 
-* Wir man vom Management Unterstützung für einen ESB erhält
+* Wie man vom Management Unterstützung für einen ESB erhält
 * Wie man SOA-Architekten und Analysten zusammenbringt
 * Ein kanonisches Datenmodell (Canonical Data Model, CDM) in eine Organisation einführen
 * Leistungskennzahlen (Key Performance Indicators, KPI) - nachdem man eine gemeinsame,
@@ -390,7 +390,7 @@ Und `Python <http://python.org>`_ ist eine Programmiersprache, die berühmt für
 Indem man Python und Zato verwendet, kann man produktiver sein und weniger Zeit mit Ärgernissen verbringen.
 
 Zato wurde **von Pragmatikern für Pragmatiker** geschrieben. Es ist nicht noch ein weiteres schnell
-von einem Hersteller auf der Welle des ESB/SOA-Medienrummels zusammengeschustertes System.
+von einem Hersteller auf der Welle des ESB/SOA-Werberummels zusammengeschustertes System.
 
 Vielmehr wurde es aus der praktischen Erfahrung geboren, die Feuer löschen zu müssen, die durch solche Systeme entstanden sind.
 Tatsächlich haben die Autoren von Zato so viel Zeit mit solchen Horror-Umgebungen verbracht, dass sie praktisch feuerresistent wurden.
