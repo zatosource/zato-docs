@@ -50,6 +50,7 @@ ESB ve SOA ne anlama geliyor yani?
 
 Aşağıdaki dillerde okuyabilirsiniz.
 :doc:`Català <esb-soa-ca>`,
+:doc:`Deutsch <esb-soa-de>`,
 :doc:`Português <./esb-soa-pt>`,
 :doc:`ру́сский <esb-soa-ru>`
 :doc:`İngilizce <esb-soa>`

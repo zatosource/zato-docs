@@ -50,6 +50,7 @@ Qu´entend-on á vrai dire par ESB et SOA
 
 Also available in
 :doc:`Català <./esb-soa-ca>`,
+:doc:`Deutsch <esb-soa-de>`,
 :doc:`English <./esb-soa>`,
 :doc:`Português <./esb-soa-pt>`,
 :doc:`ру́сский <./esb-soa-ru>`,

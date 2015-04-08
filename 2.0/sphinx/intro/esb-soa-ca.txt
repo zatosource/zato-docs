@@ -52,6 +52,7 @@ Translated from :doc:`English <./esb-soa>` by
 `Carles Sala Cladellas <https://github.com/csala>`_.
 
 Also available in
+:doc:`Deutsch <esb-soa-de>`,
 :doc:`le français <./esb-soa-fr>`,
 :doc:`Português <./esb-soa-pt>`,
 :doc:`ру́сский <./esb-soa-ru>`,

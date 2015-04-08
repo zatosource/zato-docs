@@ -49,6 +49,8 @@ Was bedeutet ESB und SOA überhaupt?
     </blockquote>
     <br/>
 
+Übersetzt aus dem Englischen von `Christoph Zwerschke <https://plus.google.com/+ChristophZwerschke>`_.
+
 Auch verfügbar in
 :doc:`English <esb-soa>`,
 :doc:`Català <esb-soa-ca>`,
