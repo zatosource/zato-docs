@@ -236,13 +236,3 @@ services are deployed on servers.
            
            # Always return True if you want for the service to be deployed
            return True
-
-Server-wide user context
-------------------------
-
-Users can store any sort of configuration in a dictionary shared by all services on a given server.
-Information retrieval is fast seeing as it is simply a dictionary lookup and allows for updating the dictionary in run-time.
-
-There is
-:doc:`a dedicated chapter <./server-user-ctx>`
-to describe the feature.

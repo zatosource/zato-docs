@@ -70,7 +70,8 @@ I18N
       *CAT* :doc:`Què és un ESB i què és SOA <intro/esb-soa-ca>` |
       *FR* :doc:`Qu´entend-on á vrai dire par ESB et SOA <intro/esb-soa-fr>` |
       *PT*  :doc:`O que ESB e SOA são, afinal? <intro/esb-soa-pt>` |
-      *RU* :doc:`Что такое ESB и SOA <intro/esb-soa-ru>`
+      *RU* :doc:`Что такое ESB и SOA <intro/esb-soa-ru>` |
+      *TR* :doc:`ESB ve SOA ne anlama geliyor yani? <intro/esb-soa-tr>`
 
 Web admin reference
 ===================

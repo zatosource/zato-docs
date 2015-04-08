@@ -54,7 +54,8 @@ Translated from :doc:`English <./esb-soa>` by
 Also available in
 :doc:`le français <./esb-soa-fr>`,
 :doc:`Português <./esb-soa-pt>`,
-:doc:`ру́сский <./esb-soa-ru>`
+:doc:`ру́сский <./esb-soa-ru>`,
+:doc:`Türkçe <./esb-soa-tr>`
 and
 :doc:`中文 <./esb-soa-cn>`.
 

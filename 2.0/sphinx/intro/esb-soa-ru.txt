@@ -52,6 +52,7 @@ Also available in
 :doc:`Català <./esb-soa-ca>`,
 :doc:`le français <./esb-soa-fr>`,
 :doc:`Português <./esb-soa-pt>`,
+:doc:`Türkçe <./esb-soa-tr>`
 and
 :doc:`中文 <./esb-soa-cn>`.
 

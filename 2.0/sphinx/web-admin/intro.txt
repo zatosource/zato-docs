@@ -41,70 +41,113 @@ Read more
 ---------
 
     * **Overview:** 
-      :doc:`Securing the web admin<./security>`
-      
+      :doc:`Securing the web admin<security>`
+
     * **Clusters:**
-      :doc:`Main view<./clusters>`
-      
+      :doc:`Main view<clusters>`
+
     * **Servers:**
-      :doc:`Main view<./servers/main>` | 
-      :doc:`Adding and removing servers <./servers/add-remove>`
-      
+      :doc:`Main view<servers/main>` |
+      :doc:`Adding and removing servers<servers/add-remove>`
+
     * **Load balancer:**
-      :doc:`GUI view<./load-balancer/gui>` | 
-      :doc:`Source code<./load-balancer/source-code>` | 
-      :doc:`Remote commands<./load-balancer/remote-commands>` | 
-      :doc:`Statistics<./load-balancer/statistics>`
-      
+      :doc:`GUI view<load-balancer/gui>` |
+      :doc:`Source code view<load-balancer/source-code>` |
+      :doc:`Remote commands<load-balancer/remote-commands>` |
+      :doc:`Statistics<load-balancer/statistics>`
+
     * **Services:**
-      :doc:`Main view<./services/main>` | 
-      :doc:`Uploading a service<./services/upload>`
-      
+      :doc:`Main view<services/main>` |
+      :doc:`Uploading a service<services/upload>`
+
     * **Service details:**
-      :doc:`Main view<./service-details/main>` | 
-      :doc:`Invoker<./service-details/invoker>` | 
-      :doc:`Source code view<./service-details/source-code>` | 
-      :doc:`WSDL<./service-details/wsdl>` | 
-      :doc:`Sample requests/responses<./service-details/sample-req-resp>` | 
-      :doc:`Slow responses<./service-details/slow-responses>`
-      
+      :doc:`Main view<service-details/main>` |
+      :doc:`Invoker<service-details/invoker>` |
+      :doc:`Source code<service-details/source-code>` |
+      :doc:`WSDL<service-details/wsdl>` |
+      :doc:`Sample requests/responses<service-details/sample-req-resp>` |
+      :doc:`Slow responses<service-details/slow-responses>`
+
+    * **Messages:**
+      :doc:`JSON Pointers<messages/json-pointer>` |
+      :doc:`XML Namespaces<messages/xml-ns>` |
+      :doc:`XPath<messages/xpath>`
+
     * **Security:**
-      :doc:`HTTP Basic Auth<./security/basic-auth>` | 
-      :doc:`Technical accounts<./security/tech-account>` | 
-      :doc:`WS-Security<./security/ws-security>`
-      
+      :doc:`API keys<security/apikey>` |
+      :doc:`AWS<security/aws>` |
+      :doc:`HTTP Basic Auth<security/basic-auth>` |
+      :doc:`NTLM<security/ntlm>` |
+      :doc:`OAuth<security/oauth>` |
+      :doc:`RBAC (Role-based access control)<security/rbac/overview>` |
+      :doc:`SSL/TLS <security/tls/overview>` |
+      :doc:`Technical accounts<security/tech-account>` |
+      :doc:`WS-Security<security/ws-security>` |
+      :doc:`XPath<security/xpath>`
+
     * **Connection definitions:**
-      :doc:`AMQP<./conn-def/amqp>` | 
-      :doc:`JMS WebSphere MQ<./conn-def/jms-wmq>`
-      
+      :doc:`AMQP<conn-def/amqp>` |
+      :doc:`Cassandra<conn-def/cassandra>` |
+      :doc:`JMS WebSphere MQ<conn-def/jms-wmq>`
+
     * **Channels:**
-      :doc:`AMQP<./channels/amqp>` | 
-      :doc:`JMS WebSphere MQ<./channels/jms-wmq>` | 
-      :doc:`Plain HTTP<./channels/plain-http>` | 
-      :doc:`SOAP<./channels/soap>` | 
-      :doc:`ZeroMQ<./channels/zmq>`
-      
+      :doc:`AMQP<channels/amqp>` |
+      :doc:`JMS WebSphere MQ<channels/jms-wmq>` |
+      :doc:`Plain HTTP (REST)<channels/plain-http>` |
+      :doc:`SOAP<channels/soap>` |
+      :doc:`ZeroMQ<channels/zmq>`
+
     * **Outgoing connections:**
-      :doc:`AMQP<./outgoing/amqp>` | 
-      :doc:`FTP<./outgoing/ftp>` | 
-      :doc:`JMS WebSphere MQ<./outgoing/jms-wmq>` | 
-      :doc:`Plain HTTP<./outgoing/plain-http>` | 
-      :doc:`SOAP<./outgoing/soap>` | 
-      :doc:`SQL<./outgoing/sql>` | 
-      :doc:`ZeroMQ<./outgoing/zmq>`
-      
+      :doc:`AMQP<outgoing/amqp>` |
+      :doc:`FTP<outgoing/ftp>` |
+      :doc:`JMS WebSphere MQ<outgoing/jms-wmq>` |
+      :doc:`Plain HTTP (REST)<outgoing/plain-http>` |
+      :doc:`Odoo (OpenERP)<outgoing/odoo>` |
+      :doc:`SOAP<outgoing/soap>` |
+      :doc:`SQL<outgoing/sql>` |
+      :doc:`ZeroMQ<outgoing/zmq>`
+
+    * **HTTP Audit Log:**
+      :doc:`Overview<audit-log/http/index>` |
+      :doc:`Configuring<audit-log/http/channel/config>` |
+      :doc:`Searching<audit-log/http/channel/search>` |
+      :doc:`Displaying details<audit-log/http/channel/details>`
+
+    * **Search:**
+      :doc:`ElasticSearch<search/es>` |
+      :doc:`Solr<search/solr>`
+
+    * **Notifications:**
+      :doc:`Cloud - OpenStack Swift<notif/cloud/openstack/swift>` |
+      :doc:`SQL<notif/sql>`
+
+    * **Queries:**
+      :doc:`Cassandra (CQL)<query/cassandra>`
+
+    * **E-mail:**
+      :doc:`IMAP<email/imap>` |
+      :doc:`SMTP<email/smtp>`
+
+    * **Cloud:**
+      :doc:`AWS S3<cloud/aws/s3>` |
+      :doc:`OpenStack Swift<cloud/openstack/swift>`
+
     * **Key/value DB (Redis):**
-      :doc:`Data dictionaries<./kvdb/data-dict>` |
-      :doc:`Remote commands<./kvdb/remote-commands>`
-      
+      :doc:`Data dictionaries<kvdb/data-dict>` |
+      :doc:`Remote commands<kvdb/remote-commands>`
+
+    * **Publish/subscribe:**
+      :doc:`Topics<pubsub/topic>` |
+      :doc:`Producers<pubsub/producer>` |
+      :doc:`Consumers<pubsub/consumer>`
+
     * **Scheduler:**
-      :doc:`Main view<./scheduler/main>`
-      
+      :doc:`Main view<scheduler/main>`
+
     * **Statistics:**
-      *(Documented in their own section)*
       :doc:`Guide<../stats/guide>` |
-      :doc:`Maintenance<../stats/maintenance>` | 
+      :doc:`Maintenance<../stats/maintenance>` |
       :doc:`Load-balancer's statistics<../stats/lb>`
-      
+
     * **User settings:**
-      :doc:`Main view<./settings/main>`
+      :doc:`Main view<settings/main>`

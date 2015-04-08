@@ -52,7 +52,7 @@ Aşağıdaki dillerde okuyabilirsiniz.
 :doc:`Català <esb-soa-ca>`,
 :doc:`Português <./esb-soa-pt>`,
 :doc:`ру́сский <esb-soa-ru>`
-:doc:`İngilizce <esb-soa-en>`
+:doc:`İngilizce <esb-soa>`
 ve
 :doc:`中文 <esb-soa-cn>`.
 
@@ -176,10 +176,10 @@ bilir mi?           izin verir, ancak açıktır ki 2018 yılı için kullanmaya
 Atomik mi?          Büyük bir olasılıkla evet. Eğer yılın diğer çeyrekleriyle ilgili bilgi veren başka servisler
                     de varsa, tüm yıl için bir fikre varılabilir. 
 Nasıl İTA olacak?   * Sadece bir çeyrek zaman aralığı yerine, rastgele başlama ve bitiş tarihlerini kabul edecek
-                    hale getirmek.
+                      hale getirmek.
                     * Sadece portal değil, başka herhangi bir sebeple sisteme bağlanacak olan uygulamaların da
-                    kullanımını sağlamak. Uygulamanın input param gibi girilmesini ve sadece portal 
-                    şeklinde sabit olarak kodlanmamış (hard coded) olmasını sağlamak.
+                      kullanımını sağlamak. Uygulamanın input param gibi girilmesini ve sadece portal 
+                      şeklinde sabit olarak kodlanmamış (hard coded) olmasını sağlamak.
 =================== =============================================================================================
 
 =================== =============================================================================================
@@ -192,8 +192,8 @@ Reusable?           Komik ama tam olarak değil. Çok az sayıda, tüm bu veriyl
 Atomik mi?          Kesinlikle değil. Bu canavar işlevsellik, mantık olarak birbirine eklemlenmiş düzinelerce
                     küçük parçadan oluşmaktadır.
 Nasıl İTA olacak?   * Küçük parçalara bölerek. Müşteriyi neyin özetlediğini düşünün - adres bilgisi, telefonlar, 
-                    favori ürünleri, seçtiği iletişim yöntemleri vb. bilgiler - bunların her biri bağımsız birer
-                    servise dönüştürülmelidir.
+                      favori ürünleri, seçtiği iletişim yöntemleri vb. bilgiler - bunların her biri bağımsız
+                      birer servise dönüştürülmelidir.
                     * Atomik olanlar dışında ESB (Kurumsal Servis Veriyolu) kullanarak bileşik servisler yaratmak
 =================== =============================================================================================
 
@@ -371,13 +371,13 @@ Burada ele almadığımız ve bununla sınırlı olmayan diğer konular;
 * SOA mimarlarını ve analiz ekibini nasıl işe alırsınız (Varsa tabii)
 * Kurumunuza Canonical Veri Modeli (CDM) nin tanıtılması
 * Anahtar Performans Göstergesi (KPI) - artık sistemler arası kullanılacak servisler
-için ortak ve birleştirilmiş bir yönteme sahipsiniz. Şimdi bu sistemi gözlemleyerek
-ne elde ettiğinizi ölçümlemeniz gerekiyor.
+  için ortak ve birleştirilmiş bir yönteme sahipsiniz. Şimdi bu sistemi gözlemleyerek
+  ne elde ettiğinizi ölçümlemeniz gerekiyor.
 * İş Süreci Yönetimi (BPM) - servisleri planlamak için ne zaman ve nasıl bir 
-BPM platformu seçmelisiniz (cevap - düzgün çalışan ve tapılası servisleri nasıl 
-yaratacağınızı anlamadan ve iyice yakınlaşmadan aman geçmeyiniz) 
+  BPM platformu seçmelisiniz (cevap - düzgün çalışan ve tapılası servisleri nasıl 
+  yaratacağınızı anlamadan ve iyice yakınlaşmadan aman geçmeyiniz) 
 * Herhangi bir API'si olmayan sistemlerle ne yapacaksınız. Mesela KVY bunların 
-veritabanına doğrudan erişmeli mi? (cevap - bu konuda belirlenmiş net bir kural yok)
+  veritabanına doğrudan erişmeli mi? (cevap - bu konuda belirlenmiş net bir kural yok)
 
 ------------------------
 Zato tam olarak nedir?
