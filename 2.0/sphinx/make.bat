@@ -3,7 +3,7 @@
 REM Command file for Sphinx documentation
 
 if "%SPHINXBUILD%" == "" (
-	set SPHINXBUILD=sphinx-build
+	set SPHINXBUILD=.\zato_docs_env\Scripts\sphinx-build
 )
 set BUILDDIR=_build
 set ALLSPHINXOPTS=-d %BUILDDIR%/doctrees %SPHINXOPTS% .
@@ -31,6 +31,7 @@ if "%1" == "help" (
 	echo.  changes    to make an overview over all changed/added/deprecated items
 	echo.  linkcheck  to check all external links for integrity
 	echo.  doctest    to run all doctests embedded in the documentation if enabled
+	echo.  virtualenv to get a working version of Sphinx under virtualenv
 	goto end
 )
 
@@ -165,6 +166,11 @@ if "%1" == "doctest" (
 	echo.Testing of doctests in the sources finished, look at the ^
 results in %BUILDDIR%/doctest/output.txt.
 	goto end
+)
+
+if "%1" == "virtualenv" (
+	virtualenv --no-site-packages zato_docs_env
+	.\zato_docs_env\Scripts\pip install -r requirements.txt
 )
 
 :end

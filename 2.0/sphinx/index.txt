@@ -21,7 +21,7 @@ Getting help
 
 * Look up fellow professionals on `LinkedIn <https://www.linkedin.com/groups?gid=5015554>`_
 
-* `Twitter <https://twitter.com/zatosource>`_ for quick questions and answers 
+* `Twitter <https://twitter.com/zatosource>`_ for quick questions and answers
 
 * Documentation for: `2.0 </docs/2.0/>`_ (current) · `1.1 </docs/1.1/>`_ (previous)
 
@@ -33,7 +33,7 @@ What makes Zato unique
 
 * Using Python alone gives you **increased productivity**
 
-* **HA load-balancer**, **hot-deployment** and **hot-reconfiguration** almost everywhere - 
+* **HA load-balancer**, **hot-deployment** and **hot-reconfiguration** almost everywhere -
   forget server restarts
 
 * Browser-based **GUI**, **CLI** and **API** - forget XML configuration
@@ -63,11 +63,12 @@ Introduction
 I18N
 ====
 
-    * *CN*  
+    * *CN*
       :doc:`ESB和SOA到底是什么？ <intro/esb-soa-cn>` ·
       `Zato—基于Python的ESB和后端应用服务器 <http://www.infoq.com/cn/articles/zato>`_ ·
       `Python 发送 AMQP 消息 <http://www.oschina.net/translate/howto-sending-amqp-messages>`_ |
       *CAT* :doc:`Què és un ESB i què és SOA <intro/esb-soa-ca>` |
+      *DE* :doc:`Was bedeutet ESB und SOA überhaupt? <intro/esb-soa-de>` |
       *FR* :doc:`Qu´entend-on á vrai dire par ESB et SOA <intro/esb-soa-fr>` |
       *PT*  :doc:`O que ESB e SOA são, afinal? <intro/esb-soa-pt>` |
       *RU* :doc:`Что такое ESB и SOA <intro/esb-soa-ru>`
@@ -75,7 +76,7 @@ I18N
 Web admin reference
 ===================
 
-    * **Overview:** 
+    * **Overview:**
       :doc:`Introduction<web-admin/intro>` |
       :doc:`Securing the web admin<web-admin/security>`
 
