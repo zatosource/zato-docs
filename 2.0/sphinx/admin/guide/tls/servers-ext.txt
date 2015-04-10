@@ -14,8 +14,6 @@ Tasks
 
 * :ref:`Uploading and updating client certificates <admin-tls-upload-client-certs>` for services to use when connecting to external HTTP resources
 * :ref:`Uploading CA certificates <admin-tls-upload-ca-certs>`  used for validation of external applications' certificates
-* Configuring outgoing connections to :ref:`use client certificates <admin-tls-use-client-certs>` 
-* Configuring outgoing connections to :ref:`validate server certificates <admin-tls-validating-ca-certs>`  external applications present
 
 .. _admin-tls-upload-client-certs:
 
@@ -39,13 +37,3 @@ Uploading and updating CA certificates
   or more CA certificates, including any intermediate ones.
 
 * No restarts are needed after updating an already existing bundle of certificates.
-
-.. _admin-tls-use-client-certs:
-
-Using client certificates
--------------------------
-
-.. _admin-tls-validating-ca-certs:
-
-Validating server certificates
-------------------------------

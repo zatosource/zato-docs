@@ -5,8 +5,8 @@ Overview
 --------
 
 Used to create, update, delete and browse `SSL/TLS <https://en.wikipedia.org/wiki/Transport_Layer_Security>`_
-CA certificates that can be used by :doc:`Plain HTTP <../../outgoing/plain-http>` and :doc:`SOAP <../../outgoing/soap>`
-outgoing connections to validate certificates of external resources.
+private keys and certificates that can be used by :doc:`Plain HTTP <../../outgoing/plain-http>` and :doc:`SOAP <../../outgoing/soap>`
+outgoing connections to authenticate themselves to external resources.
 
 * Menu path: Security -> SSL/TLS -> Outgoing -> Keys and certs
 * Example address: http://localhost:8183/zato/security/tls/key-cert/?cluster=1
