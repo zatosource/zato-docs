@@ -1,0 +1,142 @@
+.. highlight:: sh
+
+Zato distributed environment under Docker
+=========================================
+
+Requirements
+------------
+
+* Docker 0.9.1+
+
+Installation steps
+------------------
+
+Preparations
+~~~~~~~~~~~~
+
+* To prevent hitting a Docker bug which binds IPv6 ports only, enable forwarding in sysctl.conf:
+
+::
+
+    host# echo "net.ipv6.conf.all.forwarding=1" >> /etc/sysctl.conf
+    host# sysctl -p
+
+* Install PostgreSQL and Redis (instructions for Ubuntu 14.04).
+
+::
+
+    $ apt-get install -y postgresql redis-server
+    $ echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/9.3/main/pg_hba.conf
+    $ echo "listen_addresses='*'" >> /etc/postgresql/9.3/main/postgresql.conf
+    $ service postgresql restart
+    $ sudo su - postgres
+    $ createuser --no-superuser --no-createdb --no-createrole zato2
+    $ createdb --owner=zato2 zato2
+    $ psql --dbname zato2 --command="ALTER ROLE zato2 WITH PASSWORD 'zato2'"
+
+*  Configure Redis to listen on all interfaces
+
+::
+
+    $ sed 's/bind 127./#bind 127./g' /etc/redis/redis.conf \
+        | sudo tee /etc/redis/redis.conf >/dev/null
+    $ service redis-server restart
+
+Create Zato odb and cluster
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Create Zato odb and cluster with Postgres as described in Docs:
+
+    #. https://zato.io/docs/2.0/admin/cli/create-odb.html
+    #. https://zato.io/docs/2.0/admin/cli/create-cluster.html
+
+* Alternatively, execute the following commands. This will create Zato odb and cluster for you:
+
+1. Get Dockerfile and all required config files:
+
+::
+
+    $ mkdir -p ~/zato-docker-odb-dev && cd ~/zato-docker-odb-dev \
+        && wget https://zato.io/download/docker/odb/Dockerfile \
+        && wget https://zato.io/download/docker/odb_cluster/zato_odb.config \
+        && wget https://zato.io/download/docker/odb_cluster/zato_cluster.config
+
+2. Pass your parameters to the config files and run:
+
+::
+
+    $ sudo docker build --no-cache -t zato-odb-2.0.3 .
+
+3. Create certificates which will be needed for Zato components. You can also create selfsigned certificates by using the following script:
+
+::
+
+    $ mkdir -p ~/zato-cert-dev && cd ~/zato-cert-dev \
+        && wget https://zato.io/download/docker/gencert.sh \
+        && chmod +x gencert.sh && ./gencert.sh
+
+4. Copy the certificates to destination directories.
+
+Create and start Zato components
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* After creating Zato odb, cluster and certificates, you can start building Zato components
+
+1. Build Zato load-balancer image:
+
+::
+
+    $ cd ~/zato-docker-lb-dev \
+        && wget https://zato.io/download/docker/load_balancer/Dockerfile \
+        && wget https://zato.io/download/docker/load_balancer/zato_load_balancer.config
+    $ sudo docker build --no-cache -t zato-lb-2.0.3 .
+
+2. Create a container in which Zato load balancer will be launched:
+
+::
+
+    $ sudo docker run -it -p 11223:11223 -p 20151:20151 zato-lb-2.0.3
+
+3. Build Zato web admin image:
+
+::
+
+    $ cd ~/zato-docker-wa-dev && wget https://zato.io/download/docker/web_admin/Dockerfile \
+        && wget https://zato.io/download/docker/web_admin/zato_web_admin.config \
+        && wget https://zato.io/download/docker/web_admin/zato_update_password.config
+    $ sudo docker build --no-cache -t zato-wa-2.0.3 .
+
+4. Create a container in which Zato web admin will be launched:
+
+::
+
+    $ sudo docker run -it -p 8183:8183 zato-wa-2.0.3
+
+5. To check web admin password, run:
+
+::
+
+    $ sudo docker run -it zato-wa-2.0.3 cat web_admin_password
+
+6. Build Zato server image:
+
+::
+
+    $ cd ~/zato-docker-srv-dev && wget https://zato.io/download/docker/server/Dockerfile \
+        && wget https://zato.io/download/docker/server/zato_server.config
+    $ sudo docker build --no-cache -t zato-srv-2.0.3 .
+
+7. Create a container in which Zato server will be launched:
+
+::
+
+    $ sudo docker run -it -p 17010:17010 zato-srv-2.0.3
+
+That concludes the process - a web-admin instance is running on http://localhost:8183 and you can log into
+it with the username 'admin' using the password printed on the terminal above.
+If necessary, you can also connect via SSH to the container under which Zato is running.
+User: zato. Password: second one of the two printed on terminal above.
+
+You can refer to the main
+:doc:`documentation index <../../index>`
+now.
