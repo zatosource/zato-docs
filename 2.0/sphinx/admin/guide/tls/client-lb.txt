@@ -118,7 +118,7 @@ make decision whether the fields suffice or not, i.e. whether there is a match o
 Note that the client certificate is always validated with CA certificates specified in *ca-file* no matter if servers additionally
 require any specific fields or not.
 
-The load-balancer's TLS config must contain either the *verify optional* or *verify optional* flag, as in the example
+The load-balancer's TLS config must contain either the *verify optional* or *verify required* flag, as in the example
 below which delivers to servers the following fields in custom HTTP headers:
 
 * The certificate's fingerprint in X-Zato-TLS-Fingerprint
