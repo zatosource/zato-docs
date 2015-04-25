@@ -51,7 +51,7 @@ What ESB and SOA are anyway
 Also available in
 :doc:`Català <esb-soa-ca>`,
 :doc:`Deutsch <esb-soa-de>`,
-:doc:`le français <esb-soa-fr>`,
+:doc:`Français <esb-soa-fr>`,
 :doc:`Português <./esb-soa-pt>`,
 :doc:`ру́сский <esb-soa-ru>`,
 :doc:`Türkçe <esb-soa-tr>`
