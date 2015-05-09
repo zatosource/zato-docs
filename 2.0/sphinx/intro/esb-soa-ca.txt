@@ -320,7 +320,7 @@ múltiples fonts de dades i mètodes d'accés per tal d'assolir un resultat inte
 
 Per exemple, recopilar les últimes mesures d'alguns sensors termals i publicar-los per
 diversos canals, com alertes per correu electrònic i una aplicació per a smartphone, 
-sona com un bon escenari per una platafoma d'intergració.
+sona com un bon escenari per una plataforma d'integració.
 
 Consultar periòdicament i supervisar si totes les instàncies d'una aplicació crítica estan
 funcionant i, si no és així, executar un script preconfigurat al mateix temps que s'envia
