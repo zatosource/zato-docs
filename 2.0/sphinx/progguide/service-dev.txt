@@ -593,9 +593,8 @@ processing_time will be equal to 0 if it took less than 1 ms.
   
 processing_time_raw
 ```````````````````
-A `datetime.datetime <http://docs.python.org/2.7/library/datetime.html#datetime-objects>`_
-object representing the time spent in a service,
-with microseconds precision. 
+A `datetime.timedelta <http://docs.python.org/2.7/library/datetime.html#timedelta-objects>`_
+object representing the time spent in a service, with microseconds precision. 
 Compare with :ref:`processing_time <progguide-write-service-processing_time>`.
 
 Note that it will be available as a non-None value only in the 
