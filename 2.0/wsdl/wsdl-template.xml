@@ -458,12 +458,12 @@ targetNamespace="https://zato.io/ns/20130518"
 <!-- include ./include/zato.channel.jms-wmq.edit/body.xml -->
 <!-- include ./include/zato.channel.jms-wmq.get-list/body.xml -->
 
-<!-- include ./include/zato.definition.amqp.change-password/body.xml -->
 <!-- include ./include/zato.channel.zmq.create/body.xml -->
 <!-- include ./include/zato.channel.zmq.delete/body.xml -->
 <!-- include ./include/zato.channel.zmq.edit/body.xml -->
 <!-- include ./include/zato.channel.zmq.get-list/body.xml -->
 
+<!-- include ./include/zato.definition.amqp.change-password/body.xml -->
 <!-- include ./include/zato.definition.amqp.create/body.xml -->
 <!-- include ./include/zato.definition.amqp.delete/body.xml -->
 <!-- include ./include/zato.definition.amqp.edit/body.xml -->

@@ -4371,15 +4371,6 @@ targetNamespace="https://zato.io/ns/20130518"
       </wsdl:output>
     </wsdl:operation>
 
-    <wsdl:operation name="zato.definition.amqp.change-password">
-      <soap:operation soapAction="zato.definition.amqp.change-password"/>
-      <wsdl:input>
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="zato.channel.zmq.create">
       <soap:operation soapAction="zato.channel.zmq.create"/>
       <wsdl:input>
@@ -4417,6 +4408,15 @@ targetNamespace="https://zato.io/ns/20130518"
       </wsdl:output>
     </wsdl:operation>
 
+    <wsdl:operation name="zato.definition.amqp.change-password">
+      <soap:operation soapAction="zato.definition.amqp.change-password"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="zato.definition.amqp.create">
       <soap:operation soapAction="zato.definition.amqp.create"/>
       <wsdl:input>
