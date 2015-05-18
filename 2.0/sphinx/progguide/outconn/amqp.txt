@@ -35,7 +35,7 @@ self.outgoing.amqp.send
   exchange under a provided routing key.
   
   :param msg: Message to send
-  :param out_conn: Outgoing connection to use
+  :param out_name: Outgoing connection to use
   :param exchange: Name of an exchange to send the message to
   :param routing_key: Name of a routing key, if any should be used
   :param properties: A dictionary, possibly empty, of additional properties to send
@@ -63,7 +63,7 @@ self.outgoing.amqp.send
                   is in UTC.
   
   :type msg: string
-  :type out_conn: string
+  :type out_name: string
   :type exchange: string
   :type routing_key: string
   :type properties: dict
