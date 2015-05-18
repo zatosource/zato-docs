@@ -3880,8 +3880,8 @@ targetNamespace="https://zato.io/ns/20130518"
       <wsdl:output message="zato:zato_definition_amqp_edit_response_message"/>
     </wsdl:operation>
     <wsdl:operation name="zato.definition.amqp.get-by-id">
-      <wsdl:input message="zato:zato_definition_amqp_get-by-id_request_message"/>
-      <wsdl:output message="zato:zato_definition_amqp_get-by-id_response_message"/>
+      <wsdl:input message="zato:zato_definition_amqp_get_by_id_request_message"/>
+      <wsdl:output message="zato:zato_definition_amqp_get_by_id_response"/>
     </wsdl:operation>
     <wsdl:operation name="zato.definition.amqp.get-list">
       <wsdl:input message="zato:zato_definition_amqp_get_list_request_message"/>
