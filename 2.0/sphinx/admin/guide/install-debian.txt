@@ -6,7 +6,7 @@ Installation on Debian
 Requirements
 ------------
 
-* Debian 7 Wheezy
+* Debian 7 Wheezy or Debian 8 Jessie
 * Root access
 
 Installation steps
@@ -18,12 +18,18 @@ Installation steps
 
     debian# su -
 
-* Install helper programs
+* On Debian Wheezy: Install helper programs and add backports for HAProxy
 
 ::
 
     debian# apt-get install apt-transport-https python-software-properties
     debian# apt-add-repository 'deb http://ftp.is.debian.org/debian wheezy-backports main'
+
+* On Debian Jessie: Install helper programs
+
+::
+
+    debian# apt-get install apt-transport-https python-software-properties software-properties-common
 
 * Add the package signing key
 
