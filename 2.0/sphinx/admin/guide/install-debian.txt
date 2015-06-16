@@ -51,12 +51,6 @@ Installation steps
 
     debian# apt-get install zato
 
-* Reinstall libffi5
-
-::
-
-    debian# apt-get install --reinstall libffi5
-
 * Confirm the installation
 
 ::
