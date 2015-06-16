@@ -29,7 +29,8 @@ Installation steps
 
 ::
 
-    debian# apt-get install apt-transport-https python-software-properties software-properties-common
+    debian# apt-get install apt-transport-https python-software-properties \
+        software-properties-common
 
 * Add the package signing key
 
