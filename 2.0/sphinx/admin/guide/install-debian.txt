@@ -24,6 +24,7 @@ Installation steps
 
     debian# apt-get install apt-transport-https python-software-properties
     debian# apt-add-repository 'deb http://ftp.is.debian.org/debian wheezy-backports main'
+    debian# apt-get install --reinstall libffi5
 
 * On Debian Jessie: Install helper programs
 
@@ -50,12 +51,6 @@ Installation steps
 ::
 
     debian# apt-get install zato
-
-* Reinstall libffi5
-
-::
-
-    debian# apt-get install --reinstall libffi5
 
 * Confirm the installation
 
