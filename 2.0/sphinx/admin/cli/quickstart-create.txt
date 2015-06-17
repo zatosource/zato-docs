@@ -81,7 +81,7 @@ Usage
 
 ::
 
-    $ zzato quickstart create [-h] [--store-log] [--verbose] [--store-config]
+    $ zato quickstart create [-h] [--store-log] [--verbose] [--store-config]
         [--odb_host ODB_HOST] [--odb_port ODB_PORT]
         [--odb_user ODB_USER] [--odb_db_name ODB_DB_NAME]
         [--postgresql_schema POSTGRESQL_SCHEMA] [--odb_password ODB_PASSWORD]
