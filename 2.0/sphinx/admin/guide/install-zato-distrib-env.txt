@@ -65,7 +65,7 @@ Create Zato odb and cluster
 
 ::
 
-    $ sudo docker build --no-cache -t zato-odb-2.0.3 .
+    $ sudo docker build --no-cache -t zato-odb-2.0.5 .
 
 3. Create certificates which will be needed for Zato components. You can also create selfsigned certificates by using the following script:
 
@@ -89,13 +89,13 @@ Create and start Zato components
     $ cd ~/zato-docker-lb-dev \
         && wget https://zato.io/download/docker/load_balancer/Dockerfile \
         && wget https://zato.io/download/docker/load_balancer/zato_load_balancer.config
-    $ sudo docker build --no-cache -t zato-lb-2.0.3 .
+    $ sudo docker build --no-cache -t zato-lb-2.0.5 .
 
 2. Create a container in which Zato load balancer will be launched:
 
 ::
 
-    $ sudo docker run -it -p 11223:11223 -p 20151:20151 zato-lb-2.0.3
+    $ sudo docker run -it -p 11223:11223 -p 20151:20151 zato-lb-2.0.5
 
 3. Build Zato web admin image:
 
@@ -104,33 +104,47 @@ Create and start Zato components
     $ cd ~/zato-docker-wa-dev && wget https://zato.io/download/docker/web_admin/Dockerfile \
         && wget https://zato.io/download/docker/web_admin/zato_web_admin.config \
         && wget https://zato.io/download/docker/web_admin/zato_update_password.config
-    $ sudo docker build --no-cache -t zato-wa-2.0.3 .
+    $ sudo docker build --no-cache -t zato-wa-2.0.5 .
 
 4. Create a container in which Zato web admin will be launched:
 
 ::
 
-    $ sudo docker run -it -p 8183:8183 zato-wa-2.0.3
+    $ sudo docker run -it -p 8183:8183 zato-wa-2.0.5
 
 5. To check web admin password, run:
 
 ::
 
-    $ sudo docker run -it zato-wa-2.0.3 cat web_admin_password
+    $ sudo docker run -it zato-wa-2.0.5 cat web_admin_password
 
-6. Build Zato server image:
+6. Build Zato server1 image:
 
 ::
 
     $ cd ~/zato-docker-srv-dev && wget https://zato.io/download/docker/server/Dockerfile \
         && wget https://zato.io/download/docker/server/zato_server.config
-    $ sudo docker build --no-cache -t zato-srv-2.0.3 .
+    $ sudo docker build --no-cache -t zato-srv1-2.0.5 .
 
-7. Create a container in which Zato server will be launched:
+7. Create a container in which Zato server1 will be launched:
 
 ::
 
-    $ sudo docker run -it -p 17010:17010 zato-srv-2.0.3
+    $ sudo docker run -it -p 17010:17010 zato-srv1-2.0.5
+
+8. Build Zato server2 image:
+
+::
+
+    $ cd ~/zato-docker-srv-dev && wget https://zato.io/download/docker/server/Dockerfile \
+        && wget https://zato.io/download/docker/server/zato_server.config
+    $ sudo docker build --no-cache -t zato-srv2-2.0.5 .
+
+9. Create a container in which Zato server2 will be launched:
+
+::
+
+    $ sudo docker run -it -p 17011:17011 zato-srv2-2.0.5
 
 That concludes the process - a web-admin instance is running on http://localhost:8183 and you can log into
 it with the username 'admin' using the password printed on the terminal above.
