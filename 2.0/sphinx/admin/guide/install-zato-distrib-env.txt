@@ -76,8 +76,8 @@ Create Zato odb and cluster
         && wget https://zato.io/download/docker/gencert.sh \
         && chmod +x gencert.sh && ./gencert.sh
 
-By default, the script creates certificates for two servers. If you want to create more
-certificates, just pass it relevant numer in range 1-10.
+By default, the script creates certificates for two servers. If you want to create a different
+number of certificates, just pass it relevant numer in range 1-10.
 
 4. Copy the certificates to destination directories.
 
