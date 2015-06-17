@@ -67,13 +67,17 @@ Create Zato odb and cluster
 
     $ sudo docker build --no-cache -t zato-odb-2.0.5 .
 
-3. Create certificates which will be needed for Zato components. You can also create selfsigned certificates by using the following script:
+3. Create certificates which will be needed for Zato components. You can also create 
+   selfsigned certificates by using the following script:
 
 ::
 
     $ mkdir -p ~/zato-cert-dev && cd ~/zato-cert-dev \
         && wget https://zato.io/download/docker/gencert.sh \
         && chmod +x gencert.sh && ./gencert.sh
+
+By default, the script creates certificates for two servers. If you want to create more
+certificates, just pass it relevant numer in range 1-10.
 
 4. Copy the certificates to destination directories.
 
