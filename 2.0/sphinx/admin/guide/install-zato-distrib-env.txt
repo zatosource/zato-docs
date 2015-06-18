@@ -57,9 +57,9 @@ Create Zato odb and cluster
 ::
 
     $ mkdir -p ~/zato-docker-odb-dev && cd ~/zato-docker-odb-dev \
-        && wget https://zato.io/download/docker/odb/Dockerfile \
-        && wget https://zato.io/download/docker/odb_cluster/zato_odb.config \
-        && wget https://zato.io/download/docker/odb_cluster/zato_cluster.config
+        && wget https://zato.io/download/docker/2.0/components/odb/Dockerfile \
+        && wget https://zato.io/download/docker/2.0/components/odb/zato_odb.config \
+        && wget https://zato.io/download/docker/2.0/components/odb/zato_cluster.config
 
 2. Pass your parameters to the config files and run:
 
@@ -73,7 +73,7 @@ Create Zato odb and cluster
 ::
 
     $ mkdir -p ~/zato-cert-dev && cd ~/zato-cert-dev \
-        && wget https://zato.io/download/docker/gencert.sh \
+        && wget https://zato.io/download/docker/2.0/components/gencert.sh \
         && chmod +x gencert.sh && ./gencert.sh
 
 By default, the script creates certificates for two servers. If you want to create a different
@@ -91,8 +91,8 @@ Create and start Zato components
 ::
 
     $ cd ~/zato-docker-lb-dev \
-        && wget https://zato.io/download/docker/load_balancer/Dockerfile \
-        && wget https://zato.io/download/docker/load_balancer/zato_load_balancer.config
+        && wget https://zato.io/download/docker/2.0/components/load-balancer/Dockerfile \
+        && wget https://zato.io/download/docker/2.0/components/load-balancer/zato_load_balancer.config
     $ sudo docker build --no-cache -t zato-lb-2.0.5 .
 
 2. Create a container in which Zato load balancer will be launched:
@@ -105,9 +105,9 @@ Create and start Zato components
 
 ::
 
-    $ cd ~/zato-docker-wa-dev && wget https://zato.io/download/docker/web_admin/Dockerfile \
-        && wget https://zato.io/download/docker/web_admin/zato_web_admin.config \
-        && wget https://zato.io/download/docker/web_admin/zato_update_password.config
+    $ cd ~/zato-docker-wa-dev && wget https://zato.io/download/docker/2.0/components/web_admin/Dockerfile \
+        && wget https://zato.io/download/docker/2.0/components/web_admin/zato_web_admin.config \
+        && wget https://zato.io/download/docker/2.0/components/web_admin/zato_update_password.config
     $ sudo docker build --no-cache -t zato-wa-2.0.5 .
 
 4. Create a container in which Zato web admin will be launched:
@@ -126,8 +126,8 @@ Create and start Zato components
 
 ::
 
-    $ cd ~/zato-docker-srv-dev && wget https://zato.io/download/docker/server/Dockerfile \
-        && wget https://zato.io/download/docker/server/zato_server.config
+    $ cd ~/zato-docker-srv-dev && wget https://zato.io/download/docker/2.0/components/server/Dockerfile \
+        && wget https://zato.io/download/docker/2.0/components/server/zato_server.config
     $ sudo docker build --no-cache -t zato-srv1-2.0.5 .
 
 7. Create a container in which Zato server1 will be launched:
@@ -140,8 +140,8 @@ Create and start Zato components
 
 ::
 
-    $ cd ~/zato-docker-srv-dev && wget https://zato.io/download/docker/server/Dockerfile \
-        && wget https://zato.io/download/docker/server/zato_server.config
+    $ cd ~/zato-docker-srv-dev && wget https://zato.io/download/docker/2.0/components/server/Dockerfile \
+        && wget https://zato.io/download/docker/2.0/components/server/zato_server.config
     $ sudo docker build --no-cache -t zato-srv2-2.0.5 .
 
 9. Create a container in which Zato server2 will be launched:
