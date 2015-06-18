@@ -90,7 +90,7 @@ Create and start Zato components
 
 ::
 
-    $ cd ~/zato-docker-lb-dev \
+    $ mkdir -p ~/zato-docker-lb-dev && cd ~/zato-docker-lb-dev \
         && wget https://zato.io/download/docker/2.0/components/load-balancer/Dockerfile \
         && wget https://zato.io/download/docker/2.0/components/load-balancer/zato_load_balancer.config
     $ sudo docker build --no-cache -t zato-lb-2.0.5 .
@@ -105,7 +105,8 @@ Create and start Zato components
 
 ::
 
-    $ cd ~/zato-docker-wa-dev && wget https://zato.io/download/docker/2.0/components/web_admin/Dockerfile \
+    $ mkdir -p ~/zato-docker-wa-dev && cd ~/zato-docker-wa-dev \
+        && wget https://zato.io/download/docker/2.0/components/web_admin/Dockerfile \
         && wget https://zato.io/download/docker/2.0/components/web_admin/zato_web_admin.config \
         && wget https://zato.io/download/docker/2.0/components/web_admin/zato_update_password.config
     $ sudo docker build --no-cache -t zato-wa-2.0.5 .
@@ -126,8 +127,9 @@ Create and start Zato components
 
 ::
 
-    $ cd ~/zato-docker-srv-dev && wget https://zato.io/download/docker/2.0/components/server/Dockerfile \
-        && wget https://zato.io/download/docker/2.0/components/server/zato_server.config
+    $ mkdir -p ~/zato-docker-srv1-dev && cd ~/zato-docker-srv1-dev \
+        && wget https://zato.io/download/docker/2.0/components/server1/Dockerfile \
+        && wget https://zato.io/download/docker/2.0/components/server1/zato_server.config
     $ sudo docker build --no-cache -t zato-srv1-2.0.5 .
 
 7. Create a container in which Zato server1 will be launched:
@@ -140,8 +142,9 @@ Create and start Zato components
 
 ::
 
-    $ cd ~/zato-docker-srv-dev && wget https://zato.io/download/docker/2.0/components/server/Dockerfile \
-        && wget https://zato.io/download/docker/2.0/components/server/zato_server.config
+    $ mkdir -p ~/zato-docker-srv2-dev && cd ~/zato-docker-srv2-dev \
+        && wget https://zato.io/download/docker/2.0/components/server2/Dockerfile \
+        && wget https://zato.io/download/docker/2.0/components/server2/zato_server.config
     $ sudo docker build --no-cache -t zato-srv2-2.0.5 .
 
 9. Create a container in which Zato server2 will be launched:
