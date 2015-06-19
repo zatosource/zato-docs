@@ -106,9 +106,9 @@ Create and start Zato components
 ::
 
     $ mkdir -p ~/zato-docker-wa-dev && cd ~/zato-docker-wa-dev \
-        && wget https://zato.io/download/docker/2.0/components/web_admin/Dockerfile \
-        && wget https://zato.io/download/docker/2.0/components/web_admin/zato_web_admin.config \
-        && wget https://zato.io/download/docker/2.0/components/web_admin/zato_update_password.config
+        && wget https://zato.io/download/docker/2.0/components/web-admin/Dockerfile \
+        && wget https://zato.io/download/docker/2.0/components/web-admin/zato_web_admin.config \
+        && wget https://zato.io/download/docker/2.0/components/web-admin/zato_update_password.config
     $ sudo docker build --no-cache -t zato-wa-2.0.5 .
 
 4. Create a container in which Zato web admin will be launched:
