@@ -6,7 +6,7 @@ Zato distributed environment under Docker
 Requirements
 ------------
 
-* Docker 0.9.1+
+* Docker 1.0.1+
 
 Installation steps
 ------------------
