@@ -301,6 +301,10 @@ Administration guide
       :doc:`SSL/TLS<admin/guide/tls/overview>` |
       :doc:`Configuration patterns<admin/guide/config-patterns>`
 
+    * **Docker support:**
+      :doc:`Quickstart <admin/guide/install-docker>` |
+      :doc:`Distributed environments <admin/guide/install-docker-dist>`
+
     * **Migrating between releases:**
       :doc:`Overview<admin/guide/migrate/overview>` |
       :doc:`From 1.0 to 1.1<admin/guide/migrate/1.0-1.1>` |

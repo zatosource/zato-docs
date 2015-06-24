@@ -6,9 +6,9 @@ Operating system considerations
 
 The following platforms are supported:
 
-=========== ====================== ==============================================================================
+=========== ====================== =========================================================================================
 System      Version                Notes
-=========== ====================== ==============================================================================
+=========== ====================== =========================================================================================
 Windows     (n/a)                  Install `Ubuntu 12.04 LTS <http://ubuntu.com>`_
                                    under `VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_ and proceed to
                                    :doc:`installation instructions on Ubuntu <install-ubuntu>`
@@ -22,8 +22,8 @@ Ubuntu      12.04, 14.04           :doc:`Installation instructions <install-ubun
 
 Debian      7.x, 8.x               :doc:`Installation instructions <install-debian>`
 
-Docker      0.9.1+                 :doc:`Installation instructions <install-docker>`
-=========== ====================== ==============================================================================
+Docker      1.0.1+                 :doc:`Quickstart <install-docker>` | :doc:`Separate components <install-docker-dist>`
+=========== ====================== =========================================================================================
 
 Migrating from major releases
 -----------------------------
