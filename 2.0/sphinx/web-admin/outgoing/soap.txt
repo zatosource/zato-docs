@@ -6,7 +6,7 @@ Overview
 
 Used to create, update, delete and browse through outgoing SOAP connections.
 
-Unlike :doc:`plain HTTP connections <./plain-http>`, SOAP ones always except
+Unlike :doc:`plain HTTP connections <./plain-http>`, SOAP ones always expect
 that a service intends to send XML.
 
 * Menu path: Connections -> Outgoing -> SOAP
