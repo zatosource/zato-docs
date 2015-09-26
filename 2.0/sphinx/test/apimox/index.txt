@@ -1,0 +1,96 @@
+API mocking with zato-apimox
+============================
+
+**zato-apimox** is a command-line application to create test HTTP (including TLS) and ZeroMQ servers. The former can
+respond with canned messages to requests matching predefined criteria, including URL paths, query string and HTTP method.
+
+zato-apimox is an ideal companion during development and testing, including perfomance tests,
+when an actual API to integrate with may be unavailable,
+
+No programming is needed to use the tool, only INI-style config files are used.
+
+
+Installation
+------------
+
+zato-apimox is released independently of the core :doc:`Zato platform <../../index>` with latest version always available on
+`PyPI <https://pypi.python.org/pypi/zato-apimox/>`_.
+
+`pip <https://pip.pypa.io/en/stable/installing/>`_ is used for installing, as in the command below:
+
+::
+
+    $ sudo pip install zato-apimox
+    [snip]
+    Successfully installed zato-apimox-1.0.1
+    $
+
+
+Demo mode
+---------
+
+Running the following command will set up an environment with sample mocks and start an HTTP server bound to 0.0.0.0:44333:
+
+::
+
+    $ apimox demo
+    Creating directory `/tmp/16bfa5e290cb4e239b7d6505a1f76783`.
+    OK, initialized.
+    INFO - Mounting `JSON Demo - 01` on http://0.0.0.0:44333/demo (qs: {'hello': 'world'})
+    INFO - Mounting `JSON Demo - 02` on http://0.0.0.0:44333/demo (qs: {'hello': 'sky'})
+    INFO - Mounting `JSON Demo - 03` on http://0.0.0.0:44333/something/{anything} (qs: {})
+    INFO - Mounting `XML Demo - 01` on http://0.0.0.0:44333/demo (qs: {'format': 'xml'})
+    INFO - HTTPServer listening on http://0.0.0.0:44333
+
+Calling it with curl will return different responses depending on input criteria found in URL path and query string.
+
+::
+
+    $ curl http://localhost:44333/demo?hello=world
+    {"Welcome to apimox":"How's things?"}
+    $
+
+::
+
+    $ curl http://localhost:44333/demo?hello=sky
+    {"Isn't apimox great?":"Sure it is!"}
+    $ 
+
+::
+
+    $ curl http://localhost:44333/something/foo
+    {"Responses can be":"provided inline"}
+    $
+
+    $ curl http://localhost:44333/something/bar
+    {"Responses can be":"provided inline"}
+    $
+
+    $ curl http://localhost:44333/something/baz
+    {"Responses can be":"provided inline"}
+    $
+
+::
+
+    $ curl http://localhost:44333/demo?format=xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <root>
+     <element>Greetings!</element>
+    </root>
+    $ 
+
+
+Initializing environments
+-------------------------
+
+Starting and stopping mocks
+---------------------------
+
+Confuguring HTTP mocks
+----------------------
+
+Request matching
+~~~~~~~~~~~~~~~~
+
+Confuguring ZeroMQ mocks
+------------------------
