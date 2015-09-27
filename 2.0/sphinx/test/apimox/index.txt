@@ -1,3 +1,5 @@
+.. highlight:: bash
+   
 API mocking with zato-apimox
 ============================
 
@@ -5,7 +7,7 @@ API mocking with zato-apimox
 respond with canned messages to requests matching predefined criteria, including URL paths, query string and HTTP method.
 
 zato-apimox is an ideal companion during development and testing, including perfomance tests,
-when an actual API to integrate with may be unavailable,
+when an actual API to integrate with may be unavailable.
 
 No programming is needed to use the tool, only INI-style config files are used.
 
@@ -22,7 +24,7 @@ zato-apimox is released independently of the core :doc:`Zato platform <../../ind
 
     $ sudo pip install zato-apimox
     [snip]
-    Successfully installed zato-apimox-1.0.1
+    Successfully installed zato-apimox-1.0.6
     $
 
 
@@ -42,7 +44,8 @@ Running the following command will set up an environment with sample mocks and s
     INFO - Mounting `XML Demo - 01` on http://0.0.0.0:44333/demo (qs: {'format': 'xml'})
     INFO - HTTPServer listening on http://0.0.0.0:44333
 
-Calling it with curl will return different responses depending on input criteria found in URL path and query string.
+Calling it with any HTTP client, such as curl, will return different responses depending on input criteria
+found in URL path and query string.
 
 ::
 
@@ -83,8 +86,74 @@ Calling it with curl will return different responses depending on input criteria
 Initializing environments
 -------------------------
 
+Run *apimox init* with an empty directory on input to initialize a new environment populated with sample mocks - the same ones
+*apimox demo* uses. Such a newly initialized environment is fully operational and can serve as a basis for authoring one's
+own mocks.
+
+::
+
+    $ apimox init ~/projects/my-apimox/
+    OK, initialized.
+    Run `apimox run /home/user/projects/my-apimox` for a live demo.
+    $ 
+
 Starting and stopping mocks
 ---------------------------
+
+*apimox run* is the command used to start mocks configured in a given directory. If provided with only the directory on input,
+it will start plain HTTP mocks (no TLS). Additional *-t* parameter may be used to specify what sort of server to start in
+particular. Values accepted in *-t* are:
+
+===================== ======================================================================================================
+Value                 Notes
+===================== ======================================================================================================
+http-plain (default)  Starts a plain HTTP server - this is the default used if no *-t* is provided
+http-tls              Starts an HTTP server behind TLS
+http-tls-client-certs Starts an HTTP server behind TLS which requires connecting applications to use client certificates
+zmq-pull              Starts a ZeroMQ PULL socket in bind mode (clients need to connect)
+zmq-sub               Starts a ZeroMQ SUB socket in bind mode (clients need to connect)
+===================== ======================================================================================================
+
+
+It is possible to run *apimox run* multiple times against the same directory each time starting a different server type thus
+allowing for the same mock endpoints be accessible over both plain HTTP and TLS.
+
+Mocks run in foreground. To stop a mock server, press *Ctrl-C* in terminal.
+
+::
+
+    $ apimox run ~/projects/my-apimox/ -t http-plain
+    INFO - Mounting `JSON Demo - 01` on http://0.0.0.0:44333/demo (qs: {'hello': 'world'})
+    INFO - Mounting `JSON Demo - 02` on http://0.0.0.0:44333/demo (qs: {'hello': 'sky'})
+    INFO - Mounting `JSON Demo - 03` on http://0.0.0.0:44333/something/{anything} (qs: {})
+    INFO - Mounting `XML Demo - 01` on http://0.0.0.0:44333/demo (qs: {'format': 'xml'})
+    INFO - HTTPServer listening on http://0.0.0.0:44333
+    ^CKeyboardInterrupt
+    Aborted!
+    $
+
+::
+
+    $ apimox run ~/projects/my-apimox/ -t http-tls-client-certs
+    INFO - Mounting `JSON Demo - 01` on https://0.0.0.0:44777/demo (qs: {'hello': 'world'})
+    INFO - Mounting `JSON Demo - 02` on https://0.0.0.0:44777/demo (qs: {'hello': 'sky'})
+    INFO - Mounting `JSON Demo - 03` on https://0.0.0.0:44777/something/{anything} (qs: {})
+    INFO - Mounting `XML Demo - 01` on https://0.0.0.0:44777/demo (qs: {'format': 'xml'})
+    INFO - TLS HTTPServer listening on https://0.0.0.0:44777 (client certs: required)
+    ^CKeyboardInterrupt
+    Aborted!
+    $
+
+::
+
+    $ apimox run ~/projects/my-apimox/ -t zmq-pull
+    INFO - ZMQ PULL listening on tcp://0.0.0.0:55000
+    ^C
+    Aborted!
+    $ 
+
+Mock environment layout
+-----------------------
 
 Confuguring HTTP mocks
 ----------------------

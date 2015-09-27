@@ -269,20 +269,14 @@ Programming guide
     * **Customizing web admin:**
       :doc:`Making sure you work on the right environment<progguide/web-admin-settings>`
 
-Publish/subscribe guide
-=======================
+API Testing
+===========
 
-    * **Overview:**
-      :doc:`Introduction <pubsub/index>`
+    * **Client requests**:
+      :doc:`Calling APIs with zato-apitest<test/apitest/index>`
 
-    * **REST producers and consumers:**
-      :doc:`Publishing messages <pubsub/dev/producer>` |
-      :doc:`Subscription keys and message receiving<pubsub/dev/consumer>`
-
-    * **Administration:**
-      :doc:`Topics<pubsub/admin/topic>` |
-      :doc:`Producers <pubsub/admin/producer>` |
-      :doc:`Consumers <pubsub/admin/consumer>`
+    * **Server mocks**:
+      :doc:`API mocking with zato-apimox<test/apimox/index>`
 
 Administration guide
 ====================
@@ -310,15 +304,6 @@ Administration guide
       :doc:`From 1.0 to 1.1<admin/guide/migrate/1.0-1.1>` |
       :doc:`From 1.1 to 2.0<admin/guide/migrate/1.1-2.0>`
 
-Testing
-=======
-
-    * **Client requests**:
-      :doc:`Calling APIs with zato-apitest<test/apitest/index>`
-
-    * **Server mocks**:
-      :doc:`API mocking with zato-apimox<test/apimox/index>`
-
 Architecture
 ============
 
@@ -330,6 +315,21 @@ Architecture
       :doc:`SQL ODB<architecture/sql-odb>` |
       :doc:`Redis<architecture/redis>` |
       :doc:`Certificate Authority (CA)<architecture/ca>`
+
+Publish/subscribe guide
+=======================
+
+    * **Overview:**
+      :doc:`Introduction <pubsub/index>`
+
+    * **REST producers and consumers:**
+      :doc:`Publishing messages <pubsub/dev/producer>` |
+      :doc:`Subscription keys and message receiving<pubsub/dev/consumer>`
+
+    * **Administration:**
+      :doc:`Topics<pubsub/admin/topic>` |
+      :doc:`Producers <pubsub/admin/producer>` |
+      :doc:`Consumers <pubsub/admin/consumer>`
 
 Statistics
 ==========
