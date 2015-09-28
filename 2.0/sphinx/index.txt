@@ -276,7 +276,7 @@ API Testing
       :doc:`Calling APIs with zato-apitest<test/apitest/index>`
 
     * **Server mocks**:
-      :doc:`API mocking with zato-apimox<test/apimox/index>`
+      :doc:`Convenient API mocks with zato-apimox<test/apimox/index>`
 
 Administration guide
 ====================

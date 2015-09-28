@@ -4,7 +4,11 @@ Calling APIs with zato-apitest
 `zato-apitest <https://github.com/zatosource/zato-apitest>`_ is a separately distributed sub-project allowing one to create
 functional API tests by authoring assertions in plain English, as in the screenshot below.
 
+Note that zato-apitest has a companion tool in the form of :doc:`zato-apimox <../apimox/index>`
+which can be used for creating mock responses to API calls.
+
+Please visit `zato-apitest's page on GitHub <https://github.com/zatosource/zato-apitest>`_ for more information, including dozens
+of usage examples.
+
 .. image:: /gfx/test/apitest-demo.png
    :alt:
-
-Please visit `its main page on GitHub <https://github.com/zatosource/zato-apitest>`_ for more information.
