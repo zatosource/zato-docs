@@ -28,7 +28,7 @@ zato-apimox is released independently of the core :doc:`Zato platform <../../ind
 
     $ sudo pip install zato-apimox
     [snip]
-    Successfully installed zato-apimox-1.0.6
+    Successfully installed zato-apimox-1.1
     $
 
 
@@ -171,6 +171,7 @@ An environment's default structure, right after issuing *apimox init*, is presen
     │       ├── json
     │       │   ├── demo1.json
     │       │   └── demo2.json
+    │       └── txt
     │       └── xml
     │           └── demo1.xml
     ├── pem
@@ -189,6 +190,7 @@ Path                            Notes
 /http/config.ini                Config file for HTTP mocks
 /http/logs                      Directory for HTTP logs
 /http/response                  Responses to respond with in HTTP mocks
+/http/response/txt              Plain text responses. Also a location to store reusable response headers in.
 /http/response/json/demo1.json  A sample JSON response returned by demo mocks
 /http/response/json/demo2.json  ″
 /pem/ca.cert.pem                CA certificate signing server certificate if using TLS.
@@ -224,12 +226,14 @@ A sample config.ini may look like below:
     url_path=/customer
     qs_cust_id=1
     response=cust-get.json
+    resp_header_MyHeader=MyValue
 
     [Update Customer 02]
     url_path=/customer
     qs_cust_id=
     method=POST
     response='{"status":"OK"}'
+    resp_headers=common.txt
 
     [Get Customer Phone]
     url_path=/phone/by-name/{name}/
@@ -239,9 +243,11 @@ The file above configures settings common across all the mocks in the in [apimox
 
 The first mock will return a response from the *cust-get.json* file as long as URL path is */customer* and *cust_id*
 in query string is equal to *1* and HTTP method is *GET* (default method used for matching).
+A custom header will be set in response.
 
 The second one will return the response provided inline as long as the URL path is as above, query string contains *cust_id*
-of any value plus the HTTP method is 'POST'.
+of any value plus the HTTP method is 'POST'. A list of one or more custom headers will be read from a file and returned in
+response.
 
 The last one responds to GET requests matching the */customer/name/{last_name}* pattern in URL path, for instance,
 both */phone/by-name/Smith/* and */phone/by-name/李/* will trigger the last mock.
@@ -613,6 +619,93 @@ Use *content_type* key to set any  content type needed in response, for instance
     < 
     * Connection #0 to host localhost left intact
     {"hello":"there"}
+    $
+
+Set response headers inline
+```````````````````````````
+
+Any *resp_header_** keys can be given values to return in response headers.
+
+If the value ends in *.txt* it's understood
+to be a file name existing in the environment's *http/response/txt* directory and the file's contents is used in response as-is.
+
+::
+
+    [Get Customer]
+    url_path=/customer
+    response = '{"hello":"there"}'
+    resp_header_Keep-Alive=timeout=60
+    resp_header_X-MyKey=MyValue
+    resp_header_X-MyOtherKey=MyOtherValue
+    resp_header_X-StillAnother=common.txt
+
+.. code-block:: text
+  :emphasize-lines: 9,10,11
+
+    $ curl -v http://localhost:44333/customer
+    * Connected to localhost (127.0.0.1) port 44333 (#0)
+    > GET /customer HTTP/1.1
+    > User-Agent: curl/7.35.0
+    > Host: localhost:44333
+    > Accept: */*
+    > 
+    < HTTP/1.1 200 OK
+    < X-MyOtherKey: MyOtherValue
+    < X-MyKey: MyValue
+    < X-YetAnotherOne: AnotherValue
+    < Keep-Alive: timeout=60
+    < Content-Type: application/json
+    < Date: Wed, 30 Sep 2015 07:55:31 GMT
+    < Content-Length: 17
+    < 
+    * Connection #0 to host localhost left intact
+    {"hello":"there"}
+    $
+
+Set response headers from files
+```````````````````````````````
+
+If a *resp_headers* key exists in configuration it must point to a file defined in the environment's *http/response/txt* directory.
+The file must be a list of one or more key/value entries, each on its own line, each key separated from the value by *=*,
+such as below:
+
+::
+
+    X-MyHeader1=MyValue1
+    X-MyHeader2=MyValue2
+
+Note that *resp_header_** entries may still override contents from *resp_headers* which is illustrated in the following
+example returning *X-MyHeader1* equal to *MyOverriddenValue* because the inline value is given precedence over
+the value X-MyHeader1 has in common.txt.
+
+::
+
+    [Get Customer]
+    url_path=/customer
+    response = '{"hello":"there"}'
+    resp_headers=common.txt
+    resp_header_X-Hello=Howdy
+    resp_header_X-MyHeader1=MyOverriddenValue
+
+.. code-block:: text
+  :emphasize-lines: 9,10,11
+
+    $ curl -v http://localhost:44333/customer
+    * Hostname was NOT found in DNS cache
+    > GET /customer HTTP/1.1
+    > User-Agent: curl/7.35.0
+    > Host: localhost:44333
+    > Accept: */*
+    > 
+    < HTTP/1.1 200 OK
+    < X-Hello: Howdy
+    < X-MyHeader2: MyValue2
+    < X-MyHeader1: MyOverriddenValue
+    < Content-Type: application/json
+    < Date: Wed, 30 Sep 2015 08:04:18 GMT
+    < Content-Length: 17
+    < 
+    * Connection #0 to host localhost left intact
     $
 
 HTTP config.ini reference
