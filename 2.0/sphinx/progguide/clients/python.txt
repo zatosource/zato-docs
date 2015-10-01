@@ -140,7 +140,7 @@ invoke
 
     from zato.client import AnyServiceInvoker
 
-    address = 'http://localhost:17010'
+    address = 'http://localhost:11223'
     path = '/zato/admin/invoke'
     auth = ('admin.invoke', 'ccd77ca1ff414c3e8308e3f35d8292df')
 
@@ -172,7 +172,7 @@ can be correlated with the client request at a later time.
 
     from zato.client import AnyServiceInvoker
 
-    address = 'http://localhost:17010'
+    address = 'http://localhost:11223'
     path = '/zato/admin/invoke'
     auth = ('admin.invoke', 'ccd77ca1ff414c3e8308e3f35d8292df')
 
@@ -217,7 +217,7 @@ invoke
 
     from zato.client import JSONClient
 
-    address = 'http://localhost:17010'
+    address = 'http://localhost:11223'
     path = '/zato/json/zato.service.get-by-name'
     auth = ('username', 'password')
 
@@ -271,7 +271,7 @@ invoke
 
     from zato.client import JSONSIOClient
 
-    address = 'http://localhost:17010'
+    address = 'http://localhost:11223'
     path = '/zato/json/zato.scheduler.job.get-by-name'
     auth = ('username', 'password')
 
@@ -320,7 +320,7 @@ invoke
 
     from zato.client import XMLClient
 
-    address = 'http://localhost:17010'
+    address = 'http://localhost:11223'
     path = '/my/xml/service'
     auth = ('username', 'password')
 
@@ -365,7 +365,7 @@ invoke
     # Zato
     from zato.client import SOAPClient
 
-    address = 'http://localhost:17010'
+    address = 'http://localhost:11223'
     path = '/zato/soap'
     auth = ('username', 'password')
 
@@ -437,7 +437,7 @@ invoke
     # Zato
     from zato.client import SOAPSIOClient
 
-    address = 'http://localhost:17010'
+    address = 'http://localhost:11223'
     path = '/zato/soap'
     auth = ('username', 'password')
 
@@ -501,7 +501,7 @@ invoke
 
     from zato.client import RawDataClient
 
-    address = 'http://localhost:17010'
+    address = 'http://localhost:11223'
     path = '/my/service'
     auth = ('username', 'password')
 
@@ -637,7 +637,7 @@ details  (depends)            Error details in format depending on the client cl
 
     logging.basicConfig(level=logging.INFO, format='%(message)s')
 
-    address = 'http://localhost:17010'
+    address = 'http://localhost:11223'
     path = '/zato/ping'
     auth = ('username', 'password')
 
@@ -668,7 +668,7 @@ Each Response object has a helpful string representation that may at times come 
 
     from zato.client import JSONClient
 
-    address = 'http://localhost:17010'
+    address = 'http://localhost:11223'
     path = '/zato/json/zato.service.get-by-name'
     auth = ('username', 'password')
 
