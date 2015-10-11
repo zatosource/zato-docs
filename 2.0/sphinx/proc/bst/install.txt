@@ -1,0 +1,173 @@
+
+BST - Installation
+==================
+
+Steps below go through the process of installing :doc:`BST <./index>` (Business state transitions) in :doc:`Zato </index>` 2.0.
+
+The next major release will include BST by default. In 2.0 the feature is available as an add-on and the process of installation
+requires execution of several commands and updates to configuration files.
+
+Outline:
+
+* :ref:`Install <proc-bst-install-code>` BST code from `GitHub <https://github.com/zatosource/zato-labs/tree/master/bst>`_
+* :ref:`Set credentials <proc-bst-install-credentials>` for the :doc:`REST API <./rest>`
+* :ref:`Import <proc-bst-install-enmasse>` BST definitions using :doc:`zato enmasse <../../admin/guide/enmasse>`
+* :ref:`Confirm <proc-bst-install-confirm>` the installation
+
+.. _proc-bst-install-code:
+
+Install BST code from GitHub
+----------------------------
+
+As a prerequisite, install the JPEG development package, for instance, on Ubuntu and Debian:
+
+::
+
+  $ sudo apt-get install libjpeg-dev
+
+Switch user to zato:
+
+::
+
+  $ sudo su - zato
+
+Stop all Zato servers running in the environment BST will be used in:
+
+::
+
+  $ zato stop /path/to/a/server
+
+Clone the zato-labs repository and navigate to a directory referred to as $BST_ROOT in later steps:
+
+::
+
+  $ git clone https://github.com/zatosource/zato-labs.git
+  $ cd zato-labs/bst
+
+Compile BST in $BST_ROOT:
+
+::
+
+  $ make
+  [snip output]
+  $
+
+Symlink Python dependencies from $BST_ROOT's subdirectories to core Zato's own
+:doc:`zato_extra_paths <../../admin/guide/enabling-extra-libs>`
+directory,
+the location of which will depend on Zato version, for 2.0.5 it is */opt/zato/2.0.5/zato_extra_paths*.
+
+Note that the last command below uses a different source directory.
+
+::
+
+  $ ln -s ./bst-env/lib/python2.7/site-packages/blockdiag /opt/zato/2.0.5/zato_extra_paths
+  $ ln -s ./bst-env/lib/python2.7/site-packages/funcparserlib /opt/zato/2.0.5/zato_extra_paths
+  $ ln -s ./bst-env/lib/python2.7/site-packages/PIL /opt/zato/2.0.5/zato_extra_paths
+  $ ln -s ./bst-env/lib/python2.7/site-packages/webcolors.py /opt/zato/2.0.5/zato_extra_paths
+  $ ln -s ./src/zato/bst/__init__.py /opt/zato/2.0.5/zato_extra_paths/zato_bst.py
+
+For each server, create a directory *proc/bst* that will contain BST definitions and copy a sample one from $BST_ROOT/sample.txt
+
+::
+
+  $ mkdir -p /path/to/a/server/config/repo/proc/bst
+  $ cp ./sample.txt /path/to/a/server/config/repo/proc/bst
+
+Start all servers back:
+
+::
+
+  $ zato start /path/to/a/server
+
+Copy services from *$BST_ROOT/src/zato/bst/services.py* to each server's *pickup-dir*.
+
+::
+
+  $ cp ./src/zato/bst/services.py /path/to/a/server/pickup-dir
+
+For each server in the environment, open server.conf and add the following entry to the *startup_services_first_worker* stanza
+(there is no value, it's only key + equal sign):
+
+::
+
+  zato.labs.proc.bst.definition.startup-setup=
+
+.. _proc-bst-install-credentials:
+
+Set credentials for the REST API
+--------------------------------
+
+* Generate a random password using *uuidgen* from command line or equivalent:
+
+  ::
+
+    $ uuidgen
+
+* Open *$BST_ROOT/bst-enmasse.json* in a text editor and replace *$BST_PASSWORD* with the actual password just generated. The password
+  must be enclosed in double quotes. Save and quit the editor.
+
+.. _proc-bst-install-enmasse:
+
+Import BST-related objects using zato enmasse
+---------------------------------------------
+
+Use :doc:`zato enmasse <../../admin/guide/enmasse>` to import REST channels and their credentials from
+*$BST_ROOT/bst-enmasse.json* onto Zato servers.
+
+Running the command against one server will suffice - the changes will be propagated
+automatically to other servers in the cluster.
+
+::
+
+  $ zato enmasse /path/to/a/server --input ./bst-enmasse.json --import --replace-odb-objects
+  Created object 'BST' (def_sec zato.security.basic-auth.create)
+  Updated password 'BST' (def_sec zato.security.basic-auth.create)
+  Created object 'bst.can-transition' (http_soap zato.http-soap.create)
+  Created object 'bst.transition' (http_soap zato.http-soap.create)
+  Created object 'bst.mass-transition' (http_soap zato.http-soap.create)
+  Created object 'bst.get-history' (http_soap zato.http-soap.create)
+  Created object 'bst.get-definition-list' (http_soap zato.http-soap.create)
+  Created object 'bst.get-definition' (http_soap zato.http-soap.create)
+  Created object 'bst.get-current-state-info' (http_soap zato.http-soap.create)
+  $ 
+
+.. _proc-bst-install-confirm:
+
+Confirm the installation
+------------------------
+
+Use curl to obtain a list of BST definitions install in a cluster. The list should contain the sample definition
+installed in previous steps. Username is *bst*. Password is the one set above when running zato enmasse.
+
+Output below is slightly reformatted for clarity.
+
+::
+
+  $ curl http://bst:$BST_PASSWORD@localhost:11223/bst/get-definition-list
+  [
+    {
+      "Orders": {
+        "New": "Submitted", 
+        "Submitted": "Ready", 
+        "Ready": "Sent", 
+        "Sent": [
+          "Confirmed", 
+          "Rejected"
+        ], 
+        "Rejected": "Updated", 
+        "Updated": "Ready", 
+        "objects": [
+          "Order", 
+          "Priority order"
+        ], 
+        "force_stop": [
+          "Canceled", 
+          "Interrupted"
+        ]
+      }
+    }
+  ]
+  $
+
+(end of steps)

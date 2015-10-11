@@ -77,14 +77,14 @@ Notes
   just starting out, put an empty dictionary {} to the file, but remember that
   it must exist and must not be empty.
   
-* --path is always required and serves a double role. 
+* Path to a server is always required and serves a double role. 
 
   If you're exporting data it must be path to a running
   server you're exporting data from. Just point it to any existing server directory even if you're
-  not exporting data from ODB. The requirement to point --path to a server even if
+  not exporting data from ODB. The requirement to point path to a server even if
   ODB is not used will be lifted in future versions.
   
-  If you're importing data --path must be path to a running server you're importing data into.
+  If you're importing data, the path must point to a running server you're importing data into.
   
 * For exports, --input means an input JSON file out of which an export file should be created.
 
@@ -132,7 +132,7 @@ Usage samples
 
   ::
   
-      $ zato enmasse --path /opt/server1/ --input input1.json --export-local
+      $ zato enmasse /opt/server1/ --input input1.json --export-local
       Includes merged in successfully
       Data exported to /opt/zato/zato-export-2013-06-12T20_10_19_874355.json
       $
@@ -142,7 +142,7 @@ Usage samples
       
   ::
   
-      $ zato enmasse --path /opt/server1/ --input input1.json --export-local --export-odb
+      $ zato enmasse /opt/server1/ --input input1.json --export-local --export-odb
       Includes merged in successfully
       ODB objects read
       ODB objects merged in
@@ -154,7 +154,7 @@ Usage samples
 
   ::
   
-    $ zato enmasse --path /server1/ --input export.json --import
+    $ zato enmasse /server1/ --input export.json --import
     2 warnings and 0 errors found:
     +-----------------+--------------------------------------------------------------+
     |       Key       |                            Value                             |
@@ -184,7 +184,7 @@ Usage samples
 
   ::
   
-    $ zato enmasse --path /server1/ --input export.json --import --replace-odb-objects
+    $ zato enmasse /server1/ --input export.json --import --replace-odb-objects
     Updated object 'myjmswmq2' (def_jms_wmq)
     Updated object 'myjmswmq3' (def_jms_wmq)
     Updated object 'channel-amqp1' (channel_amqp)
