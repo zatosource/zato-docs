@@ -1,5 +1,5 @@
 
-Open-source ESB, SOA, REST, APIs and cloud integrations in Python
+Open-source ESB, SOA, REST, APIs and Cloud Integrations in Python
 ------------------------------------------------------------------
 
 Getting help

@@ -1,0 +1,42 @@
+
+Business state transitions
+==========================
+
+Business states transitions (BST) are a feature of Zato allowing users to efficiently design, monitor and visualize
+states that business objects go through in integration processes backed by Zato services or external and independent systems.
+
+For instance, keeping track of orders or customer cases and workflows they are part of are perfect use-cases for BST.
+
+.. image:: /gfx/proc/bst/sample.png
+
+BST definitions are processed by Zato's state machine controlling and enforcing correct transitions for each instance
+of a flow of objects.
+
+Definitions can be versioned and a given business object can take part in multiple BSTs, including multiple versions of the same definition.
+
+Users create definitions in plain English, as below:
+
+::
+
+    Orders
+    ------
+    
+    New: Submitted
+    Submitted: Ready
+    Ready: Sent
+    Sent: Confirmed, Rejected
+    Rejected: Updated
+    Updated: Ready
+    Objects: Order, Priority order
+    Force stop: Canceled, Timed out
+
+Full REST API allows to integrate third-party tools and applications written using any technology, such as Java or .NET,
+in order to take part in processes whose states are managed by BST.
+
+Read more
+---------
+
+* Installation
+* Authoring BST definitions
+* Visualizing definitions and instances
+* REST API

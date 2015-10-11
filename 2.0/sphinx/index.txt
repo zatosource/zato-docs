@@ -1,5 +1,5 @@
 
-Open-source ESB, SOA, REST, APIs and cloud integrations in Python
+Open-source ESB, SOA, REST, APIs and Cloud Integrations in Python
 ------------------------------------------------------------------
 
 Getting help
@@ -269,6 +269,12 @@ Programming guide
     * **Customizing web admin:**
       :doc:`Making sure you work on the right environment<progguide/web-admin-settings>`
 
+Processes
+=========
+
+    * **Business state transitions**:
+      :doc:`Managing business states<proc/bst/index>`
+
 API Testing
 ===========
 
@@ -427,6 +433,7 @@ Zato, the open-source project
    admin/guide/tls/*
    architecture/*
    intro/*
+   proc/bst/*
    progguide/*
    progguide/clients/*
    progguide/examples/*

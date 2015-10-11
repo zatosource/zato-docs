@@ -789,4 +789,4 @@ And remember - if you're stuck, need a hand or just want to ask anything - be su
 to check the 
 `support options <http://zato.io/support.html>`_.
 
-Good luck and have fun using Zato!
+Take care and have fun using Zato!

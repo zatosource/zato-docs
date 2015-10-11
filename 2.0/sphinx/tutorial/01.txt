@@ -16,8 +16,8 @@ But what is a service?
 To paraphrase the :doc:`programming guide <../progguide/overview>`,
 a service is a piece of functionality that does something useful and interesting
 to any party that would like to use it. It's like a function or a method but
-running on a massively higher level - instead of exposing APIs to other parts of
-code in a single application, a service is exposed to other systems.
+running on a massively higher level - instead of exposing functions to other parts of
+code in a single application, a service is exposed as an API to other systems.
 
 Such an atomic and reusable building block as a service can be used to create any online
 :doc:`middleware and backend <../intro/overview-high-level>`
@@ -100,7 +100,7 @@ But, while technically
 (it's all HTTP and other
 protocols Zato supports, after all), you won't typically write HTML, JS or CSS with Zato.
 
-Zato should be used for creating systems of systems, not for frontend programming.
+Zato should be used for creating systems of systems and microservices, not for frontend programming.
 
 What will the tutorial achieve, exactly?
 ----------------------------------------
