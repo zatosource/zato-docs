@@ -45,7 +45,7 @@ Messages can :doc:`browsed and deleted <../../web-admin/pubsub/topic>`.
 
 During browsing, all the payload and metadata are returned in the same format consumers will receive them.
 
-Deleting a message from topic doesn't delete it from queues of any consumers - instead it makes the message not available
+Deleting a message from topic doesn't delete it from queues of any consumers - instead it makes the message unavailable
 to any further consumers.
 
 Publishing messages
@@ -63,4 +63,4 @@ In that situation messages won't be placed on topics at all but they won't be 10
 
 To ensure no messages will be lost, each overflown message will be stored in a receiving server's *logs/pubsub-overflown.log*
 file out of which users can resubmit them manually. This lets one make sure that messages will not vanish - for instance if producers
-don't have any means to keep the messages themselves around when if a topic reached its maximum depth.
+don't have any means to keep the messages themselves around when a topic reached its maximum depth.

@@ -60,7 +60,7 @@ as ad-hoc ones because they cannot be constructed dynamically in run-time.
           # Obtains a pre-compiled query
           query = self.cassandra_query['Get Customers']
 
-          # Execute the query providing a dictionary of input parameters it 2.0/sphinx/progguide/examples/smtp.txtexpects
+          # Execute the query providing a dictionary of input parameters it expects
           result = query.execute(cust_name='Smith', account_type='SOHO')
 
           # Let's check out what the query returned

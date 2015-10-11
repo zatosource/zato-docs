@@ -35,7 +35,7 @@ Reject empty nonce creation timestamps `Consult spec <https://www.oasis-open.org
 Reject stale username tokens           `Consult spec <https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=wss>`_
 Expiry (seconds)                       After how many seconds after its creation a request should be rejected
                                        (`consult spec <https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=wss>`_)
-Nonce freshness (seconds)              After how many seconds after its creations unique nonces should be rejected
+Nonce freshness (seconds)              After how many seconds after their creation unique nonces should be rejected
                                        (`consult spec <https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=wss>`_)
 ====================================== ===================================================================================
 
