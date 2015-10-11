@@ -20,14 +20,14 @@ Users create definitions in plain English, as below:
 
     Orders
     ------
-    
+
+    Objects: Order, Priority order
     New: Submitted
     Submitted: Ready
     Ready: Sent
     Sent: Confirmed, Rejected
     Rejected: Updated
     Updated: Ready
-    Objects: Order, Priority order
     Force stop: Canceled, Timed out
 
 Full REST API allows to integrate into BST third-party tools and applications written in Java, .NET,

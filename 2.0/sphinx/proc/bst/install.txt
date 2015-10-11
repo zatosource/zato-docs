@@ -4,7 +4,7 @@ BST - Installation
 
 Steps below go through the process of installing :doc:`BST <./index>` (Business state transitions) in :doc:`Zato </index>` 2.0.
 
-The next major release will include BST by default. In 2.0 the feature is available as an add-on and the process of installation
+The next major release of Zato will include BST by default. In 2.0 the feature is available as an add-on and the process of installation
 requires execution of several commands and updates to configuration files.
 
 Outline:
@@ -86,12 +86,12 @@ Copy services from *$BST_ROOT/src/zato/bst/services.py* to each server's *pickup
 
   $ cp ./src/zato/bst/services.py /path/to/a/server/pickup-dir
 
-For each server in the environment, open server.conf and add the following entry to the *startup_services_first_worker* stanza
+For each server in the environment, open server.conf and add the following entry to the *[startup_services_first_worker]* stanza
 (there is no value, it's only key + equal sign):
 
 ::
 
-  zato.labs.proc.bst.definition.startup-setup=
+  labs.proc.bst.definition.startup-setup=
 
 .. _proc-bst-install-credentials:
 
@@ -139,8 +139,6 @@ Confirm the installation
 
 Use curl to obtain a list of BST definitions install in a cluster. The list should contain the sample definition
 installed in previous steps. Username is *bst*. Password is the one set above when running zato enmasse.
-
-Output below is slightly reformatted for clarity.
 
 ::
 

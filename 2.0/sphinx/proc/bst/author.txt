@@ -1,0 +1,99 @@
+
+BST - Authoring definitions
+===========================
+
+Overview
+--------
+
+:doc:`BST <./index>` definitions list transitions between states a given business objects goes through during its lifetime.
+For instance, an order from a customer will have at least several clearly defined states it needs to pass before the process is complete.
+
+A BST definition may have multiple entry and end points. A state may transition onto itself. Each definition may contain a list
+of states that interrupt a given process forcibly, such as Canceled or Rejected indicating a business condition under which
+the process for the business object should be stopped.
+
+Each definition is a text file with a series of entries in plain English, such as:
+
+::
+
+    Orders
+    ------
+
+    Objects: Order, Priority order
+    New: Submitted
+    Submitted: Ready
+    Ready: Sent
+    Sent: Confirmed, Rejected
+    Rejected: Updated
+    Updated: Ready
+    Force stop: Canceled, Timed out
+
+Such files, no matter their extension which may be .txt, are placed in a Zato server's *config/repo/proc/bst* directory out of which
+they are picked up when the server is starting. The same definitions files need to be used across all the servers in a single Zato
+cluster.
+
+Each definition is in its own file. Likewise, each version of the same definition must be in its own file.
+
+What definitions are composed of
+--------------------------------
+
+Names
+~~~~~
+
+Each definition starts with its name followed by one or more dashes to indicate that what follows next is the actual body
+of the definition. To improve clarity an empty line may be added after the dashes.
+
+Example names:
+
+::
+
+  Feasibility study
+  -----------------
+
+::
+
+  Open account
+  ------------
+
+Objects
+~~~~~~~
+
+BST definitions must list what business objects they are concerned with. An object is an arbitrary textual label attached to a
+definition in the *Objects:* line. The same object may be used in multiple definitions or different version of the same
+definition. A single definition may list more than one object.
+
+One object in the definition:
+
+::
+
+  Feasibility study
+  -----------------
+
+  Objects: Landline
+
+Two objects in the definition:
+
+::
+
+  Feasibility study
+  -----------------
+
+  Objects: Landline, Gigabit
+
+States and transitions
+~~~~~~~~~~~~~~~~~~~~~~
+
+States are listed after the definition's name. Each state points to one ore more further states one is allowed to move
+a business object to.
+
+Each state is defined by the virtue of its being first time used as either a source or one of target states in a transition.
+It's not mandatory to declare states upfront before they are used.
+
+If no state points to a given state, the latter is considered one of start states in the definition. Conversely,
+if a state doesn't lead to at least state it is considered an end state, possibly one of many end states in the definition.
+
+Force stop states
+~~~~~~~~~~~~~~~~~
+
+Versioning
+~~~~~~~~~~
