@@ -1,0 +1,104 @@
+BST - REST API
+==============
+
+Overview
+--------
+
+Definitions and instances of :doc:`BST <./index>` can be output to diagrams through a REST API offering several endpoints
+each driven by a set of parameters.
+
+The API can be also used to accept calls from external applications outside of Zato that take part in BST-controlled processes.
+
+Default user credentials to call the API are those set during :doc:`installation <./install>`.
+
+All of the parameters endpoints accept can be provided either in URL query string or in JSON payload. The former
+takes precedence in case of conflicts.
+
+Visualizing diagrams and instances
+----------------------------------
+
+/bst/get-definition
+~~~~~~~~~~~~~~~~~~~
+
+Returns a BST definition as a diagram, JSON or plain text.
+
+============ ======== ============= ================================================================================
+Parameter    Required Default value Notes
+============ ======== ============= ================================================================================
+def_name     Yes      (None)        Name of the definition to return
+def_version  ---      1             Version of the definition to return
+format       ---      diagram-png   Ouput format, must be one of 'diagram-def', 'diagram-png', 'json', 'text'
+node_width   ---      200           In PNG output, width of nodes in the tree of transitions
+orientation  ---      portrait      In PNG output, whether to lay out the diagram vertically or horizontally.
+                                    Must be one of portrait or landscape.
+============ ======== ============= ================================================================================
+
+::
+
+  # Redirect output to a file
+  $ curl http://bst:$PWD@localhost:17010/bst/get-definition?def_name=Account > def.png
+  $ 
+
+.. image:: /gfx/proc/bst/open.account.def.png
+
+Root nodes are indicated by the tilde *~* in text output:
+
+::
+
+  $ curl "http://bst:$PWD@localhost:17010/bst/get-definition?def_name=Account&format=text"
+   * ~Consent given       -> Has account
+   * Has account          -> Welcome message sent
+  $
+
+The same definition in JSON:
+
+::
+
+  $ curl "http://bst:$PWD@localhost:17010/bst/get-definition?def_name=Account&format=json"
+  {
+    "Account": {
+      "objects": "Customer", 
+      "Consent given": "Has account", 
+      "Has account": "Welcome message sent"
+    }
+  }
+  $ 
+
+/bst/get-current-state-info
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Integrating external applications
+---------------------------------
+
+/bst/can-transition
+~~~~~~~~~~~~~~~~~~~
+
+/bst/transition
+~~~~~~~~~~~~~~~
+
+/bst/mass-transition
+~~~~~~~~~~~~~~~~~~~~
+
+/bst/get-history
+~~~~~~~~~~~~~~~~
+
+/bst/get-definition-list
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Returns all BST definitions in a Zato cluster.
+
+(No input parameters)
+
+::
+
+  $ curl http://bst:$PWD@localhost:17010/bst/get-definition-list
+  [
+    {
+      "Account": {
+        "objects": "Customer", 
+        "Consent given": "Has account", 
+        "Has account": "Welcome message sent"
+      }
+    }
+  ]
+  $

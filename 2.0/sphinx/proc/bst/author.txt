@@ -188,7 +188,7 @@ Calling this endpoint will return all the currently available definitions as pre
 
 ::
 
-  $ curl http://bst:$BST_PASSWORD@localhost:17010/bst/get-definition-list
+  $ curl http://bst:$PWD@localhost:17010/bst/get-definition-list
   [
     {
       "Open account": {
