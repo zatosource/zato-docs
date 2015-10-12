@@ -33,6 +33,9 @@ they are picked up when the server is starting. The same definitions files need 
 cluster.
 
 After changing the definition file all servers using it need to be restarted - the next major Zato release will lift this requirement.
+
+To delete a definition, remove the file it's contained in fr from *config/repo/proc/bst* of all servers and restart the servers.
+
 During development and on production it's possible to output definitions to .PNG diagrams as described below.
 
 Each definition is in its own file. Likewise, each version of the same definition must be in its own file.

@@ -1,0 +1,146 @@
+.. highlight:: python
+   :linenothreshold: 0
+
+BST - Zato programmer's guide
+=============================
+
+Basic usage
+-----------
+
+Instances of :doc:`BST <./index>` definitions transition through states as instructed to be either Zato services or external
+:doc:`REST <./rest-ext>` clients - this chapter is concerned with the former.
+
+From a Zato programmer's perspective to change state of a business object, one needs to wrap a service's business logic
+in a dedicated *with transition_to* block, as below:
+
+::
+
+  # Zato
+  from zato.server.service import Service
+
+  # zato-labs
+  from zato_bst import transition_to
+
+  class MyService(Service):
+
+    def handle(self):
+
+      with transition_to(self, 'Order', 123, 'ready'):
+
+        # Here goes the actual user code
+        pass
+
+Before proceeding to the user code, the with block will:
+
+* Ensure that there exists an *Order* object with an ID of *123* in the cache of objects already seen and that from its current
+  state it is possible to transition the object to the new state of *ready*. If any of it is not true, raise an exception.
+
+* If the object is not found in the cache but *ready* is one of begin states, don't raise an exception. This is how a series
+  of transitions for an object starts - there is no separate 'start_transitions* call.
+
+* Likewise, if a state that the object transitions to is one of end ones, this ends the transitions - there is no dedicated
+  'end_transitions' call.
+
+Business objects may belong to multiple BST :doc:`definitions <./author>` hence it's also possible to specify the exact name
+and version of the definition a given business object belongs to.
+
+Zato programmers can also explicitly force an object to a new state even though it would normally be rejected by the underlying
+state machine, such as when no transition existed from the object's old and the desired new state.
+
+Each transition can be attached an arbitrary string of context data, for instance to serve as a user-provided metadata for
+the transition.
+
+Providing definition name and version
+-------------------------------------
+
+If a business object belongs in one or more BST definition or if users want to be explicit about which definition to use,
+*def_name* and, optionally, *def_version* parameters can be used to point to the one exact definition required.
+
+Without the parameters, a definition is looked up based on the business object. If more than one definition uses it an exception
+will be raised before the with block gets executed.
+
+::
+
+    # Use definition name
+    with transition_to(self, 'Order', 123, 'ready', 'CRM orders'):
+
+      # Here goes the actual user code
+      pass
+
+::
+
+    # Use definition name + version
+    with transition_to(self, 'Order', 123, 'ready', 'CRM orders', '6.1'):
+
+      # Here goes the actual user code
+      pass
+
+Forcing a transition
+--------------------
+
+By providing the *force=True* parameter, users can always force a transition to a new state of a business object even
+if the object is already in one of end states or no transition for the object occurred at all yet, effectively bypassing
+normal rules of transitions in the definition. The new state must still exist in a given definition, i.e. its name must be valid.
+
+::
+
+  # Disregard current state and jump directly to 'sent-to-user'
+  with transition_to(self, 'Order', 123, 'sent-to-user', force=True):
+  
+    # Here goes the actual user code
+    pass
+
+Providing user context
+----------------------
+
+Users can add arbitrary string of opaque data to a transition between states. It's possible to provide it either to
+*transition_to* directly or later on within the with block, depending on what is more convenient or if the string of data
+is already known at the time transition_to is called.
+
+::
+
+  # Add user context to transition_to directly
+  with transition_to(self, 'Order', 123, 'ready', user_ctx="My data"):
+  
+    # Here goes the actual user code
+    pass
+
+::
+
+  # Call an external system and add user_ctx based on response
+  with transition_to(self, 'Order', 123, 'ready') as t:
+  
+    # Here an external system returns a response ..
+    response = self.call_system()
+
+    # .. part of which is added to the transition's context.
+    t.ctx = response.user_id
+
+
+Exceptions
+----------
+
+Should anything go awry, for instance, if it's not possible to transition to a new state, the exception raise will be that
+of *zato_bst.TransitionError*.
+
+::
+
+  # Zato
+  from zato.server.service import Service
+
+  # zato-labs
+  from zato_bst import transition_to, TransitionError
+
+  class MyService(Service):
+
+    def handle(self):
+
+      try:
+        with transition_to(self, 'Order', 123, 'ready'):
+
+          # Here goes the actual user code
+          pass
+
+      except TransitionError, e:
+          # Error handling goes here
+          pass

@@ -38,6 +38,6 @@ Read more
 
 * :doc:`Installation <./install>`
 * :doc:`Authoring BST definitions <./author>`
-* :doc:`Zato programmer's guide <./guide>`
-* :doc:`Visualizing definitions and instances <./visualize>`
-* :doc:`REST API <./rest>`
+* :doc:`Zato programmer's guide <./progguide>`
+* :doc:`REST API - Visualizing definitions and instances <./rest-visualize>`
+* :doc:`REST API - External applications<./rest-ext>`
