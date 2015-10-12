@@ -10,7 +10,7 @@ requires execution of several commands and updates to configuration files.
 Outline:
 
 * :ref:`Install <proc-bst-install-code>` BST code from `GitHub <https://github.com/zatosource/zato-labs/tree/master/bst>`_
-* :ref:`Set credentials <proc-bst-install-credentials>` for the :doc:`REST <./rest-visualize>` :doc:`APIs <./rest-ext>`
+* :ref:`Set credentials <proc-bst-install-credentials>` for the :doc:`REST APIs <./rest>`
 * :ref:`Import <proc-bst-install-enmasse>` BST definitions using :doc:`zato enmasse <../../admin/guide/enmasse>`
 * :ref:`Confirm <proc-bst-install-confirm>` the installation
 

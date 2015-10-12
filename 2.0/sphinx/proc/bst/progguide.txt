@@ -8,7 +8,7 @@ Basic usage
 -----------
 
 Instances of :doc:`BST <./index>` definitions transition through states as instructed to be either Zato services or external
-:doc:`REST <./rest-ext>` clients - this chapter is concerned with the former.
+:doc:`REST <./rest>` clients - this chapter is concerned with the former.
 
 From a Zato programmer's perspective to change state of a business object, one needs to wrap a service's business logic
 in a dedicated *with transition_to* block, as below:
