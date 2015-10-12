@@ -150,6 +150,8 @@ Multiple begin and end states:
   Migrated: Has account
   Has account: Logged in, Suspended
 
+.. _proc-bst-author-force:
+
 Forced stop states
 ~~~~~~~~~~~~~~~~~~
 

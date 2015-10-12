@@ -75,6 +75,8 @@ will be raised before the with block gets executed.
       # Here goes the actual user code
       pass
 
+.. _proc-bst-progguide-force:
+
 Forcing a transition
 --------------------
 
