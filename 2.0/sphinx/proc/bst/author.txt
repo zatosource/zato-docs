@@ -32,10 +32,19 @@ Such files, no matter their extension which may be .txt, are placed in a Zato se
 they are picked up when the server is starting. The same definitions files need to be used across all the servers in a single Zato
 cluster.
 
+After changing the definition file all servers using it need to be restarted - the next major Zato release will lift this requirement.
+During development and on production it's possible to output definitions to .PNG diagrams as described below.
+
 Each definition is in its own file. Likewise, each version of the same definition must be in its own file.
+
+Any line starting with *#* is ignored. Leading and trailing whitespace in lines is insignificant but whitespace is kept intact
+within names of definitions and states.
 
 What definitions are composed of
 --------------------------------
+
+A definition begins with its name, followed by objects it operates on, states, transitions and a list of forced stop states.
+The order of entries is not relevant as long as the name is the first item in the file.
 
 Names
 ~~~~~
@@ -92,8 +101,110 @@ It's not mandatory to declare states upfront before they are used.
 If no state points to a given state, the latter is considered one of start states in the definition. Conversely,
 if a state doesn't lead to at least state it is considered an end state, possibly one of many end states in the definition.
 
-Force stop states
-~~~~~~~~~~~~~~~~~
+A two-step definition:
+
+::
+
+  Open account
+  ------------
+
+  Objects: Customer
+  Consent given: Has account
+
+A three-step definition:
+
+::
+
+  Open account
+  ------------
+
+  Objects: Customer
+  Consent given: Has account
+  Has account: Welcome message sent
+
+Looping and branching:
+
+::
+
+  Open account
+  ------------
+
+  Objects: Customer
+  log_in: consent_given, consent_declined
+  consent_given: has_account
+  has_account: logged_in, needs_confirmation
+  needs_confirmation: has_account
+
+Multiple begin and end states:
+
+::
+
+  Open account
+  ------------
+
+  Objects: Customer
+  Consent given: Has account
+  Migrated: Has account
+  Has account: Logged in, Suspended
+
+Forced stop states
+~~~~~~~~~~~~~~~~~~
+
+Each definition can optionally list one or more states upon entering which the instance of a process will unconditionally
+stop no matter what the current state is. Such states are listed in the *Force stop:* line, as below.
+
+::
+
+  Open account
+  ------------
+
+  Objects: Customer
+  Consent given: Has account
+  Force stop: Canceled
 
 Versioning
 ~~~~~~~~~~
+
+Definitions can be given an explicit version using the *Version:* entry. If no version is provided by users, it's set to 1.
+
+::
+
+  Open account
+  ------------
+
+  Objects: Customer
+  Consent given: Has account
+  Version: 35.1
+
+Useful API calls
+~~~~~~~~~~~~~~~~
+
+/bst/get-definition-list
+````````````````````````
+Calling this endpoint will return all the currently available definitions as pretty-printed JSON:
+
+::
+
+  $ curl http://bst:$BST_PASSWORD@localhost:17010/bst/get-definition-list
+  [
+    {
+      "Open account": {
+        "objects": "Customer",
+        "Consent given": "Has account",
+        "Migrated": "Has account",
+        "Has account": [
+          "Logged in",
+          "Suspended"
+        ],
+        "version": "3a1"
+      }
+    },
+    {
+      "Open account old": {
+        "objects": "Customer",
+        "Consent given": "Has account",
+        "Has account": "Welcome message sent"
+      }
+    }
+  ]
+  $ 
