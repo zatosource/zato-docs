@@ -37,14 +37,14 @@ Stop all Zato servers running in the environment BST will be used in:
 
   $ zato stop /path/to/a/server
 
-Clone the zato-labs repository and navigate to a directory referred to as $BST_ROOT in later steps:
+Clone the zato-labs repository and navigate to a directory referred to as BST_ROOT in later steps:
 
 ::
 
   $ git clone https://github.com/zatosource/zato-labs.git
   $ cd zato-labs/bst
 
-Compile BST in $BST_ROOT:
+Compile BST in BST_ROOT:
 
 ::
 
@@ -52,7 +52,7 @@ Compile BST in $BST_ROOT:
   [snip output]
   $
 
-Symlink Python dependencies from $BST_ROOT's subdirectories to core Zato's own
+Symlink Python dependencies from BST_ROOT's subdirectories to core Zato's own
 :doc:`zato_extra_paths <../../admin/guide/enabling-extra-libs>`
 directory,
 the location of which will depend on Zato version, for 2.0.5 it is */opt/zato/2.0.5/zato_extra_paths*.
@@ -67,7 +67,7 @@ Note that the last command below uses a different source directory.
   $ ln -s ./bst-env/lib/python2.7/site-packages/webcolors.py /opt/zato/2.0.5/zato_extra_paths
   $ ln -s ./src/zato/bst/__init__.py /opt/zato/2.0.5/zato_extra_paths/zato_bst.py
 
-For each server, create a directory *proc/bst* that will contain BST definitions and copy a sample one from $BST_ROOT/sample.txt
+For each server, create a directory *proc/bst* that will contain BST definitions and copy a sample one from BST_ROOT/sample.txt
 
 ::
 
@@ -80,7 +80,7 @@ Start all servers back:
 
   $ zato start /path/to/a/server
 
-Copy services from *$BST_ROOT/src/zato/bst/services.py* to each server's *pickup-dir*.
+Copy services from *BST_ROOT/src/zato/bst/services.py* to each server's *pickup-dir*.
 
 ::
 
@@ -104,7 +104,7 @@ Set credentials for the REST API
 
     $ uuidgen
 
-* Open *$BST_ROOT/bst-enmasse.json* in a text editor and replace *$PWD* with the actual password just generated. The password
+* Open *BST_ROOT/bst-enmasse.json* in a text editor and replace *$PWD* with the actual password just generated. The password
   must be enclosed in double quotes. Save and quit the editor.
 
 .. _proc-bst-install-enmasse:
@@ -113,7 +113,7 @@ Import BST-related objects using zato enmasse
 ---------------------------------------------
 
 Use :doc:`zato enmasse <../../admin/guide/enmasse>` to import REST channels and their credentials from
-*$BST_ROOT/bst-enmasse.json* onto Zato servers.
+*BST_ROOT/bst-enmasse.json* onto Zato servers.
 
 Running the command against one server will suffice - the changes will be propagated
 automatically to other servers in the cluster.
