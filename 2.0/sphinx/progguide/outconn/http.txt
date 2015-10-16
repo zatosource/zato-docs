@@ -153,6 +153,14 @@ session attribute A handle to the underlying `Requests <http://docs.python-reque
   :rtype: An instance of `requests.Response <http://docs.python-requests.org/en/latest/api/#requests.Response>`_
           class
 
+.delete, .options, .put, .patch
+````````````````````````````````
+
+Represent DELETE, OPTIONS, PUT and PATCH HTTP verbs. .delete and .options use the same API
+:ref:`.get does <progguide-outconn-get>`. .put and .patch
+the same as
+:ref:`.post <progguide-outconn-post>`.
+
 Usage examples
 --------------
 
