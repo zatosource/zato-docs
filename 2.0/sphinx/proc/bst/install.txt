@@ -161,7 +161,7 @@ installed in previous steps. Username is *bst*. Password is the one set above wh
         ], 
         "force_stop": [
           "Canceled", 
-          "Interrupted"
+          "Timed out"
         ]
       }
     }
