@@ -452,6 +452,7 @@ Use the *method* key to match HTTP request methods. By default, *GET* is used un
     response = '"OK, updated"'
 
     [Delete Customer]
+    url_path=/customer
     qs_cust_id=1
     method=DELETE
     response = '"OK, deleted"'
