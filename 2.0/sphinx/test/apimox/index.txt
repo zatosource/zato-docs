@@ -28,7 +28,7 @@ zato-apimox is released independently of the core :doc:`Zato platform <../../ind
 
     $ sudo pip install zato-apimox
     [snip]
-    Successfully installed zato-apimox-1.1
+    Successfully installed zato-apimox-1.2
     $
 
 

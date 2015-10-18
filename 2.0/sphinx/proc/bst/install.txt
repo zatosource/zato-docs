@@ -19,11 +19,11 @@ Outline:
 Install BST code from GitHub
 ----------------------------
 
-As a prerequisite, install the JPEG development package, for instance, on Ubuntu and Debian:
+As a prerequisite, install development packages required for building BST, for instance, on Ubuntu and Debian:
 
 ::
 
-  $ sudo apt-get install libjpeg-dev
+  $ sudo apt-get install libjpeg-dev zlib1g-dev
 
 Switch user to zato:
 
@@ -57,15 +57,15 @@ Symlink Python dependencies from BST_ROOT's subdirectories to core Zato's own
 directory,
 the location of which will depend on Zato version, for 2.0.5 it is */opt/zato/2.0.5/zato_extra_paths*.
 
-Note that the last command below uses a different source directory.
+Navigate to BST_ROOT and run the commands below:
 
 ::
 
-  $ ln -s ./bst-env/lib/python2.7/site-packages/blockdiag /opt/zato/2.0.5/zato_extra_paths
-  $ ln -s ./bst-env/lib/python2.7/site-packages/funcparserlib /opt/zato/2.0.5/zato_extra_paths
-  $ ln -s ./bst-env/lib/python2.7/site-packages/PIL /opt/zato/2.0.5/zato_extra_paths
-  $ ln -s ./bst-env/lib/python2.7/site-packages/webcolors.py /opt/zato/2.0.5/zato_extra_paths
-  $ ln -s ./src/zato/bst/__init__.py /opt/zato/2.0.5/zato_extra_paths/zato_bst.py
+  $ ln -s $PWD/bst-env/lib/python2.7/site-packages/blockdiag /opt/zato/2.0.5/zato_extra_paths
+  $ ln -s $PWD/bst-env/lib/python2.7/site-packages/funcparserlib /opt/zato/2.0.5/zato_extra_paths
+  $ ln -s $PWD/bst-env/lib/python2.7/site-packages/PIL /opt/zato/2.0.5/zato_extra_paths
+  $ ln -s $PWD/bst-env/lib/python2.7/site-packages/webcolors.py /opt/zato/2.0.5/zato_extra_paths
+  $ ln -s $PWD/src/zato/bst/__init__.py /opt/zato/2.0.5/zato_extra_paths/zato_bst.py
 
 For each server, create a directory *proc/bst* that will contain BST definitions and copy a sample one from BST_ROOT/sample.txt
 
