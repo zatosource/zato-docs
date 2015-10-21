@@ -127,7 +127,9 @@ Installing binaries
   to return *Zato 2.0* followed by any sub-release and revision number.
 
   ::
-  
+  $ zato --version
+  Zato 2.0.6.rev-61ce20d2
+  $
 
 .. _admin-guide-migrate-1.1-2.0-upgrade-odb:
 
