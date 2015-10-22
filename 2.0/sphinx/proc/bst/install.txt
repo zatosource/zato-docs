@@ -25,6 +25,12 @@ As a prerequisite, install development packages required for building BST, for i
 
   $ sudo apt-get install libjpeg-dev zlib1g-dev
 
+Additionally, you may need to install virtualenv:
+
+::
+
+  $ sudo pip install virtualenv
+
 Switch user to zato:
 
 ::
