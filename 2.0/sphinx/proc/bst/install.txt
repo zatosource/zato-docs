@@ -110,7 +110,7 @@ Set credentials for the REST API
 
     $ uuidgen
 
-* Open *BST_ROOT/bst-enmasse.json* in a text editor and replace *$PWD* with the actual password just generated. The password
+* Open *BST_ROOT/bst-enmasse.json* in a text editor and replace *$BST_PASSWORD* with the actual password just generated. The password
   must be enclosed in double quotes. Save and quit the editor.
 
 .. _proc-bst-install-enmasse:
