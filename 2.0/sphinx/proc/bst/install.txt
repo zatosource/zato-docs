@@ -61,17 +61,17 @@ Compile BST in BST_ROOT:
 Symlink Python dependencies from BST_ROOT's subdirectories to core Zato's own
 :doc:`zato_extra_paths <../../admin/guide/enabling-extra-libs>`
 directory,
-the location of which will depend on Zato version, for 2.0.6 it is */opt/zato/2.0.6/zato_extra_paths*.
+the location of which will depend on Zato version, for 2.0.7 it is */opt/zato/2.0.7/zato_extra_paths*.
 
 Navigate to BST_ROOT and run the commands below:
 
 ::
 
-  $ ln -s $PWD/bst-env/lib/python2.7/site-packages/blockdiag /opt/zato/2.0.6/zato_extra_paths
-  $ ln -s $PWD/bst-env/lib/python2.7/site-packages/funcparserlib /opt/zato/2.0.6/zato_extra_paths
-  $ ln -s $PWD/bst-env/lib/python2.7/site-packages/PIL /opt/zato/2.0.6/zato_extra_paths
-  $ ln -s $PWD/bst-env/lib/python2.7/site-packages/webcolors.py /opt/zato/2.0.6/zato_extra_paths
-  $ ln -s $PWD/src/zato/bst/__init__.py /opt/zato/2.0.6/zato_extra_paths/zato_bst.py
+  $ ln -s $PWD/bst-env/lib/python2.7/site-packages/blockdiag /opt/zato/2.0.7/zato_extra_paths
+  $ ln -s $PWD/bst-env/lib/python2.7/site-packages/funcparserlib /opt/zato/2.0.7/zato_extra_paths
+  $ ln -s $PWD/bst-env/lib/python2.7/site-packages/PIL /opt/zato/2.0.7/zato_extra_paths
+  $ ln -s $PWD/bst-env/lib/python2.7/site-packages/webcolors.py /opt/zato/2.0.7/zato_extra_paths
+  $ ln -s $PWD/src/zato/bst/__init__.py /opt/zato/2.0.7/zato_extra_paths/zato_bst.py
 
 For each server, create a directory *proc/bst* that will contain BST definitions and copy a sample one from BST_ROOT/sample.txt
 

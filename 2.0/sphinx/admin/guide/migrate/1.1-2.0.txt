@@ -128,7 +128,7 @@ Installing binaries
 
   ::
   $ zato --version
-  Zato 2.0.6.rev-61ce20d2
+  Zato 2.0.7.rev-dfee180c
   $
 
 .. _admin-guide-migrate-1.1-2.0-upgrade-odb:
@@ -194,19 +194,19 @@ Running zato migrate
   ::
     
       $ zato migrate /opt/zato/uat/load-balancer
-      Migrated /opt/zato/uat/load-balancer from 1.1 to Zato 2.0.6.rev-61ce20d2
+      Migrated /opt/zato/uat/load-balancer from 1.1 to Zato 2.0.7.rev-dfee180c
       $
 
       $ zato migrate /opt/zato/uat/web-admin
-      Migrated /opt/zato/uat/web-admin from 1.1 to Zato 2.0.6.rev-61ce20d2
+      Migrated /opt/zato/uat/web-admin from 1.1 to Zato 2.0.7.rev-dfee180c
       $
 
       $ zato migrate /opt/zato/uat/server1
-      Migrated /opt/zato/uat/server1 from 1.1 to Zato 2.0.6.rev-61ce20d2
+      Migrated /opt/zato/uat/server1 from 1.1 to Zato 2.0.7.rev-dfee180c
       $
 
       $ zato migrate /opt/zato/uat/server2
-      Migrated from /opt/zato/uat/server2 1.1 to Zato 2.0.6.rev-61ce20d2
+      Migrated from /opt/zato/uat/server2 1.1 to Zato 2.0.7.rev-dfee180c
       $
 
 .. _admin-guide-migrate-1.1-2.0-start-components:
@@ -229,7 +229,7 @@ Starting components
       |              Key               |                       Value                        |
       +================================+====================================================+
       | component_details              | {"created_user_host": "zato@myhost", "version":    |
-      |                                | "Zato 2.0.6.rev-61ce20d2", "component":            |
+      |                                | "Zato 2.0.7.rev-dfee180c", "component":            |
       |                                | "SERVER", "created_ts":                            |
       |                                | "2015-01-29T17:39:53.351901"}                      |
       +--------------------------------+----------------------------------------------------+
