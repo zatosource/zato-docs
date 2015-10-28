@@ -453,6 +453,7 @@ Zato, the open-source project
    stats/*
    test/apimox/*
    test/apitest/*
+   test/apitest/step/*
    tutorial/*
    web-admin/*
    web-admin/audit-log/http/*
