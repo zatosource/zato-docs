@@ -3,13 +3,13 @@ Pub/sub - Administration - Topics
 
 As described in the publish/subscribe
 :doc:`overview <../index>`,
-topics are entities through client applications -
+topics are entities through which client applications -
 :doc:`producers <./producer>`
 and
 :doc:`consumers <./consumer>` -
 exchange messages in an asynchronous way.
 
-Topics can be  created, updated, deleted while messages stored in topics can be browsed and deleted.
+Topics can be created, updated, deleted while messages stored in topics can be browsed and deleted.
 
 Creating and editing
 --------------------
