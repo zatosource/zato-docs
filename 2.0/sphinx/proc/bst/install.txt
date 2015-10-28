@@ -19,17 +19,12 @@ Outline:
 Install BST code from GitHub
 ----------------------------
 
-As a prerequisite, install development packages required for building BST, for instance, on Ubuntu and Debian:
-
-::
-
-  $ sudo apt-get install libjpeg-dev zlib1g-dev
-
-Additionally, you may need to install virtualenv:
+As a prerequisite, install virtualenv and development packages required for building BST, for instance, on Ubuntu and Debian:
 
 ::
 
   $ sudo pip install virtualenv
+  $ sudo apt-get install libjpeg-dev zlib1g-dev
 
 Switch user to zato:
 
