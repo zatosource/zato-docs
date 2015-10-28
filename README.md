@@ -15,4 +15,4 @@ $ make virtualenv
 $ make html
 ```
 
-Now the output HTML is in ```~/zato-docs/1.1/sphinx/_build/html/index.html```.
+Now the output HTML is in ```~/zato-docs/2.0/sphinx/_build/html/index.html```.
