@@ -260,8 +260,8 @@ is the literal copy of a test, everything is in plain English:
 Available steps and assertions
 ------------------------------
 
-All the [default steps are listed separately] (./docs/steps/list.md).
-You're also encouraged to [browse the usage examples] (./docs/steps).
+All the `default steps are listed separately <./step/list.html>`_.
+The list also contains links to usage examples.
 
 Where to keep configuration
 ---------------------------
