@@ -260,7 +260,7 @@ is the literal copy of a test, everything is in plain English:
 Available steps and assertions
 ------------------------------
 
-All the `default steps are listed separately <./step/list.html>`_.
+All the :doc:`default steps are listed separately <./step/index>`.
 The list also contains links to usage examples.
 
 Where to keep configuration
