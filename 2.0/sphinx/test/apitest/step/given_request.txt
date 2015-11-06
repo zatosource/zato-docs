@@ -23,5 +23,5 @@ Discussion
 ----------
 
 Specifies the path to a request, relative to the ./features/json/request
-directory. Use [Given request is "{data}"] (step\_given\_request\_is.md)
+directory. Use :doc:`Given request is "{data}" <./given_request_is>`
 to provide a request inline.

@@ -22,6 +22,7 @@ Usage example
 Discussion
 ----------
 
-Specifies a JSON request inline. Use [Given request "{request\_path}"]
-(./step\_given\_request.md) to make use of requests stored in dedicated
+Specifies a JSON request inline. Use
+:doc:`Given request "{request_path}" <./given_request>`
+to make use of requests stored in dedicated
 files.

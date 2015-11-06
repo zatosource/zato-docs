@@ -15,10 +15,11 @@ Note that zato-apitest is meant to test APIs only. It's doesn't simulate
 a browser nor any sort of user interactions. It's meant purely for
 machine-machine API testing.
 
-Originally part of [Zato] (https://zato.io) - open-source ESB, SOA,
-REST, APIs and cloud integrations in Python.
+The tool is the recommended way to test :doc:`Zato-based solutions <../../index>`
+but is completely independent from the core Zato platform and can be used to test
+any other APIs as well.
 
-In addition to HTTP Zato itself supports AMQP, ZeroMQ, WebSphere MQ,
+In addition to HTTP itself supports AMQP, ZeroMQ, WebSphere MQ,
 including JMS, Redis, FTP, OpenERP, SMTP, IMAP, SQL, Amazon S3,
 OpenStack Swift and more so it's guaranteed zato-apitest will grow
 support for more protocols and transport layers with time.
@@ -28,16 +29,14 @@ Here's how a built-in demo test case looks like:
 .. figure:: ../../gfx/test/apitest-demo.png
    :alt: zato-apitest demo run
 
-   zato-apitest demo run
-
 What it can do
 --------------
 
 -  Invoke HTTP APIs
 
--  Use [JSON Pointers]
-   (https://zato.io/blog/posts/json-pointer-rfc-6901.html) or [XPath]
-   (https://en.wikipedia.org/wiki/XPath) to set request's elements to
+-  Use `JSON Pointers <https://zato.io/blog/posts/json-pointer-rfc-6901.html>`_
+   `XPath <https://en.wikipedia.org/wiki/XPath>`_
+   to set request's elements to
    strings, integers, floats, lists, random ones from a set of values,
    random strings, dates now/random/before/after/between.
 
@@ -64,10 +63,11 @@ What it can do
 Download and install
 --------------------
 
-Newest releases are always available [on PyPI]
-(https://pypi.python.org/pypi/zato-apitest) and can be installed with
-[pip] (https://pip.pypa.io/en/latest/installing.html) after installing a
-few system prequisites:
+Newest releases are always available
+`on PyPI <https://pypi.python.org/pypi/zato-apitest>`
+and can be installed with
+`pip <https://pip.pypa.io/en/latest/installing.html>`_
+after installing a few system prequisites:
 
 -  PostgreSQL development libraries
 -  XML development-related libraries
@@ -151,7 +151,7 @@ Let's dissect directories that were created after running
 +----------------------------------+--------------------------------------------------------------------------------------------------------------------------+
 | Path                             | Description                                                                                                              |
 +==================================+==========================================================================================================================+
-| ``./features/config.ini``        | Low-level configuration that is passed to the underlying [behave] (https://pypi.python.org/pypi/behave) library as-is.   |
+| ``./features/config.ini``        | Low-level configuration that is passed to the underlying `behave <https://pypi.python.org/pypi/behave>`_ library as-is.  |
 +----------------------------------+--------------------------------------------------------------------------------------------------------------------------+
 | ``./features/demo.feature``      | A set of tests for a single feature under consideration.                                                                 |
 +----------------------------------+--------------------------------------------------------------------------------------------------------------------------+
@@ -328,15 +328,15 @@ Discussion:
 -  Variable 'cust\_login' is set to a value returned in response to the
    fist scenario
 -  Second scenario makes use of data prepared by the first one
--  Remeber to [clean up the context]
-   (./docs/steps/step\_then\_context\_is\_cleaned\_up.md) if you
+-  Remember to
+   :doc:`clean up the context <step/then_context_is_cleaned_up>` if you
    actually do not want for any config variables to be carried over from
    a step to subsequent ones
 
 Extending zato-apitest and adding custom assertions
 ---------------------------------------------------
 
-zato-apitest comes with [almost 100 of default steps] (./docs/steps) and
+zato-apitest comes with almost :doc:`100 of default steps <./step/index>` and
 it's easy to add new ones.
 
 Let's say that we need to add a step that will return the name of any
@@ -345,8 +345,9 @@ Thursday on input, the step should return Friday, Saturday or Sunday.
 
 Each zato-apitest environment contains a ``./features/steps/steps.py``
 module. Initially, it only imports all the default steps but you can
-simply add your own steps to it. They are always based on [behave]
-(https://pythonhosted.org/behave/) so that is where all the additional
+simply add your own steps to it. They are always based
+`on behave <https://pythonhosted.org/behave/>`_
+so that is where all the additional
 details are explained.
 
 Here's what needs to be added to ``./features/steps/steps.py`` for the
@@ -452,9 +453,3 @@ Changelog
 -  **1.0** - 06-06-2014
 
 -  Initial release
-
-License
--------
-
-[LGPLv3] (./LICENSE.txt) - zato-apitest is free to use in open-source
-and proprietary programs.
