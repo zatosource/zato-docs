@@ -64,7 +64,7 @@ Download and install
 --------------------
 
 Newest releases are always available
-`on PyPI <https://pypi.python.org/pypi/zato-apitest>`
+`on PyPI <https://pypi.python.org/pypi/zato-apitest>`_
 and can be installed with
 `pip <https://pip.pypa.io/en/latest/installing.html>`_
 after installing a few system prequisites:
@@ -357,6 +357,7 @@ new step to be available:
 
 
     from random import choice
+    from jsonpointer import set_pointer
 
     week_days = 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'
 
