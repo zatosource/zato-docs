@@ -14,7 +14,7 @@ of a flow of objects.
 
 Definitions can be versioned and a given business object can take part in multiple BSTs, including multiple versions of the same definition.
 
-Users create definitions in plain English, as below:
+Users create definitions in plain English or any other natural language, as below:
 
 ::
 

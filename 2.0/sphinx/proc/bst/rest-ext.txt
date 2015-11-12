@@ -130,7 +130,7 @@ Performs a transition on each element from the input list. Each element's input 
 /bst/transition endpoint. Stops upon encountering first error, if any.
 
 /bst/get-history
-~~~~~~~~~~~~~~~~
+----------------
 
 Returns history of transitions for a given object.
 
