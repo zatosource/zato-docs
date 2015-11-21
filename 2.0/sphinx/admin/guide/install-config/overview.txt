@@ -56,7 +56,7 @@ To set up a completely new Zato environment you need to:
   
 * Create a new cluster by:
 
-  * Using a :doc:`a quickstart cluster <../../cli/quickstart>`
+  * Using :doc:`a quickstart cluster <../../cli/quickstart>`
   * Manually creating each of the components needed:
     
     * SQL ODB
