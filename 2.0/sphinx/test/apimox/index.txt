@@ -221,6 +221,7 @@ A sample config.ini may look like below:
     log_file_plain=plain_http.log
     log_file_tls=tls_http.log
     log_file_tls_client_certs=client_certs_tls_http.log
+    include=customer1.ini, customer2.ini
 
     [Get Customer 02]
     url_path=/customer
@@ -740,6 +741,10 @@ http_tls_client_certs_port    44777                           Port for TLS reque
 log_file_plain                plain_http.log                  Relative to the environment's *http/logs* directory
 log_file_tls                  tls_http.log                    ″
 log_file_tls_client_certs     client_certs_tls_http.log       ″
+include                       (None)                          Optional path or paths to additional config file(s) to include so as
+                                                              to be able to split configuration into multiple files. Paths are
+                                                              relative to the directory config.ini is in. If multiple paths are
+                                                              given, they need to be comma-separated.
 ============================= =============================== ====================================================================
 
 [User mocks]
