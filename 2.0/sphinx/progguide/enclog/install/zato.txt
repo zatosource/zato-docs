@@ -1,0 +1,39 @@
+Installing and configuring zato-enclog for Zato
+===============================================
+
+The steps can be broken out into several phases:
+
+* Install zato-enclog
+* Configure user.conf files
+* Configure logging.conf files
+* Stop and start servers
+
+Install zato-enclog
+-------------------
+
+* Change user to *zato*
+* Clone zato-enclog `from GitHub <https://github.com/zatosource/zato-enclog>`_
+* Build the package
+* Symlink zato-enclog and its dependencies to */opt/zato/current/zato_extra_paths*
+* (optionally) Add enclog CLI to $PATH
+
+In the commands below ENCLOG_DIR is the directory zato-enclog has been cloned to. EXTRA_PATHS is
+/opt/zato/current/zato_extra_paths.
+
+::
+
+  $ sudo su - zato
+  $ git clone https://github.com/zatosource/zato-enclog.git
+  $ cd zato-enclog
+  $ make install2
+  $ ln -s ENCLOG_DIR/src/zato EXTRA_PATHS
+  $ ln -s ENCLOG_DIR/enclog-env/lib/python2.7/site-packages/builtins EXTRA_PATHS
+  $ ln -s ENCLOG_DIR/enclog-env/lib/python2.7/site-packages/future EXTRA_PATHS
+  $ exit
+  $ sudo ln -s ENCLOG_DIR/
+
+Configure user.conf files
+-------------------------
+
+Configure logging.conf files
+----------------------------

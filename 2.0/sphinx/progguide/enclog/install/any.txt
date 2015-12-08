@@ -1,0 +1,27 @@
+Installing zato-enclog for Python applications
+==============================================
+
+The only step required to install :doc:`zato-enclog <../index>` outside of :doc:`Zato <../../../index>` is to pull it
+`from PyPI <https://pypi.python.org/pypi/zato-enclog/>`_, for instance, using pip:
+
+::
+
+  $ sudo pip install zato-enclog
+  Collecting zato-enclog
+    Downloading zato-enclog-1.0.4.tar.gz
+
+  [...]
+
+  Installing collected packages: zato-enclog
+    Running setup.py install for zato-enclog
+  $
+  $ enclog demo
+
+  Plain text: {"user":"Jane Xi"}
+  Key:        D_VAfbXkabCKLnEx-xm0CP4c41JOIlK0p1c-pTzm2dY=
+  Encrypted:  gAAAAABWZyfBUJHc1iEPaIkmSHrkXMCkRTZco-aoAzRR7kNqMtHLtd7qrWj9WKBpYCa [...]
+  Decrypted:  {"user":"Jane Xi"}
+
+  $
+
+You can proceed to :doc:`usage documentation <../usage/any>` now.
