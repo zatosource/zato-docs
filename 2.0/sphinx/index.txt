@@ -438,6 +438,7 @@ Zato, the open-source project
    progguide/*
    progguide/clients/*
    progguide/enclog/*
+   progguide/enclog/cli/*
    progguide/enclog/install/*
    progguide/examples/*
    progguide/examples/cloud/aws/*

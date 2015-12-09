@@ -23,5 +23,3 @@ The only step required to install :doc:`zato-enclog <../index>` outside of :doc:
   Decrypted:  {"user":"Jane Xi"}
 
   $
-
-You can proceed to :doc:`usage documentation <../usage/any>` now.

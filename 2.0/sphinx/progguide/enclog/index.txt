@@ -26,8 +26,8 @@ Features
 * Comes with command-line tools to generate keys and decrypt logs, including means to
   `tail -f <https://en.wikipedia.org/wiki/Tail_%28Unix%29>`_ logs as they grow
 
-Examples
---------
+Usage
+-----
 
 Zato :doc:`services <../../intro/esb-soa>`:
 
@@ -97,12 +97,6 @@ Installation
 
 * Under :doc:`Zato <./install/zato>`
 * Under :doc:`any Python application <./install/any>`
-
-Usage
------
-
-* Under :doc:`Zato <./usage/zato>`
-* Under :doc:`any Python application <./usage/any>`
 
 CLI reference
 -------------
