@@ -35,7 +35,8 @@ help:
 	@echo "  virtualenv to get a working version of Sphinx under virtualenv
 
 clean:
-	-rm -rf $(BUILDDIR)/*
+	rm -rf $(BUILDDIR)/*
+	rm -rf $(CURDIR)/zato_docs_env/
 
 html:
 	$(SPHINXBUILD) -b djangohtml $(ALLSPHINXOPTS) $(BUILDDIR)/html
