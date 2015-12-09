@@ -26,8 +26,8 @@ Features
 * Comes with command-line tools to generate keys and decrypt logs, including means to
   `tail -f <https://en.wikipedia.org/wiki/Tail_%28Unix%29>`_ logs as they grow
 
-Usage
------
+Usage examples
+--------------
 
 Zato :doc:`services <../../intro/esb-soa>`:
 
@@ -92,8 +92,8 @@ Using *enclog tailf* will work like tail -f but it will also decrypt data on fly
 .. image:: /gfx/progguide/enclog/enclog_tailf.png
    :align: center
 
-Installation
-------------
+Installation and usage
+----------------------
 
 * Under :doc:`Zato <./install/zato>`
 * Under :doc:`any Python application <./install/any>`

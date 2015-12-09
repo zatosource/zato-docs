@@ -104,3 +104,19 @@ Stop and start each server in a cluster.
   $ zato start /path/to/server
 
 (end of steps)
+
+Usage
+=====
+
+::
+
+  from logging import getLogger
+  from zato.server.service import Service
+
+  enclog = getLogger('enclog')
+
+  class MyService(Service):
+      def handle(self):
+          enclog.info('This will be encrypted')
+
+Use :doc:`enclog open <../cli/open>` and :doc:`enclog tailf <../cli/tailf>` to read encrypted logs.

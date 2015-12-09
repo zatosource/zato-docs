@@ -23,3 +23,30 @@ The only step required to install :doc:`zato-enclog <../index>` outside of :doc:
   Decrypted:  {"user":"Jane Xi"}
 
   $
+
+Usage
+=====
+
+::
+
+  import logging
+  from zato.enclog import EncryptedLogFormatter, genkey
+
+  level = logging.INFO
+  format = '%(levelname)s - %(message)s'
+
+  key = genkey()
+  formatter = EncryptedLogFormatter(key, format)
+
+  handler = logging.StreamHandler()
+  handler.setFormatter(formatter)
+
+  logger = logging.getLogger('')
+  logger.addHandler(handler)
+  logger.setLevel(level)
+
+  logger.info('This will be encrypted')
+
+Note that the key is the only means to decrypt encrypted logs. Should it be lost, no decryption will be possible.
+
+Use :doc:`enclog open <../cli/open>` and :doc:`enclog tailf <../cli/tailf>` to read encrypted logs.
