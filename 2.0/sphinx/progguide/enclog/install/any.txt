@@ -8,7 +8,7 @@ The only step required to install :doc:`zato-enclog <../index>` outside of :doc:
 
   $ sudo pip install zato-enclog
   Collecting zato-enclog
-    Downloading zato-enclog-1.0.4.tar.gz
+    Downloading zato-enclog-x.y.z.tar.gz
 
   [...]
 
