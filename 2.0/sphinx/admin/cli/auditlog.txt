@@ -1,0 +1,49 @@
+py auditlog
+===========
+
+Overview
+--------
+
+Manages Manages :doc:`HTTP audit log <../../web-admin/audit-log/http/index>` from command line.
+
+The command is slated for inclusion as *zato auditlog* in the next major Zato release and in 2.0 it is distributed
+as an additional add-on.
+
+Note that the command is *py auditlog* where *py* is the main Zato binary from */opt/zato/current/bin/py*.
+
+Installation
+------------
+
+Download the add-on to a directory of choice and run --help to confirm the download.
+
+::
+
+    $ curl \
+        https://raw.githubusercontent.com/zatosource/zato-labs/master/auditlog/auditlog.py \
+        > auditlog
+    [snip output]
+    $
+
+    $ py auditlog --help
+    Usage: auditlog [OPTIONS] COMMAND [ARGS]...
+
+    Options:
+      --help  Show this message and exit.
+
+    Commands:
+      disable
+      enable
+      get
+      search
+      status
+    $ 
+
+
+Subcommands
+------------
+
+* :doc:`py auditlog disable<./auditlog-disable>`
+* :doc:`py auditlog enable<./auditlog-enable>`
+* :doc:`py auditlog get<./auditlog-get>`
+* :doc:`py auditlog search<./auditlog-search>`
+* :doc:`py auditlog status<./auditlog-status>`

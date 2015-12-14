@@ -45,6 +45,7 @@ Name                                                Description
 :doc:`zato start<./start>`                          Starts a Zato component
 :doc:`zato stop<./stop>`                            Stops a Zato component
 :doc:`zato update<./update>`                        Updates parts of a Zato component
+:doc:`py auditlog<./auditlog>`                      Manages :doc:`HTTP audit log <../../web-admin/audit-log/http/index>`
 =================================================== ==============================================================================
 
 .. _cli_index_zato_version:
@@ -55,7 +56,7 @@ Displaying version
 ::
 
   $ zato --version
-  Zato 2.0.1.rev-61cbd0c9
+  Zato 2.0.7.rev-dfee180c
   $ 
 
 Format:
