@@ -29,12 +29,13 @@ Exit codes
 
 Exit codes the command may return:
 
-==== ===================================
+==== ==============================================
 Code Condition
-==== ===================================
+==== ==============================================
 0    Successful execution
+1    Error during invocation of a Zato server
 2    No channels matching input criteria
-==== ===================================
+==== ==============================================
 
 
 Usage
@@ -60,14 +61,14 @@ Usage
     2015-12-14 13:46:49,346 - Config date_format: `None`
     2015-12-14 13:46:49,346 - Config aid: `None`
     2015-12-14 13:46:49,512 - Starting new HTTP connection (1): localhost
-    2015-12-14 13:46:49,627 - Disabled audit log for `zato.service.invoke`
-    2015-12-14 13:46:49,653 - Disabled audit log for `labs.proc.bst.can-transition`
-    2015-12-14 13:46:49,678 - Disabled audit log for `labs.proc.bst.get-current-state-info`
-    2015-12-14 13:46:49,699 - Disabled audit log for `labs.proc.bst.get-definition`
-    2015-12-14 13:46:49,723 - Disabled audit log for `labs.proc.bst.get-definition-list`
-    2015-12-14 13:46:49,747 - Disabled audit log for `labs.proc.bst.get-history`
-    2015-12-14 13:46:49,772 - Disabled audit log for `labs.proc.bst.mass-transition`
-    2015-12-14 13:46:49,795 - Disabled audit log for `labs.proc.bst.transition`
+    2015-12-14 13:46:49,627 - Disabled audit log for `admin.invoke.json`
+    2015-12-14 13:46:49,653 - Disabled audit log for `bst.can-transition`
+    2015-12-14 13:46:49,678 - Disabled audit log for `bst.get-current-state-info`
+    2015-12-14 13:46:49,699 - Disabled audit log for `bst.get-definition`
+    2015-12-14 13:46:49,723 - Disabled audit log for `bst.get-definition-list`
+    2015-12-14 13:46:49,747 - Disabled audit log for `bst.get-history`
+    2015-12-14 13:46:49,772 - Disabled audit log for `bst.mass-transition`
+    2015-12-14 13:46:49,795 - Disabled audit log for `bst.transition`
     2015-12-14 13:46:49,802 - Disabled audit log for `myservice.customer.1`
     2015-12-14 13:46:49,813 - Disabled audit log for `myservice.customer.2`
     2015-12-14 13:46:49,829 - Disabled audit log for `myservice.customer.3`
@@ -77,7 +78,7 @@ Usage
 
     $ py auditlog disable /path/to/server customer
     2015-12-14 13:46:49,346 - Config server: `/path/to/server`
-    2015-12-14 13:46:49,346 - Config channel: `all`
+    2015-12-14 13:46:49,346 - Config channel: `customer`
     2015-12-14 13:46:49,346 - Config query: `None`
     2015-12-14 13:46:49,346 - Config order_by: `None`
     2015-12-14 13:46:49,346 - Config batch_size: `None`

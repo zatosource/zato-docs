@@ -14,7 +14,7 @@ Note that the command is *py auditlog* where *py* is the main Zato binary from *
 Installation
 ------------
 
-Download the add-on to a directory of choice and run --help to confirm the download.
+Download the add-on to a directory of choice and run --help to confirm the step.
 
 ::
 
