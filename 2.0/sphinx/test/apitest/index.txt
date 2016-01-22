@@ -413,6 +413,10 @@ reserved for the tool's own purposes.
 Changelog
 ---------
 
+-  **1.10** - 22-01-2016
+
+-  Added steps for validating list elements in JSON responses
+
 -  **1.9** - 18-03-2015
 
 -  Updated dependencies so it's easier to install zato-apitest under
