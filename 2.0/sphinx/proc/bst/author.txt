@@ -36,8 +36,6 @@ After changing the definition file all servers using it need to be restarted - t
 
 To delete a definition, remove the file it's contained in fr from *config/repo/proc/bst* of all servers and restart the servers.
 
-During development and on production it's possible to output definitions to .PNG diagrams as described below.
-
 Each definition is in its own file. Likewise, each version of the same definition must be in its own file.
 
 Any line starting with *#* is ignored. Leading and trailing whitespace in lines is insignificant but whitespace is kept intact

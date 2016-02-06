@@ -39,7 +39,4 @@ Read more
 * :doc:`Installation <./install>`
 * :doc:`Authoring BST definitions <./author>`
 * :doc:`Zato programmer's guide <./progguide>`
-* REST API:
-
-  * :doc:`Integrating external applications <./rest-ext>`
-  * :doc:`Diagramming <./rest-diag>`
+* REST API: :doc:`Integrating external applications <./rest-ext>`

@@ -13,8 +13,6 @@ or in JSON payload. The former takes precedence in case of conflicts.
 
 Default user credentials to call the API are those set during :doc:`installation <./install>`.
 
-Note that there is also available a :doc:`REST API for diagramming and vizualisation <./rest-diag>` using BST.
-
 /bst/can-transition
 -------------------
 
