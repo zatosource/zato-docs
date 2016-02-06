@@ -16,8 +16,7 @@ A subscription key is unique for a consumer/topic pair - even if the same applic
 topics, it will have a separate subscription key for each one.
 
 Like :doc:`producers <./producer>`, consumers are only mappings between usernames and topics and  they cannot exist in isolation
-from topics. When a topic is deleted, its consumers, as well as producers, will be deleted as well. Even though may not have
-access to publish/subscribe, applications
+from topics. When a topic is deleted, its consumers, as well as producers, will be deleted as well.
 
 An application can be both a producer and a consumer, even for the same topic, and all of the access privileges are
 handled by Zato separately, including the ability to add or delete them without disrupting the other ones.
