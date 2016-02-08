@@ -10,7 +10,7 @@ requires execution of several commands and updates to configuration files.
 Outline:
 
 * :ref:`Install <proc-bst-install-code>` BST code from `GitHub <https://github.com/zatosource/zato-labs/tree/master/bst>`_
-* :ref:`Set credentials <proc-bst-install-credentials>` for the :doc:`REST APIs <./rest>`
+* :ref:`Set credentials <proc-bst-install-credentials>` for the :doc:`REST APIs <./rest-ext>`
 * :ref:`Import <proc-bst-install-enmasse>` BST definitions using :doc:`zato enmasse <../../admin/guide/enmasse>`
 * :ref:`Confirm <proc-bst-install-confirm>` the installation
 
@@ -19,12 +19,12 @@ Outline:
 Install BST code from GitHub
 ----------------------------
 
-As a prerequisite, install virtualenv and development packages required for building BST, for instance, on Ubuntu and Debian:
+As a prerequisite, install `virtualenv <https://pypi.python.org/pypi/virtualenv>`_
+which is required for building BST, for instance, on Ubuntu and Debian:
 
 ::
 
   $ sudo pip install virtualenv
-  $ sudo apt-get install libjpeg-dev zlib1g-dev
 
 Switch user to zato:
 
@@ -55,18 +55,33 @@ Compile BST in BST_ROOT:
 
 Symlink Python dependencies from BST_ROOT's subdirectories to core Zato's own
 :doc:`zato_extra_paths <../../admin/guide/enabling-extra-libs>`
-directory,
-the location of which will depend on Zato version, for 2.0.7 it is */opt/zato/2.0.7/zato_extra_paths*.
+directory:
 
 Navigate to BST_ROOT and run the commands below:
 
 ::
 
-  $ ln -s $PWD/bst-env/lib/python2.7/site-packages/blockdiag /opt/zato/2.0.7/zato_extra_paths
-  $ ln -s $PWD/bst-env/lib/python2.7/site-packages/funcparserlib /opt/zato/2.0.7/zato_extra_paths
-  $ ln -s $PWD/bst-env/lib/python2.7/site-packages/PIL /opt/zato/2.0.7/zato_extra_paths
-  $ ln -s $PWD/bst-env/lib/python2.7/site-packages/webcolors.py /opt/zato/2.0.7/zato_extra_paths
-  $ ln -s $PWD/src/zato/bst/__init__.py /opt/zato/2.0.7/zato_extra_paths/zato_bst.py
+  $ ln -s $PWD/src/zato/bst/__init__.py /opt/zato/current/zato_extra_paths/zato_bst.py
+  $ ln -s $PWD/src/zato/bst/core.py /opt/zato/current/zato_extra_paths/zato_bst_core.py
+  $ ln -s $PWD/src/zato/bst/sql.py /opt/zato/current/zato_extra_paths/zato_bst_sql.py
+
+Still in BST_ROOT run as user zato the command below substituting TCP connectivity details,
+database type, its name, and credentials with the actual data Zato ODB uses:
+
+If there is only one cluster registered in ODB then cluster_id should be left at 1.
+Otherwise a given cluster's ID need to be provided.
+
+::
+
+  $ py ./src/zato/bst/sql.py \
+      --odb_type postgresql \
+      --odb_db_name zato1 \
+      --odb_port 5432 \
+      --odb_host localhost \
+      --odb_user zato1 \
+      --odb_password zato1 \
+      --cluster_id 1
+
 
 For each server, create a directory *proc/bst* that will contain BST definitions and copy a sample one from BST_ROOT/sample.txt
 
