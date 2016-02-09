@@ -62,14 +62,16 @@ Navigate to BST_ROOT and run the commands below:
 ::
 
   $ ln -s $PWD/src/zato/bst/__init__.py /opt/zato/current/zato_extra_paths/zato_bst.py
+  $ ln -s $PWD/src/zato/bst/__init__.py /opt/zato/current/zato_extra_paths/zato_transitions.py
   $ ln -s $PWD/src/zato/bst/core.py /opt/zato/current/zato_extra_paths/zato_bst_core.py
   $ ln -s $PWD/src/zato/bst/sql.py /opt/zato/current/zato_extra_paths/zato_bst_sql.py
+  $ ln -s $PWD/bst-env/lib/python2.7/site-packages/rapidjson.so /opt/zato/current/zato_extra_paths
 
 Still in BST_ROOT run as user zato the command below substituting TCP connectivity details,
 database type, its name, and credentials with the actual data Zato ODB uses:
 
 If there is only one cluster registered in ODB then cluster_id should be left at 1.
-Otherwise a given cluster's ID need to be provided.
+Otherwise a given cluster's ID needs to be provided.
 
 ::
 
