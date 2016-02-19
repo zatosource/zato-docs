@@ -1,0 +1,92 @@
+.. highlight:: sh
+
+Using zato-2.0.7-quickstart box
+===============================
+
+This box is pre-build with Zato 2.0.7 quickstart.
+It contains the quickstart already set up and running
+when you start the box and log into it.
+
+Requirements
+------------
+
+* CentOS, Debian, Mac OSX, Windows
+* Vagrant
+* VirtualBox
+
+Usage instructions
+------------------
+
+* Add zato-2.0.7-quickstart box to your Vagrant box list
+
+::
+
+  $ vagrant box add zatosource/zato-2.0.7-quickstart
+
+* When download procedure is completed, you can start the box...
+
+::
+
+  $ vagrant up
+
+* ...and log into it via SSH
+
+::
+
+  $ vagrant ssh
+
+* While inside the box, you can switch to 'zato' user and check Zato version
+
+::
+
+  vagrant$ sudo su - zato
+  zato$ zato --version
+  Zato 2.0.7.rev-dfee180c
+  zato$
+
+* You can also check if any of Zato components is up and running:
+
+::
+
+  zato$ cd env/qs-1
+  zato:~/env/qs-1$ zato info load-balancer
+  +--------------------------------+--------------------------------------------------+
+  |              Key               |               Value                              |
+  +================================+==================================================+
+  | component_details              | {"created_user_host": "zato@vagrant", "version": |
+  |                                | "Zato 2.0.7.rev-dfee180c", "component":          |
+  |                                | "LOAD_BALANCER", "created_ts":                   |
+  |                                | "2016-01-22T09:24:49.154618"}                    |
+  +--------------------------------+--------------------------------------------------+
+  | component_full_path            | /opt/zato/env/qs-1/load-balancer                 |
+  +--------------------------------+--------------------------------------------------+
+  | component_host                 | vagrant/vagrant.vm                               |
+  +--------------------------------+--------------------------------------------------+
+  | component_running              | True                                             |
+  +--------------------------------+--------------------------------------------------+
+  | current_time                   | 2016-02-19T18:21:19.925629                       |
+  +--------------------------------+--------------------------------------------------+
+  | current_time_utc               | 2016-02-19T18:21:19.925641                       |
+  +--------------------------------+--------------------------------------------------+
+  | master_proc_connections        | {'LISTEN': [{u'to': None, u'from':               |
+  |                                | u'127.0.0.1:20151', u'formatted':                |
+  |                                | u'127.0.0.1:20151'}]}                            |
+  +--------------------------------+--------------------------------------------------+
+  | master_proc_create_time        | 2016-02-19T18:20:46.760000                       |
+  +--------------------------------+--------------------------------------------------+
+  | master_proc_create_time_utc    | 2016-02-19T18:20:46.760000+00:00                 |
+  +--------------------------------+--------------------------------------------------+
+  | master_proc_name               | py                                               |
+  +--------------------------------+--------------------------------------------------+
+  | master_proc_pid                | 962                                              |
+  +--------------------------------+--------------------------------------------------+
+  | master_proc_username           | zato                                             |
+  +--------------------------------+--------------------------------------------------+
+  | master_proc_workers_no         | 0                                                |
+  +--------------------------------+--------------------------------------------------+
+  | master_proc_workers_pids       | []                                               |
+  +--------------------------------+--------------------------------------------------+
+
+That concludes the process - you can refer to the main
+:doc:`documentation index <../../index>`
+now.
