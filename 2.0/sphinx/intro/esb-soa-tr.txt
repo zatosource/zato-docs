@@ -52,6 +52,7 @@ Aşağıdaki dillerde okuyabilirsiniz.
 :doc:`Català <esb-soa-ca>`,
 :doc:`Deutsch <esb-soa-de>`,
 :doc:`Français <./esb-soa-fr>`,
+:doc:`italiano <esb-soa-it>`,
 :doc:`Português <./esb-soa-pt>`,
 :doc:`ру́сский <esb-soa-ru>`
 :doc:`İngilizce <esb-soa>`

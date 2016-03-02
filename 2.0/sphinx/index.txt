@@ -67,11 +67,12 @@ I18N
       :doc:`ESB和SOA到底是什么？ <intro/esb-soa-cn>` ·
       `Zato—基于Python的ESB和后端应用服务器 <http://www.infoq.com/cn/articles/zato>`_ ·
       `Python 发送 AMQP 消息 <http://www.oschina.net/translate/howto-sending-amqp-messages>`_ |
-      *CAT* :doc:`Què és un ESB i què és SOA <intro/esb-soa-ca>` |
+      *CAT* :doc:`Què és un ESB i què és SOA? <intro/esb-soa-ca>` |
       *DE* :doc:`Was bedeutet ESB und SOA überhaupt? <intro/esb-soa-de>` |
-      *FR* :doc:`Qu´entend-on á vrai dire par ESB et SOA <intro/esb-soa-fr>` |
+      *FR* :doc:`Qu´entend-on á vrai dire par ESB et SOA? <intro/esb-soa-fr>` |
+      *IT* :doc:`Sì, ma cosa sono ESB e SOA? <intro/esb-soa-it>` |
       *PT*  :doc:`O que ESB e SOA são, afinal? <intro/esb-soa-pt>` |
-      *RU* :doc:`Что такое ESB и SOA <intro/esb-soa-ru>` |
+      *RU* :doc:`Что такое ESB и SOA? <intro/esb-soa-ru>` |
       *TR* :doc:`ESB ve SOA ne anlama geliyor yani? <intro/esb-soa-tr>`
 
 Web admin reference
