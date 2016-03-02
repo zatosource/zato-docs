@@ -1,7 +1,7 @@
 .. highlight:: sh
 
-Zato from DockeHub
-==================
+Zato from DockerHub
+===================
 
 .. image:: /gfx/admin/guide/dockerhub.png
    :width: 100%
@@ -9,7 +9,7 @@ Zato from DockeHub
 Requirements
 ------------
 
-* Docker 0.9.1+
+* Docker 1.0.1+
 
 Usage
 -----
@@ -17,7 +17,7 @@ Usage
 Quickstart cluster
 ~~~~~~~~~~~~~~~~~~
 
-* Get Docker image with preinstalled Zato
+* Get Docker image with a preinstalled Zato from `DockerHub <https://hub.docker.com/r/zatosource/zato-2.0.7-quickstart/>`_.
 
 ::
 
@@ -39,7 +39,9 @@ Quickstart cluster
 
 That concludes the process - a web-admin instance is running on http://localhost:8183
 and you can log into it with the username 'admin' using the password printed
-on the terminal above. If necessary, you can also connect via SSH to the container
+on the terminal above.
+
+You can also connect via SSH to the container
 under which Zato is running. User: zato. Password: second one of the two printed
 on terminal above.
 

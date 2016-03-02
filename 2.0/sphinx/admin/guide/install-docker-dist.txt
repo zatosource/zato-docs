@@ -160,7 +160,7 @@ Create and start Zato components
 The steps completed, a web-admin instance is running on http://localhost:8183 and you can log into
 it with the username 'admin' using the password printed on the terminal above.
 
-If necessary, you can also connect via SSH to the container under which Zato is running.
+You can also connect via SSH to the container under which Zato is running.
 User: zato. Password: second one of the two printed on terminal above.
 
 That concludes the process, you can refer to the main :doc:`documentation index <../../index>` now.
