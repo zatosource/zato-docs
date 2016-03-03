@@ -23,11 +23,34 @@ Quickstart cluster
 
     host$ docker pull zatosource/zato-2.0.7-quickstart
 
-* Retrieve your web admin password. The password will be printed out on terminal:
+* Create Zato quickstart environment and generate passwords for zato user and web-admin:
 
 ::
 
     host$ docker run zatosource/zato-2.0.7-quickstart /bin/bash \
+        -c 'quickstart_create.sh'
+
+* Commit the changes to the image to make then persisent in subsquently created containers. You
+  have to check the source container ID to commit:
+
+::
+
+    host$ docker commit -m "<comment>" \
+        -a "<username>" <container_id> zatosource/zato-2.0.7-quickstart:<tag>
+
+For example:
+
+::
+
+    host$ docker commit \
+        -m "Created a Zato quickstart environment and generated new passwords" \
+        -a "myuser" 7h83csu295a8 zatosource/zato-2.0.7-quickstart:myimage
+
+* Retrieve your web admin password. The password will be printed out on terminal:
+
+::
+
+    host$ docker run zatosource/zato-2.0.7-quickstart:myimage /bin/bash \
         -c 'cat /opt/zato/web_admin_password /opt/zato/zato_user_password'
 
 * Create a container in which Zato components will be launched:
@@ -35,7 +58,7 @@ Quickstart cluster
 ::
 
     host$ docker run -it -p 22 -p 6379:6379 -p 8183:8183 -p 17010:17010 -p 17011:17011 \
-        -p 11223:11223 zatosource/zato-2.0.7-quickstart
+        -p 11223:11223 zatosource/zato-2.0.7-quickstart:myimage
 
 That concludes the process - a web-admin instance is running on http://localhost:8183
 and you can log into it with the username 'admin' using the password printed
