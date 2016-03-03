@@ -27,16 +27,15 @@ Quickstart cluster
 
 ::
 
-    host$ docker run zatosource/zato-2.0.7-quickstart /bin/bash \
+    host$ docker run --name="zato-quickstart" zatosource/zato-2.0.7-quickstart /bin/bash \
         -c 'quickstart_create.sh'
 
-* Commit the changes to the image to make then persisent in subsquently created containers. You
-  have to check the source container ID to commit:
+* Commit the changes to the image to make them persisent in subsquently created containers:
 
 ::
 
     host$ docker commit -m "<comment>" \
-        -a "<username>" <container_id> zatosource/zato-2.0.7-quickstart:<tag>
+        -a "<username>" zato-quickstart zatosource/zato-2.0.7-quickstart:<tag>
 
 For example:
 
@@ -44,7 +43,7 @@ For example:
 
     host$ docker commit \
         -m "Created a Zato quickstart environment and generated new passwords" \
-        -a "myuser" 7h83csu295a8 zatosource/zato-2.0.7-quickstart:myimage
+        -a "myuser" zato-quickstart zatosource/zato-2.0.7-quickstart:myimage
 
 * Retrieve your web admin password. The password will be printed out on terminal:
 
