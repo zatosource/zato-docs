@@ -59,7 +59,7 @@ Quickstart cluster
 ::
 
     host$ docker run -it -p 22 -p 6379:6379 -p 8183:8183 -p 17010:17010 -p 17011:17011 \
-        -p 11223:11223 zatosource/zato-2.0.7-quickstart:env
+        -p 11223:11223 zatosource/zato-2.0.7-quickstart:env /bin/bash -c "/opt/zato/start"
 
 That concludes the process - a web-admin instance is running on http://localhost:8183
 and you can log into it with the username 'admin' using the password printed
