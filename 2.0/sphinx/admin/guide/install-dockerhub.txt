@@ -17,20 +17,29 @@ Usage
 Quickstart cluster
 ~~~~~~~~~~~~~~~~~~
 
-* Get Docker image with a preinstalled Zato from `DockerHub <https://hub.docker.com/r/zatosource/zato-2.0.7-quickstart/>`_.
+* Get Docker image with a preinstalled Zato from
+  `DockerHub <https://hub.docker.com/r/zatosource/zato-2.0.7-quickstart/>`_.
 
 ::
 
     host$ docker pull zatosource/zato-2.0.7-quickstart
 
-* Create Zato quickstart environment and generate passwords for zato user and web-admin:
+* Create a container in which you'll generate new passwords and create Zato quickstart
+  environment:
 
 ::
 
-    host$ docker run --name="zato-quickstart" zatosource/zato-2.0.7-quickstart /bin/bash \
-        -c 'quickstart_create.sh'
+    host$ docker run --name="zato-quickstart" -dit zatosource/zato-2.0.7-quickstart \
+        /bin/bash
 
-* Commit the changes to the image to make them persisent in subsquently created containers:
+* Generate new passwords (for zato user and web admin) and create Zato quickstart environment:
+
+::
+
+    host$ docker exec -t -u root zato-quickstart /opt/zato/create_quickstart.sh
+
+* Commit the changes you've just made to the image to make them persisent in subsquently
+  created containers:
 
 ::
 
