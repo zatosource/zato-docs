@@ -7,12 +7,11 @@ Overview
 A ping service which always returns a constant string. Useful for testing
 clients against Zato clusters. 
 
-This is a companion of the :doc:`zato.ping2 <zato.ping2>` service.
 
   * List response: No
   * SOAP action: zato.ping
   * SOAP URL path: /zato/soap
-  * JSON URL path: /zato/json/zato.ping
+  * JSON URL path: /zato/ping
   * WSDL: :download:`Click here</public-api/zato.wsdl>`
 
 Request parameters

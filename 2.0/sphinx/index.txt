@@ -393,8 +393,7 @@ Public REST and SOAP server API
       :doc:`zato.outgoing.zmq.*</public-api/details/zato.outgoing.zmq>`
 
     * **Ping services:**
-      :doc:`zato.ping</public-api/details/zato.ping>` |
-      :doc:`zato.ping2</public-api/details/zato.ping2>`
+      :doc:`zato.ping</public-api/details/zato.ping>`
 
     * **Scheduler:**
       :doc:`zato.scheduler.job.*</public-api/details/zato.scheduler.job>`
