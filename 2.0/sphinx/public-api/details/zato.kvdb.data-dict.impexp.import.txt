@@ -16,7 +16,7 @@ Imports KVDB data previously exported using the :doc:`web admin</web-admin/kvdb/
 * List response: No
 * SOAP action: zato.kvdb.remote-command.execute
 * SOAP URL path: /zato/soap
-* JSON URL path: /zato/json/zato.kvdb.remote-command.execute
+* JSON URL path: /zato/json/zato.kvdb.data-dict.impexp.import
 * WSDL: :download:`Click here</public-api/zato.wsdl>`
 
 Request parameters
