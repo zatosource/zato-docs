@@ -13,7 +13,7 @@ for a discussion of the service's response parameters.
 * List response: Yes
 * SOAP action: zato.http-soap.get_list
 * SOAP URL path: /zato/soap
-* JSON URL path: /zato/json/zato.http-soap.get_list
+* JSON URL path: /zato/json/zato.http-soap.get-list
 * WSDL: :download:`Click here</public-api/zato.wsdl>`
 
 
