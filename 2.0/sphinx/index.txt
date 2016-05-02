@@ -54,6 +54,7 @@ Introduction
       :doc:`No-nonsense intro to ESB and SOA<intro/esb-soa>` |
       :doc:`High-level overview <intro/overview-high-level>` |
       :doc:`Technical overview <intro/overview-tech>` |
+      :doc:`Nomenclature <intro/nomen>` |
       :doc:`What's new in 2.0 <project/changelog>`
 
     * **Tutorial:**
