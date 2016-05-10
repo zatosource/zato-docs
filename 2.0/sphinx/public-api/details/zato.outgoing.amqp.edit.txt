@@ -19,6 +19,7 @@ Request parameters
 ================ ======== ======== ===================================================================================================================
 Name             Datatype Optional Notes
 ================ ======== ======== ===================================================================================================================
+id               int      ---      ID of the connection 
 cluster_id       int      ---      ID of the cluster the connection is defined in
 name             string   ---      Name of the outgoing connection to update
 is_active        boolean  ---      Whether the outgoing connection should be active, if the underlying connector should be started
