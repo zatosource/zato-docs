@@ -19,7 +19,7 @@ Request parameters
 ================ ======== ======== =======================================================================================================================================================================
 Name             Datatype Optional Notes
 ================ ======== ======== =======================================================================================================================================================================
-id               int      ---      ID of the connection to update
+cluster_id       int      ---      ID of the cluster this outgoing connection should be created in
 name             string   ---      Name of the outgoing connection to create
 is_active        boolean  ---      Whether the outgoing connection should be active upon its creation. If true, the underlying connector will be started immediately after the connection has been created.
 def_id           int      ---      ID of :doc:`an already existing JMS WebSphere MQ connection definition</public-api/details/zato.definition.jms-wmq>` to use for connecting to a queue manager
