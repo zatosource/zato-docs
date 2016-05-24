@@ -59,7 +59,7 @@ SOAP example
    <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
       xmlns="https://zato.io/ns/20130518">
    <soap:Body>
-       <zato_outgoing_zmq_create_response xmlns="https://zato.io/ns/20130518">
+       <zato_outgoing_zmq_edit_response xmlns="https://zato.io/ns/20130518">
        <zato_env>
            <cid>K078396595331368248379866766428258392061</cid>
            <result>ZATO_OK</result>
@@ -86,7 +86,7 @@ JSON example
    }
 
    {
-     "zato_outgoing_zmq_create_response": {
+     "zato_outgoing_zmq_edit_response": {
        "id": 5,
        "name": "crm.account3"
      },
