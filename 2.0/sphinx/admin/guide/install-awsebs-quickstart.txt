@@ -1,0 +1,59 @@
+.. highlight:: sh
+
+Zato quickstart environment with Docker on Amazon Elastic Beanstalk platform
+============================================================================
+
+* Download Zato Dockerfile to a temporary directory on your localhost:
+
+::
+
+    $ wget https://zato.io/download/docker/quickstart/Dockerfile
+
+* Within the temporary directory, create .ebextensions subdirectory
+  - mind the dot!
+
+* Download two scripts, ``eb_tables.config`` and ``eb_swap.config`` into
+  the subdirectory:
+
+::
+
+    $ wget -P .ebextensions -i link/to/eb_iptables.config link/to/eb_swap.config
+
+First of the files changes default iptables policies and allows connections
+to a Docker container on multiple ports. The second file adds more swap
+to the system; it's not required if you plan to create an instance with more
+than 1.5GB of memory.
+
+* Zip all files
+
+::
+
+    $ zip zato_quickstart.zip Dockerfile .ebextensions/eb_iptables.config \
+        .ebextensions/eb_swap.config
+
+* In your browser, navigate to AWS Elastic Beanstalk tab and create a new
+  single-instance Docker environment
+
+* Use "Upload and Deploy" option to deploy Zato quickstart from
+  ``zato_quickstart.zip`` archive
+
+* In EC2 console, add or modify a security group in order to access the instance
+  which is hosting Zato
+
+* Connect to the instance via SSH using a key pair of your choice
+
+* While inside the instance, get Zato Docker container ID:
+
+::
+
+    $ sudo docker ps
+
+
+* Retrieve zato user and web-admin's passwords by running the following command:
+
+::
+
+    $ sudo docker exec -it <contrainerIdOrName> /bin/bash \
+        -c 'cat /opt/zato/web_admin_password /opt/zato/zato_user_password'
+
+* Now you can log into Zato web-admin console at ``https://<yourEBSinstance>:8183``
