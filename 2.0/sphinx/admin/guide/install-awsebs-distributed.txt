@@ -26,7 +26,8 @@ Create Zato ODB, Zato cluster and CA certificates
 Create Zato components
 ----------------------
 
-* Create separate, single instance Elastic Beanstalk sample applications.
+* Navigate to AWS Elastic Beanstalk tab and Create single-instance Docker
+  environments for each of Zato components
 
 * Modify relevant security groups to enable network communication between all
   instances hosting Zato components.
@@ -49,7 +50,7 @@ e.g.
   to instances. If you plan to create instances with more than 1.5GB of memory,
   then you won't need ``eb_swap.config``.
 
-* Place the scripts in ``.ebextensions`` (note the dot!) subdirectories within
+* Place the scripts in ``.ebextensions`` (mind the dot!) subdirectories within
   directories where you downloaded Dockerfiles, config files and scripts for
   particular Zato components, e.g. ``zato-docker-lb-dev/.ebextensions``.
 
@@ -63,7 +64,7 @@ e.g.
         zato_load_balancer.config zato.load_balancer.key.pem zato.load_balancer.key.pub.pem \
         .ebextensions/eb_iptables.config .ebextensions/eb_swap.config
 
-* Use ElasticBeanstalk's Upload and Deploy option with prepared zip files
+* Use Elastic Beanstalk's Upload and Deploy option with prepared zip files
   to deploy each Zato component as an EB's application.
 
 * Connect to an instance hosting Zato web admin and execute the following
