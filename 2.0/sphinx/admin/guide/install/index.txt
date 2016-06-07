@@ -11,25 +11,26 @@ System      Version                Notes
 =========== ====================== =============================================================================================================================
 Windows     (n/a)                  Install `Ubuntu 12.04 LTS <http://ubuntu.com>`_
                                    under `VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_ and proceed to
-                                   :doc:`installation instructions on Ubuntu <install-ubuntu>`
+                                   :doc:`installation instructions on Ubuntu <./ubuntu>`
 OS X        (n/a)                  (ditto)
 
-RHEL/CentOS 6.x, 7.x               :doc:`Installation instructions <install-rhel>`
+RHEL/CentOS 6.x, 7.x               :doc:`Installation instructions <./rhel>`
             
 
-Ubuntu      12.04, 14.04           :doc:`Installation instructions <install-ubuntu>`
-            
+Ubuntu      12.04, 14.04           :doc:`Installation instructions <./ubuntu>`
 
-Debian      7.x, 8.x               :doc:`Installation instructions <install-debian>`
+Debian      7.x, 8.x               :doc:`Installation instructions <./debian>`
 
-Docker      1.0.1+                 :doc:`Quickstart <install-docker>` | :doc:`Separate components <install-docker-dist>`
-                                   | :doc:`DockerHub <install-dockerhub>`
+Docker      1.0.1+                 :doc:`Quickstart <./docker>` | :doc:`Separate components <./docker-dist>`
+                                   | :doc:`DockerHub <./dockerhub>`
+
+Source      (n/a)                  :doc:`Installing from source code <./source>`
 =========== ====================== =============================================================================================================================
 
 Migrating from major releases
 -----------------------------
 
-:doc:`A separate chapter <./migrate/overview>` with upgrade information documents the process of migrating from
+:doc:`A separate chapter <../migrate/overview>` with upgrade information documents the process of migrating from
 previous major releases to the current one.
 
 Patch releases

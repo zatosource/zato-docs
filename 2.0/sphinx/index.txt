@@ -7,7 +7,7 @@ Getting help
 
 * Read the :doc:`no-nonsense intro to ESB and SOA <intro/esb-soa>`
 
-* :doc:`Download and install<admin/guide/install-zato>` the latest version
+* :doc:`Download and install<admin/guide/install/index>` the latest version
 
 * `Priority commercial support and training <https://zato.io/support.html>`_
 
@@ -291,7 +291,7 @@ Administration guide
 ====================
 
     * **Installation and management:**
-      :doc:`Installing Zato binaries<admin/guide/install-zato>` |
+      :doc:`Installing Zato binaries<admin/guide/install/index>` |
       :doc:`Components<admin/guide/install-config/overview>` |
       :doc:`Command line interface (CLI)<admin/cli/index>` |
       :doc:`High availability<admin/guide/ha>` |
@@ -305,8 +305,8 @@ Administration guide
       :doc:`Configuration patterns<admin/guide/config-patterns>`
 
     * **Docker support:**
-      :doc:`Quickstart <admin/guide/install-docker>` |
-      :doc:`Distributed environments <admin/guide/install-docker-dist>`
+      :doc:`Quickstart <admin/guide/install/docker>` |
+      :doc:`Distributed environments <admin/guide/install/docker-dist>`
 
     * **Migrating between releases:**
       :doc:`Overview<admin/guide/migrate/overview>` |
@@ -428,6 +428,7 @@ Zato, the open-source project
 
    admin/cli/*
    admin/guide/*
+   admin/guide/install/*
    admin/guide/install-config/*
    admin/guide/migrate/*
    admin/guide/rbac/*

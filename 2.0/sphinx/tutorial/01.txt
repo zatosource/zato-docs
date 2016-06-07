@@ -165,19 +165,19 @@ which is not shipped with Zato and needs to be installed separately. So first, i
 
 Now you can install Zato itself - there are package repositories prepared for:
 
-* :doc:`RHEL/CentOS <../admin/guide/install-rhel>`
-* :doc:`Ubuntu <../admin/guide/install-ubuntu>`
-* :doc:`Debian <../admin/guide/install-debian>`
+* :doc:`RHEL/CentOS <../admin/guide/install/rhel>`
+* :doc:`Ubuntu <../admin/guide/install/ubuntu>`
+* :doc:`Debian <../admin/guide/install/debian>`
 
 Windows and OS X users are recommended to install
 `Ubuntu 12.04 LTS <http://ubuntu.com>`_
 under
 `VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_
 and proceed to
-:doc:`installation instructions <../admin/guide/install-ubuntu>`
+:doc:`installation instructions <../admin/guide/install/ubuntu>`
 for Ubuntu.
 
-You can install Zato :doc:`under Docker <../admin/guide/install-docker>` this will install everything
+You can install Zato :doc:`under Docker <../admin/guide/install/docker>` this will install everything
 including a sample quickstart cluster.
 
 Done yet? OK, so if you are not using Docker, let's create a quickstart cluster, which is a sort of a cluster

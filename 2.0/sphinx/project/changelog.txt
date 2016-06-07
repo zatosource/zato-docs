@@ -1,7 +1,7 @@
 2.0 - 2015-01-28
 ================
 
-* :doc:`Dockerfile <../admin/guide/install-docker>` to set up a full-featured
+* :doc:`Dockerfile <../admin/guide/install/docker>` to set up a full-featured
   :doc:`cluster <../architecture/overview>`
   with 2
   :doc:`servers <../architecture/servers>`,
@@ -91,7 +91,7 @@
 
 * New :doc:`Simple IO (SIO) <../progguide/sio>` types: CSV, Dict, Float, List, ListOfDicts, Opaque
 
-* Added :doc:`RPM packages for RHEL/CentOS 7 <../admin/guide/install-rhel>`
+* Added :doc:`RPM packages for RHEL/CentOS 7 <../admin/guide/install/rhel>`
 
 * Bash completion in :doc:`CLI <../admin/cli/index>`
 
@@ -171,7 +171,7 @@
 
 .. note::
 
-   Want to quickly install Zato? Check out this :doc:`Dockerfile <../admin/guide/install-docker>` which will set up
+   Want to quickly install Zato? Check out this :doc:`Dockerfile <../admin/guide/install/docker>` which will set up
    a fully working
    :doc:`cluster <../architecture/overview>`
    with 2
@@ -184,7 +184,7 @@
 1.1 - 2013-06-02
 ================
 
-* Unified :doc:`installer <../admin/guide/install-zato>` for Ubuntu, Mint, Fedora and OS X
+* Unified :doc:`installer <../admin/guide/install/index>` for Ubuntu, Mint, Fedora and OS X
 * Added the :doc:`zato check-config <../admin/cli/check-config>` command
 * Fixed a bug which lead to double execution of user-defined scheduler jobs
 * Made quickstart clusters more robust when confronted with improperly configured servers,

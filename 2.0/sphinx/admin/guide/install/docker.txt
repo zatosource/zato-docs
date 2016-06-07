@@ -48,5 +48,5 @@ You can also connect via SSH to the container under which Zato is running.
 User: zato. Password: second one of the two printed on terminal above.
 
 You can refer to the main
-:doc:`documentation index <../../index>`
+:doc:`documentation index <../../../index>`
 now.

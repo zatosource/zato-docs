@@ -15,12 +15,13 @@ Returns a list of services defined on a given server.
 Request parameters
 ------------------
 
-========== ======== ======== =========================================
-Name       Datatype Optional Notes
-========== ======== ======== =========================================
-cluster_id int      ---      ID of the cluster to return services from
-========== ======== ======== =========================================
-            
+=========== ======== ======== =============================================================================
+Name        Datatype Optional Notes
+=========== ======== ======== =============================================================================
+cluster_id  int      ---      ID of the cluster to return services from
+name_filter string   ---      Pattern to filter services out by their name - use '*' to return all services
+=========== ======== ======== =============================================================================
+
 
 Response parameters
 -------------------
@@ -47,6 +48,7 @@ SOAP example
       <soapenv:Body>
          <zato:zato_service_get_list_request>
             <zato:id>1</zato:id>
+            <zato:name_filter>*</zato:name_filter>
          </zato:zato_service_get_list_request>
       </soapenv:Body>
    </soapenv:Envelope>
@@ -102,7 +104,8 @@ JSON example
 .. code-block:: javascript
 
    {
-      "cluster_id": 1
+      "cluster_id": 1,
+      "name_filter": "*",
    }
 
   {

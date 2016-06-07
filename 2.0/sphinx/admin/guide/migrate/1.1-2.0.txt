@@ -117,7 +117,7 @@ Depending on the exact OS version used, Redis needs to be installed from additio
 Installing binaries
 ===================
 
-* As root or an equivalent user, :doc:`install Zato 2.0 <./../install-zato>` on each operating system any Zato
+* As root or an equivalent user, :doc:`install Zato 2.0 <../install/index>` on each operating system any Zato
   component is on.
 
 * Switch current user to *zato*.

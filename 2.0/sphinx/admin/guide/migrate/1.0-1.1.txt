@@ -1,7 +1,7 @@
 Migrating from Zato 1.0 to 1.1
 ------------------------------
 
-* :doc:`Install Zato 1.1 binaries <./../install-zato>` alongside 1.0 on each host any
+* :doc:`Install Zato 1.1 binaries <../install/index>` alongside 1.0 on each host any
   Zato component is on
   
 * If using quickstart clusters - open zato-qs-start.sh and zato-qs-stop.sh scripts

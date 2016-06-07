@@ -61,5 +61,5 @@ Installation steps
     rhel$
 
 That concludes the process - you can refer to the main
-:doc:`documentation index <../../index>`
+:doc:`documentation index <../../../index>`
 now.

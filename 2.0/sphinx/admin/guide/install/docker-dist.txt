@@ -8,7 +8,7 @@ and configuration of all the additional dependencies required.
 
 The instructions assume the usage of Ubuntu 14.04 LTS but any system supported by Docker can be used.
 
-The end result is the same sort of cluster that :doc:`quickstart <install-docker>` uses but spread over multiple Dockerfiles.
+The end result is the same sort of cluster that :doc:`quickstart <./docker>` uses but spread over multiple Dockerfiles.
 
 Requirements
 ------------
@@ -52,7 +52,7 @@ Preparations
 Create Zato ODB and cluster
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* Create Zato :doc:`ODB <../cli/create-odb>` and :doc:`a cluster <../cli/create-cluster>` in PostgreSQL.
+* Create Zato :doc:`ODB <../../cli/create-odb>` and :doc:`a cluster <../../cli/create-cluster>` in PostgreSQL.
 
 * Alternatively, execute the following commands. This will create the Zato ODB and cluster for you:
 
@@ -163,4 +163,4 @@ it with the username 'admin' using the password printed on the terminal above.
 You can also connect via SSH to the container under which Zato is running.
 User: zato. Password: second one of the two printed on terminal above.
 
-That concludes the process, you can refer to the main :doc:`documentation index <../../index>` now.
+That concludes the process, you can refer to the main :doc:`documentation index <../../../index>` now.
