@@ -16,7 +16,7 @@ Installation steps
 
 ::
 
-    $ git clone https://github.com/zatosource/zato && zato/code
+    $ git clone https://github.com/zatosource/zato && cd zato/code
     Cloning into 'zato'...
     [snip]
     code$
