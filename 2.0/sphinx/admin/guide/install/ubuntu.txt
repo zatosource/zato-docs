@@ -19,7 +19,7 @@ Installation steps
     ubuntu$ sudo apt-get install apt-transport-https
     ubuntu$ sudo apt-get install python-software-properties
 
-* Install additional package on Ubuntu versions later than 12.04 LTS
+* Install additional package on Ubuntu versions greater than 12.04 LTS
 
 ::
 
