@@ -15,7 +15,7 @@ Getting help
 
 * Read the `Zato Blog <https://zato.io/blog/index.html>`_
 
-* Ask around on the `mailing list <https://mailman-mail5.webfaction.com/listinfo/zato-discuss>`_
+* Ask around on the `forum <https://forum.zato.io/>`_
 
 * Join the `#zato IRC channel <https://webchat.freenode.net/?channels=zato>`_ on Freenode network
 

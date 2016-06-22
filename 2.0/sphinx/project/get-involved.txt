@@ -20,7 +20,7 @@ Want to contribute ideas or code? **Superb!** The project is under `LGPL <https:
 * Want to send a quick documentation patch or suggestion? Just 
   `open a new ticket in GitHub <https://github.com/zatosource/zato/issues>`_
 
-* Always feel welcome to join the friendly `mailing list <https://mailman-mail5.webfaction.com/listinfo/zato-discuss>`_ 
+* Always feel welcome to join the friendly `forum <https://forum.zato.io/>`_ 
   and `IRC <https://webchat.freenode.net/?channels=zato>`_ if you'd like to help other community 
   members out or just chat in general
   
