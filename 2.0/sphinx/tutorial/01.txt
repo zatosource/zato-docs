@@ -170,7 +170,7 @@ Now you can install Zato itself - there are package repositories prepared for:
 * :doc:`Debian <../admin/guide/install/debian>`
 
 Windows and OS X users are recommended to install
-`Ubuntu 12.04 LTS <http://ubuntu.com>`_
+`Ubuntu 14.04 LTS <http://ubuntu.com>`_
 under
 `VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_
 and proceed to
