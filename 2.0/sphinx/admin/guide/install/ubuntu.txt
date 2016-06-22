@@ -6,7 +6,7 @@ Installation on Ubuntu
 Requirements
 ------------
 
-* Ubuntu 12.04 LTS, 14.04 LTS
+* Ubuntu 12.04 LTS, 14.04 LTS, 16.04 LTS
 * Sudo rights
 
 Installation steps
@@ -18,6 +18,12 @@ Installation steps
 
     ubuntu$ sudo apt-get install apt-transport-https
     ubuntu$ sudo apt-get install python-software-properties
+
+* Install additional package on Ubuntu versions later than 12.04 LTS
+
+::
+
+    ubuntu$ sudo apt-get install software-properties-common
 
 * Add the package signing key
 
@@ -38,7 +44,7 @@ Installation steps
 
     ubuntu$ sudo apt-get install zato
 
-* Confirm the installation
+* Confirm the installation on Ubuntu 12.04 LTS and 14.04 LTS
 
 ::
 
@@ -46,6 +52,16 @@ Installation steps
     ubuntu$ zato --version
     Zato 2.0.7.rev-dfee180c
     ubuntu$
+
+* Confirm the installation on Ubuntu 16.04 LTS
+
+::
+
+    ubuntu$ sudo su - zato
+    ubuntu$ zato --version
+    Zato 2.0.7.rev-53070f37
+    ubuntu$
+
 
 That concludes the process - you can refer to the main
 :doc:`documentation index <../../../index>`
