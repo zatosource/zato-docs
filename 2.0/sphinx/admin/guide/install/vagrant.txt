@@ -19,7 +19,8 @@ Usage instructions
 
 ::
 
-  $ wget Vagrantfile create_quickstart.sh
+  $ wget https://zato.io/download/vagrant/Vagrantfile \
+      https://zato.io/download/vagrant/create_quickstart.sh
 
 By default, the box's private IP address is set to 10.77.77.77, so Zato web admin
 is available at that address at port 8183.
