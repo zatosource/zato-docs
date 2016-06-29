@@ -1,11 +1,10 @@
 .. highlight:: sh
 
-Using zato-2.0.7-quickstart box
+Using zato-2.0.7-trusty64 box
 ===============================
 
-This box is pre-build with Zato 2.0.7 quickstart.
-It contains the quickstart already set up and running
-when you start the box and log into it.
+This box is pre-build with Zato 2.0.7 installation. Using our Vagrantfile
+allows one to have Zato quckstart environment created and running.
 
 Requirements
 ------------
@@ -16,11 +15,14 @@ Requirements
 Usage instructions
 ------------------
 
-* Add zato-2.0.7-quickstart box to your Vagrant box list
+* Download Vagrantfile
 
 ::
 
-  $ vagrant box add zatosource/zato-2.0.7-quickstart
+  $ wget Vagrantfile create_quickstart.sh
+
+By default, the box's private IP address is set to 10.77.77.77, so Zato web admin
+is available at that address at port 8183.
 
 * Start the box after the download is complete.
 
@@ -28,7 +30,13 @@ Usage instructions
 
   $ vagrant up
 
-* ...and log into it via SSH
+* ...and reload it when it's up already:
+
+::
+
+  $ vagrant reload
+
+* Now you can SSH into the box:
 
 ::
 
@@ -55,7 +63,7 @@ Usage instructions
   | component_details              | {"created_user_host": "zato@vagrant", "version": |
   |                                | "Zato 2.0.7.rev-dfee180c", "component":          |
   |                                | "LOAD_BALANCER", "created_ts":                   |
-  |                                | "2016-01-22T09:24:49.154618"}                    |
+  |                                | "2016-06-29T17:19:36.881256"}                    |
   +--------------------------------+--------------------------------------------------+
   | component_full_path            | /opt/zato/env/qs-1/load-balancer                 |
   +--------------------------------+--------------------------------------------------+
@@ -63,21 +71,21 @@ Usage instructions
   +--------------------------------+--------------------------------------------------+
   | component_running              | True                                             |
   +--------------------------------+--------------------------------------------------+
-  | current_time                   | 2016-02-19T18:21:19.925629                       |
+  | current_time                   | 2016-06-29T17:34:11.660470                       |
   +--------------------------------+--------------------------------------------------+
-  | current_time_utc               | 2016-02-19T18:21:19.925641                       |
+  | current_time_utc               | 2016-06-29T17:34:11.660601                       |
   +--------------------------------+--------------------------------------------------+
   | master_proc_connections        | {'LISTEN': [{u'to': None, u'from':               |
   |                                | u'127.0.0.1:20151', u'formatted':                |
   |                                | u'127.0.0.1:20151'}]}                            |
   +--------------------------------+--------------------------------------------------+
-  | master_proc_create_time        | 2016-02-19T18:20:46.760000                       |
+  | master_proc_create_time        | 2016-06-29T17:27:46.410000                       |
   +--------------------------------+--------------------------------------------------+
-  | master_proc_create_time_utc    | 2016-02-19T18:20:46.760000+00:00                 |
+  | master_proc_create_time_utc    | 2016-06-29T17:27:46.410000+00:00                 |
   +--------------------------------+--------------------------------------------------+
   | master_proc_name               | py                                               |
   +--------------------------------+--------------------------------------------------+
-  | master_proc_pid                | 962                                              |
+  | master_proc_pid                | 1047                                             |
   +--------------------------------+--------------------------------------------------+
   | master_proc_username           | zato                                             |
   +--------------------------------+--------------------------------------------------+
