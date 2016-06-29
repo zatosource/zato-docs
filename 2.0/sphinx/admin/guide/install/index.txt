@@ -6,26 +6,26 @@ Operating system considerations
 
 The following platforms are supported:
 
-=========== ====================== =============================================================================================================================
-System      Version                Notes
-=========== ====================== =============================================================================================================================
-Windows     (n/a)                  Install `Ubuntu 14.04 LTS <http://ubuntu.com>`_
-                                   under `VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_ and proceed to
-                                   :doc:`installation instructions on Ubuntu <./ubuntu>`
-OS X        (n/a)                  (ditto)
+=================== ====================== =============================================================================================================================
+System              Version                Notes
+=================== ====================== =============================================================================================================================
+Windows             (n/a)                  Install `Ubuntu 14.04 LTS <http://ubuntu.com>`_
+                                           under `VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_ and proceed to
+                                           :doc:`installation instructions on Ubuntu <./ubuntu>`
+OS X                (n/a)                  (ditto)
 
-RHEL/CentOS 6.x, 7.x               :doc:`Installation instructions <./rhel>`
+RHEL/CentOS         6.x, 7.x               :doc:`Installation instructions <./rhel>`
             
 
-Ubuntu      12.04, 14.04, 16.04    :doc:`Installation instructions <./ubuntu>`
+Ubuntu              12.04, 14.04, 16.04    :doc:`Installation instructions <./ubuntu>`
 
-Debian      7.x, 8.x               :doc:`Installation instructions <./debian>`
+Debian              7.x, 8.x               :doc:`Installation instructions <./debian>`
 
-Docker      1.0.1+                 :doc:`Quickstart <./docker>` | :doc:`Separate components <./docker-dist>`
-                                   | :doc:`DockerHub <./dockerhub>`
-
-Source      (n/a)                  :doc:`Installing from source code <./source>`
-=========== ====================== =============================================================================================================================
+Docker              1.0.1+                 :doc:`Quickstart <./docker>` | :doc:`Separate components <./docker-dist>`
+                                           | :doc:`DockerHub <./dockerhub>`
+Elastic Beanstalk   (n/a)                  :doc:`Quickstart <./awsebs-quickstart>`
+Source              (n/a)                  :doc:`Installing from source code <./source>`
+=================== ====================== =============================================================================================================================
 
 Migrating from major releases
 -----------------------------
