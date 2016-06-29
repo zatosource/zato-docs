@@ -1,9 +1,9 @@
 .. highlight:: sh
 
-Installation under Elastic Beanstalk
+Installation under AWS Elastic Beanstalk
 ============================================================================
 
-* Download an archive with Zato quickstart configuration for Elastic Beanstalk:
+* Download an archive with Zato quickstart configuration for AWS Elastic Beanstalk:
 
 ::
 
