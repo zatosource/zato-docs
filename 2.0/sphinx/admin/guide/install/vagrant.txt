@@ -20,24 +20,31 @@ Usage instructions
 ::
 
   $ wget https://zato.io/download/vagrant/Vagrantfile \
-      https://zato.io/download/vagrant/create_quickstart.sh
+      https://zato.io/download/vagrant/setup-quickstart.sh
 
-By default, the box's private IP address is set to 10.77.77.77, so Zato web admin
-is available at that address at port 8183.
 
-* Start the box after the download is complete.
+* Start the box after the download is complete. Zato quickstart environment
+  will be created.
 
 ::
 
   $ vagrant up
 
-* ...and reload it when it's up already:
+* Reload the box to start all Zato components as system services.
 
 ::
 
   $ vagrant reload
 
-* Now you can SSH into the box:
+* In order to access Zato web-admin, you need to retrive the password:
+
+::
+
+  $ vagrant ssh -c 'cat /opt/zato/web_admin_password'
+
+* Navigate to http://10.77.77.77:8183 and log into the web-admin
+
+* If you want to log into the box, execute:
 
 ::
 
@@ -52,48 +59,6 @@ is available at that address at port 8183.
   Zato 2.0.7.rev-dfee180c
   zato$
 
-* You can also check if any of Zato components is up and running:
-
-::
-
-  zato$ cd env/qs-1
-  zato:~/env/qs-1$ zato info load-balancer
-  +--------------------------------+--------------------------------------------------+
-  |              Key               |               Value                              |
-  +================================+==================================================+
-  | component_details              | {"created_user_host": "zato@vagrant", "version": |
-  |                                | "Zato 2.0.7.rev-dfee180c", "component":          |
-  |                                | "LOAD_BALANCER", "created_ts":                   |
-  |                                | "2016-06-29T17:19:36.881256"}                    |
-  +--------------------------------+--------------------------------------------------+
-  | component_full_path            | /opt/zato/env/qs-1/load-balancer                 |
-  +--------------------------------+--------------------------------------------------+
-  | component_host                 | vagrant/vagrant.vm                               |
-  +--------------------------------+--------------------------------------------------+
-  | component_running              | True                                             |
-  +--------------------------------+--------------------------------------------------+
-  | current_time                   | 2016-06-29T17:34:11.660470                       |
-  +--------------------------------+--------------------------------------------------+
-  | current_time_utc               | 2016-06-29T17:34:11.660601                       |
-  +--------------------------------+--------------------------------------------------+
-  | master_proc_connections        | {'LISTEN': [{u'to': None, u'from':               |
-  |                                | u'127.0.0.1:20151', u'formatted':                |
-  |                                | u'127.0.0.1:20151'}]}                            |
-  +--------------------------------+--------------------------------------------------+
-  | master_proc_create_time        | 2016-06-29T17:27:46.410000                       |
-  +--------------------------------+--------------------------------------------------+
-  | master_proc_create_time_utc    | 2016-06-29T17:27:46.410000+00:00                 |
-  +--------------------------------+--------------------------------------------------+
-  | master_proc_name               | py                                               |
-  +--------------------------------+--------------------------------------------------+
-  | master_proc_pid                | 1047                                             |
-  +--------------------------------+--------------------------------------------------+
-  | master_proc_username           | zato                                             |
-  +--------------------------------+--------------------------------------------------+
-  | master_proc_workers_no         | 0                                                |
-  +--------------------------------+--------------------------------------------------+
-  | master_proc_workers_pids       | []                                               |
-  +--------------------------------+--------------------------------------------------+
 
 That concludes the process - you can refer to the main
 :doc:`documentation index <../../../index>`
