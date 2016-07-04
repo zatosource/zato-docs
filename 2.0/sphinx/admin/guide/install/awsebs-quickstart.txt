@@ -11,7 +11,7 @@ Installation under AWS Elastic Beanstalk
 
 * In your browser, navigate to the EC2 console's AWS Elastic Beanstalk tab and create a new single-instance Docker environment
 
-* Use 'Upload and Deploy' option to create a new Zato quickstart based on the the *zato-quickstart.zip* archive
+* Use 'Upload and Deploy' option to create a new Zato quickstart based on the *zato-quickstart.zip* archive
 
 * Still in the EC2 console, add or modify a security group in order to access the instance hosting Zato
 
