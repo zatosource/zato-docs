@@ -94,7 +94,7 @@ Create and start Zato components
 
 ::
 
-    $ URL_COMPONENT=https://zato.io/downloads/docker/2.0/components/load-balancer
+    $ URL_COMPONENT=https://zato.io/download/docker/2.0/components/load-balancer
     $ mkdir -p ~/zato-docker-lb-dev && cd ~/zato-docker-lb-dev \
         && wget $URL_COMPONENT/Dockerfile \
         && wget $URL_COMPONENT/zato_load_balancer.config
@@ -110,7 +110,7 @@ Create and start Zato components
 
 ::
 
-    $ URL_COMPONENT=https://zato.io/downloads/docker/2.0/components/web-admin
+    $ URL_COMPONENT=https://zato.io/download/docker/2.0/components/web-admin
     $ mkdir -p ~/zato-docker-wa-dev && cd ~/zato-docker-wa-dev \
         && wget $URL_COMPONENT/Dockerfile \
         && wget $URL_COMPONENT/zato_web_admin.config \
