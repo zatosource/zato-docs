@@ -1,0 +1,102 @@
+zato.security.rbac.role-permission.get-list
+===========================================
+
+Overview
+--------
+
+Returns a list of RBAC role permission definitions configured on a given cluster.
+
+* List response: Yes
+* SOAP action: zato.security.rbac.role-permission.get-list
+* SOAP URL path: /zato/soap
+* JSON URL path: /zato/json/zato.security.rbac.role-permission.get-list
+* WSDL: :download:`Click here</public-api/zato.wsdl>`
+
+Request parameters
+------------------
+
+========== ========= ======== ==================================
+Name       Datatype  Optional Notes
+========== ========= ======== ==================================
+cluster_id int       ---      Cluster to return definitions from
+========== ========= ======== ==================================
+
+
+Response parameters
+-------------------
+
+============== ========= ======== ==================================
+Name           Datatype  Optional Notes
+============== ========= ======== ==================================
+role_name      string    ---      Name of a role
+service_name   string    ---      Name of a service
+perm_name      string    ---      Name of a permission
+============== ========= ======== ==================================
+
+SOAP example
+------------
+
+.. code-block:: xml
+
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+         xmlns:zato="https://zato.io/ns/20130518">
+       <soapenv:Body>
+          <zato:zato_security_rbac_role_permission_get_list_request>
+             <zato:cluster_id></zato:cluster_id>
+          </zato:zato_security_rbac_role_permission_get_list_request>
+       </soapenv:Body>
+    </soapenv:Envelope>
+
+    <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns="https://zato.io/ns/20130518">
+    <soap:Body>
+        <zato_security_rbac_role_permission_get_list_response xmlns="https://zato.io/ns/20130518">
+        <zato_env>
+            <cid>K133254644916609060549153420473795731425</cid>
+            <result>ZATO_OK</result>
+        </zato_env>
+        <item_list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <item>
+            <role_name></role_name>
+            <service_name></service_name>
+            <perm_name></perm_name>
+        </item>
+        <item>
+            <role_name></role_name>
+            <service_name></service_name>
+            <perm_name></perm_name>
+        </item>
+        </item_list>
+        </zato_security_rbac_role_permission_get_list_response>
+    </soap:Body>
+    </soap:Envelope>
+
+
+JSON example
+------------
+
+.. code-block:: javascript
+
+   {
+    "cluster_id": 1
+   }
+
+  {
+    "zato_env": {
+      "details": "",
+      "result": "ZATO_OK",
+      "cid": "K133254644916609060549153420473795731425"
+    },
+    "zato_security_rbac_role_permission_get_list_response": [
+      {
+        "role_name": "",
+        "service_name": "",
+        "perm_name": ""
+      },
+      {
+        "role_name": "",
+        "service_name": "",
+        "perm_name": ""
+      }
+    ]
+  }

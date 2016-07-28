@@ -1,0 +1,96 @@
+zato.security.rbac.role-permission.create
+=========================================
+
+Overview
+--------
+
+Creates a RBAC permission for a role.
+
+  * List response: No
+  * SOAP action: zato.security.rbac.role-permission.create
+  * SOAP URL path: /zato/soap
+  * JSON URL path: /zato/json/zato.security.rbac.role-permission.create
+  * WSDL: :download:`Click here</public-api/zato.wsdl>`
+
+Request parameters
+------------------
+
+=================== ======== ======== =============================================================================================================================================
+Name                Datatype Optional Notes
+=================== ======== ======== =============================================================================================================================================
+cluster_id          int      ---      ID of the cluster this RBAC role permission should be created in
+role_id             int      ---      ID of a role to give an RBAC permission to
+service_id          int      ---      ID of a service to give an RBAC permission for
+perm_id             int      ---      ID of an RBAC permission to be given
+=================== ======== ======== =============================================================================================================================================
+
+
+Response parameters
+-------------------
+
+=================== ======== ======== =============================================================================================================================================
+Name                Datatype Optional Notes
+=================== ======== ======== =============================================================================================================================================
+role_name           string   ---      Name of a role which has been given an RBAC permission
+service_name        string   ---      Name of a service to whichan RBAC permission has been given
+perm_name           string   ---      Name of an RBAC permission which has been given
+=================== ======== ======== =============================================================================================================================================
+
+SOAP example
+------------
+
+.. code-block:: xml
+
+   <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:zato="https://zato.io/ns/20130518">
+      <soapenv:Body>
+         <zato:zato_security_rbac_role_permission_create_request>
+            <zato:cluster_id></zato:cluster_id>
+            <zato:role_id></zato:role_id>
+            <zato:service_id></zato:service_id>
+            <zato:perm_id></zato:perm_id>
+         </zato:zato_security_rbac_role_permission_create_request>
+      </soapenv:Body>
+   </soapenv:Envelope>
+
+   <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+         xmlns="https://zato.io/ns/20130518">
+      <soap:Body>
+            <zato_security_rbac_role_permission_create_response xmlns="https://zato.io/ns/20130518">
+               <zato_env>
+                  <cid>K079537614313001856490892948474114718602</cid>
+                  <result>ZATO_OK</result>
+               </zato_env>
+               <item>
+                  <zato:role_name></zato:role_name>
+                  <zato:service_name></zato:service_name>
+                  <zato:perm_name></zato:perm_name>
+               </item>
+            </zato_security_rbac_role_permission_create_response>
+      </soap:Body>
+   </soap:Envelope> 
+
+JSON example
+------------
+
+.. code-block:: javascript
+
+   {
+       "cluster_id": ,
+       "role_id": ,
+       "service_id": ,
+       "perm_id": 
+   }
+
+   {
+     "zato_env": {
+       "details": "",
+       "result": "ZATO_OK",
+       "cid": "K079537614313001856490892948474114718602"
+     },
+     "zato_security_rbac_role_permission_create_response": {
+       "role_name": "",
+       "service_name": "",
+       "perm_name": ""
+     }
+   }
