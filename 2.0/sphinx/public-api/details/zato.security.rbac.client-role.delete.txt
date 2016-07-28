@@ -1,0 +1,74 @@
+zato.security.rbac.client-role.delete
+=====================================
+
+Overview
+--------
+
+Deletes a client role.
+
+  * List response: No
+  * SOAP action: zato.security.rbac.client-role.delete
+  * SOAP URL path: /zato/soap
+  * JSON URL path: /zato/json/zato.security.rbac.client-role.delete
+  * WSDL: :download:`Click here</public-api/zato.wsdl>`
+
+Request parameters
+------------------
+
+=================== ======== ======== =============================================================================================================================================
+Name                Datatype Optional Notes
+=================== ======== ======== =============================================================================================================================================
+cluster_id          int      ---      ID of the cluster this client role should be deleted from
+id                  string   ---      ID of the client role to delete
+=================== ======== ======== =============================================================================================================================================
+
+
+Response parameters
+-------------------
+
+(None)
+
+SOAP example
+------------
+
+.. code-block:: xml
+
+   <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:zato="https://zato.io/ns/20130518">
+      <soapenv:Body>
+         <zato:zato_security_rbac_client_role_delete_request>
+            <zato:cluster_id></zato:cluster_id>
+            <zato:id></zato:id>
+         </zato:zato_security_rbac_client_role_delete_request>
+      </soapenv:Body>
+   </soapenv:Envelope>
+
+   <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+         xmlns="https://zato.io/ns/20130518">
+      <soap:Body>
+            <zato_security_rbac_client_role_delete_response xmlns="https://zato.io/ns/20130518">
+               <zato_env>
+                  <cid>K079537614313001856490892948474114718602</cid>
+                  <result>ZATO_OK</result>
+               </zato_env>
+            </zato_security_rbac_client_role_delete_response>
+      </soap:Body>
+   </soap:Envelope> 
+
+JSON example
+------------
+
+.. code-block:: javascript
+
+   {
+       "cluster_id": ,
+       "id": 
+   }
+
+   {
+     "zato_env": {
+       "details": "",
+       "result": "ZATO_OK",
+       "cid": "K079537614313001856490892948474114718602"
+     }
+   }

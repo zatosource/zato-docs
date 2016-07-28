@@ -1,0 +1,87 @@
+zato.security.rbac.permission.create
+====================================
+
+Overview
+--------
+
+Creates a RBAC permission.
+
+  * List response: No
+  * SOAP action: zato.security.rbac.permission.create
+  * SOAP URL path: /zato/soap
+  * JSON URL path: /zato/json/zato.security.rbac.permission.create
+  * WSDL: :download:`Click here</public-api/zato.wsdl>`
+
+Request parameters
+------------------
+
+=================== ======== ======== =============================================================================================================================================
+Name                Datatype Optional Notes
+=================== ======== ======== =============================================================================================================================================
+cluster_id          int      ---      ID of the cluster this RBAC permission should be created in
+name                string   ---      Name of the RBAC permission to create
+=================== ======== ======== =============================================================================================================================================
+
+
+Response parameters
+-------------------
+
+==== ======== ======== ================================================
+Name Datatype Optional Notes
+==== ======== ======== ================================================
+id   int      ---      ID assigned to the newly created RBAC permission
+name string   ---      Copied over from request
+==== ======== ======== ================================================
+
+SOAP example
+------------
+
+.. code-block:: xml
+
+   <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:zato="https://zato.io/ns/20130518">
+      <soapenv:Body>
+         <zato:zato_security_rbac_permission_create_request>
+            <zato:cluster_id></zato:cluster_id>
+            <zato:name></zato:name>
+         </zato:zato_security_rbac_permission_create_request>
+      </soapenv:Body>
+   </soapenv:Envelope>
+
+   <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+         xmlns="https://zato.io/ns/20130518">
+      <soap:Body>
+            <zato_security_rbac_permission_create_response xmlns="https://zato.io/ns/20130518">
+               <zato_env>
+                  <cid>K079537614313001856490892948474114718602</cid>
+                  <result>ZATO_OK</result>
+               </zato_env>
+               <item>
+                  <id></id>
+                  <name></name>
+               </item>
+            </zato_security_rbac_permission_create_response>
+      </soap:Body>
+   </soap:Envelope> 
+
+JSON example
+------------
+
+.. code-block:: javascript
+
+   {
+       "cluster_id": ,
+       "name": "",
+   }
+
+   {
+     "zato_env": {
+       "details": "",
+       "result": "ZATO_OK",
+       "cid": "K079537614313001856490892948474114718602"
+     },
+     "zato_security_rbac_permission_create_response": {
+       "id": ,
+       "name": ""
+     }
+   }
