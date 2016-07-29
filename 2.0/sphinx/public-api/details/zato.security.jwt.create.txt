@@ -26,7 +26,7 @@ is_active  boolean   ---      Whether the definition should be active upon its c
 username   string    ---      Username
 password   string    ---      Password
 secret     string    ---      
-ttl        
+ttl        int       ---      
 ========== ========= ======== =========================================================
 
 
