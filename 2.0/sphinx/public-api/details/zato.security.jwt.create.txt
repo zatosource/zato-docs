@@ -1,0 +1,106 @@
+zato.security.jwt.create
+========================
+
+Overview
+--------
+
+Allows one to create a JWT definition. Its default password will
+be a randomly generated UUID4, use :doc:`zato.security.jwt.change-password<./zato.security.jwt.change-password>`
+to change it.
+
+* List response: No
+* SOAP action: zato.security.jwt.create
+* SOAP URL path: /zato/soap
+* JSON URL path: /zato/json/zato.security.jwt.create
+* WSDL: :download:`Click here</public-api/zato.wsdl>`
+
+Request parameters
+------------------
+
+========== ========= ======== =========================================================
+Name       Datatype  Optional Notes
+========== ========= ======== =========================================================
+cluster_id int       ---      ID of the cluster this definition should be created in
+name       string    ---      Name of the definition to create
+is_active  boolean   ---      Whether the definition should be active upon its creation
+username   string    ---      Username
+password   string    ---      Password
+secret     string    ---      
+ttl        
+========== ========= ======== =========================================================
+
+
+Response parameters
+-------------------
+
+==== ======== ======== ===========================================
+Name Datatype Optional Notes
+==== ======== ======== ===========================================
+id   int      ---      ID assigned to the newly created definition
+name string   ---      Copied over from request
+==== ======== ======== ===========================================
+
+
+SOAP example
+------------
+
+.. code-block:: xml
+
+   <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:zato="https://zato.io/ns/20130518">
+      <soapenv:Body>
+         <zato:zato_security_jwt_create_request>
+            <zato:cluster_id>1</zato:cluster_id>
+            <zato:name></zato:name>
+            <zato:is_active>true</zato:is_active>
+            <zato:username></zato:username>
+            <zato:password></zato:password>
+            <zato:secret></zato:secret>
+            <zato:ttl></zato:ttl>
+         </zato:zato_security_jwt_create_request>
+      </soapenv:Body>
+   </soapenv:Envelope>
+
+   <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+      xmlns="https://zato.io/ns/20130518">
+   <soap:Body>
+       <zato_security_jwt_create_response xmlns="https://zato.io/ns/20130518">
+       <zato_env>
+           <cid>K106654122460940396114712232135791028648</cid>
+           <result>ZATO_OK</result>
+       </zato_env>
+       <item>
+           <id>9</id>
+           <name></name>
+       </item>
+   </zato_security_jwt_create_response>
+   </soap:Body>
+   </soap:Envelope>
+
+JSON example
+------------
+
+.. code-block:: javascript
+
+   {
+      "cluster_id": ,
+      "name": "",
+      "is_active": true,
+      "username": "",
+      "password": "",
+      "secret": "",
+      "ttl": 
+   }
+
+   {
+     "zato_env": {
+       "details": "",
+       "result": "ZATO_OK",
+       "cid": "K106654122460940396114712232135791028648"
+     },
+     "zato_security_jwt_create_response": {
+       "id": ,
+       "name": ""
+     }
+   }
+
