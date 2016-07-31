@@ -4,7 +4,7 @@ zato.security.rbac.role.delete
 Overview
 --------
 
-Deletes a role.
+Deletes an RBAC role.
 
   * List response: No
   * SOAP action: zato.security.rbac.role.delete
@@ -15,12 +15,12 @@ Deletes a role.
 Request parameters
 ------------------
 
-========================= ======== ======== ======================================================================
-Name                      Datatype Optional Notes
-========================= ======== ======== ======================================================================
-cluster_id                int      ---      ID of the cluster this role should be deleted from
-id                        int      ---      ID of the role to delete
-========================= ======== ======== ======================================================================
+============= ======== ======== =====================================================
+Name          Datatype Optional Notes
+============= ======== ======== =====================================================
+cluster_id    int      ---      ID of the cluster this role should be deleted from
+id            int      ---      ID of the role to delete
+============= ======== ======== =====================================================
 
 
 Response parameters
@@ -37,8 +37,8 @@ SOAP example
         xmlns:zato="https://zato.io/ns/20130518">
       <soapenv:Body>
          <zato:zato_security_rbac_role_delete_request>
-            <zato:cluster_id></zato:cluster_id>
-            <zato:id></zato:id>
+            <zato:cluster_id>1</zato:cluster_id>
+            <zato:id>2</zato:id>
          </zato:zato_security_rbac_role_delete_request>
       </soapenv:Body>
    </soapenv:Envelope>
@@ -61,8 +61,8 @@ JSON example
 .. code-block:: javascript
 
    {
-       "cluster_id": ,
-       "id": 
+       "cluster_id": 1,
+       "id": 2
    }
 
    {

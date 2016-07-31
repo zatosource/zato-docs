@@ -41,7 +41,7 @@ SOAP example
          xmlns:zato="https://zato.io/ns/20130518">
        <soapenv:Body>
           <zato:zato_security_rbac_permission_get_list_request>
-             <zato:cluster_id></zato:cluster_id>
+             <zato:cluster_id>1</zato:cluster_id>
           </zato:zato_security_rbac_permission_get_list_request>
        </soapenv:Body>
     </soapenv:Envelope>
@@ -56,12 +56,12 @@ SOAP example
         </zato_env>
         <item_list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <item>
-            <id></id>
-            <name></name>
+            <id>1</id>
+            <name>Create</name>
         </item>
         <item>
-            <id></id>
-            <name></name>
+            <id>2</id>
+            <name>Read</name>
         </item>
         </item_list>
         </zato_security_rbac_permission_get_list_response>
@@ -86,18 +86,12 @@ JSON example
     },
     "zato_security_rbac_permission_get_list_response": [
       {
-        "username": "zato.ping.soap.basic_auth",
-        "realm": "Zato",
-        "name": "zato.ping.soap.basic_auth",
-        "is_active": true
-        "id": 4
+        "id": 1
+        "name": "Create",
       },
       {
-        "username": "zato.ping.plain_http.basic_auth",
-        "realm": "Zato",
-        "name": "zato.ping.plain_http.basic_auth",
-        "is_active": true
-        "id": 5
+        "id": 2
+        "name": "Read",
       }
     ]
   }

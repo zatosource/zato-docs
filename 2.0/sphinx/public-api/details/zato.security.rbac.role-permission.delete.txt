@@ -4,7 +4,7 @@ zato.security.rbac.role-permission.delete
 Overview
 --------
 
-Deletes a RBAC role permission.
+Deletes an :doc:`association <./zato.security.rbac.role-permission.create>` between an RBAC role, service and permission.
 
   * List response: No
   * SOAP action: zato.security.rbac.role-permission.delete
@@ -15,12 +15,12 @@ Deletes a RBAC role permission.
 Request parameters
 ------------------
 
-========================= ======== ======== ======================================================================
-Name                      Datatype Optional Notes
-========================= ======== ======== ======================================================================
-cluster_id                int      ---      ID of the cluster this RBAC role permission should be deleted from
-id                        int      ---      ID of the role permission to delete
-========================= ======== ======== ======================================================================
+=========== ======== ======== ============================================
+Name        Datatype Optional Notes
+=========== ======== ======== ============================================
+cluster_id  int      ---      ID of the cluster the association belongs to
+id          int      ---      ID of the association to delete
+=========== ======== ======== ============================================
 
 
 Response parameters
@@ -37,8 +37,8 @@ SOAP example
         xmlns:zato="https://zato.io/ns/20130518">
       <soapenv:Body>
          <zato:zato_security_rbac_role_permission_delete_request>
-            <zato:cluster_id></zato:cluster_id>
-            <zato:id></zato:id>
+            <zato:cluster_id>1</zato:cluster_id>
+            <zato:id>2</zato:id>
          </zato:zato_security_rbac_role_permission_delete_request>
       </soapenv:Body>
    </soapenv:Envelope>
@@ -61,8 +61,8 @@ JSON example
 .. code-block:: javascript
 
    {
-       "cluster_id": ,
-       "id": 
+       "cluster_id": 1,
+       "id": 2
    }
 
    {

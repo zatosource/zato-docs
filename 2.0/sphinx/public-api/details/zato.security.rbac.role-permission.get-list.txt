@@ -4,7 +4,8 @@ zato.security.rbac.role-permission.get-list
 Overview
 --------
 
-Returns a list of RBAC role permission definitions configured on a given cluster.
+Returns a list of all :doc:`associations <./zato.security.rbac.role-permission.create>` between RBAC roles,
+services and permissions in a given cluster.
 
 * List response: Yes
 * SOAP action: zato.security.rbac.role-permission.get-list
@@ -28,9 +29,14 @@ Response parameters
 ============== ========= ======== ==================================
 Name           Datatype  Optional Notes
 ============== ========= ======== ==================================
-role_name      string    ---      Name of a role
-service_name   string    ---      Name of a service
-perm_name      string    ---      Name of a permission
+id             int       ---      ID of the association
+name           string    ---      Name of the association in the format of 'ROLE_NAME:::SERVICE_NAME:::PERMISSION_NAME
+role_id        int       ---      ID of the role this association belongs to
+role_name      string    ---      Name of the role
+service_id     int       ---      ID of the service a permission is added for
+service_name   string    ---      Name of the service
+perm_id        int       ---      ID of the permission granted for that role with regards to that service
+perm_name      string    ---      Name of the permission
 ============== ========= ======== ==================================
 
 SOAP example
@@ -42,7 +48,7 @@ SOAP example
          xmlns:zato="https://zato.io/ns/20130518">
        <soapenv:Body>
           <zato:zato_security_rbac_role_permission_get_list_request>
-             <zato:cluster_id></zato:cluster_id>
+             <zato:cluster_id>1</zato:cluster_id>
           </zato:zato_security_rbac_role_permission_get_list_request>
        </soapenv:Body>
     </soapenv:Envelope>
@@ -56,16 +62,27 @@ SOAP example
             <result>ZATO_OK</result>
         </zato_env>
         <item_list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-        <item>
-            <role_name></role_name>
-            <service_name></service_name>
-            <perm_name></perm_name>
-        </item>
-        <item>
-            <role_name></role_name>
-            <service_name></service_name>
-            <perm_name></perm_name>
-        </item>
+          <item>
+              <id>1</id>
+              <name>billing.readers:::my.api.get-billing:::Read</name>
+              <role_id>2</role_id>
+              <role_name>billing.readers</role_name>
+              <service_id>3</service_id>
+              <service_name>my.api.get-billing</service_name>
+              <perm_id>4</perm_id>
+              <perm_name>Read</perm_name>
+          </item>
+          <item>
+              <id>2</id>
+              <name>billing.updaters:::my.api.get-billing:::Update</name>
+              <role_id>3</role_id>
+              <role_name>billing.updaters</role_name>
+              <service_id>3</service_id>
+              <service_name>my.api.get-billing</service_name>
+              <perm_id>5</perm_id>
+              <perm_name>Update</perm_name>
+          </item>
+
         </item_list>
         </zato_security_rbac_role_permission_get_list_response>
     </soap:Body>
@@ -89,14 +106,24 @@ JSON example
     },
     "zato_security_rbac_role_permission_get_list_response": [
       {
-        "role_name": "",
-        "service_name": "",
-        "perm_name": ""
+        "id": 1,
+        "name": "billing.readers:::my.api.get-billing:::Read",
+        "role_id": 2,
+        "role_name": "billing.readers",
+        "service_id": 3,
+        "service_name": "my.api.get-billing",
+        "perm_id": 4,
+        "perm_name": "Read"
       },
       {
-        "role_name": "",
-        "service_name": "",
-        "perm_name": ""
+        "id": 2,
+        "name": "billing.updaters:::my.api.get-billing:::Update",
+        "role_id": 3,
+        "role_name": "billing.updaters",
+        "service_id": 3,
+        "service_name": "my.api.get-billing",
+        "perm_id": 5,
+        "perm_name": "Update"
       }
     ]
   }

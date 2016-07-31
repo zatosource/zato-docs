@@ -4,7 +4,7 @@ zato.security.rbac.permission.delete
 Overview
 --------
 
-Deletes a RBAC permission.
+Deletes an RBAC permission - note that there is no API call to bring it back.
 
   * List response: No
   * SOAP action: zato.security.rbac.permission.delete
@@ -37,8 +37,8 @@ SOAP example
         xmlns:zato="https://zato.io/ns/20130518">
       <soapenv:Body>
          <zato:zato_security_rbac_permission_delete_request>
-            <zato:cluster_id></zato:cluster_id>
-            <zato:id></zato:id>
+            <zato:cluster_id>1</zato:cluster_id>
+            <zato:id>2</zato:id>
          </zato:zato_security_rbac_permission_delete_request>
       </soapenv:Body>
    </soapenv:Envelope>
@@ -61,8 +61,8 @@ JSON example
 .. code-block:: javascript
 
    {
-       "cluster_id": ,
-       "id": 
+       "cluster_id": 1,
+       "id": 2
    }
 
    {

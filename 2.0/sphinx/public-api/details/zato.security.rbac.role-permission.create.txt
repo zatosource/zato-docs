@@ -4,7 +4,8 @@ zato.security.rbac.role-permission.create
 Overview
 --------
 
-Creates a RBAC permission for a role.
+Establishes an association between an RBAC role, permission and a service indicating that this role has a given permission
+with regards to that very service.
 
   * List response: No
   * SOAP action: zato.security.rbac.role-permission.create
@@ -15,26 +16,24 @@ Creates a RBAC permission for a role.
 Request parameters
 ------------------
 
-=================== ======== ======== =============================================================================================================================================
-Name                Datatype Optional Notes
-=================== ======== ======== =============================================================================================================================================
-cluster_id          int      ---      ID of the cluster this RBAC role permission should be created in
-role_id             int      ---      ID of a role to give an RBAC permission to
-service_id          int      ---      ID of a service to give an RBAC permission for
-perm_id             int      ---      ID of an RBAC permission to be given
-=================== ======== ======== =============================================================================================================================================
+=========== ======== ======== ======================================================
+Name        Datatype Optional Notes
+=========== ======== ======== ======================================================
+cluster_id  int      ---      ID of the cluster the association should be defined in
+role_id     int      ---      ID of the role to use
+service_id  int      ---      ID of the service to grant permission to
+perm_id     int      ---      ID of the permission to grant to the role 
+=========== ======== ======== ======================================================
 
 
 Response parameters
 -------------------
 
-=================== ======== ======== =============================================================================================================================================
-Name                Datatype Optional Notes
-=================== ======== ======== =============================================================================================================================================
-role_name           string   ---      Name of a role which has been given an RBAC permission
-service_name        string   ---      Name of a service to whichan RBAC permission has been given
-perm_name           string   ---      Name of an RBAC permission which has been given
-=================== ======== ======== =============================================================================================================================================
+====== ======== ======== ============================================================================================
+Name   Datatype Optional Notes
+====== ======== ======== ============================================================================================
+name   string   ---      Name of the resulting association in the form of 'ROLE_NAME:::SERVICE_NAME:::PERMISSION_NAME
+====== ======== ======== ============================================================================================
 
 SOAP example
 ------------
@@ -45,10 +44,10 @@ SOAP example
         xmlns:zato="https://zato.io/ns/20130518">
       <soapenv:Body>
          <zato:zato_security_rbac_role_permission_create_request>
-            <zato:cluster_id></zato:cluster_id>
-            <zato:role_id></zato:role_id>
-            <zato:service_id></zato:service_id>
-            <zato:perm_id></zato:perm_id>
+            <zato:cluster_id><1/zato:cluster_id>
+            <zato:role_id>2</zato:role_id>
+            <zato:service_id>3</zato:service_id>
+            <zato:perm_id>4</zato:perm_id>
          </zato:zato_security_rbac_role_permission_create_request>
       </soapenv:Body>
    </soapenv:Envelope>
@@ -62,9 +61,7 @@ SOAP example
                   <result>ZATO_OK</result>
                </zato_env>
                <item>
-                  <zato:role_name></zato:role_name>
-                  <zato:service_name></zato:service_name>
-                  <zato:perm_name></zato:perm_name>
+                  <zato:name>billing.readers:::my.api.get-billing:::Read</zato:name>
                </item>
             </zato_security_rbac_role_permission_create_response>
       </soap:Body>
@@ -76,10 +73,10 @@ JSON example
 .. code-block:: javascript
 
    {
-       "cluster_id": ,
-       "role_id": ,
-       "service_id": ,
-       "perm_id": 
+       "cluster_id": 1,
+       "role_id": 2,
+       "service_id": 3,
+       "perm_id": 4 
    }
 
    {
@@ -89,8 +86,6 @@ JSON example
        "cid": "K079537614313001856490892948474114718602"
      },
      "zato_security_rbac_role_permission_create_response": {
-       "role_name": "",
-       "service_name": "",
-       "perm_name": ""
+       "name": "billing.readers:::my.api.get-billing:::Read"
      }
    }
