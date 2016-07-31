@@ -1,0 +1,28 @@
+zato.security.rbac.*
+=====================
+
+Overview
+--------
+
+Services related to the management of :doc:`Role-Based Access Control <../../admin/guide/rbac/overview>` security definitions.
+
+Services
+--------
+
+* :doc:`zato.security.rbac.client-role.create <./zato.security.rbac.client-role.create>`
+* :doc:`zato.security.rbac.client-role.delete <./zato.security.rbac.client-role.delete>`
+* :doc:`zato.security.rbac.client-role.get-client-def-list <./zato.security.rbac.client-role.get-client-def-list>`
+
+* :doc:`zato.security.rbac.permission.create <./zato.security.rbac.permission.create>`
+* :doc:`zato.security.rbac.permission.delete <./zato.security.rbac.permission.delete>`
+* :doc:`zato.security.rbac.permission.edit <./zato.security.rbac.permission.edit>`
+* :doc:`zato.security.rbac.permission.get-list <./zato.security.rbac.permission.get-list>`
+
+* :doc:`zato.security.rbac.role-permission.create <./zato.security.rbac.role-permission.create>`
+* :doc:`zato.security.rbac.role-permission.delete <./zato.security.rbac.role-permission.delete>`
+* :doc:`zato.security.rbac.role-permission.get-list <./zato.security.rbac.role-permission.get-list>`
+
+* :doc:`zato.security.rbac.role.create <./zato.security.rbac.role.create>`
+* :doc:`zato.security.rbac.role.delete <./zato.security.rbac.role.delete>`
+* :doc:`zato.security.rbac.role.edit <./zato.security.rbac.role.edit>`
+* :doc:`zato.security.rbac.role.get-list <./zato.security.rbac.role.get-list>`

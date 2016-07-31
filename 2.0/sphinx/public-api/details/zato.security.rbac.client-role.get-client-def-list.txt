@@ -1,0 +1,100 @@
+zato.security.rbac.client-role.get-client-def-list
+==================================================
+
+Overview
+--------
+
+Returns a list of :doc:`associations of RBAC roles and security definitions <./zato.security.rbac.client-role.create>`.
+
+Note: SEC_TYPE in response parameters refers to one of
+`zato.common.SEC_DEF_TYPE <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/__init__.py>`_.
+
+* List response: Yes
+* SOAP action: zato.security.rbac.client-role.get-client-def-list
+* SOAP URL path: /zato/soap
+* JSON URL path: /zato/json/zato.security.rbac.client-role.get-client-def-list
+* WSDL: :download:`Click here</public-api/zato.wsdl>`
+
+Request parameters
+------------------
+
+========== ========= ======== ==================================
+Name       Datatype  Optional Notes
+========== ========= ======== ==================================
+cluster_id int       ---      Cluster to return objects from
+========== ========= ======== ==================================
+
+
+Response parameters
+-------------------
+
+============ ======== ======== =============================================================================================================================================
+Name         Datatype Optional Notes
+============ ======== ======== =============================================================================================================================================
+client_name  string   ---      Shortened name of the security definition in the format of 'SEC_TYPE:::SEC_NAME'
+client_def   string   ---      Full name of the security definition in the format of 'SEC_TYPE:::SEC_NAME'
+============ ======== ======== =============================================================================================================================================
+
+SOAP example
+------------
+
+.. code-block:: xml
+
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+         xmlns:zato="https://zato.io/ns/20130518">
+       <soapenv:Body>
+          <zato:zato_security_rbac_client_role_get_client_def_list_request>
+             <zato:cluster_id>1</zato:cluster_id>
+          </zato:zato_security_rbac_client_role_get_client_def_list_request>
+       </soapenv:Body>
+    </soapenv:Envelope>
+
+    <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
+        xmlns="https://zato.io/ns/20130518">
+    <soap:Body>
+        <zato_security_rbac_client_role_get_client_def_list_response xmlns="https://zato.io/ns/20130518">
+        <zato_env>
+            <cid>K133254644916609060549153420473795731425</cid>
+            <result>ZATO_OK</result>
+        </zato_env>
+        <item_list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <item>
+            <client_name>basic_auth:::my.client</client_name>
+            <client_def>sec_def:::basic_auth:::my.client</client_def>
+        </item>
+        <item>
+            <client_name>basic_auth:::my.client2</client_name>
+            <client_def>sec_def:::basic_auth:::my.client2</client_def>
+        </item>
+        </item_list>
+        </zato_security_rbac_client_role_get_client_def_list_response>
+    </soap:Body>
+    </soap:Envelope>
+
+
+JSON example
+------------
+
+.. code-block:: javascript
+
+   {
+    "cluster_id": 1
+   }
+
+  {
+    "zato_env": {
+      "details": "",
+      "result": "ZATO_OK",
+      "cid": "K133254644916609060549153420473795731425"
+    },
+    "zato_security_rbac_client_role_get_client_def_list_response": [
+      {
+        "client_name": "basic_auth:::my.client",
+        "client_def": "sec_def:::basic_auth:::my.client"
+      },
+      {
+        "client_name": "basic_auth:::my.client2",
+        "client_def": "sec_def:::basic_auth:::my.client2"
+      }
+    ]
+  }

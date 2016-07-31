@@ -402,6 +402,7 @@ Public REST and SOAP server API
     * **Security:**
       :doc:`zato.security.*</public-api/details/zato.security>` |
       :doc:`zato.security.basic-auth.*</public-api/details/zato.security.basic-auth>` |
+      :doc:`zato.security.rbac.*</public-api/details/zato.security.rbac>` |
       :doc:`zato.security.tech-account.*</public-api/details/zato.security.tech-account>` |
       :doc:`zato.security.wss.*</public-api/details/zato.security.wss>`
 

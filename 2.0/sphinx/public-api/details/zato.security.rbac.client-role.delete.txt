@@ -4,7 +4,7 @@ zato.security.rbac.client-role.delete
 Overview
 --------
 
-Deletes a client role.
+Deletes an existing :doc:`association of an RBAC role and security definition <./zato.security.rbac.client-role.create>`.
 
   * List response: No
   * SOAP action: zato.security.rbac.client-role.delete
@@ -19,7 +19,7 @@ Request parameters
 Name                Datatype Optional Notes
 =================== ======== ======== =============================================================================================================================================
 cluster_id          int      ---      ID of the cluster this client role should be deleted from
-id                  string   ---      ID of the client role to delete
+id                  string   ---      ID of the object to be deleted
 =================== ======== ======== =============================================================================================================================================
 
 
@@ -38,7 +38,7 @@ SOAP example
       <soapenv:Body>
          <zato:zato_security_rbac_client_role_delete_request>
             <zato:cluster_id></zato:cluster_id>
-            <zato:id></zato:id>
+            <zato:id>123</zato:id>
          </zato:zato_security_rbac_client_role_delete_request>
       </soapenv:Body>
    </soapenv:Envelope>
@@ -61,8 +61,8 @@ JSON example
 .. code-block:: javascript
 
    {
-       "cluster_id": ,
-       "id": 
+       "cluster_id": 1,
+       "id": 123
    }
 
    {
