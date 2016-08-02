@@ -4,7 +4,9 @@ zato.security.jwt.edit
 Overview
 --------
 
-Updates an already existing JWT security definition.
+Updates an already existing
+`JWT <https://en.wikipedia.org/wiki/JSON_Web_Token>`_
+security definition.
 
 .. note::
 
@@ -26,10 +28,7 @@ Name       Datatype  Optional Notes
 id         int       ---      ID of the definition to update
 cluster_id int       ---      Same as for :doc:`zato.security.jwt.create<./zato.security.jwt.create>`
 name       string    ---      〃
-is_active  boolean   ---      〃
 username   string    ---      〃
-password   string    ---      〃
-secret     string    ---      〃
 ttl        int       ---      〃
 ========== ========= ======== ====================================================================================
 
@@ -56,12 +55,9 @@ SOAP example
          <zato:zato_security_jwt_edit_request>
             <zato:id>9</zato:id>
             <zato:cluster_id>1</zato:cluster_id>
-            <zato:name></zato:name>
-            <zato:is_active>true</zato:is_active>
-            <zato:username></zato:username>
-            <zato:password></zato:password>
-            <zato:secret></zato:secret>
-            <zato:ttl></zato:password>
+            <zato:name>My definition</zato:name>
+            <zato:username>user1</zato:username>
+            <zato:ttl>3600</zato:password>
          </zato:zato_security_jwt_edit_request>
       </soapenv:Body>
    </soapenv:Envelope>
@@ -76,7 +72,7 @@ SOAP example
        </zato_env>
        <item>
            <id>9</id>
-           <name></name>
+           <name>My definition</name>
        </item>
    </zato_security_jwt_edit_response>
    </soap:Body>
@@ -88,14 +84,12 @@ JSON example
 .. code-block:: javascript
 
    {
-      "id": 10,
+      "id": 9,
       "cluster_id": 1,
-      "name": "",
+      "name": "My definition",
       "is_active": true,
       "username": "",
-      "password": "",
-      "secret": "",
-      "ttl":
+      "ttl": 3600
    }
 
    {
@@ -105,8 +99,8 @@ JSON example
        "cid": "K020151994645718743847460439896961872925"
      },
      "zato_security_jwt_edit_response": {
-       "id": 10,
-       "name": ""
+       "id": 9,
+       "name": "My definition"
      }
    }
 

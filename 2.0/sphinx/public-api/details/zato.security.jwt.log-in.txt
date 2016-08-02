@@ -4,13 +4,24 @@ zato.security.jwt.log-in
 Overview
 --------
 
-Logs user into using JWT-backed credentials and returns a new token if credentials were correct.
+Assuming credentials provided on input were correct, generates a new
+`JWT <https://en.wikipedia.org/wiki/JSON_Web_Token>`_
+token for the application issuing the request and returns it in response.
 
-* List response: Yes
-* SOAP action: zato.security.jwt.log-in
-* SOAP URL path: /zato/soap
-* JSON URL path: /zato/json/zato.security.jwt.log-in
-* WSDL: :download:`Click here</public-api/zato.wsdl>`
+Note that the token is returned in two ways:
+
+  * Per JWT specification, in a response HTTP header called Authorization
+  * For convenience, in JSON payload
+
+The token is encrypted using
+`Fernet <https://cryptography.io/en/latest/fernet/>`_
+and it is not possible to decrypt it on client side.
+
+* List response: No
+* SOAP action: (n/a)
+* SOAP URL path: (n/a)
+* JSON URL path: /zato/jwt/log-in
+* WSDL: (n/a)
 
 Request parameters
 ------------------
@@ -20,48 +31,17 @@ Name       Datatype  Optional Notes
 ========== ========= ======== ==================================
 username   string    ---      Username
 password   string    ---      Password
-token      string    ---      JWT token
 ========== ========= ======== ==================================
 
 
 Response parameters
 -------------------
 
-========= ======== ======== ================================
+========= ======== ======== ================================================================
 Name      Datatype Optional Notes
-========= ======== ======== ================================
-token     string   Yes      A new token
-========= ======== ======== ================================
-
-SOAP example
-------------
-
-.. code-block:: xml
-
-    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-         xmlns:zato="https://zato.io/ns/20130518">
-       <soapenv:Body>
-          <zato:zato_security_jwt_log_in_request>
-             <zato:username></zato:username>
-             <zato:password></zato:password>
-          </zato:zato_security_jwt_log_in_request>
-       </soapenv:Body>
-    </soapenv:Envelope>
-
-    <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
-        xmlns="https://zato.io/ns/20130518">
-    <soap:Body>
-        <zato_security_jwt_log_in_response xmlns="https://zato.io/ns/20130518">
-        <zato_env>
-            <cid>K133254644916609060549153420473795731425</cid>
-            <result>ZATO_OK</result>
-        </zato_env>
-        <item>
-            <token></token>
-        </item>
-        </zato_security_jwt_log_in_response>
-    </soap:Body>
-    </soap:Envelope>
+========= ======== ======== ================================================================
+token     string   Yes      A newly generated token, returned only if credentials were valid
+========= ======== ======== ================================================================
 
 
 JSON example
@@ -70,17 +50,10 @@ JSON example
 .. code-block:: javascript
 
    {
-    "username": "",
-    "password": ""
+    "username": "user1",
+    "password": "e59045c6f3b44c12a55ee07f3279f089"
    }
 
-  {
-    "zato_env": {
-      "details": "",
-      "result": "ZATO_OK",
-      "cid": "K133254644916609060549153420473795731425"
-    },
-    "zato_security_jwt_log_in_response": {
-      "token": ""
-    }
-  }
+   {
+    "token": "Bearer gAAAAABXl5hIzWNiA8goIcFurPKYxsnroVWVZv9tZRs ..."
+   }

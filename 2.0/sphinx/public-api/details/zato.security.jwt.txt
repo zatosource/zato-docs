@@ -1,0 +1,20 @@
+zato.security.jwt.*
+====================
+
+Overview
+--------
+
+Services related to the management of
+`JSON Web Token (JWT) <https://en.wikipedia.org/wiki/JSON_Web_Token>`_
+definitions.
+
+Services
+--------
+
+* :doc:`zato.security.jwt.change-password <./zato.security.jwt.change-password>`
+* :doc:`zato.security.jwt.create <./zato.security.jwt.create>`
+* :doc:`zato.security.jwt.delete <./zato.security.jwt.delete>`
+* :doc:`zato.security.jwt.edit <./zato.security.jwt.edit>`
+* :doc:`zato.security.jwt.get-list <./zato.security.jwt.get-list>`
+* :doc:`zato.security.jwt.log-in <./zato.security.jwt.log-in>`
+* :doc:`zato.security.jwt.log-out <./zato.security.jwt.log-out>`
