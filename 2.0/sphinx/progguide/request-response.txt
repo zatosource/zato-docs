@@ -46,7 +46,7 @@ Request
 -------
 
 An instance of 
-`zato.server.service.Request <https://github.com/zatosource/zato/blob/master/code/zato-server/src/zato/server/service/__init__.py>`_
+`zato.server.service.Request <https://github.com/zatosource/zato/blob/main/code/zato-server/src/zato/server/service/__init__.py>`_
 class, each service's self.request provides access to several interesting
 attributes regarding the input data.
 
@@ -108,7 +108,7 @@ Response
 --------
 
 An instance of 
-`zato.server.service.Response <https://github.com/zatosource/zato/blob/master/code/zato-server/src/zato/server/service/__init__.py>`_
+`zato.server.service.Response <https://github.com/zatosource/zato/blob/main/code/zato-server/src/zato/server/service/__init__.py>`_
 class, self.response attribute of each service instance influences what the application
 invoking a service will receive.
 
@@ -122,7 +122,7 @@ payload          A service can assign output parameters directly to payload
                  the response.
                
 result           Defaults to ZATO_OK and must be either ZATO_OK or ZATO_ERROR from 
-                 `zato.common <https://github.com/zatosource/zato/blob/master/code/zato-common/src/zato/common/__init__.py>`_.
+                 `zato.common <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/__init__.py>`_.
                  If the latter, an exception will be raised and signalled to the 
                  calling invocation in a transport-specific way, e.g. using
                  a Fault message for SOAP channels. A proper status_code will

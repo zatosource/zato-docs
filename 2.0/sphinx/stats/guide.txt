@@ -26,7 +26,7 @@ broker:
 * :ref:`CID <progguide-write-service-cid>` the service has been invoked with
 
 Zato's own 
-`internal (look up stats_jobs) <https://github.com/zatosource/zato/blob/master/code/zato-server/src/zato/server/spring_context.py>`_
+`internal (look up stats_jobs) <https://github.com/zatosource/zato/blob/main/code/zato-server/src/zato/server/spring_context.py>`_
 :doc:`scheduler's jobs <../progguide/scheduler>` aggregate raw information
 into higher-order structures, all stored in Redis too - per minute stats are
 converted into per hour status, these get aggregated into per day information and so

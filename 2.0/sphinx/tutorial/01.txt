@@ -228,7 +228,7 @@ For instance:
 Note the highlighted line - these are credentials you'll need to log into a
 :doc:`web admin's instance <../web-admin/intro>`
 just created. In case you feel the
-`randomly generated password <https://github.com/zatosource/zato/blob/master/code/zato-common/src/zato/common/markov_passwords.py>`_,
+`randomly generated password <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/markov_passwords.py>`_,
 even  a human-readable one, should still be changed, you can do it using the
 :doc:`zato update password <../../admin/cli/update-password>`
 command.

@@ -25,7 +25,7 @@ Name                Connection name
 Active              Whether the connection can be used by services or not. 
 
                     If a connection is not active a service will encounter a 
-                    `zato.common.Inactive <https://github.com/zatosource/zato/blob/master/code/zato-common/src/zato/common/__init__.py>`_
+                    `zato.common.Inactive <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/__init__.py>`_
                     exception when attempting to use it.
                     
                     Note that an inactive connection still can be 
@@ -49,7 +49,7 @@ Ping
 .. image:: /gfx/web-admin/outgoing/sql-ping.png
 
 A connection can be pinged - this sends 
-`a dummy query <https://github.com/zatosource/zato/blob/master/code/zato-common/src/zato/common/odb/__init__.py>`_
+`a dummy query <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/odb/__init__.py>`_
 from one of a  cluster's servers. This can be used to check whether a given
 database is reachable by Zato servers.
 
