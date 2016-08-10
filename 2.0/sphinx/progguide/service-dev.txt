@@ -5,7 +5,7 @@ Developing services
 ===================
 
 From a programmer's point of view, a service is a Python class that subclasses
-`zato.server.Service <https://github.com/zatosource/zato/blob/master/code/zato-server/src/zato/server/service/__init__.py>`_
+`zato.server.Service <https://github.com/zatosource/zato/blob/main/code/zato-server/src/zato/server/service/__init__.py>`_
 and implements a handle(self) method.
 
 Below is the simplest possible Zato service meant to illustrate the point of how
@@ -179,7 +179,7 @@ Can be one of:
 * 'zmq'
 
 The constants are defined in the 
-`zato.common.CHANNEL <https://github.com/zatosource/zato/blob/master/code/zato-common/src/zato/common/__init__.py>`_
+`zato.common.CHANNEL <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/__init__.py>`_
 class.
 
 ::
@@ -216,7 +216,7 @@ without prior notice.
 Note that when 
 :ref:`publishing <progguide-write-service-broker-client-publish>`
 a 
-`SERVICE.PUBLISH.value <https://github.com/zatosource/zato/blob/master/code/zato-common/src/zato/common/broker_message.py>`_
+`SERVICE.PUBLISH.value <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/broker_message.py>`_
 message to more than one server, each server worker will receive a request
 with the same CID.
 
@@ -259,7 +259,7 @@ a particular data format. It can be one of:
 * 'xml'
 
 The constants are defined in the 
-`zato.common.DATA_FORMAT <https://github.com/zatosource/zato/blob/master/code/zato-common/src/zato/common/__init__.py>`_
+`zato.common.DATA_FORMAT <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/__init__.py>`_
 class.
 
 ::
@@ -400,7 +400,7 @@ it was. None if the scheduler wasn't used. Can be one of:
 * 'cron_style'
 
 The constants are defined in the 
-`zato.common.SCHEDULER_JOB_TYPE class <https://github.com/zatosource/zato/blob/master/code/zato-common/src/zato/common/__init__.py>`_.
+`zato.common.SCHEDULER_JOB_TYPE class <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/__init__.py>`_.
 
 ::
 
@@ -450,7 +450,7 @@ logger
 ``````
 
 A logger, instance of
-`zato.server.log.ZatoLogger <https://github.com/zatosource/zato/blob/master/code/zato-server/src/zato/server/log.py>`_, 
+`zato.server.log.ZatoLogger <https://github.com/zatosource/zato/blob/main/code/zato-server/src/zato/server/log.py>`_, 
 used for writing messages out to server logs.
 This is a thin wrapper around `Python's logging.Logger <http://docs.python.org/2.7/library/logging.html>`_
 which lets one use a 'cid' argument in addition to what is ordinarily available
@@ -965,7 +965,7 @@ invoke
   discern that it's not being invoked through a regular channel created in the
   :doc:`web admin <../web-admin/intro>` or via :doc:`Zato's public API </public-api/intro>`.
   
-  A `ZatoException <https://github.com/zatosource/zato/blob/master/code/zato-common/src/zato/common/__init__.py>`_ will be raised if a service attempts to invoke itself.
+  A `ZatoException <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/__init__.py>`_ will be raised if a service attempts to invoke itself.
   
   Visit :doc:`this chapter <./invoking-services>` for more information on how to invoke
   other services depending on the data format they expect.
@@ -974,7 +974,7 @@ invoke
                :ref:`invocation target <admin-guide-config-server-invoke_target_patterns_allowed>`, a label
                assigned to one or more selected servers in a cluster ensuring in that way that only
                these targets will receive the request. The syntax for using targets is *service_name@target_name*.
-               A `ZatoException <https://github.com/zatosource/zato/blob/master/code/zato-common/src/zato/common/__init__.py>`_
+               A `ZatoException <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/__init__.py>`_
                will be raised if the server the service is invoked on does not accept the provided target.
   :type name: string
   
@@ -983,14 +983,14 @@ invoke
                   :doc:`SIO<./sio>`.
   
   :param channel: :ref:`Channel type <progguide-write-service-channel>` a service will think it's invoked over
-  :type channel: `zato.common.CHANNEL <https://github.com/zatosource/zato/blob/master/code/zato-common/src/zato/common/__init__.py>`_
+  :type channel: `zato.common.CHANNEL <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/__init__.py>`_
   
   :param data_format: :ref:`Data format <progguide-write-service-data_format>` a service expects, if any.
                       Can be skipped if the service uses :doc:`SIO<./sio>` and payload is a dictionary.
-  :type data_format: `zato.common.DATA_FORMAT <https://github.com/zatosource/zato/blob/master/code/zato-common/src/zato/common/__init__.py>`_
+  :type data_format: `zato.common.DATA_FORMAT <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/__init__.py>`_
   
   :param transport: Transport a service will think it's invoked with
-  :type transport: `zato.common.TRANSPORT <https://github.com/zatosource/zato/blob/master/code/zato-common/src/zato/common/__init__.py>`_
+  :type transport: `zato.common.TRANSPORT <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/__init__.py>`_
   
   :param serialize: If the service which is invoked uses :doc:`SIO <./sio>`, 
                     whether its response should be serialized to data_format.
