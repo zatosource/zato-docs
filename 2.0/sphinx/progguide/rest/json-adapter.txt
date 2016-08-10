@@ -11,7 +11,7 @@ Adapter services are intended to use either as pass-through proxy ones or as par
 unless they are proxies, they won't be typically mounted on HTTP channels.
 
 After subclassing
-`zato.server.service.adapter.JSONAdapter <https://github.com/zatosource/zato/blob/main/code/zato-server/src/zato/server/service/adapter.py>`_
+`zato.server.service.adapter.JSONAdapter <https://github.com/zatosource/zato/blob/support/2.0/code/zato-server/src/zato/server/service/adapter.py>`_
 it's possible to configure the service in a declarative manner, without a need to implement the
 :ref:`handle <progguide-write-service-handle>` method.
 
@@ -52,8 +52,8 @@ apply_params    --       APPLY_AFTER_REQUEST                 Must be either
                                                              or
                                                              APPLY_BEFORE_REQEUST
                                                              from
-                                                             `zato.common.ADAPTER_PARAMS <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/__init__.py>`_.
+                                                             `zato.common.ADAPTER_PARAMS <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py>`_.
                                                              If the former, self.params will take precedence over self.request.payload. The other way around if the latter.
 raise_error_on  --       ['4', '5']                          A list of prefixes of status codes returned from the endpoint which will make the adapter raise
-                                                             a `zato.common.HTTPException <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/__init__.py>`_
+                                                             a `zato.common.HTTPException <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py>`_
 =============== ======== =================================== =================================================================================================================================================

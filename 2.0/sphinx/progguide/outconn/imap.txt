@@ -29,7 +29,7 @@ self.email.imap.get
   :param name: Name of the IMAP connection to use
   :type name: string
 
-  :rtype: (A `zato.server.connection.email.IMAPConnection <https://github.com/zatosource/zato/blob/main/code/zato-server/src/zato/server/connection/email.py>`_ object)
+  :rtype: (A `zato.server.connection.email.IMAPConnection <https://github.com/zatosource/zato/blob/support/2.0/code/zato-server/src/zato/server/connection/email.py>`_ object)
 
 Usage example
 -------------

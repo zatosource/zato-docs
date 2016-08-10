@@ -146,7 +146,7 @@
 
 * :ref:`OpenID in web admin <admin-guide-config-web-admin-open-id>`
 
-* Constants in `zato.common.broker_message <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/broker_message.py>`_
+* Constants in `zato.common.broker_message <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/broker_message.py>`_
   became wrappers around integers - use *.value* attribute to reference them. For instance, SERVICE.PUBLISH.value instead of SERVICE.PUBLISH.
 
 * Added a :ref:`hot_deploy.delete_after_pick_up <admin-guide-config-server-hot_deploy.delete_after_pick_up>` flag,

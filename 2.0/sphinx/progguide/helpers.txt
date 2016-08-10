@@ -4,7 +4,7 @@
 Helper services
 ===============
 
-`zato.server.service.internal.helpers <https://github.com/zatosource/zato/blob/main/code/zato-server/src/zato/server/service/internal/helpers.py>`_
+`zato.server.service.internal.helpers <https://github.com/zatosource/zato/blob/support/2.0/code/zato-server/src/zato/server/service/internal/helpers.py>`_
 contains a set of helper services coming in handy during development and documented below.
 
 The services can be used either standalone or as base classes for user-defined ones.

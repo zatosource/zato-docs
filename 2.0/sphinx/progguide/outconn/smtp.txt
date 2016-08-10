@@ -23,7 +23,7 @@ self.email.smtp.get
 
   Fetches an object whose .conn attribute represents a connection to an SMTP server.
 
-  The object's .send method can be used to send emails using `zato.common.SMTPMessage <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/__init__.py#L875>`_
+  The object's .send method can be used to send emails using `zato.common.SMTPMessage <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py#L875>`_
   objects.
 
   :param name: Name of the :doc:`SMTP connection <../../web-admin/email/smtp>` connection to use

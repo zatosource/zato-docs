@@ -7,7 +7,7 @@ Overview
 Returns a list of :doc:`associations of RBAC roles and security definitions <./zato.security.rbac.client-role.create>`.
 
 Note: SEC_TYPE in response parameters refers to one of
-`zato.common.SEC_DEF_TYPE <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/__init__.py>`_.
+`zato.common.SEC_DEF_TYPE <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py>`_.
 
 * List response: Yes
 * SOAP action: zato.security.rbac.client-role.get-client-def-list

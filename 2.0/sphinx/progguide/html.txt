@@ -9,7 +9,7 @@ HTML from services. For instance, a set of services performing background batch 
 to consult each week.
 
 To use `Django <https://www.djangoproject.com/>`_ templates in responses a service should subclass
-`zato.server.service.internal.helpers.HTMLService <https://github.com/zatosource/zato/blob/main/code/zato-server/src/zato/server/service/internal/helpers.py>`_
+`zato.server.service.internal.helpers.HTMLService <https://github.com/zatosource/zato/blob/support/2.0/code/zato-server/src/zato/server/service/internal/helpers.py>`_
 and assign HTML output as using *self.set_html_payload* providing the method with a dictionary of context and a template
 the context should be rendered in.
 

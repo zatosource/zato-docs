@@ -505,7 +505,7 @@ If a service uses a target name, the request will be executed on a server only i
 the target, that is, if the target provided by the service matches one of the patterns configured for server.
 
 For :ref:`invoke <progguide-write-service-invoke>` - a service will receive a
-`ZatoException <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/__init__.py>`_
+`ZatoException <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py>`_
 if the target is not supported. For :ref:`invoke_async <progguide-write-service-invoke_async>`, the request
 will be dropped. Unless on DEBUG level or more verbose the request will be dropped silently.
 
@@ -536,7 +536,7 @@ spring.context_class
 ~~~~~~~~~~~~~~~~~~~~
 
 Name of a Python class to create the 
-`Spring Python context <https://github.com/zatosource/zato/blob/main/code/zato-server/src/zato/server/spring_context.py>`_
+`Spring Python context <https://github.com/zatosource/zato/blob/support/2.0/code/zato-server/src/zato/server/spring_context.py>`_
 from.
 
 misc.internal_services_may_be_deleted

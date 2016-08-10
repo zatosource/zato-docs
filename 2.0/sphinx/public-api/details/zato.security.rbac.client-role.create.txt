@@ -23,7 +23,7 @@ role_id             int      ---      ID of the role to use
 client_def          string   ---      Security definition to use in the format of 'sec_def:::SEC_TYPE:::SEC_NAME' where
 
                                       * sec_def  - constant string
-                                      * SEC_TYPE - one of `zato.common.SEC_DEF_TYPE <https://github.com/zatosource/zato/blob/main/code/zato-common/src/zato/common/__init__.py>`_
+                                      * SEC_TYPE - one of `zato.common.SEC_DEF_TYPE <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py>`_
                                       * SEC_NAME - name of the security definition to associate with the role
 =================== ======== ======== ============================================================================================================================================
 
