@@ -15,7 +15,7 @@ Want to contribute ideas or code? **Superb!** The project is under `LGPL <https:
 
   * All other parts are in Python and make heavy use of other open-source projects,
     there are 
-    many dependencies listed in buildout.cfg <https://github.com/zatosource/zato/blob/support/2.0/code/buildout.cfg>`_
+    many dependencies listed in `buildout.cfg <https://github.com/zatosource/zato/blob/support/2.0/code/buildout.cfg>`_
 
 * Want to send a quick documentation patch or suggestion? Just 
   `open a new ticket in GitHub <https://github.com/zatosource/zato/issues>`_
