@@ -42,7 +42,7 @@ JSON      Given   JSON Pointer "{path}" in request is a random date "{format}"  
                                                                                 using format ``format``                                       :doc:`Details <./given_json_pointer_is_rand_date>`
 JSON      Given   JSON Pointer "{path}" in request is a random date after                                                                     :doc:`Details <./given_json_pointer_is_rand_date_after>`
                   "{date_start}" "{format}"
-JSON      Given   JSON Pointer "{path}" in request is a random date before                                                                     :doc:`Details <./given_json_pointer_is_rand_date_before>`
+JSON      Given   JSON Pointer "{path}" in request is a random date before                                                                    :doc:`Details <./given_json_pointer_is_rand_date_before>`
                   "{date_end}" "{format}"
 JSON      Given   JSON Pointer "{path}" in request is now "{format}"            Sets ``path`` to now in local timezone,
                                                                                 using format ``format``                                       :doc:`Details <./given_json_pointer_is_now>`
@@ -107,6 +107,8 @@ TODO      Then    I store "{path}" from response under "{name}",
                                                                                 labels, for the duration of a single test case (feature). A
                                                                                 default value will be used if the response doesn't contain
                                                                                 a path provided                                               :doc:`Details <./then_i_store_path_under_name_with_default>`
+JSON      Then    JSON Pointer "{path}" contains "{value}"                                                                                    :doc:`Details <./then_json_pointer_contains>`
+JSON      Then    JSON Pointer "{path}" contains data from "{path}"                                                                           :doc:`Details <./then_json_pointer_contains_data_from>`
 JSON      Then    JSON Pointer "{path}" is "{value}"                                                                                          :doc:`Details <./then_json_pointer_is>`
 JSON      Then    JSON Pointer "{path}" is a float "{value}"                                                                                  :doc:`Details <./then_json_pointer_is_a_float>`
 JSON      Then    JSON Pointer "{path}" is a list "{value}"                                                                                   :doc:`Details <./then_json_pointer_is_a_list>`
@@ -122,6 +124,6 @@ XML       Then    XPath "{xpath}" is a float "{value}"                          
 XML       Then    XPath "{xpath}" is an integer "{value}"                                                                                     :doc:`Details <./then_xpath_is_an_integer>`
 XML       Then    XPath "{xpath}" is empty                                                                                                    :doc:`Details <./then_xpath_is_empty>`
 XML       Then    XPath "{xpath}" is not empty                                                                                                :doc:`Details <./then_xpath_is_not_empty>`
-XML       Then    XPath "{xpath}" isn't one of "{value}"                                                                                      :doc:`Details <./then_xpath_isnt_one_of>`
+XML       Then    XPath "{xpath}" isn't one of "{value}"                                                                                      :doc:`Details <./then_xpath_is_not_one_of>`
 XML       Then    XPath "{xpath}" is one of "{value}"                                                                                         :doc:`Details <./then_xpath_is_one_of>`
 ========= ======= ============================================================= ============================================================= =========================================================================
