@@ -72,6 +72,7 @@ I18N
       *DE* :doc:`Was bedeutet ESB und SOA überhaupt? <intro/esb-soa-de>` |
       *FR* :doc:`Qu´entend-on á vrai dire par ESB et SOA? <intro/esb-soa-fr>` |
       *IT* :doc:`Sì, ma cosa sono ESB e SOA? <intro/esb-soa-it>` |
+      *NL* :doc:`Wat zijn ESB en SOA eigenlijk? <intro/esb-soa-nl>` |
       *PT*  :doc:`O que ESB e SOA são, afinal? <intro/esb-soa-pt>` |
       *RU* :doc:`Что такое ESB и SOA? <intro/esb-soa-ru>` |
       *TR* :doc:`ESB ve SOA ne anlama geliyor yani? <intro/esb-soa-tr>`
