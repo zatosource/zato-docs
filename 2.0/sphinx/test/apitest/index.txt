@@ -413,6 +413,10 @@ reserved for the tool's own purposes.
 Changelog
 ---------
 
+-  **1.11** - 29-01-2017
+
+-  Use non-zero process exit code if any of test scenarios fail
+
 -  **1.10** - 22-01-2016
 
 -  Added steps for validating list elements in JSON responses
