@@ -6,8 +6,7 @@ FTP usage examples
 
 FTP servers are accessed through the
 `fs <http://docs.pyfilesystem.org/en/latest/>`_
-library and 
-`any method <http://docs.pyfilesystem.org/en/latest/interface.html>`_
+library and any method
 the library supports is available to Zato services as well.
 
 Hence the code below serves as a set of examples only, it's not a full reference.
