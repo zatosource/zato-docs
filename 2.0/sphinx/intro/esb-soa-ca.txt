@@ -119,7 +119,7 @@ dels desenvolupadors originals ja han deixat l'empresa?
 
 I si considereu que 6 aplicacions encara es poden gestionar, què passarà si en són 30?
 
-.. image:: /gfx/intro/mess2.png
+.. image:: /gfx/intro/mess2a.png
    :alt:
 
 En podreu gestionar 400? I 2000? Cada aplicació

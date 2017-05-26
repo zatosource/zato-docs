@@ -124,7 +124,7 @@ und die Hälfte der ursprünglichen Entwickler das Unternehmen schon verlassen h
 
 Wenn Sie meinen, dass man 6 solcher Anwendungen noch handhaben kann, was machen Sie, wenn Sie 30 davon haben?
 
-.. image:: /gfx/intro/mess2.png
+.. image:: /gfx/intro/mess2a.png
    :alt:
 
 Können Sie mit 400 noch zurechtkommen? Wie ist es mit 2000?

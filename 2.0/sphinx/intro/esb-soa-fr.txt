@@ -108,7 +108,7 @@ différents et la moitié des développeurs originaux ne sont plus présents?
 
 Si vous pensez que vous êtes capable de gérer 6 applications, pourquoi pas 30?
 
-.. image:: /gfx/intro/mess2.png
+.. image:: /gfx/intro/mess2a.png
    :alt:
 
 Pouvez-vous en gérer 400? Et pourquoi pas 2000? Chaque application peut être un écosystème unique nécessitant

@@ -107,7 +107,7 @@ Hoe kun je interfaces scheiden ? Hoe kun je uitrollen plannen ? Hoe kun je de up
 
 Als je denkt dat je 6 applicaties te kunnen beheren, wat als het er 30 worden ?
 
-.. image:: /gfx/intro/mess2.png
+.. image:: /gfx/intro/mess2a.png
    :alt:
 
 Kun je 400 aan ? Of 2000?

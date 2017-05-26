@@ -126,7 +126,7 @@ fornitori differenti o dipartimenti differenti?
 Prova a riflettere su queste problematiche con riferimento non a 6 applicazioni
 bensì a 30?
 
-.. image:: /gfx/intro/mess2.png
+.. image:: /gfx/intro/mess2a.png
    :alt:
 
 Riusciresti a gestirne 400? E 2000? E se, come accennato prima, ogni

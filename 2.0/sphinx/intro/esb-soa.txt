@@ -116,7 +116,7 @@ of the original developers have left already?
 
 If you think you can handle 6 applications, how about 30 of them?
 
-.. image:: /gfx/intro/mess2.png
+.. image:: /gfx/intro/mess2a.png
    :alt:
 
 Can you deal with 400? How about 2000? Each application

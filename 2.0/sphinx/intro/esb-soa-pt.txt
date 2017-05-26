@@ -110,7 +110,7 @@ Como separar as interfaces? Como você pode planejar lançamentos? Como coordena
 
 Se você acha que pode lidar com 6 aplicações, que tal lidar com 30?
 
-.. image:: /gfx/intro/mess2.png
+.. image:: /gfx/intro/mess2a.png
    :alt:
 
 Você consegue lidar com 400? Que tal 2000?
