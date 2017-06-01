@@ -1,0 +1,56 @@
+.. highlight:: sh
+
+Installation on Alpine Linux
+============================
+
+Requirements
+------------
+
+* Alpine Linux 3.6.0 or later
+* Root access
+
+Installation steps
+------------------
+
+* Log in as root
+
+::
+
+    alpine$ su -
+
+* If it has not been done before: add Zato's public key to the accepted key list
+
+::
+    alpine# cd /etc/apk/keys
+    alpine# wget https://zato.io/repo/zato-0CBD7F72.rsa.pub
+
+* If it has not been done before: add the Zato repository definition to the repository list
+
+::
+
+    alpine# echo https://zato.io/repo/stable/2.0/alpine >> /etc/apk/repositories
+
+
+* Refresh the package list
+
+::
+
+    alpine# apk update
+
+* Install Zato
+
+::
+
+    alpine# apk add zato
+
+* Confirm that the installation was successful
+
+::
+
+    alpine# su - zato -c 'zato --version'
+    Zato 2.0.7.rev-dfee180c
+    alpine#
+
+That concludes the process - you can refer to the main
+:doc:`documentation index <../../../index>`
+now.

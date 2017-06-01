@@ -20,6 +20,8 @@ Ubuntu                  12.04, 14.04, 16.04    :doc:`Installation instructions <
 
 Debian                  7.x, 8.x               :doc:`Installation instructions <./debian>`
 
+Alpine                  3.6.x or later         :doc:`Installation instructions <./alpine>`
+
 Docker                  1.0.1+                 :doc:`Quickstart <./docker>` | :doc:`Separate components <./docker-dist>`
                                                | :doc:`DockerHub <./dockerhub>`
 AWS Elastic Beanstalk   (n/a)                  :doc:`Quickstart <./awsebs-quickstart>`
