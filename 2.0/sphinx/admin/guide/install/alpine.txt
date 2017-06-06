@@ -26,11 +26,16 @@ Installation steps
     alpine# wget https://zato.io/repo/zato-0CBD7F72.rsa.pub
 
 
-* If it has not been done before: add the Zato repository definition to the repository list
+* If it has not been done before: edit your repository list so it includes the
+repositories containing the Zato package and its dependencies. You need to
+have at least the following uncommented lines in your ``/etc/apk/repositories``
+file:
 
 ::
-
-    alpine# echo https://zato.io/repo/stable/2.0/alpine >> /etc/apk/repositories
+    https://dl-cdn.alpinelinux.org/alpine/v3.6/main
+    https://dl-cdn.alpinelinux.org/alpine/v3.6/community
+    @edge https://dl-cdn.alpinelinux.org/alpine/edge/testing
+    https://zato.io/repo/stable/2.0/alpine >> /etc/apk/repositories
 
 
 * Refresh the package list
@@ -38,6 +43,12 @@ Installation steps
 ::
 
     alpine# apk update
+
+
+* Install the ``edge`` Zato dependencies separately
+
+::
+    alpine# apk add py-scipy@edge
 
 
 * Install Zato
