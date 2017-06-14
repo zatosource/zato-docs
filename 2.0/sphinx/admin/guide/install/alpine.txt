@@ -6,7 +6,7 @@ Installation on Alpine Linux
 Requirements
 ------------
 
-* Alpine Linux 3.6.1 or later
+* Alpine Linux 3.6.1 or later, *vanilla* flavour preferred.
 * Root access
 
 Installation steps
@@ -51,7 +51,25 @@ file:
     alpine# apk add py-scipy@edge
 
 
-* Install Zato
+* Alpine Linux can run with a variety of Linux kernels. Zato only works with a *vanilla*
+kernel. If you are running the *vanilla* flavour of Alpine, which runs a *vanilla*
+kernel by default, you can skip this step and the reboot; but if you are running
+another flavour of Alpine, you have a *hardened* kernel by default, and need to make
+sure your machine is running a *vanilla* kernel before using Zato.
+
+::
+    alpine# apk add linux-vanilla
+
+
+* If you just added a *vanilla* kernel, reboot your machine, then choose the
+"vanilla" option in the boot menu (not the "hardened" one); Let the machine boot,
+then log in as root again.
+
+::
+    alpine# reboot
+
+
+* You are now running a *vanilla* kernel and can proceed with the Zato installation.
 
 ::
 
