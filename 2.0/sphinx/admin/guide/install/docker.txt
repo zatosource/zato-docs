@@ -25,13 +25,13 @@ Quickstart cluster
 
 ::
 
-    host$ sudo docker build --no-cache -t zato-2.0.7 .
+    host$ sudo docker build --no-cache -t zato-2.0.8 .
 
 * Retrieve your web admin password. The password will be printed out on terminal:
 
 ::
 
-    host$ sudo docker run zato-2.0.7 /bin/bash -c 'cat /opt/zato/web_admin_password \
+    host$ sudo docker run zato-2.0.8 /bin/bash -c 'cat /opt/zato/web_admin_password \
             /opt/zato/zato_user_password'
 
 * Create a container in which Zato components will be launched:
@@ -39,7 +39,7 @@ Quickstart cluster
 ::
 
     host$ sudo docker run -it -p 22 -p 6379:6379 -p 8183:8183 -p 17010:17010 -p 17011:17011 \
-            -p 11223:11223 zato-2.0.7
+            -p 11223:11223 zato-2.0.8
 
 That concludes the process - a web-admin instance is running on http://localhost:8183 and you can log into
 it with the username 'admin' using the password printed on the terminal above.

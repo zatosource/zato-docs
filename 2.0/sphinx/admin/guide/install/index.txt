@@ -36,7 +36,7 @@ Patch releases
 --------------
 
 Each major version, such as 2.0, is periodically updated with newest patches and as whole form patch releases,
-such as 2.0.6 or 2.0.7. Each such release is available in a repository for a given operating system.
+such as 2.0.7 or 2.0.8. Each such release is available in a repository for a given operating system.
 
 Use tools supplied by the OS, such as apt-get or yum, to update to the newest patch release. No migration process is required
 afterwards.

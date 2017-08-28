@@ -57,7 +57,7 @@ Installation steps
 
     rhel# su - zato
     rhel$ zato --version
-    Zato 2.0.7.rev-dfee180c
+    Zato 2.0.8.rev-050c6697
     rhel$
 
 That concludes the process - you can refer to the main
