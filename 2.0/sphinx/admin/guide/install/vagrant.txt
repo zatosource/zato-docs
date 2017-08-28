@@ -1,9 +1,9 @@
 .. highlight:: sh
 
-Using zato-2.0.7-trusty64 box
+Using zato-2.0.8-trusty64 box
 ===============================
 
-This box is pre-build with Zato 2.0.7 installation. Using our Vagrantfile
+This box is pre-build with Zato 2.0.8 installation. Using our Vagrantfile
 allows one to have Zato quckstart environment created and running.
 
 Requirements
@@ -56,7 +56,7 @@ Usage instructions
 
   vagrant$ sudo su - zato
   zato$ zato --version
-  Zato 2.0.7.rev-dfee180c
+  Zato 2.0.8.rev-050c6697
   zato$
 
 

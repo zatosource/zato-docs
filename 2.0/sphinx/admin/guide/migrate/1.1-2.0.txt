@@ -31,7 +31,7 @@ Stopping components
 * On each operating system Zato 1.1 runs, switch current user to *zato*, for instance:
 
   ::
-  
+
     $ sudo su - zato
     $ whoami
     zato
@@ -45,9 +45,9 @@ Stopping components
 
   .. code-block:: text
       :emphasize-lines: 7,14
-  
+
       $ zato info /opt/zato/cluster1
-  
+
       +--------------------------------+-----------------------------------------------+
       |              Key               |                     Value                     |
       +================================+===============================================+
@@ -96,7 +96,7 @@ On each system Zato 1.1 is installed on, execute the following steps:
 * Issue the following command, removing /opt/zato from the system
 
   ::
-  
+
     $ sudo rm -rf /opt/zato
 
 .. _admin-guide-migrate-1.1-2.0-update-redis:
@@ -129,7 +129,7 @@ Installing binaries
   ::
 
     $ zato --version
-    Zato 2.0.7.rev-dfee180c
+    Zato 2.0.8.rev-050c6697
     $
 
 .. _admin-guide-migrate-1.1-2.0-upgrade-odb:
@@ -154,7 +154,7 @@ Upgrading ODB schema
 
   the key should read:
 
-  :: 
+  ::
 
     sqlalchemy.url = postgres://zatouser1:d0f836f96e6441@10.19.32.17:5432/zatodb1
 
@@ -163,7 +163,7 @@ Upgrading ODB schema
 * Change directory to */opt/zato/2.0/* and run the following command:
 
   ::
-    
+
       $ ./bin/alembic upgrade head
       [snip output]
       $
@@ -172,7 +172,7 @@ Upgrading ODB schema
   details and end with *0027_e139a019 -> 0028_ae3419a9 (head), gh323 http_soap migration*
 
   ::
-    
+
       $ ./bin/alembic current
       [snip cnx details] 0027_e139a019 -> 0028_ae3419a9 (head), gh323 http_soap migration
       $
@@ -193,21 +193,21 @@ Running zato migrate
   There will be 4 invocations of *zato migrate*, as below:
 
   ::
-    
+
       $ zato migrate /opt/zato/uat/load-balancer
-      Migrated /opt/zato/uat/load-balancer from 1.1 to Zato 2.0.7.rev-dfee180c
+      Migrated /opt/zato/uat/load-balancer from 1.1 to Zato 2.0.8.rev-050c6697
       $
 
       $ zato migrate /opt/zato/uat/web-admin
-      Migrated /opt/zato/uat/web-admin from 1.1 to Zato 2.0.7.rev-dfee180c
+      Migrated /opt/zato/uat/web-admin from 1.1 to Zato 2.0.8.rev-050c6697
       $
 
       $ zato migrate /opt/zato/uat/server1
-      Migrated /opt/zato/uat/server1 from 1.1 to Zato 2.0.7.rev-dfee180c
+      Migrated /opt/zato/uat/server1 from 1.1 to Zato 2.0.8.rev-050c6697
       $
 
       $ zato migrate /opt/zato/uat/server2
-      Migrated from /opt/zato/uat/server2 1.1 to Zato 2.0.7.rev-dfee180c
+      Migrated from /opt/zato/uat/server2 1.1 to Zato 2.0.8.rev-050c6697
       $
 
 .. _admin-guide-migrate-1.1-2.0-start-components:
@@ -223,14 +223,14 @@ Starting components
 
   .. code-block:: text
       :emphasize-lines: 7,15
-  
+
       $ zato info /opt/zato/cluster1
 
       +--------------------------------+----------------------------------------------------+
       |              Key               |                       Value                        |
       +================================+====================================================+
       | component_details              | {"created_user_host": "zato@myhost", "version":    |
-      |                                | "Zato 2.0.7.rev-dfee180c", "component":            |
+      |                                | "Zato 2.0.8.rev-050c6697", "component":            |
       |                                | "SERVER", "created_ts":                            |
       |                                | "2015-01-29T17:39:53.351901"}                      |
       +--------------------------------+----------------------------------------------------+

@@ -44,24 +44,14 @@ Installation steps
 
     ubuntu$ sudo apt-get install zato
 
-* Confirm the installation on Ubuntu 12.04 LTS and 14.04 LTS
+* Confirm the installation:
 
 ::
 
     ubuntu$ sudo su - zato
     ubuntu$ zato --version
-    Zato 2.0.7.rev-dfee180c
+    Zato 2.0.8.rev-050c6697
     ubuntu$
-
-* Confirm the installation on Ubuntu 16.04 LTS
-
-::
-
-    ubuntu$ sudo su - zato
-    ubuntu$ zato --version
-    Zato 2.0.7.rev-53070f37
-    ubuntu$
-
 
 That concludes the process - you can refer to the main
 :doc:`documentation index <../../../index>`

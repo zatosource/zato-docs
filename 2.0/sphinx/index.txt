@@ -273,12 +273,6 @@ Programming guide
     * **Customizing web admin:**
       :doc:`Making sure you work on the right environment<progguide/web-admin-settings>`
 
-Processes
-=========
-
-    * **Business state transitions**:
-      :doc:`Managing business states<proc/bst/index>`
-
 API Testing
 ===========
 
