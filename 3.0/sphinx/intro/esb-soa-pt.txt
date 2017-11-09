@@ -1,0 +1,375 @@
+============================
+O que ESB e SOA são, afinal?
+============================
+
+.. raw:: html
+
+    <style type="text/css">
+    blockquote {
+        font-family: Georgia, serif;
+        font-size: 18px;
+        font-style: italic;
+        width: 500px;
+        margin: 0.25em 0;
+        padding: 0.35em 40px;
+        line-height: 1.45;
+        position: relative;
+        color: #383838;
+        text-align:center
+    }
+
+    blockquote:before {
+        display: block;
+        padding-left: 10px;
+        content: "  \201C";
+        font-size: 80px;
+        position: absolute;
+        left: 20px;
+        top: -20px;
+        color: #7a7a7a;
+    }
+
+    blockquote cite {
+        color: #999999;
+        font-size: 14px;
+        display: block;
+        margin-top: 5px;
+        }
+
+    blockquote cite:before {
+        content: "\2014 \2009";
+    }
+    </style>
+
+    <blockquote>
+    An excellent description of system-of-systems thinking
+    <br/>
+      <a href="https://twitter.com/ncoghlan_dev/status/337907854944129025">Nick Coghlan</a>, Core Python Developer
+    </blockquote>
+    <br/>
+
+Translated from :doc:`English <./esb-soa>` by
+`Allan Douglas R. de Oliveira <https://github.com/douglaz>`_,
+`Daniel Reis <http://openerpmanagementsystem.blogspot.com/>`_
+and
+`Danilo Chilene <https://twitter.com/danilochilene>`_.
+
+Also available in
+:doc:`Català <./esb-soa-ca>`,
+:doc:`Deutsch <esb-soa-de>`,
+:doc:`Français <./esb-soa-fr>`,
+:doc:`italiano <esb-soa-it>`,
+:doc:`Nederlands <esb-soa-nl>`,
+:doc:`ру́сский <./esb-soa-ru>`,
+:doc:`Türkçe <./esb-soa-tr>`
+and
+:doc:`中文 <./esb-soa-cn>`.
+
+A sigla ESB, e outra relacionada - SOA - podem ser uma fonte de confusão. ESB se expande para Enterprise Service Bus. SOA significa Arquitetura Orientada a Serviços.
+
+Isso ainda não explica muito por isso damos aqui mais informações em linguagem simples, sem demasiado jargão corporativo.
+
+--------------
+Toda a verdade
+--------------
+
+Pense no que acontece quando você entra na aplicação frontend do seu banco:
+
+1) Seu nome é exibido
+2) O saldo da conta está lá
+3) Seus cartões de crédito e débito são apresentados
+4) A lista de seus fundos de investimento pode estar lá
+5) Você obterá uma lista pré-calculada de empréstimos atraentes em que você poderá estar interessado
+
+Agora, é muito provável que todas estas partes pertençam a diferentes sistemas e aplicações, sendo que cada qual expõe dados através de uma interface de algum tipo (HTTP, JSON, AMQP, XML, SOAP, FTP, CSV, realmente não importa):
+
+1) é de um CRM rodando em Linux e Oracle
+2) é de um sistema COBOL em um mainframe z/OS
+3) diz-se que é de um mainframe mas ninguém lhe dá mais detalhes, dizendo apenas que preferem CSV a qualquer outra coisa
+4) é de uma mistura de PHP e Ruby rodando em Windows
+5) é de PostgreSQL, Python e Java rodando em Linux e Solaris
+
+A questão agora é, como você faz a aplicação frontend conversar com essas de 1 a 5? **Bem, você não faz.**
+
+Esta é a base fundamental para garantir que estes tipos de ambientes podem escalar acima de um punhado de sistemas.
+**Você não pode deixá-los falar diretamente uns com os outros**.
+
+No diagrama abaixo, cada invocação de um serviço que outro sistema fornece é representada por uma linha com uma largura ou estilo diferente:
+
+.. image:: /gfx/intro/mess1.png
+   :alt:
+
+Note que nem sequer são mostrados os processos de alto nível (App1 invoca App2 e App3 ou App5 dependendo se uma resposta anterior da App6 foi bem sucedida
+de forma que a App4 pode em uma etapa posterior obter dados produzidos pela App2 mas só se a App1 permitir, etc.).
+
+Também note que não estamos falando de servidores - cada um dos sistemas pode estar sendo executado em 10 servidores físicos, portanto haverá pelo menos 60 componentes físicos falando entre si.
+
+Ainda assim, algumas questões se tornam evidentes.
+
+Como separar as interfaces? Como você pode planejar lançamentos? Como coordenar atualizações ou interrupções planejadas se cada aplicação é gerenciada por diferentes equipes, fornecedores ou departamentos e metade dos desenvolvedores originais já saiu?
+
+Se você acha que pode lidar com 6 aplicações, que tal lidar com 30?
+
+.. image:: /gfx/intro/mess2a.png
+   :alt:
+
+Você consegue lidar com 400? Que tal 2000?
+Cada aplicação pode ser um ecossistema único requerendo 10 servidores ou outros dispositivos para funcionar, o que correspondem a 20 mil componentes espalhados por continentes e todo o tipo de fronteiras técnicas e culturais, cada componente constante e incessantemente querendo trocar mensagens e conversar com os outros o tempo todo sem descansar, nunca. (Nós vamos poupá-lo de um diagrama)
+
+Há um bom nome para esta situação: Se chama uma confusão.
+
+---------------------------------
+Como você pode limpar a confusão?
+---------------------------------
+
+A primeira coisa é honestamente admitir que a situação ficou fora de controle.
+Isto permite que se procure um remédio sem sentir demasiada culpa. OK, aconteceu, você não sabia como fazer melhor, mas há um jeito de resolver.
+
+Isso pode significar uma mudança organizacional na abordagem à TI, mas outro passo é lembrar que sistemas e aplicativos não são criados apenas para trocar dados entre si.
+Elas têm como objetivo apoiar os processos do negócio, independentemente do qual seja o seu negócio: serviços bancários, gravações de áudio, dispositivos de radiolocalização, qualquer coisa.
+
+Assim que você tiver ambos claramente definidos, pode começar a pensar em construir ou redesenhar os seus sistemas em torno de serviços.
+
+Um serviço é algo interessante, reutilizável e atômico que um sistema fornece a outras aplicações que possam dele fazer uso
+, mas nunca é exposto diretamente, ponto-a-ponto. Esta é a definição mais curta e relevante possível.
+
+Se uma determinada funcionalidade de um sistema preencher estes 3 requisitos, ou seja, se é:
+
+* **I** nteressante
+* **R** eutilizável
+* **A** tômica
+
+então há uma boa chance de que possa e deva ser exposta a outros sistemas como um serviço, mas nunca diretamente.
+
+Vamos discutir esta abordagem IRA através de alguns exemplos.
+
+================== ==============================================================================================================================
+Variável           Notas
+================== ==============================================================================================================================
+Ambiente           O CRM de uma companhia de eletricidade
+Funcionalidade     Retornar uma lista de clientes que estavam ativos em um portal de auto-serviço no
+                   3 º trimestre 2012
+É interessante?    Sim, muito interessante. Isto pode ser usado para gerar todos os tipos de relatórios
+                   e estatísticas úteis.
+É reutilizável?    Não, realmente não. Apesar de permitir a criação de construções de alto nível, tais como
+                   estatísticas de um ano inteiro, é claro que ela não terá muita utilidade em 2018.
+É atômica?         Muito provavelmente, sim. Se existirem serviços semelhantes para outros trimestres,
+                   será possível obter uma visão completa do ano
+Como fazê-la IRA?  * Permitir aceitar datas de início de fim em vez de ficar limitada a apenas um trimestre;
+                   * Fazê-la aceitar aplicativos arbitrários, não apenas o portal, deixe o aplicativo em que está interessado
+                     ser um parâmetro de entrada, ele não pode apenas ficar hardcoded como portal.
+================== ==============================================================================================================================
+
+================== ==============================================================================================================================
+Variável           Notas
+================== ==============================================================================================================================
+Ambiente           Site de e-commerce
+Funcionalidade     Retornar cada pedaço de informação já coletada relacionada a um determinado cliente
+É interessante?    Bem, sim. Se você tiver acesso ao todo, poderá sempre escolher aquilo que realmente precisa.
+É reutilizável?    Curiosamente, não exatamente. Haverá poucas aplicações, se alguma, que estarão interessadas em cada bit de dados.
+É atômica?         Definitivamente não. Esta monstruosa funcionalidade estará obrigada a ser logicamente composta por dezenas de partes menores.
+Como fazê-la IRA?  * Quebre-a em partes menores. Pense o que descreve um cliente - endereços, telefones,
+                     produtos favoritos, métodos de contato preferidos e assim por diante - cada uma delas
+                     deve ser transformada em um serviço independente.
+                   * Use o ESB para criar serviços compostos a partir dos atômicos
+================== ==============================================================================================================================
+
+================== =======================================================================================================================================
+Variável            Notas
+================== =======================================================================================================================================
+Ambiente            Qualquer CRM em qualquer lugar
+Funcionalidade      Atualizar a coluna CUST_AR_ZN na tabela C_NAZ_AJ após alguém criar uma conta
+É interessante?     Absolutamente não. Esta é uma função interna do CRM. Nenhuma pessoa sã no mundo quer lidar com uma funcionalidade de tão baixo nível.
+É reutilizável?     Sim, provavelmente. Uma conta pode ser criada através de múltiplos canais então parece algo que pode ser reutilizável.
+É atômico?          Parece que sim. É apenas uma simples atualização em uma coluna em uma tabela.
+Como fazê-la IRA?   Nem tente transformá-la em um serviço. Ela não é interessante. Ninguém quer pensar
+                    em uma particular coluna ou tabela de um sistema. Este é um detalhe intrínseco do CRM, então mesmo
+                    que ele for reutilizável e atômico, você não deve fornecer um serviço em cima dele. É
+                    uma responsabilidade do CRM pensar sobre isso, não faça ser uma responsabilidade dos outros também.
+================== =======================================================================================================================================
+
+=================== =============================================================================================
+Variável            Notas
+=================== =============================================================================================
+Ambiente            Uma operadora de celular
+Funcionalidade      Recarregar uma cartão pré-pago em um sistema de faturamento
+É interessante?     Extremamente. Todo mundo quer usar-la através de mensagens de texto, mensagens instantâneas, portais, cartões de presente
+                    etc.
+É reutilizável?     Muito reutilizável, ela pode participar em todos os tipos de processos de alto nível
+É atômica?          Sim. Do ponto de vista da aplicação que chama, ela pode recarregar o cartão ou não. É irrelevante que
+                    um sistema de faturamento vai implementar essa funcionalidade como uma série de passos.
+                    Do ponto de vista de negócio, isso é um serviço atômico e indivisível oferecido pelo sistema de faturamento.
+Como fazê-la IRA?   Já é IRA.
+=================== =============================================================================================
+
+Se você programou alguma coisa nos últimos 50 anos ou mais, fica agora bem claro que
+expor um serviço é precisamente como expor uma API em uma parte do código para outra.
+A única diferença é que você não está lidando com submódulos de um único sistema,
+você está operando em um nível de todo um ambiente de sistemas distintos.
+
+--------------------------------------------------
+Tornando serviços disponíveis em um ESB em uma SOA
+--------------------------------------------------
+
+Agora que você sabe que sistemas não trocam informações diretamente e
+você entende o que um serviço é, você pode começar a usar um ESB.
+
+.. image:: /gfx/intro/esb-ok.png
+   :alt:
+
+Agora se torna o trabalho do ESB expor e invocar serviços dos sistemas
+integrados. Desta forma, na maioria dos casos, apenas um método de acesso, uma interface, precisa
+ser definida entre cada sistema e o ESB.
+
+Então se, como no diagrama acima, você possuir 8 sistemas, haverá 16 interfaces
+(uma em cada direção) para criar, manter, gerenciar e cuidar.
+
+Sem um ESB você teria 56 interfaces para pensar sobre e lidar com (assumindo que cada
+sistema fale com o outro).
+
+40 interfaces a menos significam menor perda de tempo e mais dinheiro poupado. Esta é
+uma das razões que as suas sextas-feiras serão menos tensas.
+
+Somente este fato sozinho já deveria fazê-lo fortemente considerar introduzir um ESB.
+
+Se um sistema vai ser reescrito, mudar de dono, vai ser quebrado entre departamentos
+ou fornecedores, vai ser um dever do pessoal de ESB lidar com a mudança. Nenhum dos
+outros sistemas vão perceber alguma coisa porque as interfaces deles com o ESB ficarão
+intactas.
+
+Quando você começa a respirar serviços IRA diariamente você pode começar a pensar
+em serviços compostos.
+
+Lembra do tipo de serviço 'me-dê-tudo-o-que-você-conseguir-sobre-esse-cliente', lá em cima?
+
+Não era uma boa ideia criá-lo, mas às vezes você
+vai precisar lidar com aplicações cliente que precisam da informação agregada e sumarizada.
+Vai ser o pessoal de ESB que vai ser responsável por escolher os melhores serviços atômicos
+para construir o serviço composto para esse particular cliente que requer este particular
+conjunto de dados compostos.
+
+Com o tempo toda a organização vai começar a entender que não é mais sobre
+tabelas no banco de dados, batches, funções, rotinas ou registros. Vai ser
+sobre uma arquitetura centrada nos serviços interessantes, reutilizáveis e atômicos
+oferecidos pelas aplicações ao ESB.
+
+Não mais as pessoas vão pensar que aplicações e sistemas enviam coisas uns pros
+outros. Elas vão ver o ESB como uma porta universal para serviços interessantes que os
+próprios sistemas delas podem fazer uso. E elas não vão nem mesmo se importar em checar quem exatamente fornece
+o quê. O sistemas delas somente vão lidar com o ESB.
+
+É preciso tempo, paciência e um esforço coordenado mas é factível.
+
+
+--------------------
+Mas cuidado com...
+--------------------
+
+A melhor maneira de arruinar o conceito todo de SOA é lançar um ESB e esperar
+que as coisas simplesmente se acertem. Apesar de ainda ser uma ótima idéia,
+a simples instalação de um ESB não vai conseguir muito, infelizmente...
+
+Na melhor das hipóteses, varrer alguma coisa para debaixo do tapete, como no diagrama abaixo,
+vai resultar em nada.
+
+
+.. image:: /gfx/intro/esb-mess.png
+   :alt:
+
+O seu pessoal de TI vai detestar o sistema e a gestão vai primeiro tolerar o
+ESB como uma novidade, mas depois ele vai se tornar motivo de piada.
+"O que? Esta nova bala de prata? Hahaha".
+
+Essas consequências são inevitáveis se o ESB não for parte de uma plano maior de realmente
+fazer as coisas avançarem.
+
+-------------------------------------------------------
+Um ESB é somente para bancos e coisas parecidas, então?
+-------------------------------------------------------
+
+Não, não mesmo. Ele é uma boa escolha em qualquer situação que requer a cooperação de várias fontes de dados
+e múltiplos métodos de acesso a fim de conseguir um resultado interessante.
+
+Por exemplo, pegar as últimas medidas de sensores de temperatura e publicar em
+vários canais, como alertas de email e em um app para iPhone parece ser uma ótima escolha
+para uma plataforma de integração.
+
+Periodicamente consultar e monitorar se todas as instâncias de uma aplicação crítica estão de pé
+e se não estiverem, rodar um script pré-configurado enquanto mensagens de texto são enviadas
+para os admins também parece ser uma escolha muito boa.
+
+Tudo que precisa de integração em um ambiente claro e bem definido é potencialmente
+um bom caso de uso para um serviço ESB mas como sempre, decidir se alguma coisa realmente é
+a escolha ideal vai vir da experiência. Naturalmente, o time por trás do Zato
+`pode ajudar <https://zato.io/support.html>`_.
+
+-------------------------------------------------------
+Mas eu ouvi que SOA era sobre XML, SOAP e web services
+-------------------------------------------------------
+
+Sim, é isso que certas pessoas gostariam que você acreditasse.
+
+Se pessoas ou fornecedores com os quais você trabalhou fizeram um encoding BASE64 de um arquivo CSV e enviaram
+para você em uma mensagem SOAP protegida por SAML2 então é perfeitamente compreensível
+como você pode ter desenvolvido tal impressão.
+
+XML, SOAP e web services possuem os seus uso mas como tudo, podem ser mal utilizados.
+
+SOA é sobre uma arquitetura limpa e gerenciável. Que um determinado serviço pode
+usar ou não SOAP é praticamente irrelevante. Como uma abordagem arquitetural, SOA
+ainda vai ser válida mesmo que nenhum serviço SOAP for utilizado.
+
+Se um arquiteto desenha uma prédio bonito, ele não pode fazer muito
+em relação à cor que as pessoas escolhem para os interiores.
+
+Então não, SOA não é apenas sobre XML, SOAP e web services. Estes podem ser utilizados também
+mas não representam toda a história por trás dela.
+
+Você é encorajado a gentilmente direcionar os seus colegas perdidos a este artigo para fazê-los
+entender sobre o que realmente SOA é.
+
+----------------
+E ainda tem mais
+----------------
+
+Este capítulo cobre apenas a coisas mais básicas mas deve te dar um forte
+entendimento de como ESB e SOA se parecem e o que é necessário para conseguir
+o sucesso.
+
+Outros tópicos, não abordados aqui, incluem, mas não se limitam a:
+
+* Como conseguir suporte para o gerenciamento de um ESB
+* Como reunir arquitetos SOA e equipes de análise
+* Como introduzir um Modelo Canônico de Dados (CDM - Canonical Data Model) em uma organização
+* Indicadores de Desempenho (KPI - Key Performance Indicator) - agora que você possui um método comum e unificado
+  de prover serviços através de sistemas, você deve começar a monitorar
+  e avaliar o que realmente é entregue a você
+* Gestão de Processos de Negócio (BPM - Business Process Management) - como e quando escolher uma plataforma de BPM
+  para orquestrar os serviços (resposta: não muito cedo, familiarize-se antes com
+  a construção de adoráveis e legais serviços)
+* O que fazer com sistemas que não possuem APIs? Por exemplo, deveria um ESB
+  acessar o banco de dados deles diretamente? (resposta: depende, não há uma regra de ouro)
+
+-------------------------------
+Então o que é Zato, exatamente?
+-------------------------------
+
+`Zato <https://zato.io>`_ é um ESB e um servidor de aplicações escrito em Python
+e pode ser usado para construir middlewares e sistemas backend.
+É software open-source com suporte disponível tanto comercialmente quando pela comunidade.
+E `Python <http://python.org>`_ é uma linguagem de programação famosa por sua facilidade de uso e produtividade.
+
+Usar Python e Zato significa você ser mais produtivo e precisar gastar menos tempo
+com aborrecimentos.
+
+Zato foi escrito **por pragmatistas para pragmatistas**. Não é apenas mais um outro sistema
+rapidamente costurado por um fornecedor na onda da moda de ESB/SOA.
+
+Na verdade, ele nasceu da experiência prática de apagar incêndios causados por sistemas desse tipo.
+De fato, os autores do Zato gastaram tanto tempo lidando com tais ambientes de horror
+que eles se tornaram praticamente imunes a qualquer fogo.
+
+Essa é a fornalha de onde Zato surgiu e é por isso que ele
+pode oferecer produtividade e facilidade de uso sem precedentes por outras soluções aparentemente semelhantes.
+
+Te vejo :doc:`lá <../index>`!

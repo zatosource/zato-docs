@@ -1,0 +1,225 @@
+.. highlight:: python
+   :linenothreshold: 0
+
+SOAP examples
+==============
+
+Create a :doc:`SOAP channel<../../web-admin/channels/soap>` to  turn on
+automatic (de-)serialization of incoming/returned SOAP messages. You deal with the SOAP
+body only, headers are dealt with by Zato itself.
+
+As with :doc:`XML<./xml>`, the examples below use `lxml <http://lxml.de>`_ because it's
+a very good choice for efficient XML processing but you're not constrained to that one library
+only.
+
+lxml offers every feature you need for working XML, such as namespaces, XPath,
+XSLT, XInclude, XML Schema, RelaxNG and many more but if you prefer other tools
+you can use anything and Zato won't constrain you.
+
+
+.. _progguide-examples-soap-request:
+
+Accessing SOAP request
+----------------------
+
+The SOAP body converted to an `ObjectifiedElement <http://lxml.de/objectify.html>`_ 
+is available as self.request.payload. As with any other channels, the raw request
+is available as self.request.raw_request should you need to access SOAP headers
+manually.
+
+.. code-block:: xml
+
+ <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+   xmlns:ns="http://example.com/ns">
+    <soapenv:Header/>
+    <soapenv:Body>
+      <ns:request>
+       <ns:customer>
+        <ns:id>123</ns:id>
+        <ns:name type="NCHZ">John Brown</ns:name>
+       </ns:customer>
+      </ns:request>
+    </soapenv:Body>
+ </soapenv:Envelope>
+
+::
+
+ from zato.server.service import Service
+ 
+ class MyService(Service):
+     def handle(self):
+         root = self.request.payload
+         self.logger.info(type(root))
+         self.logger.info(root.customer.id.text)
+         self.logger.info(root.customer.name.text)
+         self.logger.info(root.customer.name.get('type'))
+
+::
+
+  INFO - <type 'lxml.objectify.ObjectifiedElement'>
+  INFO - 123
+  INFO - John Brown
+  INFO - NCHZ
+
+.. _progguide-examples-soap-response:
+
+Creating responses
+------------------
+
+Assign a string representation of the SOAP body to return to self.response.payload. It doesn't
+matter how the payload is produced as long as it results in a string. The payload is wrapped
+in a SOAP header by Zato.
+
+::
+
+ # lxml
+ from lxml.builder import E as e
+ from lxml.etree import tostring
+ 
+ # Zato
+ from zato.server.service import Service
+ 
+ class MyService(Service):
+     def handle(self):
+         root = e.response(e.customer(e.preferred_currency('SGD')))
+         self.response.payload = tostring(root)
+
+.. code-block:: xml
+
+ $ curl localhost:11223/example -H 'SOAPAction:example' -d @soap1.xml 
+ <?xml version='1.0' encoding='UTF-8'?>
+  <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
+   xmlns="https://zato.io/ns/20130518">
+    <soap:Body>
+     <response>
+      <customer>
+       <preferred_currency>SGD</preferred_currency>
+      </customer>
+     </response>
+    </soap:Body>
+   </soap:Envelope>
+ $
+
+.. _progguide-examples-soap-invoking-wsdl:
+
+Invoking a SOAP service (from WSDL)
+-----------------------------------
+
+If you created
+an :doc:`outgoing SOAP connection <../../web-admin/outgoing/soap>`
+using the serialization format of *Suds* and linked the connection to a WSDL,
+the remote end can be invoked directly using pure-Python business objects
+automatically read from the WSDL's XSD schema.
+
+Note that the client object is based on `Suds <https://bitbucket.org/ovnicraft/suds/>`_ and offers everything Suds does.
+
+Assumming the WSDL is as `here <http://www.webservicex.net/CurrencyConvertor.asmx?WSDL>`_ the code to invoke
+it will be as follows - observe that no manual serialization is needed to invoke WSDL-based resources.
+
+::
+
+  from zato.server.service import Service
+
+  class MyService(Service):
+      def handle(self):
+
+          with self.outgoing.soap.get('CurrencyConverter').conn.client() as client:
+
+              # Convert from/to
+              from_ = 'EUR'
+              to = 'JPY'
+
+              # Only pure-Python objects are used to invoke a remote service
+              rate = client.service.ConversionRate(from_, to)
+
+              # What is the rate, anyway?
+              self.logger.info('%s/%s rate is %s', from_, to, rate)
+
+In server.log:
+
+::
+
+  INFO - EUR/JPY rate is 134.0295
+
+.. _progguide-examples-soap-invoking-no-wsdl:
+
+Invoking a SOAP service (no WSDL)
+---------------------------------
+
+After creating an :doc:`outgoing SOAP connection <../../web-admin/outgoing/soap>`
+with serialization format of *String*
+and without providing a link to a WSDL, you need to invoke it with a string on input. The string will
+be wrapped in a SOAP body by Zato. Likewise, Zato will add all the SOAP headers required.
+
+Request and response as expected/returned by a sample 
+`CurrencyConverter <http://www.webservicex.net/CurrencyConvertor.asmx>`_
+online:
+
+.. code-block:: xml
+
+ <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+  xmlns:web="http://www.webserviceX.NET/">
+    <soapenv:Header/>
+    <soapenv:Body>
+       <web:ConversionRate>
+          <web:FromCurrency>NOK</web:FromCurrency>
+          <web:ToCurrency>HRK</web:ToCurrency>
+       </web:ConversionRate>
+    </soapenv:Body>
+ </soapenv:Envelope>
+
+.. code-block:: xml
+
+ <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/CurrencyConvertersoap/envelope/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <soap:Body>
+       <ConversionRateResponse xmlns="http://www.webserviceX.NET/">
+          <ConversionRateResult>0.9384</ConversionRateResult>
+       </ConversionRateResponse>
+    </soap:Body>
+ </soap:Envelope>
+ 
+It doesn't matter how a request is produced as long as an outgoing connection
+is invoked with its string representation. 
+
+Sample code to invoke the service and get the conversion rate:
+
+:: 
+
+ # lxml
+ from lxml.etree import Element, fromstring, QName, SubElement, tostring
+ 
+ # Zato
+ from zato.server.service import Service
+ 
+ class MyService(Service):
+     def handle(self):
+ 
+         # Remote service's namespace
+         ns = 'http://www.webserviceX.NET/'
+         
+         # Create a request
+         root = Element(QName(ns, 'ConversionRate'), nsmap={None:ns})
+         FromCurrency = SubElement(root, 'FromCurrency')
+         ToCurrency = SubElement(root, 'ToCurrency')
+         
+         FromCurrency.text = 'NOK'
+         ToCurrency.text = 'HRK'
+ 
+         # Convert the XML object to string that will be wrapped in the SOAP body
+         req = tostring(root)
+         
+         # Invoke a service and fetch its response
+         response = self.outgoing.soap.get('CurrencyConverter').conn.send(self.cid, req)
+         
+         # Convert the response to XML and fetch the rate using XPath
+         xml = fromstring(response.text.encode('utf-8'))
+         rate = xml.xpath('//ws:ConversionRateResult/text()', namespaces={'ws':ns})
+         
+         # XPath above returned a one-element list of results hence index notation here
+         self.logger.info(rate[0])
+
+.. code-block:: text
+
+  INFO - 0.9384

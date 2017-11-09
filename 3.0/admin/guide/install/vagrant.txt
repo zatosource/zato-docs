@@ -1,0 +1,65 @@
+.. highlight:: sh
+
+Using zato-2.0.8-trusty64 box
+===============================
+
+This box is pre-build with Zato 2.0.8 installation. Using our Vagrantfile
+allows one to have Zato quckstart environment created and running.
+
+Requirements
+------------
+
+* Vagrant
+* VirtualBox
+
+Usage instructions
+------------------
+
+* Download Vagrantfile
+
+::
+
+  $ wget https://zato.io/download/vagrant/Vagrantfile \
+      https://zato.io/download/vagrant/setup-quickstart.sh
+
+
+* Start the box after the download is complete. Zato quickstart environment
+  will be created.
+
+::
+
+  $ vagrant up
+
+* Reload the box to start all Zato components as system services.
+
+::
+
+  $ vagrant reload
+
+* In order to access Zato web-admin, you need to retrive the password:
+
+::
+
+  $ vagrant ssh -c 'cat /opt/zato/web_admin_password'
+
+* Navigate to http://10.77.77.77:8183 and log into the web-admin
+
+* If you want to log into the box, execute:
+
+::
+
+  $ vagrant ssh
+
+* While inside the box, you can switch to 'zato' user and check Zato version
+
+::
+
+  vagrant$ sudo su - zato
+  zato$ zato --version
+  Zato 2.0.8.rev-050c6697
+  zato$
+
+
+That concludes the process - you can refer to the main
+:doc:`documentation index <../../../index>`
+now.

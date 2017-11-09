@@ -1,0 +1,42 @@
+Security - RBAC - Permissions
+=============================
+
+Overview
+--------
+
+Used for browsing, renaming or deleting existing permissions. In Zato 2.0 the set of permissions is fixed and cannot be expanded - 
+there are no means to bring a permission back after it has been deleted.
+
+* Menu path: Security -> RBAC -> Permissions
+* Example address: http://localhost:8183/zato/security/rbac/permission/?cluster=1
+
+.. image:: /gfx/web-admin/security/rbac/permissions.png
+   :width: 95%
+
+Edit
+----
+
+.. image:: /gfx/web-admin/security/rbac/permissions-edit.png
+
+====== ========================
+Header Notes
+====== ========================
+Name   New name of a permission
+====== ========================
+
+Delete
+------
+
+Deletes the permission **permanently** - short of recreating a cluster there are no means to create a new permission, though
+future Zato version will support it.
+
+.. image:: /gfx/web-admin/security/rbac/permissions-delete.png
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================

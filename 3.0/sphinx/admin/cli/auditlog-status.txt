@@ -1,0 +1,135 @@
+py auditlog status
+==================
+
+Overview
+------------
+
+Returns status of :doc:`HTTP audit log <../../web-admin/audit-log/http/index>` for channels matching input criteria.
+
+
+Subcommands
+------------
+
+* (None)
+
+Command-specific parameters
+---------------------------
+
+========= ================================================================================== =================
+Name      Description                                                                        Example value
+========= ================================================================================== =================
+server    Path to a running server to connect to                                             /srv/zato/server1
+channel   Pattern to match channel names against. Any channel whose name case-insensitively  * all
+          contains the pattern will be taken into account. Use the literal value of **all**  * customer
+          to match all channels
+========= ================================================================================== =================
+
+Exit codes
+----------
+
+Exit codes the command may return:
+
+==== ==============================================
+Code Condition
+==== ==============================================
+0    Successful execution
+1    Error during invocation of a Zato server
+2    No channels matching input criteria
+==== ==============================================
+
+
+Usage
+-----
+
+::
+
+    $ py auditlog enable --help
+    Usage: auditlog enable [OPTIONS] SERVER CHANNEL
+
+    Options:
+      --help  Show this message and exit.
+    $ 
+
+::
+
+    $ py auditlog status /path/to/server all
+    2015-12-14 13:57:26,015 - Config server: `/path/to/server`
+    2015-12-14 13:57:26,015 - Config channel: `all`
+    2015-12-14 13:57:26,015 - Config query: `None`
+    2015-12-14 13:57:26,015 - Config order_by: `None`
+    2015-12-14 13:57:26,015 - Config batch_size: `None`
+    2015-12-14 13:57:26,015 - Config date_format: `None`
+    2015-12-14 13:57:26,015 - Config aid: `None`
+    2015-12-14 13:57:26,186 - Starting new HTTP connection (1): localhost
+    +------------------------------------------+---------------+
+    |               service_name               | audit_enabled |
+    +==========================================+===============+
+    | admin.invoke.json                        | True          |
+    +------------------------------------------+---------------+
+    | bst.can-transition                       | False         |
+    +------------------------------------------+---------------+
+    | bst.get-current-state-info               | False         |
+    +------------------------------------------+---------------+
+    | bst.get-definition                       | False         |
+    +------------------------------------------+---------------+
+    | bst.get-definition-list                  | True          |
+    +------------------------------------------+---------------+
+    | bst.get-history                          | False         |
+    +------------------------------------------+---------------+
+    | bst.mass-transition                      | True          |
+    +------------------------------------------+---------------+
+    | bst.transition                           | False         |
+    +------------------------------------------+---------------+
+    | myservice.customer.1                     | False         |
+    +------------------------------------------+---------------+
+    | myservice.customer.2                     | True          |
+    +------------------------------------------+---------------+
+    | myservice.customer.3                     | False         |
+    +------------------------------------------+---------------+
+    $
+
+::
+
+    $ py auditlog status /path/to/server customer
+    2015-12-14 13:57:26,015 - Config server: `/path/to/server`
+    2015-12-14 13:57:26,015 - Config channel: `customer`
+    2015-12-14 13:57:26,015 - Config query: `None`
+    2015-12-14 13:57:26,015 - Config order_by: `None`
+    2015-12-14 13:57:26,015 - Config batch_size: `None`
+    2015-12-14 13:57:26,015 - Config date_format: `None`
+    2015-12-14 13:57:26,015 - Config aid: `None`
+    2015-12-14 13:57:26,186 - Starting new HTTP connection (1): localhost
+    +------------------------------------------+---------------+
+    |               service_name               | audit_enabled |
+    +==========================================+===============+
+    +------------------------------------------+---------------+
+    | myservice.customer.1                     | False         |
+    +------------------------------------------+---------------+
+    | myservice.customer.2                     | True          |
+    +------------------------------------------+---------------+
+    | myservice.customer.3                     | False         |
+    +------------------------------------------+---------------+
+    $
+
+::
+
+    $ py auditlog status /path/to/server does-not-exist
+    2015-12-14 13:57:26,015 - Config server: `/path/to/server`
+    2015-12-14 13:57:26,015 - Config channel: `does-not-exist`
+    2015-12-14 13:57:26,015 - Config query: `None`
+    2015-12-14 13:57:26,015 - Config order_by: `None`
+    2015-12-14 13:57:26,015 - Config batch_size: `None`
+    2015-12-14 13:57:26,015 - Config date_format: `None`
+    2015-12-14 13:57:26,015 - Config aid: `None`
+    2015-12-14 13:57:26,186 - Starting new HTTP connection (1): localhost
+    2015-12-14 13:57:26,199 - No channels matching pattern `does-not-exist`
+    $
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially as an add-on
+=================== ===================================================================

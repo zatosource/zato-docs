@@ -1,0 +1,105 @@
+py auditlog search
+==================
+
+Overview
+------------
+
+Looks up items in :doc:`HTTP audit log <../../web-admin/audit-log/http/index>` and returns basic information
+regarding found ones which can be used with :doc:`py auditlog get <./auditlog-get>` to return full set of data
+on a given audit entry.
+
+In particular, column *aid* is an audit log entry ID which is provided to :doc:`py auditlog get <./auditlog-get>`
+in order to return details of an entry.
+
+Subcommands
+------------
+
+* (None)
+
+Command-specific parameters
+---------------------------
+
+============= ================================================================================== =================
+Name          Description                                                                        Example value
+============= ================================================================================== =================
+server        Path to a running server to connect to                                             /srv/zato/server1
+channel       Pattern to match channel names against. Any channel whose name case-insensitively  * all
+              contains the pattern will be taken into account. Use the literal value of **all**  * customer
+              to match all channels
+query         What to look for in the audit log of channels found, case-insensitively in HTTP    cust_id
+              request headers and body, HTTP response headers and body + in CIDs
+              (correlation IDs) assigned to requests.
+--batch-size  At most how many results to return for each channel. Defaults to 100.              20
+--order-by    Which of the columns in output to sort by. Defaults to req_time_utc.               cid
+--date-format When displaying dates, what format to use. Defaults to %Y-%m-%d %H:%M:%S.          %y%m%d
+============= ================================================================================== =================
+
+Exit codes
+----------
+
+Exit codes the command may return:
+
+==== ==============================================
+Code Condition
+==== ==============================================
+0    Successful execution
+1    Error during invocation of a Zato server
+2    No channels matching input criteria
+3    Search returned no results
+==== ==============================================
+
+
+Usage
+-----
+
+::
+
+    $ py auditlog search --help
+    Usage: auditlog search [OPTIONS] SERVER CHANNEL QUERY
+
+    Options:
+      --batch-size INTEGER
+      --order-by TEXT
+      --date-format TEXT
+      --help                Show this message and exit.
+    $
+
+Note that in usage examples below CIDs are abbreviated for clarity.
+
+::
+
+    $ py auditlog search /path/to/server chan "My customer name"
+    2015-12-14 14:42:46,689 - Config server: `/path/to/server`
+    2015-12-14 14:42:46,689 - Config channel: `chan`
+    2015-12-14 14:42:46,689 - Config query: `My customer name`
+    2015-12-14 14:42:46,689 - Config order_by: `req_time_utc`
+    2015-12-14 14:42:46,689 - Config batch_size: `100`
+    2015-12-14 14:42:46,689 - Config date_format: `%Y-%m-%d %H:%M:%S`
+    2015-12-14 14:42:46,689 - Config aid: `None`
+    2015-12-14 14:42:46,854 - Starting new HTTP connection (1): localhost
+    2015-12-14 14:42:47,097 - 1 item found in `chan1`
+    2015-12-14 14:42:47,211 - 2 items found in `chan2`
+    2015-12-14 14:42:47,360 - 0 items found in `my.service.billing.1`
+    2015-12-14 14:42:47,510 - 0 items found in `my.service.billing.2`
+    2015-12-14 14:42:47,745 - 0 items found in `my.service.billing.3`
+    2015-12-14 14:42:51,201 - 3 items found in total
+    +-----+---------------------+---------------------+---------+----------+-------+
+    |  #  |    req_time_utc     |    resp_time_utc    | channel | cid      | aid   |
+    +=====+=====================+=====================+=========+==========+=======+
+    | 1   | 2015-12-12 11:06:16 | 2015-12-12 11:06:16 | chan1   | K05..B7N | 91    |
+    +-----+---------------------+---------------------+---------+----------+-------+
+    | 2   | 2015-12-12 11:06:59 | 2015-12-12 11:06:59 | chan2   | K06..W0Z | 93    |
+    +-----+---------------------+---------------------+---------+----------+-------+
+    | 3   | 2015-12-12 11:07:00 | 2015-12-12 11:07:00 | chan2   | K39..KQT | 3657  |
+    +-----+---------------------+---------------------+---------+----------+-------+
+    $
+
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially as an add-on
+=================== ===================================================================

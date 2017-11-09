@@ -1,0 +1,238 @@
+.. highlight:: python
+   :linenothreshold: 0
+
+Where to keep configuration
+===========================
+
+This chapter discusses several approaches as to where to keep configuration 
+that is specific to services you develop, i.e. it's not about how to configure Zato itself, rather where to
+keep run-time parameters you will want to use in your own services.
+
+In short, you can keep it anywhere you want, in any data source and you're not limited
+to the choices described here but these are still recommendations you may want to
+consider using.
+
+.. _progguide-service-local-config-ini:
+
+INI files
+---------
+
+Each server's server.conf  file contains the :ref:`user_config <admin-guide-config-server-user_config>` stanza whose
+keys are labels pointing to paths the contents of which is made available to services in run-time.
+
+Assuming the configuration is:
+
+::
+
+   [user_config]
+   data1=./my1.ini
+   data2=/opt/data/my2.ini
+
+The contents of files will be available to services as:
+
+================= ===========================================
+File              Attribute
+================= ===========================================
+./my1.ini         self.user_config.data1
+/opt/data/my2.ini self.user_config.data2
+================= ===========================================
+
+Now supposing one of the files looks like:
+
+./my1.ini:
+
+::
+
+   [hello]
+   a_string=My string
+   a_list=sample,list,with,elements
+
+The exact values from the INI file will be converted to their expected Python types:
+
+::
+
+   from zato.server.service import Service
+   
+   class MyService(Service):
+   
+       def handle(self):
+           self.logger.info('INI string %r ', self.user_config.data1.my1.hello.a_string)
+           self.logger.info('INI list %r ', self.user_config.data1.my1.hello.a_list)
+
+::
+
+   INFO - INI string 'My string'
+   INFO - INI list ['sample', 'list', 'with', 'elements']
+
+The conversion works for strings and lists. If anything cannot be converted it is treated as a string.
+
+zato_extra_paths
+----------------
+
+:doc:`zato_extra_paths <../admin/guide/enabling-extra-libs>` is a directory to
+keep extra libraries that are not part of Zato. When a server is starting,
+anything that is on zato_extra_paths - either directly or through symlinks - will
+be added to PYTHONPATH.
+
+This allows one to import values from a config library simply like from any other Python
+module.
+
+The drawback is, any changes you make to the config module won't be automatically
+picked up, each server needs to be restarted manually for new changes to take effect.
+
+::
+
+   config = {'key1':'value1', 'key2':'value2', 'key3':'value3'}
+
+::
+
+   # Your app
+   from myconfig import config
+   
+   # Zato
+   from zato.server.service import Service
+   
+   class MyService(Service):
+       def handle(self):
+           self.logger.info(config)
+           
+::
+
+   INFO - {'key3': 'value3', 'key2': 'value2', 'key1': 'value1'}
+   
+Redis
+-----
+
+You can use the :doc:`Redis GUI <../web-admin/kvdb/remote-commands>`,
+:doc:`API <../public-api/details/zato.kvdb.remote-command.execute>`
+or any other external tools (such as redis-cli)
+to set config values and have services :doc:`fetch them<./kvdb>` in run-time.
+
+You have access to any features Redis supports and can store arbitrarily complex
+configuration in that manner.
+
+Redis will be consulted each time a config value is needed so any new changes will
+be visible to the services straightaway.
+
+.. image:: /gfx/progguide/service-local-config-kvdb1.png
+   :width: 95%
+   
+
+::
+
+   from zato.server.service import Service
+   
+   class MyService(Service):
+       def handle(self):
+           value = self.kvdb.conn.get('mykey1')
+           self.logger.info('value:[{}]'.format(value))
+   
+::
+
+    INFO - value:[myvalue1]
+    
+A config service
+----------------
+
+You can store configuration in plain Python in a :doc:`SimpleIO-based (SIO) <./sio>` 
+service designated to a role of a config service. This will be a service that itself won't usually accept
+any external requests nor will it be allowed to invoke it through a channel
+or scheduler.
+
+As with Redis, such an approach lets you 
+:doc:`hot-deploy <../admin/guide/installing-services>`
+any config changes without restarting
+the servers.
+
+Note that any config values must always be assigned to a class directly - never
+to an instance (self). As described in the 
+:ref:`programming conventions <progguide-conventions>` section, this is because each invocation 
+of a service creates a new instance.
+
+Being a SIO one, you can invoke it with regular Python dicts or anything dict-like.
+
+Note however that there is no guarantee as to in what order services are deployed
+on servers, hence, you must ensure that such a service is available to its users
+before other services start accessing it.
+
+::
+
+   from zato.server.service import Service
+   
+   class MyConfigService(Service):
+       
+       config = {
+           'mykey1':'myvalue1',
+           'mykey2':'myvalue2'
+       }
+       
+       class SimpleIO(object):
+           response_elem = 'config'
+           input_required = ('key',)
+           output_required = ('value',)
+           
+       def handle(self):
+           self.response.payload.value = self.config.get(self.request.input.key, 'err')
+           
+::
+
+   from zato.server.service import Service
+   
+   class MyService(Service):
+       def handle(self):
+           config_service = 'my-services.my-config-service'
+           
+           response1 = self.invoke(config_service, {'key':'mykey1'}, as_bunch=True)
+           response3 = self.invoke(config_service, {'key':'mykey3'}, as_bunch=True)
+           
+           self.logger.info('value1:[{}]'.format(response1.config.value))
+           self.logger.info('value3:[{}]'.format(response3.config.value))
+       
+::    
+
+   INFO - value1:[myvalue1]
+   INFO - value3:[err]
+
+Pulling config from any sources using hooks
+-------------------------------------------
+
+You have access to a range of :doc:`hooks <./service-hooks>` that let you plug
+into a lifecycle of a service so you can fetch configuration from data 
+sources outside of Zato if need be.
+
+In particular, before_add_to_store is a good candidate
+because this static method is executed well before a service this method is part of
+is first time invoked. As such, it can be used to pull config data and assign it to class
+it is a method of.
+
+Again, remember that there is no guarantee with regards to the order in which
+services are deployed on servers.
+
+::
+
+   from zato.server.service import Service
+   
+   class MyConfigService(Service):
+   
+       # The config is initially empty but it will be populated in before_add_to_store
+       config = {}
+   
+       class SimpleIO(object):
+           response_elem = 'config'
+           input_required = ('key',)
+           output_required = ('value',)
+   
+       def handle(self):
+           self.response.payload.value = self.config.get(self.request.input.key, 'err')
+           
+       @staticmethod
+       def before_add_to_store(logger):
+           # Imagine LDAP or any other data source is queried here and it returns
+           # a dictionary of configuration.
+           external_config = get_config()
+           
+           # Set config to whatever was fetched
+           MyConfigService2.config.update(external_config)
+           
+           # Always return True if you want for the service to be deployed
+           return True

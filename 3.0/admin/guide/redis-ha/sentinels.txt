@@ -1,0 +1,242 @@
+Redis High Availability (HA) with Sentinels
+===========================================
+
+Overview
+--------
+
+Chapter describing minimal steps necessary to set up a Redis HA environment using
+`sentinels <http://redis.io/topics/sentinel>`_
+- processes responsible
+for ensuring that `Zato </docs/>`_ servers have access to Redis nodes - along with instructions for configuring
+Zato to take advantage of an HA
+configuration.
+
+While focused on Zato, many parts of the document can be used in other contexts as well.
+
+Target environment
+------------------
+
+.. image:: /gfx/admin/redis-ha/sentinels.png
+
+Key concepts:
+
+* Zato servers don't connect to Redis nodes (servers) directly, instead they automatically use sentinels to discover
+  nodes to connect to.
+* Sentinels understand the topology of an HA environment - they are aware of all the Redis nodes and other sentinels as well.
+* Redis nodes work in active-standby mode (called `master/slave <http://redis.io/topics/replication>`_ in Redis docs) with
+  standby modes being replicas of the active one ready to become active at any time.
+* Should the current active Redis node go down, sentinels promote one of the remaining ones, if any, to become the active one that servers
+  will fail over to.
+* It's possible that during failover Zato servers won't be able to process incoming requests - requests will be rejected
+  and clients will receive errors.
+* To make decisions sentinels need a majority of votes across all the sentinels in the environment
+  hence it is compulsory to use at least 3 sentinels.
+* There is not a strict requirement to run sentinels on operating systems other than Redis nodes though separating nodesmanner
+  from sentinels increases HA and, although not documented in this document, can be set up.
+* There is no rigid relation between sentinel and node names - it is merely convenience that dictates calling a sentinel *sentinel1*
+  if a Redis node on OS *redis1* is named *node1*. Likewise, more than one sentinel may be installed along multiple nodes on any
+  system.
+* Sentinels themselves need to be monitored and brought back if they go down for any reason, for instance, by running them
+  under tools such as `supervisord <https://supervisord.readthedocs.org/en/latest/>`_.
+
+It should be emphasized that some requests may be rejected when the failover is being performed - sentinels are means of discovering
+Redis nodes in order to increase HA rather than ensuring that Zato services can use Redis in a fire-and-forget manner.
+
+By default, Zato uses Redis for
+:doc:`statistics <../../../stats/guide>`
+but the feature can be
+:ref:`turned off <admin-guide-config-server-component_enabled>`,
+for instance, if users
+:ref:`already integrate <admin-guide-config-server-newrelic>`
+with
+`NewRelic <https://newrelic.com/>`_.
+
+Configuring Redis
+-----------------
+
+During development, everything can be set up on localhost provided that /etc/hosts contains the entries:
+
+::
+
+  127.0.0.1 redis1
+  127.0.0.1 redis2
+  127.0.0.1 redis3
+
+Redis 2.8.4 or newer is required.
+
+3 hosts the Redis environment will be on are: redis1, redis2 and redis3.
+
+TCP/IP resources used:
+
+============= ================================================================================
+Address/port  Notes
+============= ================================================================================
+redis1:16300  node1 running on redis1, this will be the active (master) node initially
+redis1:16355  sentinel1 running on redis1
+redis2:26300  node2 running on redis2, standby (slave)
+redis2:26355  sentinel2 running on redis2
+redis3:36300  node3 running on redis3, standby (slave)
+redis3:36355  sentinel3 running on redis3
+============= ================================================================================
+
+6 configuration files are needed, 2 on each of the hosts, for both a Redis node and sentinel. Initially, node1 will
+be active while node2 and node3 will be standby.
+
+The configuration files has been uploaded to GitHub:
+`node1.conf <https://gist.github.com/zatosource/47773a5c3e282886ae97>`_,
+`node2.conf <https://gist.github.com/zatosource/dcc4ca2bbef7a586dbc9>`_,
+`node3.conf <https://gist.github.com/zatosource/f6e9959bf0ef4917a036>`_,
+`sentinel1.conf <https://gist.github.com/zatosource/ced433b550f9069bc1db>`_,
+`sentinel2.conf <https://gist.github.com/zatosource/f6eee115f21e9abe0297>`_
+and
+`sentinel3.conf <https://gist.github.com/zatosource/a135f5973d43a5d5ede7>`_.
+They should be treated as starting points and users are encouraged to adjust them so the configuration
+better fits their environments.
+
+Each of the files should be saved in its own directory that must be writable to Redis processes, including the ability
+for Redis to write to the config file because it is updated in run-time - configuration files are not read-only.
+
+For quick reference, node1.conf and sentinel1.conf files are as follows, respectively:
+
+::
+
+  # Host and port we will listen for requests on
+  bind redis1
+  port 16300
+  
+  # Database location
+  dir .
+
+::
+
+
+  # Host and port we will listen for requests on
+  bind redis1
+  port 16355
+  
+  #
+  # Our initial master is called redis-ha, there is a quorum of 2 sentinels
+  # needed for failover, after 10 seconds we declare a node to
+  # be down in our opinion, only 1 standby (slave) node can replicate with
+  # new master after failover and we don't allow for the same master to be failed over
+  # more often than once in 3 minutes.
+  #
+  sentinel monitor redis-ha redis1 16300 2
+  sentinel down-after-milliseconds redis-ha 10000
+  sentinel parallel-syncs redis-ha 1
+  sentinel failover-timeout redis-ha 180000
+
+
+Starting Redis
+--------------
+
+Start all nodes followed by all sentinels. Note replication messages in standby nodes. Also note 
+sentinels confirming which node is currently master and discovering themselves automatically (longer lines
+broken into separate ones for clarity).
+
+Nodes:
+
+::
+
+  redis1$ redis-server node1.conf
+  13 Jan 20:27:51.238 * The server is now ready to accept connections on port 16300
+
+::
+
+  redis2$ redis-server node2.conf
+  [4636] 13 Jan 20:29:15.038 * The server is now ready to accept connections on port 26300
+  [4636] 13 Jan 20:29:15.039 * Connecting to MASTER redis1:16300
+  [...]
+  [4636] 13 Jan 20:29:15.110 * MASTER <-> SLAVE sync: Finished with success
+
+::
+
+  redis3$ redis-server node3.conf
+  [4701] 13 Jan 20:30:53.650 * The server is now ready to accept connections on port 36300
+  [4701] 13 Jan 20:30:53.650 * Connecting to MASTER redis1:16300
+  [...]
+  [4701] 13 Jan 20:30:53.722 * MASTER <-> SLAVE sync: Finished with success
+
+Sentinels:
+
+::
+
+  redis1$ redis-server sentinel1.conf --sentinel
+  [4808] 13 Jan 20:34:59.681 # +monitor master redis-ha 127.0.0.1 16300 quorum 2
+
+
+::
+
+  redis2$ redis-server sentinel2.conf --sentinel
+  [4839] 13 Jan 20:36:52.519 # +monitor master redis-ha 127.0.0.1 16300 quorum 2
+  [4839] 13 Jan 20:36:53.222 * +sentinel sentinel 127.0.0.1:16355 127.0.0.1 16355 \
+    @ redis-ha 127.0.0.1 16300
+
+::
+
+  redis3$ redis-server sentinel3.conf --sentinel
+  [4953] 13 Jan 20:40:33.790 # +monitor master redis-ha 127.0.0.1 16300 quorum 2
+  [4953] 13 Jan 20:40:33.968 * +sentinel sentinel 127.0.0.1:16355 127.0.0.1 16355 @ \
+    redis-ha 127.0.0.1 16300
+  [4953] 13 Jan 20:40:34.560 * +sentinel sentinel 127.0.0.1:26355 127.0.0.1 26355 @ \
+    redis-ha 127.0.0.1 16300
+
+Configuring Zato
+----------------
+
+Edit
+:doc:`server.conf <../install-config/config-server>`
+of each server in a Zato cluster so the relevant keys in the *kvdb* stanza read as follows:
+
+::
+
+  use_redis_sentinels=True
+  redis_sentinels=redis1:16355, redis2:26355, redis3:36355
+  redis_sentinels_master=redis-ha
+
+:doc:`Stop <../../cli/start>`
+and
+:doc:`start <../../cli/stop>`
+all the servers again.
+
+Confirming failover capabilities
+--------------------------------
+
+Log into
+:doc:`web-admin <../../../web-admin/intro>`
+and navigate to
+:doc:`KVDB remote commands view <../../../web-admin/kvdb/remote-commands>`
+in order to set a Redis key to a value that will be expected to exist after failover.
+
+.. image:: /gfx/admin/redis-ha/command-set.png
+   :width: 95%
+
+Stop node1 - the master - and note that after aproximately 10 seconds (down-after-milliseconds)
+sentinels promote another node to the role, here it was node3.
+
+::
+
+  [4612] 13 Jan 22:20:46.303 # User requested shutdown...
+  [4612] 13 Jan 22:20:46.303 # Redis is now ready to exit, bye bye...
+
+::
+
+  [4808] 13 Jan 22:20:57.501 # +switch-master redis-ha 127.0.0.1 16300 127.0.0.1 36300
+
+In web-admin again, confirm that from Zato's perspective the connectivity to Redis still works - servers have now
+transparently reconnected to a new master and the key can be read:
+
+.. image:: /gfx/admin/redis-ha/command-get.png
+
+Other considerations
+--------------------
+
+Note in server logs error messages related to Redis, such as follows. This is expected as there is indeed a time window
+during which no connection to Redis is available - that is, after master goes down and before a new one is elected by sentinels.
+
+::
+
+  ConnectionError: Error 111 connecting 127.0.0.1:16300. Connection refused.
+  <Greenlet at 0x7efef956fcd0: <bound method MoveToTargetQueues._move_to_target_queues of
+  <zato.server.service.internal.pubsub.MoveToTargetQueues object at 0x7efef8d6d150>>>
+  failed with ConnectionError

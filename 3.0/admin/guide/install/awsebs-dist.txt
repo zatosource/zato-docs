@@ -1,0 +1,79 @@
+.. highlight:: sh
+
+Zato distributed environment with Docker on Amazon Elastic Beanstalk platform
+=============================================================================
+
+Create Zato ODB, Zato cluster and CA certificates
+-------------------------------------------------
+
+* Create Zato ODB and Zato cluster. Do this either on an instance of AMI
+  of your choice or as a separate Beanstalk app. To 
+  `create ODB <https://zato.io/docs/admin/cli/create-odb.html>`_
+  and `a cluster <https://zato.io/docs/admin/cli/create-cluster.html>`_,
+  you need to install PostgreSQL and Redis in the instance,
+  `configure <https://zato.io/docs/admin/guide/install-docker-dist.html#preparations>`_
+  and start the services.
+
+* Create CA certificates for all Zato components. To create self-signed CA, you can
+  use our ``gencert.sh`` script:
+
+::
+
+    $ mkdir -p ~/zato-cert-dev && cd ~/zato-cert-dev \
+        && wget https://zato.io/download/docker/2.0/components/gencert.sh \
+        && chmod +x gencert.sh && ./gencert.sh
+
+Create Zato components
+----------------------
+
+* Navigate to AWS Elastic Beanstalk tab and Create single-instance Docker
+  environments for each of Zato components
+
+* Modify relevant security groups to enable network communication between all
+  instances hosting Zato components.
+
+* Download Dockerfiles, configuration files and scripts for Zato load balancer,
+  web admin and servers as described in
+  `Zato documentation <https://zato.io/docs/admin/guide/install-docker-dist.html#create-and-start-zato-components>`_.
+
+e.g.
+
+::
+
+    mkdir -p ~/zato-docker-lb-dev && cd ~/zato-docker-lb-dev \
+        && wget https://zato.io/download/docker/2.0/components/load-balancer/Dockerfile \
+        && wget https://zato.io/download/docker/2.0/components/load-balancer/zato_load_balancer.config
+
+* For each component, download two scripts, ``eb_tables.config`` and
+  ``eb_swap.config``. The former changes iptables policies to make it possible
+  to connect to Docker on more than just one port, and the latter adds more swap
+  to instances. If you plan to create instances with more than 1.5GB of memory,
+  then you won't need ``eb_swap.config``.
+
+* Place the scripts in ``.ebextensions`` (mind the dot!) subdirectories within
+  directories where you downloaded Dockerfiles, config files and scripts for
+  particular Zato components, e.g. ``zato-docker-lb-dev/.ebextensions``.
+
+* Pass required parameters to each component's config file.
+
+* Zip the files for each component, e.g.:
+
+::
+
+    $ zip zato_loadbalancer.zip ca_cert.pem Dockerfile zato.load_balancer.cert.pem \
+        zato_load_balancer.config zato.load_balancer.key.pem zato.load_balancer.key.pub.pem \
+        .ebextensions/eb_iptables.config .ebextensions/eb_swap.config
+
+* Use Elastic Beanstalk's Upload and Deploy option with prepared zip files
+  to deploy each Zato component as an EB's application.
+
+* Connect to an instance hosting Zato web admin and execute the following
+  command to retrieve the password to web admin console:
+
+::
+
+    $ sudo docker run -it <image_id> cat web_admin_password
+
+* In your browser, navigate to http://<web-admin-instance>:8183, log into 
+  the console, and manually add Zato servers to Zato load balancer, as described
+  in `Adding and removing servers <https://zato.io/docs/web-admin/servers/add-remove.html>`_.

@@ -1,0 +1,834 @@
+.. highlight:: bash
+   
+Convenient API mocks with zato-apimox
+=====================================
+
+**zato-apimox** is a command-line application to create test HTTP (including TLS) and ZeroMQ servers.
+The former can respond with canned messages to requests matching predefined criteria, including URL paths, query string and HTTP method.
+
+zato-apimox is an ideal companion during development and testing, including performance tests,
+when an actual API to integrate with may be for any reason unavailable.
+
+No programming is needed to use the tool, only INI-style config files are used.
+
+Source code is freely available on `GitHub <https://github.com/zatosource/zato-apimox>`_.
+
+API developers may also take advantage of :doc:`zato-apitest <../apitest/index>`,
+the tool's counterpart used to test and invoke API endpoints in plain English.
+
+Installation
+------------
+
+zato-apimox is released independently of the core :doc:`Zato platform <../../index>` with latest version always available on
+`PyPI <https://pypi.python.org/pypi/zato-apimox/>`_.
+
+`pip <https://pip.pypa.io/en/stable/installing/>`_ is used for installing, as in the command below:
+
+::
+
+    $ sudo pip install zato-apimox
+    [snip]
+    Successfully installed zato-apimox-1.2
+    $
+
+
+Demo mode
+---------
+
+Running the following command will set up an environment with sample mocks and start an HTTP server bound to 0.0.0.0:44333:
+
+::
+
+    $ apimox demo
+    Creating directory `/tmp/16bfa5e290cb4e239b7d6505a1f76783`.
+    OK, initialized.
+    INFO - Mounting `JSON Demo - 01` on http://0.0.0.0:44333/demo (qs: {'hello': 'world'})
+    INFO - Mounting `JSON Demo - 02` on http://0.0.0.0:44333/demo (qs: {'hello': 'sky'})
+    INFO - Mounting `JSON Demo - 03` on http://0.0.0.0:44333/something/{anything} (qs: {})
+    INFO - Mounting `XML Demo - 01` on http://0.0.0.0:44333/demo (qs: {'format': 'xml'})
+    INFO - HTTPServer listening on http://0.0.0.0:44333
+
+Calling it with any HTTP client, such as curl, will return different responses depending on input criteria
+found in URL path and query string.
+
+::
+
+    $ curl http://localhost:44333/demo?hello=world
+    {"Welcome to apimox":"How's things?"}
+    $
+
+::
+
+    $ curl http://localhost:44333/demo?hello=sky
+    {"Isn't apimox great?":"Sure it is!"}
+    $ 
+
+::
+
+    $ curl http://localhost:44333/something/foo
+    {"Responses can be":"provided inline"}
+    $
+
+    $ curl http://localhost:44333/something/bar
+    {"Responses can be":"provided inline"}
+    $
+
+    $ curl http://localhost:44333/something/baz
+    {"Responses can be":"provided inline"}
+    $
+
+::
+
+    $ curl http://localhost:44333/demo?format=xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <root>
+     <element>Greetings!</element>
+    </root>
+    $ 
+
+
+Initializing environments
+-------------------------
+
+Run *apimox init* with an empty directory on input to initialize a new environment populated with sample mocks - the same ones
+*apimox demo* uses. Such a newly initialized environment is fully operational and can serve as a basis for authoring one's
+own mocks.
+
+::
+
+    $ apimox init ~/projects/my-apimox/
+    OK, initialized.
+    Run `apimox run /home/user/projects/my-apimox` for a live demo.
+    $ 
+
+Starting and stopping mocks
+---------------------------
+
+*apimox run* is the command used to start mocks configured in a given directory. If provided with only the directory on input,
+it will start plain HTTP mocks (no TLS). Additional *-t* parameter may be used to specify what sort of server to start in
+particular. Values accepted in *-t* are:
+
+===================== ======================================================================================================
+Value                 Notes
+===================== ======================================================================================================
+http-plain (default)  Starts a plain HTTP server - this is the default used if no *-t* is provided
+http-tls              Starts an HTTP server behind TLS
+http-tls-client-certs Starts an HTTP server behind TLS which requires connecting applications to use client certificates
+zmq-pull              Starts a ZeroMQ PULL socket in bind mode (clients need to connect)
+zmq-sub               Starts a ZeroMQ SUB socket in bind mode (clients need to connect)
+===================== ======================================================================================================
+
+
+It is possible to run *apimox run* multiple times against the same directory each time starting a different server type thus
+allowing for the same mock endpoints be accessible over both plain HTTP and TLS.
+
+Mocks run in foreground. To stop a mock server, press *Ctrl-C* in terminal.
+
+::
+
+    $ apimox run ~/projects/my-apimox/ -t http-plain
+    INFO - Mounting `JSON Demo - 01` on http://0.0.0.0:44333/demo (qs: {'hello': 'world'})
+    INFO - Mounting `JSON Demo - 02` on http://0.0.0.0:44333/demo (qs: {'hello': 'sky'})
+    INFO - Mounting `JSON Demo - 03` on http://0.0.0.0:44333/something/{anything} (qs: {})
+    INFO - Mounting `XML Demo - 01` on http://0.0.0.0:44333/demo (qs: {'format': 'xml'})
+    INFO - HTTPServer listening on http://0.0.0.0:44333
+    ^CKeyboardInterrupt
+    Aborted!
+    $
+
+::
+
+    $ apimox run ~/projects/my-apimox/ -t http-tls-client-certs
+    INFO - Mounting `JSON Demo - 01` on https://0.0.0.0:44777/demo (qs: {'hello': 'world'})
+    INFO - Mounting `JSON Demo - 02` on https://0.0.0.0:44777/demo (qs: {'hello': 'sky'})
+    INFO - Mounting `JSON Demo - 03` on https://0.0.0.0:44777/something/{anything} (qs: {})
+    INFO - Mounting `XML Demo - 01` on https://0.0.0.0:44777/demo (qs: {'format': 'xml'})
+    INFO - TLS HTTPServer listening on https://0.0.0.0:44777 (client certs: required)
+    ^CKeyboardInterrupt
+    Aborted!
+    $
+
+::
+
+    $ apimox run ~/projects/my-apimox/ -t zmq-pull
+    INFO - ZMQ PULL listening on tcp://0.0.0.0:55000
+    ^C
+    Aborted!
+    $ 
+
+Mock environment layout
+-----------------------
+
+An environment's default structure, right after issuing *apimox init*, is presented below:
+
+::
+
+    ~/projects/my-apimox/
+    ├── http
+    │   ├── config.ini
+    │   ├── logs
+    │   └── response
+    │       ├── json
+    │       │   ├── demo1.json
+    │       │   └── demo2.json
+    │       └── txt
+    │       └── xml
+    │           └── demo1.xml
+    ├── pem
+    │   ├── ca.cert.pem
+    │   ├── client.key-cert.pem
+    │   ├── server.cert.pem
+    │   └── server.key.pem
+    └── zmq
+        ├── config.ini
+        └── logs
+
+=============================== ==================================================================================================
+Path                            Notes
+=============================== ==================================================================================================
+/http                           Top-level directory for HTTP-related configuration (including TLS servers)
+/http/config.ini                Config file for HTTP mocks
+/http/logs                      Directory for HTTP logs
+/http/response                  Responses to respond with in HTTP mocks
+/http/response/txt              Plain text responses. Also a location to store reusable response headers in.
+/http/response/json/demo1.json  A sample JSON response returned by demo mocks
+/http/response/json/demo2.json  ″
+/pem/ca.cert.pem                CA certificate signing server certificate if using TLS.
+                                Also, if running in *http-tls-client-certs* mode, client certificates must be signed by CA(s)
+                                whose certificates are in this file.
+/pem/client.key-cert.pem        Reserved for future use
+/pem/server.cert.pem            Server certificate if using TLS
+/pem/server.key.pem             Server private key if using TLS
+=============================== ==================================================================================================
+
+Configuring HTTP mocks
+----------------------
+
+Assuming an apimox environment in *~/projects/my-apimox/* the main config file used to configure HTTP servers will be located
+in *~/projects/my-apimox/http/config.ini*. It's an INI-style file with each section containing details of an individual mock
+along with the *[apimox]* section containing top-level configuration pertaining to all mocks.
+
+A sample config.ini may look like below:
+
+::
+
+    [apimox]
+    host=0.0.0.0
+    http_plain_port=44333
+    http_tls_port=44555
+    http_tls_client_certs_port=44777
+    log_level=INFO
+    log_file_plain=plain_http.log
+    log_file_tls=tls_http.log
+    log_file_tls_client_certs=client_certs_tls_http.log
+    include=customer1.ini, customer2.ini
+
+    [Get Customer 02]
+    url_path=/customer
+    qs_cust_id=1
+    response=cust-get.json
+    resp_header_MyHeader=MyValue
+
+    [Update Customer 02]
+    url_path=/customer
+    qs_cust_id=
+    method=POST
+    response='{"status":"OK"}'
+    resp_headers=common.txt
+
+    [Get Customer Phone]
+    url_path=/phone/by-name/{name}/
+    response='{"number":"777-11-22-33"}'
+
+The file above configures settings common across all the mocks in the in [apimox] section. Two mocks follow.
+
+The first mock will return a response from the *cust-get.json* file as long as URL path is */customer* and *cust_id*
+in query string is equal to *1* and HTTP method is *GET* (default method used for matching).
+A custom header will be set in response.
+
+The second one will return the response provided inline as long as the URL path is as above, query string contains *cust_id*
+of any value plus the HTTP method is 'POST'. A list of one or more custom headers will be read from a file and returned in
+response.
+
+The last one responds to GET requests matching the */customer/name/{last_name}* pattern in URL path, for instance,
+both */phone/by-name/Smith/* and */phone/by-name/李/* will trigger the last mock.
+
+Invoking it with curl now:
+
+::
+
+    $ curl localhost:44333/customer?cust_id=1
+    {"cust_id":1, "first_name":"Hello", "last_name":"World"}
+    $
+
+::
+
+    $ curl -XPOST localhost:44333/customer?cust_id=2
+    {"status":"OK"}
+    $
+
+::
+
+    $ curl -XPOST localhost:44333/customer?cust_id=1
+    {"status":"OK"}
+    $
+
+::
+
+    $ curl localhost:44333/phone/by-name/Smith/
+    {"number":"777-11-22-33"}
+    $
+
+::
+
+    $ curl localhost:44333/phone/by-name/李/
+    {"number":"777-11-22-33"}
+    $
+
+
+What happens if no mock matches the incoming request? HTTP 412 'Precondition failed' is returned to the caller:
+
+.. code-block:: text
+  :emphasize-lines: 8,13
+
+    $ curl -v localhost:44333/address/by-name/Smith/
+    * Connected to localhost (127.0.0.1) port 44333 (#0)
+    > GET /address/by-name/Smith/ HTTP/1.1
+    > User-Agent: curl/7.35.0
+    > Host: localhost:44333
+    > Accept: */*
+    >
+    < HTTP/1.1 412 Precondition Failed
+    < Content-Type: text/plain
+    < Date: Mon, 28 Sep 2015 11:17:36 GMT
+    < Content-Length: 23
+    <
+    No matching mock found
+    * Connection #0 to host localhost left intact
+    $
+
+Likewise, HTTP 412 code will be returned if an incoming request matches more than one mock. For instance in this erroneous
+config.ini file both mocks would want to react to the same set of input parameters resulting in a run-time conflict.
+
+::
+
+    [apimox]
+    host=0.0.0.0
+    http_plain_port=44333
+    http_tls_port=44555
+    http_tls_client_certs_port=44777
+    log_level=INFO
+    log_file_plain=plain_http.log
+    log_file_tls=tls_http.log
+    log_file_tls_client_certs=client_certs_tls_http.log
+
+    [Get Customer 02]
+    url_path=/customer
+    qs_cust_id=1
+    response=cust-get.json
+
+    [Get Customer 02]
+    url_path=/customer
+    qs_cust_id=1
+    response=cust-get.json
+
+.. code-block:: text
+  :emphasize-lines: 8,13
+
+    $ curl -v http://localhost:44333/customer?cust_id=1
+    * Connected to localhost (127.0.0.1) port 44333 (#0)
+    > GET /customer?cust_id=1 HTTP/1.1
+    > User-Agent: curl/7.35.0
+    > Host: localhost:44333
+    > Accept: */*
+    >
+    < HTTP/1.1 412 Precondition Failed
+    < Content-Type: text/plain
+    < Date: Mon, 28 Sep 2015 11:23:59 GMT
+    < Content-Length: 71
+    <
+    Multiple mocks matched request: ['Get Customer 01', 'Get Customer 02']
+    * Connection #0 to host localhost left intact
+    $
+
+HTTP Examples
+~~~~~~~~~~~~~
+
+Match URL path
+``````````````
+
+*url_path* is used to match URL paths in incoming requests. It can be either hard-coded or make use of catch-all patterns.
+
+::
+
+    [Get Customer 01]
+    url_path=/customer
+    response = '"Cust 1"'
+
+    [Get Customer 02]
+    url_path=/customer/{id}
+    response = '"Cust N"'
+
+::
+
+    $ curl  http://localhost:44333/customer
+    "Cust 1"
+    $
+
+::
+
+    $ curl  http://localhost:44333/customer/123
+    "Cust N"
+    $
+
+::
+
+    $ curl  http://localhost:44333/customer/456
+    "Cust N"
+    $
+
+
+Match query string parameters
+`````````````````````````````
+
+Each mock may contain zero or more query string-related keys beginning with *qs_* so that *qs_cust_id*, *qs_first_name* indicate,
+respectively, *?cust_id=* and *?first_name=* elements in request.
+
+If a qs\_ element is provided with no value its mere existence in the request will match a given mock. If a value is given it will
+have priority over qs\_ elements without values.
+
+::
+
+    [Get Customer 01]
+    url_path=/customer
+    qs_first_name=
+    response = '"Cust 1"'
+
+    [Get Customer 02]
+    url_path=/customer
+    qs_first_name=Jack
+    response = '"Cust N"'
+
+    [Get Customer 3]
+    url_path=/customer
+    qs_first_name=Jack
+    qs_last_name=Miller
+    response = '"Cust Z"'
+
+::
+
+    $ curl http://localhost:44333/customer?first_name=Foo
+    "Cust 1"
+    $
+
+::
+
+    $ curl http://localhost:44333/customer?first_name=Jack
+    "Cust N"
+    $
+
+::
+
+    $ curl "http://localhost:44333/customer?first_name=Jack&last_name=Miller"
+    "Cust Z"
+    $
+
+
+Match method
+````````````
+
+Use the *method* key to match HTTP request methods. By default, *GET* is used unless overridden in a given config.ini's stanza.
+
+::
+
+    [Get Customer]
+    url_path=/customer
+    qs_cust_id=1
+    response = '{"cust_name":"Jack"}'
+
+    [Patch Customer]
+    url_path=/customer
+    qs_cust_id=1
+    method=PATCH
+    response = '"OK, updated"'
+
+    [Delete Customer]
+    url_path=/customer
+    qs_cust_id=1
+    method=DELETE
+    response = '"OK, deleted"'
+
+::
+
+    $ curl http://localhost:44333/customer?cust_id=1
+    {"cust_name":"Jack"}
+    $
+
+::
+
+    $ curl -XPATCH http://localhost:44333/customer?cust_id=1
+    "OK, updated"
+    $
+
+::
+
+    $ curl -XDELETE http://localhost:44333/customer?cust_id=1
+    "OK, deleted"
+    $
+
+Return inline responses
+```````````````````````
+
+If the *response* key's value starts with a single quote *'*, the value response will be sent in response as-is,
+bar single quotes at the beginning and end of the value.
+
+Content-type header is set to *application/json* and *text/xml*, depending on whether it's JSON or XML to be returned, respectively
+
+The second character of the value needs to be one of *{ " [* or any digit for it to be considered JSON.
+With XML, the second character must be an angle bracket *<*.
+
+::
+
+    [Get Customer JSON]
+    url_path=/customer
+    qs_cust_id=1
+    qs_format=json
+    response = '{"hello":"there"}'
+
+    [Get Customer XML]
+    url_path=/customer
+    qs_cust_id=1
+    qs_format=xml
+    response = '<?xml version="1.0" encoding="utf-8"?><hello>there</hello>'
+
+Return JSON and XML responses from files
+````````````````````````````````````````
+
+If a response is not provided inline, its value is obtained from a file whose extension points to a directory in the mock
+environment.
+
+::
+
+    [Get Customer JSON]
+    url_path=/customer
+    qs_cust_id=1
+    qs_format=json
+    response = cust.json
+
+    [Get Customer XML]
+    url_path=/customer
+    qs_cust_id=1
+    qs_format=xml
+    response = cust.xml
+
+.. code-block:: text
+  :emphasize-lines: 4,6
+
+        ~/projects/my-apimox/
+        ├── http
+        │   └── response
+        │       ├── json
+        │       │   └── cust.json
+        │       └── xml
+        │           └── cust.xml
+
+Now because of their extensions, cust.json is read *http/response/json* from whereas cust.xml is returned from
+*http/response/xml* sub-directories of the environment in *~/projects/my-apimox/*.
+
+Return arbitrary responses from files
+`````````````````````````````````````
+
+Any file can be returned as long as its extension matches a directory existing in an environment's *http/response* directory.
+For instance, to return CSV from *cust.csv* that file must exist in *http/response/csv*, as below:
+
+::
+
+    [Get Customer CSV]
+    url_path=/customer
+    qs_cust_id=1
+    response = cust.csv
+
+.. code-block:: text
+  :emphasize-lines: 4
+
+        ~/projects/my-apimox/
+        ├── http
+        │   └── response
+        │       ├── csv
+        │       │   └── cust.csv
+        │       ├── json
+        │       └── xml
+
+Set status code
+```````````````
+
+Use *status* key to set a status code required in response, for instance:
+
+::
+
+    [Get Customer]
+    url_path=/customer
+    status = 501
+    response = '{"hello":"there"}'
+
+.. code-block:: text
+  :emphasize-lines: 8
+
+    $ curl -v http://localhost:44333/customer
+    * Connected to localhost (127.0.0.1) port 44333 (#0)
+    > GET /customer HTTP/1.1
+    > User-Agent: curl/7.35.0
+    > Host: localhost:44333
+    > Accept: */*
+    > 
+    < HTTP/1.1 501 Not Implemented
+    < Content-Type: application/json
+    < Date: Mon, 28 Sep 2015 15:45:40 GMT
+    < Content-Length: 17
+    < 
+    * Connection #0 to host localhost left intact
+    {"hello":"there"}
+    $ 
+
+
+
+Set content type
+````````````````
+
+Use *content_type* key to set any  content type needed in response, for instance:
+
+::
+
+    [Get Customer]
+    url_path=/customer
+    content_type=text/vnd.my.content.type
+    response = '{"hello":"there"}'
+
+.. code-block:: text
+  :emphasize-lines: 9
+
+    $ curl -v http://localhost:44333/customer
+    * Connected to localhost (127.0.0.1) port 44333 (#0)
+    > GET /customer HTTP/1.1
+    > User-Agent: curl/7.35.0
+    > Host: localhost:44333
+    > Accept: */*
+    > 
+    < HTTP/1.1 200 OK
+    < Content-Type: text/vnd.my.content.type
+    < Date: Mon, 28 Sep 2015 15:49:10 GMT
+    < Content-Length: 17
+    < 
+    * Connection #0 to host localhost left intact
+    {"hello":"there"}
+    $
+
+Set response headers inline
+```````````````````````````
+
+Any *resp_header_** keys can be given values to return in response headers.
+
+If the value ends in *.txt* it's understood
+to be a file name existing in the environment's *http/response/txt* directory and the file's contents is used in response as-is.
+
+::
+
+    [Get Customer]
+    url_path=/customer
+    response = '{"hello":"there"}'
+    resp_header_Keep-Alive=timeout=60
+    resp_header_X-MyKey=MyValue
+    resp_header_X-MyOtherKey=MyOtherValue
+    resp_header_X-StillAnother=common.txt
+
+.. code-block:: text
+  :emphasize-lines: 9,10,11
+
+    $ curl -v http://localhost:44333/customer
+    * Connected to localhost (127.0.0.1) port 44333 (#0)
+    > GET /customer HTTP/1.1
+    > User-Agent: curl/7.35.0
+    > Host: localhost:44333
+    > Accept: */*
+    > 
+    < HTTP/1.1 200 OK
+    < X-MyOtherKey: MyOtherValue
+    < X-MyKey: MyValue
+    < X-YetAnotherOne: AnotherValue
+    < Keep-Alive: timeout=60
+    < Content-Type: application/json
+    < Date: Wed, 30 Sep 2015 07:55:31 GMT
+    < Content-Length: 17
+    < 
+    * Connection #0 to host localhost left intact
+    {"hello":"there"}
+    $
+
+Set response headers from files
+```````````````````````````````
+
+If a *resp_headers* key exists in configuration it must point to a file defined in the environment's *http/response/txt* directory.
+The file must be a list of one or more key/value entries, each on its own line, each key separated from the value by *=*,
+such as below:
+
+::
+
+    X-MyHeader1=MyValue1
+    X-MyHeader2=MyValue2
+
+Note that *resp_header_** entries may still override contents from *resp_headers* which is illustrated in the following
+example returning *X-MyHeader1* equal to *MyOverriddenValue* because the inline value is given precedence over
+the value X-MyHeader1 has in common.txt.
+
+::
+
+    [Get Customer]
+    url_path=/customer
+    response = '{"hello":"there"}'
+    resp_headers=common.txt
+    resp_header_X-Hello=Howdy
+    resp_header_X-MyHeader1=MyOverriddenValue
+
+.. code-block:: text
+  :emphasize-lines: 9,10,11
+
+    $ curl -v http://localhost:44333/customer
+    * Hostname was NOT found in DNS cache
+    > GET /customer HTTP/1.1
+    > User-Agent: curl/7.35.0
+    > Host: localhost:44333
+    > Accept: */*
+    > 
+    < HTTP/1.1 200 OK
+    < X-Hello: Howdy
+    < X-MyHeader2: MyValue2
+    < X-MyHeader1: MyOverriddenValue
+    < Content-Type: application/json
+    < Date: Wed, 30 Sep 2015 08:04:18 GMT
+    < Content-Length: 17
+    < 
+    * Connection #0 to host localhost left intact
+    $
+
+HTTP config.ini reference
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+An HTTP config.ini always contains the section called *[apimox]* plus any number of user-defined sections each configuring a single
+mock to match incoming requests with.
+
+[apimox]
+````````
+
+::
+
+    [apimox]
+    host=0.0.0.0
+    http_plain_port=44333
+    http_tls_port=44555
+    http_tls_client_certs_port=44777
+    log_level=INFO
+    log_file_plain=plain_http.log
+    log_file_tls=tls_http.log
+    log_file_tls_client_certs=client_certs_tls_http.log
+
+============================= =============================== ====================================================================
+Key                           Default value                   Notes
+============================= =============================== ====================================================================
+host                          0.0.0.0                         Host to bind to
+http_plain_port               44333                           Port for plain HTTP requests
+http_tls_port                 44555                           Port for TLS requests without client certificates
+http_tls_client_certs_port    44777                           Port for TLS requests with client certificates
+log_file_plain                plain_http.log                  Relative to the environment's *http/logs* directory
+log_file_tls                  tls_http.log                    ″
+log_file_tls_client_certs     client_certs_tls_http.log       ″
+include                       (None)                          Optional path or paths to additional config file(s) to include so as
+                                                              to be able to split configuration into multiple files. Paths are
+                                                              relative to the directory config.ini is in. If multiple paths are
+                                                              given, they need to be comma-separated.
+============================= =============================== ====================================================================
+
+[User mocks]
+````````````
+
+Each user-defined mock contains a list of one or more config keys. Excep for *url_path* all the keys are optional.
+
+============= ======== ================== ========================================================================================
+Key           Required Default value      Notes
+============= ======== ================== ========================================================================================
+url_path      Yes      (None)             URL endpoint for this mock
+content_type  No       application/json   Content type to set in response
+status        No       200                Status code of the response
+method        No       GET                Method that this mock must be invoked with
+response      No       ''                 Either inlined or path to a response
+qs_*          No       (not applicable)   Zero or more query string parameters to match. If no value is given, any will match,
+                                          otherwise an exact match is required.
+============= ======== ================== ========================================================================================
+
+
+Request matching
+~~~~~~~~~~~~~~~~
+
+The following algorith is used for matching requests against mocks.
+
+* On incoming request\:
+
+  * Iterate over all mocks defined and\:
+
+    * If *url_path* doesn't match, ignore the mock
+    * If *method* doesn't match, ignore the mock
+
+  * If there are any URL parameters provided on input:
+
+    * Add 200 points of matching score if config requires that exact query parameter and value (e.g. *qs_cust_id=1*)
+    * Add 1 point of matching score if config requires that exact query parameter with any value (e.g. *qs_cust_id=*)
+
+    * Add 200 points of matching score if config requires a query parameter of exact value and it wasn't given on input
+    * Add 200 points of matching score if config requires a query parameter of any value and it wasn't given on input
+
+  * The mock with the higest score is used to produce response
+
+  * If no mock matches the request or if more than one mock ends up with the highest score, HTTP 412 Precondition Failed is returned.
+
+Configuring ZeroMQ mocks
+------------------------
+
+Assuming an apimox environment in ~/projects/my-apimox/ the main config file used to configure ZeroMQ
+servers will be located in ~/projects/my-apimox/zmq/config.ini. It's an INI-style file whose only section is *[apimox]*.
+
+A sample config.ini may look like below:
+
+::
+
+    [apimox]
+    host=0.0.0.0
+    pull_port=55000
+    sub_port=55111
+    sub_prefix=
+    log_level=INFO
+    log_file_pull=pull_zmq.log
+    log_file_sub=sub_zmq.log
+
+Unlike with HTTP, there are no user-defined sections in ZeroMQ mocks and servers are completely asynchronous whose sole purpose
+is to store incoming requests on stdout and in log files.
+
+The same config file can be used for both PULL and SUB sockets - simply start apimox with either *zmq-pull* or *zmq-sub* type,
+possibly setting a subscription prefix (*sub_prefix* in config.ini) for the latter one.
+as below:
+
+::
+
+    $ apimox run ~/projects/my-apimox/ -t zmq-pull
+    INFO - ZMQ PULL listening on tcp://0.0.0.0:55000
+    $
+
+::
+
+    $ apimox run ~/projects/my-apimox/ -t zmq-sub
+    INFO - ZMQ SUB (prefix: None) listening on tcp://0.0.0.0:55111
+    $
+
+::
+
+    $ apimox run ~/projects/my-apimox/ -t zmq-sub
+    INFO - ZMQ SUB (prefix: my.prefix) listening on tcp://0.0.0.0:55111
+    $

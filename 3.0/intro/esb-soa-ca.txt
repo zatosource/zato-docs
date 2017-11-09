@@ -1,0 +1,403 @@
+==========================
+Què és un ESB i què és SOA
+==========================
+
+.. raw:: html
+
+    <style type="text/css">
+    blockquote {
+        font-family: Georgia, serif;
+        font-size: 18px;
+        font-style: italic;
+        width: 500px;
+        margin: 0.25em 0;
+        padding: 0.35em 40px;
+        line-height: 1.45;
+        position: relative;
+        color: #383838;
+        text-align:center
+    }
+
+    blockquote:before {
+        display: block;
+        padding-left: 10px;
+        content: "  \201C";
+        font-size: 80px;
+        position: absolute;
+        left: 20px;
+        top: -20px;
+        color: #7a7a7a;
+    }
+
+    blockquote cite {
+        color: #999999;
+        font-size: 14px;
+        display: block;
+        margin-top: 5px;
+        }
+
+    blockquote cite:before {
+        content: "\2014 \2009";
+    }
+    </style>
+
+    <blockquote>
+    An excellent description of system-of-systems thinking
+    <br/>
+      <a href="https://twitter.com/ncoghlan_dev/status/337907854944129025">Nick Coghlan</a>, Core Python Developer
+    </blockquote>
+    <br/>
+
+Translated from :doc:`English <./esb-soa>` by
+`Carles Sala Cladellas <https://github.com/csala>`_.
+
+Also available in
+:doc:`Deutsch <esb-soa-de>`,
+:doc:`Français <./esb-soa-fr>`,
+:doc:`italiano <esb-soa-it>`,
+:doc:`Nederlands <esb-soa-nl>`,
+:doc:`Português <./esb-soa-pt>`,
+:doc:`ру́сский <./esb-soa-ru>`,
+:doc:`Türkçe <./esb-soa-tr>`
+and
+:doc:`中文 <./esb-soa-cn>`.
+
+Els acrònims ESB i SOA, íntimament relacionats, són sovint una font de confusió. ESB correspon
+a Enterprise Service Bus (Bus de Serveis Corporatius), i SOA a Service Oriented Architecture
+(Arquitectura Orientada a Serveis)
+
+Això per si sol no explica gran cosa així que a continuació se n'exposa més informació en
+llenguatge estàndard, sense entrar en tecnicismes empresarials.
+
+---------------
+Tota la veritat
+---------------
+
+Pensem en què passa quan entrem a l'aplicació web del nostre banc:
+
+1) Es mostra el nostre nom
+2) Apareix el balanç del nostre compte
+3) Es mostren els nombres de les nostres targetes de crèdit de de dèbit
+4) Podem veure una llista dels nostres fons d'inversions
+5) Se'ns mostra una llista pre-computada de crèdits i hipoteques en els que podríem estar interessats
+
+Si hi pensem bé, és molt probable que totes aquestes peces provinguin de sistemes i aplicacions
+diferents, cada una de les quals exposa les seves dades mitjançant algun tipus d'interfície (HTTP, JSON, AMQP, XML, SOAP, FTP, CSV,
+en realitat és indiferent):
+
+1) ve d'un CRM corrent en Linux i Oracle
+2) ve d'un sistema en COBOL sobre un ordinador central en z/OS
+3) diuen que ve d'un ordinador central, però volen dir gaire cosa a part de que prefereixen
+   un CSV abans que qualsevol altre cosa
+4) ve d'una barreja de PHP i Ruby corrent sobre Windows
+5) ve de PostgreSQL, Python i Java corrent sobre Linux i Solaris
+
+La qüestió és, com podem fer que l'aplicació web sigui capaç de parlar amb les interfícies 1-5? **Bé, en realitat ho evintarem**
+
+Aquesta és la base fonamental per assegurar que entorns com aquests son escalables
+sobre múltiples sistemes. **Evitem que tots els sistemes hagin de parlar entre ells directament**
+
+En el diagrama següent, cada invocació a un servei d'un sistema diferent és
+representada en una línia de diferent amplada o estil:
+
+.. image:: /gfx/intro/mess1.png
+   :alt:
+
+Convé remarcar que ni tan sols hem mostrat cap procés a alt nivell (l'App1 invoca l'App2
+i o l'App3 o l'App5 en funció de si la resposta rebuda anteriorment de l'App6
+ha tingut èxit, de manera que l'App4 pugui més endavant fer servir les dades produïdes per l'App2, però
+això només si l'App1 no indica el contrari.).
+
+Noti's també que no hem parlat en cap moment de servidors - cada un dels sistemes pot estar corrent
+en 10 servidors físics diferents, de manera que hi hauria com a mínim 60 components físics parlant entre ells.
+
+En aquest punt, es plantegen algunes preguntes evidents:
+
+Com separem les interfícies? Com planifiquem els desplegaments? Com coordinem les actualitzacions o parades planificades si
+cada aplicació és mantinguda per equips, proveïdors o departaments diferents i la meitat
+dels desenvolupadors originals ja han deixat l'empresa?
+
+I si considereu que 6 aplicacions encara es poden gestionar, què passarà si en són 30?
+
+.. image:: /gfx/intro/mess2a.png
+   :alt:
+
+En podreu gestionar 400? I 2000? Cada aplicació
+pot ser un ecosistema únic que requereixi 10 servidors o altres dispositius per córrer,
+de manera que això serien 20.000 parts mòbils escampades per múltiples continents amb tot tipus de
+barreres tècniques o culturals, cada part pretenent intercanviar missatges
+i conversar constantment i incessant amb cada una de les altres
+sense aturar-se mai. (Us en proporcionarem un diagrama).
+
+Aquesta situació té un nom: Un embull.
+
+-------------------------------
+Com podem desfer aquest embull?
+-------------------------------
+
+El primer que s'ha de fer és admetre amb sinceritat que la situació se'ns ha escapat de les mans.
+Això permet cercar una solució sense sentir-se massa culpable. D'acord, ha passat.
+No sabíem com fer-ho millor, però ara tenim l'oportunitat de posar-hi ordre.
+
+Això pot traduir-se en un canvi en l'organització del departament de TIC però una altre pas és
+adonar-se de que els sistemes i les aplicacions no han sigut creades solament
+per enviar dades amunt i avall. La seva finalitat és donar suport als processos de negoci, independentment de
+quin sigui aquest negoci: finances, enregistrament d'àudio, aparells de radiolocalització, qualsevol cosa.
+
+Un cop tenim aquests dos punts clarament definits podem començar a pensar en construir
+o redissenyar els nostres sistemes en termes de serveis.
+
+Un servei és quelcom interessant, reutilitzable i atòmic que un sistema ofereix
+a altres aplicacions que desitgin fer-ne un bon ús, però mai és exposat
+directament seguint un patró punt-a-punt. Aquesta és la definició més curta possible que en manté el significat.
+
+Si una funcionalitat determinada d'un sistema satisfà aquests 3 requeriments, és a dir, si és:
+
+* **I** nteressant
+
+* **R** eutilitzable
+
+* **A** tòmic
+
+aleshores és molt probable que pugui ser exposada com a servei a
+altres sistemes, tot i que mai directament.
+
+Desenvolupem aquest concepte IRA mitjançant un parell d'exemples.
+
+=================== =============================================================================================
+Variable            Notes
+=================== =============================================================================================
+Entorn              El CRM d'una companyia d'electricitat.
+Funcionalitat       Retornar una llista de clients que eren actius en un portal d'autoservei el 3er 
+                    trimestre de 2012.
+És interessant?     Sí, força interessant. Això es pot fer servir per generar tot tipus d'informes
+                    i estadístiques.
+És reutilitzable?   No, en realitat no. Tot i que es podria fer servir per a crear construccions de més alt
+                    nivell, com podrien ser estadístiques per a tot l'any, és clar que això no serà gaire
+                    necessari al 2018.
+És atòmic?          Probablement sí. Si hi ha serveis similars per la resta de trimestres, serà possible
+                    fer una ullada a tot l'any.
+Com fer-ho IRA?     * Fer que accepti dates d'inici i final del període en comptes de limitar-ho a només un
+                      trimestre.
+                    * Fer que accepti aplicacions arbitràries, no només el portal web, fent que l'aplicació
+                      en la que estem interessats sigui un paràmetre d'entrada en comptes d'un valor de
+                      codificació fixa.
+=================== =============================================================================================
+
+=================== =============================================================================================
+Variable            Notes
+=================== =============================================================================================
+Entorn              Botiga online
+Funcionalitat       Retornar tota la informació que s'hagi recol·lectat mai sobre un client donat.
+És interessant?     Bé, sí. Si tens hi tenim un accés complet sempre en podem escollir la part que realment
+                    necessitem.
+És reutilitzable?   Curiosament, en realitat no. Hi haurà molt poques aplicacions, per no dir cap, que estiguin
+                    interessades en totes i cada una de les dades.
+És atòmic?          Sens dubte no. Una funcionalitat tan àmplia no pot no estar lògicament composada de
+                    dotzenes de parts més petites.
+Com fer-ho IRA?     * Dividir-ho en parts més petites. Pensem en què descriu a un client - tenen les adreces,
+                      telèfons, productes preferits, mètodes de contacte de preferència i probablement moltes
+                      coses més - cada una d'aquestes hauria de ser retornada per un servei diferent.
+                    * Fer servir l'ESB per crear serveis composats a partir dels atòmics.
+=================== =============================================================================================
+
+=================== =============================================================================================
+Variable            Notes
+=================== =============================================================================================
+Entorn              Un CRM qualsevol, en qualsevol lloc
+Funcionalitat       Actualitzar la columna CUST_AR_ZN de la taula C_NAZ_AJ després de que algú hagi creat un
+                    compte.
+És interessant?     En absolut. Això és una funcionalitat interna del CRM. Ningú amb dos dits de front vol 
+                    interactuar amb una funcionalitat de tant baix nivell.
+És reutilitzable?   Sí, probablement. Un compte es pot crear per múltiples canals, per tant això sembla
+                    reutilitzable.
+És atòmic?          Ho sembla, si. No és més que una operació UPDATE en una columna d'una taula. 
+Com fer-ho IRA?     No val la pena ni pensar en convertir això en un servei. No és interessant. Ningú vol pensar
+                    en columnes i taules particulars d'un sistema. Això són detalls intrínsecs del CRM, així que
+                    tot i ser reutilitzable i atòmic, no té sentit oferir un servei sobre això. És
+                    responsabilitat exclusivament nostra, del CRM, pensar en això. No fem carregar a ningú més
+                    amb això.
+=================== =============================================================================================
+
+=================== =============================================================================================
+Variable            Notes
+=================== =============================================================================================
+Entorn              Una empresa de telecomunicacions mòbils
+Funcionalitat       Recarregar una targeta de prepagament en un sistema de facturació.
+És interessant?     Molt. Tothom vol fer-ho servir, a través de missatges de text, sistemes de resposta de veu
+                    interactiva, missatgeria instantània, portals web, targetes de regal, etc.
+És reutilitzable?   Molt reutilitzable. Pot formar part de tota mena de processos de més alt nivell.
+És atòmic?          Si, des del punt de vista de l'aplicació que gestiona les trucades, la targeta es pot
+                    recarregar o no. Que el sistema de facturació implementi aquesta funcionalitat en varis
+                    passos és irrellevant. Des d'una perspectiva de negoci això és un servei atòmic, indivisble
+                    que servit pel sistema de facturació.
+Com fer-ho IRA?     Ja és IRA.
+=================== =============================================================================================
+
+Si hem programat en algun moment dels últims 50 anys, a aquestes alçades és clar que
+exposar un servei és precisament com exposar una API des d'una part del codi cap a una altra.
+La única diferència és que no hem de gestionar submòduls d'un sistema en particular,
+estem operant a nivell d'un entorn sencer amb diversos sistemes
+
+-------------------------------------------------
+Fent disponibles els serveis d'un ESB en una SOA
+-------------------------------------------------
+
+Ara que ja sabem que els sistemes no intercanvien informació directament i
+entenem el que és un servei, ja podem començar a fer ser un ESB.
+
+.. image:: /gfx/intro/esb-ok.png
+   :alt:
+
+Ara esdevé responsabilitat de l'ESB exposar i invocar serveis els sistemes integrats.
+Així, en la majoria dels casos només serà necessari configurar un mètode d'accés,
+una interfície, entre cada sistema i l'ESB.
+
+
+Per tant, si, com en el diagrama anterior, tenim 8 sistemes, hi haurà només 16 interfícies
+(una en cada direcció) per crear, mantenir i gestionar.
+
+Sense un ESB tindríem 56 interfícies a tenir en compte i tractar (assumint que cada
+sistema parla amb cada un dels altres).
+
+40 interfícies menys vol dir menys temps malgastat i més diners estalviats. I això
+serà una de les raons per les quals els nostres Divendres seran menys estressants.
+
+Només aquest fet per sí sol ja ens hauria de fer considerar seriosament fer ús d'un ESB.
+
+Si un sistema s'ha de reescriure, o canvia de propietari, o és repartit entre departaments
+o proveïdors, serà responsabilitat de qui manté l'ESB consolidar el canvi. Tots els
+altres sistemes ni tan sols ho notaran, ja que la seva interfície amb l'ESB seguirà intacta.
+
+Quan comencem a respirar serveis IRA diàriament, podrem començar a pensar
+en serveis composats.
+
+Recordeu el servei de tipus 'dona'm-tot-el-que-tinguis-sobre-aquell-client' que hem vist més amunt?
+
+No era una bona idea crear-lo, però a vegades no podrem evitar haver de tractar amb
+aplicacions client que necessiten informació agregada i resumida.
+Serà aleshores la gent de l'ESB la que serà responsable d'escollir els millors serveis atòmics
+a partir dels quals muntar-ne un de composat per aquell sistema en particular que requereix
+aquest conjunt d'informació agregada.
+
+Amb el temps, tota la organització començarà a entendre que ara ja no es tracta de
+taules de base de dades, fitxers, lots, funcions, rutines o registres. Ara es tracta
+d'una arquitectura centrada en els serveis interessants, reutilitzables i atòmics que
+les aplicacions ofereixen a l'ESB.
+
+La gent ja no pensarà que les aplicacions i els sistemes s'envien coses els uns als altres.
+Veuran l'ESB com una porta d'accés universal a serveis interessants que els seus propis sistemes
+poden fer servir. I ni tan sols hauran de preocupar-se de qui proveeix aquell servei exactament,
+ja que els seus sistemes només es relacionaran amb l'ESB.
+
+Això duu temps, paciència i esforç coordinat, però és factible.
+
+--------------------------
+Però hem de vigilar amb...
+--------------------------
+
+La millor manera d'arruïnar tot el concepte de SOA és desplegar un ESB i esperar
+que els problemes es dissolguin per si sols. Així que, tot i seguir essent una idea fantàstica,
+instal·lar un ESB sense fer res més no servirà per gran cosa, per desgràcia.
+
+En el millor dels casos, amagar quelcom sota l'estora, com en el diagrama següent,
+no tindrà cap implicació.
+
+.. image:: /gfx/intro/esb-mess.png
+   :alt:
+
+La gent del departament de IT odiarà el sistema i els gerents al principi toleraran
+un ESB com un no fill de la família, però més endavant es convertirà en motiu de rialla.
+"Què, la nova vareta màgica? Hahaha".
+
+Aquestes conseqüències son inevitables si un ESB no és part d'un pla superior de canviar
+realment les coses.
+
+------------------------------------------------
+Aleshores, un ESB és només per bancs o similars?
+------------------------------------------------
+
+No, en absolut. És una bona opció en qualsevol situació que requereixi la cooperació de
+múltiples fonts de dades i mètodes d'accés per tal d'assolir un resultat interessant.
+
+Per exemple, recopilar les últimes mesures d'alguns sensors termals i publicar-los per
+diversos canals, com alertes per correu electrònic i una aplicació per a smartphone, 
+sona com un bon escenari per una plataforma d'integració.
+
+Consultar periòdicament i supervisar si totes les instàncies d'una aplicació crítica estan
+funcionant i, si no és així, executar un script preconfigurat al mateix temps que s'envia
+un missatge de text als administradors també sona encertat.
+
+Tot el que necessiti integrar-se en un entorn clar i ben definit és possiblement
+un bon escenari per un ESB. Però, com sempre, decidir si quelcom és realment la
+peça ideal sorgirà de l'experiència. Naturalment, l'equip que hi ha darrera de Zato
+`pot ajudar <https://zato.io/support.html>`_. 
+
+-----------------------------------------------------------
+Però havia sentit que SOA anava de XML, SOAP i web services
+-----------------------------------------------------------
+
+Si, això és el que certa gent volen que creieu.
+
+Si la gent o els proveïdors amb els que heu treballat feien coses com codificar en BASE64 un fitxer
+CSV i enviar-vos-el en un missatge SOAP amb seguretat SAML2 és força comprensible
+que us n'hàgiu fet aquesta idea.
+
+XML, SOAP i els Serveis Web tenen els seus propis usos però, com tot, poden ser mal utilitzats.
+
+SOA consisteix en una arquitectura neta i gestionable. Que un servei en particular pugui
+fer servir SOAP o no és força irrellevant. Des del punt de vista d'arquitectura, SOA seguirà
+essent una opció vàlida fins i tot si no s'utilitza ni un sol servei SOAP.
+
+Encara que un arquitecte dissenyi un edifici preciós, no pot fer gran cosa
+en quant al color de pintura que la gent esculli per pintar els interiors.
+
+Per tant no, SOA no consisteix gaire en XML, SOAP i Serveis Web. Aquests es poden fer servir
+però la història que hi ha al darrera és quelcom més que això.
+
+Així doncs, us animem a convidar amablement els vostres companys escarriats a llegir aquest article per fer-los entendre 
+en què consisteix SOA realment.
+
+-----------------
+I hi ha més coses
+-----------------
+
+Aquest capítol cobreix només els punts més bàsics, però tot i així hauria de proporcionar-vos
+una visió clara sobre quina forma tenen un ESB i una SOA i què es necessita per
+implementar-ho amb èxit.
+
+Altres temes, no tractats aquí, inclouen, però no es limiten a:
+
+* Com obtenir recolzament des de la direcció per un ESB
+* Com trobar arquitectes SOA per muntar equips analítics
+* Introduir un Model de Dades Canònic (Canonical Data Model - CDM) en una organització
+* Indicadors de Rendiment Clau (Key Performance Indicators - KPI) - ara que disposeu d'un mètode comú i unificat
+  d'oferir serveis entre diversos sistemes, hauríeu de començar a supervisar
+  i avaluar què us està arribant realment.zato_docs_env
+* Gestió de Processos de Negoci (Business Process Management - BPM) - com i quan escollir una plataforma BPM
+  per orquestrar els serveis (resposta - no massa aviat, més val familiritzar-se primer
+  amb com construir serveis macos i adorables)
+* Què fer amb sistemes que no tenen APIs? P.e. hauria d'accedir un ESB
+  directament les seves bases de dades? (resposta - depen, no hi ha cap regla d'or)
+
+----------------------------------
+Aleshores, què és Zato exactament?
+----------------------------------
+
+`Zato <https://zato.io>`_ és un ESB i servidor d'aplicacions escrit en Python
+i es pot fer servir per construir programari intermediari (middleware, en anglès) i sistemes de backend.
+
+Fer servir Python i Zato vol dir que sou més productius i necessiteu dedicar menys
+en futileses.
+
+Zato ve ser escrit **per pragmàtics per a pragmatistes**. No és simplement un altre sistema
+muntat ràpidament per alguna companyia aprofitant la moda dels conceptes ESB i SOA.
+
+De fet, va se construït a partir de l'experiència pràctica d'apagar focs provocats per sistemes d'aquesta mena.
+En realitat, els autors de Zato han dedicat tant temps a fer-se càrrec d'aquests sistemes horrorosos,
+que s'han tornat virtualment immunes a cap foc.
+
+Aquesta és la forja de la qual Zato va sorgir i aquest és el motiu pel qual
+pot oferir una productivitat i facilitat d'ús inigualades en cap altre solució remotament similar.
+
+A reveure :doc:`there <../index>`!

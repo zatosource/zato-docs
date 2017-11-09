@@ -1,0 +1,106 @@
+.. highlight:: python
+   :linenothreshold: 0
+
+Search - ElasticSearch
+======================
+
+:doc:`ElasticSearch connections <../../../../web-admin/cloud/openstack/swift>`
+allows one to index, look up or delete stored documents and access other features
+ElasticSearch itself offers.
+
+.. _progguide-examples-search-solr-index:
+
+Indexing
+--------
+
+::
+
+  from zato.server.service import Service
+
+  class MyService(Service):
+      def handle(self):
+          with self.search.solr['My Connection'].conn.client() as client:
+
+              docs = []
+
+              doc1 = {'id':'my-id1', 'title':'my-title1'}
+              doc2 = {'id':'my-id2', 'title':'my-title2'}
+
+              docs.append(doc1)
+              docs.append(doc2)
+
+              client.add(docs)
+
+.. _progguide-examples-search-solr-search:
+
+Searching
+---------
+
+::
+
+  from zato.server.service import Service
+  
+  class MyService(Service):
+      def handle(self):
+          with self.search.solr['My Connection'].conn.client() as client:
+  
+              # Fetch all documents
+              result = client.search('*:*')
+  
+              # Let's find out what we were given
+              for item in result.docs:
+                  self.logger.info(item)
+
+In server.log:
+
+::
+
+  INFO - Finished 'http://idx/s/c/select/?q=%2A&wt=json' (get) with body '' in 0.003 seconds.
+  INFO - {'_version_': 1491467048238186496, 'id': 'my-id1', u'title': ['my-title1']}
+  INFO - {'_version_': 1491467048270692352, 'id': 'my-id2', u'title': ['my-title2']}
+
+.. _progguide-examples-search-solr-delete:
+
+Deleting
+--------
+
+::
+
+  from zato.server.service import Service
+  
+  class MyService(Service):
+      def handle(self):
+          with self.search.solr.get('My Connection').conn.client() as client:
+  
+              # Delete a document by its ID
+              client.delete('my-id1')
+
+In server.log:
+
+::
+
+  INFO - Finished 'http://idx/s/c/update/?commit=true' (post) .. in 0.027 seconds.
+
+.. _progguide-examples-search-solr-more:
+
+Other features
+--------------
+
+The connection object is an instance of
+`pysolr.Solr <https://github.com/toastdriven/pysolr/>`_.
+Refer to its main documentation in order to learn how to access other features such as updating, spelling corrections and more.
+
+::
+
+  from zato.server.service import Service
+
+  class MyService(Service):
+      def handle(self):
+          with self.search.solr['My Connection'].conn.client() as client:
+
+              # This is a pysolr.Solr instance
+              self.logger.info(client)
+
+::
+
+  INFO - <pysolr.Solr object at 0x7f1b585d8050>

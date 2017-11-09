@@ -1,0 +1,47 @@
+.. highlight:: python
+   :linenothreshold: 0
+
+JMS WebSphere MQ usage examples
+===============================
+
+.. _progguide-examples-jms-wmq-receiving:
+
+Receiving messages from queues
+------------------------------
+
+No programming is needed to receive messages from JMS WebSphere MQ queues. Create a new
+:doc:`channel <../../web-admin/channels/jms-wmq>`
+and a given service will be invoked for each message taken off a queue.
+The request, stripped off the MQRFH2 JMS headers, will be in self.request.payload. 
+
+::
+
+   from zato.server.service import Service   
+   
+   class MyService(Service):
+       def handle(self):
+           self.logger.info('Got message: {}'.format(self.request.payload))
+
+
+.. _progguide-examples-jms-wmq-sending:
+
+Sending messages to queues
+--------------------------
+
+Create a new 
+:doc:`outgoing JMS WebSphere MQ connection <../../web-admin/outgoing/jms-wmq>`
+and send a message like in the example below. 
+
+The :doc:`full API <../outconn/jms-wmq>`
+allows to set or override custom headers and properties.
+
+MQRFH2 JMS headers are added by Zato and from a receiving side everything seamlessly
+appears as though Zato was a Java application.
+
+::
+
+   from zato.server.service import Service   
+   
+   class MyService(Service):
+       def handle(self):
+           self.outgoing.jms_wmq.send('my-message', 'outgoing-connection-name', 'QUEUE.1')

@@ -1,0 +1,58 @@
+Notifications - SQL
+===================
+
+Overview
+--------
+
+Used to create, update, delete and browse through outgoing SQL notifications.
+
+A notification is an SQL query invoked periodically which upon its execution
+runs asynchronously a user-defined service providing the service with all the
+rows fetched by the query, if any, under a 'data' key of the input dictionary
+in :ref:`self.request.raw_request <progguide-req-resp-req>`. The service will be invoked with empty input
+if the database doesn't return anything in a given iteration.
+
+All `datetime.datetime <https://docs.python.org/2.7/library/datetime.html#datetime-objects>`_
+objects return by the database will be converted to `ISO 8601 format <https://docs.python.org/2.7/library/datetime.html#datetime.date.isoformat>`_
+before handing the results over to the user's service.
+
+
+* Menu path: Connections -> Notifications -> SQL
+* Example address: http://localhost:8183/zato/notif/sql/?cluster=1
+
+.. image:: /gfx/web-admin/notif/sql.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/notif/sql-create.png
+
+=================== ======================================================================================================================
+Header              Notes
+=================== ======================================================================================================================
+Name                Definition's name
+Active              Whether any data will be fetched from the underlying database or not
+Connection          An :doc:`outgoing SQL connection <../outgoing/sql>` to use for connecting to the database
+Interval            In seconds. How often to fetch new data. Also, how often to check for changes to the notification's configuration -
+                    it will take up to interval seconds for changes to take any effect.
+Service             Name of the service to invoke. All the rows will be in a list in
+                    :ref:`self.request.raw_request <progguide-req-resp-req>`.
+Query               The SQL query to run
+=================== ======================================================================================================================
+
+Delete
+------
+
+.. image:: /gfx/web-admin/notif/sql-delete.png
+
+Stops and deletes a notification's definition.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================

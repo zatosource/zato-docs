@@ -1,0 +1,87 @@
+Publish/subscribe topics
+========================
+
+Used for adding and deleting topics, accessing screens for publishers and consumers, as well as for publishing messages to topics
+from a web browser.
+
+Managing topics
+---------------
+
+* Menu path: Pub/sub -> Topics
+* Example address: http://localhost:8183/zato/pubsub/topics/?cluster=1
+
+.. image:: /gfx/web-admin/pubsub/topic.png
+   :width: 95%
+
+Create and Edit
+~~~~~~~~~~~~~~~
+
+.. image:: /gfx/web-admin/pubsub/topic-create.png
+
+=================== ======================================================================================================================
+Header              Notes
+=================== ======================================================================================================================
+Name                Name of the topic
+Active              Whether it's active and can be published to
+Max depth           If topic has no subscribers or if they don't consume messages for any reasons,
+                    how many messages may stay on the topic's underlying queue until it's declared full
+                    and won't allow any new publications
+=================== ======================================================================================================================
+
+Delete
+~~~~~~
+
+.. image:: /gfx/web-admin/pubsub/topic-delete.png
+
+Deletes a topic along with all of its producers and consumers.
+
+Publishing messages from browser
+--------------------------------
+
+Users can publish messages to topics directly from web browsers by clicking the *Publish a message* link that leads
+to a form whose submission will result in placing a message on the topic's queue out of which it will be routed
+to consumers.
+
+From the perspective of consumers, this is exactly as though the message was published from a REST client.
+
+.. image:: /gfx/web-admin/pubsub/topic-publish-link.png
+
+.. image:: /gfx/web-admin/pubsub/topic-publish.png
+     :width: 95%
+
+=================== ======================================================================================================================
+Header              Notes
+=================== ======================================================================================================================
+(Main textarea)     Payload of the message to submit
+MIME type           MIME of the payload, such as application/json or application/xml, returned to consumers with the payload -
+                    there is no validation that the MIME type actually corresponds in any way to what is being submitted
+Priority            Message priority influencing the order of delivery to consumers
+Expiration          After how many seconds the message will expire if not consumed. Note that the expiration time starts to tick
+                    only if there is at least one consumer for the topic.
+=================== ======================================================================================================================
+
+
+Message browsing
+----------------
+
+Messages that are still in a topic queue - for instance, if there are no consumers or if background Zato tasks have not moved
+them yet to queues of target consumers - can be browsed.
+
+This allows one to check what is enqueued, including its payload and associated metadata.
+
+.. image:: /gfx/web-admin/pubsub/topic-browse-link.png
+
+.. image:: /gfx/web-admin/pubsub/topic-browse-list.png
+     :width: 95%
+
+.. image:: /gfx/web-admin/pubsub/topic-browse-details.png
+     :width: 95%
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================

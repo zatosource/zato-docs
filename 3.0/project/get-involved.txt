@@ -1,0 +1,30 @@
+License and getting involved
+============================
+
+Want to contribute ideas or code? **Superb!** The project is under `LGPL <https://github.com/zatosource/zato/blob/support/2.0/LICENSE.txt>`_
+- a liberal license allowing for pretty much unlimited usage and modifications.
+
+* Programmers should familiarize themselves with 
+  `the source code on GitHub <https://github.com/zatosource/zato/>`_.
+  Fork and send patches at will! :-)
+  
+  * Most of the server's code is written in Python on top of 
+    `gunicorn <http://gunicorn.org>`_ and a dozen of other libraries
+
+  * The web admin frontend is written using Django, jQuery and a bit of other JS libraries
+
+  * All other parts are in Python and make heavy use of other open-source projects,
+    there are 
+    many dependencies listed in `buildout.cfg <https://github.com/zatosource/zato/blob/support/2.0/code/buildout.cfg>`_
+
+* Want to send a quick documentation patch or suggestion? Just 
+  `open a new ticket in GitHub <https://github.com/zatosource/zato/issues>`_
+
+* Always feel welcome to join the friendly `forum <https://forum.zato.io/>`_ 
+  and `IRC <https://webchat.freenode.net/?channels=zato>`_ if you'd like to help other community 
+  members out or just chat in general
+  
+And remember - Zato project is all about tolerance - make sure you always act
+in accordance with our :doc:`diversity statement <./diversity>`.
+
+Have fun and see you there!

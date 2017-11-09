@@ -1,0 +1,70 @@
+.. highlight:: python
+   :linenothreshold: 0
+
+REST publish/subscribe
+======================
+
+Publishing messages from services
+---------------------------------
+
+Services can publish messages to :doc:`pub/sub topics <../../pubsub/index>` as below. Such a message will be delivered
+to all the :doc:`consumers <../../pubsub/dev/consumer>` of a topic.
+
+::
+
+  from zato.server.service import Service
+
+  class MyService(Service):
+
+      def handle(self):
+
+          # Publishes a message to a topic
+          self.pubsub.publish('My Message', '/topic/name')
+
+Publishing messages from REST clients
+-------------------------------------
+
+There are
+:doc:`dedicated <../../pubsub/admin/producer>`
+:doc:`chapters <../../pubsub/dev/producer>`
+explaining in details how external REST clients publish messages and the example below is only a sample:
+
+::
+
+  $ curl -XPOST http://crm:crm@127.0.0.1:11223/zato/pubsub/topic//customer/created/ \
+      -d 'Hello pub/sub!' ; echo
+  {"status": "ZATO_OK", "msg_id": "K05DD3YFNE4SG592VQBF23ECVD02"}
+  $
+
+
+Receiving messages by REST clients
+----------------------------------
+
+Again,
+there
+:doc:`are <../../pubsub/admin/consumer>`
+:doc:`chapters <../../pubsub/dev/consumer>`
+on how to receive messages from an external REST client's perspective and the sample below merely shows typical usage
+from command line:
+
+::
+
+  $ curl -XPOST -H X-Zato-PubSub-Key:K06Y63NEJQYGMQKTP9D4KGQQ0GB2 \
+      http://erp:erp@localhost:17010/zato/pubsub/msg//customer/created/
+
+::
+
+  {
+    "status": "ZATO_OK", "results_count": 1, "results":
+  
+    [
+      {"payload": "Hello",
+       "metadata": {"msg_id": "K07XAM7FSMV092YB410XMXDDDYN3",
+                    "topic": "/customer/created",
+                    "creation_time_utc": "2015-01-09T09:21:56.867151",
+                    "expiration": 60,
+                    "expire_at_utc": "2015-01-09T09:22:56.867151",
+                    "producer": "CRM",
+                    "priority": 5,
+                    "mime_type": "text/plain"}}
+    ]

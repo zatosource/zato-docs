@@ -1,0 +1,43 @@
+.. highlight:: python
+   :linenothreshold: 0
+
+ZeroMQ usage examples
+=====================
+
+.. _progguide-examples-zmq-receiving:
+
+Receiving messages from queues
+------------------------------
+
+No programming is needed to receive messages from ZeroMQ sockets. Create a new
+:doc:`ZeroMQ channel <../../web-admin/channels/zmq>`
+and a given service will be invoked for each message taken from a socket.
+The request will be in self.request.payload.
+
+::
+
+   from zato.server.service import Service   
+   
+   class MyService(Service):
+       def handle(self):
+           self.logger.info('Got message: {}'.format(self.request.payload))
+
+
+.. _progguide-examples-zmq-sending:
+
+Sending  messages to sockets
+----------------------------
+
+Create a new 
+:doc:`outgoing ZeroMQ connection <../../web-admin/outgoing/zmq>`
+and send a message like in the example below.
+
+The API is documented :doc:`here <../outconn/zmq>`.
+
+::
+
+   from zato.server.service import Service   
+   
+   class MyService(Service):
+       def handle(self):
+           self.outgoing.zmq.send('my-message', 'outconn-name')

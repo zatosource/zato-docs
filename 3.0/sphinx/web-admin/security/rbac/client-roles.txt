@@ -1,0 +1,44 @@
+Security - RBAC - Client roles
+==============================
+
+Overview
+--------
+
+Used for creating and deleting mappings between client applications and roles the former are granted.
+
+* Menu path: Security -> RBAC -> Roles
+* Example address: http://localhost:8183/zato/security/rbac/role/?cluster=1
+
+.. image:: /gfx/web-admin/security/rbac/client-roles.png
+   :width: 95%
+
+Create
+------
+
+.. image:: /gfx/web-admin/security/rbac/client-roles-create.png
+
+====== =======================================================================
+Header Notes
+====== =======================================================================
+Client Name of a security definition to which a given role will be assigned.
+Role   Name of a role granted to the client.
+====== =======================================================================
+
+Delete
+------
+
+Deletes the mapping between client and role - effectively dispossessing the client of the role.
+
+The role and client themselves are not deleted.
+
+.. image:: /gfx/web-admin/security/rbac/client-roles-delete.png
+
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================

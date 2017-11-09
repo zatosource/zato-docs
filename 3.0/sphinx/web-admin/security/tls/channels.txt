@@ -1,0 +1,53 @@
+Security - SSL/TLS - Channels
+=============================
+
+Overview
+--------
+
+Used to create, update, delete and browse `SSL/TLS <https://en.wikipedia.org/wiki/Transport_Layer_Security>`_
+security definitions that can be used by :doc:`Plain HTTP <../../channels/plain-http>` and :doc:`SOAP <../../channels/soap>`
+channels.
+
+* Menu path: Security -> SSL/TLS -> Channels
+* Example address: http://localhost:8183/zato/security/tls/channel/?cluster=1
+
+.. image:: /gfx/web-admin/security/tls/channels.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/security/tls/channels-create.png
+
+========== ================================================================================================================
+Header     Notes
+========== ================================================================================================================
+Name       Definition name
+Conditions A list of key/value pairs, each in its own line, representing fields in a client's certificate that must
+           contain given values in order for an incoming request to be allowed. All conditions must be met otherwise
+           a request will be rejected.
+
+           Note that at the time when conditions are evaluated, the request has already been
+           :doc:`accepted by the load-balancer <../../../admin/guide/tls/client-lb>`
+           which validated the client certificate against known CA certificates.
+========== ================================================================================================================
+
+Delete
+------
+
+.. image:: /gfx/web-admin/security/tls/channels-delete.png
+
+Deletes a security definition and all the objects that make use of it.
+
+.. note ::
+
+  It needs to be emphasized that any channels that were using the definition will also be deleted automatically.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================
