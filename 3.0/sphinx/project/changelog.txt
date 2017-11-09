@@ -14,7 +14,7 @@
    in 10 minutes.
 
 
-* Added multi-protocol publish/subscribe topics with guaranteed delivery message queues
+* Multi-protocol publish/subscribe topics with guaranteed delivery message queues
 
 * New caching layer
 
