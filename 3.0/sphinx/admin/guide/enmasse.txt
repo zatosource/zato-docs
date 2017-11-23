@@ -20,7 +20,7 @@ or other methods.
 
 Enmasse does not deal with services, it's concerned with server objects only
 which is anything but services, including channels, scheduler jobs or security
-definitions and other types. How to deploy services is documented in 
+definitions and other types. How to deploy services is documented in
 :doc:`a separate chapter <./installing-services>`.
 
 Enmasse will never delete existing objects. This needs to be performed using the GUI or API.
@@ -41,15 +41,15 @@ Usage scenarios
   to store the config in a git repository. Hence you use enmasse to export all server
   objects from a dev cluster into JSON. The JSON is next imported to tests and later on,
   on production.
-  
+
 * You have an already existing cluster and want to add or replace server objects.
   You prepare a JSON config file and import it to a cluster.
-  
+
 * You have a team of programmers each responsible for a part of a solution and you
   want to limit the number of conflicts in a central config repository. You split
   the local JSON config file into multiple smaller ones each of which can be included
   by enmasse to form a whole that will be imported as a single unit.
-  
+
 .. image:: /gfx/admin/enmasse-env.png
    :alt:
 
@@ -59,52 +59,52 @@ Workflow
 
 * Either export objects from an already existing cluster to a JSON file or create
   the file from scratch, the format is given in later sections.
-  
+
 * Customize the JSON config file, optionally splitting it into smaller units
   that can be included later on.
-  
+
 * Combine all the includes, optionally merging ODB objects from a cluster of choice,
   into an export file. This is a file that can be imported to clusters. Note that
   its format is not documented and may change without prior notice.
-  
+
 * Import objects from an export file, optionally replacing objects that already
   exist in a cluster.
-  
+
 Notes
 ~~~~~
 
 * Both --export-* arguments always need an input JSON file in --input, if you're
   just starting out, put an empty dictionary {} to the file, but remember that
   it must exist and must not be empty.
-  
-* Path to a server is always required and serves a double role. 
+
+* Path to a server is always required and serves a double role.
 
   If you're exporting data it must be path to a running
   server you're exporting data from. Just point it to any existing server directory even if you're
   not exporting data from ODB. The requirement to point path to a server even if
   ODB is not used will be lifted in future versions.
-  
+
   If you're importing data, the path must point to a running server you're importing data into.
-  
+
 * For exports, --input means an input JSON file out of which an export file should be created.
 
   For imports, --input is an export file out of which definitions should be imported on a cluster.
-  
+
 * For imports, the order enmasse works in is guaranteed to be:
 
   * Existing definitions are updated
   * Existing objects other than definitions are updated
   * New definitions are created
   * New objects other than definitions are created
-  
+
   This way, objects that depend on definitions can be sure the definitions
   they need already exist in the ODB.
-  
+
 * If channels or outgoing connections are active and they require connectors,
   the connectors will be started right away. This may mean a flurry of activity on a cluster's
   connector server. It may be worthwhile to consider whether such channels and outgoing
   connection should not be imported in an inactive state, enabling them manually later on.
-  
+
 * When creating an export file, enmasse tries to report as many warnings and errors
   in one go as possible. When importing a file, it does the contrary, and will stop as soon
   as it encounters anything it can't deal with to give you a chance to have a look
@@ -131,29 +131,29 @@ Usage samples
 * Creating an export file out of a JSON file, pulling all includes in along
 
   ::
-  
+
       $ zato enmasse /opt/server1/ --input input1.json --export-local
       Includes merged in successfully
       Data exported to /opt/zato/zato-export-2013-06-12T20_10_19_874355.json
       $
-      
+
 * Creating an export file out of a JSON file, pulling all includes and any
   non-Zato internal objects from ODB in along
-      
+
   ::
-  
+
       $ zato enmasse /opt/server1/ --input input1.json --export-local --export-odb
       Includes merged in successfully
       ODB objects read
       ODB objects merged in
       Data exported to /opt/zato/zato-export-2013-06-12T20_11_57_306991.json
       $
-      
+
 * Importing an export JSON file on a cluster without setting a flag that already
   existing objects should be replaced
 
   ::
-  
+
     $ zato enmasse /server1/ --input export.json --import
     2 warnings and 0 errors found:
     +-----------------+--------------------------------------------------------------+
@@ -178,12 +178,12 @@ Usage samples
     |                 | u'myconsumer', u'id': 2L} (channel_amqp)                     |
     +-----------------+--------------------------------------------------------------+
     $
-    
+
 * Importing an export JSON file on a cluster with a flag to replace already
   existing objects set
 
   ::
-  
+
     $ zato enmasse /server1/ --input export.json --import --replace-odb-objects
     Updated object 'myjmswmq2' (def_jms_wmq)
     Updated object 'myjmswmq3' (def_jms_wmq)
@@ -197,7 +197,7 @@ Usage samples
     Created object 'myhttp1' (http_soap)
     Created object 'myhttp2' (http_soap)
     $
-      
+
 
 Dissecting a JSON config file
 -----------------------------
@@ -208,17 +208,17 @@ Dissecting a JSON config file
     must be unique in a cluster. That is, not only there cannot be, say, two HTTP Basic
     Auth definitions known as 'mysecurity-def' but it's an error to have a HTTP Basic Auth
     and a technical account or a WS-Security one under this name.
-    
+
   * If a given HTTP object, such as a channel or an outgoing connection,
     should not use any security definition ('sec_def') at all, you should use a special
     constant string 'zato-no-security' to signal it. It cannot be None/null,
     it must be this exact string.
-    
+
 Configuration is kept in a JSON file that contains a dictionary of well-known
 keys and a list of values for each key.
 
 Keys are the types of server objects the config contains. Values are objects
-themselves written either as dictionaries or as links to files containing 
+themselves written either as dictionaries or as links to files containing
 the configuration of each object individually - one file is one object. If not
 absolute, paths to files are relative to the main config file.
 
@@ -229,7 +229,7 @@ You never use any IDs in JSON config files, only human-readable names and types 
 
 Passwords are always given in clear-text.
 
-When using definitions, they don't necessarily have to exist anywhere at the time 
+When using definitions, they don't necessarily have to exist anywhere at the time
 the input JSON is created however a warning will be displayed if an object depends
 on a definition which doesn't exist at that time - you can skip displaying this warning using
 the --ignore-missing-defs switch when invoking enmasse. This may makes sense if you
@@ -240,7 +240,7 @@ into a cluster.
 Key                 Notes
 =================== ===================================================================================================================================================================================
 def_sec             Security definitions. 'type' must be one of 'basic_auth', 'wss' or 'tech_acc' and whether attributes
-                    required point to an 
+                    required point to an
                     :doc:`HTTP Basic Auth <../../public-api/details/zato.security.basic-auth.create>`,
                     :doc:`technical account <../../public-api/details/zato.security.tech-account.create>`
                     or a
@@ -273,168 +273,168 @@ input1.json
 
   {
      "def_sec": [
-         {"type": "basic_auth", "name":"mybasicauth", "realm":"myrealm", 
+         {"type": "basic_auth", "name":"mybasicauth", "realm":"myrealm",
            "password":"mypassword1", "is_active":true, "username":"mybasicauthuser"},
-           
-         {"type": "wss", "name":"mywss", "password":"mypassword2", 
+
+         {"type": "wss", "name":"mywss", "password":"mypassword2",
           "is_active":true, "nonce_freshness_time":8000, "password_type":"clear_text",
-          "reject_empty_nonce_creat":true, "reject_expiry_limit":2800, 
+          "reject_empty_nonce_creat":true, "reject_expiry_limit":2800,
           "reject_stale_tokens":true, "username":"myuser"},
-          
+
          {"type": "tech_acc", "name":"mytechacc", "password":"mypassword3",
           "is_active":true}
      ],
-     
+
      "def_amqp": [
-         {"name": "myamqp1", "host":"localhost", "port":5672, "username":"user1", 
+         {"name": "myamqp1", "host":"localhost", "port":5672, "username":"user1",
           "password":"password1", "frame_max":1980, "heartbeat":30,
           "vhost":"/zato1"},
-          
-         {"name": "myamqp2", "host":"localhost", "port":25672, "username":"user2", 
+
+         {"name": "myamqp2", "host":"localhost", "port":25672, "username":"user2",
           "password":"password2", "frame_max":290290, "heartbeat":230,
           "vhost":"/zato2"},
-          
+
          "file://./myinclude2.json"
      ],
-     
+
      "def_jms_wmq": [
          {"name": "myjmswmq", "host":"localhost3", "port":31415,
           "cache_open_receive_queues":true, "cache_open_send_queues":true,
           "channel": "SVRCONN.1", "max_chars_printed":500, "needs_mcd":true,
           "queue_manager":"QM01", "ssl":false, "use_shared_connections":true},
-          
-         {"name": "myjmswmq2", "host":"localhost3", "port":31415, 
+
+         {"name": "myjmswmq2", "host":"localhost3", "port":31415,
           "cache_open_receive_queues":true, "cache_open_send_queues":true,
           "channel": "SVRCONN.1", "max_chars_printed":500, "needs_mcd":true,
           "queue_manager":"QM01", "ssl":false, "use_shared_connections":true},
-          
+
          "file://./myinclude3.json"
      ],
-     
+
      "channel_amqp": [
-         {"name": "channel-amqp1", "def": "myamqp1", 
+         {"name": "channel-amqp1", "def": "myamqp1",
           "consumer_tag_prefix":"myconsumer", "is_active":true, "queue":"MYQUEUE",
           "service":"myservice"},
-          
+
          {"name": "channel-amqp2", "def": "myamqp1",
           "consumer_tag_prefix":"myconsumer", "is_active":true, "queue":"MYQUEUE",
           "service":"myservice"}
      ],
-     
+
      "channel_jms_wmq": [
          {"name": "channel-jms-wmq1", "def": "myjmswmq2", "is_active":true,
           "queue":"Q1", "service":"myservice1"},
-          
+
          {"name": "channel-jms-wmq2", "def": "myjmswmq3", "is_active":true,
          "queue":"Q2", "service":"myservice2"}
      ],
-     
+
      "channel_plain_http": [
-         {"name": "channel-myhttp2", "sec_def": "mywss", 
+         {"name": "channel-myhttp2", "sec_def": "mywss",
           "host":"test-channel-12.example.com", "connection":"channel",
           "is_active":true, "is_internal":false, "transport":"plain-http",
           "url_path":"/path2"},
-          
+
          {"name": "channel-myhttp3", "sec_def": "mytechacc",
           "host":"test-channel-13.example.com", "connection":"channel",
           "is_active":true,
           "is_internal":false, "transport":"plain-http",
           "url_path":"/path3"}
      ],
-     
+
      "channel_soap": [
          {"name": "channel-soap1", "sec_def": "zato-no-security",
           "host":"test-channel-11.example.com", "is_active":true,
           "is_internal":false, "url_path":"/path1", "connection":"channel",
           "transport":"soap"},
-          
+
          {"name": "channel-soap2", "sec_def": "mytechacc",
           "host":"test-channel-11.example.com", "is_active":true,
           "is_internal":false, "url_path":"/path1", "connection":"channel",
           "transport":"soap"}
      ],
-     
+
      "channel_zmq": [
          {"name": "mychannel-zmq1", "address": "tcp://channel-zmq1.example.com",
           "is_active":true, "service":"service-zmq1", "socket_type":"PULL"},
-          
+
          {"name": "mychannel-zmq2", "address": "tcp://channel-zmq2.example.com",
           "is_active":true, "service":"service-zmq2", "socket_type":"SUB"},
-          
+
          "file://./myinclude4.json"
      ],
-     
+
      "outconn_amqp": [
-         {"name": "outconn-amqp1", "def": "myamqp1", "delivery_mode":1, 
+         {"name": "outconn-amqp1", "def": "myamqp1", "delivery_mode":1,
           "is_active":true, "priority":5},
-          
-         {"name": "outconn-amqp2", "def": "myamqp2", "delivery_mode":1, 
+
+         {"name": "outconn-amqp2", "def": "myamqp2", "delivery_mode":1,
          "is_active":true, "priority":5}
      ],
-     
+
      "outconn_ftp": [
-         {"name": "ftp1", "username": "myftp1", "dircache":false, 
+         {"name": "ftp1", "username": "myftp1", "dircache":false,
           "host":"ftp1.example.com", "is_active":true, "port":10121},
-          
-         {"name": "ftp2", "username": "myftp2", "dircache":true, 
+
+         {"name": "ftp2", "username": "myftp2", "dircache":true,
           "host":"ftp2.example.com", "is_active":true, "port":20121}
      ],
-     
+
      "outconn_jms_wmq": [
-         {"name": "jmswmq1", "def": "myjmswmq", "delivery_mode":1, 
+         {"name": "jmswmq1", "def": "myjmswmq", "delivery_mode":1,
           "is_active":true, "priority":5},
-          
-         {"name": "jmswmq2", "def": "myjmswmq", "delivery_mode":1, 
+
+         {"name": "jmswmq2", "def": "myjmswmq", "delivery_mode":1,
           "is_active":true, "priority":5},
-          
+
          "file://./myinclude5.json"
      ],
-     
+
      "outconn_plain_http": [
-         {"name": "myhttp1", "sec_def": "mybasicauth", 
+         {"name": "myhttp1", "sec_def": "mybasicauth",
           "host":"test11.example.com", "connection":"outgoing", "is_active":true,
           "is_internal":false, "transport":"plain-http", "url_path":"/out/1"},
-          
-         {"name": "myhttp2", "sec_def": "mywss", 
+
+         {"name": "myhttp2", "sec_def": "mywss",
           "host":"test22.example.com", "connection":"outgoing", "is_active":true,
           "is_internal":false, "transport":"plain-http", "url_path":"/out/2"}
      ],
-     
+
      "outconn_soap": [
-         {"name": "mysoap1", "sec_def": "mybasicauth", 
+         {"name": "mysoap1", "sec_def": "mybasicauth",
           "host":"test1.example.com", "connection":"outgoing", "is_active":true,
           "is_internal":false, "transport":"soap", "url_path":"/my/soap/service/1"},
-          
-         {"name": "mysoap2", "sec_def": "mytechacc", "host":"test2.example.com", 
+
+         {"name": "mysoap2", "sec_def": "mytechacc", "host":"test2.example.com",
           "connection":"outgoing", "is_active":true,
           "is_internal":false, "transport":"soap", "url_path":"/my/soap/service/2"}
      ],
-     
+
      "outconn_sql": [
-         {"name": "mysql1", "username": "mysql2", "password":"mypassword1", 
-          "engine":"postgresql", "db_name": "mydb", "host": "localhost", 
+         {"name": "mysql1", "username": "mysql2", "password":"mypassword1",
+          "engine":"postgresql", "db_name": "mydb", "host": "localhost",
           "is_active": true,  "pool_size":2, "port": 1999},
-          
-         {"name": "mysql2", "username": "mysql2", "password":"mypassword2", 
-          "engine":"postgresql", "db_name": "mydb", "host": "localhost", 
+
+         {"name": "mysql2", "username": "mysql2", "password":"mypassword2",
+          "engine":"postgresql", "db_name": "mydb", "host": "localhost",
           "is_active": true, "pool_size":2, "port": 1999},
-          
+
          "file://./myinclude6.json"
      ],
-     
+
      "outconn_zmq": [
-         {"name": "myzmq1", "address": "tcp://zmq1.example.com", 
+         {"name": "myzmq1", "address": "tcp://zmq1.example.com",
           "is_active":true, "socket_type":"PUSH"},
-          
-         {"name": "myzmq2", "address": "tcp://zmq2.example.com", 
+
+         {"name": "myzmq2", "address": "tcp://zmq2.example.com",
           "is_active":true, "socket_type":"PUSH"}
      ],
-     
+
      "scheduler": [
-         {"name": "myjob1", "is_active":true, "job_type":"interval-based", 
+         {"name": "myjob1", "is_active":true, "job_type":"interval-based",
           "service":"myservice", "start_date":"2013-10-21T09:37:45"},
-          
-         {"name": "myjob2", "is_active":true, "job_type":"one-time", 
+
+         {"name": "myjob2", "is_active":true, "job_type":"one-time",
           "service":"myservice", "start_date":"2013-10-21T09:37:46"}
      ]
   }
@@ -488,6 +488,6 @@ myinclude6.json
 
 ::
 
-  {"name": "mysql3", "username": "mysql2", "password":"mypassword", 
+  {"name": "mysql3", "username": "mysql2", "password":"mypassword",
    "engine":"postgresql", "db_name": "mydb", "host": "localhost",
    "is_active": true, "pool_size":2, "port": 1999}
