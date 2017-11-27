@@ -230,35 +230,175 @@ the --ignore-missing-defs switch when invoking enmasse. This may makes sense if 
 know that such definitions will be available at the time the export file will be imported
 into a cluster.
 
-=================== ===================================================================================================================================================================================
-Key                 Notes
-=================== ===================================================================================================================================================================================
-def_sec             Security definitions. 'type' must be one of 'basic_auth', 'wss' or 'tech_acc' and whether attributes
-                    required point to an
-                    :doc:`HTTP Basic Auth <../../public-api/details/zato.security.basic-auth.create>`,
-                    :doc:`technical account <../../public-api/details/zato.security.tech-account.create>`
-                    or a
-                    :doc:`WS-Security definition <../../public-api/details/zato.security.wss.create>`.
-def_amqp            :doc:`AMQP connection definitions. <../../public-api/details/zato.definition.amqp.create>` 'password' is required.
-def_jms_wmq         :doc:`JMS WebSphere MQ definitions. <../../public-api/details/zato.definition.jms-wmq.create>`
-channel_amqp        :doc:`AMQP channels. <../../public-api/details/zato.channel.amqp.create>` 'def' is an AMQP connection definition to use.
-channel_jms_wmq     :doc:`JMS WebSphere MQ channels. <../../public-api/details/zato.channel.jms-wmq.create>` 'def' is a JMS WebSphere MQ connection definition to use.
-channel_plain_http  :doc:`Plain HTTP channels. <../../public-api/details/zato.http-soap.create>` 'sec_def' is the security definition to use. 'connection' and 'transport' can be skipped.
-channel_soap        :doc:`SOAP channels. <../../public-api/details/zato.http-soap.create>` 'sec_def' is the security definition to use.  'connection' and 'transport' can be skipped.
-channel_zmq         :doc:`Zero MQ channels. <../../public-api/details/zato.channel.zmq.create>`
-outconn_amqp        :doc:`Outgoing AMQP connections. <../../public-api/details/zato.outgoing.amqp.create>` 'def' is an AMQP connection definition to use.
-outconn_ftp         :doc:`Outgoing FTP connections. <../../public-api/details/zato.outgoing.ftp.create>`
-outconn_jms_wmq     :doc:`Outgoing JMS WebSphere MQ connections. <../../public-api/details/zato.outgoing.jms-wmq.create>` 'def' is a JMS WebSphere MQ connection definition to use.
-outconn_plain_http  :doc:`Outgoing plain HTTP connections. <../../public-api/details/zato.http-soap.create>` 'sec_def' is the security definition to use. 'connection' and 'transport' can be skipped.
-outconn_soap        :doc:`Outgoing SOAP connections. <../../public-api/details/zato.http-soap.create>` 'sec_def' is the security definition to use. 'connection' and 'transport' can be skipped.
-outconn_sql         :doc:`Outgoing SQL connections. <../../public-api/details/zato.outgoing.sql.create>`
-outconn_zmq         :doc:`Outgoing ZeroMQ connections. <../../public-api/details/zato.outgoing.zmq.create>`
-scheduler           :doc:`Scheduler jobs. <../../public-api/details/zato.scheduler.job.create>`
-=================== ===================================================================================================================================================================================
+
+``def_sec``
+    Security definitions. 'type' must be one of:
+
+    * 'apikey' for :doc:`API keys <../../public-api/details/zato.security.apikey.create>`
+    * 'aws' for :doc:`AWS access keys <../../public-api/details/zato.security.aws.create>`
+    * 'basic_auth' for :doc:`HTTP basic authentication <../../public-api/details/zato.security.basic-auth.create>`
+    * 'jwt' for :doc:`JWT <../../public-api/details/zato.security.jwt.create>`
+    * 'ntlm' for :doc:`NTLM credentials <../../public-api/details/zato.security.ntlm.create>`
+    * 'oauth' for :doc:`OAuth <../../public-api/details/zato.security.oauth.create>`
+    * 'tech_acc' for :doc:`technical accounts <../../public-api/details/zato.security.tech-account.create>`
+    * 'vault_connection' for :doc:`vault connections<../../public-api/details/zato.security.vault.connection.create>`
+    * 'wss' for :doc:`WS-Security definitions <../../public-api/details/zato.security.wss.create>`
+    * 'xpath_sec' for :doc:`XPath security <../../public-api/details/zato.security.xpath.create>`
+
+``channel_amqp``
+    :doc:`AMQP channels. <../../public-api/details/zato.channel.amqp.create>`
+    'def' is an AMQP connection definition to use.
+
+``channel_jms_wmq``
+    :doc:`JMS WebSphere MQ channels.
+    <../../public-api/details/zato.channel.jms-wmq.create>` 'def' is a JMS
+    WebSphere MQ connection definition to use.
+
+``channel_plain_http``
+    :doc:`Plain HTTP channels.
+    <../../public-api/details/zato.http-soap.create>` 'sec_def' is the
+    security definition to use. 'connection' and 'transport' can be skipped.
+
+``channel_soap``
+    :doc:`SOAP channels. <../../public-api/details/zato.http-soap.create>`
+    'sec_def' is the security definition to use.  'connection' and 'transport'
+    can be skipped.
+
+``channel_zmq``
+    :doc:`Zero MQ channels. <../../public-api/details/zato.channel.zmq.create>`
+
+``cloud_aws_s3``
+    :doc:`S3 buckets <../../public-api/details/zato.cloud.aws.s3.create>`
+
+``def_amqp``
+    :doc:`AMQP connection definitions. <../../public-api/details/zato.definition.amqp.create>`
+
+``def_cassandra``
+    :doc:`Cassandra connection definitions. <../../public-api/details/zato.definition.cassandra.create>`
+
+``def_cloud_openstack_swift``
+    :doc:`OpenStack Swift definitions. <../../public-api/details/zato.cloud.openstack.swift.cassandra.create>`
+
+``def_jms_wmq``
+    :doc:`JMS WebSphere MQ definitions. <../../public-api/details/zato.definition.jms-wmq.create>`
+
+``def_namespace``
+    :doc:`Message namespace definitions. <../../public-api/details/zato.definition.namespace.create>`
+
+``email_imap``
+    :doc:`IMAP mail connections. <../../public-api/details/zato.email.imap.create>`
+
+``email_smtp``
+    :doc:`SMTP mail connections. <../../public-api/details/zato.email.smtp.create>`
+
+``json_pointer``
+    :doc:`JSON pointer definitions. <../../public-api/details/zato.message.json-pointer.create>`
+
+``notif_cloud_openstack_swift``
+    :doc:`OpenStack Swift notifiers. <../../public-api/details/zato.notif.cloud.openstack.swift.create>`
+
+``notif_sql``
+    :doc:`SQL notifiers. <../../public-api/details/zato.notif.sql.txt>`
+
+``outconn_amqp``
+    :doc:`Outgoing AMQP connections.
+    <../../public-api/details/zato.outgoing.amqp.create>` 'def' is an AMQP
+    connection definition to use.
+
+``outconn_ftp``
+    :doc:`Outgoing FTP connections. <../../public-api/details/zato.outgoing.ftp.create>`
+
+``outconn_jms_wmq``
+    :doc:`Outgoing JMS WebSphere MQ connections.
+    <../../public-api/details/zato.outgoing.jms-wmq.create>` 'def' is a JMS
+    WebSphere MQ connection definition to use.
+
+``outconn_odoo``
+    :doc:`Outgoing Odoo connections. <../../public-api/details/zato.outgoing.odoo.create>`
+
+``outconn_plain_http``
+    :doc:`Outgoing plain HTTP connections.
+    <../../public-api/details/zato.http-soap.create>` 'sec_def' is the
+    security definition to use. 'connection' and 'transport' can be skipped.
+
+``outconn_soap``
+    :doc:`Outgoing SOAP connections.
+    <../../public-api/details/zato.http-soap.create>` 'sec_def' is the
+    security definition to use. 'connection' and 'transport' can be skipped.
+
+``outconn_sql``
+    :doc:`Outgoing SQL connections. <../../public-api/details/zato.outgoing.sql.create>`
+
+``outconn_stomp``
+    :doc:`Outgoing STOMP connections. <../../public-api/details/zato.outgoing.stomp.create>`
+
+``outconn_zmq``
+    :doc:`Outgoing ZeroMQ connections. <../../public-api/details/zato.outgoing.zmq.create>`
+
+``query_cassandra``
+    :doc:`Cassandra queries. <../../public-api/details/zato.query.cassandra.create>`
+
+``scheduler``
+    :doc:`Scheduler jobs. <../../public-api/details/zato.scheduler.job.create>`
+
+``search_es``
+    :doc:`ElasticSearch connections. <../../public-api/details/zato.search.es.create>`
+
+``search_solr``
+    :doc:`Apache Solr connections. <../../public-api/details/zato.search.solr.create>`
+
+``xpath``
+    :doc:`XPath message definitions. <../../public-api/details/zato.xpath.create>`
+
+``zato_channel_stomp``
+    :doc:`Stomp channel definitions. <../../public-api/details/zato.channel.stomp.create>`
+
+``zato_channel_web_socket``
+    :doc:`Web socket channel definitions. <../../public-api/details/zato.channel.web-socket.create>`
+
+``zato_sms_twilio``
+    :doc:`Twilio notifiers. <../../public-api/details/zato.channel.web-socket.create>`
 
 
-Sample JSON config files
-------------------------
+
+Sample YAML Files
+-----------------
+
+input1.yml
+~~~~~~~~~~
+
+::
+
+    ---
+    def_sec:
+    - type: basic_auth
+      name: mybasicauth
+      real: myrealm
+      password: mypassword1
+      is_active: true
+      username: mybasicauthuser
+
+    outconn_plain_http:
+    - name: myhttp1
+      sec_def: mybasicauth
+      host: test11.example.com
+      connection: outgoing
+      is_active: true
+      is_internal: false
+      transport: plain-http
+      url_path: /out/1
+
+
+include1.yml
+~~~~~~~~~~~~
+
+  ---
+  
+
+
+
+Sample JSON Files
+-----------------
 
 input1.json
 ~~~~~~~~~~~
