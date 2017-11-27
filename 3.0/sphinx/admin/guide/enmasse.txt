@@ -367,7 +367,10 @@ Sample YAML Files
 input1.yml
 ~~~~~~~~~~
 
-::
+Top-level configuration files are YAML dictionaries, where each key is a list
+of objects.
+
+.. code-block:: yaml
 
     ---
 
@@ -399,7 +402,11 @@ input1.yml
 include1.yml
 ~~~~~~~~~~~~
 
-::
+Included configuration files are also YAML dictionaries, however they do not
+specify a type, and the item's fields are defined directly in the top-level
+directionary.
+
+.. code-block:: yaml
 
   ---
 
@@ -407,6 +414,11 @@ include1.yml
   is_active: true
   job_type: interval
   service: my.service
+
+  # Be careful! In YAML, many special characters and reserved words exist. For
+  # example, the word "no" is interpreted as boolean False, as are the words
+  # "yes", "true", etc.  Other special characters introduce data constructs.
+  # When in doubt, simply quote the entire field, as shown here.
   start_date: "1970-01-01T00:00:00"
 
 
