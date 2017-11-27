@@ -370,7 +370,9 @@ input1.yml
 ::
 
     ---
+
     def_sec:
+    # Define a HTTP basic authentication definition with a password set.
     - type: basic_auth
       name: mybasicauth
       real: myrealm
@@ -379,6 +381,7 @@ input1.yml
       username: mybasicauthuser
 
     outconn_plain_http:
+    # Define an outgoing HTTP connection using the associated auth definition.
     - name: myhttp1
       sec_def: mybasicauth
       host: test11.example.com
@@ -388,13 +391,23 @@ input1.yml
       transport: plain-http
       url_path: /out/1
 
+    scheduler:
+    # Create a scheduled job using an include file from the same directory as input1.yml.
+    - file://./include1.yml
+
 
 include1.yml
 ~~~~~~~~~~~~
 
-  ---
-  
+::
 
+  ---
+
+  name: my_job
+  is_active: true
+  job_type: interval
+  service: my.service
+  start_date: "1970-01-01T00:00:00"
 
 
 Sample JSON Files
