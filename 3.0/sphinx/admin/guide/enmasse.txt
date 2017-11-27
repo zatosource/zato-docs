@@ -6,30 +6,24 @@ Managing server objects en masse
 Overview
 --------
 
-In addition to the
-:doc:`GUI <../../web-admin/intro>`,
-:doc:`CLI <../cli/index>`
-and
-:doc:`API <../../public-api/intro>`,
-you can use the `enmasse <https://zato.io/download/enmasse>`_ command line tool
-to manage :doc:`ODB-based <../../architecture/sql-odb>` server objects as a group.
-This lets you store each piece of configuration
-as a set of JSON files in a repository where they will be versioned or backed up
-and to use enmasse to perform roll-outs from command line without the use of GUI
-or other methods.
+In addition to the :doc:`GUI <../../web-admin/intro>`, :doc:`CLI <../cli/index>`
+and :doc:`API <../../public-api/intro>`, you can use the
+`enmasse <https://zato.io/download/enmasse>`_ command line tool to manage
+server objects as a group. This lets you store each object configuration in
+YAML or JSON files, in a repository where they can be versioned or backed up
+and to use enmasse to perform roll-outs from command line without the use of
+GUI or other methods.
 
-Enmasse does not deal with services, it's concerned with server objects only
-which is anything but services, including channels, scheduler jobs or security
-definitions and other types. How to deploy services is documented in
-:doc:`a separate chapter <./installing-services>`.
-
-Enmasse will never delete existing objects. This needs to be performed using the GUI or API.
+Enmasse handles backup and restore of server objects, includign channels,
+scheduler jobs, security definitions, etc. It specifically does not manage
+user services; service management is documented in :doc:`a separate chapter
+<./installing-services>`.
 
 Tasks you can use enmasse for
 -----------------------------
 
-* Exporting server objects from a cluster into JSON
-* Preparing cluster configuration in JSON and merging it with a contents
+* Exporting server objects from a cluster as text in YAML or JSON format.
+* Preparing cluster configuration and merging it with a contents
   of an already existing cluster
 * Importing objects from an export file into clusters, optionally replacing objects that already exist
 
@@ -47,8 +41,8 @@ Usage scenarios
 
 * You have a team of programmers each responsible for a part of a solution and you
   want to limit the number of conflicts in a central config repository. You split
-  the local JSON config file into multiple smaller ones each of which can be included
-  by enmasse to form a whole that will be imported as a single unit.
+  the local config file into multiple smaller ones, each of which can be
+  included by enmasse to form a whole that will be imported as a single unit.
 
 .. image:: /gfx/admin/enmasse-env.png
    :alt:
@@ -57,11 +51,11 @@ Usage scenarios
 Workflow
 --------
 
-* Either export objects from an already existing cluster to a JSON file or create
+* Either export objects from an already existing cluster to a file, or create
   the file from scratch, the format is given in later sections.
 
-* Customize the JSON config file, optionally splitting it into smaller units
-  that can be included later on.
+* Customize the file, optionally splitting it into smaller units that can be
+  included later on.
 
 * Combine all the includes, optionally merging ODB objects from a cluster of choice,
   into an export file. This is a file that can be imported to clusters. Note that
@@ -86,7 +80,7 @@ Notes
 
   If you're importing data, the path must point to a running server you're importing data into.
 
-* For exports, --input means an input JSON file out of which an export file should be created.
+* For exports, --input means an input file out of which an export file should be created.
 
   For imports, --input is an export file out of which definitions should be imported on a cluster.
 
@@ -116,19 +110,19 @@ What arguments to use depending on use-case
 =================================================================================== ==============================
 Use case                                                                            Arguments to use
 =================================================================================== ==============================
-Combining several JSON includes into one                                            --export-local
-Exporting ODB objects to a JSON file                                                --export-odb
-Merging JSON and ODB objects into one                                               --export-local --export-odb
-Ignoring that a resulting JSON file has some definitions missing                    --ignore-missing-defs
-Importing objects from a JSON export file, bailing out if any object already exists --import
-Importing objects from a JSON export file, replacing objects that already exist     --import --replace-odb-objects
+Merge a file containing includes into a single file                                 --export-local
+Export ODB objects to a file                                                        --export-odb
+Merge objects from a file and ODB into a new file                                   --export-local --export-odb
+Ignore that a resulting file has some definitions missing                           --ignore-missing-defs
+Import from a file, bailing out if any object already exists                        --import
+Import from a file, replacing objects that already exist                            --import --replace-odb-objects
 =================================================================================== ==============================
 
 
 Usage samples
 -------------
 
-* Creating an export file out of a JSON file, pulling all includes in along
+* Creating an export file out of a file, pulling all includes in along
 
   ::
 
@@ -137,24 +131,24 @@ Usage samples
       Data exported to /opt/zato/zato-export-2013-06-12T20_10_19_874355.json
       $
 
-* Creating an export file out of a JSON file, pulling all includes and any
+* Creating an export file out of another file, pulling all includes and any
   non-Zato internal objects from ODB in along
 
   ::
 
-      $ zato enmasse /opt/server1/ --input input1.json --export-local --export-odb
+      $ zato enmasse /opt/server1/ --input input1.yml --export-local --export-odb
       Includes merged in successfully
       ODB objects read
       ODB objects merged in
-      Data exported to /opt/zato/zato-export-2013-06-12T20_11_57_306991.json
+      Data exported to /opt/zato/zato-export-2013-06-12T20_11_57_306991.yml
       $
 
-* Importing an export JSON file on a cluster without setting a flag that already
+* Importing an export file on a cluster without setting a flag that already
   existing objects should be replaced
 
   ::
 
-    $ zato enmasse /server1/ --input export.json --import
+    $ zato enmasse /server1/ --input export.yml --import
     2 warnings and 0 errors found:
     +-----------------+--------------------------------------------------------------+
     |       Key       |                            Value                             |
@@ -179,12 +173,12 @@ Usage samples
     +-----------------+--------------------------------------------------------------+
     $
 
-* Importing an export JSON file on a cluster with a flag to replace already
+* Importing an export file on a cluster with a flag to replace already
   existing objects set
 
   ::
 
-    $ zato enmasse /server1/ --input export.json --import --replace-odb-objects
+    $ zato enmasse /server1/ --input export.yml --import --replace-odb-objects
     Updated object 'myjmswmq2' (def_jms_wmq)
     Updated object 'myjmswmq3' (def_jms_wmq)
     Updated object 'channel-amqp1' (channel_amqp)
@@ -199,23 +193,23 @@ Usage samples
     $
 
 
-Dissecting a JSON config file
------------------------------
+Dissecting a config file
+------------------------
 
 .. note ::
 
-  * Unlike when using the GUI or API, the security definition names you use in JSON
-    must be unique in a cluster. That is, not only there cannot be, say, two HTTP Basic
-    Auth definitions known as 'mysecurity-def' but it's an error to have a HTTP Basic Auth
-    and a technical account or a WS-Security one under this name.
+  * Unlike when using the GUI or API, the security definition names you use must be unique
+    in a cluster. That is, not only there cannot be, say, two HTTP Basic Auth
+    definitions known as 'mysecurity-def' but it's an error to have a HTTP
+    Basic Auth and a technical account or a WS-Security one under this name.
 
   * If a given HTTP object, such as a channel or an outgoing connection,
     should not use any security definition ('sec_def') at all, you should use a special
     constant string 'zato-no-security' to signal it. It cannot be None/null,
     it must be this exact string.
 
-Configuration is kept in a JSON file that contains a dictionary of well-known
-keys and a list of values for each key.
+Configuration is kept in a JSON or YAML file that contains a dictionary of
+well-known keys and a list of values for each key.
 
 Keys are the types of server objects the config contains. Values are objects
 themselves written either as dictionaries or as links to files containing
