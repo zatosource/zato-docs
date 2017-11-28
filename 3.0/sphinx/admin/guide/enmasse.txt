@@ -372,13 +372,14 @@ of objects.
 
 .. code-block:: yaml
 
+
     ---
 
     def_sec:
     # Define a HTTP basic authentication definition with a password set.
     - type: basic_auth
       name: mybasicauth
-      real: myrealm
+      realm: myrealm
       password: mypassword1
       is_active: true
       username: mybasicauthuser
@@ -408,18 +409,18 @@ directionary.
 
 .. code-block:: yaml
 
-  ---
+    ---
 
-  name: my_job
-  is_active: true
-  job_type: interval
-  service: my.service
+    name: my_job
+    is_active: true
+    job_type: interval_based
+    service: my.service
 
-  # Be careful! In YAML, many special characters and reserved words exist. For
-  # example, the word "no" is interpreted as boolean False, as are the words
-  # "yes", "true", etc.  Other special characters introduce data constructs.
-  # When in doubt, simply quote the entire field, as shown here.
-  start_date: "1970-01-01T00:00:00"
+    # In YAML, many special characters and reserved words exist. For example,
+    # "no" is interpreted as boolean False, as are "yes", "true", etc. Other
+    # special characters introduce data constructs. When in doubt, simply
+    # quote the entire field, as shown.
+    start_date: "1970-01-01T00:00:00"
 
 
 Sample JSON Files
@@ -428,7 +429,7 @@ Sample JSON Files
 input1.json
 ~~~~~~~~~~~
 
-::
+.. code-block:: json
 
   {
      "def_sec": [
