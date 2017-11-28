@@ -184,9 +184,7 @@ Usage samples
     Updated object 'channel-amqp1' (channel_amqp)
     Updated object 'channel-amqp2' (channel_amqp)
     Updated object 'ftp1' (outconn_ftp)
-    Password missing but not required 'ftp1' (outconn_ftp)
     Updated object 'ftp2' (outconn_ftp)
-    Password missing but not required 'ftp2' (outconn_ftp)
     Created object 'channel-myhttp3' (http_soap)
     Created object 'myhttp1' (http_soap)
     Created object 'myhttp2' (http_soap)
@@ -221,7 +219,8 @@ equivalent to API calls used to manage them and only differences are documented.
 
 You never use any IDs in JSON config files, only human-readable names and types are used.
 
-Passwords are always given in clear-text.
+Passwords are always given in clear-text. Note that enmasse cannot presently
+export existing passwords, they may only be imported.
 
 When using definitions, they don't necessarily have to exist anywhere at the time
 the input JSON is created however a warning will be displayed if an object depends
@@ -372,7 +371,6 @@ of objects.
 
 .. code-block:: yaml
 
-
     ---
 
     def_sec:
@@ -414,7 +412,8 @@ directionary.
     name: my_job
     is_active: true
     job_type: interval_based
-    service: my.service
+    service: zato.info.get-server-info
+    days: 1
 
     # In YAML, many special characters and reserved words exist. For example,
     # "no" is interpreted as boolean False, as are "yes", "true", etc. Other
@@ -429,7 +428,7 @@ Sample JSON Files
 input1.json
 ~~~~~~~~~~~
 
-.. code-block:: json
+::
 
   {
      "def_sec": [
