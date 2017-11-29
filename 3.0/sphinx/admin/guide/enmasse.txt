@@ -6,30 +6,24 @@ Managing server objects en masse
 Overview
 --------
 
-In addition to the
-:doc:`GUI <../../web-admin/intro>`,
-:doc:`CLI <../cli/index>`
-and
-:doc:`API <../../public-api/intro>`,
-you can use the `enmasse <https://zato.io/download/enmasse>`_ command line tool
-to manage :doc:`ODB-based <../../architecture/sql-odb>` server objects as a group.
-This lets you store each piece of configuration
-as a set of JSON files in a repository where they will be versioned or backed up
-and to use enmasse to perform roll-outs from command line without the use of GUI
-or other methods.
+In addition to the :doc:`GUI <../../web-admin/intro>`, :doc:`CLI <../cli/index>`
+and :doc:`API <../../public-api/intro>`, you can use the
+`enmasse <https://zato.io/download/enmasse>`_ command line tool to manage
+server objects as a group. This lets you store each object configuration in
+YAML or JSON files, in a repository where they can be versioned or backed up
+and to use enmasse to perform roll-outs from command line without the use of
+GUI or other methods.
 
-Enmasse does not deal with services, it's concerned with server objects only
-which is anything but services, including channels, scheduler jobs or security
-definitions and other types. How to deploy services is documented in 
-:doc:`a separate chapter <./installing-services>`.
-
-Enmasse will never delete existing objects. This needs to be performed using the GUI or API.
+Enmasse handles backup and restore of server objects, includign channels,
+scheduler jobs, security definitions, etc. It specifically does not manage
+user services; service management is documented in :doc:`a separate chapter
+<./installing-services>`.
 
 Tasks you can use enmasse for
 -----------------------------
 
-* Exporting server objects from a cluster into JSON
-* Preparing cluster configuration in JSON and merging it with a contents
+* Exporting server objects from a cluster as text in YAML or JSON format.
+* Preparing cluster configuration and merging it with a contents
   of an already existing cluster
 * Importing objects from an export file into clusters, optionally replacing objects that already exist
 
@@ -41,15 +35,15 @@ Usage scenarios
   to store the config in a git repository. Hence you use enmasse to export all server
   objects from a dev cluster into JSON. The JSON is next imported to tests and later on,
   on production.
-  
+
 * You have an already existing cluster and want to add or replace server objects.
   You prepare a JSON config file and import it to a cluster.
-  
+
 * You have a team of programmers each responsible for a part of a solution and you
   want to limit the number of conflicts in a central config repository. You split
-  the local JSON config file into multiple smaller ones each of which can be included
-  by enmasse to form a whole that will be imported as a single unit.
-  
+  the local config file into multiple smaller ones, each of which can be
+  included by enmasse to form a whole that will be imported as a single unit.
+
 .. image:: /gfx/admin/enmasse-env.png
    :alt:
 
@@ -57,54 +51,54 @@ Usage scenarios
 Workflow
 --------
 
-* Either export objects from an already existing cluster to a JSON file or create
+* Either export objects from an already existing cluster to a file, or create
   the file from scratch, the format is given in later sections.
-  
-* Customize the JSON config file, optionally splitting it into smaller units
-  that can be included later on.
-  
+
+* Customize the file, optionally splitting it into smaller units that can be
+  included later on.
+
 * Combine all the includes, optionally merging ODB objects from a cluster of choice,
   into an export file. This is a file that can be imported to clusters. Note that
   its format is not documented and may change without prior notice.
-  
+
 * Import objects from an export file, optionally replacing objects that already
   exist in a cluster.
-  
+
 Notes
 ~~~~~
 
 * Both --export-* arguments always need an input JSON file in --input, if you're
   just starting out, put an empty dictionary {} to the file, but remember that
   it must exist and must not be empty.
-  
-* Path to a server is always required and serves a double role. 
+
+* Path to a server is always required and serves a double role.
 
   If you're exporting data it must be path to a running
   server you're exporting data from. Just point it to any existing server directory even if you're
   not exporting data from ODB. The requirement to point path to a server even if
   ODB is not used will be lifted in future versions.
-  
+
   If you're importing data, the path must point to a running server you're importing data into.
-  
-* For exports, --input means an input JSON file out of which an export file should be created.
+
+* For exports, --input means an input file out of which an export file should be created.
 
   For imports, --input is an export file out of which definitions should be imported on a cluster.
-  
+
 * For imports, the order enmasse works in is guaranteed to be:
 
   * Existing definitions are updated
   * Existing objects other than definitions are updated
   * New definitions are created
   * New objects other than definitions are created
-  
+
   This way, objects that depend on definitions can be sure the definitions
   they need already exist in the ODB.
-  
+
 * If channels or outgoing connections are active and they require connectors,
   the connectors will be started right away. This may mean a flurry of activity on a cluster's
   connector server. It may be worthwhile to consider whether such channels and outgoing
   connection should not be imported in an inactive state, enabling them manually later on.
-  
+
 * When creating an export file, enmasse tries to report as many warnings and errors
   in one go as possible. When importing a file, it does the contrary, and will stop as soon
   as it encounters anything it can't deal with to give you a chance to have a look
@@ -116,45 +110,45 @@ What arguments to use depending on use-case
 =================================================================================== ==============================
 Use case                                                                            Arguments to use
 =================================================================================== ==============================
-Combining several JSON includes into one                                            --export-local
-Exporting ODB objects to a JSON file                                                --export-odb
-Merging JSON and ODB objects into one                                               --export-local --export-odb
-Ignoring that a resulting JSON file has some definitions missing                    --ignore-missing-defs
-Importing objects from a JSON export file, bailing out if any object already exists --import
-Importing objects from a JSON export file, replacing objects that already exist     --import --replace-odb-objects
+Merge a file containing includes into a single file                                 --export-local
+Export ODB objects to a file                                                        --export-odb
+Merge objects from a file and ODB into a new file                                   --export-local --export-odb
+Ignore that a resulting file has some definitions missing                           --ignore-missing-defs
+Import from a file, bailing out if any object already exists                        --import
+Import from a file, replacing objects that already exist                            --import --replace-odb-objects
 =================================================================================== ==============================
 
 
 Usage samples
 -------------
 
-* Creating an export file out of a JSON file, pulling all includes in along
+* Creating an export file out of a file, pulling all includes in along
 
   ::
-  
+
       $ zato enmasse /opt/server1/ --input input1.json --export-local
       Includes merged in successfully
       Data exported to /opt/zato/zato-export-2013-06-12T20_10_19_874355.json
       $
-      
-* Creating an export file out of a JSON file, pulling all includes and any
+
+* Creating an export file out of another file, pulling all includes and any
   non-Zato internal objects from ODB in along
-      
+
   ::
-  
-      $ zato enmasse /opt/server1/ --input input1.json --export-local --export-odb
+
+      $ zato enmasse /opt/server1/ --input input1.yml --export-local --export-odb
       Includes merged in successfully
       ODB objects read
       ODB objects merged in
-      Data exported to /opt/zato/zato-export-2013-06-12T20_11_57_306991.json
+      Data exported to /opt/zato/zato-export-2013-06-12T20_11_57_306991.yml
       $
-      
-* Importing an export JSON file on a cluster without setting a flag that already
+
+* Importing an export file on a cluster without setting a flag that already
   existing objects should be replaced
 
   ::
-  
-    $ zato enmasse /server1/ --input export.json --import
+
+    $ zato enmasse /server1/ --input export.yml --import
     2 warnings and 0 errors found:
     +-----------------+--------------------------------------------------------------+
     |       Key       |                            Value                             |
@@ -178,47 +172,45 @@ Usage samples
     |                 | u'myconsumer', u'id': 2L} (channel_amqp)                     |
     +-----------------+--------------------------------------------------------------+
     $
-    
-* Importing an export JSON file on a cluster with a flag to replace already
+
+* Importing an export file on a cluster with a flag to replace already
   existing objects set
 
   ::
-  
-    $ zato enmasse /server1/ --input export.json --import --replace-odb-objects
+
+    $ zato enmasse /server1/ --input export.yml --import --replace-odb-objects
     Updated object 'myjmswmq2' (def_jms_wmq)
     Updated object 'myjmswmq3' (def_jms_wmq)
     Updated object 'channel-amqp1' (channel_amqp)
     Updated object 'channel-amqp2' (channel_amqp)
     Updated object 'ftp1' (outconn_ftp)
-    Password missing but not required 'ftp1' (outconn_ftp)
     Updated object 'ftp2' (outconn_ftp)
-    Password missing but not required 'ftp2' (outconn_ftp)
     Created object 'channel-myhttp3' (http_soap)
     Created object 'myhttp1' (http_soap)
     Created object 'myhttp2' (http_soap)
     $
-      
 
-Dissecting a JSON config file
------------------------------
+
+Dissecting a config file
+------------------------
 
 .. note ::
 
-  * Unlike when using the GUI or API, the security definition names you use in JSON
-    must be unique in a cluster. That is, not only there cannot be, say, two HTTP Basic
-    Auth definitions known as 'mysecurity-def' but it's an error to have a HTTP Basic Auth
-    and a technical account or a WS-Security one under this name.
-    
+  * Unlike when using the GUI or API, the security definition names you use must be unique
+    in a cluster. That is, not only there cannot be, say, two HTTP Basic Auth
+    definitions known as 'mysecurity-def' but it's an error to have a HTTP
+    Basic Auth and a technical account or a WS-Security one under this name.
+
   * If a given HTTP object, such as a channel or an outgoing connection,
     should not use any security definition ('sec_def') at all, you should use a special
     constant string 'zato-no-security' to signal it. It cannot be None/null,
     it must be this exact string.
-    
-Configuration is kept in a JSON file that contains a dictionary of well-known
-keys and a list of values for each key.
+
+Configuration is kept in a JSON or YAML file that contains a dictionary of
+well-known keys and a list of values for each key.
 
 Keys are the types of server objects the config contains. Values are objects
-themselves written either as dictionaries or as links to files containing 
+themselves written either as dictionaries or as links to files containing
 the configuration of each object individually - one file is one object. If not
 absolute, paths to files are relative to the main config file.
 
@@ -227,44 +219,211 @@ equivalent to API calls used to manage them and only differences are documented.
 
 You never use any IDs in JSON config files, only human-readable names and types are used.
 
-Passwords are always given in clear-text.
+Passwords are always given in clear-text. Note that enmasse cannot presently
+export existing passwords, they may only be imported.
 
-When using definitions, they don't necessarily have to exist anywhere at the time 
+When using definitions, they don't necessarily have to exist anywhere at the time
 the input JSON is created however a warning will be displayed if an object depends
 on a definition which doesn't exist at that time - you can skip displaying this warning using
 the --ignore-missing-defs switch when invoking enmasse. This may makes sense if you
 know that such definitions will be available at the time the export file will be imported
 into a cluster.
 
-=================== ===================================================================================================================================================================================
-Key                 Notes
-=================== ===================================================================================================================================================================================
-def_sec             Security definitions. 'type' must be one of 'basic_auth', 'wss' or 'tech_acc' and whether attributes
-                    required point to an 
-                    :doc:`HTTP Basic Auth <../../public-api/details/zato.security.basic-auth.create>`,
-                    :doc:`technical account <../../public-api/details/zato.security.tech-account.create>`
-                    or a
-                    :doc:`WS-Security definition <../../public-api/details/zato.security.wss.create>`.
-def_amqp            :doc:`AMQP connection definitions. <../../public-api/details/zato.definition.amqp.create>` 'password' is required.
-def_jms_wmq         :doc:`JMS WebSphere MQ definitions. <../../public-api/details/zato.definition.jms-wmq.create>`
-channel_amqp        :doc:`AMQP channels. <../../public-api/details/zato.channel.amqp.create>` 'def' is an AMQP connection definition to use.
-channel_jms_wmq     :doc:`JMS WebSphere MQ channels. <../../public-api/details/zato.channel.jms-wmq.create>` 'def' is a JMS WebSphere MQ connection definition to use.
-channel_plain_http  :doc:`Plain HTTP channels. <../../public-api/details/zato.http-soap.create>` 'sec_def' is the security definition to use. 'connection' and 'transport' can be skipped.
-channel_soap        :doc:`SOAP channels. <../../public-api/details/zato.http-soap.create>` 'sec_def' is the security definition to use.  'connection' and 'transport' can be skipped.
-channel_zmq         :doc:`Zero MQ channels. <../../public-api/details/zato.channel.zmq.create>`
-outconn_amqp        :doc:`Outgoing AMQP connections. <../../public-api/details/zato.outgoing.amqp.create>` 'def' is an AMQP connection definition to use.
-outconn_ftp         :doc:`Outgoing FTP connections. <../../public-api/details/zato.outgoing.ftp.create>`
-outconn_jms_wmq     :doc:`Outgoing JMS WebSphere MQ connections. <../../public-api/details/zato.outgoing.jms-wmq.create>` 'def' is a JMS WebSphere MQ connection definition to use.
-outconn_plain_http  :doc:`Outgoing plain HTTP connections. <../../public-api/details/zato.http-soap.create>` 'sec_def' is the security definition to use. 'connection' and 'transport' can be skipped.
-outconn_soap        :doc:`Outgoing SOAP connections. <../../public-api/details/zato.http-soap.create>` 'sec_def' is the security definition to use. 'connection' and 'transport' can be skipped.
-outconn_sql         :doc:`Outgoing SQL connections. <../../public-api/details/zato.outgoing.sql.create>`
-outconn_zmq         :doc:`Outgoing ZeroMQ connections. <../../public-api/details/zato.outgoing.zmq.create>`
-scheduler           :doc:`Scheduler jobs. <../../public-api/details/zato.scheduler.job.create>`
-=================== ===================================================================================================================================================================================
+
+``def_sec``
+    Security definitions. 'type' must be one of:
+
+    * 'apikey' for :doc:`API keys <../../public-api/details/zato.security.apikey.create>`
+    * 'aws' for :doc:`AWS access keys <../../public-api/details/zato.security.aws.create>`
+    * 'basic_auth' for :doc:`HTTP basic authentication <../../public-api/details/zato.security.basic-auth.create>`
+    * 'jwt' for :doc:`JWT <../../public-api/details/zato.security.jwt.create>`
+    * 'ntlm' for :doc:`NTLM credentials <../../public-api/details/zato.security.ntlm.create>`
+    * 'oauth' for :doc:`OAuth <../../public-api/details/zato.security.oauth.create>`
+    * 'tech_acc' for :doc:`technical accounts <../../public-api/details/zato.security.tech-account.create>`
+    * 'vault_connection' for :doc:`vault connections<../../public-api/details/zato.security.vault.connection.create>`
+    * 'wss' for :doc:`WS-Security definitions <../../public-api/details/zato.security.wss.create>`
+    * 'xpath_sec' for :doc:`XPath security <../../public-api/details/zato.security.xpath.create>`
+
+``channel_amqp``
+    :doc:`AMQP channels. <../../public-api/details/zato.channel.amqp.create>`
+    'def' is an AMQP connection definition to use.
+
+``channel_jms_wmq``
+    :doc:`JMS WebSphere MQ channels.
+    <../../public-api/details/zato.channel.jms-wmq.create>` 'def' is a JMS
+    WebSphere MQ connection definition to use.
+
+``channel_plain_http``
+    :doc:`Plain HTTP channels.
+    <../../public-api/details/zato.http-soap.create>` 'sec_def' is the
+    security definition to use. 'connection' and 'transport' can be skipped.
+
+``channel_soap``
+    :doc:`SOAP channels. <../../public-api/details/zato.http-soap.create>`
+    'sec_def' is the security definition to use.  'connection' and 'transport'
+    can be skipped.
+
+``channel_zmq``
+    :doc:`Zero MQ channels. <../../public-api/details/zato.channel.zmq.create>`
+
+``cloud_aws_s3``
+    :doc:`S3 buckets <../../public-api/details/zato.cloud.aws.s3.create>`
+
+``def_amqp``
+    :doc:`AMQP connection definitions. <../../public-api/details/zato.definition.amqp.create>`
+
+``def_cassandra``
+    :doc:`Cassandra connection definitions. <../../public-api/details/zato.definition.cassandra.create>`
+
+``def_cloud_openstack_swift``
+    :doc:`OpenStack Swift definitions. <../../public-api/details/zato.cloud.openstack.swift.cassandra.create>`
+
+``def_jms_wmq``
+    :doc:`JMS WebSphere MQ definitions. <../../public-api/details/zato.definition.jms-wmq.create>`
+
+``def_namespace``
+    :doc:`Message namespace definitions. <../../public-api/details/zato.definition.namespace.create>`
+
+``email_imap``
+    :doc:`IMAP mail connections. <../../public-api/details/zato.email.imap.create>`
+
+``email_smtp``
+    :doc:`SMTP mail connections. <../../public-api/details/zato.email.smtp.create>`
+
+``json_pointer``
+    :doc:`JSON pointer definitions. <../../public-api/details/zato.message.json-pointer.create>`
+
+``notif_cloud_openstack_swift``
+    :doc:`OpenStack Swift notifiers. <../../public-api/details/zato.notif.cloud.openstack.swift.create>`
+
+``notif_sql``
+    :doc:`SQL notifiers. <../../public-api/details/zato.notif.sql.txt>`
+
+``outconn_amqp``
+    :doc:`Outgoing AMQP connections.
+    <../../public-api/details/zato.outgoing.amqp.create>` 'def' is an AMQP
+    connection definition to use.
+
+``outconn_ftp``
+    :doc:`Outgoing FTP connections. <../../public-api/details/zato.outgoing.ftp.create>`
+
+``outconn_jms_wmq``
+    :doc:`Outgoing JMS WebSphere MQ connections.
+    <../../public-api/details/zato.outgoing.jms-wmq.create>` 'def' is a JMS
+    WebSphere MQ connection definition to use.
+
+``outconn_odoo``
+    :doc:`Outgoing Odoo connections. <../../public-api/details/zato.outgoing.odoo.create>`
+
+``outconn_plain_http``
+    :doc:`Outgoing plain HTTP connections.
+    <../../public-api/details/zato.http-soap.create>` 'sec_def' is the
+    security definition to use. 'connection' and 'transport' can be skipped.
+
+``outconn_soap``
+    :doc:`Outgoing SOAP connections.
+    <../../public-api/details/zato.http-soap.create>` 'sec_def' is the
+    security definition to use. 'connection' and 'transport' can be skipped.
+
+``outconn_sql``
+    :doc:`Outgoing SQL connections. <../../public-api/details/zato.outgoing.sql.create>`
+
+``outconn_stomp``
+    :doc:`Outgoing STOMP connections. <../../public-api/details/zato.outgoing.stomp.create>`
+
+``outconn_zmq``
+    :doc:`Outgoing ZeroMQ connections. <../../public-api/details/zato.outgoing.zmq.create>`
+
+``query_cassandra``
+    :doc:`Cassandra queries. <../../public-api/details/zato.query.cassandra.create>`
+
+``scheduler``
+    :doc:`Scheduler jobs. <../../public-api/details/zato.scheduler.job.create>`
+
+``search_es``
+    :doc:`ElasticSearch connections. <../../public-api/details/zato.search.es.create>`
+
+``search_solr``
+    :doc:`Apache Solr connections. <../../public-api/details/zato.search.solr.create>`
+
+``xpath``
+    :doc:`XPath message definitions. <../../public-api/details/zato.xpath.create>`
+
+``zato_channel_stomp``
+    :doc:`Stomp channel definitions. <../../public-api/details/zato.channel.stomp.create>`
+
+``zato_channel_web_socket``
+    :doc:`Web socket channel definitions. <../../public-api/details/zato.channel.web-socket.create>`
+
+``zato_sms_twilio``
+    :doc:`Twilio notifiers. <../../public-api/details/zato.channel.web-socket.create>`
 
 
-Sample JSON config files
-------------------------
+
+Sample YAML Files
+-----------------
+
+input1.yml
+~~~~~~~~~~
+
+Top-level configuration files are YAML dictionaries, where each key is a list
+of objects.
+
+.. code-block:: yaml
+
+    ---
+
+    def_sec:
+    # Define a HTTP basic authentication definition with a password set.
+    - type: basic_auth
+      name: mybasicauth
+      realm: myrealm
+      password: mypassword1
+      is_active: true
+      username: mybasicauthuser
+
+    outconn_plain_http:
+    # Define an outgoing HTTP connection using the associated auth definition.
+    - name: myhttp1
+      sec_def: mybasicauth
+      host: test11.example.com
+      connection: outgoing
+      is_active: true
+      is_internal: false
+      transport: plain-http
+      url_path: /out/1
+
+    scheduler:
+    # Create a scheduled job using an include file from the same directory as input1.yml.
+    - file://./include1.yml
+
+
+include1.yml
+~~~~~~~~~~~~
+
+Included configuration files are also YAML dictionaries, however they do not
+specify a type, and the item's fields are defined directly in the top-level
+directionary.
+
+.. code-block:: yaml
+
+    ---
+
+    name: my_job
+    is_active: true
+    job_type: interval_based
+    service: zato.info.get-server-info
+    days: 1
+
+    # In YAML, many special characters and reserved words exist. For example,
+    # "no" is interpreted as boolean False, as are "yes", "true", etc. Other
+    # special characters introduce data constructs. When in doubt, simply
+    # quote the entire field, as shown.
+    start_date: "1970-01-01T00:00:00"
+
+
+Sample JSON Files
+-----------------
 
 input1.json
 ~~~~~~~~~~~
@@ -273,168 +432,168 @@ input1.json
 
   {
      "def_sec": [
-         {"type": "basic_auth", "name":"mybasicauth", "realm":"myrealm", 
+         {"type": "basic_auth", "name":"mybasicauth", "realm":"myrealm",
            "password":"mypassword1", "is_active":true, "username":"mybasicauthuser"},
-           
-         {"type": "wss", "name":"mywss", "password":"mypassword2", 
+
+         {"type": "wss", "name":"mywss", "password":"mypassword2",
           "is_active":true, "nonce_freshness_time":8000, "password_type":"clear_text",
-          "reject_empty_nonce_creat":true, "reject_expiry_limit":2800, 
+          "reject_empty_nonce_creat":true, "reject_expiry_limit":2800,
           "reject_stale_tokens":true, "username":"myuser"},
-          
+
          {"type": "tech_acc", "name":"mytechacc", "password":"mypassword3",
           "is_active":true}
      ],
-     
+
      "def_amqp": [
-         {"name": "myamqp1", "host":"localhost", "port":5672, "username":"user1", 
+         {"name": "myamqp1", "host":"localhost", "port":5672, "username":"user1",
           "password":"password1", "frame_max":1980, "heartbeat":30,
           "vhost":"/zato1"},
-          
-         {"name": "myamqp2", "host":"localhost", "port":25672, "username":"user2", 
+
+         {"name": "myamqp2", "host":"localhost", "port":25672, "username":"user2",
           "password":"password2", "frame_max":290290, "heartbeat":230,
           "vhost":"/zato2"},
-          
+
          "file://./myinclude2.json"
      ],
-     
+
      "def_jms_wmq": [
          {"name": "myjmswmq", "host":"localhost3", "port":31415,
           "cache_open_receive_queues":true, "cache_open_send_queues":true,
           "channel": "SVRCONN.1", "max_chars_printed":500, "needs_mcd":true,
           "queue_manager":"QM01", "ssl":false, "use_shared_connections":true},
-          
-         {"name": "myjmswmq2", "host":"localhost3", "port":31415, 
+
+         {"name": "myjmswmq2", "host":"localhost3", "port":31415,
           "cache_open_receive_queues":true, "cache_open_send_queues":true,
           "channel": "SVRCONN.1", "max_chars_printed":500, "needs_mcd":true,
           "queue_manager":"QM01", "ssl":false, "use_shared_connections":true},
-          
+
          "file://./myinclude3.json"
      ],
-     
+
      "channel_amqp": [
-         {"name": "channel-amqp1", "def": "myamqp1", 
+         {"name": "channel-amqp1", "def": "myamqp1",
           "consumer_tag_prefix":"myconsumer", "is_active":true, "queue":"MYQUEUE",
           "service":"myservice"},
-          
+
          {"name": "channel-amqp2", "def": "myamqp1",
           "consumer_tag_prefix":"myconsumer", "is_active":true, "queue":"MYQUEUE",
           "service":"myservice"}
      ],
-     
+
      "channel_jms_wmq": [
          {"name": "channel-jms-wmq1", "def": "myjmswmq2", "is_active":true,
           "queue":"Q1", "service":"myservice1"},
-          
+
          {"name": "channel-jms-wmq2", "def": "myjmswmq3", "is_active":true,
          "queue":"Q2", "service":"myservice2"}
      ],
-     
+
      "channel_plain_http": [
-         {"name": "channel-myhttp2", "sec_def": "mywss", 
+         {"name": "channel-myhttp2", "sec_def": "mywss",
           "host":"test-channel-12.example.com", "connection":"channel",
           "is_active":true, "is_internal":false, "transport":"plain-http",
           "url_path":"/path2"},
-          
+
          {"name": "channel-myhttp3", "sec_def": "mytechacc",
           "host":"test-channel-13.example.com", "connection":"channel",
           "is_active":true,
           "is_internal":false, "transport":"plain-http",
           "url_path":"/path3"}
      ],
-     
+
      "channel_soap": [
          {"name": "channel-soap1", "sec_def": "zato-no-security",
           "host":"test-channel-11.example.com", "is_active":true,
           "is_internal":false, "url_path":"/path1", "connection":"channel",
           "transport":"soap"},
-          
+
          {"name": "channel-soap2", "sec_def": "mytechacc",
           "host":"test-channel-11.example.com", "is_active":true,
           "is_internal":false, "url_path":"/path1", "connection":"channel",
           "transport":"soap"}
      ],
-     
+
      "channel_zmq": [
          {"name": "mychannel-zmq1", "address": "tcp://channel-zmq1.example.com",
           "is_active":true, "service":"service-zmq1", "socket_type":"PULL"},
-          
+
          {"name": "mychannel-zmq2", "address": "tcp://channel-zmq2.example.com",
           "is_active":true, "service":"service-zmq2", "socket_type":"SUB"},
-          
+
          "file://./myinclude4.json"
      ],
-     
+
      "outconn_amqp": [
-         {"name": "outconn-amqp1", "def": "myamqp1", "delivery_mode":1, 
+         {"name": "outconn-amqp1", "def": "myamqp1", "delivery_mode":1,
           "is_active":true, "priority":5},
-          
-         {"name": "outconn-amqp2", "def": "myamqp2", "delivery_mode":1, 
+
+         {"name": "outconn-amqp2", "def": "myamqp2", "delivery_mode":1,
          "is_active":true, "priority":5}
      ],
-     
+
      "outconn_ftp": [
-         {"name": "ftp1", "username": "myftp1", "dircache":false, 
+         {"name": "ftp1", "username": "myftp1", "dircache":false,
           "host":"ftp1.example.com", "is_active":true, "port":10121},
-          
-         {"name": "ftp2", "username": "myftp2", "dircache":true, 
+
+         {"name": "ftp2", "username": "myftp2", "dircache":true,
           "host":"ftp2.example.com", "is_active":true, "port":20121}
      ],
-     
+
      "outconn_jms_wmq": [
-         {"name": "jmswmq1", "def": "myjmswmq", "delivery_mode":1, 
+         {"name": "jmswmq1", "def": "myjmswmq", "delivery_mode":1,
           "is_active":true, "priority":5},
-          
-         {"name": "jmswmq2", "def": "myjmswmq", "delivery_mode":1, 
+
+         {"name": "jmswmq2", "def": "myjmswmq", "delivery_mode":1,
           "is_active":true, "priority":5},
-          
+
          "file://./myinclude5.json"
      ],
-     
+
      "outconn_plain_http": [
-         {"name": "myhttp1", "sec_def": "mybasicauth", 
+         {"name": "myhttp1", "sec_def": "mybasicauth",
           "host":"test11.example.com", "connection":"outgoing", "is_active":true,
           "is_internal":false, "transport":"plain-http", "url_path":"/out/1"},
-          
-         {"name": "myhttp2", "sec_def": "mywss", 
+
+         {"name": "myhttp2", "sec_def": "mywss",
           "host":"test22.example.com", "connection":"outgoing", "is_active":true,
           "is_internal":false, "transport":"plain-http", "url_path":"/out/2"}
      ],
-     
+
      "outconn_soap": [
-         {"name": "mysoap1", "sec_def": "mybasicauth", 
+         {"name": "mysoap1", "sec_def": "mybasicauth",
           "host":"test1.example.com", "connection":"outgoing", "is_active":true,
           "is_internal":false, "transport":"soap", "url_path":"/my/soap/service/1"},
-          
-         {"name": "mysoap2", "sec_def": "mytechacc", "host":"test2.example.com", 
+
+         {"name": "mysoap2", "sec_def": "mytechacc", "host":"test2.example.com",
           "connection":"outgoing", "is_active":true,
           "is_internal":false, "transport":"soap", "url_path":"/my/soap/service/2"}
      ],
-     
+
      "outconn_sql": [
-         {"name": "mysql1", "username": "mysql2", "password":"mypassword1", 
-          "engine":"postgresql", "db_name": "mydb", "host": "localhost", 
+         {"name": "mysql1", "username": "mysql2", "password":"mypassword1",
+          "engine":"postgresql", "db_name": "mydb", "host": "localhost",
           "is_active": true,  "pool_size":2, "port": 1999},
-          
-         {"name": "mysql2", "username": "mysql2", "password":"mypassword2", 
-          "engine":"postgresql", "db_name": "mydb", "host": "localhost", 
+
+         {"name": "mysql2", "username": "mysql2", "password":"mypassword2",
+          "engine":"postgresql", "db_name": "mydb", "host": "localhost",
           "is_active": true, "pool_size":2, "port": 1999},
-          
+
          "file://./myinclude6.json"
      ],
-     
+
      "outconn_zmq": [
-         {"name": "myzmq1", "address": "tcp://zmq1.example.com", 
+         {"name": "myzmq1", "address": "tcp://zmq1.example.com",
           "is_active":true, "socket_type":"PUSH"},
-          
-         {"name": "myzmq2", "address": "tcp://zmq2.example.com", 
+
+         {"name": "myzmq2", "address": "tcp://zmq2.example.com",
           "is_active":true, "socket_type":"PUSH"}
      ],
-     
+
      "scheduler": [
-         {"name": "myjob1", "is_active":true, "job_type":"interval-based", 
+         {"name": "myjob1", "is_active":true, "job_type":"interval-based",
           "service":"myservice", "start_date":"2013-10-21T09:37:45"},
-          
-         {"name": "myjob2", "is_active":true, "job_type":"one-time", 
+
+         {"name": "myjob2", "is_active":true, "job_type":"one-time",
           "service":"myservice", "start_date":"2013-10-21T09:37:46"}
      ]
   }
@@ -488,6 +647,6 @@ myinclude6.json
 
 ::
 
-  {"name": "mysql3", "username": "mysql2", "password":"mypassword", 
+  {"name": "mysql3", "username": "mysql2", "password":"mypassword",
    "engine":"postgresql", "db_name": "mydb", "host": "localhost",
    "is_active": true, "pool_size":2, "port": 1999}
