@@ -334,6 +334,9 @@ into a cluster.
 ``outconn_zmq``
     :doc:`Outgoing ZeroMQ connections. <../../public-api/details/zato.outgoing.zmq.create>`
 
+``pubsub_endpoint``
+    :doc:`PubSub endpoint definitions. <../../public-api/details/zato.pubsub.endpoint.create>`
+
 ``query_cassandra``
     :doc:`Cassandra queries. <../../public-api/details/zato.query.cassandra.create>`
 
