@@ -363,6 +363,7 @@ into a cluster.
 Sample YAML Files
 -----------------
 
+
 input1.yml
 ~~~~~~~~~~
 
@@ -420,6 +421,35 @@ directionary.
     # special characters introduce data constructs. When in doubt, simply
     # quote the entire field, as shown.
     start_date: "1970-01-01T00:00:00"
+
+
+Defining a PubSub endpoint and associated channel
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: yaml
+
+    ---
+
+    web_socket:
+      - address: http://my.web.socket.example.com/
+        data_format: json
+        id: 2
+        is_active: true
+        is_internal: false
+        name: my_web_socket
+        new_token_wait_time: 5
+        sec_type:
+        security_id:
+        service: zato.apispec.get-api-spec
+        token_ttl: 3600
+
+    pubsub_endpoint:
+      - name: my_pubsub_endpoint
+        is_internal: false
+        role: root
+        is_active: false
+        endpoint_type: wsx
+        ws_channel_name: my_web_socket
 
 
 Sample JSON Files
