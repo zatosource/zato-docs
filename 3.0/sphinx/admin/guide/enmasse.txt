@@ -346,14 +346,14 @@ into a cluster.
 ``search_solr``
     :doc:`Apache Solr connections. <../../public-api/details/zato.search.solr.create>`
 
-``xpath``
-    :doc:`XPath message definitions. <../../public-api/details/zato.xpath.create>`
-
-``zato_channel_stomp``
+``stomp``
     :doc:`Stomp channel definitions. <../../public-api/details/zato.channel.stomp.create>`
 
-``zato_channel_web_socket``
+``web_socket``
     :doc:`Web socket channel definitions. <../../public-api/details/zato.channel.web-socket.create>`
+
+``xpath``
+    :doc:`XPath message definitions. <../../public-api/details/zato.xpath.create>`
 
 ``zato_sms_twilio``
     :doc:`Twilio notifiers. <../../public-api/details/zato.channel.web-socket.create>`
