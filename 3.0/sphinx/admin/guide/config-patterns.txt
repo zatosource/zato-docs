@@ -38,7 +38,7 @@ Each stanza must contain the *order* key with either of the following:
 * *true_false* - In a first pass patterns that admit the given operation are matched. On top of that, patterns that forbid the operation are matched,
   possibly overriding results from the first pass.
 
-* *true_false* - In a first pass patterns that disallow the given operation are matched. On top of that, patterns that grant the operation are matched,
+* *false_true* - In a first pass patterns that disallow the given operation are matched. On top of that, patterns that grant the operation are matched,
   possibly overriding results from the first pass.
 
 Each stanza will additionally add one or more patterns to match in run-time. If a string doesn't match any pattern, the result is False.
