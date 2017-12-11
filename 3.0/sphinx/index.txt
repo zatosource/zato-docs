@@ -297,6 +297,7 @@ Administration guide
       :doc:`Managing server objects en masse<admin/guide/enmasse>` |
       :doc:`RBAC (Role-based access control)<admin/guide/rbac/overview>` |
       :doc:`SSL/TLS<admin/guide/tls/overview>` |
+      :doc:`API Specification Service<admin/guide/apispec-pub>` |
       :doc:`Configuration patterns<admin/guide/config-patterns>`
 
     * **Docker support:**
