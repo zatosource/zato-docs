@@ -9,6 +9,9 @@ After creating or upgrading a Zato 3.0 cluster, several plain HTTP channels
 are automatically created to enable easy access to API documentation via the
 cluster's public network endpoint.
 
+The service will be exposed by the cluster's load balancer at
+``http://loadbalancer:11223/zato/apispec``.
+
 
 Authentication
 --------------
