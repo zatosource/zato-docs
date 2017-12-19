@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<wsdl:definitions 
-xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
-xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
-xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-xmlns:zato="https://zato.io/ns/20130518" 
+<wsdl:definitions
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns:zato="https://zato.io/ns/20130518"
 xmlns="https://zato.io/ns/20130518"
-name="zato" 
+name="zato"
 targetNamespace="https://zato.io/ns/20130518"
 >
 
@@ -23,7 +23,7 @@ targetNamespace="https://zato.io/ns/20130518"
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
-      
+
 <!-- ####################################################################### -->
 
       <xsd:element name="zato_channel_amqp_create_request">
@@ -2604,7 +2604,7 @@ targetNamespace="https://zato.io/ns/20130518"
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
-      
+
       <xsd:element name="zato_service_get_request_response_response">
         <xsd:complexType>
           <xsd:sequence>
@@ -2639,7 +2639,7 @@ targetNamespace="https://zato.io/ns/20130518"
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
-      
+
       <xsd:element name="zato_service_get_source_info_response">
         <xsd:complexType>
           <xsd:sequence>
@@ -3096,9 +3096,9 @@ targetNamespace="https://zato.io/ns/20130518"
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
-      
+
 <!-- ####################################################################### -->
-    
+
     </xsd:schema>
   </wsdl:types>
 
@@ -3806,10 +3806,10 @@ targetNamespace="https://zato.io/ns/20130518"
   </wsdl:message>
 
 
-<!-- ####################################################################### --> 
-  
+<!-- ####################################################################### -->
+
   <wsdl:portType name="zato">
-  
+
 <!-- ####################################################################### -->
 
     <wsdl:operation name="zato.channel.amqp.create">
@@ -4287,13 +4287,13 @@ targetNamespace="https://zato.io/ns/20130518"
 
 
 <!-- ####################################################################### -->
-    
-    
+
+
   </wsdl:portType>
-  
+
   <wsdl:binding name="zato" type="zato:zato">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    
+
 
 <!-- ####################################################################### -->
 
@@ -5339,11 +5339,11 @@ targetNamespace="https://zato.io/ns/20130518"
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
-    
+
 <!-- ####################################################################### -->
-    
+
   </wsdl:binding>
-  
+
   <wsdl:service name="zato">
     <wsdl:port binding="zato:zato" name="zato">
       <soap:address location="http://localhost:17010/zato/soap"/>
