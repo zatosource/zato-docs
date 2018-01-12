@@ -5,7 +5,7 @@ RBAC allows one to group related client credentials accessing :doc:`HTTP channel
 into roles and assign permissions -
 Create, Read, Update, Delete - to roles instead of clients directly.
 
-Using roles lets one cleany separate access rights granted for individual services without an overhead of maintaining permissions
+Using roles lets one cleanly separate access rights granted for individual services without an overhead of maintaining permissions
 for each client individually.
 
 Roles can be grouped into hierarchies, with inheritance, and most commonly used HTTP verbs - POST, GET, UPDATE, DELETE -
