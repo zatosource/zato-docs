@@ -4,8 +4,8 @@ Hot-deployment from an IDE
 
 Since release 3.0, Zato supports a special endpoint that allows you to deploy
 Python modules loaded in one of several supported Integrated Development
-Environments directly to a Zato cluster, enabling must faster develop/test
-cycles when prototyping new services.
+Environments directly to a Zato cluster, enabling faster develop/test cycles
+when prototyping services.
 
 
 Supported Environments
@@ -29,7 +29,7 @@ this plug-in.
 PyCharm
 ~~~~~~~
 
-The `XXX for YYY plug-in <https://www.google.com/`_ available from ZZZ adds
+The `XXX for YYY plug-in <https://www.google.com/>`_ available from ZZZ adds
 ...
 
 
@@ -59,3 +59,50 @@ credential:
 
 Set the password to something meaningful, and choose **OK**.
 
+
+
+
+Zato 2.x Configuration
+======================
+
+For Zato 2.0.x and older clusters, it is still possible to use the
+hot-deployment endpoint, but it must be configured manually.
+
+Upload the service
+~~~~~~~~~~~~~~~~~~
+
+1. To configure the endpoint, download the service source file from the
+   `zato-labs GitHub repository <https://github.com/zatosource/zato-labs/blob/HEAD/ide_deploy/ide_deploy.py>`_.
+
+2. From the web administration UI, visit **Services -> List Services**, then
+   select the **Upload services** button.
+
+3. Supply ``ide_deploy.py`` downloaded in step 1. The UI should report
+   "Service package uploaded, check the server logs for details".
+
+
+Create the authentication credential
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Visit **Security -> HTTP Basic Auth**, then select **Create a new HTTP
+   Basic Auth definition**:
+
+   * **Name**: ``ide_publisher``
+   * **Username**: ``ide_publisher``
+   * **Realm**: ``zato``
+
+2. Select **Change password** beside the ``ide_publisher`` credential, and set
+   a password.
+
+
+Create the channel
+~~~~~~~~~~~~~~~~~~
+
+Visit **Connections -> Channels -> Plain HTTP**, then select **Create a new
+Plain HTTP Channel**:
+
+* **Name**: ``ide_deploy.create``
+* **URL path**: ``/zato/ide-deploy``
+* **Data format**: JSON
+* **Service**: ``ide-deploy.create``
+* **Security definition**: ``HTTP Basic Auth/ide_publisher``
