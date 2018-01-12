@@ -22,14 +22,6 @@
 
 * Automatic API specifications generation for WSDL, RAML and OpenAPI/Swagger
 
-* General performance improvements let Zato servers run up to several times faster - applies to HTTP, AMQP and ZeroMQ connections
-
-* Reduced RAM consumption through ability to disable selected internal components
-
-* Added a live message browser for observing messages passing through Zato-based systems
-
-* Extended hot-deployment to work with static files, including JSON, XML, CSV or any other format
-
 * WebSocket channels
 
 * Memcached connections
@@ -40,14 +32,21 @@
 
 * JSON Web Token security definitions
 
-* ZeroMQ MDP connections
+* ZeroMQ MDP synchronous connections
+
+* Added a live message browser for observing messages passing through Zato-based systems
+
+* Extended hot-deployment to work with static files, including JSON, XML, CSV or any other format
 
 * New built-in SimpleIO data type: fixed-width files
 
 * SimpleIO definitions now support user-defined custom message formats in addition to JSON, XML and fixed-width files
 
-* AMQP connections can now be synchronous
+* General performance improvements let Zato servers run up to several times faster - applies to HTTP, AMQP and ZeroMQ connections
 
+* Reduced RAM consumption through ability to disable selected internal components
+
+* AMQP and ZeroMQ connections can now be synchronous
 
 * Added support for Alpine Linux
 
