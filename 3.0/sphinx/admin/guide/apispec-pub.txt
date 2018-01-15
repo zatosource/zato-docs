@@ -41,8 +41,8 @@ Granting third party access
 
 To grant a third party access to the service, a
 :doc:`HTTP Basic Auth credential </web-admin/security/basic-auth>` must be
-created for third party, then that credential must be associated with the API
-specification service's :doc:`RBAC role </admin/guide/rbac/overview>`.
+created for the third party, and that credential must be associated with the
+API specification service's :doc:`RBAC role </admin/guide/rbac/overview>`.
 
 
 Update the cluster configuration
