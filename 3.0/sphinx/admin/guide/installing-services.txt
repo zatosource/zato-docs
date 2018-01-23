@@ -6,6 +6,7 @@ There are several ways to install Zato services
 * :ref:`Add them to service-sources.txt <admin-installing-services-service-sources.txt>`
 * :ref:`Hot-deploy them from command line <admin-installing-services-hot-deploy-cli>`
 * :ref:`Hot-deploy them from the web-admin <admin-installing-services-hot-web-admin>`
+* :ref:`Hot-deploy them from an Integrated Development Environment <admin-installing-services-hot-ide>`
 * :ref:`Add them to zato_extra_paths <admin-installing-services-zato_extra_paths>`
 
 .. _admin-installing-services-service-sources.txt:
@@ -91,6 +92,17 @@ Flat Python modules can also be hot-deployed in a cluster using the web admin.
 Refer to 
 :doc:`web admin's docs <../../web-admin/services/upload>`
 for more information.
+
+.. _admin-installing-services-hot-ide:
+
+Hot-deploying from an Integrated Development Environment
+--------------------------------------------------------
+
+Zato supplies plug-ins for some common integrated development environments to
+make testing of an in-development service simple. Please refer to
+:doc:`../../progguide/ide-deployment` in the programming guide for more
+information.
+
 
 zato_extra_paths
 ----------------

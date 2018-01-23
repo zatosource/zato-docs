@@ -1,0 +1,92 @@
+
+IDE Integration Overview
+------------------------
+
+Since release 3.0, Zato supports a special endpoint that allows hot-deployment
+of Python modules loaded in one of several supported Integrated Development
+Environments directly to a Zato cluster, enabling faster develop/test cycles
+when prototyping services.
+
+Please refer to and complete :ref:`ide_deploy_cluster_config` below prior to
+attempting to configure an IDE extension.
+
+**Supported Environments**
+
+* :doc:`pycharm`
+* :doc:`vscode`
+
+
+.. _ide_deploy_cluster_config:
+
+Cluster Configuration
+=====================
+
+In a newly installed Zato 3.x cluster, the IDE deployment service and channel
+are preconfigured and associated with an RBAC role. A default HTTP Basic Auth
+credential, ``ide_publisher``, is created with a randomly assigned password
+and assigned to the RBAC role.
+
+In order to make use of IDE deployment in Zato 3.0, it is only necessary to
+reset the password for this default account. If you prefer, you may create a
+new Basic Auth credential and assocate it with the **IDE Publishers** RBAC
+role instead.
+
+To reset the ``ide_publisher`` password, first visit the **Security -> HTTP
+Basic Auth** section of the administration UI for your cluster:
+
+.. image:: ../../gfx/progguide/ide-deploy/basic-auth.png
+
+Select the **Change password** option for the pre-installed ``ide_publisher``
+credential:
+
+.. image:: ../../gfx/progguide/ide-deploy/change-password.png
+
+Set the password to something meaningful, and choose **OK**.
+
+
+
+
+Zato 2.x Configuration
+======================
+
+For Zato 2.0.x and older clusters, it is still possible to use the
+hot-deployment endpoint, but it must be configured manually.
+
+Upload the service
+~~~~~~~~~~~~~~~~~~
+
+1. To configure the endpoint, download the service source file from the
+   `zato-labs GitHub repository <https://github.com/zatosource/zato-labs/blob/HEAD/ide_deploy/ide_deploy.py>`_.
+
+2. From the web administration UI, visit **Services -> List Services**, then
+   select the **Upload services** button.
+
+3. Supply ``ide_deploy.py`` downloaded in step 1. The UI should report
+   "Service package uploaded, check the server logs for details".
+
+
+Create the authentication credential
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Visit **Security -> HTTP Basic Auth**, then select **Create a new HTTP
+   Basic Auth definition**:
+
+   * **Name**: ``ide_publisher``
+   * **Username**: ``ide_publisher``
+   * **Realm**: ``zato``
+
+2. Select **Change password** beside the ``ide_publisher`` credential, and set
+   a password.
+
+
+Create the channel
+~~~~~~~~~~~~~~~~~~
+
+Visit **Connections -> Channels -> Plain HTTP**, then select **Create a new
+Plain HTTP Channel**:
+
+* **Name**: ``ide_deploy.create``
+* **URL path**: ``/zato/ide-deploy``
+* **Data format**: JSON
+* **Service**: ``ide-deploy.create``
+* **Security definition**: ``HTTP Basic Auth/ide_publisher``

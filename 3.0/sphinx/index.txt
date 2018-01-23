@@ -273,6 +273,12 @@ Programming guide
     * **Customizing web admin:**
       :doc:`Making sure you work on the right environment<progguide/web-admin-settings>`
 
+    * **IDE integration:**
+      :doc:`Overview <progguide/ide-deploy/index>` |
+      :doc:`PyCharm <progguide/ide-deploy/pycharm>` |
+      :doc:`Visual Studio Code <progguide/ide-deploy/vscode>`
+
+
 API Testing
 ===========
 
