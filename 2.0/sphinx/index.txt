@@ -274,9 +274,9 @@ Programming guide
       :doc:`Making sure you work on the right environment<progguide/web-admin-settings>`
 
     * **IDE integration:**
-      :doc:`Overview <progguide/ide-deploy/index>` |
-      :doc:`PyCharm <progguide/ide-deploy/pycharm>` |
-      :doc:`Visual Studio Code <progguide/ide-deploy/vscode>`
+      :doc:`Overview <progguide/ide/index>` |
+      :doc:`PyCharm <progguide/ide/pycharm>` |
+      :doc:`Visual Studio Code <progguide/ide/vscode>`
 
 API Testing
 ===========
@@ -447,6 +447,7 @@ Zato, the open-source project
    progguide/examples/cloud/aws/*
    progguide/examples/cloud/openstack/*
    progguide/examples/search/*
+   progguide/ide/*
    progguide/outconn/*
    progguide/patterns/*
    progguide/rest/*
