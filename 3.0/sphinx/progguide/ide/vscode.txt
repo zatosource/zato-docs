@@ -5,11 +5,6 @@ Visual Studio Code
 To enable hot-deployment from Visual Studio Code, ensure you have first
 followed the configuration instructions in :doc:`index`.
 
-For additional notes, please refer to the extension's README.md which is
-presented as part of the Marketplace user interface embedded within Visual
-Studio Code.
-
-
 Configuration
 ~~~~~~~~~~~~~
 
@@ -22,28 +17,42 @@ cluster.
 
    .. image:: ../../gfx/progguide/ide-deploy/vscode_marketplace.jpg
 
-2. After installation completes, visit the settings panel (Ctrl+,) to configure your cluster connection:
+2. After installation completes, visit the settings panel *Ctrl+,* to configure your cluster connection:
 
    .. image:: ../../gfx/progguide/ide-deploy/vscode_settings.jpg
 
 
-Activation
-~~~~~~~~~~
-
-While editing any Python script, you can deploy to the configured Zato cluster
-by clicking the toolbar icon, or pressing the *Ctrl+Shift+L* hotkey:
-
-.. image:: ../../gfx/progguide/ide-deploy/vscode_hot_deploy.png
-
-
-Automatic Activation
+Automatic deployment
 ~~~~~~~~~~~~~~~~~~~~
 
-Automatic deployment can also be triggered on file save, by including the
-special ``ide-deploy=True`` marker comment somewhere in the file:
+Automatic deployment is triggered on every file save if a Python file contains a special deployment marker
+within its first 100 lines of source code:
+
+::
+
+    # zato: ide-deploy=True
+
+For instance:
+
+::
+
+   # zato: ide-deploy=True
+
+   from zato.server.service import Service
+
+   class MyService(Service):
+       def handle(self):
+           pass
 
 .. image:: ../../gfx/progguide/ide-deploy/vscode_ide_deploy_true.jpg
 
+Manual deployment
+~~~~~~~~~~~~~~~~~
+
+While editing any Python module, you can deploy to the configured Zato cluster
+by clicking the toolbar icon, or pressing the *Ctrl+Shift+L* hotkey:
+
+.. image:: ../../gfx/progguide/ide-deploy/vscode_hot_deploy.png
 
 Deployment Status
 ~~~~~~~~~~~~~~~~~
@@ -51,3 +60,8 @@ Deployment Status
 Success is indicated through a status panel that appears following activation:
 
 .. image:: ../../gfx/progguide/ide-deploy/vscode_deployment_started.jpg
+
+Other IDEs
+~~~~~~~~~~
+
+* :doc:`./pycharm`

@@ -1,10 +1,17 @@
+.. highlight:: python
 
 PyCharm
 -------
 
-To enable hot-deployment from PyCharm, ensure you have first followed the
-configuration instructions in :doc:`index`.
+To enable hot-deployment from PyCharm and related IDEs, ensure you have first followed the configuration instructions
+in :doc:`index`.
 
+Supported products
+~~~~~~~~~~~~~~~~~~
+
+* PyCharm and Professional
+* IntelliJ Community and Ultimate with the Python plugin
+* Minimal IDE version is 2016.3+
 
 Configuration
 ~~~~~~~~~~~~~
@@ -27,23 +34,38 @@ installation on PyCharm is achieved directly from within the application.
    .. image:: ../../gfx/progguide/ide-deploy/pycharm_settings.jpg
 
 
-Activation
-~~~~~~~~~~
 
-With a Zato service open in an editor window, visit **Tools -> Upload to
-default Zato server** to trigger upload:
-
-.. image:: ../../gfx/progguide/ide-deploy/pycharm_deploy_menu.jpg
-
-
-Automatic Activation
+Automatic deployment
 ~~~~~~~~~~~~~~~~~~~~
 
-Automatic deployment can also be triggered on every file save, by including a
-special ``ide-deploy=True`` marker comment somewhere in the file:
+Automatic deployment is triggered on every file save if a Python file contains a special deployment marker
+within its first 100 lines of source code:
+
+::
+
+    # zato: ide-deploy=True
+
+For instance:
+
+::
+
+   # zato: ide-deploy=True
+
+   from zato.server.service import Service
+
+   class MyService(Service):
+       def handle(self):
+           pass
 
 .. image:: ../../gfx/progguide/ide-deploy/pycharm_ide_deploy_true.jpg
 
+Manual deployment
+~~~~~~~~~~~~~~~~~
+
+With a Zato service open in an editor window, visit **Tools -> Upload to
+default Zato server** to trigger upload manually:
+
+.. image:: ../../gfx/progguide/ide-deploy/pycharm_deploy_menu.jpg
 
 Success
 ~~~~~~~
@@ -51,3 +73,8 @@ Success
 Success is indicated in the status bar at the bottom of the window:
 
 .. image:: ../../gfx/progguide/ide-deploy/pycharm_hot_deployed.jpg
+
+Other IDEs
+~~~~~~~~~~
+
+* :doc:`./vscode`
