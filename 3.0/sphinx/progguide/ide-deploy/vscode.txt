@@ -5,46 +5,49 @@ Visual Studio Code
 To enable hot-deployment from Visual Studio Code, ensure you have first
 followed the configuration instructions in :doc:`index`.
 
-The `Zato for Visual Studio Code plug-in <https://marketplace.visualstudio.com/items?itemName=zatosource.ide-vs-code>`_
-available from the Visual Studio marketplace adds a default keybinding along
-with a toolbar button enabling one-click deployment to your development
-cluster.
-
-.. image:: ../../gfx/progguide/ide-deploy/vscode-hot-deploy.png
-
-Please visit the extensions gallery in Visual Studio code (by pressing
-ctrl-shift-X) and search for "zato" for further instructions on how to install
-this plug-in.
+For additional notes, please refer to the extension's README.md which is
+presented as part of the Marketplace user interface embedded within Visual
+Studio Code.
 
 
 Configuration
 ~~~~~~~~~~~~~
 
-With Visual Studio Code, visit the Extensions Marketplace either
-[in your browser](https://marketplace.visualstudio.com/items?itemName=zatosource.ide-vscode),
-or within the application by pressing *Ctrl+Shift+X* hot-key:
+The `Zato for Visual Studio Code plug-in <https://marketplace.visualstudio.com/items?itemName=zatosource.ide-vscode>`_
+available from the Visual Studio marketplace adds a default keybinding along
+with a toolbar button enabling simplified hot-deployment to your development
+cluster.
 
-.. image:: ../../gfx/progguide/ide-deploy/vscode_marketplace.jpg
+1. Visit the Extensions Marketplace either `in your browser <https://marketplace.visualstudio.com/items?itemName=zatosource.ide-vscode>`_, or within the application, by pressing *Ctrl+Shift+X* hot-key:
 
-After installation completes, a quick visit to the settings panel
-(Ctrl+,) is needed to configure your cluster connection:
+   .. image:: ../../gfx/progguide/ide-deploy/vscode_marketplace.jpg
 
-.. image:: ../../gfx/progguide/ide-deploy/vscode_settings.jpg
+2. After installation completes, visit the settings panel (Ctrl+,) to configure your cluster connection:
+
+   .. image:: ../../gfx/progguide/ide-deploy/vscode_settings.jpg
+
+
+Activation
+~~~~~~~~~~
 
 While editing any Python script, you can deploy to the configured Zato cluster
-with a simple icon click, by pressing the *Ctrl+Shift+L* hotkey:
+by clicking the toolbar icon, or pressing the *Ctrl+Shift+L* hotkey:
 
 .. image:: ../../gfx/progguide/ide-deploy/vscode_hot_deploy.png
 
+
+Automatic Activation
+~~~~~~~~~~~~~~~~~~~~
+
 Automatic deployment can also be triggered on file save, by including the
-magic `ide-deploy=True` marker comment somewhere in the file:
+special ``ide-deploy=True`` marker comment somewhere in the file:
 
 .. image:: ../../gfx/progguide/ide-deploy/vscode_ide_deploy_true.jpg
+
+
+Deployment Status
+~~~~~~~~~~~~~~~~~
 
 Success is indicated through a status panel that appears following activation:
 
 .. image:: ../../gfx/progguide/ide-deploy/vscode_deployment_started.jpg
-
-For additional notes, please refer to the extension's README.md which is
-presented as part of the Marketplace user interface embedded within Visual
-Studio Code.
