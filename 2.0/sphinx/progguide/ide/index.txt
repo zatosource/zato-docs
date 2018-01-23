@@ -13,10 +13,14 @@ Supported IDEs are:
 * PyCharm
 * Visual Studio Code
 
+.. image:: ../../gfx/progguide/ide-deploy/pycharm_ide_deploy_true.jpg
+
+.. image:: ../../gfx/progguide/ide-deploy/vscode_ide_deploy_true.jpg
+
 Upload the service
 ~~~~~~~~~~~~~~~~~~
 
-1. To configure the endpoint, download the service source file from the
+1. To configure a dedicated deployment endpoint, download the service source file from the
    `zato-labs GitHub repository <https://github.com/zatosource/zato-labs/blob/HEAD/ide-deploy/ide_deploy.py>`_.
 
 2. From the web administration UI, visit **Services -> List Services**, then
