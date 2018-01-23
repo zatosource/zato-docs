@@ -8,7 +8,7 @@ Environments directly to a Zato cluster, enabling faster develop/test cycles
 when prototyping services.
 
 Please refer to and complete :ref:`ide_deploy_cluster_config` below prior to
-attempting to configure a plugin.
+attempting to configure an IDE extension.
 
 **Supported Environments**
 
