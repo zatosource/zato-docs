@@ -1,0 +1,52 @@
+
+PyCharm
+-------
+
+To enable hot-deployment from PyCharm, ensure you have first followed the
+configuration instructions in :doc:`index`.
+
+
+Configuration
+~~~~~~~~~~~~~
+
+As our plugin is published in the [JetBrains Plugin
+Repository](https://plugins.jetbrains.com/plugin/10375-zato-hot-deployment),
+installation on PyCharm is achieved by visiting **Preferences -> Plugins**,
+then clicking **Browse repositories**:
+
+
+.. image:: ../../gfx/progguide/ide-deploy/pycharm_plugins.jpg
+
+
+Next, search for **Zato** and click the **Install** button:
+
+
+.. image:: ../../gfx/progguide/ide-deploy/pycharm_plugins_zato.jpg
+
+
+Once installation completes, visit **Preferences -> Languages & Frameworks ->
+Zato** to populate connection information for your development cluster:
+
+
+.. image:: ../../gfx/progguide/ide-deploy/pycharm_settings.jpg
+
+
+Finally, with a service module open in the editor, visit **Tools -> Upload to
+default Zato server** to trigger upload:
+
+
+.. image:: ../../gfx/progguide/ide-deploy/pycharm_deploy_menu.jpg
+
+
+Alternatively, automatic deployment can be triggered on every file save, by
+including the magic `ide-deploy=True` marker comment somewhere in the file:
+
+
+.. image:: ../../gfx/progguide/ide-deploy/pycharm_ide_deploy_true.jpg
+
+
+Success is indicated in the status bar at the bottom of the window:
+
+
+.. image:: ../../gfx/progguide/ide-deploy/pycharm_hot_deployed.jpg
+

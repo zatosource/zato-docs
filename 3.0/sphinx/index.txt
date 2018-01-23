@@ -227,7 +227,6 @@ Programming guide
     * **Developing services and applications:**
       :doc:`Overview <progguide/overview>` |
       :doc:`Developing services <progguide/service-dev>` |
-      :doc:`Hot-deployment from an IDE <progguide/ide-deployment>` |
       :doc:`Request and response objects<progguide/request-response>` |
       :doc:`Channels<progguide/channels>` |
       :doc:`Outgoing connections<progguide/outconn/overview>` |
@@ -273,6 +272,12 @@ Programming guide
 
     * **Customizing web admin:**
       :doc:`Making sure you work on the right environment<progguide/web-admin-settings>`
+
+    * **IDE integration:**
+      :doc:`Overview <progguide/ide-deploy/index>` |
+      :doc:`PyCharm <progguide/ide-deploy/pycharm>` |
+      :doc:`Visual Studio Code <progguide/ide-deploy/vscode>`
+
 
 API Testing
 ===========

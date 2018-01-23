@@ -1,41 +1,25 @@
 
-Hot-deployment from an IDE
---------------------------
+IDE Integration Overview
+------------------------
 
-Since release 3.0, Zato supports a special endpoint that allows you to deploy
-Python modules loaded in one of several supported Integrated Development
+Since release 3.0, Zato supports a special endpoint that allows hot-deployment
+of Python modules loaded in one of several supported Integrated Development
 Environments directly to a Zato cluster, enabling faster develop/test cycles
 when prototyping services.
 
+Please refer to and complete :ref:`ide_deploy_cluster_config` below prior to
+attempting to configure a plugin.
 
-Supported Environments
-======================
+**Supported Environments**
 
-Visual Studio Code
-~~~~~~~~~~~~~~~~~~
-
-The `Zato for Visual Studio Code plug-in <https://marketplace.visualstudio.com/items?itemName=zatosource.ide-vs-code>`_
-available from the Visual Studio marketplace adds a default keybinding along
-with a toolbar button enabling one-click deployment to your development
-cluster.
-
-.. image:: ../gfx/progguide/ide-deploy-vscode-hot-deploy.png
-
-Please visit the extensions gallery in Visual Studio code (by pressing
-ctrl-shift-X) and search for "zato" for further instructions on how to install
-this plug-in.
+* :doc:`pycharm`
+* :doc:`vscode`
 
 
-PyCharm
-~~~~~~~
+.. _ide_deploy_cluster_config:
 
-The `XXX for YYY plug-in <https://www.google.com/>`_ available from ZZZ adds
-...
-
-
-
-Zato 3.x Configuration
-======================
+Cluster Configuration
+=====================
 
 In a newly installed Zato 3.x cluster, the IDE deployment service and channel
 are preconfigured and associated with an RBAC role. A default HTTP Basic Auth
@@ -50,12 +34,12 @@ role instead.
 To reset the ``ide_publisher`` password, first visit the **Security -> HTTP
 Basic Auth** section of the administration UI for your cluster:
 
-.. image:: ../gfx/progguide/ide-deploy-basic-auth.png
+.. image:: ../../gfx/progguide/ide-deploy/basic-auth.png
 
 Select the **Change password** option for the pre-installed ``ide_publisher``
 credential:
 
-.. image:: ../gfx/progguide/ide-deploy-change-password.png
+.. image:: ../../gfx/progguide/ide-deploy/change-password.png
 
 Set the password to something meaningful, and choose **OK**.
 
