@@ -1,4 +1,4 @@
-3.0 - 2017-NN-NN
+3.0 - 2018-NN-NN
 ================
 
 .. note::
@@ -13,8 +13,7 @@
    :doc:`web-admin <../architecture/web-admin>`
    in 10 minutes.
 
-
-* Multi-protocol publish/subscribe topics with guaranteed delivery message queues
+* Multi-protocol publish/subscribe topics with guaranteed delivery message queues turn Zato into a full-feature message broker
 
 * New caching layer
 
@@ -32,21 +31,14 @@
 
 * JSON Web Token security definitions
 
-* ZeroMQ MDP synchronous connections
-
-* Added a live message browser for observing messages passing through Zato-based systems
-
 * Extended hot-deployment to work with static files, including JSON, XML, CSV or any other format
 
-* New built-in SimpleIO data type: fixed-width files
-
-* SimpleIO definitions now support user-defined custom message formats in addition to JSON, XML and fixed-width files
-
-* General performance improvements let Zato servers run up to several times faster - applies to HTTP, AMQP and ZeroMQ connections
+* General performance improvements let Zato servers run up to several times faster -
+  applies to HTTP, AMQP, ZeroMQ and IBM MQ connections
 
 * Reduced RAM consumption through ability to disable selected internal components
 
-* AMQP and ZeroMQ connections can now be synchronous
+* AMQP, ZeroMQ and IBM MQ connections can now be synchronous
 
 * Added support for Alpine Linux
 
