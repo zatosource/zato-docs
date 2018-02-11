@@ -177,11 +177,6 @@ Web admin reference
       :doc:`Data dictionaries<web-admin/kvdb/data-dict>` |
       :doc:`Remote commands<web-admin/kvdb/remote-commands>`
 
-    * **Publish/subscribe:**
-      :doc:`Topics<web-admin/pubsub/topic>` |
-      :doc:`Producers<web-admin/pubsub/producer>` |
-      :doc:`Consumers<web-admin/pubsub/consumer>`
-
     * **Scheduler:**
       :doc:`Main view<web-admin/scheduler/main>`
 
@@ -199,7 +194,6 @@ Programming guide
     * **Examples**
       :doc:`Overview <progguide/examples/index>` |
       :doc:`HTTP (REST) <progguide/examples/http>` |
-      :doc:`REST publish/subscribe <progguide/examples/pubsub>` |
       :doc:`SimpleIO (SIO) <progguide/examples/sio>` |
       :doc:`JSON <progguide/examples/json>` |
       :doc:`XML <progguide/examples/xml>` |
@@ -327,21 +321,6 @@ Architecture
       :doc:`Redis<architecture/redis>` |
       :doc:`Certificate Authority (CA)<architecture/ca>`
 
-Publish/subscribe guide
-=======================
-
-    * **Overview:**
-      :doc:`Introduction <pubsub/index>`
-
-    * **REST producers and consumers:**
-      :doc:`Publishing messages <pubsub/dev/producer>` |
-      :doc:`Subscription keys and message receiving<pubsub/dev/consumer>`
-
-    * **Administration:**
-      :doc:`Topics<pubsub/admin/topic>` |
-      :doc:`Producers <pubsub/admin/producer>` |
-      :doc:`Consumers <pubsub/admin/consumer>`
-
 Statistics
 ==========
 
@@ -456,9 +435,6 @@ Zato, the open-source project
    project/*
    public-api/*
    public-api/details/*
-   pubsub/*
-   pubsub/dev/*
-   pubsub/admin/*
    security/*
    stats/*
    test/apimox/*
@@ -479,7 +455,6 @@ Zato, the open-source project
    web-admin/notif/*
    web-admin/notif/cloud/openstack/*
    web-admin/outgoing/*
-   web-admin/pubsub/*
    web-admin/query/*
    web-admin/search/*
    web-admin/scheduler/*
