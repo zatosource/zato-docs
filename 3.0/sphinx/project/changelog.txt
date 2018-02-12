@@ -15,6 +15,8 @@
 
 * Multi-protocol publish/subscribe topics with guaranteed delivery message queues turn Zato into a full-featured message broker
 
+* :doc:`Single sign-on and user management API <../sso/api/index>`
+
 * New caching layer
 
 * Automatic API documentation generation
@@ -41,6 +43,12 @@
 * AMQP, ZeroMQ and IBM MQ connections can now be synchronous
 
 * Added support for Alpine Linux
+
+* New server startup hooks and callables
+
+* Added an internal startup cache that makes servers boot up to several times faster
+
+* Command zato start will automatically clean up
 
 * Scheduler now runs as its own component managed from command-line interface
 

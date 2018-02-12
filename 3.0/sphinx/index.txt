@@ -272,13 +272,13 @@ Programming guide
       :doc:`PyCharm <progguide/ide/pycharm>` |
       :doc:`Visual Studio Code <progguide/ide/vscode>`
 
-User management API
-===================
+User management an single sign-on API
+======================================
 
     * **Introduction:**
       :doc:`Overview <sso/api/index>`
 
-    * **User CRUD:**
+    * **Users:**
       :doc:`Overview <sso/api/user/index>` |
       :doc:`User objects <sso/api/user/object>` |
       :doc:`Create user <sso/api/user/create>` |
@@ -305,6 +305,10 @@ User management API
     * **Password reset:**
       :doc:`Overview <sso/api/password/reset/index>` |
       :doc:`Password reset workflow <sso/api/password/reset/workflow>`
+
+    * **Administration:**
+      :doc:`Configuration <sso/api/config/index>` |
+      :doc:`Audit logs<sso/api/audit/index>`
 
 
 API Testing
@@ -471,11 +475,13 @@ Zato, the open-source project
    security/*
    stats/*
    sso/api/*
-   sso/api/user/*
-   sso/api/user/invite/*
+   sso/api/audit/*
+   sso/api/config/*
    sso/api/password/*
    sso/api/password/reset/*
    sso/api/session/*
+   sso/api/user/*
+   sso/api/user/invite/*
    test/apimox/*
    test/apitest/*
    test/apitest/step/*
