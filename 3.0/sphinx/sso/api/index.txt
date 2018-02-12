@@ -12,16 +12,19 @@ All of the endpoints are SSO-aware (Single Sign-On) which allows people to trans
 without a need for entering credentials in each one.
 
 The same functionality is available to programmers developing Zato services - opening doors to endless API interaction
-posibilities - from synchronization using IBM MQ, through FTP data export, ZeroMQ alerts to AMQP events and more,
+possibilities - from synchronization using IBM MQ, through FTP data export, ZeroMQ alerts to AMQP events and more,
 there are no limits to the kind of processes that can be handled.
 
 Key features
 ------------
 
-* Straightforward yet powerful
+* Powerful yet straightforward
+* Implementation-language independent, may be used from Python, JavaScript, .NET or any other one
+* Very well suited for modern mobile, serverless, WebSocket-based or single-page applications
 * Secure storage, including encryption and customizable password hashing with strong defaults
-* Easy to plug into new or existing applications
+* Easy to plug into new or existing environments
 * Supports a variety of workflows
+* Scriptable from command-line
 
 Topic guides
 ------------

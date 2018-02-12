@@ -1,0 +1,47 @@
+User management
+===============
+
+This chapter explains what user objects are and they can be created, updated and deleted from REST and Zato services.
+
+Information is presented in a task-oriented manner - consult the :doc:`reference chapter <./ref>` for full API documentation and
+:doc:`CLI chapter </../../cli/sso>` for command-line interface.
+
+User objects
+------------
+
+* Users represent people accessing applications on whose behalf Zato provides security mechanisms
+* Users may have access to one or more application
+* Users may be regular ones or super-users - the difference is that super-users can carry out a set of admin operations from APIs
+  or command line against any other user (e.g. lock an account) while regular users cannot
+* Users may send sign up requests to open an account
+* Users may invite other users to open an account
+
+All of the broader parts of the functionality can be turned on or off as needed, for instance, it is possible to disable
+the ability for users to sign up themselves. Read the :doc:`configuration chapter <../config/index>` for details.
+
+The basic attributes of users are:
+
+* username
+* password
+* email
+* display_name, or
+* first_name, middle_name and last_name
+
+Depending on needs, either display_name or first/middle/last name can be used - the very notion of first and other names
+may possibly not exist in a user's culture, hence Zato does not enforce their existence.
+
+Additional attributes:
+
+* app_list
+* attrs
+
+In the context of SSO (Single-Sign On), users may have access to one or more applications - app_list describes
+to what a given user may log in or otherwise interact with.
+
+Moreover, it is possible to attach an arbitrary set of key/value attributes to each user - they can be used to
+extend information about users to cover supplementary needs, such as timezone, phone number or street address.
+
+Creating users
+---------------
+
+Only super-users may create other users
