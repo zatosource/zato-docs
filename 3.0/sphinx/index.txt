@@ -287,7 +287,7 @@ User management API
       :doc:`Delete <sso/api/user/delete>`
 
     * **Invitations:**
-      :doc:`Inviting users workflow <sso/api/user-invite/index>`
+      :doc:`Inviting users workflow <sso/api/user/invite/index>`
 
     * **Sessions:**
       :doc:`Overview <sso/api/session/index>` |
@@ -303,8 +303,8 @@ User management API
       :doc:`Change password <sso/api/password/update>`
 
     * **Password reset:**
-      :doc:`Overview <sso/api/password-reset/index>` |
-      :doc:`Password reset workflow <sso/api/password-reset/workflow>`
+      :doc:`Overview <sso/api/password/reset/index>` |
+      :doc:`Password reset workflow <sso/api/password/reset/workflow>`
 
 
 API Testing
@@ -452,7 +452,6 @@ Zato, the open-source project
    admin/guide/tls/*
    architecture/*
    intro/*
-   proc/bst/*
    progguide/*
    progguide/clients/*
    progguide/enclog/*
@@ -471,6 +470,12 @@ Zato, the open-source project
    public-api/details/*
    security/*
    stats/*
+   sso/api/*
+   sso/api/user/*
+   sso/api/user/invite/*
+   sso/api/password/*
+   sso/api/password/reset/*
+   sso/api/session/*
    test/apimox/*
    test/apitest/*
    test/apitest/step/*
