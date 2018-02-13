@@ -19,7 +19,7 @@ Key features
 ------------
 
 * Powerful yet straightforward
-* Implementation-language independent, may be used from Python, JavaScript, .NET or any other one
+* Programming-language independent, may be used from Python, JavaScript, Java, .NET or others
 * Very well suited for modern mobile, serverless, WebSocket-based or single-page applications
 * Secure storage, including encryption and customizable password hashing with strong defaults
 * Easy to plug into new or existing environments
