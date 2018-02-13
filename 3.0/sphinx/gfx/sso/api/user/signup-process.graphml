@@ -15,7 +15,6 @@
   <graph edgedefault="directed" id="G">
     <data key="d0"/>
     <node id="n0">
-      <data key="d5"/>
       <data key="d6">
         <y:SVGNode>
           <y:Geometry height="58.38100051879883" width="58.50005340576172" x="200.49994659423828" y="284.8094997406006"/>
@@ -37,7 +36,6 @@
       </data>
     </node>
     <node id="n1">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="ShinyPlateNode3">
           <y:Geometry height="45.0" width="200.0" x="129.74997329711914" y="388.3094997406006"/>
@@ -55,7 +53,6 @@
       </data>
     </node>
     <node id="n2">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="ShinyPlateNode3">
           <y:Geometry height="45.0" width="200.0" x="420.74997329711914" y="388.3094997406006"/>
@@ -72,7 +69,6 @@
       </data>
     </node>
     <node id="n3">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="ShinyPlateNode3">
           <y:Geometry height="30.0" width="58.50005340576172" x="345.9999465942383" y="381.6189994812012"/>
@@ -92,7 +88,6 @@
       </data>
     </node>
     <node id="n4">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="ShinyPlateNode3">
           <y:Geometry height="45.0" width="200.0" x="420.74997329711914" y="498.5"/>
@@ -110,7 +105,6 @@ with token<y:LabelModel>
       </data>
     </node>
     <node id="n5">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="ShinyPlateNode3">
           <y:Geometry height="30.0" width="58.50005340576172" x="529.7499732971191" y="447.9047498703003"/>
@@ -130,7 +124,6 @@ with token<y:LabelModel>
       </data>
     </node>
     <node id="n6">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="ShinyPlateNode3">
           <y:Geometry height="45.0" width="200.0" x="129.74997329711914" y="498.5"/>
@@ -147,7 +140,6 @@ with token<y:LabelModel>
       </data>
     </node>
     <node id="n7">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="ShinyPlateNode3">
           <y:Geometry height="30.0" width="58.50005340576172" x="308.62493324279785" y="447.9047498703003"/>
@@ -167,7 +159,6 @@ with token<y:LabelModel>
       </data>
     </node>
     <node id="n8">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="ShinyPlateNode3">
           <y:Geometry height="45.0" width="200.0" x="129.74997329711914" y="587.0952501296997"/>
@@ -185,7 +176,6 @@ with token<y:LabelModel>
       </data>
     </node>
     <node id="n9">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="ShinyPlateNode3">
           <y:Geometry height="45.0" width="200.0" x="418.24997329711914" y="587.0952501296997"/>
@@ -203,7 +193,6 @@ with welcome message<y:LabelModel>
       </data>
     </node>
     <node id="n10">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="ShinyPlateNode3">
           <y:Geometry height="30.0" width="58.50005340576172" x="343.2499198913574" y="580.4047498703003"/>
@@ -223,14 +212,13 @@ with welcome message<y:LabelModel>
       </data>
     </node>
     <node id="n11">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="ShinyPlateNode3">
           <y:Geometry height="46.38100051879883" width="204.0" x="127.74997329711914" y="685.8094997406006"/>
           <y:Fill color="#99CC00" transparent="false"/>
           <y:BorderStyle hasColor="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" modelName="custom" textColor="#000000" visible="true" width="81.0859375" x="61.45703125" y="7.221750259399414">Super-admin
-acceptation<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" modelName="custom" textColor="#000000" visible="true" width="130.380859375" x="36.8095703125" y="7.221750259399414">GET
+/zato/api/user/signup<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -241,10 +229,9 @@ acceptation<y:LabelModel>
       </data>
     </node>
     <node id="n12">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="ShinyPlateNode3">
-          <y:Geometry height="30.0" width="58.50005340576172" x="242.24991989135742" y="650.0"/>
+          <y:Geometry height="30.0" width="58.50005340576172" x="242.24991989135742" y="643.9523749351501"/>
           <y:Fill hasColor="false" transparent="false"/>
           <y:BorderStyle hasColor="false" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="italic" hasBackgroundColor="false" hasLineColor="false" height="17.962890625" modelName="custom" textColor="#000000" visible="true" width="72.6953125" x="-7.097629547119141" y="6.0185546875">(if required)<y:LabelModel>
@@ -261,14 +248,13 @@ acceptation<y:LabelModel>
       </data>
     </node>
     <node id="n13">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="ShinyPlateNode3">
           <y:Geometry height="45.0" width="200.0" x="418.24997329711914" y="686.5"/>
           <y:Fill color="#99CC00" transparent="false"/>
           <y:BorderStyle hasColor="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" modelName="custom" textColor="#000000" visible="true" width="172.228515625" x="13.8857421875" y="6.53125">POST
-/zato/api/user/signup/delete<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" modelName="custom" textColor="#000000" visible="true" width="168.759765625" x="15.6201171875" y="6.53125">POST
+/zato/api/user/signup/reject<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -279,7 +265,6 @@ acceptation<y:LabelModel>
       </data>
     </node>
     <node id="n14">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="ShinyPlateNode3">
           <y:Geometry height="58.38100051879883" width="198.75" x="130.37497329711914" y="779.1905002593994"/>
@@ -297,7 +282,6 @@ acceptation<y:LabelModel>
       </data>
     </node>
     <node id="n15">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="ShinyPlateNode3">
           <y:Geometry height="45.0" width="200.0" x="418.24997329711914" y="787.5"/>
@@ -315,7 +299,6 @@ confirming outcome<y:LabelModel>
       </data>
     </node>
     <node id="n16">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="ShinyPlateNode3">
           <y:Geometry height="30.0" width="58.50005340576172" x="343.2499198913574" y="779.1905002593994"/>
@@ -335,7 +318,6 @@ confirming outcome<y:LabelModel>
       </data>
     </node>
     <node id="n17">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="ShinyPlateNode3">
           <y:Geometry height="30.0" width="58.50005340576172" x="529.2499198913574" y="744.5"/>
@@ -355,7 +337,6 @@ confirming outcome<y:LabelModel>
       </data>
     </node>
     <edge id="e0" source="n1" target="n2">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -366,7 +347,6 @@ confirming outcome<y:LabelModel>
       </data>
     </edge>
     <edge id="e1" source="n2" target="n4">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -377,7 +357,6 @@ confirming outcome<y:LabelModel>
       </data>
     </edge>
     <edge id="e2" source="n2" target="n6">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-86.49934104483941" sy="22.484160233684804" tx="59.260601742166855" ty="4.766722060941455"/>
@@ -388,7 +367,6 @@ confirming outcome<y:LabelModel>
       </data>
     </edge>
     <edge id="e3" source="n6" target="n8">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -399,7 +377,6 @@ confirming outcome<y:LabelModel>
       </data>
     </edge>
     <edge id="e4" source="n8" target="n9">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -410,7 +387,6 @@ confirming outcome<y:LabelModel>
       </data>
     </edge>
     <edge id="e5" source="n8" target="n11">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -421,7 +397,6 @@ confirming outcome<y:LabelModel>
       </data>
     </edge>
     <edge id="e6" source="n11" target="n13">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -432,7 +407,6 @@ confirming outcome<y:LabelModel>
       </data>
     </edge>
     <edge id="e7" source="n11" target="n14">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -443,7 +417,6 @@ confirming outcome<y:LabelModel>
       </data>
     </edge>
     <edge id="e8" source="n13" target="n15">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -454,7 +427,6 @@ confirming outcome<y:LabelModel>
       </data>
     </edge>
     <edge id="e9" source="n14" target="n15">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="3.7500267028807457" ty="-1.6189994812011719"/>
@@ -465,7 +437,6 @@ confirming outcome<y:LabelModel>
       </data>
     </edge>
     <edge id="e10" source="n0" target="n1">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>

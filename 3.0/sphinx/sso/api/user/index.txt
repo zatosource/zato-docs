@@ -4,10 +4,7 @@
 User management
 ===============
 
-This chapter explains what user objects are and they can be created, updated and deleted from REST and Zato services.
-
-Information is presented in a task-oriented manner - consult the :doc:`reference chapter <./ref>` for full API documentation and
-:doc:`CLI chapter </../../cli/sso>` for command-line interface.
+This chapter explains basic details of what user objects are and what rules apply to their APIs.
 
 User objects
 ------------
@@ -18,12 +15,14 @@ User objects
   or command line against any other user (e.g. lock an account) while regular users cannot
 * Users may send sign up requests to open an account
 * Users may invite other users to open an account
+* Only super-users may create other users
 
 All of the broader parts of the functionality can be turned on or off as needed, for instance, it is possible to disable
 the ability for users to sign up themselves. Read the :doc:`configuration chapter <../config/index>` for details.
 
 The basic attributes of users are:
 
+* user_id
 * username
 * password
 * email
@@ -44,77 +43,13 @@ to what a given user may log in or otherwise interact with.
 Moreover, it is possible to attach an arbitrary set of key/value attributes to each user - they can be used to
 extend information about users to cover supplementary needs, such as timezone, a phone number or address.
 
-Sign-up process
----------------
+Details
+-------
 
-A flexible process is offered for users to sign up with the system which will in turn validate their credentials and
-optionally let super-users accept or reject new accounts.
+Consult the following chapters for details of user-related APIs:
 
-Note that this functionality can be turned off completely in :doc:`configuration <../config/index>` if it's not desired to let
-users open their own accounts.
-
-.. image:: /gfx/sso/api/user/signup-process.png
-
-Sign-up
-~~~~~~~
-
-When users sign up themselves, their accounts will be created and, depending on configuration:
-
-* Super-admins will need to accept them
-* No acceptation will be necessary
-
-In either case, users may be required to confirm their signup by triggering an API call with a confirmation token - typically
-sent in email, which Zato can also do. The token is returned in response to the signup call.
-
-::
-
-  $ curl -XPOST localhost:11223/zato/api/user/signup -d '
-    {
-      "username": "my-user1",
-      "password": "VrF57-H31 7!HIj%fSAz :L9"
-      "email":  "myuser1@example.com",
-      "app_list": ["CRM"]
-    }
-  '
-
-Default validation rules of new users are:
-
-* Keywords 'zato' and 'admin' cannot be used anywhere in username, checked case-insensitively
-* Password may not be among the most commonly used ones
-* Both username and email must be unique, also case-insensitively
-* ASCII whitespace cannot be used in username and email, but is accepted in passwords
-
-All validation rules may be
-:doc:`re-configured or implemented <../config/index>`
-in a different manner, according to a specific environment's needs.
-
-Note that users will likely not know code names of applications they sign up to (CRM in the example below).
-If required by configuration, this needs to be provided on input by the calling API client, e.g. a frontend.
-
-Sign-up confirmation
-~~~~~~~~~~~~~~~~~~~~
-
-Acceptating users
-~~~~~~~~~~~~~~~~~
-
-Rejecting users
-~~~~~~~~~~~~~~~
-
-Zato services API
-~~~~~~~~~~~~~~~~~
-
-All of the features available through REST are also accessible through Zato services API, as below:
-
-
-.. highlight:: python
-   :linenothreshold: 0
-
-::
-
-  from zato.server.service import Service
-
-  class MyUserService(Service):
-      """ A demo service for user management.
-      """
-      def handle(self):
-          pass
+* :doc:`Sign-up process <./signup>`
+* :doc:`How to create users as a super-user <./create>`
+* :doc:`Getting details of users <./get>`
+* :doc:`Updating users <./update>`
+* :doc:`Deleting users <./delete>`
