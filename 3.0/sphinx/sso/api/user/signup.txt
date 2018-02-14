@@ -33,10 +33,10 @@ sent in email, which Zato can also do. The token is returned in response to the 
 
 ::
 
-  $ curl -XPOST localhost:11223/zato/api/user/signup -d '
+  $ curl -XPOST localhost:11223/zato/sso/user/signup -d '
     {
       "username": "my-user1",
-      "password": "VrF57-H31 7!HIj%fSAz :L9"
+      "password": "VrF57-H31 7!HIj%fSAz :L9",
       "email":    "myuser1@example.com",
       "app_list": ["CRM"]
     }
@@ -48,17 +48,19 @@ sent in email, which Zato can also do. The token is returned in response to the 
 
 Default validation rules of new users are:
 
-* Keywords 'zato' and 'admin' cannot be used anywhere in username, checked case-insensitively
+* Keywords 'zato', 'admin' and 'root' cannot be used anywhere in username
 * Password may not be among the most commonly used ones in the world
-* Both username and email must be unique, also case-insensitively
-* ASCII whitespace cannot be used in username and email, but is accepted in passwords
+* Both username and email must be unique
+* All of the checks above are performed case-insensitively
+* Additionally, ASCII whitespace cannot be used in username and email, but is accepted in passwords
 
 All validation rules may be
 :doc:`re-configured or implemented <../config/index>`
 in a different manner, according to an environment's specific needs.
 
 Note that users will likely not know code names of applications they sign up to (CRM in the example below).
-This needs to be provided on input by the calling API client, e.g. a frontend.
+This needs to be provided on input by the calling API client, e.g. a frontend, and all names of applications
+must be configured beforehand in :doc:`sso.conf <sso.conf>`.
 
 Sign-up confirmation
 ~~~~~~~~~~~~~~~~~~~~
@@ -68,7 +70,7 @@ to Zato in a REST call as below:
 
 ::
 
-  $ curl -XPOST localhost:11223/zato/api/user/signup/confirm -d '
+  $ curl -XPOST localhost:11223/zato/sso/user/signup/confirm -d '
     {
       "confirm_token": "zcnt8538ba1f6bef475a8fee1fc8cee65dac"
     }
@@ -91,11 +93,11 @@ Zato endpoints.
 
 ::
 
-  $ curl -XGET "localhost:11223/zato/api/user/signup?status=to-approve&ust=zust1a799f0a..."
+  $ curl -XGET "localhost:11223/zato/sso/user/signup?status=to-approve&ust=zust1a799f0a..."
 
 ::
 
-  $ curl -XGET localhost:11223/zato/api/user/signup -d '
+  $ curl -XGET localhost:11223/zato/sso/user/signup -d '
     {
       "status": "to-confirm",
       "ust":    "zust1a799f00d3a147f088bb83bdfe76761c",
@@ -113,7 +115,7 @@ if there are no pending users.
      "username":          "myuser1",
      "email":             "myuser1@example.com",
      "display_name":      "John Doe",
-     "creation_time_utc": "2018-02-13T15:32:24",
+     "sign_up_time":      "2018-02-13T15:32:24", # Always in UTC
      "remote_ip":         "10.23.91.177",
      "remote_addr":       "mysystem.company"
     }
@@ -126,7 +128,7 @@ Super-admins approve the creation of a user account as below. There is no JSON o
 
 ::
 
-  $ curl -XPOST localhost:11223/zato/api/user/signup/approve -d '
+  $ curl -XPOST localhost:11223/zato/sso/user/signup/approve -d '
     {
       "user_id": "zusrqgh3au1pt4b7r5rz"
     }

@@ -22,8 +22,8 @@ Key features
 * Programming-language independent, may be used from Python, JavaScript, Java, .NET or others
 * Very well suited for modern mobile, serverless, WebSocket-based or single-page applications
 * Secure storage, including encryption and customizable password hashing with strong defaults
-* Easy to plug into new or existing environments
-* Supports a variety of workflows
+* Supports a variety of workflows, easy to plug into new or existing environments
+* Detailed audit log to trace exchanges of authorization data with users
 * Scriptable from command-line
 
 Topic guides
