@@ -35,10 +35,11 @@ sent in email, which Zato can also do. The token is returned in response to the 
 
   $ curl -XPOST localhost:11223/zato/sso/user/signup -d '
     {
-      "username": "my-user1",
-      "password": "VrF57-H31 7!HIj%fSAz :L9",
-      "email":    "myuser1@example.com",
-      "app_list": ["CRM"]
+      "username":    "user1",
+      "password":    "VrF57-H31 7!HIj%fSAz :L9",
+      "email":       "user1@example.com",
+      "current_app": "CRM"
+      "app_list":    ["CRM", "ERP"]
     }
   '
 
@@ -49,17 +50,19 @@ sent in email, which Zato can also do. The token is returned in response to the 
 Default validation rules of new users are:
 
 * Keywords 'zato', 'admin' and 'root' cannot be used anywhere in username
-* Password may not be among the most commonly used ones in the world
+* Password must not be among the most commonly used ones in the world
 * Both username and email must be unique
 * All of the checks above are performed case-insensitively
-* Additionally, ASCII whitespace cannot be used in username and email, but is accepted in passwords
+* Additionally, whitespace cannot be used in username and email, but is accepted in passwords
 
 All validation rules may be
 :doc:`re-configured or implemented <../config/index>`
 in a different manner, according to an environment's specific needs.
 
-Note that users will likely not know code names of applications they sign up to (CRM in the example below).
-This needs to be provided on input by the calling API client, e.g. a frontend, and all names of applications
+Note that users will likely not know code names of applications they sign up to (CRM and ERPin the example below) or the code
+name of the application they use to sign up through (CRM above).
+
+Such application code names need to be provided on input by the calling API client, e.g. a frontend, and all names of applications
 must be configured beforehand in :doc:`sso.conf <sso.conf>`.
 
 Sign-up confirmation
@@ -112,8 +115,8 @@ if there are no pending users.
   [
     {
      "user_id":           "zusrqgh3au1pt4b7r5rz",
-     "username":          "myuser1",
-     "email":             "myuser1@example.com",
+     "username":          "user1",
+     "email":             "user1@example.com",
      "display_name":      "John Doe",
      "sign_up_time":      "2018-02-13T15:32:24", # Always in UTC
      "remote_ip":         "10.23.91.177",
