@@ -149,7 +149,7 @@ Super-admins reject a new user account as below. There is no JSON output.
 
 ::
 
-  $ curl -XPOST localhost:11223/zato/api/user/signup/reject -d '
+  $ curl -XPOST localhost:11223/zato/sso/user/signup/reject -d '
     {
       "user_id": "zusrqgh3au1pt4b7r5rz",
       "reason": "Information for user why this account has been rejected",
