@@ -41,6 +41,7 @@ For the call to be considered a success, all of the below must be fulfilled:
 * If applicable, user must be fully signed up, including account creation's confirmation
 * If applicable, user must be approved by a super-user
 * If applicable, password may not be about to expire
+* If applicable, requests must originate in a white-listed IP address
 * Password must not have expired
 * Password must not be marked as requiring a change upon next login
 * Credentials must be valid
@@ -62,7 +63,8 @@ Login metadata
 --------------
 
 For login requests made through HTTP, Zato will extract remote IP address and user agent from HTTP headers, honouring headers
-set by proxy servers. However, at times, it may be required for the client application to send over these meta-attributes in JSON.
+set by intermediate proxy servers. However, at times, it may be required for the client application to send over these
+meta-attributes in JSON.
 
 For instance, if the API client itself is a server-side application that uses WebSockets to connect to Zato,
 it may have only a handful of WebSocket connections to Zato yet it may serve many times more users connecting
@@ -88,7 +90,14 @@ In such cases, applications may send additional information, like below:
   }
 
 The ability to send login metadata needs to be enabled in
-:doc:`configuration <sso-conf-apps-login_metadata_allowed-allowed>`, otherwise requests will be rejected.
+:doc:`configuration <sso-conf-apps-login_metadata_allowed-allowed>`, otherwise requests will be rejected
+with error code *zsa.ps.002.004*.
+
+::
+
+  {
+    "reason_code": "zsa.ps.002.004"
+  }
 
 Password expiry
 ---------------
@@ -105,20 +114,36 @@ is returned. In either case, an audit log entry is made to let administrators kn
 Approaching password expiry notification
 ----------------------------------------
 
-It is possible to :doc:`configure <sso-conf-about-expire>` authentication so as to reject requests if they fall into
-a window of approaching expiration time.
+It is possible to :doc:`configure <sso-conf-about-expire>` authentication so as to warn about and reject requests
+if they fall into a window of approaching expiration time.
 
-For instance, if the password expiration is set to 200 days and about_to_expire_threshold in configuration is set to 15
-(meaning fifteen percent of the overall expiration), then:
+For instance, if the password expiration is set to 200 days and *about_to_expire_threshold* in configuration is set to 15
+(meaning fifteen percent of the overall expiration time), then:
 
 * 15% of 200 days is 30 days
 
 Thus, if login attempts are made within the last 30 days from the time the password was last changed, a warning code
 *zsa.ps.002.002* will be returned to the API caller to point out the approaching expiration.
 
-Moreover, log_in_if_about_to_expire controls whether users may log in during that period. It defaults to True, but if it is set
+Moreover, *log_in_if_about_to_expire* controls whether users may log in during that period. It defaults to True, but if it is set
 to False, all login attempts will be rejected with the same warning code *zsa.ps.002.002* - this can be used to implement
-workflows where users are required to change their passwords before they expire.
+workflows where users are required to change their passwords before they expire, using JSON data as below, with a new password
+on input.
+
+::
+
+  $ curl -XPOST localhost:11223/zato/sso/user/login -d '
+    {
+      "username":     "user1",
+      "password":     "VrF57-H31 7!HIj%fSAz :L9",
+      "new_password": "KV`39t9Um_ONTHXF":46C8bE2",
+      "current_app":  "CRM"
+    }
+  '
+
+  {
+    "ust": "zustf79024699fea4382a48467da4e0e80ed"
+  }
 
 Password change enforcement
 ---------------------------
@@ -140,7 +165,7 @@ Now, the user pointed to by user_id above, will need to send both correct creden
 
 ::
 
-  $ curl -XPOST localhost:11223/zato/sso/user -d '
+  $ curl -XPOST localhost:11223/zato/sso/user/login -d '
     {
       "username":     "user1",
       "password":     "VrF57-H31 7!HIj%fSAz :L9",
@@ -168,3 +193,62 @@ If credentials are correct but the new password is not sent, warning code *zsa.p
   {
     "reason_code": "zsa.ps.002.003"
   }
+
+Limiting access to white-listed IP addresses
+--------------------------------------------
+
+Stanza *login_whitelist* in :doc:`configuration <sso-conf-login-whitelist>` specifies what IP addresses the authentication
+requests must be coming from - otherwise, they will be rejected with error code *zsa.ps.002.005*. Note that the whitelist may
+be applied to both regular and super-users.
+
+A related key is reject_if_not_whitelisted which decides how to treat a request if user is not provided in the whitelist.
+By default, users that are not whitelisted are allowed to log in but setting this key to False will let log in only users that
+are in whitelist.
+
+This lets one construct several interesting scenarios
+
+* Let all users in, no matter their IP address
+
+  ::
+
+    [login]
+    reject_if_not_whitelisted=False
+
+    [login_whitelist]
+    # Nothing here
+
+* Do not let anyone to log in
+
+  ::
+
+    [login]
+    reject_if_not_whitelisted=True
+
+    [login_whitelist]
+    # Nothing here
+
+* Let everyone to log in but users admin and root must come from specific addresses - note that both lists of addresses
+  and address ranges can be used
+
+  ::
+
+    [login]
+    reject_if_not_whitelisted=False
+
+    [login_whitelist]
+    admin=10.23.172.3, 10.23.172.4, 10.23.172.5, 172.16.0.0/12
+    root=172.16.0.0/12
+
+* Users admin and root must come from specific addresses, and so does user1, while user2's requests may originate anywhere.
+  Any other user will be rejected because *reject_if_not_whitelisted* is True.
+
+  ::
+
+    [login]
+    reject_if_not_whitelisted=True
+
+    [login_whitelist]
+    admin=10.23.172.3, 10.23.172.4, 10.23.172.5, 172.16.0.0/12
+    root=172.16.0.0/12
+    user1=10.64.12.97
+    user2=*
