@@ -32,6 +32,7 @@ Topic guides
 ============================================== =========================================================================
 Topic                                          Description
 ============================================== =========================================================================
+:doc:`First steps <./first>`                   How to get started (ZZZ: e.g. enable apps in apps.all)
 :doc:`Users <./user/index>`                    Create, manage and access user accounts
 :doc:`Invitations <./user/invite/index>`       Sending and accepting user invitations
 :doc:`Sessions <./session/index>`              Logging users in or out and checking their existing sessions
