@@ -52,6 +52,8 @@
 
 * Scheduler now runs as its own component managed from command-line interface
 
+* New CLI command: :doc:`zato hash get-rounds <../admin/cli/hash-get-rounds>` to compute PBKDF2 rounds for secrets hashing
+
 * Removed technical accounts - superseded by API keys
 
 2.0 - 2015-01-28
