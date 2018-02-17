@@ -22,7 +22,7 @@ is computed in run-time, which happens, for instance, during user :doc:`authenti
 As an example, with a goal of 0.2 and its resulting rounds, each user's password verification will take 0.2 second
 (plus other relevant overhead outside of hashing, such as HTTP communication).
 
-In current version, the only supported algorithm is PBKDF2-SHA512 with salt size of 64 bytes (512 bits).
+In current version, the only supported algorithm is PBKDF2-SHA512 with a salt size of 64 bytes (512 bits).
 
 Computation results are applicable only to Zato components using CPUs of the same frequency
 - they should not be used outside of Zato and values obtained in other environments cannot be compared
