@@ -5,7 +5,7 @@ Overview
 --------
 
 Zato offers a series of secure REST endpoints that let applications manage users in an API-driven manner -
-everything from signup, invitations, sessions to password reset is accessible through APIs only,
+everything from signup, sessions to password reset is accessible through APIs,
 without a need for applications to maintain their own databases or servers.
 
 All of the endpoints are SSO-aware (Single Sign-On) which allows people to transparently make use of multiple applications
@@ -34,7 +34,6 @@ Topic                                          Description
 ============================================== =========================================================================
 :doc:`First steps <./first>`                   How to get started (ZZZ: e.g. enable apps in apps.all)
 :doc:`Users <./user/index>`                    Create, manage and access user accounts
-:doc:`Invitations <./user/invite/index>`       Sending and accepting user invitations
 :doc:`Sessions <./session/index>`              Logging users in or out and checking their existing sessions
 :doc:`Passwords <./password/index>`            Enforcement and validation of user passwords
 :doc:`Password reset <./password/reset/index>` Letting users reset their passwords

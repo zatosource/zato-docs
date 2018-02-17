@@ -14,7 +14,6 @@ User objects
 * Users may be regular ones or super-users - the difference is that super-users can carry out a set of admin operations from APIs
   or command line against any other user (e.g. lock an account) while regular users cannot
 * Users may send sign up requests to open an account
-* Users may invite other users to open an account
 * Only super-users may create other users
 
 All of the broader parts of the functionality can be turned on or off as needed, for instance, it is possible to disable

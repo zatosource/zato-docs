@@ -286,9 +286,6 @@ User management an single sign-on API
       :doc:`Update <sso/api/user/update>` |
       :doc:`Delete <sso/api/user/delete>`
 
-    * **Invitations:**
-      :doc:`Inviting users workflow <sso/api/user/invite/index>`
-
     * **Sessions:**
       :doc:`Overview <sso/api/session/index>` |
       :doc:`Session objects <sso/api/session/object>` |
@@ -481,7 +478,6 @@ Zato, the open-source project
    sso/api/password/reset/*
    sso/api/session/*
    sso/api/user/*
-   sso/api/user/invite/*
    test/apimox/*
    test/apitest/*
    test/apitest/step/*

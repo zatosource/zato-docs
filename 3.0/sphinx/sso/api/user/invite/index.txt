@@ -1,5 +1,0 @@
-User management API
-===================
-
-This chapter explains how users can be created, updated and deleted, including details of the User object, a core
-entity around which authentication and authorization revolve.
