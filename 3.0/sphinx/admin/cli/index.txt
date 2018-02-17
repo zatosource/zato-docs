@@ -38,6 +38,7 @@ Name                                                Description
 :doc:`zato decrypt<./decrypt>`                      Decrypts secrets using a Zato component's private key
 :doc:`zato delete<./delete>`                        Deletes a Zato component
 :doc:`zato encrypt<./encrypt>`                      Encrypts secrets using a Zato component's public key
+:doc:`zato hash get-rounds<./hash-get-rounds>`      Computes configuration for safe hashing of secrets
 :doc:`zato info<./info>`                            Shows information on a Zato component
 :doc:`zato from-config<./from-config>`              Runs commands from a config file
 :doc:`zato quickstart<./quickstart>`                Quickly sets up a working Zato environment
