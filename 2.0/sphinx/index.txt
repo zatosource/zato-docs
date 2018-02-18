@@ -29,21 +29,18 @@ Getting help
 What makes Zato unique
 ======================
 
-* **Open-source ESB**, **SOA**, **REST**, **APIs** and **cloud integrations** in **Python**
+* **Open-source ESB**, **SOA**, **REST**, **APIs** and **Cloud Integrations** in **Python**
 
-* Using Python alone gives you **increased productivity**
+* Using Python alone offers **increased productivity**
 
 * **HA load-balancer**, **hot-deployment** and **hot-reconfiguration** almost everywhere -
   forget server restarts
 
-* Browser-based **GUI**, **CLI** and **API** - forget XML configuration
-
-* Written **by pragmatists for pragmatists** - you'll never have to spend an entire
-  night debugging a horror system running on an exotic platform again
+* Browser-based **GUI**, **CLI** and **API** - easy to use and customize
 
 * **Protocols**, **industry standards** and **data formats** - HTTP, REST, JSON, SOAP, AMQP,
-  JMS WebSphere MQ, ZeroMQ, Redis, SQL, Cassandra, Amazon S3, OpenStack Swift, Odoo/OpenERP,
-  SMTP, IMAP, FTP, Solr, ElasticSearch, publish/subscribe, integration patterns, RBAC, security and more
+  JMS IBM MQ, ZeroMQ, Redis, SQL, Cassandra, Amazon S3, OpenStack Swift, Odoo,
+  SMTP, IMAP, FTP, Solr, ElasticSearch, integration patterns, RBAC, security and more
 
 * **Commercial support** and **training** available. Growing **community** around the project.
 
