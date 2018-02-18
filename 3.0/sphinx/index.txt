@@ -271,7 +271,7 @@ Programming guide
       :doc:`PyCharm <progguide/ide/pycharm>` |
       :doc:`Visual Studio Code <progguide/ide/vscode>`
 
-User management an single sign-on API
+User management an Single Sign-On API
 ======================================
 
     * **Introduction:**
