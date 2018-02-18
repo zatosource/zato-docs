@@ -48,11 +48,11 @@
 
 * Added an internal startup cache that makes servers boot up to several times faster
 
-* Command zato start will automatically clean up
-
 * Scheduler now runs as its own component managed from command-line interface
 
 * New CLI command: :doc:`zato hash get-rounds <../admin/cli/hash-get-rounds>` to compute PBKDF2 rounds for secrets hashing
+
+* Servers now cache internal services on first boot, making subsequent ones up to several times faster
 
 * Removed technical accounts - superseded by API keys
 

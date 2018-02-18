@@ -1,0 +1,42 @@
+User management and Single Sign-On API
+======================================
+
+Overview
+--------
+
+Zato offers a series of secure REST endpoints that let applications manage users in an API-driven manner -
+everything from signup, sessions to password reset is accessible through APIs,
+without a need for applications to maintain their own databases or servers.
+
+All of the endpoints are SSO-aware (Single Sign-On) which allows people to transparently make use of multiple applications
+without a need for entering credentials in each one.
+
+The same functionality is available to programmers developing Zato services - opening doors to endless API interaction
+possibilities - from synchronization using IBM MQ, through FTP data export, ZeroMQ alerts to AMQP events and more,
+there are no limits to the kind of processes that can be handled.
+
+Key features
+------------
+
+* Powerful yet straightforward
+* Programming-language independent, may be used from Python, JavaScript, Java, .NET or others
+* Very well suited for modern mobile, serverless, WebSocket-based or single-page applications
+* Secure storage, including encryption and customizable password hashing with strong defaults
+* Supports a variety of workflows, easy to plug into new or existing environments
+* Detailed audit log to trace exchanges of authorization data with users
+* Scriptable from command-line
+
+Topic guides
+------------
+
+============================================== =========================================================================
+Topic                                          Description
+============================================== =========================================================================
+:doc:`Tutorial <./tutorial/01>`                Getting started with user management and SSO
+:doc:`Users <./user/index>`                    Create, manage and access user accounts
+:doc:`Sessions <./session/index>`              Logging users in or out and checking their existing sessions
+:doc:`Passwords <./password/index>`            Enforcement and validation of user passwords
+:doc:`Password reset <./password/reset/index>` Letting users reset their passwords
+:doc:`Configuration <./config/index>`          Fine-tuning the system
+:doc:`Audit <./audit/index>`                   What kind of audit information is stored where, when and how to access it
+============================================== =========================================================================

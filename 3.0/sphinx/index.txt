@@ -1,6 +1,6 @@
 
-Open-source ESB, SOA, REST, APIs and Cloud Integrations in Python
-------------------------------------------------------------------
+Open-source ESB, SOA, REST, APIs, SSO and Cloud Integrations in Python
+----------------------------------------------------------------------
 
 Getting help
 ============
@@ -29,21 +29,20 @@ Getting help
 What makes Zato unique
 ======================
 
-* **Open-source ESB**, **SOA**, **REST**, **APIs** and **cloud integrations** in **Python**
+* **Open-source ESB**, **SOA**, **REST**, **APIs**, **SSO** and **Cloud Integrations** in **Python**
 
-* Using Python alone gives you **increased productivity**
+* Multi-protocol **publish/subscribe** with guaranteed delivery **message queues**
+
+* Using Python alone offers **increased productivity**
 
 * **HA load-balancer**, **hot-deployment** and **hot-reconfiguration** almost everywhere -
   forget server restarts
 
-* Browser-based **GUI**, **CLI** and **API** - forget XML configuration
-
-* Written **by pragmatists for pragmatists** - you'll never have to spend an entire
-  night debugging a horror system running on an exotic platform again
+* Browser-based **GUI**, **CLI** and **API** - easy to use and customize
 
 * **Protocols**, **industry standards** and **data formats** - HTTP, REST, JSON, SOAP, AMQP,
-  JMS WebSphere MQ, ZeroMQ, Redis, SQL, Cassandra, Amazon S3, OpenStack Swift, Odoo/OpenERP,
-  SMTP, IMAP, FTP, Solr, ElasticSearch, publish/subscribe, integration patterns, RBAC, security and more
+  JMS IBM MQ, ZeroMQ, Redis, SQL, Cassandra, Amazon S3, OpenStack Swift, Odoo,
+  SMTP, IMAP, FTP, Solr, ElasticSearch, integration patterns, RBAC, security and more
 
 * **Commercial support** and **training** available. Growing **community** around the project.
 
@@ -276,37 +275,23 @@ User management an single sign-on API
 ======================================
 
     * **Introduction:**
-      :doc:`Overview <sso/api/index>`
+      :doc:`Overview <sso/index>` |
+      :doc:`Tutorial <sso/tutorial/01>`
 
-    * **Users:**
-      :doc:`Overview <sso/api/user/index>` |
-      :doc:`User objects <sso/api/user/object>` |
-      :doc:`Create user <sso/api/user/create>` |
-      :doc:`Read <sso/api/user/get>` |
-      :doc:`Update <sso/api/user/update>` |
-      :doc:`Delete <sso/api/user/delete>`
-
-    * **Sessions:**
-      :doc:`Overview <sso/api/session/index>` |
-      :doc:`Session objects <sso/api/session/object>` |
-      :doc:`Log in <sso/api/session/login>` |
-      :doc:`Log out <sso/api/session/logout>` |
-      :doc:`Validate session <sso/api/session/validate>` |
-      :doc:`Read session(s) <sso/api/session/get>`
-
-    * **Passwords:**
-      :doc:`Overview <sso/api/password/index>` |
-      :doc:`Password objects <sso/api/password/object>` |
-      :doc:`Change password <sso/api/password/update>`
-
-    * **Password reset:**
-      :doc:`Overview <sso/api/password/reset/index>` |
-      :doc:`Password reset workflow <sso/api/password/reset/workflow>`
+    * **Topics:**
+      :doc:`Users <sso/topic/user/index>` |
+      :doc:`Sessions <sso/topic/user/index>` |
+      :doc:`Passwords <sso/topic/password/index>` |
+      :doc:`Password reset <sso/topic/password/reset>`
 
     * **Administration:**
-      :doc:`Configuration <sso/api/config/index>` |
-      :doc:`Audit logs<sso/api/audit/index>`
+      :doc:`Configuration <sso/config/index>` |
+      :doc:`Audit log <sso/config/index>`
 
+    * **API Reference:**
+      :doc:`Index <sso/api/index>` |
+      :doc:`REST endpoints <sso/api/rest/index>` |
+      :doc:`Python objects and methods <sso/api/python/index>`
 
 API Testing
 ===========
@@ -472,12 +457,12 @@ Zato, the open-source project
    security/*
    stats/*
    sso/api/*
-   sso/api/audit/*
-   sso/api/config/*
    sso/api/password/*
-   sso/api/password/reset/*
    sso/api/session/*
    sso/api/user/*
+   sso/audit/*
+   sso/config/*
+   sso/tutorial/*
    test/apimox/*
    test/apitest/*
    test/apitest/step/*
