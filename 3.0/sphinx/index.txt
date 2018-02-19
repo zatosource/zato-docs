@@ -31,7 +31,7 @@ What makes Zato unique
 
 * **Open-source ESB**, **SOA**, **REST**, **APIs**, **SSO** and **Cloud Integrations** in **Python**
 
-* Multi-protocol **publish/subscribe** with guaranteed delivery **message queues**
+* Multi-protocol **publish/subscribe topics** with guaranteed delivery **message queues**
 
 * Using Python alone offers **increased productivity**
 
@@ -215,7 +215,8 @@ Programming guide
       :doc:`Solr <progguide/examples/search/solr>` |
       :doc:`Odoo (OpenERP) <progguide/examples/odoo>` |
       :doc:`JSON Pointers <progguide/examples/json-pointer>` |
-      :doc:`XPath <progguide/examples/xpath>`
+      :doc:`XPath <progguide/examples/xpath>` |
+      :doc:`Cryptography <progguide/examples/xpath>`
 
     * **Developing services and applications:**
       :doc:`Overview <progguide/overview>` |
@@ -266,6 +267,11 @@ Programming guide
     * **Customizing web admin:**
       :doc:`Making sure you work on the right environment<progguide/web-admin-settings>`
 
+    * **Cryptography:**
+      :doc:`Encryption and decryption <progguide/crypto/encrypt>` |
+      :doc:`Hashing secrets <progguide/crypto/hash>` |
+      :doc:`Data signing <progguide/crypto/sign>`
+
     * **IDE integration:**
       :doc:`Overview <progguide/ide/index>` |
       :doc:`PyCharm <progguide/ide/pycharm>` |
@@ -276,7 +282,7 @@ User management an Single Sign-On API
 
     * **Introduction:**
       :doc:`Overview <sso/index>` |
-      :doc:`Tutorial <sso/tutorial/01>`
+      Tutorial: :doc:`Part 1 <sso/tutorial/01>` | :doc:`Part 2 <sso/tutorial/01>`
 
     * **Topics:**
       :doc:`Users <sso/topic/user/index>` |
