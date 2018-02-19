@@ -288,7 +288,7 @@ User management and Single Sign-On API
       :doc:`Users <sso/topic/user/index>` |
       :doc:`Sessions <sso/topic/user/index>` |
       :doc:`Passwords <sso/topic/password/index>` |
-      :doc:`Password reset <sso/topic/password/reset>`
+      :doc:`Password reset <sso/topic/password/reset/index>`
 
     * **Administration:**
       :doc:`Configuration <sso/config/index>` |
@@ -367,61 +367,6 @@ Security
     * **Other:**
       :doc:`Reporting security issues<security/reporting-issues>`
 
-.. _index-public-api-toc:
-
-Public REST and SOAP server API
-===============================
-
-    * **Overview:**
-      :doc:`Introducing the public API</public-api/intro>` | :download:`Download WSDL </public-api/zato.wsdl>`
-
-    * **Channels:**
-      :doc:`zato.channel.amqp.*</public-api/details/zato.channel.amqp>` |
-      :doc:`zato.channel.jms-wmq.*</public-api/details/zato.channel.jms-wmq>` |
-      :doc:`zato.channel.zmq.*</public-api/details/zato.channel.zmq>`
-
-    * **Definitions:**
-      :doc:`zato.definition.amqp.*</public-api/details/zato.definition.amqp>` |
-      :doc:`zato.definition.jms-wmq.*</public-api/details/zato.definition.jms-wmq>`
-
-    * **HTTP/SOAP:**
-      :doc:`zato.http-soap.*</public-api/details/zato.http-soap>`
-
-    * **Key/value DB (Redis):**
-      :doc:`zato.kvdb.data-dict.dictionary.*</public-api/details/zato.kvdb.data-dict.dictionary>` |
-      :doc:`zato.kvdb.data-dict.impexp.*</public-api/details/zato.kvdb.data-dict.impexp>` |
-      :doc:`zato.kvdb.data-dict.translation.*</public-api/details/zato.kvdb.data-dict.translation>` |
-      :doc:`zato.kvdb.remote-command.*</public-api/details/zato.kvdb.remote-command>`
-
-    * **Ougoing connections:**
-      :doc:`zato.outgoing.amqp.*</public-api/details/zato.outgoing.amqp>` |
-      :doc:`zato.outgoing.ftp.*</public-api/details/zato.outgoing.ftp>` |
-      :doc:`zato.outgoing.jms-wmq.*</public-api/details/zato.outgoing.jms-wmq>` |
-      :doc:`zato.outgoing.sql.*</public-api/details/zato.outgoing.sql>` |
-      :doc:`zato.outgoing.zmq.*</public-api/details/zato.outgoing.zmq>`
-
-    * **Ping services:**
-      :doc:`zato.ping</public-api/details/zato.ping>`
-
-    * **Scheduler:**
-      :doc:`zato.scheduler.job.*</public-api/details/zato.scheduler.job>`
-
-    * **Security:**
-      :doc:`zato.security.*</public-api/details/zato.security>` |
-      :doc:`zato.security.basic-auth.*</public-api/details/zato.security.basic-auth>` |
-      :doc:`zato.security.rbac.*</public-api/details/zato.security.rbac>` |
-      :doc:`zato.security.tech-account.*</public-api/details/zato.security.tech-account>` |
-      :doc:`zato.security.wss.*</public-api/details/zato.security.wss>`
-
-    * **Servers:**
-      :doc:`zato.server.*</public-api/details/zato.server>`
-
-    * **Services:**
-      :doc:`zato.service.*</public-api/details/zato.service>`
-
-    * **Statistics:**
-      :doc:`zato.stats.*</public-api/details/zato.stats>`
-
 Zato, the open-source project
 ==============================
 
@@ -446,6 +391,7 @@ Zato, the open-source project
    intro/*
    progguide/*
    progguide/clients/*
+   progguide/crypto/*
    progguide/enclog/*
    progguide/enclog/cli/*
    progguide/enclog/install/*
@@ -458,14 +404,30 @@ Zato, the open-source project
    progguide/patterns/*
    progguide/rest/*
    project/*
-   public-api/*
-   public-api/details/*
    security/*
    stats/*
+   sso/*
    sso/api/*
-   sso/api/password/*
-   sso/api/session/*
-   sso/api/user/*
+   sso/api/python/*
+   sso/api/python/password/*
+   sso/api/python/password/reset/*
+   sso/api/python/user/*
+   sso/api/python/user/attr/*
+   sso/api/python/user/session/*
+   sso/api/python/user/session/attr/*
+   sso/api/rest/*
+   sso/api/rest/password/*
+   sso/api/rest/password/reset/*
+   sso/api/rest/user/*
+   sso/api/rest/user/attr/*
+   sso/api/rest/user/session/*
+   sso/api/rest/user/session/attr/*
+   sso/topic/password/*
+   sso/topic/password/reset/*
+   sso/topic/user/*
+   sso/topic/user/attr/*
+   sso/topic/user/session/*
+   sso/topic/user/session/attr/*
    sso/audit/*
    sso/config/*
    sso/tutorial/*

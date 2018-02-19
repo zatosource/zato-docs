@@ -1,6 +1,22 @@
 API quick reference
 ===================
 
+.. raw:: html
+
+    <style type="text/css">
+        td:nth-child(1) {
+            width: 5%;
+        }
+        td:nth-child(2) {
+            width: 90%;
+            display: inline-block;
+            white-space: nowrap;
+        }
+        td:nth-child(3) {
+            width: 5%;
+        }
+    </style>
+
 Overview
 --------
 
@@ -10,46 +26,44 @@ for each main block of functionality links to both relevant topics and to detail
 Quick reference
 ---------------
 
-====================== ====== ================================== =================================
-Topic                  Method Endpoint                           Python
-====================== ====== ================================== =================================
+=============================================================== ===================================================================================== ==============================================================================
+Topic                                                           REST                                                                                  Python
+=============================================================== ===================================================================================== ==============================================================================
 **Super users**
-SuperUser.create       ---     ---                               self.sso.user.create_super_user
+SuperUser.create                                                ---                                                                                   self.sso.user.create_super_user
 \
 **Users**
-User.create            POST    /zato/sso/user/create             self.sso.user.create
-User.signup            POST    /zato/sso/user/signup             self.sso.user.signup
-User.approve           POST    /zato/sso/user/approve            self.sso.user.approve
-User.reject            POST    /zato/sso/user/reject             self.sso.user.reject
-User.login             POST    /zato/sso/user/login              self.sso.user.login
-User.logout            POST    /zato/sso/user/logout             self.sso.user.logout
-User.get               GET     /zato/sso/user                    self.sso.user.get
-User.update            PATCH   /zato/sso/user                    self.sso.user.update
-User.delete            DELETE  /zato/sso/user                    self.sso.user.delete
+:doc:`User.create <./topic/user/create>`                        POST    :doc:`/zato/sso/user/create <./api/rest/user/create>`                         :doc:`self.sso.user.create <./api/rest/user/create>`
+:doc:`Xser.signup <./topic/user/signup>`                        POST    :doc:`/zato/sso/user/signup <./api/rest/user/signup>`                         :doc:`self.sso.user.signup <./api/rest/user/signup>`
+:doc:`User.approve <./topic/user/approve>`                      POST    :doc:`/zato/sso/user/approve <./api/rest/user/approve>`                       :doc:`self.sso.user.approve <./api/rest/user/approve>`
+:doc:`User.reject <./topic/user/reject>`                        POST    :doc:`/zato/sso/user/reject <./api/rest/user/reject>`                         :doc:`self.sso.user.reject <./api/rest/user/reject>`
+:doc:`User.login <./topic/user/login>`                          POST    :doc:`/zato/sso/user/login <./api/rest/user/login>`                           :doc:`self.sso.user.login <./api/rest/user/login>`
+:doc:`User.logout <./topic/user/logout>`                        POST    :doc:`/zato/sso/user/logout <./api/rest/user/logout>`                         :doc:`self.sso.user.logout <./api/rest/user/logout>`
+:doc:`User.get <./topic/user/get>`                              GET     :doc:`/zato/sso/user <./api/rest/user/get>`                                   :doc:`self.sso.user.get <./api/rest/user/get>`
+:doc:`User.update <./topic/user/update>`                        PATCH   :doc:`/zato/sso/user <./api/rest/user/update>`                                :doc:`self.sso.user.update <./api/rest/user/update>`
+:doc:`User.delete <./topic/user/delete>`                        DELETE  :doc:`/zato/sso/user <./api/rest/user/delete>`                                :doc:`self.sso.user.delete <./api/rest/user/delete>`
+:doc:`User.change_password <./topic/user/change-password>`      PATCH   :doc:`/zato/sso/user/password <./api/rest/user/change-password>`              :doc:`self.sso.user.change_password <./api/rest/user/change-password>`
 \
 **Sessions**
-Session.validate       GET     /zato/sso/user/session/validate   self.sso.session.validate
-Session.get            GET     /zato/sso/user/session            self.sso.session.get
-\
-**Passwords**
-Password.change        PATCH   /zato/sso/password                self.sso.user.change_password
+:doc:`Session.validate <./topic/user/session/validate>`         GET     :doc:`/zato/sso/user/session/validate <./api/rest/user/session/validate>`     :doc:`self.sso.session.validate <./api/rest/user/session/validate>`
+:doc:`Session.get <./topic/user/session/get>`                   GET     :doc:`/zato/sso/user/session <./api/rest/user/session/get>`                   :doc:`self.sso.session.get <./api/rest/user/session/get>`
 \
 **Password reset**
-PasswordReset.begin    POST    /zato/sso/password-reset/begin    self.sso.password_reset.begin
-PasswordReset.complete POST    /zato/sso/password-reset/complete self.sso.password_reset.complete
+:doc:`PasswordReset.begin <./topic/password/reset/begin>`       POST    :doc:`/zato/sso/password/reset/begin <./api/rest/password/reset/begin>`       :doc:`self.sso.password.reset.begin <./api/rest/password/reset/begin>`
+:doc:`PasswordReset.complete <./topic/password/reset/complete>` POST    :doc:`/zato/sso/password/reset/complete <./api/rest/password/reset/complete>` :doc:`self.sso.password.reset.complete <./api/rest/password/reset/complete>`
 \
 **User attributes**
-UserAttr.create        POST    /zato/sso/user/attr               self.sso.user.attr.create
-UserAttr.get           GET     /zato/sso/user/attr               self.sso.user.attr.get
-UserAttr.update        PATCH   /zato/sso/user/attr               self.sso.user.attr.update
-UserAttr.delete        DELETE  /zato/sso/user/attr               self.sso.user.attr.delete
+:doc:`UserAttr.create <./topic/user/attr/create>`               POST    :doc:`/zato/sso/user/attr <./api/rest/user/attr/create>`                      :doc:`self.sso.user.attr.create <./api/rest/user/attr/create>`
+:doc:`UserAttr.get <./topic/user/attr/get>`                     GET     :doc:`/zato/sso/user/attr <./api/rest/user/attr/get>`                         :doc:`self.sso.user.attr.get <./api/rest/user/attr/get>`
+:doc:`UserAttr.update <./topic/user/attr/update>`               PATCH   :doc:`/zato/sso/user/attr <./api/rest/user/attr/update>`                      :doc:`self.sso.user.attr.update <./api/rest/user/attr/update>`
+:doc:`UserAttr.delete <./topic/user/attr/delete>`               DELETE  :doc:`/zato/sso/user/attr <./api/rest/user/attr/delete>`                      :doc:`self.sso.user.attr.delete <./api/rest/user/attr/delete>`
 \
 **Session attributes**
-SessionAttr.create     POST    /zato/sso/user/session/attr       self.sso.user.session.attr.create
-SessionAttr.get        GET     /zato/sso/user/session/attr       self.sso.user.session.attr.get
-SessionAttr.update     PATCH   /zato/sso/user/session/attr       self.sso.user.session.attr.update
-SessionAttr.delete     DELETE  /zato/sso/user/session/attr       self.sso.user.session.attr.delete
-====================== ====== ================================== =================================
+:doc:`SessionAttr.create <./topic/user/session/attr/create>`    POST    :doc:`/zato/sso/user/session/attr <./api/rest/user/session/attr/create>`      :doc:`self.sso.user.session.attr.create <./api/rest/user/session/attr/create>`
+:doc:`SessionAttr.get <./topic/user/session/attr/get>`          GET     :doc:`/zato/sso/user/session/attr <./api/rest/user/session/attr/get>`         :doc:`self.sso.user.session.attr.get <./api/rest/user/session/attr/get>`
+:doc:`SessionAttr.update <./topic/user/session/attr/update>`    PATCH   :doc:`/zato/sso/user/session/attr <./api/rest/user/session/attr/update>`      :doc:`self.sso.user.session.attr.update <./api/rest/user/session/attr/update>`
+:doc:`SessionAttr.delete <./topic/user/session/attr/delete>`    DELETE  :doc:`/zato/sso/user/session/attr <./api/rest/user/session/attr/delete>`      :doc:`self.sso.user.session.attr.delete <./api/rest/user/session/attr/delete>`
+=============================================================== ===================================================================================== ==============================================================================
 
 More information
 ----------------
