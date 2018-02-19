@@ -40,9 +40,6 @@ Quick reference
 =============================================================== ===================================================================================== ==============================================================================
 Topic                                                           REST                                                                                  Python
 =============================================================== ===================================================================================== ==============================================================================
-:doc:`Super users <./topic/user/super>`
-Super-user.create                                                ---                                                                                   -elf.sso.user.create_super_user
-\
 :doc:`Users <./topic/user/index>`
 :doc:`-ser.create <./topic/user/create>`                        .OST    :doc:`/zato/sso/user/create <./api/rest/user/create>`                         :doc:`-elf.sso.user.create <./api/rest/user/create>`
 :doc:`User.signup <./topic/user/signup>`                        .OST    :doc:`/zato/sso/user/signup <./api/rest/user/signup>`                         :doc:`-elf.sso.user.signup <./api/rest/user/signup>`
@@ -55,9 +52,12 @@ Super-user.create                                                ---            
 :doc:`-ser.delete <./topic/user/delete>`                        .ELETE  :doc:`/zato/sso/user <./api/rest/user/delete>`                                :doc:`-elf.sso.user.delete <./api/rest/user/delete>`
 :doc:`-ser.change_password <./topic/user/change-password>`      .ATCH   :doc:`/zato/sso/user/password <./api/rest/user/change-password>`              :doc:`-elf.sso.user.change_password <./api/rest/user/change-password>`
 \
-:doc:`Sessions <./topic/user/session/index>`
-:doc:`-ession.validate <./topic/user/session/validate>`         .ET     :doc:`/zato/sso/user/session/validate <./api/rest/user/session/validate>`     :doc:`-elf.sso.-ession.validate <./api/rest/user/session/validate>`
-:doc:`-ession.get <./topic/user/session/get>`                   .ET     :doc:`/zato/sso/user/session <./api/rest/user/session/get>`                   :doc:`-elf.sso.-ession.get <./api/rest/user/session/get>`
+:doc:`Super-users <./topic/user/super>`
+SuperUser.create                                                 ---                                                                                   :doc:`-elf.sso.user.create_super_user <./api/python/user/create-super-user>`
+\
+:doc:`Sessions <./topic/session/index>`
+:doc:`-ession.validate <./topic/session/validate>`              .ET     :doc:`/zato/sso/session/validate <./api/rest/session/validate>`               :doc:`-elf.sso.user.session.validate <./api/rest/session/validate>`
+:doc:`-ession.get <./topic/session/get>`                        .ET     :doc:`/zato/sso/session <./api/rest/session/get>`                             :doc:`-elf.sso.user.session.get <./api/rest/session/get>`
 \
 :doc:`Password reset <./topic/password/reset/index>`
 :doc:`-asswordReset.begin <./topic/password/reset/begin>`       .OST    :doc:`/zato/sso/password/reset/begin <./api/rest/password/reset/begin>`       :doc:`-elf.sso.password.reset.begin <./api/rest/password/reset/begin>`
@@ -69,11 +69,11 @@ Super-user.create                                                ---            
 :doc:`-serAttr.update <./topic/user/attr/update>`               .ATCH   :doc:`/zato/sso/user/attr <./api/rest/user/attr/update>`                      :doc:`-elf.sso.user.attr.update <./api/rest/user/attr/update>`
 :doc:`-serAttr.delete <./topic/user/attr/delete>`               .ELETE  :doc:`/zato/sso/user/attr <./api/rest/user/attr/delete>`                      :doc:`-elf.sso.user.attr.delete <./api/rest/user/attr/delete>`
 \
-:doc:`Session attributes <./topic/user/session/attr/index>`
-:doc:`-essionAttr.create <./topic/user/session/attr/create>`    .OST    :doc:`/zato/sso/user/session/attr <./api/rest/user/session/attr/create>`      :doc:`-elf.sso.user.-ession.attr.create <./api/rest/user/session/attr/create>`
-:doc:`-essionAttr.get <./topic/user/session/attr/get>`          .ET     :doc:`/zato/sso/user/session/attr <./api/rest/user/session/attr/get>`         :doc:`-elf.sso.user.-ession.attr.get <./api/rest/user/session/attr/get>`
-:doc:`-essionAttr.update <./topic/user/session/attr/update>`    .ATCH   :doc:`/zato/sso/user/session/attr <./api/rest/user/session/attr/update>`      :doc:`-elf.sso.user.-ession.attr.update <./api/rest/user/session/attr/update>`
-:doc:`-essionAttr.delete <./topic/user/session/attr/delete>`    .ELETE  :doc:`/zato/sso/user/session/attr <./api/rest/user/session/attr/delete>`      :doc:`-elf.sso.user.-ession.attr.delete <./api/rest/user/session/attr/delete>`
+:doc:`Session attributes <./topic/session/attr/index>`
+:doc:`-essionAttr.create <./topic/session/attr/create>`         .OST    :doc:`/zato/sso/user/session/attr <./api/rest/session/attr/create>`           :doc:`-elf.sso.user.-ession.attr.create <./api/rest/session/attr/create>`
+:doc:`-essionAttr.get <./topic/session/attr/get>`               .ET     :doc:`/zato/sso/user/session/attr <./api/rest/session/attr/get>`              :doc:`-elf.sso.user.-ession.attr.get <./api/rest/session/attr/get>`
+:doc:`-essionAttr.update <./topic/session/attr/update>`         .ATCH   :doc:`/zato/sso/user/session/attr <./api/rest/session/attr/update>`           :doc:`-elf.sso.user.-ession.attr.update <./api/rest/session/attr/update>`
+:doc:`-essionAttr.delete <./topic/session/attr/delete>`         .ELETE  :doc:`/zato/sso/user/session/attr <./api/rest/session/attr/delete>`           :doc:`-elf.sso.user.-ession.attr.delete <./api/rest/session/attr/delete>`
 =============================================================== ===================================================================================== ==============================================================================
 
 More information

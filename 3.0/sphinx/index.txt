@@ -413,21 +413,21 @@ Zato, the open-source project
    sso/api/python/password/reset/*
    sso/api/python/user/*
    sso/api/python/user/attr/*
-   sso/api/python/user/session/*
-   sso/api/python/user/session/attr/*
+   sso/api/python/session/*
+   sso/api/python/session/attr/*
    sso/api/rest/*
    sso/api/rest/password/*
    sso/api/rest/password/reset/*
    sso/api/rest/user/*
    sso/api/rest/user/attr/*
-   sso/api/rest/user/session/*
-   sso/api/rest/user/session/attr/*
+   sso/api/rest/session/*
+   sso/api/rest/session/attr/*
    sso/topic/password/*
    sso/topic/password/reset/*
    sso/topic/user/*
    sso/topic/user/attr/*
-   sso/topic/user/session/*
-   sso/topic/user/session/attr/*
+   sso/topic/session/*
+   sso/topic/session/attr/*
    sso/audit/*
    sso/config/*
    sso/tutorial/*
