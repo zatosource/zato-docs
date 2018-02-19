@@ -70,10 +70,10 @@ SuperUser.create                                                 ---            
 :doc:`-serAttr.delete <./topic/user/attr/delete>`               .ELETE  :doc:`/zato/sso/user/attr <./api/rest/user/attr/delete>`                      :doc:`-elf.sso.user.attr.delete <./api/rest/user/attr/delete>`
 \
 :doc:`Session attributes <./topic/session/attr/index>`
-:doc:`-essionAttr.create <./topic/session/attr/create>`         .OST    :doc:`/zato/sso/user/session/attr <./api/rest/session/attr/create>`           :doc:`-elf.sso.user.-ession.attr.create <./api/rest/session/attr/create>`
-:doc:`-essionAttr.get <./topic/session/attr/get>`               .ET     :doc:`/zato/sso/user/session/attr <./api/rest/session/attr/get>`              :doc:`-elf.sso.user.-ession.attr.get <./api/rest/session/attr/get>`
-:doc:`-essionAttr.update <./topic/session/attr/update>`         .ATCH   :doc:`/zato/sso/user/session/attr <./api/rest/session/attr/update>`           :doc:`-elf.sso.user.-ession.attr.update <./api/rest/session/attr/update>`
-:doc:`-essionAttr.delete <./topic/session/attr/delete>`         .ELETE  :doc:`/zato/sso/user/session/attr <./api/rest/session/attr/delete>`           :doc:`-elf.sso.user.-ession.attr.delete <./api/rest/session/attr/delete>`
+:doc:`-essionAttr.create <./topic/session/attr/create>`         .OST    :doc:`/zato/sso/user/session/attr <./api/rest/session/attr/create>`           :doc:`-elf.sso.user.session.attr.create <./api/rest/session/attr/create>`
+:doc:`-essionAttr.get <./topic/session/attr/get>`               .ET     :doc:`/zato/sso/user/session/attr <./api/rest/session/attr/get>`              :doc:`-elf.sso.user.session.attr.get <./api/rest/session/attr/get>`
+:doc:`-essionAttr.update <./topic/session/attr/update>`         .ATCH   :doc:`/zato/sso/user/session/attr <./api/rest/session/attr/update>`           :doc:`-elf.sso.user.session.attr.update <./api/rest/session/attr/update>`
+:doc:`-essionAttr.delete <./topic/session/attr/delete>`         .ELETE  :doc:`/zato/sso/user/session/attr <./api/rest/session/attr/delete>`           :doc:`-elf.sso.user.session.attr.delete <./api/rest/session/attr/delete>`
 =============================================================== ===================================================================================== ==============================================================================
 
 More information
