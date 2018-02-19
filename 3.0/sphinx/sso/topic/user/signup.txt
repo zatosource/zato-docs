@@ -6,8 +6,12 @@ Sign-up process
 
 This chapter explains how users may interact with APIs to sign themselves up with the system.
 
-Information is presented in a task-oriented manner - consult the :doc:`reference chapter <./ref>` for full API documentation and
-:doc:`CLI chapter </../../cli/sso>` for command-line interface.
+Information below is presented in a task-oriented manner - consult the
+reference chapters for full
+:doc:`REST <../../api/rest/user/index>`
+and
+:doc:`Python <../../api/python/user/index>`
+APIs.
 
 Workflow
 ---------
@@ -159,22 +163,3 @@ Super-admins reject a new user account as below. There is no JSON output.
 If told to by configuration, an email with a reason for the rejection will be sent to user.
 
 A rejected user account is deleted from the database and if the same user wants to sign up again, the person needs to start anew.
-
-Zato services API
------------------
-
-All of the features available through REST are also accessible through Zato services API, as below:
-
-
-.. highlight:: python
-   :linenothreshold: 0
-
-::
-
-  from zato.server.service import Service
-
-  class MyUserService(Service):
-      """ A demo service for user management.
-      """
-      def handle(self):
-          pass
