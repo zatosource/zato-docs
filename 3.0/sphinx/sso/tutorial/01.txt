@@ -1,2 +1,2 @@
-User management and SSO tutorial
-================================
+User management and Single-Sign On tutorial
+===========================================

@@ -1,0 +1,64 @@
+API quick reference
+===================
+
+Overview
+--------
+
+The table below lists all the most commonly used API calls and methods - the content is provided in a goal-oriented manner,
+for each main block of functionality links to both relevant topics and to detailed API references are given.
+
+Quick reference
+---------------
+
+====================== ====== ================================== =================================
+Topic                  Method Endpoint                           Python
+====================== ====== ================================== =================================
+**Super users**
+SuperUser.create       ---     ---                               self.sso.user.create_super_user
+\
+**Users**
+User.create            POST    /zato/sso/user/create             self.sso.user.create
+User.signup            POST    /zato/sso/user/signup             self.sso.user.signup
+User.approve           POST    /zato/sso/user/approve            self.sso.user.approve
+User.reject            POST    /zato/sso/user/reject             self.sso.user.reject
+User.login             POST    /zato/sso/user/login              self.sso.user.login
+User.logout            POST    /zato/sso/user/logout             self.sso.user.logout
+User.get               GET     /zato/sso/user                    self.sso.user.get
+User.update            PATCH   /zato/sso/user                    self.sso.user.update
+User.delete            DELETE  /zato/sso/user                    self.sso.user.delete
+\
+**Sessions**
+Session.validate       GET     /zato/sso/user/session/validate   self.sso.session.validate
+Session.get            GET     /zato/sso/user/session            self.sso.session.get
+\
+**Passwords**
+Password.change        PATCH   /zato/sso/password                self.sso.user.change_password
+\
+**Password reset**
+PasswordReset.begin    POST    /zato/sso/password-reset/begin    self.sso.password_reset.begin
+PasswordReset.complete POST    /zato/sso/password-reset/complete self.sso.password_reset.complete
+\
+**User attributes**
+UserAttr.create        POST    /zato/sso/user/attr               self.sso.user.attr.create
+UserAttr.get           GET     /zato/sso/user/attr               self.sso.user.attr.get
+UserAttr.update        PATCH   /zato/sso/user/attr               self.sso.user.attr.update
+UserAttr.delete        DELETE  /zato/sso/user/attr               self.sso.user.attr.delete
+\
+**Session attributes**
+SessionAttr.create     POST    /zato/sso/user/session/attr       self.sso.user.session.attr.create
+SessionAttr.get        GET     /zato/sso/user/session/attr       self.sso.user.session.attr.get
+SessionAttr.update     PATCH   /zato/sso/user/session/attr       self.sso.user.session.attr.update
+SessionAttr.delete     DELETE  /zato/sso/user/session/attr       self.sso.user.session.attr.delete
+====================== ====== ================================== =================================
+
+More information
+----------------
+
+The calls above are only the chief ones that will come in handy in the majority of situations.
+More is available at the links below.
+
+* The tutorial will quickly set you up and show the basic usage
+
+* Topic guides go into specific parts in depth:
+
+* Full reference presents all details of both REST and Python APIs

@@ -33,10 +33,11 @@ Topic guides
 Topic                                          Description
 ============================================== =========================================================================
 :doc:`Tutorial <./tutorial/01>`                Getting started with user management and SSO
-:doc:`Users <./user/index>`                    Create, manage and access user accounts
-:doc:`Sessions <./session/index>`              Logging users in or out and checking their existing sessions
-:doc:`Passwords <./password/index>`            Enforcement and validation of user passwords
-:doc:`Password reset <./password/reset/index>` Letting users reset their passwords
+:doc:`Quick reference <./quickref>`            Most commonly used API calls and methods
+:doc:`Users <./topic/user/index>`              Create, manage and access user accounts
+:doc:`Sessions <./topic/session/index>`        Logging users in or out and checking their existing sessions
+:doc:`Passwords <./topic/password/index>`      Enforcement and validation of user passwords
+:doc:`Password reset <./topic/password/reset>` Letting users reset their passwords
 :doc:`Configuration <./config/index>`          Fine-tuning the system
 :doc:`Audit <./audit/index>`                   What kind of audit information is stored where, when and how to access it
 ============================================== =========================================================================

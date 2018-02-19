@@ -277,7 +277,7 @@ Programming guide
       :doc:`PyCharm <progguide/ide/pycharm>` |
       :doc:`Visual Studio Code <progguide/ide/vscode>`
 
-User management an Single Sign-On API
+User management and Single Sign-On API
 ======================================
 
     * **Introduction:**
@@ -295,7 +295,7 @@ User management an Single Sign-On API
       :doc:`Audit log <sso/config/index>`
 
     * **API Reference:**
-      :doc:`Index <sso/api/index>` |
+      :doc:`Quick index <sso/quickref>` |
       :doc:`REST endpoints <sso/api/rest/index>` |
       :doc:`Python objects and methods <sso/api/python/index>`
 
