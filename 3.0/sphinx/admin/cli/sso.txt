@@ -1,0 +1,18 @@
+zato ca
+============================
+
+Overview
+------------
+
+Commands to manage user accounts and functionality related to Single-Sign On.
+
+Subcommands
+------------
+
+* :doc:`zato sso change-user-password <./sso-change-user-password>`
+* :doc:`zato sso create-super-user <./sso-create-super-user>`
+* :doc:`zato sso create-user <./sso-create-user>`
+* :doc:`zato sso delete-user <./sso-delete-user>`
+* :doc:`zato sso lock-user <./sso-lock-user>`
+* :doc:`zato sso reset-user-password <./sso-reset-user-password>`
+* :doc:`zato sso unlock-user <./sso-unlock-user>`
