@@ -27,7 +27,7 @@ Command-specific parameters
 Name           Description                                                          Example value
 ============== ==================================================================== =================================
 path           Path to a Zato server, may be running or not                         /home/zato/env/server1
-username       Username of the account create, must be unique                       admin1
+username       Username of the account to create, must be unique                    admin1
 --email        User's email                                                         admin1@example.com
 --display-name Name of user for presentation purposes                               John Doe
 --first-name   User's first name                                                    John
@@ -41,7 +41,7 @@ Usage
 
 ::
 
-    usage: zato sso create-super-user [-h] [--store-log] [--verbose]
+    $ zato sso create-super-user [-h] [--store-log] [--verbose]
                                   [--store-config] [--email EMAIL]
                                   [--display-name DISPLAY_NAME]
                                   [--first-name FIRST_NAME]

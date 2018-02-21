@@ -1,17 +1,13 @@
-zato start
-==========
+zato sso unlock-user
+====================
 
 Overview
 ------------
 
-Starts a Zato component.
+Unlocks a user account, thus allowing a user to log into it.
 
-If the component is a server and it's the first time it's started,
-a Zato administrator will have to make the server known to the load-balancer before
-the server will be able to accept HTTP connections.
-
-A server that is the first one in a cluster to have been started will automatically
-start scheduler and outgoing connectors, if any have been configured for the cluster.
+Note that the command does not check if the account was previously :doc:`locked <./sso-lock-user>` or not,
+i.e. it is not an error to run it with a user that is not currently locked.
 
 Subcommands
 ------------
@@ -21,30 +17,32 @@ Subcommands
 Command-specific parameters
 ---------------------------
 
-==== ================================= ================================= ================
-Name                                   Description                       Example value
-==== ================================= ================================= ================
-path                                   Path to a Zato component to start ~/dev3/web-admin
-==== ================================= ================================= ================
+============== ============================================ =================================
+Name           Description                                  Example value
+============== ============================================ =================================
+path           Path to a Zato server, may be running or not /home/zato/env/server1
+username       Username of the account to unlock            user1
+============== ============================================ =================================
 
 Usage
 -----
 
 ::
 
-    $ zato start [-h] [--store-log] [--verbose] [--store-config] path
+    $ zato sso unlock-user [-h] [--store-log] [--verbose] [--store-config]
+                           path username
 
 ::
 
-    $ zato start ~/dev3/web-admin
-    OK
+    $ zato sso lock-user /home/zato/env/server1 regular1
+    Unlocked user account `user1`
     $
 
 Changelog
 ---------
 
-=================== ===================================================================
-Version             Notes
-=================== ===================================================================
-1.0                 Added initially
-=================== ===================================================================
+======= ===================================================================
+Version Notes
+======= ===================================================================
+3.0     Added initially
+======= ===================================================================

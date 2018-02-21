@@ -1,17 +1,16 @@
-zato start
-==========
+zato sso delete-user
+====================
 
 Overview
 ------------
 
-Starts a Zato component.
+Deletes an existing user. The action is irrevocable, it is not possible to undo it.
 
-If the component is a server and it's the first time it's started,
-a Zato administrator will have to make the server known to the load-balancer before
-the server will be able to accept HTTP connections.
+The command works with both regular and super-users. A confirmation prompt to confirm the deletion is shown if --yes is not given
+on input.
 
-A server that is the first one in a cluster to have been started will automatically
-start scheduler and outgoing connectors, if any have been configured for the cluster.
+Check :doc:`zato sso lock-user <./sso-lock-user>` for a command that will lock a user account to prevent the user from logging
+in without deleting it entirely.
 
 Subcommands
 ------------
@@ -21,30 +20,49 @@ Subcommands
 Command-specific parameters
 ---------------------------
 
-==== ================================= ================================= ================
-Name                                   Description                       Example value
-==== ================================= ================================= ================
-path                                   Path to a Zato component to start ~/dev3/web-admin
-==== ================================= ================================= ================
+============== ============================================ =================================
+Name           Description                                  Example value
+============== ============================================ =================================
+path           Path to a Zato server, may be running or not /home/zato/env/server1
+username       Username of the account to delete            user1
+============== ============================================ =================================
 
 Usage
 -----
 
 ::
 
-    $ zato start [-h] [--store-log] [--verbose] [--store-config] path
+    $ zato sso delete-user [-h] [--store-log] [--verbose] [--store-config]
+                    [--yes]
+                    path username
+
 
 ::
 
-    $ zato start ~/dev3/web-admin
-    OK
+    $ zato sso delete-user /home/zato/env/server1 user1
+    Delete user? `user1` [y/n] y
+    Deleted user `user1`
+    $
+
+
+::
+
+    $ zato sso delete-user /home/zato/env/server1 user1
+    Delete user? `user1` [y/n] n
+    User `user1` kept intact
+    $
+
+::
+
+    $ zato sso delete-user /home/zato/env/server1 user1 --yes
+    Deleted user `user1`
     $
 
 Changelog
 ---------
 
-=================== ===================================================================
-Version             Notes
-=================== ===================================================================
-1.0                 Added initially
-=================== ===================================================================
+======= ===================================================================
+Version Notes
+======= ===================================================================
+3.0     Added initially
+======= ===================================================================

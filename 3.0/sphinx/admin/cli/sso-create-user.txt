@@ -27,7 +27,7 @@ Command-specific parameters
 Name           Description                                                          Example value
 ============== ==================================================================== =================================
 path           Path to a Zato server, may be running or not                         /home/zato/env/server1
-username       Username of the account create, must be unique                       user1
+username       Username of the account to create, must be unique                    user1
 --email        User's email                                                         user1@example.com
 --display-name Name of user for presentation purposes                               John Doe
 --first-name   User's first name                                                    John
