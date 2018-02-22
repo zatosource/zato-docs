@@ -1,5 +1,5 @@
-3.0 - 2018-NN-NN
-================
+3.0 - 2018-NN-NN - **in development**
+=====================================
 
 .. note::
 
@@ -15,7 +15,7 @@
 
 * Multi-protocol publish/subscribe topics with guaranteed delivery message queues turn Zato into a full-featured message broker
 
-* :doc:`Single Sign-On and user management API <../sso/api/index>`
+* :doc:`Single Sign-On and user management API <../sso/index>`
 
 * :doc:`IDE plugins <../progguide/ide/index>`
   for
