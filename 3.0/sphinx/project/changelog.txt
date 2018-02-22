@@ -29,8 +29,6 @@
 
 * Automatic API documentation generation
 
-* Automatic API specification generation for WSDL, RAML and OpenAPI/Swagger
-
 * WebSocket channels
 
 * Memcached connections
@@ -55,8 +53,8 @@
 * New crypto mechanisms:
   :doc:`encryption and decryption <../progguide/crypto/encrypt>`,
   :doc:`hashing secrets <../progguide/crypto/hash>`,
-  :doc:`data signing <../progguide/crypto/sign>` and
-  :doc:`passwords and secrets generation <../progguide/crypto/generate>`
+  :doc:`data signing <../progguide/crypto/sign>` as well as
+  :doc:`generation of passwords and secrets<../progguide/crypto/generate>`
 
 * Added passwords to servers
 
