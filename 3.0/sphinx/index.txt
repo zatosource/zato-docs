@@ -297,7 +297,8 @@ User management and Single Sign-On API
     * **API Reference:**
       :doc:`Quick index <sso/quickref>` |
       :doc:`REST endpoints <sso/api/rest/index>` |
-      :doc:`Python objects and methods <sso/api/python/index>`
+      :doc:`Python objects and methods <sso/api/python/index>` |
+      :doc:`Status codes <sso/status-code>`
 
 API Testing
 ===========

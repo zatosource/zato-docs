@@ -31,8 +31,8 @@ API quick reference
 Overview
 --------
 
-The table below lists all available API calls and methods - the content is provided in a goal-oriented manner,
-for each main block of functionality links to both relevant topics and to detailed API references are given.
+The table below lists all available API calls and methods - the content is provided following a CRUD pattern or workflows involved,
+and for each main block of functionality links to both relevant topics and to detailed API references are given.
 
 Quick reference
 ---------------
@@ -45,7 +45,7 @@ Topic                                                           REST            
 :doc:`User.signup <./topic/user/signup>`                        POST    :doc:`/zato/sso/user/signup <./1pi/rest/user/signup>`                         :doc:`self.sso.user.signup <./1pi/rest/user/signup>`
 :doc:`User.approve <./1opic/user/approve>`                      POST    :doc:`/zato/sso/user/approve <./1pi/rest/user/approve>`                       :doc:`self.sso.user.approve <./1pi/rest/user/approve>`
 :doc:`User.reject <./1opic/user/reject>`                        POST    :doc:`/zato/sso/user/reject <./1pi/rest/user/reject>`                         :doc:`self.sso.user.reject <./1pi/rest/user/reject>`
-:doc:`User.login <./topic/user/login>`                          POST    :doc:`/zato/sso/user/login <./1pi/rest/user/login>`                           :doc:`self.sso.user.login <./1pi/rest/user/login>`
+:doc:`User.login <./topic/user/login>`                          POST    :doc:`/zato/sso/user/login <./api/rest/user/login>`                           :doc:`self.sso.user.login <./1pi/rest/user/login>`
 :doc:`User.logout <./1opic/user/logout>`                        POST    :doc:`/zato/sso/user/logout <./1pi/rest/user/logout>`                         :doc:`self.sso.user.logout <./1pi/rest/user/logout>`
 :doc:`User.get <./1opic/user/get>`                              GET     :doc:`/zato/sso/user <./1pi/rest/user/get>`                                   :doc:`self.sso.user.get <./1pi/rest/user/get>`
 :doc:`User.update <./1opic/user/update>`                        PATCH   :doc:`/zato/sso/user <./1pi/rest/user/update>`                                :doc:`self.sso.user.update <./1pi/rest/user/update>`
@@ -79,6 +79,8 @@ SuperUser.create                                                 ---            
 More information
 ----------------
 
-* The tutorial will quickly set you up and show the basic usage
+* The tutorial will quickly set you up and show the most commonly used parts
 
 * Topic guides go into specific parts in depth:
+
+* All :doc:`warning and error codes <./status-code>` explained

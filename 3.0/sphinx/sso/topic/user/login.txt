@@ -34,7 +34,8 @@ that they want to log in from.
 
   {
     "status": "ok",
-    "ust": "zustf79024699fea4382a48467da4e0e80ed"
+    "ust": "gAAAAABakWKBtUQATWUOQLsQRTZ_fijYbv...",
+    "cid": "c92c7a6e772749c0c2f646fc"
   }
 
 If the call is successful, a session object is created and stored in database while a user session token (UST) is returned
@@ -57,6 +58,9 @@ to log in again in each of them. A single user may be logged in multiple times i
 
 A UST has a number of attributes, such as time-to-live - some of them may be read by user while others are readable
 to super-users only. Regular users cannot look up another regular user's session information.
+
+Note that the value of UST returned to API callers is always encrypted using a server's secret key (AES-128). It is not possible
+to decrypt it on client side without the knowledge of secret key.
 
 Authorizing login to applications
 ----------------------------------
@@ -92,18 +96,20 @@ In such cases, applications may send additional information, like below:
 
   {
     "status": "ok",
-    "ust": "zustf79024699fea4382a48467da4e0e80ed"
+    "ust": "gAAAAABakWKp5b2-zz4dHRa8...",
+    "cid": "df51cd3b0e56bf32c4c64f37"
   }
 
 The ability to send login metadata needs to be enabled in
-:doc:`configuration <sso-conf-apps-login_metadata_allowed-allowed>`, otherwise requests will be rejected
+:doc:`configuration <sso-conf-apps-apps.login_metadata_allowed>`, otherwise requests will be rejected
 with error code E006001.
 
 ::
 
   {
     "status": "error",
-    "reason_code": "E006001"
+    "sub_status": "E006001",
+    "cid": "cb9d48bb4d95726ba18665ea"
   }
 
 Password expiry
@@ -146,7 +152,8 @@ on input.
 
   {
     "status": "ok",
-    "ust": "zustf79024699fea4382a48467da4e0e80ed"
+    "ust": "gAAAAABakWLBfYbL0mBREn1LmTCNYm...",
+    "cid": "6e0264fe5ca1bfe8d3634616"
   }
 
 Password change enforcement
@@ -159,14 +166,15 @@ time the person logs in.
 
   $ curl -XPATCH localhost:11223/zato/sso/user -d '
     {
-      "ust":     "zust72xt35h6th9m8s653gz9rhfv75",
+      "ust":     "gAAAAABakWLKRCWYhG9JJuyth...",
       "user_id": "zusr23dq0bazrg8yjvpsarsjqrenbk",
       "password_must_change": true,
     }
   '
 
   {
-    "status": "ok"
+    "status": "ok",
+    "cid": "fad1da4a7bb1fd850a83e5af"
   }
 
 Now, the user pointed to by user_id above, will need to send both correct credentials and a new password to log in:
@@ -184,7 +192,8 @@ Now, the user pointed to by user_id above, will need to send both correct creden
 
   {
     "status": "ok",
-    "ust": "zustf79024699fea4382a48467da4e0e80ed"
+    "ust": "gAAAAABakWLc9gqe1JqHNpp...",
+    "cid": "f56a7eda1809d08508953d10"
   }
 
 If credentials are correct but the new password is not sent, error code E003007 is returned:
@@ -201,7 +210,8 @@ If credentials are correct but the new password is not sent, error code E003007 
 
   {
     "status": "error",
-    "sub_status": "E003007"
+    "sub_status": "E003007",
+    "cid": "e608cee5d5ccc326c55e3db8"
   }
 
 Limiting access to specific users and IP addresses
