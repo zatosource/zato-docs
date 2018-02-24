@@ -1,0 +1,16 @@
+.. highlight:: bash
+   :linenothreshold: 1000
+
+Sessions
+========
+
+Sessions represent users that are logged in to the system. Each session may have a number of
+arbitrary :doc:`attributes <sso-session-attr>` associated that are stored in the database for as long as the session exists.
+There is no limit to how many sessions a single user may have active at a time.
+
+More information:
+
+* How to :doc:`log a user in <./login>`
+* How to :doc:`log a user out <./logout>`
+* How to :doc:`access existing sessions <./read>`
+* How to use :doc:`session attributes <./attrs>`

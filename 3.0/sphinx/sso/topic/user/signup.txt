@@ -13,6 +13,10 @@ and
 :doc:`Python <../../api/python/user/index>`
 APIs.
 
+Note that signing up is a process that involves a series of message exchanges - this is unlike
+:doc:`user creation <./create>`,
+which adds users without requiring their confirmation.
+
 Workflow
 ---------
 

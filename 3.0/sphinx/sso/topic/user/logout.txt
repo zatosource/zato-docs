@@ -1,0 +1,5 @@
+.. highlight:: bash
+   :linenothreshold: 1000
+
+Logging out
+===========
