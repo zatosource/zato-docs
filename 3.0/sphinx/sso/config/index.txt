@@ -1,0 +1,29 @@
+.. highlight:: bash
+   :linenothreshold: 1000
+
+Configuring SSO
+===============
+
+All of SSO configuration takes place through config files or :doc:`command line interface <../../admin/cli/sso>`.
+This chapter covers the config files.
+
+There are two files involved:
+
+* server.conf
+* sso.conf
+
+File server.conf is used only to enable or disable SSO functionality as a whole whereas sso.conf deals with details of
+how SSO should work once enabled.
+
+The files belong to Zato servers and they don't exist with other components, e.g. a Zato web-admin or scheduler
+do not have them.
+
+Both of the files can be found in the *config/repo* sub-directory of a server.
+
+For instance, if a path to server is /opt/zato/env/server1 then the files with be in:
+
+* /opt/zato/env/server1/config/repo/server.conf
+* /opt/zato/env/server1/config/repo/sso.conf
+
+Enabling or disabling SSO
+-------------------------
