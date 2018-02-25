@@ -1,8 +1,8 @@
-.. highlight:: bash
+.. highlight:: ini
    :linenothreshold: 1000
 
-Configuring SSO
-===============
+SSO configuration
+=================
 
 All of SSO configuration takes place through config files or :doc:`command line interface <../../admin/cli/sso>`.
 This chapter covers the config files.
@@ -27,3 +27,443 @@ For instance, if a path to server is /opt/zato/env/server1 then the files with b
 
 Enabling or disabling SSO
 -------------------------
+
+* To enable or disable SSO set key *sso* of the *component_enabled* stanza in server.conf to True of False, for instance:
+
+::
+
+  [component_enabled]
+  ..
+  sso=True
+  ..
+
+* The change needs to be applied to all servers and all of them need to restart for the change to become effective
+
+sso.conf
+--------
+
+File sso.conf is the one where all the SSO configuration happens. Its default form is presented below for reference
+and what follows next is discussion about each config entry.
+
+Note that after all changes to the file need to be applied in each Zato server and after each modification that server needs
+to be restarted.
+
+::
+
+  [main]
+  encrypt_email=True
+  encrypt_password=True
+
+  [backend]
+  default=sql
+
+  [sql]
+  name=
+
+  [hash_secret]
+  rounds=100000
+  salt_size=64 # In bytes = 512 bits
+
+  [apps]
+  all=
+  signup_allowed=
+  login_allowed=
+  login_metadata_allowed=
+  inform_if_app_invalid=True
+
+  [login]
+  reject_if_not_listed=False
+  inform_if_locked=True
+  inform_if_not_confirmed=True
+  inform_if_not_approved=True
+
+  [login_list]
+
+  [session]
+  expiry=60 # In minutes
+
+  [password]
+  expiry=730 # In days, 365 days * 2 years = 730 days
+  inform_if_expired=False
+  inform_if_about_to_expire=True
+  inform_if_must_be_changed=True
+  inform_if_invalid=True
+  about_to_expire_threshold=30 # In days
+  log_in_if_about_to_expire=True
+  min_length=8
+  max_length=256
+  reject_list = """
+    111111
+    123123
+    123321
+    123456
+    123qwe
+    1q2w3e
+    1q2w3e4r
+    1q2w3e4r5t
+    222222
+    333333
+    444444
+    555555
+    654321
+    666666
+    777777
+    888888
+    999999
+    987654321
+    google
+    letmein
+    mynoob
+    password
+    qwerty
+    zxcvbnm
+  """
+
+  [signup]
+  inform_if_user_exists=False
+  inform_if_user_invalid=False
+  inform_if_email_exists=False
+  inform_if_email_invalid=False
+  email_required=True
+  max_length_username=128
+  max_length_email=128
+  password_allow_whitespace=True
+  always_return_confirm_token=True
+  is_email_required=True
+  is_approval_needed=True
+
+  [user_validation]
+  service=zato.sso.user.validate
+  reject_username=zato, admin, root, system, sso
+  reject_email=zato, admin, root, system, sso
+
+[main]
+~~~~~~
+
+main.encrypt_email
+``````````````````
+
+A boolean value indicating whether emails in the SSO database should be encrypted or not. If True, it will not be possible to
+look up users by emails. If False, user emails will be stored in clear text.
+
+Default: True
+
+main.encrypt_password
+``````````````````````
+
+A boolean value indicating whether passwords in the SSO database should be encrypted or not. Encryption is an additional measure
+on top of password hashing which always takes place.
+
+Default: True
+
+[backend]
+~~~~~~~~~
+
+default
+```````
+
+Which database backend to use to store information in. In current version it is fixed to 'sql' and cannot be changed.
+
+Default: sql
+
+[sql]
+~~~~~
+
+name
+````
+
+Name of :doc:`an outgoing SQL connection <../../web-admin/outgoing/sql>`
+to connect to the SSO database through. Should be left empty if Zato's own DB should be used.
+
+Default: (None)
+
+[hash_secret]
+~~~~~~~~~~~~~
+
+rounds
+``````
+
+How many rounds in the PBKDF2 algorithm to use for password hashing. It should be fine-tuned from
+:doc:`command-line <../../admin/cli/hash-get-rounds>`
+for each environment separately.
+
+Default: 100000
+
+salt_size
+`````````
+
+How many bytes (not bits) of random data to use for the creation of salt in the password hash.
+
+Default: 64
+
+[apps]
+~~~~~~
+
+all
+```
+
+A comma separated list of all application names that SSO should be aware of and which can be sent as *current_app* in API calls.
+
+Default: (None)
+
+signup_allowed
+``````````````
+
+A comma separated list of application names through which users may sign up.
+Signup requests sent from other applications will be rejected.
+
+login_allowed
+`````````````
+
+A comma separated list of application names from which users may log in.
+Login requests sent from other applications will be rejected.
+
+Default: (None)
+
+login_metadata_allowed
+``````````````````````
+
+A comma separated list of application names that may send login metadata to SSO.
+Login requests with metadata coming from other applications will be rejected.
+
+Default: (None)
+
+apps.inform_if_app_invalid
+``````````````````````````
+
+In API calls, whether to use a specific error code to indicate that input current_app does not exist in a given context
+or if a generic error code should be used. If True, the specific one will be returned.
+
+Default: True
+
+[login]
+~~~~~~~
+
+reject_if_not_listed
+````````````````````
+
+Whether login attempts should be rejected if input username is not explicitly white-listed in *[login_list]*.
+
+Default: False
+
+inform_if_locked
+````````````````
+
+If login credentials are correct but the account is locked, whether a specific error code to indicate this fact should be returned
+or a generic one.
+
+Default: True
+
+inform_if_not_confirmed
+```````````````````````
+
+If login credentials are correct but the account has not been confirmed by user yet, whether a specific error code to indicate
+this fact should be returned or a generic one.
+
+Default: True
+
+inform_if_not_approved
+``````````````````````
+
+If login credentials are correct but the account has not been approved by a super-user yet, whether a specific error
+code to indicate this fact should be returned or a generic one.
+
+Default: True
+
+[login_list]
+~~~~~~~~~~~~
+
+The stanza is a white-list of usernames allowed and, optionally, what remote addresses they may log in from.
+More information is in the :ref:`user guide <sso-topic-user-login-list>`.
+
+[session]
+~~~~~~~~~
+
+expiry
+``````
+
+What the expiration of a user session is, in minutes. Existing sessions are extended by that many minutes upon each successful
+interaction with SSO APIs.
+
+Default: 60
+
+[password]
+~~~~~~~~~~
+
+expiry
+``````
+
+After how many days a newly set password should be considered expired. Users with expired passwords will not be able to log
+in until the password is changed. Super-users may also
+:doc:`change <../../admin/cli/sso-change-user-password>`
+and
+:doc:`reset <../../admin/cli/sso-reset-user-password>`
+passwords from command line.
+
+Default: 730
+
+inform_if_expired
+`````````````````
+
+If login credentials are correct but the password has already expired, whether a specific error code to indicate
+this fact should be returned or a generic one.
+
+Default: False
+
+inform_if_about_to_expire
+`````````````````````````
+
+If login credentials are correct but the password is about to expire soon, whether a specific error code to indicate
+this fact should be returned or a generic one.
+
+Default: True
+
+inform_if_must_be_changed
+`````````````````````````
+
+If login credentials are correct but the password must be changed by user yet a new one has not been sent,
+whether a specific error code to indicate this fact should be returned or a generic one.
+
+Default: True
+
+inform_if_invalid
+`````````````````
+
+If a password that user is trying to set is invalid (e.g. too short or too long), whether a specific error code to indicate
+this fact should be returned or a generic one.
+
+Default: True
+
+about_to_expire_threshold
+`````````````````````````
+
+How many days before the actual expiration the password should be construed as about to expire.
+
+Default: 30
+
+log_in_if_about_to_expire
+`````````````````````````
+
+If password is about to expire, whether the user should be allowed to log in nevertheless.
+
+Default: True
+
+min_length
+``````````
+
+Default: 8
+
+Minimum password length in bytes.
+
+max_length
+``````````
+
+Maximum password length in bytes.
+
+Default: 256
+
+Default: (None)
+
+reject_list
+```````````
+
+A multi-line list of strings that are not allowed in passwords, no matter if used as a prefix, suffix or in the middle of password.
+Checked case-insensitively.
+
+[signup]
+~~~~~~~~
+
+inform_if_user_exists
+`````````````````````
+
+When users sign up, should they be informed through a specific code that the username chosen already exists
+or if a generic error code should be returned.
+
+Default: True
+
+inform_if_user_invalid
+``````````````````````
+
+When users sign up, should they be informed through a specific code that the username chosen is invalid (e.g. has whitespace)
+or if a generic error code should be returned.
+
+Default: True
+
+inform_if_email_exists
+``````````````````````
+
+When users sign up, should they be informed through a specific code that the email chosen already exists
+or if a generic error code should be returned.
+
+Default: True
+
+inform_if_email_invalid
+```````````````````````
+
+When users sign up, should they be informed through a specific code that the email chosen is invalid (e.g. has whitespace)
+or if a generic error code should be returned.
+
+Default: True
+
+email_required
+``````````````
+
+Whether email is a required field when signing up.
+
+Default: True
+
+max_length_username
+```````````````````
+
+Default: 128
+
+max_length_email
+````````````````
+
+Default: 128
+
+password_allow_whitespace
+`````````````````````````
+
+Default: True
+
+always_return_confirm_token
+```````````````````````````
+
+Default: True
+
+is_email_required
+`````````````````
+
+Default: True
+
+is_approval_needed
+``````````````````
+
+Default: True
+
+
+[user_validation]
+~~~~~~~~~~~~~~~~~
+service
+```````
+
+A comma-separated list of services to validate users that are trying to sign up. Services are invoked in the order defined in
+this entry.
+
+Default: zato.sso.user.validate
+
+reject_username
+```````````````
+
+A comma-separate list of keywords that must not be part of username, otherwise a signup request is rejected.
+
+Default: zato, admin, root, system, sso
+
+reject_email
+````````````
+
+A comma-separate list of keywords that must not be part of email, otherwise a signup request is rejected.
+
+Default: zato, admin, root, system, sso
+

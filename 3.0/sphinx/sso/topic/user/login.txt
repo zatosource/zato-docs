@@ -214,6 +214,8 @@ If credentials are correct but the new password is not sent, error code E003007 
     "cid": "e608cee5d5ccc326c55e3db8"
   }
 
+.. _sso-topic-user-login-list:
+
 Limiting access to specific users and IP addresses
 --------------------------------------------------
 
