@@ -2,45 +2,45 @@ Introducing the web admin panel
 ===============================
 
 Zato ships with a web admin panel and while certain admin tasks are performed
-by 
+by
 :doc:`editing config files <../admin/guide/install-config/overview>`,
 :doc:`using command line interface <../admin/cli/index>`
-or 
+or
 :doc:`invoking the API <../public-api/intro>`,
 most of the time you'll spend with Zato will most likely fall on the web admin.
 
-While the other means of administration are usually concerned with preparing 
-static configuration of an environment or making sure operating system-level 
+While the other means of administration are usually concerned with preparing
+static configuration of an environment or making sure operating system-level
 packages are playing nicely together, the web admin is used to manage most aspects
 of already existing clusters and services.
 
 .. note ::
 
-  A key feature of web admin is that almost all changes you make are always automatically 
+  A key feature of web admin is that almost all changes you make are always automatically
   introduced on all servers and other components.  **No restarts are usually required**.
-  
-  Almost everything is always hot-reconfigured. There is no concept of a downtime 
+
+  Almost everything is always hot-reconfigured. There is no concept of a downtime
   due to configuration reload. A load-balancer takes care of distributing load
-  to servers which need more time to update their config. 
-  
+  to servers which need more time to update their config.
+
 
 .. image:: /gfx/web-admin/intro1.png
    :alt:
    :width: 90%
-   
+
 .. image:: /gfx/web-admin/intro2.png
    :width: 90%
-   
+
 .. image:: /gfx/web-admin/intro3.png
    :width: 90%
-   
+
 .. image:: /gfx/web-admin/intro4.png
    :width: 90%
-   
+
 Read more
 ---------
 
-    * **Overview:** 
+    * **Overview:**
       :doc:`Securing the web admin<security>`
 
     * **Clusters:**
@@ -107,12 +107,6 @@ Read more
       :doc:`SQL<outgoing/sql>` |
       :doc:`ZeroMQ<outgoing/zmq>`
 
-    * **HTTP Audit Log:**
-      :doc:`Overview<audit-log/http/index>` |
-      :doc:`Configuring<audit-log/http/channel/config>` |
-      :doc:`Searching<audit-log/http/channel/search>` |
-      :doc:`Displaying details<audit-log/http/channel/details>`
-
     * **Search:**
       :doc:`ElasticSearch<search/es>` |
       :doc:`Solr<search/solr>`
@@ -135,11 +129,6 @@ Read more
     * **Key/value DB (Redis):**
       :doc:`Data dictionaries<kvdb/data-dict>` |
       :doc:`Remote commands<kvdb/remote-commands>`
-
-    * **Publish/subscribe:**
-      :doc:`Topics<pubsub/topic>` |
-      :doc:`Producers<pubsub/producer>` |
-      :doc:`Consumers<pubsub/consumer>`
 
     * **Scheduler:**
       :doc:`Main view<scheduler/main>`

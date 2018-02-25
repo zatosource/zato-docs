@@ -15,7 +15,7 @@ User objects
 * Users may be regular ones or :doc:`super-users <./super>`
 
 All of the broader parts of the functionality can be turned on or off as needed, for instance, it is possible to disable
-the ability for users to sign up themselves. Read the :doc:`configuration chapter <../config/index>` for details.
+the ability for users to sign up themselves. Read the :doc:`configuration chapter <../../config/index>` for details.
 
 The basic attributes of users are:
 

@@ -31,9 +31,8 @@ or
 through many
 protocols and transports -
 :doc:`plain HTTP REST, SOAP, JSON <../progguide/outconn/http>`,
-:doc:`REST publish/subscribe <../pubsub/index>`,
 :doc:`AMQP <../progguide/outconn/amqp>`,
-:doc:`JMS WebSphere MQ <../progguide/outconn/jms-wmq>`,
+:doc:`IBM MQ<../progguide/outconn/jms-wmq>`,
 :doc:`ZeroMQ <../progguide/outconn/zmq>`,
 :doc:`SQL <../progguide/outconn/sql>`,
 :doc:`FTP(S) <../progguide/outconn/ftp>`
@@ -42,7 +41,7 @@ protocols and transports -
 :doc:`OpenStack Swift <../progguide/examples/cloud/openstack/swift>`,
 :doc:`Odoo/OpenERP <../progguide/examples/odoo>`
 :doc:`SMTP <../progguide/examples/smtp>`
-or 
+or
 :doc:`IMAP <../progguide/examples/imap>`
 
 Integration patterns -
@@ -208,7 +207,7 @@ For instance:
   :emphasize-lines: 14
 
   $ zato quickstart create ~/env/qs-1 sqlite localhost 6379 \
-    --kvdb_password '' --verbose 
+    --kvdb_password '' --verbose
 
   [1/8] Certificate authority created
   [2/8] ODB schema created

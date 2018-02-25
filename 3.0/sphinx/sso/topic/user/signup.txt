@@ -23,7 +23,7 @@ Workflow
 A flexible process is offered for users to sign up with the system which will in turn validate their credentials and
 optionally let super-users accept or reject new accounts.
 
-Note that this functionality can be turned off completely in :doc:`configuration <../config/index>` if it's not desired to let
+Note that this functionality can be turned off completely in :doc:`configuration <../../config/index>` if it's not desired to let
 users open their own accounts.
 
 .. image:: /gfx/sso/api/user/signup-process.png
@@ -64,14 +64,14 @@ Default validation rules of new users are:
 * Additionally, whitespace cannot be used in username and email, but is accepted in passwords
 
 All validation rules may be
-:doc:`re-configured or implemented <../config/index>`
+:doc:`re-configured or implemented <../../config/index>`
 in a different manner, according to an environment's specific needs.
 
 Note that users will likely not know code names of applications they sign up to (CRM and ERPin the example below) or the code
 name of the application they use to sign up through (CRM above).
 
 Such application code names need to be provided on input by the calling API client, e.g. a frontend, and all names of applications
-must be configured beforehand in :doc:`sso.conf <sso.conf>`.
+must be configured beforehand in :doc:`sso.conf <../../config/index>`.
 
 Sign-up confirmation
 ~~~~~~~~~~~~~~~~~~~~

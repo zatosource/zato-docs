@@ -66,7 +66,7 @@ Authorizing login to applications
 ----------------------------------
 
 Not all applications can be logged into - some can only be accessed after a user logs into a different one and already has
-a valid UST. Only applications explicitly listed in :doc:`configuration <sso-conf-apps-logging-allowed>`
+a valid UST. Only applications explicitly listed in :doc:`configuration <../../config/index>`
 can be used for logging in.
 
 Login metadata
@@ -101,7 +101,7 @@ In such cases, applications may send additional information, like below:
   }
 
 The ability to send login metadata needs to be enabled in
-:doc:`configuration <sso-conf-apps-apps.login_metadata_allowed>`, otherwise requests will be rejected
+:doc:`configuration <../../config/index>`, otherwise requests will be rejected
 with error code E006001.
 
 ::
@@ -120,14 +120,14 @@ Each password has an expiration attached, a period during which it may be used. 
 If an expired password is given on input, login is rejected and, optionally, error code E003004 is returned
 to let the caller know that this password is expired.
 
-The error code is not returned unless turned on in :doc:`configuration file <sso-conf>`. This is to prevent disclosure
+The error code is not returned unless turned on in :doc:`configuration file <../../config/index>`. This is to prevent disclosure
 of information about user accounts that are no longer in use. Instead a generic 'Invalid username or password' message
 is returned. In either case, an audit log entry is made to let administrators know that an expired password was sent.
 
 Approaching password expiry notification
 ----------------------------------------
 
-It is possible to :doc:`configure <sso-conf-about-expire>` authentication so as to warn about and reject requests
+It is possible to :doc:`configure <../../config/index>` authentication so as to warn about and reject requests
 if they fall into a window of approaching expiration time.
 
 For instance, if the password expiration is set to 200 days and about_to_expire_threshold in configuration is set to 30 then
@@ -222,7 +222,7 @@ Limiting access to specific users and IP addresses
 By default, all users may log in from all addresses, but access can be restricted to specific users and, additionally,
 to specific remote addresses.
 
-Stanza login_list in :doc:`configuration <sso-conf-login-whitelist>` specifies what users may log in and from what IP addresses
+Stanza login_list in :doc:`configuration <../../config/index>` specifies what users may log in and from what IP addresses
 the authentication requests must be coming from - otherwise, they will be rejected with error code E005001.
 Note that the list may contain both regular and super-users.
 

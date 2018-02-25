@@ -9,11 +9,10 @@ Creates a new regular user. Use :doc:`zato sso create-user <./sso-create-user>` 
 If password is not given on input, a prompt will be shown. In either case, password will be validated against configuration
 of the server pointed to by path.
 
-In case of any errors, an error code will be returned, consult the :doc:`list of all error codes <sso-api-error-codes>`
+In case of any errors, an error code will be returned, consult the :doc:`list of all error codes <../../sso/status-code>`
 for details.
 
-Note that only username is a required field - in particular, all name-related attributes are
-:doc:`optional <sso-display-name-optional>`.
+Note that only username is a required field - in particular, all name-related attributes are optional.
 
 Subcommands
 ------------

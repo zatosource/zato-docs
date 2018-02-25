@@ -42,26 +42,26 @@ Code    Label                      Notes
 ======= ========================== ==============================================================================================
 E001001 username.invalid           Such a username does not exist in database
 E001002 username.exists            This username already exists - for instance, during user creation
-E001003 username.too_long          Username is longer than :doc:`configuration <sso-sso-conf>` allows it
+E001003 username.too_long          Username is longer than :doc:`configuration <./config/index>` allows it
 E001004 username.has_whitespace    Username contains whitespace
 \
 E002001 email.invalid              Such an email does not exist in database
 E002002 email.exists               This email already exists - for instance,
                                    during user creation if emails are required to be unique
-E002003 email.too_long             Email address is longer than :doc:`configuration <sso-sso-conf>` allows it
+E002003 email.too_long             Email address is longer than :doc:`configuration <./config/index>` allows it
 E002004 email.has_whitespace       Email address contains whitespace
 E002005 email.missing              There was no email given on input yet one is required
 \
-E003001 password.invalid           Password is invalid per rules defined in :doc:`configuration <sso-sso-conf>`
+E003001 password.invalid           Password is invalid per rules defined in :doc:`configuration <./config/index>`
 E003002 password.too_short         Password is too short
 E003003 password.too_long          Password is too long
 E003004 password.expired           A call was issued using an account whose password has expired
                                    (e.g. in between login and this call)
 W003005 password.w_about_to_exp    A warning to indicate that the password is about to expire
-E003006 password.e_about_to_exp    Exactly as W003005 but returned as an error, per :doc:`configuration <sso-sso-conf>`
+E003006 password.e_about_to_exp    Exactly as W003005 but returned as an error, per :doc:`configuration <./config/index>`
 E003007 password.must_send_new     Request was rejected, user must send a new password to set in place of current one
 \
-E004001 app_list.invalid           Application name given on input was not found in :doc:`configuration <sso-sso-conf>`
+E004001 app_list.invalid           Application name given on input was not found in :doc:`configuration <./config/index>`
 E004002 app_list.no_signup         Application name on input exists but it is not possible to log in from it,
                                    i.e. user must use another application to log in
 \

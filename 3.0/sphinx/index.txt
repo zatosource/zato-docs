@@ -286,7 +286,7 @@ User management and Single Sign-On API
 
     * **Topics:**
       :doc:`Users <sso/topic/user/index>` |
-      :doc:`Sessions <sso/topic/user/index>` |
+      :doc:`Sessions <sso/topic/session/index>` |
       :doc:`Passwords <sso/topic/password/index>` |
       :doc:`Password reset <sso/topic/password/reset/index>`
 
@@ -296,8 +296,6 @@ User management and Single Sign-On API
 
     * **API Reference:**
       :doc:`Quick index <sso/quickref>` |
-      :doc:`REST endpoints <sso/api/rest/index>` |
-      :doc:`Python objects and methods <sso/api/python/index>` |
       :doc:`Status codes <sso/status-code>`
 
 API Testing
