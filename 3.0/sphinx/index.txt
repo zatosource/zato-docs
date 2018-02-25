@@ -282,17 +282,17 @@ User management and Single Sign-On API
 
     * **Introduction:**
       :doc:`Overview <sso/index>` |
-      Tutorial: :doc:`Part 1 <sso/tutorial/01>` | :doc:`Part 2 <sso/tutorial/01>`
+      Tutorial: :doc:`~~Part 1 <sso/tutorial/01>` | :doc:`~~Part 2 <sso/tutorial/01>`
 
     * **Topics:**
       :doc:`Users <sso/topic/user/index>` |
       :doc:`Sessions <sso/topic/session/index>` |
       :doc:`Passwords <sso/topic/password/index>` |
-      :doc:`Password reset <sso/topic/password/reset/index>`
+      :doc:`~~Password reset <sso/topic/password/reset/index>`
 
     * **Administration:**
       :doc:`Configuration <sso/config/index>` |
-      :doc:`Audit log <sso/config/index>`
+      :doc:`~~Audit log <sso/audit/index>`
 
     * **API Reference:**
       :doc:`Quick index <sso/quickref>` |

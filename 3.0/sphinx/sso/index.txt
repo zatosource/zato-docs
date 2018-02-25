@@ -29,15 +29,15 @@ Key features
 Topic guides
 ------------
 
-==================================================== =========================================================================
-Topic                                                Description
-==================================================== =========================================================================
-:doc:`Tutorial <./tutorial/01>`                      Getting started with user management and SSO
-:doc:`Quick reference <./quickref>`                  All API calls and methods
-:doc:`Users <./topic/user/index>`                    Create, manage and access user accounts
-:doc:`Sessions <./topic/session/index>`              Logging users in or out and checking their existing sessions
-:doc:`Passwords <./topic/password/index>`            Enforcement and validation of user passwords
-:doc:`Password reset <./topic/password/reset/index>` Letting users reset their passwords
-:doc:`Configuration <./config/index>`                Fine-tuning the system
-:doc:`Audit <./audit/index>`                         What kind of audit information is stored where, when and how to access it
-==================================================== =========================================================================
+====================================================== =========================================================================
+Topic                                                  Description
+====================================================== =========================================================================
+:doc:`~~Tutorial <./tutorial/01>`                      Getting started with user management and SSO
+:doc:`Quick reference <./quickref>`                    All API calls and methods
+:doc:`Users <./topic/user/index>`                      Create, manage and access user accounts
+:doc:`Sessions <./topic/session/index>`                Logging users in or out and checking their existing sessions
+:doc:`Passwords <./topic/password/index>`              Enforcement and validation of user passwords
+:doc:`~~Password reset <./topic/password/reset/index>` Letting users reset their passwords
+:doc:`Configuration <./config/index>`                  Fine-tuning the system
+:doc:`~~Audit <./audit/index>`                         What kind of audit information is stored where, when and how to access it
+====================================================== =========================================================================

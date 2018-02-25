@@ -48,8 +48,8 @@ Consult the following chapters for user-related topics:
 * :doc:`Sign-up process <./signup>`
 * :doc:`How to create users as a super-user <./create>`
 * :doc:`How to log in <./login>`
-* :doc:`How to log out <./logout>`
-* :doc:`Getting details of users <./get>`
-* :doc:`Updating users <./update>`
-* :doc:`Deleting users <./delete>`
+* :doc:`~~How to log out <./logout>`
+* :doc:`~~Getting details of users <./get>`
+* :doc:`~~Updating users <./update>`
+* :doc:`~~Deleting users <./delete>`
 * :doc:`Understanding the difference between regular and super-users <./super>`

@@ -5,12 +5,12 @@ API quick reference
 
     <style type="text/css">
 
-        a[href="topic/user/super.html"] em,
-        a[href="topic/user/index.html"] em,
-        a[href="topic/user/session/index.html"] em,
-        a[href="topic/user/password/reset/index.html"] em,
-        a[href="topic/user/attr/index.html"] em,
-        a[href="topic/user/session/attr/index.html"] em
+        td a[href="topic/user/super.html"] em,
+        td a[href="topic/user/index.html"] em,
+        td a[href="topic/user/session/index.html"] em,
+        td a[href="topic/user/password/reset/index.html"] em,
+        td a[href="topic/user/attr/index.html"] em,
+        td a[href="topic/user/session/attr/index.html"] em
         {
             font-weight:bold;
         }
@@ -79,8 +79,13 @@ SuperUser.create                                                 ---            
 More information
 ----------------
 
-* The tutorial will quickly set you up and show the most commonly used parts
+* The :doc:`tutorial <./tutorial/01>` will quickly set you up and show the most commonly used parts
 
-* Topic guides go into specific parts in depth:
+* Topic guides go into specific parts in depth: :doc:`Users <../sso/topic/user/index>` |
+  :doc:`Sessions <./topic/session/index>` |
+  :doc:`Passwords <./topic/password/index>` |
+  :doc:`Password reset <./topic/password/reset/index>` |
+  :doc:`Configuration <./config/index>` |
+  :doc:`Audit <./audit/index>`
 
 * All :doc:`warning and error codes <./status-code>` explained
