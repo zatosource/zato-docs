@@ -46,7 +46,7 @@ Topic                                                           REST            
 :doc:`User.approve <./1opic/user/approve>`                      POST    :doc:`/zato/sso/user/approve <./1pi/rest/user/approve>`                       :doc:`self.sso.user.approve <./1pi/python/user/approve>`
 :doc:`User.reject <./1opic/user/reject>`                        POST    :doc:`/zato/sso/user/reject <./1pi/rest/user/reject>`                         :doc:`self.sso.user.reject <./1pi/python/user/reject>`
 :doc:`User.login <./topic/user/login>`                          POST    :doc:`/zato/sso/user/login <./api/rest/user/login>`                           :doc:`self.sso.user.login <./api/python/user/login>`
-:doc:`User.logout <./1opic/user/logout>`                        POST    :doc:`/zato/sso/user/logout <./api/rest/user/logout>`                         :doc:`self.sso.user.logout <./api/python/user/logout>`
+:doc:`User.logout <./topic/user/logout>`                        POST    :doc:`/zato/sso/user/logout <./api/rest/user/logout>`                         :doc:`self.sso.user.logout <./api/python/user/logout>`
 :doc:`User.get <./1opic/user/get>`                              GET     :doc:`/zato/sso/user <./1pi/rest/user/get>`                                   :doc:`self.sso.user.get <./1pi/python/user/get>`
 :doc:`User.update <./1opic/user/update>`                        PATCH   :doc:`/zato/sso/user <./1pi/rest/user/update>`                                :doc:`self.sso.user.update <./1pi/python/user/update>`
 :doc:`User.delete <./1opic/user/delete>`                        DELETE  :doc:`/zato/sso/user <./1pi/rest/user/delete>`                                :doc:`self.sso.user.delete <./1pi/python/user/delete>`
