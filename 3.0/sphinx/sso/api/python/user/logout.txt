@@ -21,9 +21,6 @@ self.sso.user.logout
   :param ust: User session token to log out by
   :type ust: string
 
-  :param password: That user's password
-  :type password: string
-
   :param current_app: Name of application the user is using to log out from SSO
   :type current_app: string
 

@@ -47,7 +47,7 @@ Topic                                                           REST            
 :doc:`User.reject <./1opic/user/reject>`                        POST    :doc:`/zato/sso/user/reject <./1pi/rest/user/reject>`                         :doc:`self.sso.user.reject <./1pi/python/user/reject>`
 :doc:`User.login <./topic/user/login>`                          POST    :doc:`/zato/sso/user/login <./api/rest/user/login>`                           :doc:`self.sso.user.login <./api/python/user/login>`
 :doc:`User.logout <./topic/user/logout>`                        POST    :doc:`/zato/sso/user/logout <./api/rest/user/logout>`                         :doc:`self.sso.user.logout <./api/python/user/logout>`
-:doc:`User.get <./1opic/user/get>`                              GET     :doc:`/zato/sso/user <./1pi/rest/user/get>`                                   :doc:`self.sso.user.get <./1pi/python/user/get>`
+:doc:`User.get <./1opic/user/get>`                              GET     :doc:`/zato/sso/user <./1pi/rest/user/get>`                                   :doc:`self.sso.user.get_user_by_* <./api/python/user/get>`
 :doc:`User.update <./1opic/user/update>`                        PATCH   :doc:`/zato/sso/user <./1pi/rest/user/update>`                                :doc:`self.sso.user.update <./1pi/python/user/update>`
 :doc:`User.delete <./1opic/user/delete>`                        DELETE  :doc:`/zato/sso/user <./1pi/rest/user/delete>`                                :doc:`self.sso.user.delete <./1pi/python/user/delete>`
 :doc:`User.change_password <./1opic/user/change-password>`      PATCH   :doc:`/zato/sso/user/password <./1pi/rest/user/change-password>`              :doc:`self.sso.user.change_password <./1pi/python/user/change-password>`
