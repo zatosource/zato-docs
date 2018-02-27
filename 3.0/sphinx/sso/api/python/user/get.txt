@@ -18,12 +18,12 @@ API
 self.sso.user.get_user_by_ust
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: get_user_by_ust(self, ust, current_app, remote_addr)
+.. py:method:: get_user_by_ust(self, current_ust, current_app, remote_addr)
 
   Returns information about user using this person's current session
 
-  :param ust: Current user's UST
-  :type ust: string
+  :param current_ust: Current user's UST
+  :type current_ust: string
 
   :param current_app: Name of application the user is using to issue the call from
   :type current_app: string
@@ -99,9 +99,12 @@ self.sso.user.get_user_by_ust
 self.sso.user.get_user_by_id
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: get_user_by_ust(self, user_id, current_app, remote_addr)
+.. py:method:: get_user_by_ust(self, user_id, current_ust, current_app, remote_addr)
 
   Returns information about a user using that person's ID. Current user must be a super-user.
+
+  :param current_ust: Current user's UST - must belong to a super-user
+  :type current_ust: string
 
   :param user_id: User ID (another person or possibly current user)
   :type ust: string
