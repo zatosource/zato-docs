@@ -37,13 +37,15 @@ error   Operation failed, check sub-status for details
 Sub-status codes
 ----------------
 
-======= ========================== ==============================================================================================
+======= ========================== ==================================================================================================
 Code    Label                      Notes
-======= ========================== ==============================================================================================
+======= ========================== ==================================================================================================
 E001001 username.invalid           Such a username does not exist in database
 E001002 username.exists            This username already exists - for instance, during user creation
 E001003 username.too_long          Username is longer than :doc:`configuration <./config/index>` allows it
 E001004 username.has_whitespace    Username contains whitespace
+\
+E001100 user_id.invalid            Such a user ID does not exist in database
 \
 E002001 email.invalid              Such an email does not exist in database
 E002002 email.exists               This email already exists - for instance,
@@ -79,4 +81,6 @@ E006001 metadata.not_allowed       Current application that the user is logging 
 \
 E007001 session.no_such_session    Input user session token UST was invalid - either does not exist or the session expired
 E007002 session.expired            The session pointed to by input UST exists but has already expired
-======= ========================== ==============================================================================================
+\
+E008001 common.invalid_operation   The requested operation is invalid, e.g. a user attempts to delete his or her own account
+======= ========================== ==================================================================================================

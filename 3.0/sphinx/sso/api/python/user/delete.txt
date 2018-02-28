@@ -1,0 +1,59 @@
+
+.. highlight:: python
+   :linenothreshold: 1
+
+User.delete - Python API
+========================
+
+Deletes a user by ID - may be a regular one or super-super. Current user must be a super-user and cannot delete his or her own account.
+
+API
+---
+
+self.sso.user.delete_user_by_id
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. py:method:: delete_user_by_id(self, user_id, current_ust, current_app, remote_addr):
+
+  Deletes a user by ID.
+
+  :param user_id: ID of the user to delete
+
+  :type data: string
+
+  :param current_ust: Current user's UST
+  :type current_ust: string
+
+  :param current_app: Name of application the current user is issuing the call from
+  :type current_app: string
+
+  :param remote_addr: User's remote address
+  :type remote_addr: string
+
+  :rtype: None - there is no response on success but an exception may be raised at any point on failure
+
+::
+
+  # -*- coding: utf-8 -*-
+
+  from __future__ import absolute_import, division, print_function, unicode_literals
+
+  # stdlib
+  from random import randint
+
+  # Zato
+  from zato.server.service import Service
+
+  class DeleteUser(Service):
+      def handle(self):
+
+          # Request metadata
+          current_ust = 'gAAAAABalo6MX7z62Pyo416OFfDJ-4MuTMmSpIqAmvOXWc..'
+          current_app = 'CRM'
+          remote_addr = '127.0.0.1'
+
+          # User to delete
+          user_id = 'zusr4datdm5k5m8fbb8fttx5d65avm'
+
+          # Delete the user
+          self.sso.user.delete_user_by_id(user_id, current_ust, current_app, remote_addr)

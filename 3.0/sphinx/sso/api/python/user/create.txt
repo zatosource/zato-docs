@@ -60,7 +60,7 @@ self.sso.user.create_user
 
   from zato.server.service import Service
 
-  class MyService(Service):
+  class CreateUser(Service):
       def handle(self):
 
           # Request metadata
