@@ -37,11 +37,11 @@ and for each main block of functionality links to both relevant topics and to de
 Quick reference
 ---------------
 
-=============================================================== ===================================================================================== ==============================================================================
+=============================================================== ===================================================================================== =================================================================================
 Topic                                                           REST                                                                                  Python
-=============================================================== ===================================================================================== ==============================================================================
-:doc:`Users <./1opic/user/index>`
-:doc:`User.create <./topic/user/create>`                        POST    :doc:`/zato/sso/user/create <./1pi/rest/user/create>`                         :doc:`self.sso.user.create <./1pi/python/user/create>`
+=============================================================== ===================================================================================== =================================================================================
+:doc:`Users <./topic/user/index>`
+:doc:`User.create <./topic/user/create>`                        POST    :doc:`/zato/sso/user/create <./1pi/rest/user/create>`                         :doc:`self.sso.user.create <./api/python/user/create>`
 :doc:`User.signup <./topic/user/signup>`                        POST    :doc:`/zato/sso/user/signup <./1pi/rest/user/signup>`                         :doc:`self.sso.user.signup <./1pi/python/user/signup>`
 :doc:`User.approve <./1opic/user/approve>`                      POST    :doc:`/zato/sso/user/approve <./1pi/rest/user/approve>`                       :doc:`self.sso.user.approve <./1pi/python/user/approve>`
 :doc:`User.reject <./1opic/user/reject>`                        POST    :doc:`/zato/sso/user/reject <./1pi/rest/user/reject>`                         :doc:`self.sso.user.reject <./1pi/python/user/reject>`
@@ -53,7 +53,7 @@ Topic                                                           REST            
 :doc:`User.change_password <./1opic/user/change-password>`      PATCH   :doc:`/zato/sso/user/password <./1pi/rest/user/change-password>`              :doc:`self.sso.user.change_password <./1pi/python/user/change-password>`
 \
 :doc:`Super-users <./topic/user/super>`
-SuperUser.create                                                 ---                                                                                   :doc:`self.sso.user.create_super_user <./1pi/python/user/create-super-user>`
+SuperUser.create                                                 ---                                                                                   :doc:`self.sso.user.create_super_user <./api/python/user/create-super-user>`
 \
 :doc:`Sessions <./topic/session/index>`
 :doc:`Session.validate <./1opic/session/validate>`              GET     :doc:`/zato/sso/session/validate <./1pi/rest/session/validate>`               :doc:`self.sso.user.session.validate <./1pi/python/session/validate>`
@@ -74,7 +74,7 @@ SuperUser.create                                                 ---            
 :doc:`SessionAttr.get <./1opic/session/attr/get>`               GET     :doc:`/zato/sso/user/session/attr <./1pi/rest/session/attr/get>`              :doc:`self.sso.user.session.attr.get <./1pi/python/session/attr/get>`
 :doc:`SessionAttr.update <./1opic/session/attr/update>`         PATCH   :doc:`/zato/sso/user/session/attr <./1pi/rest/session/attr/update>`           :doc:`self.sso.user.session.attr.update <./1pi/python/session/attr/update>`
 :doc:`SessionAttr.delete <./1opic/session/attr/delete>`         DELETE  :doc:`/zato/sso/user/session/attr <./1pi/rest/session/attr/delete>`           :doc:`self.sso.user.session.attr.delete <./1pi/python/session/attr/delete>`
-=============================================================== ===================================================================================== ==============================================================================
+=============================================================== ===================================================================================== =================================================================================
 
 More information
 ----------------
