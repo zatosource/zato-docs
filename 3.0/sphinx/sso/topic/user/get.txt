@@ -4,7 +4,7 @@
 Getting details of users
 ========================
 
-An already logged user can get details of his or her account only. It is not possible for regular users to look up information
+An already logged in user can get details of his or her account only. It is not possible for regular users to look up information
 about other users. However, :doc:`super-users <./super>` may read details of any other person by the other user's ID.
 
 This chapter presents examples in a goal-oriented manner - consult

@@ -18,8 +18,7 @@ self.sso.user.delete_user_by_id
   Deletes a user by ID.
 
   :param user_id: ID of the user to delete
-
-  :type data: string
+  :type user_id: string
 
   :param current_ust: Current user's UST
   :type current_ust: string
