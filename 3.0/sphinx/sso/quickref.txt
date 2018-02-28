@@ -41,7 +41,7 @@ Quick reference
 Topic                                                           REST                                                                                  Python
 =============================================================== ===================================================================================== =================================================================================
 :doc:`Users <./topic/user/index>`
-:doc:`User.create <./topic/user/create>`                        POST    :doc:`/zato/sso/user/create <./1pi/rest/user/create>`                         :doc:`self.sso.user.create <./api/python/user/create>`
+:doc:`User.create <./topic/user/create>`                        POST    :doc:`/zato/sso/user <./api/rest/user/create>`                                :doc:`self.sso.user.create <./api/python/user/create>`
 :doc:`User.signup <./topic/user/signup>`                        POST    :doc:`/zato/sso/user/signup <./1pi/rest/user/signup>`                         :doc:`self.sso.user.signup <./1pi/python/user/signup>`
 :doc:`User.approve <./1opic/user/approve>`                      POST    :doc:`/zato/sso/user/approve <./1pi/rest/user/approve>`                       :doc:`self.sso.user.approve <./1pi/python/user/approve>`
 :doc:`User.reject <./1opic/user/reject>`                        POST    :doc:`/zato/sso/user/reject <./1pi/rest/user/reject>`                         :doc:`self.sso.user.reject <./1pi/python/user/reject>`
@@ -87,5 +87,7 @@ More information
   :doc:`Password reset <./topic/password/reset/index>` |
   :doc:`Configuration <./config/index>` |
   :doc:`Audit <./audit/index>`
+
+* The :doc:`command line interface <../admin/cli/sso>` provides additional options for administrators
 
 * All :doc:`warning and error codes <./status-code>` explained
