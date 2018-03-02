@@ -5,7 +5,7 @@
 User.get - Python API
 =====================
 
-Both regular and super-users can access information about their own accounts using self.sso.user.get_user_by_ust,
+Both regular and super-users can access information about their own accounts using self.sso.user.get_current_user,
 which accepts current session's UST on input.
 
 Further, super-users may query for other users by the latter's ID with self.sso.user.get_user_by_id.
@@ -15,10 +15,10 @@ Passwords are never returned regardless of user type.
 API
 ---
 
-self.sso.user.get_user_by_ust
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+self.sso.user.get_current_user
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: get_user_by_ust(self, current_ust, current_app, remote_addr)
+.. py:method:: get_current_user(self, current_ust, current_app, remote_addr)
 
   Returns information about user using this person's current session
 
@@ -72,7 +72,7 @@ self.sso.user.get_user_by_ust
   # Zato
   from zato.server.service import Service
 
-  class GetUserByUST(Service):
+  class GetCurrentUser(Service):
 
       def handle(self):
 
@@ -82,7 +82,7 @@ self.sso.user.get_user_by_ust
           remote_addr = '127.0.0.1'
 
           # Get user by UST
-          user_info = self.sso.user.get_user_by_ust(ust, current_app, remote_addr)
+          user_info = self.sso.user.get_current_user(ust, current_app, remote_addr)
 
           # Log output for confirmation
           self.logger.info(user_info)
@@ -99,15 +99,15 @@ self.sso.user.get_user_by_ust
 self.sso.user.get_user_by_id
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: get_user_by_ust(self, user_id, current_ust, current_app, remote_addr)
+.. py:method:: get_user_by_id(self, user_id, current_ust, current_app, remote_addr)
 
   Returns information about a user using that person's ID. Current user must be a super-user.
 
-  :param current_ust: Current user's UST - must belong to a super-user
-  :type current_ust: string
-
   :param user_id: User ID (another person or possibly current user)
   :type ust: string
+
+  :param current_ust: Current user's UST - must belong to a super-user
+  :type current_ust: string
 
   :param current_app: Name of application current user is issuing the call from
   :type current_app: string
@@ -115,4 +115,4 @@ self.sso.user.get_user_by_id
   :param remote_addr: Current user's remote address
   :type remote_addr: string
 
-  :rtype: Same as with *self.sso.user.get_user_by_ust*
+  :rtype: Same as with *self.sso.user.get_current_user*
