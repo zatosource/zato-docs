@@ -59,10 +59,6 @@ SuperUser.create                                                 ---            
 :doc:`Session.validate <./1opic/session/validate>`              GET     :doc:`/zato/sso/session/validate <./1pi/rest/session/validate>`               :doc:`self.sso.user.session.validate <./1pi/python/session/validate>`
 :doc:`Session.get <./1opic/session/get>`                        GET     :doc:`/zato/sso/session <./1pi/rest/session/get>`                             :doc:`self.sso.user.session.get <./1pi/python/session/get>`
 \
-:doc:`Password reset <./1opic/password/reset/index>`
-:doc:`PasswordReset.begin <./1opic/password/reset/begin>`       POST    :doc:`/zato/sso/password/reset/begin <./1pi/rest/password/reset/begin>`       :doc:`self.sso.password.reset.begin <./1pi/python/password/reset/begin>`
-:doc:`PasswordReset.complete <./1opic/password/reset/complete>` POST    :doc:`/zato/sso/password/reset/complete <./1pi/rest/password/reset/complete>` :doc:`self.sso.password.reset.complete <./1pi/python/password/reset/complete>`
-\
 :doc:`User attributes <./1opic/user/attr/index>`
 :doc:`UserAttr.create <./1opic/user/attr/create>`               POST    :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/create>`                      :doc:`self.sso.user.attr.create <./1pi/python/user/attr/create>`
 :doc:`UserAttr.get <./1opic/user/attr/get>`                     GET     :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/get>`                         :doc:`self.sso.user.attr.get <./1pi/python/user/attr/get>`
@@ -84,7 +80,6 @@ More information
 * Topic guides go into specific parts in depth: :doc:`Users <../sso/topic/user/index>` |
   :doc:`Sessions <./topic/session/index>` |
   :doc:`Passwords <./topic/password/index>` |
-  :doc:`Password reset <./topic/password/reset/index>` |
   :doc:`Configuration <./config/index>` |
   :doc:`Audit <./audit/index>`
 
