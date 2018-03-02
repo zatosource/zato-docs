@@ -1,0 +1,38 @@
+.. highlight:: bash
+   :linenothreshold: 1000
+
+Updating users
+==============
+
+Users can update their own accounts and super-users are able to update any other person's accounts. This can be done
+from either
+:doc:`REST <../../api/rest/user/update>`
+or
+:doc:`Python <../../api/python/user/update>`
+APIs.
+
+Regular users may change the attributes below:
+
+* email
+* display_name
+* first_name
+* middle_name
+* last_name
+
+Super-admins may change all the data above, plus:
+
+==================== ======== ===============================================================================================================
+Name                 Datatype Description
+==================== ======== ===============================================================================================================
+is_approved          bool     If an account's creation needs to be confirmed by super-admins, this flag dictates if a user is approved or not
+is_locked            bool     If the account is locked or not - users cannot log into locked accounts
+password_expiry      datatime When will the person's password expire - users cannot log into accounts with expired passwords
+                              without changing them first
+password_must_change bool     A flag that super-users may set in order to require another user to change his or her password the next
+                              time the other person logs in
+sign_up_status       string   Used in the signup workflow to decide if the signup process is considered completed or not
+==================== ======== ===============================================================================================================
+
+Note that changing one's password is
+:doc:`documented <./change-password>`
+separately.
