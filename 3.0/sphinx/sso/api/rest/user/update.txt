@@ -1,0 +1,93 @@
+.. highlight:: bash
+   :linenothreshold: 1000
+
+User.update - REST API
+======================
+
+Overview
+--------
+
+:doc:`Updates <../../../topic/user/update>` a user. If UST only is on input, user whose session it is will be updating
+his or her own account. If user_id is given, current session must belong to a super-user who will be updating another
+person's account by the latter's ID.
+
+If a particular parameter is not sent, its current value will be left intact. If it sent but with a JSON value of 'null',
+it will be set to NULL on SQL level (if it is allowed to be nullable).
+
+
+  * List response: No
+  * HTTP method: PATCH
+  * URL path: /zato/sso/user
+
+Request parameters
+------------------
+
+==================== ======== ======== ================ ===================================================================================
+Name                 Datatype Optional Needs super-user Notes
+==================== ======== ======== ================ ===================================================================================
+ust                  string   ---      ---              Current user's session token (UST)
+current_app          string   ---      ---              Name of application that the call is attempted from
+user_id              string   Yes      Yes              ID of a user to update. May be provided only if input ust belongs to a super-user.
+email                string   Yes      ---              E-mail
+display_name         string   Yes      ---              Display name
+first_name           string   Yes      ---              First name
+middle_name          string   Yes      ---              Middle name
+last_name            string   Yes      ---              Last name
+is_approved          bool     Yes      Yes              Should this account be considered approved?
+is_locked            bool     Yes      Yes              Should this account be locked?
+password_expiry      string   Yes      Yes              When will that account's password expire?
+password_must_change bool     Yes      Yes              Is the user required to change password on next login?
+sign_up_status       string   Yes      Yes              Signup process status, accepted values are: before_confirmation, to_approve, final
+==================== ======== ======== ================ ===================================================================================
+
+
+Response parameters
+-------------------
+
+=========== ======== ======== ===================================================================================================
+Name        Datatype Optional Notes
+=========== ======== ======== ===================================================================================================
+cid         string   ---      Correlation ID assigned to request
+status      string   ---      Overall :doc:`status code <../../../status-code>`
+sub_status  list     Yes      Returned only if status is not "ok", a list of :doc:`error or warning codes <../../../status-code>`
+=========== ======== ======== ===================================================================================================
+
+Examples
+--------
+
+* Input user is a regular one who is changing his or her own display name and email:
+
+::
+
+  $ curl -XPATCH localhost:17010/zato/sso/user -d '
+    {
+     "ust":          "gAAAAABalTpNLXP6Xk_KN_SEjyd5ubjEkAmoGSXwpMA3x825D2VjLqgb-G...",
+     "current_app":  "CRM",
+     "display_name": "My Name",
+     "email":        "user@example.com"
+    }
+    '
+
+   {
+    "cid": "6f916246696fbdd76f8a7073",
+    "status": "ok"
+   }
+  $
+
+* Input user is a super-user who is changing display name and password expiry of another user:
+
+::
+
+  $ curl -XPATCH localhost:17010/zato/sso/user -d '
+    {
+     "ust":             "gAAAAABalYT1hsvrBVcrsKPBu3_gVV4pBO52IMCjii7GApNk8d14qQOZfs...",
+     "user_id":         "zusrx2efj1q1h98n9q00tgx8scefv",
+     "display_name":    "My Name",
+     "password_expiry": "2030-12-31T23:59:59"
+    }
+    '
+
+    {
+     "cid": "de00deb0471188dcdd9913a8",
+     "status": "ok"
+    }

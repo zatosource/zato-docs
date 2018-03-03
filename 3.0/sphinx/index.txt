@@ -407,13 +407,11 @@ Zato, the open-source project
    sso/*
    sso/api/*
    sso/api/python/*
-   sso/api/python/password/*
    sso/api/python/user/*
    sso/api/python/user/attr/*
    sso/api/python/session/*
    sso/api/python/session/attr/*
    sso/api/rest/*
-   sso/api/rest/password/*
    sso/api/rest/user/*
    sso/api/rest/user/attr/*
    sso/api/rest/session/*
