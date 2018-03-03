@@ -242,7 +242,7 @@ Default: True
 reject_if_not_listed
 ````````````````````
 
-Whether login attempts should be rejected if input username is not explicitly white-listed in *[login_list]*.
+Whether login attempts should be rejected if input username is not explicitly white-listed in *[user_address_list]*.
 
 Default: False
 
@@ -270,11 +270,11 @@ code to indicate this fact should be returned or a generic one.
 
 Default: True
 
-[login_list]
-~~~~~~~~~~~~
+[user_address_list]
+~~~~~~~~~~~~~~~~~~~
 
 The stanza is a white-list of usernames allowed and, optionally, what remote addresses they may log in from.
-More information is in the :ref:`user guide <sso-topic-user-login-list>`.
+More information is in the :ref:`user guide <sso-topic-user-address-list>`.
 
 [session]
 ~~~~~~~~~

@@ -219,15 +219,15 @@ If credentials are correct but the new password is not sent, error code E003007 
 Limiting access to specific users and IP addresses
 --------------------------------------------------
 
-By default, all users may log in from all addresses, but access can be restricted to specific users and, additionally,
+By default, all users may access REST APIs from all addresses, but access can be restricted to specific users and, additionally,
 to specific remote addresses.
 
-Stanza login_list in :doc:`configuration <../../config/index>` specifies what users may log in and from what IP addresses
-the authentication requests must be coming from - otherwise, they will be rejected with error code E005001.
+Stanza user_address_list in :doc:`configuration <../../config/index>` specifies what users may invoke APIs and from what
+IP addresses the requests must be coming from - otherwise, they will be rejected with error code E005001.
 Note that the list may contain both regular and super-users.
 
 If user sends multiple IP addresses, for instance, they may be added by proxies, then each of the addresses must match
-at least one of corresponding entries in login_list.
+at least one of corresponding entries in user_address_list.
 
 A related key is reject_if_not_listed which decides how to treat a request if user is not provided in the list.
 By default, users that are not listed are allowed to log in but setting this key to False will let log in only users that
@@ -238,7 +238,7 @@ Use an asterisk to let a user log in from any address.
 If a username is listed but there is no IP address given for that user, the user will be rejected regardless of
 reject_if_not_listed.
 
-This lets one construct several interesting scenarios of both whitelisting and blacklisting.
+This lets one construct several interesting scenarios of both whitelisting and blacklisting kind.
 
 * Let all users in, no matter their IP address - this is the default configuration:
 
@@ -247,7 +247,7 @@ This lets one construct several interesting scenarios of both whitelisting and b
     [login]
     reject_if_not_listed=False
 
-    [login_list]
+    [user_address_list]
     # Nothing here
 
 * Do not let anyone to log in
@@ -257,7 +257,7 @@ This lets one construct several interesting scenarios of both whitelisting and b
     [login]
     reject_if_not_listed=True
 
-    [login_list]
+    [user_address_list]
     # Nothing here
 
 * Let everyone to log in but users admin and root must come from specific addresses - note that complete addresses
@@ -268,7 +268,7 @@ This lets one construct several interesting scenarios of both whitelisting and b
     [login]
     reject_if_not_listed=False
 
-    [login_list]
+    [user_address_list]
     admin=10.23.172.3, 10.23.172.4, 10.23.172.5, 172.16.0.0/12
     root=172.16.0.0/12
 
@@ -280,7 +280,7 @@ This lets one construct several interesting scenarios of both whitelisting and b
     [login]
     reject_if_not_listed=True
 
-    [login_list]
+    [user_address_list]
     admin=10.23.172.3, 10.23.172.4, 10.23.172.5, 172.16.0.0/12
     root=172.16.0.0/12
     user1=10.64.12.97
@@ -294,7 +294,7 @@ This lets one construct several interesting scenarios of both whitelisting and b
     [login]
     reject_if_not_listed=False
 
-    [login_list]
+    [user_address_list]
     admin1=10.23.172.3
     admin2=
     admin3=
