@@ -50,7 +50,7 @@ Topic                                                           REST            
 :doc:`User.get <./topic/user/get>`                              GET     :doc:`/zato/sso/user <./api/rest/user/get>`                                   :doc:`self.sso.user.get_user_by_* <./api/python/user/get>`
 :doc:`User.update <./topic/user/update>`                        PATCH   :doc:`/zato/sso/user <./api/rest/user/update>`                                :doc:`self.sso.user.update <./api/python/user/update>`
 :doc:`User.delete <./topic/user/delete>`                        DELETE  :doc:`/zato/sso/user <./api/rest/user/delete>`                                :doc:`self.sso.user.delete <./api/python/user/delete>`
-:doc:`User.change_password <./topic/password/index>`            PATCH   :doc:`/zato/sso/user/password <./1pi/rest/user/change-password>`              :doc:`self.sso.user.change_password <./api/python/user/change-password>`
+:doc:`User.change_password <./topic/password/index>`            PATCH   :doc:`/zato/sso/user/password <./api/rest/user/change-password>`              :doc:`self.sso.user.change_password <./api/python/user/change-password>`
 \
 :doc:`Super-users <./topic/user/super>`
 SuperUser.create                                                 ---                                                                                   :doc:`self.sso.user.create_super_user <./api/python/user/create-super-user>`
