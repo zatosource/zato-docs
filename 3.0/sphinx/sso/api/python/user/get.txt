@@ -49,8 +49,11 @@ self.sso.user.get_current_user
           * is_active
           * is_internal
           * is_super_user
-          * is_approved
           * is_locked
+          * is_approval_needed
+          * approval_status
+          * approval_status_mod_by
+          * approval_status_mod_time
           * locked_time
           * creation_ctx
           * locked_by
