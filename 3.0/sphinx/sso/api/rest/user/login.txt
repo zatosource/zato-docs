@@ -13,6 +13,8 @@ that user with the SSO environment.
 On failure, a list of warning or error codes is returned. Note that the server log may contain additional details on top
 of what is returned to API clients.
 
+Note that only users whose approval_status is "approved" will be able to log in, otherwise an error will be raised.
+
   * List response: No
   * HTTP method: POST
   * URL path: /zato/sso/user/login

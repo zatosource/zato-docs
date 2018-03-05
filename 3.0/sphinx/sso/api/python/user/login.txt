@@ -11,6 +11,8 @@ On invalid input raises zato.sso.api.ValidationError which contains details in t
 :doc:`status and sub-status codes <../../../status-code>`
 pointing to specific erroneous conditions.
 
+Note that only users whose approval_status is "approved" will be able to log in, otherwise an error will be raised.
+
 API
 ---
 
