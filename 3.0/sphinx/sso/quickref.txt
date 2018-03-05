@@ -43,8 +43,8 @@ Topic                                                           REST            
 :doc:`Users <./topic/user/index>`
 :doc:`User.create <./topic/user/create>`                        POST    :doc:`/zato/sso/user <./api/rest/user/create>`                                :doc:`self.sso.user.create <./api/python/user/create>`
 :doc:`User.signup <./topic/user/signup>`                        POST    :doc:`/zato/sso/user/signup <./1pi/rest/user/signup>`                         :doc:`self.sso.user.signup <./1pi/python/user/signup>`
-:doc:`User.approve <./1opic/user/approve>`                      POST    :doc:`/zato/sso/user/approve <./1pi/rest/user/approve>`                       :doc:`self.sso.user.approve <./1pi/python/user/approve>`
-:doc:`User.reject <./1opic/user/reject>`                        POST    :doc:`/zato/sso/user/reject <./1pi/rest/user/reject>`                         :doc:`self.sso.user.reject <./1pi/python/user/reject>`
+:doc:`User.approve <./topic/user/signup>`                       POST    :doc:`/zato/sso/user/approve <./api/rest/user/approve>`                       :doc:`self.sso.user.approve <./api/python/user/approve>`
+:doc:`User.reject <./topic/user/signup>`                        POST    :doc:`/zato/sso/user/reject <./api/rest/user/reject>`                         :doc:`self.sso.user.reject <./api/python/user/reject>`
 :doc:`User.login <./topic/user/login>`                          POST    :doc:`/zato/sso/user/login <./api/rest/user/login>`                           :doc:`self.sso.user.login <./api/python/user/login>`
 :doc:`User.logout <./topic/user/logout>`                        POST    :doc:`/zato/sso/user/logout <./api/rest/user/logout>`                         :doc:`self.sso.user.logout <./api/python/user/logout>`
 :doc:`User.get <./topic/user/get>`                              GET     :doc:`/zato/sso/user <./api/rest/user/get>`                                   :doc:`self.sso.user.get_user_by_* <./api/python/user/get>`
