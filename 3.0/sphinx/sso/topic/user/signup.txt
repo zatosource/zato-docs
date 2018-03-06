@@ -26,6 +26,17 @@ optionally let super-users accept or reject new accounts.
 Note that this functionality can be turned off completely in :doc:`configuration <../../config/index>` if it's not desired to let
 users open their own accounts.
 
+If signup is enabled, the steps will be broadly as follows:
+
+* A user signs up
+* A signup token is generated and sent to that user's email address
+* User clicks on a link which confirms that the person truly wants to sign up
+* At this point:
+
+  * If needed, a super-user may still need to approve the newly created account and a welcome message is sent afterwards
+  * If approval is not needed, a welcome message is sent immediately
+
+
 .. image:: /gfx/sso/api/user/signup-process.png
 
 Sign-up
