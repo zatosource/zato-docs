@@ -1,0 +1,71 @@
+.. highlight:: bash
+   :linenothreshold: 1000
+
+Searching for users
+========================
+
+Super-users that are already logged in may search for other users under a variety of criteria. For each field, one string can
+be provided as a search parameter (i.e. it is not full-text search).
+
+Available search criteria are:
+
+* User ID
+* Email address
+* Display name
+* First name
+* Middle name
+* Last name
+* Signup time
+* Signup status
+* Approval status
+
+If no critera are specified, all users are returned, in batches of 50.
+
+Search details:
+
+* Email, user ID and status fields are considered exact values to be looked up
+* Name fields are OR-joined and the other parameters are additionally AND-joined with them
+* Textual fields are checked using a prefix search
+* Date/time can be specified to be greater or lower to the one given on input
+* A batch size with a maximum of 100 results per page can be specified
+* It is possible to sort results by a list of fields, each ascending or descending
+* On response, a list of results is returned, even if it is empty or possible with one matching element only
+* Metadata returned in response lets one find out how many users matched input, how many pages there are in total
+  and if there is a previous/next page available
+
+Defaults:
+
+* Minimum search string length: 3 characters
+* Batch size: 50
+* Order by: display name, email, signup time, user ID - all ascending
+
+Details of OR and AND joins:
+
+* If more than one of display/fist/middle/last name is given on input, they will be OR-joined. For instance,
+  looking up 'Smith' in display name and 'Brown' in last name will find all users that have display names containing 'Smith'
+  or last name containing 'Brown'
+
+* Email, user ID and all status fields are looked up by an exact match, i.e. looking up "smith@example.com" by email will find
+  all users whose email is 'smith@example.com' but will not find 'john.smith@example.com'
+
+* If both name and exact fields are specified on input, they are AND-joined. For instance, if last name is 'Smith',
+  first name is 'John' and signup_status is 'before_confirmation', all users with this signup status will be found who
+  additionally have either last name 'Smith' or first name 'John'.
+
+Email encryption:
+
+* By default all email addresses are :doc:`encrypted <../../config/index>` - it is not possible to use them as search criteria
+  and warning code E009001 will be returned in such a case
+
+* However, if search_decrypt_email in configuration is True and there is at least one of display/first/middle/last name on input,
+  possibly accompanied by other fields such as approval status, the search will work thus:
+
+  * All users matching criteria other than email are found in the database
+  * The result set is loaded to a server
+  * For each of the rows matched, email is decrypted and compared with what is on input
+  * All matching rows are returned
+
+* Using search_decrypt_email lets one combine the security that comes from storing emails in an encrypted form in the database
+  with the convenience of being able to look them up. It comes, however, at the cost of decryption that needs to be carried out
+  by servers against all matching rows, which is why, in this scenario with encrypted emails, it is recommended to use as
+  specific search criteria as possible in addition to email, one of display/first/middle/last name is the very least.

@@ -50,6 +50,7 @@ Consult the following chapters for user-related topics:
 * :doc:`How to log in <./login>`
 * :doc:`How to log out <./logout>`
 * :doc:`Getting details of users <./get>`
+* :doc:`Searching for users <./search>`
 * :doc:`Updating users <./update>`
 * :doc:`Passwords <./../password/index>`
 * :doc:`Deleting users <./delete>`
