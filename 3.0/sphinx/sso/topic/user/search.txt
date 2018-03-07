@@ -10,6 +10,7 @@ be provided as a search parameter (i.e. it is not full-text search).
 Available search criteria are:
 
 * User ID
+* Username
 * Email address
 * Display name
 * First name
@@ -23,9 +24,9 @@ If no critera are specified, all users are returned, in batches of 50.
 
 Search details:
 
-* Email, user ID and status fields are considered exact values to be looked up
+* Email and display/first/middle/last name fields are case-insensitive
+* Email, username and user ID and status fields are considered exact values to be looked up
 * Name fields are OR-joined and the other parameters are additionally AND-joined with them
-* Textual fields are checked using a prefix search
 * Date/time can be specified to be greater or lower to the one given on input
 * A batch size with a maximum of 100 results per page can be specified
 * It is possible to sort results by a list of fields, each ascending or descending
@@ -37,7 +38,7 @@ Defaults:
 
 * Minimum search string length: 3 characters
 * Batch size: 50
-* Order by: display name, email, signup time, user ID - all ascending
+* Order by: display name, username, signup time, user ID - all ascending
 
 Details of OR and AND joins:
 
@@ -45,8 +46,8 @@ Details of OR and AND joins:
   looking up 'Smith' in display name and 'Brown' in last name will find all users that have display names containing 'Smith'
   or last name containing 'Brown'
 
-* Email, user ID and all status fields are looked up by an exact match, i.e. looking up "smith@example.com" by email will find
-  all users whose email is 'smith@example.com' but will not find 'john.smith@example.com'
+* Email, username, user ID and all status fields are looked up by an exact match, i.e. looking up "smith@example.com"
+  by email will find all users whose email is 'smith@example.com' but will not find 'john.smith@example.com'
 
 * If both name and exact fields are specified on input, they are AND-joined. For instance, if last name is 'Smith',
   first name is 'John' and signup_status is 'before_confirmation', all users with this signup status will be found who
