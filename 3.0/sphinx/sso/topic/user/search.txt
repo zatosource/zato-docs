@@ -11,7 +11,7 @@ Available search criteria are:
 
 * User ID
 * Username
-* Email address
+* Email address (if not :doc:`encrypted <../../config/index>` in the database)
 * Signup time
 * Signup status
 * Approval status
@@ -62,19 +62,3 @@ Email encryption:
 
 * By default all email addresses are :doc:`encrypted <../../config/index>` - it is not possible to use them as search criteria
   and warning code E009001 will be returned in such a case
-
-* However, if search_decrypt_email in configuration is True and there is at least one of display/first/middle/last name on input,
-  possibly accompanied by other fields such as approval status, the search will work thus:
-
-  * All users matching criteria other than email are found in the database
-  * The result set is loaded to a server
-  * For each of the rows matched, email is decrypted and compared with what is on input
-  * All matching rows are returned
-
-* Using search_decrypt_email lets one combine the security that stems from storing emails in an encrypted form in the database
-  with the convenience of being able to look them up.
-
-  It comes, however, at the cost of decryption that needs to be carried out
-  by servers against all matching rows, which is why, in this scenario with encrypted emails, it is recommended to use as
-  specific search criteria as possible in addition to email; one of display/first/middle/last name is the very least with
-  signup time and other status fields recommended to be provided on input.
