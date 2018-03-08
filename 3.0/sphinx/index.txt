@@ -322,16 +322,12 @@ Administration guide
       :doc:`RBAC (Role-based access control)<admin/guide/rbac/overview>` |
       :doc:`SSL/TLS<admin/guide/tls/overview>` |
       :doc:`API Specification Service<admin/guide/apispec-pub>` |
-      :doc:`Configuration patterns<admin/guide/config-patterns>`
+      :doc:`Configuration patterns<admin/guide/config-patterns>` |
+      :doc:`Building custom packages<admin/guide/build-package>`
 
     * **Docker support:**
       :doc:`Quickstart <admin/guide/install/docker>` |
       :doc:`Distributed environments <admin/guide/install/docker-dist>`
-
-    * **Migrating between releases:**
-      :doc:`Overview<admin/guide/migrate/overview>` |
-      :doc:`From 1.0 to 1.1<admin/guide/migrate/1.0-1.1>` |
-      :doc:`From 1.1 to 2.0<admin/guide/migrate/1.1-2.0>`
 
 Architecture
 ============

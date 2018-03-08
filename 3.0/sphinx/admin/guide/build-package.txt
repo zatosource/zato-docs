@@ -1,0 +1,72 @@
+.. highlight:: bash
+   :linenothreshold: 1000
+
+Building custom packages
+========================
+
+Overview
+--------
+
+* All scripts required to build custom Zato packages for Linux systems are available on GitHub in the
+  `zatosource/zato-build <https://github.com/zatosource/zato-build/>`_
+  repository - it's the same infrastructure that is used to build Zato's own official packages
+
+* The scripts can be used to create packages for RHEL/CentOS, Ubuntu, Debian and Alpine Linux
+
+* Source code of Zato itself is in `zatosource/zato <https://github.com/zatosource/zato/>`_ - the main development branch
+  is called 'main' and this is the branch that is usually used for custom builds
+
+Usage
+-----
+
+* Prepare an OS in the same exact version that a package is needed for. For instance - if the target system is Ubuntu 16.04 64-bit
+  then a package needs to be built on a system with this very version and architecture.
+
+* Make sure you have either root or sudo rights in the system that will be used for building the package
+
+* Clone the repository with build scripts
+
+  ::
+
+    $ git clone https://github.com/zatosource/zato-build
+
+* Navigate to a directory specific for the system that a package will be built for:
+
+  * rhel6 - for RHEL/CentOS 6
+  * rhel7 - for RHEL/CentOS 7
+  * deb - for Ubuntu and Debian
+  * alpine - for Alpine
+
+  ::
+
+    $ cd ./deb
+
+* Run build-zato.sh, which is the entry point to build packages. The script required 3 parameters:
+
+  * GitHub branch in zatosource/zato to base the package on
+  * Zato main version
+  * Package version
+
+  ::
+
+    $ ./build-zato.sh main 3.0 custom1
+
+* The script will take at least 10-20 minutes, depending on CPU and Internet connectivity, on output it will display location
+  in the filesystem on the newly built package
+
+Examples
+--------
+
+* Building a package for Ubuntu from branch 'main'
+
+  ::
+
+    $ cd ./deb
+    $ ./build-zato.sh main 3.0 custom1
+
+* Building a package for RHEL7 from branch 'support/2.0'
+
+  ::
+
+    $ cd ./rhel7
+    $ ./build-zato.sh main 2.0 custom1
