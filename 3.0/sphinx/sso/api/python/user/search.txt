@@ -1,0 +1,102 @@
+
+.. highlight:: python
+   :linenothreshold: 0
+
+User.search - Python API
+========================
+
+Super-users may look up other users using several search criteria, such as display name, user ID or username. Consult the
+:doc:`introduction <../../../topic/user/search>`
+to user search APIs for more information on how the parameters can be combined.
+
+In Python, to find users, a zato.sso.SearchCtx object is created and filled in with the desired criteria, e.g. last name to find
+or pagination configuration.
+
+On output, a list of results is returned, possibly empty or with one matching element only, along with metadata describing
+what is being returned, such as current page or total number of results.
+
+Passwords are never returned on output.
+
+SearchCtx has the following properties that can be set, none of them is required and by default all users are returned
+in groups of 50 per page.
+
+=============== ======== ============================ =============================================================================
+Name            Datatype Default                      Notes
+=============== ======== ============================ =============================================================================
+user_id         string   ---                          ID of user to find (will match either one or no user)
+username        string   ---                          Username (ditto)
+email           string   ---                          E-mail (There is no requirement that it be unique)
+display_name    string   ---                          Match by display name
+first_name      string   ---                          Match by first name
+middle_name     string   ---                          Match by middle name
+last_name       string   ---                          Match by last name
+sign_up_status  string   ---                          User's sign up status, must be one of: before_confirmation, to_approve, final
+approval_status string   ---                          User's approval status, must be one of: before_decision, approved, rejected
+paginate        bool     True                         Should the results be paginated
+cur_page        int      1                            Current page to return from a list of result pages
+page_size       int      50                           How many results to return on a single page
+name_op         string   *zato.sso.const.search.and_* How to join name criteria (display/first/middle/last name), by AND or OR
+is_name_exact   bool     True                         Are name critera considered exact values to match or are they substrings
+=============== ======== ============================ =============================================================================
+
+
+API
+---
+
+self.sso.user.search
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. py:method:: search(self, ctx, current_ust, current_app, remote_addr)
+
+  Looks up users by input criteria and returns a list of results, possibly empty or with only one matching user.
+
+  :param ctx: Search configuration
+  :type ctx: zato.sso.UserCtx
+
+  :param current_ust: Current user's UST
+  :type current_ust: string
+
+  :param current_app: Name of application the current user is issuing the call from
+  :type current_app: string
+
+  :param remote_addr: User's remote address
+  :type remote_addr: string
+
+  :rtype: A dictionary of metadata describing the result and a list of results
+
+          Metadata:
+
+          ============= ======== ======================================================================================================
+          Key           Datatype Notes
+          ============= ======== ======================================================================================================
+          total         int      How many users matched input criteria in total
+          num_pages     int      How many pages of results there are (counted from 1)
+          page_size     int      What is the size of an individual page (rewritten from input)
+          cur_page      int      What is the current page that is returned (counted from 1)
+          has_next_page bool     Is there a next page to navigate to
+          has_prev_page bool     Is there a previous page to navigate to
+          next_page     int      What is the next page to navigate to (counted from 1 and applicable only if has_next_page is True)
+          prev_page     int      What is the previous page to navigate to (counted from 1 and applicable only if has_prev_page is True)
+          ============= ======== ======================================================================================================
+
+          Each element in the list of results is a dictionary with keys and values as below:
+
+          * is_active
+          * is_internal
+          * is_super_user
+          * is_locked
+          * is_approval_needed
+          * approval_status
+          * approval_status_mod_by
+          * approval_status_mod_time
+          * locked_time
+          * creation_ctx
+          * locked_by
+          * approv_rej_time
+          * approv_rej_by
+          * password_expiry
+          * password_is_set
+          * password_must_change
+          * password_last_set
+          * sign_up_status
+          * sign_up_time
