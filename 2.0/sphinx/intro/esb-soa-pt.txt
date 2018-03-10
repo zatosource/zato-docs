@@ -96,7 +96,7 @@ Esta é a base fundamental para garantir que estes tipos de ambientes podem esca
 
 No diagrama abaixo, cada invocação de um serviço que outro sistema fornece é representada por uma linha com uma largura ou estilo diferente:
 
-.. image:: /gfx/intro/mess1.png
+.. image:: /gfx/intro/mess1-abg4.png
    :alt:
 
 Note que nem sequer são mostrados os processos de alto nível (App1 invoca App2 e App3 ou App5 dependendo se uma resposta anterior da App6 foi bem sucedida
@@ -110,7 +110,7 @@ Como separar as interfaces? Como você pode planejar lançamentos? Como coordena
 
 Se você acha que pode lidar com 6 aplicações, que tal lidar com 30?
 
-.. image:: /gfx/intro/mess2a.png
+.. image:: /gfx/intro/mess2a-abg4.png
    :alt:
 
 Você consegue lidar com 400? Que tal 2000?
@@ -214,7 +214,7 @@ Tornando serviços disponíveis em um ESB em uma SOA
 Agora que você sabe que sistemas não trocam informações diretamente e
 você entende o que um serviço é, você pode começar a usar um ESB.
 
-.. image:: /gfx/intro/esb-ok.png
+.. image:: /gfx/intro/esb-ok-abg4.png
    :alt:
 
 Agora se torna o trabalho do ESB expor e invocar serviços dos sistemas
@@ -273,7 +273,7 @@ Na melhor das hipóteses, varrer alguma coisa para debaixo do tapete, como no di
 vai resultar em nada.
 
 
-.. image:: /gfx/intro/esb-mess.png
+.. image:: /gfx/intro/esb-mess-abg4.png
    :alt:
 
 O seu pessoal de TI vai detestar o sistema e a gestão vai primeiro tolerar o

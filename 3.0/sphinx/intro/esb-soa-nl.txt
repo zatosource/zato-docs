@@ -93,7 +93,7 @@ De grote vraag is nu hoe je deze voorkant laat communiceren met 1-5? **Nou, dat 
 Dit is namelijk een van de basisregels om er zeker van te zijn dat je kunt schalen voorbij een handvol systemen. **Je staat niet toe dat ze direct met elkaar communiceren**
 In de diagram hieronder is elke aanroep van een service weergegeven met een andere lijndikte of stijl:
 
-.. image:: /gfx/intro/mess1.png
+.. image:: /gfx/intro/mess1-abg4.png
    :alt:
 
 
@@ -103,15 +103,15 @@ Let op dat we hier niet over servers praten - elk systeem kan op 10 fysieke serv
 
 Nu komen een aantal vragen naar boven.
 
-Hoe kun je interfaces scheiden ? Hoe kun je uitrollen plannen ? Hoe kun je de updates of geplande downtime coördineren als elke applicatie onderhouden wordt door een verschillend team, andere leveranciers of een andere afdeling terwijl de helft van de oorspronkelijke ontwikkelaars al weg zijn ? 
+Hoe kun je interfaces scheiden ? Hoe kun je uitrollen plannen ? Hoe kun je de updates of geplande downtime coördineren als elke applicatie onderhouden wordt door een verschillend team, andere leveranciers of een andere afdeling terwijl de helft van de oorspronkelijke ontwikkelaars al weg zijn ?
 
 Als je denkt dat je 6 applicaties te kunnen beheren, wat als het er 30 worden ?
 
-.. image:: /gfx/intro/mess2a.png
+.. image:: /gfx/intro/mess2a-abg4.png
    :alt:
 
 Kun je 400 aan ? Of 2000?
-Elke applicatie zal een unieke omgeving zijn die 10 servers of andere apparaten nodig heeft om te lopen. Hetgeen leidt tot 20k bewegende delen die verdeeld zijn over continenten, 
+Elke applicatie zal een unieke omgeving zijn die 10 servers of andere apparaten nodig heeft om te lopen. Hetgeen leidt tot 20k bewegende delen die verdeeld zijn over continenten,
 allerlei culturele en technische grenzen waarbij alle onderdelen constant en onophoudelijk berichten met elkaar willen uitwisselen
 en met elkaar willen babbelen zonder enige onderbreking ooit. (We zullen je niet lastig vallen met een diagram)
 
@@ -179,7 +179,7 @@ Variabele             Notities
 ===================== =============================================================================================
 Omgeving              Een willekeurig CRM ergens.
 Functionaliteit       Bijwerken van kolom CUST_AR_ZN in tabel C_NAZ_AJ als iemand een account creëert
-Is het interessant?   Helemaal niet. Dit is interne functionaliteit van het CRM. Niemand die goed bij zijn verstand is wil te maken hebben met dit soort gedetailleerde informatie. 
+Is het interessant?   Helemaal niet. Dit is interne functionaliteit van het CRM. Niemand die goed bij zijn verstand is wil te maken hebben met dit soort gedetailleerde informatie.
 Is het herbruikbaar?  Ja, waarschijnlijk. Een account kan via meerdere kanalen aangemaakt worden dus dit lijkt herbruikbaar.
 Is het atomair?       Het lijkt er op, ja. Het is het bijwerken van een kolom in een tabel.
 Hoe maken we het IHA? Geen moeite doen om dit tot een dienst of service om te zetten. Het is niet interessant
@@ -213,7 +213,7 @@ Beschikbaar stellen dienst op een ESB in een SOA
 
 Nu dat je snapt dat de systemen niet direct informatie uitwisselen en je begrijpt wat een dienst is, kunnen we gebruik gaan maken van de ESB.
 
-.. image:: /gfx/intro/esb-ok.png
+.. image:: /gfx/intro/esb-ok-abg4.png
    :alt:
 
 Het is de taak van de ESB om de diensten te tonen en uit te voeren van de gekoppelde systemen.
@@ -263,7 +263,7 @@ gewoon een EBS installeren zal helaas niet zo veel resultaten opleveren.
 
 In het beste geval, het onder het tapijt vegen, zoals in het diagram hieronder, zal niets opleveren.
 
-.. image:: /gfx/intro/esb-mess.png
+.. image:: /gfx/intro/esb-mess-abg4.png
    :alt:
 
 Je IT personen zullen het systeem haten en het management zal het ESB eerst tolereren als
@@ -307,7 +307,7 @@ XML, SOAP en webdiensten hebben hun nut, net als alles, maar ze kunnen misbruikt
 
 SOA gaat over een heldere onderhoudbare architectuur. Dat een bepaalde dienst mogelijk SOAP gebruikt of niet
 is eigenlijk niet relevant. Als een architectuur benadering zal SOA deugdelijk zijn, zelfs als geen enkele
-SOAP dienst gebruikt wordt. 
+SOAP dienst gebruikt wordt.
 
 Als een architect een mooi gebouw ontwerpt dan kan hij weinig doen aan de kleur verf die mensen
 kiezen voor hun eigen interieur.

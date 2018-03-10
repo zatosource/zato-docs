@@ -97,7 +97,7 @@ a handful of systems. **You don't let them talk to each other directly**.
 In the diagram below, each invocation of a service another system offers is
 represented in a line of different width or style:
 
-.. image:: /gfx/intro/mess1.png
+.. image:: /gfx/intro/mess1-abg4-abg4.png
    :alt:
 
 Note that we didn't even show you any higher-level processes (App1 invokes App2
@@ -116,7 +116,7 @@ of the original developers have left already?
 
 If you think you can handle 6 applications, how about 30 of them?
 
-.. image:: /gfx/intro/mess2a.png
+.. image:: /gfx/intro/mess2a-abg4-abg4.png
    :alt:
 
 Can you deal with 400? How about 2000? Each application
@@ -237,7 +237,7 @@ Making services available on an ESB in an SOA
 Now that you know that systems don't exchange information directly and
 you understand what a service is, you can start making use of an ESB.
 
-.. image:: /gfx/intro/esb-ok.png
+.. image:: /gfx/intro/esb-ok-abg4-abg4.png
    :alt:
 
 It now becomes the job of ESB to expose and invoke services of the integrated
@@ -294,7 +294,7 @@ simply installing an ESB won't achieve that much, unfortunately.
 In the best case, sweeping something under the carpet, like in the diagram below,
 will achieve nothing.
 
-.. image:: /gfx/intro/esb-mess.png
+.. image:: /gfx/intro/esb-mess-abg4-abg4.png
    :alt:
 
 Your IT people will loathe the system and the management will first tolerate an

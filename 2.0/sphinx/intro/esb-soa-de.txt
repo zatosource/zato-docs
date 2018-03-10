@@ -104,7 +104,7 @@ eine Handvoll von Systemen hinaus skalieren können.
 In dem untenstehenden Diagramm wird jeder Aufruf eines Dienstes, der von einem
 anderen System zur Verfügung gestellt wird, durch eine andersartige Linie dargestellt:
 
-.. image:: /gfx/intro/mess1.png
+.. image:: /gfx/intro/mess1-abg4.png
    :alt:
 
 Beachten Sie, dass wir dabei nicht einmal die übergeordneten Prozesse dargestellt
@@ -124,7 +124,7 @@ und die Hälfte der ursprünglichen Entwickler das Unternehmen schon verlassen h
 
 Wenn Sie meinen, dass man 6 solcher Anwendungen noch handhaben kann, was machen Sie, wenn Sie 30 davon haben?
 
-.. image:: /gfx/intro/mess2a.png
+.. image:: /gfx/intro/mess2a-abg4.png
    :alt:
 
 Können Sie mit 400 noch zurechtkommen? Wie ist es mit 2000?
@@ -252,7 +252,7 @@ Dienste auf einem ESB in einer SOA verfügbar machen
 Nachdem Sie nun wissen, dass Systeme Informationen nicht direkt miteinander austauschen
 sollten, und verstehen, was ein Dienst ist, können Sie anfangen, einen ESB zu verwenden.
 
-.. image:: /gfx/intro/esb-ok.png
+.. image:: /gfx/intro/esb-ok-abg4.png
    :alt:
 
 Es wird nun zur Aufgabe des ESB, die Dienste der integrierten Systeme bereitzustellen
@@ -308,7 +308,7 @@ dass man einen ESB installiert, leider noch nicht viel erreicht.
 Bestenfalls bleibt dadurch, dass man, wie in dem untenstehenden Diagramm, etwas unter den Teppich kehrt,
 alles so wie es vorher war.
 
-.. image:: /gfx/intro/esb-mess.png
+.. image:: /gfx/intro/esb-mess-abg4.png
    :alt:
 
 Ihre IT-Leute werden ein solches System hassen, und ihr Management wird zwar zuerst den ESB als einen

@@ -104,7 +104,7 @@ scalare in termini di componenti, consentendo di averne un numero non banale.
 Nello schema qui sotto, ogni invocazione di un servizio offerto da un altro
 sistema è rappresentata da una linea di spessore o stile differente:
 
-.. image:: /gfx/intro/mess1.png
+.. image:: /gfx/intro/mess1-abg4.png
    :alt:
 
 Nota che non abbiamo nemmeno mostrato alcun processo ad alto livello (ad esempio
@@ -126,7 +126,7 @@ fornitori differenti o dipartimenti differenti?
 Prova a riflettere su queste problematiche con riferimento non a 6 applicazioni
 bensì a 30?
 
-.. image:: /gfx/intro/mess2a.png
+.. image:: /gfx/intro/mess2a-abg4.png
    :alt:
 
 Riusciresti a gestirne 400? E 2000? E se, come accennato prima, ogni
@@ -239,7 +239,7 @@ Rendere i propri servizi disponibili su un ESB in una SOA
 Ora che sai che i servizi non dovrebbero interagire direttamente e, soprattutto,
 sai cosa sia un servizio, puoi cominciare a ragionare sull'utilizzo di un ESB.
 
-.. image:: /gfx/intro/esb-ok.png
+.. image:: /gfx/intro/esb-ok-abg4.png
    :alt:
 
 Diventa quindi compito dell'ESB esporre e invocare i servizi, così che ciascun
@@ -291,7 +291,7 @@ cose.
 Nel migliore dei casi si finirà semplicemente per nascondere la sporcizia sotto
 il tappeto, come in questo esempio:
 
-.. image:: /gfx/intro/esb-mess.png
+.. image:: /gfx/intro/esb-mess-abg4.png
    :alt:
 
 Se il reparto IT sarà subito disgustato da una situazione di questo genere, il

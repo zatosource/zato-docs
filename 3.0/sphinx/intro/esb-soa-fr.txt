@@ -42,7 +42,7 @@ Qu'entend-on à vrai dire par ESB et SOA
     </style>
 
     <blockquote>
-    Une description excellente de la pensée systémique des systèmes 
+    Une description excellente de la pensée systémique des systèmes
     <br/>
       <a href="https://twitter.com/ncoghlan_dev/status/337907854944129025">Nick Coghlan</a>, Core Python promoteur
     </blockquote>
@@ -72,7 +72,7 @@ Ce qui est vrai
 Pensez à ce qui se passe quand vous vous connectez à votre interface bancaire (application cliente):
 
 1) Votre nom est affiché
-2) Votre solde est présent 
+2) Votre solde est présent
 3) Votre carte de crédit et/ou carte de débit sont présentes
 4) Il y a une liste de vos sociétés d'investissement
 5) Vous recevez une liste pré-établie de prêts avantageux susceptibles de vous intéresser
@@ -94,7 +94,7 @@ Ce sont les bases fondamentales permettant d'assurer que de tels environnements 
 Dans le schéma ci-dessous, chacune des invocations d'un service que d'autres systèmes proposent
 est représenté par une ligne de largeur et style diffèrent:
 
-.. image:: /gfx/intro/mess1.png
+.. image:: /gfx/intro/mess1-abg4.png
    :alt:
 
 Notez bien que des processus de plus haut niveau ne sont pas représentés (App1 invoque App2 et de même, App3 ou App5
@@ -108,7 +108,7 @@ différents et la moitié des développeurs originaux ne sont plus présents?
 
 Si vous pensez que vous êtes capable de gérer 6 applications, pourquoi pas 30?
 
-.. image:: /gfx/intro/mess2a.png
+.. image:: /gfx/intro/mess2a-abg4.png
    :alt:
 
 Pouvez-vous en gérer 400? Et pourquoi pas 2000? Chaque application peut être un écosystème unique nécessitant
@@ -225,7 +225,7 @@ Mise à disposition de services sur ESB dans un SOA
 Maintenant que vous savez que les systèmes n'échangent pas des informations directement et que vous comprenez
 ce que ça veut dire service, vous pouvez commencer à utiliser un ESB.
 
-.. image:: /gfx/intro/esb-ok.png
+.. image:: /gfx/intro/esb-ok-abg4.png
    :alt:
 
 C'est maintenant le rôle de l'ESB  d'exposer et d'invoquer des services des systèmes intégrés.
@@ -276,7 +276,7 @@ installer simplement un ESB ne fera pas tout, malheureusement.
 
 Dans le meilleur cas, tout injecter tel quel dans l'ESB, comme dans le schéma ci-dessous, n'accomplira rien.
 
-.. image:: /gfx/intro/esb-mess.png
+.. image:: /gfx/intro/esb-mess-abg4.png
    :alt:
 
 Vos informaticiens vont détester le système et la direction va au début tolérer un ESB comme un

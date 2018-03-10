@@ -100,7 +100,7 @@ sobre múltiples sistemes. **Evitem que tots els sistemes hagin de parlar entre 
 En el diagrama següent, cada invocació a un servei d'un sistema diferent és
 representada en una línia de diferent amplada o estil:
 
-.. image:: /gfx/intro/mess1.png
+.. image:: /gfx/intro/mess1-abg4.png
    :alt:
 
 Convé remarcar que ni tan sols hem mostrat cap procés a alt nivell (l'App1 invoca l'App2
@@ -119,7 +119,7 @@ dels desenvolupadors originals ja han deixat l'empresa?
 
 I si considereu que 6 aplicacions encara es poden gestionar, què passarà si en són 30?
 
-.. image:: /gfx/intro/mess2a.png
+.. image:: /gfx/intro/mess2a-abg4.png
    :alt:
 
 En podreu gestionar 400? I 2000? Cada aplicació
@@ -168,7 +168,7 @@ Desenvolupem aquest concepte IRA mitjançant un parell d'exemples.
 Variable            Notes
 =================== =============================================================================================
 Entorn              El CRM d'una companyia d'electricitat.
-Funcionalitat       Retornar una llista de clients que eren actius en un portal d'autoservei el 3er 
+Funcionalitat       Retornar una llista de clients que eren actius en un portal d'autoservei el 3er
                     trimestre de 2012.
 És interessant?     Sí, força interessant. Això es pot fer servir per generar tot tipus d'informes
                     i estadístiques.
@@ -207,11 +207,11 @@ Variable            Notes
 Entorn              Un CRM qualsevol, en qualsevol lloc
 Funcionalitat       Actualitzar la columna CUST_AR_ZN de la taula C_NAZ_AJ després de que algú hagi creat un
                     compte.
-És interessant?     En absolut. Això és una funcionalitat interna del CRM. Ningú amb dos dits de front vol 
+És interessant?     En absolut. Això és una funcionalitat interna del CRM. Ningú amb dos dits de front vol
                     interactuar amb una funcionalitat de tant baix nivell.
 És reutilitzable?   Sí, probablement. Un compte es pot crear per múltiples canals, per tant això sembla
                     reutilitzable.
-És atòmic?          Ho sembla, si. No és més que una operació UPDATE en una columna d'una taula. 
+És atòmic?          Ho sembla, si. No és més que una operació UPDATE en una columna d'una taula.
 Com fer-ho IRA?     No val la pena ni pensar en convertir això en un servei. No és interessant. Ningú vol pensar
                     en columnes i taules particulars d'un sistema. Això són detalls intrínsecs del CRM, així que
                     tot i ser reutilitzable i atòmic, no té sentit oferir un servei sobre això. És
@@ -246,7 +246,7 @@ Fent disponibles els serveis d'un ESB en una SOA
 Ara que ja sabem que els sistemes no intercanvien informació directament i
 entenem el que és un servei, ja podem començar a fer ser un ESB.
 
-.. image:: /gfx/intro/esb-ok.png
+.. image:: /gfx/intro/esb-ok-abg4.png
    :alt:
 
 Ara esdevé responsabilitat de l'ESB exposar i invocar serveis els sistemes integrats.
@@ -303,7 +303,7 @@ instal·lar un ESB sense fer res més no servirà per gran cosa, per desgràcia.
 En el millor dels casos, amagar quelcom sota l'estora, com en el diagrama següent,
 no tindrà cap implicació.
 
-.. image:: /gfx/intro/esb-mess.png
+.. image:: /gfx/intro/esb-mess-abg4.png
    :alt:
 
 La gent del departament de IT odiarà el sistema i els gerents al principi toleraran
@@ -321,7 +321,7 @@ No, en absolut. És una bona opció en qualsevol situació que requereixi la coo
 múltiples fonts de dades i mètodes d'accés per tal d'assolir un resultat interessant.
 
 Per exemple, recopilar les últimes mesures d'alguns sensors termals i publicar-los per
-diversos canals, com alertes per correu electrònic i una aplicació per a smartphone, 
+diversos canals, com alertes per correu electrònic i una aplicació per a smartphone,
 sona com un bon escenari per una plataforma d'integració.
 
 Consultar periòdicament i supervisar si totes les instàncies d'una aplicació crítica estan
@@ -331,7 +331,7 @@ un missatge de text als administradors també sona encertat.
 Tot el que necessiti integrar-se en un entorn clar i ben definit és possiblement
 un bon escenari per un ESB. Però, com sempre, decidir si quelcom és realment la
 peça ideal sorgirà de l'experiència. Naturalment, l'equip que hi ha darrera de Zato
-`pot ajudar <https://zato.io/support.html>`_. 
+`pot ajudar <https://zato.io/support.html>`_.
 
 -----------------------------------------------------------
 Però havia sentit que SOA anava de XML, SOAP i web services
@@ -355,7 +355,7 @@ en quant al color de pintura que la gent esculli per pintar els interiors.
 Per tant no, SOA no consisteix gaire en XML, SOAP i Serveis Web. Aquests es poden fer servir
 però la història que hi ha al darrera és quelcom més que això.
 
-Així doncs, us animem a convidar amablement els vostres companys escarriats a llegir aquest article per fer-los entendre 
+Així doncs, us animem a convidar amablement els vostres companys escarriats a llegir aquest article per fer-los entendre
 en què consisteix SOA realment.
 
 -----------------
