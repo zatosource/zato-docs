@@ -45,7 +45,7 @@ display_name             string   Yes      ---              Display name
 first_name               string   Yes      ---              First name
 middle_name              string   Yes      ---              Middle name
 last_name                string   Yes      ---              Last name
-is_active                bool     Yes      Yes              Returned to superIf the
+is_active                bool     Yes      Yes              (Reserved for future use)
 is_internal              bool     Yes      Yes              Does the account belong to Zato internally?
 is_super_user            bool     Yes      Yes              Is the user a super-user?
 is_approval_needed       bool     Yes      Yes              Is a super-user's approval needed for this account to become fully active?
@@ -55,7 +55,7 @@ approval_status_mod_time datetime Yes      Yes              When was the approva
 is_locked                bool     Yes      Yes              Has this account been locked by a super-user?
 locked_time              string   Yes      Yes              If locked, when was it?
 locked_by                string   Yes      Yes              If locked, who by?
-creation_ctx             string   Yes      Yes              Opaque metadata describing account creation
+creation_ctx             string   Yes      Yes              (Reserved for future use)
 approv_rej_time          string   Yes      Yes              If approved or rejected, when was it?
 approv_rej_by            string   Yes      Yes              If approved or rejected, who by?
 password_expiry          string   Yes      Yes              When will that account's password expire?
