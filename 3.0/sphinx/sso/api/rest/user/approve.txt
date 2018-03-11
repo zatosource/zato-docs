@@ -12,13 +12,11 @@ are fulfilled, e.g. user connects from an allowed IP address. It is not an error
 
 Only super-users may approve or :doc:`reject <./reject>` other users.
 
-
-  * List response: No
   * HTTP method: POST
   * URL path: /zato/sso/user/approve
 
-Request parameters
-------------------
+Request
+-------
 
 ==================== ======== ======== ================================================================
 Name                 Datatype Optional Notes
@@ -29,8 +27,8 @@ user_id              string   ---      ID of the user to approve
 ==================== ======== ======== ================================================================
 
 
-Response parameters
--------------------
+Response
+--------
 
 =========== ======== ======== ===================================================================================================
 Name        Datatype Optional Notes

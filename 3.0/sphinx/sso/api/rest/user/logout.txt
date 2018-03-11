@@ -14,12 +14,11 @@ to make it more difficult for attackers to discover what of UST they may have ac
 
 Note that there may be additional details in server logs in case of input validation errors.
 
-  * List response: No
   * HTTP method: POST
   * URL path: /zato/sso/user/logout
 
-Request parameters
-------------------
+Request
+-------
 
 ============ ======== ======== ==============================================================================================================
 Name         Datatype Optional Notes
@@ -29,8 +28,8 @@ current_app  string   ---      Name of application that the call is attempted fr
 ============ ======== ======== ==============================================================================================================
 
 
-Response parameters
--------------------
+Response
+--------
 
 (None)
 

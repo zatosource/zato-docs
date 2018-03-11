@@ -13,12 +13,11 @@ only to super-users.
 
 Input parameters may be sent in query string or JSON body - there is no difference.
 
-  * List response: No
   * HTTP method: GET
   * URL path: /zato/sso/user
 
-Request parameters
-------------------
+Request
+-------
 
 ============ ======== ======== =============================================================================================
 Name         Datatype Optional Notes
@@ -29,8 +28,8 @@ user_id      string   Yes      ID of a user to return details of. May be provide
 ============ ======== ======== =============================================================================================
 
 
-Response parameters
--------------------
+Response
+--------
 
 ======================== ======== ======== ================ ====================================================================================================
 Name                     Datatype Optional Needs super-user Notes

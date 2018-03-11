@@ -15,12 +15,11 @@ If a particular parameter is not sent, its current value will be left intact. If
 it will be set to NULL on SQL level (if it is allowed to be nullable).
 
 
-  * List response: No
   * HTTP method: PATCH
   * URL path: /zato/sso/user
 
-Request parameters
-------------------
+Request
+-------
 
 ==================== ======== ======== ================ ===================================================================================
 Name                 Datatype Optional Needs super-user Notes
@@ -41,8 +40,8 @@ sign_up_status       string   Yes      Yes              Signup process status, a
 ==================== ======== ======== ================ ===================================================================================
 
 
-Response parameters
--------------------
+Response
+--------
 
 =========== ======== ======== ===================================================================================================
 Name        Datatype Optional Notes

@@ -33,7 +33,6 @@ Search details:
   these two fields are always unique in the database so any other field will have no impact on the query
 * If both username and user ID are given on input, only user ID will be used and username will be ignored
 * A batch size with a maximum of 100 results per page can be specified
-* It is possible to sort results by a list of fields, each ascending or descending
 * On response, a list of results is returned, even if it is empty or possible with one matching element only
 * Metadata returned in response lets one find out how many users matched input, how many pages there are in total
   and if there is a previous/next page available to navigate to

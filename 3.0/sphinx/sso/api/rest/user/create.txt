@@ -9,12 +9,11 @@ Overview
 
 Creates a new regular user. Input UST must belong to a logged in super-user.
 
-  * List response: No
   * HTTP method: POST
   * URL path: /zato/sso/user
 
-Request parameters
-------------------
+Request
+-------
 
 ==================== ======== ======== =====================================================================================================================
 Name                 Datatype Optional Notes
@@ -35,8 +34,8 @@ sign_up_status       string   Yes      User's initial signup status, by default 
 ==================== ======== ======== =====================================================================================================================
 
 
-Response parameters
--------------------
+Response
+--------
 
 ======================== ======== ======== ====================================================================================================================
 Name                     Datatype Optional Notes

@@ -12,13 +12,11 @@ It is not an error to reject an already rejected user.
 
 Only super-users may :doc:`approve <./approve>` or reject other users.
 
-
-  * List response: No
   * HTTP method: POST
   * URL path: /zato/sso/user/reject
 
-Request parameters
-------------------
+Request
+-------
 
 ==================== ======== ======== ================================================================
 Name                 Datatype Optional Notes
@@ -29,8 +27,8 @@ user_id              string   ---      ID of the user to reject
 ==================== ======== ======== ================================================================
 
 
-Response parameters
--------------------
+Response
+--------
 
 =========== ======== ======== ===================================================================================================
 Name        Datatype Optional Notes

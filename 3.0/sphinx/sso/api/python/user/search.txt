@@ -160,8 +160,8 @@ self.sso.user.search
 
 ::
 
-   INFO - total.................... 7
-   INFO - num_pages................ 4
+   INFO - total.................... 6
+   INFO - num_pages................ 3
    INFO - page_size................ 2
    INFO - cur_page................. 2
    INFO - has_next_page............ True
@@ -191,7 +191,7 @@ self.sso.user.search
    INFO - sign_up_status            final
    INFO - sign_up_time              2018-03-10 17:41:03
    INFO - user_id                   zusr3yqm708em08yn9tqmff5n1dkb6
-   INFO - username                  user-14967
+   INFO - username                  judith.smith
    INFO - ............................................................
    INFO - approval_status           approved
    INFO - approval_status_mod_by    zusr69g59s4x3v9n1bwj978vfnf330
@@ -215,4 +215,4 @@ self.sso.user.search
    INFO - sign_up_status            final
    INFO - sign_up_time              2018-03-10 17:38:16
    INFO - user_id                   zusr3ny5pfyn4p8xp8ftp0yryjszms
-   INFO - username                  user-16304
+   INFO - username                  paul.greensmith

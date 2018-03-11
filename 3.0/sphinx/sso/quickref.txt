@@ -48,7 +48,7 @@ Topic                                                           REST            
 :doc:`User.login <./topic/user/login>`                          POST    :doc:`/zato/sso/user/login <./api/rest/user/login>`                           :doc:`self.sso.user.login <./api/python/user/login>`
 :doc:`User.logout <./topic/user/logout>`                        POST    :doc:`/zato/sso/user/logout <./api/rest/user/logout>`                         :doc:`self.sso.user.logout <./api/python/user/logout>`
 :doc:`User.get <./topic/user/get>`                              GET     :doc:`/zato/sso/user <./api/rest/user/get>`                                   :doc:`self.sso.user.get_user_by_* <./api/python/user/get>`
-:doc:`User.search <./topic/user/search>`                        GET     :doc:`/zato/sso/user <./1pi/rest/user/search>`                                :doc:`self.sso.user.search <./api/python/user/search>`
+:doc:`User.search <./topic/user/search>`                        GET     :doc:`/zato/sso/user <./api/rest/user/search>`                                :doc:`self.sso.user.search <./api/python/user/search>`
 :doc:`User.update <./topic/user/update>`                        PATCH   :doc:`/zato/sso/user <./api/rest/user/update>`                                :doc:`self.sso.user.update <./api/python/user/update>`
 :doc:`User.delete <./topic/user/delete>`                        DELETE  :doc:`/zato/sso/user <./api/rest/user/delete>`                                :doc:`self.sso.user.delete <./api/python/user/delete>`
 :doc:`User.change_password <./topic/password/index>`            PATCH   :doc:`/zato/sso/user/password <./api/rest/user/change-password>`              :doc:`self.sso.user.change_password <./api/python/user/change-password>`
