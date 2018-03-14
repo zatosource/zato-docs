@@ -1,15 +1,16 @@
 .. highlight:: bash
    :linenothreshold: 1000
 
-Session.get - REST API
-======================
+Session.verify - REST API
+=========================
 
 Overview
 --------
 
-Returns details of a session indicated by target_ust, without renewing it. Must be called by a logged in super-user.
+Renews current session. Note that an error will be reported if the session has already expired or if its user's
+password is expired. On success, new expiration time is returned (in UTC).
 
-  * HTTP method: GET
+  * HTTP method: PATCH
   * URL path: /zato/sso/user/session
 
 Request
@@ -18,7 +19,7 @@ Request
 ==================== ======== ========================================================================
 Name        Datatype Optional Notes
 ==================== ======== ========================================================================
-target_ust  string   ---      UST of session to return details of
+target_ust  string   ---      UST of session to verify
 current_ust string   ---      Current user's session token (UST) - must belong to a super-user
 current_app string   ---      Name of application that the call is attempted from
 ==================== ======== ========================================================================
@@ -33,10 +34,7 @@ Name            Datatype Optional Notes
 cid             string   ---      Correlation ID assigned to request
 status          string   ---      Overall :doc:`status code <../../../status-code>`
 sub_status      list     Yes      Returned only if status is not "ok", a list of :doc:`error or warning codes <../../../status-code>`
-creation_time   datetime Yes      When the session was created, in UTC
-expiration_time datetime Yes      When the session will expire, in UTC
-remote_addr     string   Yes      From what remote address the session was created
-user_agent      string   Yes      Using what user agent the session was created
+expiration_time string   Yes      The renewed session's expiration time, in UTC
 =============== ======== ======== ====================================================================================================
 
 Usage
@@ -55,9 +53,6 @@ Usage
   {
    "cid": "e0673f65704f74b2cd040fa6",
    "status": "ok",
-   "creation_time": "2018-03-14T19:04:32",
-   "expiration_time": "2018-03-14T20:04:32",
-   "remote_addr": "127.0.0.1",
-   "user_agent": "Firefox 139.0"
+   "expiration_time": "2018-03-14T20:38:17.730640"
   }
   $

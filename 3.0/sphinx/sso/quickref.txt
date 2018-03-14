@@ -58,8 +58,8 @@ Topic                                                           REST            
 SuperUser.create                                                 ---                                                                                  :doc:`self.sso.user.create_super_user <./api/python/user/create-super-user>`
 \
 :doc:`Sessions <./topic/session/index>`
-:doc:`Session.verify <./topic/session/access>`                  POST    :doc:`/zato/sso/session <./1pi/rest/session/verify>`                          :doc:`self.sso.user.session.verify <./api/python/session/verify>`
-:doc:`Session.renew <./topic/session/access>`                   PATCH   :doc:`/zato/sso/session <./1pi/rest/session/renew>`                           :doc:`self.sso.user.session.renew <./api/python/session/renew>`
+:doc:`Session.verify <./topic/session/access>`                  POST    :doc:`/zato/sso/session <./api/rest/session/verify>`                          :doc:`self.sso.user.session.verify <./api/python/session/verify>`
+:doc:`Session.renew <./topic/session/access>`                   PATCH   :doc:`/zato/sso/session <./api/rest/session/renew>`                           :doc:`self.sso.user.session.renew <./api/python/session/renew>`
 :doc:`Session.get <./topic/session/access>`                     GET     :doc:`/zato/sso/session <./api/rest/session/get>`                             :doc:`self.sso.user.session.get <./api/python/session/get>`
 \
 :doc:`User attributes <./1opic/user/attr/index>`
