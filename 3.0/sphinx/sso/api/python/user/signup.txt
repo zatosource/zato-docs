@@ -1,1 +1,89 @@
 
+.. highlight:: python
+   :linenothreshold: 0
+
+User.signup - Python API
+========================
+
+Lets users :doc:`sign up <../../../topic/user/signup>` themselves with the system. In Python, a zato.sso.SignupCtx object
+is created and filled in with details of the user about to be signed up.
+
+Input is validated according to configuration from :doc:`sso.conf <../../../config/index>`. All callback services
+are executed if the user has been created successfully.
+
+On output, confirmation token is returned that may be used to let a user know via email that their account has been
+prepared but needs to be confirmed by clicking on a selected link.
+
+SignupCtx has the following properties:
+
+=========== ======== ========= ===========================================================
+Name        Datatype Optional? Notes
+=========== ======== ========= ===========================================================
+username    string   ---       Username to create
+password    string   ---       User's password
+email       string   Yes       User's email
+current_app string   ---       Name of the application the user is signing up through
+app_list    list     ---       A list of applications that the user wants to sign up to
+                               (all must exist in :doc:`sso.conf <../../../config/index>`)
+=========== ======== ========= ===========================================================
+
+
+API
+---
+
+self.sso.user.signup
+~~~~~~~~~~~~~~~~~~~~
+
+.. py:method:: signup(self, ctx, current_app, remote_addr)
+
+  Signs up users with the SSO system.
+
+  :param ctx: Signup configuration
+  :type ctx: zato.sso.SignupCtx
+
+  :param current_app: Name of application the current user is issuing the call from
+  :type current_app: string
+
+  :param remote_addr: User's remote address
+  :type remote_addr: string
+
+  :rtype: A confirmation token that may be used by the user to confirm that account's creation
+
+::
+
+   # -*- coding: utf-8 -*-
+
+   from __future__ import absolute_import, division, print_function, unicode_literals
+
+   # stdlib
+   from uuid import uuid4
+
+   # Zato
+   from zato.server.service import Service
+   from zato.sso import const, SignupCtx
+
+   class SignupService(Service):
+       def handle(self):
+
+           # Signup data
+           username = 'my.username'
+           email = 'my.username@example.com'
+           password = uuid4().hex
+           app_list = ['CRM']
+
+           # Prepare the context object
+           ctx = SignupCtx()
+           ctx.username = username
+           ctx.email = email
+           ctx.password = password
+           ctx.app_list = app_list
+
+           # Sign up the user
+           confirm_token = self.sso.user.signup(ctx, 'CRM', '127.0.0.1')
+
+           # Log the confirmation token received
+           self.logger.info('Token: %s', confirm_token)
+
+::
+
+   INFO - Token: zcnt784zsmk4zy81j9w0xvnbn9n074
