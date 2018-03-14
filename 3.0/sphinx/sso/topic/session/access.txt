@@ -12,7 +12,7 @@ Accessing user sessions
   * Renew:
 
     * Checks that the session exists and if it does, it will renew it
-    * On output, returns the session's new expiration time and optionally, other metadata about the session
+    * On output, returns the session's new expiration time
     * Can be used by both super-users and regular ones
 
   * Verify:
@@ -38,6 +38,8 @@ Accessing user sessions
 * On a higher level, calling get also implictly works like verify in that it returns data only if the session exists
   but using verify instead of get is more efficient in terms of CPU and RAM needed because only a boolean flag is returned
   instead of a whole set of metadata about the session
+
+* Note that it is not possible to renew a session if it's already expired or if the underlying user's password has expired
 
 * API call reference:
 
