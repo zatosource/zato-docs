@@ -35,8 +35,8 @@ status               string   ---      Overall :doc:`status code <../../../statu
 sub_status           list     Yes      Returned only if status is not "ok", a list of :doc:`error or warning codes <../../../status-code>`
 ==================== ======== ======== ====================================================================================================================
 
-Example
--------
+Usage
+-----
 
 ::
 

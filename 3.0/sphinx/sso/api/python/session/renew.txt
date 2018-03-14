@@ -5,7 +5,7 @@
 Session.renew - Python API
 ==========================
 
-Renews a user session, returning its new expiration time on output (in UTC).
+Renews current session, returning its new expiration time on output (in UTC).
 
 Note that the call will raise an exception if:
 

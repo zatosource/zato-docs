@@ -65,8 +65,8 @@ sign_up_status           string   Yes      Yes              Signup process statu
 sign_up_time             datetime Yes      Yes              When did the user sign up with the system?
 ======================== ======== ======== ================ ====================================================================================================
 
-Examples
---------
+Usage
+-----
 
 * Input user is a regular one looking up details of his or her own account:
 

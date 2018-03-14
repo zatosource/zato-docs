@@ -29,9 +29,6 @@ self.sso.user.logout
 
   :rtype: None
 
-Usage
------
-
 ::
 
   # -*- coding: utf-8 -*-

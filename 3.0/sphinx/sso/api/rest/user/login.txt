@@ -46,8 +46,8 @@ ust        string   Yes      User session token to use in subsequent calls that 
                              Returned only if status is "ok".
 ========== ======== ======== =====================================================================================================
 
-Examples
---------
+Usage
+-----
 
 * Everything is OK
 

@@ -42,8 +42,8 @@ sub_status    list     Yes      Returned only if status is not "ok", a list of :
 confirm_token string   ---      Signup confirmation token
 ============= ======== ======== ====================================================================================================
 
-Example
--------
+Usage
+-----
 
 ::
 

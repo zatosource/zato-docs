@@ -71,8 +71,8 @@ sign_up_status           string   Yes      Signup process status, returned value
 sign_up_time             datetime Yes      When did the user sign up with the system?
 ======================== ======== ======== ====================================================================================================================
 
-Example
--------
+Usage
+-----
 
 ::
 

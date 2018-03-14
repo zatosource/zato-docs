@@ -51,8 +51,8 @@ status      string   ---      Overall :doc:`status code <../../../status-code>`
 sub_status  list     Yes      Returned only if status is not "ok", a list of :doc:`error or warning codes <../../../status-code>`
 =========== ======== ======== ===================================================================================================
 
-Examples
---------
+Usage
+-----
 
 * Input user is a regular one who is changing his or her own display name and email:
 

@@ -57,9 +57,6 @@ self.sso.user.login
     * creation_time - when was the session created, in UTC
     * expiration_time - when will the session expire, in UTC
 
-Usage
------
-
 ::
 
   # -*- coding: utf-8 -*-
