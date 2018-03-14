@@ -43,7 +43,7 @@ self.sso.user.session.verify
   # Zato
   from zato.server.service import Service
 
-  class SessionVerify(Service):
+  class VerifySession(Service):
       def handle(self):
 
           # Current user's data

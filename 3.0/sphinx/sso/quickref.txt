@@ -60,7 +60,7 @@ SuperUser.create                                                 ---            
 :doc:`Sessions <./topic/session/index>`
 :doc:`Session.verify <./topic/session/access>`                  POST    :doc:`/zato/sso/session/verify <./1pi/rest/session/verify>`                   :doc:`self.sso.user.session.verify <./api/python/session/verify>`
 :doc:`Session.renew <./topic/session/access>`                   POST    :doc:`/zato/sso/session/renew <./1pi/rest/session/renew>`                     :doc:`self.sso.user.session.renew <./api/python/session/renew>`
-:doc:`Session.get <./topic/session/access>`                     GET     :doc:`/zato/sso/session <./1pi/rest/session/get>`                             :doc:`self.sso.user.session.get <./1pi/python/session/get>`
+:doc:`Session.get <./topic/session/access>`                     GET     :doc:`/zato/sso/session <./1pi/rest/session/get>`                             :doc:`self.sso.user.session.get <./api/python/session/get>`
 \
 :doc:`User attributes <./1opic/user/attr/index>`
 :doc:`UserAttr.create <./1opic/user/attr/create>`               POST    :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/create>`                      :doc:`self.sso.user.attr.* <./1pi/python/user/attr/index>`
