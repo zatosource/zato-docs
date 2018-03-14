@@ -14,6 +14,6 @@ It is a secret that must never be revealed to other users or outside parties. It
 More information:
 
 * How to :doc:`log a user in <../user/login>`
-* How to :doc:`~~log a user out <../user/logout>`
-* How to :doc:`~~access existing sessions <./get>`
+* How to :doc:`log a user out <../user/logout>`
+* How to :doc:`access existing sessions <./access>`
 * How to use :doc:`~~session attributes <./attr/index>`
