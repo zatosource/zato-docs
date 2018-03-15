@@ -39,7 +39,7 @@ Name          Datatype Optional Notes
 cid           string   ---      Correlation ID assigned to request
 status        string   ---      Overall :doc:`status code <../../../status-code>`
 sub_status    list     Yes      Returned only if status is not "ok", a list of :doc:`error or warning codes <../../../status-code>`
-confirm_token string   ---      Signup confirmation token
+confirm_token string   ---      Signup confirmation token; URL-safe and 192-bit strong
 ============= ======== ======== ====================================================================================================
 
 Usage
@@ -60,5 +60,5 @@ Usage
  {
   "cid": "259529171ff77ce4c8b26e11",
   "status": "ok",
-  "confirm_token": "zcnt153qdaq7p0821sgma4acp46xj9"
+  "confirm_token": "AB_d86fF-6_UBq4g7npP0mS-i3HfGfpJ"
  }

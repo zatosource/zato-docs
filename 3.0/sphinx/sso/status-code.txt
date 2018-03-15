@@ -75,6 +75,7 @@ E005003 auth.invalid_signup_status Account cannot be used to log into because th
 E005004 auth.not_approved          Account waits for approval from a super-admin, it is not possible to log in until
                                    it is approved
 E005005 auth.super_user_required   Super-user's privileges are required to carry out a given action but current user is not one
+E005006 no_such_sign_up_token      Signup token given on input does not exist
 \
 E006001 metadata.not_allowed       Current application that the user is logging in from is not allowed to send login metadata,
                                    such as remote_addr and user_agent

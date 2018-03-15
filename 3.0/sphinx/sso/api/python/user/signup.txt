@@ -12,7 +12,7 @@ Input is validated according to configuration from :doc:`sso.conf <../../../conf
 are executed if the user has been created successfully.
 
 On output, confirmation token is returned that may be used to let a user know via email that their account has been
-prepared but needs to be confirmed by clicking on a selected link.
+prepared but needs to be confirmed by clicking on a selected link. The token is URL-safe and 192-bit strong.
 
 SignupCtx has the following properties:
 
@@ -86,4 +86,4 @@ self.sso.user.signup
 
 ::
 
-   INFO - Token: zcnt784zsmk4zy81j9w0xvnbn9n074
+   INFO - Token: v9IEOwbBr0JEsboKyleAp6yuKwIEzmJ0
