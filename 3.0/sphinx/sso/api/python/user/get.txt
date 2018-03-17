@@ -18,9 +18,12 @@ API
 self.sso.user.get_current_user
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: get_current_user(self, current_ust, current_app, remote_addr)
+.. py:method:: get_current_user(self, cid, current_ust, current_app, remote_addr)
 
   Returns information about user using this person's current session
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
+  :type cid: string
 
   :param current_ust: Current user's UST
   :type current_ust: string
@@ -102,9 +105,12 @@ self.sso.user.get_current_user
 self.sso.user.get_user_by_id
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: get_user_by_id(self, user_id, current_ust, current_app, remote_addr)
+.. py:method:: get_user_by_id(self, cid, user_id, current_ust, current_app, remote_addr)
 
   Returns information about a user using that person's ID. Current user must be a super-user.
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
+  :type cid: string
 
   :param user_id: User ID (another person or possibly current user)
   :type ust: string

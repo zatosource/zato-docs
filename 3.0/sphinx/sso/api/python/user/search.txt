@@ -46,9 +46,12 @@ API
 self.sso.user.search
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: search(self, ctx, current_ust, current_app, remote_addr)
+.. py:method:: search(self, cid, ctx, current_ust, current_app, remote_addr)
 
   Looks up users by input criteria and returns a list of results, possibly empty or with only one matching user.
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
+  :type cid: string
 
   :param ctx: Search configuration
   :type ctx: zato.sso.UserCtx

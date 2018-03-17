@@ -14,9 +14,12 @@ API
 self.sso.user.logout
 ~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: logout(self, ust, current_app, remote_addr)
+.. py:method:: logout(self, cid, ust, current_app, remote_addr)
 
   Logs a user out of an existing SSO session.
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
+  :type cid: string
 
   :param ust: User session token to log out by
   :type ust: string

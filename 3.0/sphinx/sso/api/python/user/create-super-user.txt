@@ -13,9 +13,12 @@ API
 self.sso.user.create_super_user
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: create_super_user(self, data, current_ust, current_app, remote_addr)
+.. py:method:: create_super_user(self, cid, data, current_ust, current_app, remote_addr)
 
   Creates a new super-user.
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
+  :type cid: string
 
   :param data: A dictionary of values to create a new user from. On output, the dictionary will be enriched with defaults
                assigned during the creation process.

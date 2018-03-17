@@ -16,9 +16,12 @@ API
 self.sso.user.session.verify
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: verify(self, target_ust, current_ust, current_app, remote_addr)
+.. py:method:: verify(self, cid, target_ust, current_ust, current_app, remote_addr)
 
   Creates a new super-user.
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
+  :type cid: string
 
   :param target_ust: UST of the session to verify
   :type target_ust: string

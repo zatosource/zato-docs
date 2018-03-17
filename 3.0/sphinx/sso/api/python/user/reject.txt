@@ -16,9 +16,12 @@ API
 self.sso.user.reject_user
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: reject_user(self, user_id, current_ust, current_app, remote_addr)
+.. py:method:: reject_user(self, cid, user_id, current_ust, current_app, remote_addr)
 
   Rejects a user, changing his or her approval_status to 'rejected'.
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
+  :type cid: string
 
   :param user_id: ID of the user to approve
   :type user_id: string

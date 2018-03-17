@@ -13,9 +13,12 @@ API
 self.sso.user.delete_user_by_id
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: delete_user_by_id(self, user_id, current_ust, current_app, remote_addr):
+.. py:method:: delete_user_by_id(self, cid, user_id, current_ust, current_app, remote_addr):
 
   Deletes a user by ID.
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
+  :type cid: string
 
   :param user_id: ID of the user to delete
   :type user_id: string

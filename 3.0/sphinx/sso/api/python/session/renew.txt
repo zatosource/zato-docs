@@ -18,9 +18,12 @@ API
 self.sso.user.session.renew
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: renew(self, current_ust, current_app, remote_addr)
+.. py:method:: renew(self, cid, current_ust, current_app, remote_addr)
 
   Creates a new super-user.
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
+  :type cid: string
 
   :param current_ust: Current user's UST, the one to renew
   :type current_ust: string

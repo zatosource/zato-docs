@@ -22,9 +22,12 @@ API
 self.sso.user.update_current_user
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: update_current_user(self, data, current_ust, current_app, remote_addr)
+.. py:method:: update_current_user(self, cid, data, current_ust, current_app, remote_addr)
 
   Updates information about user using this person's current session.
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
+  :type cid: string
 
   :param data: A dictionary of values to :doc:`update <../../../topic/user/update>` the account with.
 
@@ -85,9 +88,12 @@ self.sso.user.update_current_user
 self.sso.user.update_user_by_id
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: update_user_by_id(self, user_id, data, current_ust, current_app, remote_addr)
+.. py:method:: update_user_by_id(self, cid, user_id, data, current_ust, current_app, remote_addr)
 
   Updates an account by that user's ID.
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
+  :type cid: string
 
   :param user_id: User ID (another person or possibly current user)
   :type user_id: string

@@ -14,9 +14,12 @@ API
 self.sso.user.session.get
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: get(self, target_ust, current_ust, current_app, remote_addr)
+.. py:method:: get(self, cid, target_ust, current_ust, current_app, remote_addr)
 
   Returns details of a session pointed to by target_ust.
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
+  :type cid: string
 
   :param target_ust: UST of the session to return details of
   :type target_ust: string

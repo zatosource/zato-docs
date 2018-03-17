@@ -34,9 +34,12 @@ API
 self.sso.user.signup
 ~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: signup(self, ctx, current_app, remote_addr)
+.. py:method:: signup(self, cid, ctx, current_app, remote_addr)
 
   Signs up users with the SSO system.
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
+  :type cid: string
 
   :param ctx: Signup configuration
   :type ctx: zato.sso.SignupCtx

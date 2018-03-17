@@ -14,9 +14,12 @@ API
 self.sso.user.confirm_signup
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: confirm_signup(self, confirm_token, current_app, remote_addr)
+.. py:method:: confirm_signup(self, cid, confirm_token, current_app, remote_addr)
 
   Signs up users with the SSO system.
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
+  :type cid: string
 
   :param confirm_token: Signup confirmation token :doc:`obtained <./signup>` previously
   :type confirm_token: string
