@@ -43,7 +43,7 @@ Topic                                                           REST            
 :doc:`Users <./topic/user/index>`
 :doc:`User.create <./topic/user/create>`                        POST    :doc:`/zato/sso/user <./api/rest/user/create>`                                :doc:`self.sso.user.create <./api/python/user/create>`
 :doc:`User.signup <./topic/user/signup>`                        POST    :doc:`/zato/sso/user/signup <./api/rest/user/signup>`                         :doc:`self.sso.user.signup <./api/python/user/signup>`
-:doc:`User.confirm_signup <./topic/user/signup>`                POST    :doc:`/zato/sso/user/signup/confirm <./api/rest/user/confirm-signup>`         :doc:`self.sso.user.confirm_signup <./api/python/user/confirm-signup>`
+:doc:`User.confirm_signup <./topic/user/signup>`                PATCH   :doc:`/zato/sso/user/signup <./api/rest/user/confirm-signup>`                 :doc:`self.sso.user.confirm_signup <./api/python/user/confirm-signup>`
 :doc:`User.approve <./topic/user/signup>`                       POST    :doc:`/zato/sso/user/approve <./api/rest/user/approve>`                       :doc:`self.sso.user.approve <./api/python/user/approve>`
 :doc:`User.reject <./topic/user/signup>`                        POST    :doc:`/zato/sso/user/reject <./api/rest/user/reject>`                         :doc:`self.sso.user.reject <./api/python/user/reject>`
 :doc:`User.login <./topic/user/login>`                          POST    :doc:`/zato/sso/user/login <./api/rest/user/login>`                           :doc:`self.sso.user.login <./api/python/user/login>`
