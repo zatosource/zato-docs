@@ -6,9 +6,11 @@ User.get - Python API
 =====================
 
 Both regular and super-users can access information about their own accounts using self.sso.user.get_current_user,
-which accepts current session's UST on input.
+which accepts current session's UST on input. Further, super-users may query for other users by the latter's ID
+with self.sso.user.get_user_by_id.
 
-Further, super-users may query for other users by the latter's ID with self.sso.user.get_user_by_id.
+On out, a zato.sso.User object is returned which describes a given user with a range of attributes.
+Further, the object's .to_dict() method will serialize all the data to a Python dictionary.
 
 Passwords are never returned regardless of user type.
 
@@ -34,8 +36,9 @@ self.sso.user.get_current_user
   :param remote_addr: User's remote address
   :type remote_addr: string
 
-  :rtype: A dictionary of attributes out of which only user_id and username are guaranteed to always exist. The rest is optional
-          and additionally, some of attributes are returned, if they exist at all, only if current user is a super-user.
+  :rtype: A zato.sso.User object with attributes out of which only user_id and username are guaranteed to always exist.
+          The rest is optional and additionally, some of attributes are set to meaningful values, if they exist at all,
+          only if current user is a super-user.
 
           Accessible no matter the user type is:
 
@@ -91,7 +94,7 @@ self.sso.user.get_current_user
           user_info = self.sso.user.get_current_user(self.cid, ust, current_app, remote_addr)
 
           # Log output for confirmation
-          self.logger.info(user_info)
+          self.logger.info(user_info.to_dict())
 
 ::
 

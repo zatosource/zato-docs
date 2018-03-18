@@ -82,7 +82,8 @@ self.sso.user.search
           prev_page     int      What is the previous page to navigate to (counted from 1 and applicable only if has_prev_page is True)
           ============= ======== ======================================================================================================
 
-          Each element in the list of results is a dictionary, representing a particular user, with keys as below:
+          Each element in the list of results is a zato.sso.User object, representing a particular user, with attributes as below.
+          Further, the object's .to_dict() method will serialize all the data to a Python dictionary.
 
           ======================== ======== ======== ====================================================================================================
           Name                     Datatype Optional Notes
@@ -158,7 +159,7 @@ self.sso.user.search
             # Log users found
             for row in data['result']:
                 self.logger.info('.' * 60)
-                for key, value in sorted(row.items()):
+                for key, value in sorted(row.to_dict().items()):
                     self.logger.info('%s %s', key.ljust(25), value)
 
 ::
