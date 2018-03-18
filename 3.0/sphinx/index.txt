@@ -291,7 +291,7 @@ User management and Single Sign-On API
 
     * **Administration:**
       :doc:`Configuration <sso/config/index>` |
-      :doc:`~~Audit log <sso/audit/index>`
+      :doc:`Audit log <sso/audit/index>`
 
     * **API Reference:**
       :doc:`Quick index <sso/quickref>` |
