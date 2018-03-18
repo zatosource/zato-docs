@@ -80,7 +80,7 @@ self.sso.user.create_super_user
           }
 
           # Create user
-          self.sso.user.create_super_user(data, current_ust, current_app, remote_addr)
+          self.sso.user.create_super_user(self.cid, data, current_ust, current_app, remote_addr)
 
           # The input dictionary will have been updated in place
           self.logger.info(data)

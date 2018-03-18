@@ -57,4 +57,4 @@ self.sso.user.reject_user
             # User to approve
             user_id = 'zusrzw764rvcr84vtcb3ctyha5cbe'
 
-            self.sso.user.approve_user(data, current_ust, current_app, remote_addr)
+            self.sso.user.approve_user(self.cid, data, current_ust, current_app, remote_addr)

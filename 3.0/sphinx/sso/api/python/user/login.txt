@@ -78,7 +78,7 @@ self.sso.user.login
           remote_addr = '127.0.0.1'
           user_agent = 'Firefox 139.0'
 
-          session_info = self.sso.user.login(
+          session_info = self.sso.user.login(self.cid,
               username, password, current_app, remote_addr, user_agent)
 
           self.logger.info('UST %s', session_info.ust)

@@ -48,4 +48,4 @@ self.sso.user.confirm_signup
            confirm_token = 'MpPAHsQAc6_x2GlddSLfNE_mlFWqoS59'
 
            # Confirm signup; no exception = success
-           self.sso.user.confirm_signup(confirm_token, 'CRM', '127.0.0.1')
+           self.sso.user.confirm_signup(self.cid, confirm_token, 'CRM', '127.0.0.1')

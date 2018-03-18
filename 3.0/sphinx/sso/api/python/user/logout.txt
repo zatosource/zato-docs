@@ -48,4 +48,4 @@ self.sso.user.logout
         current_app = 'CRM'
         remote_addr = '127.0.0.1'
 
-        self.sso.user.logout(ust, current_app, remote_addr)
+        self.sso.user.logout(self.cid, ust, current_app, remote_addr)

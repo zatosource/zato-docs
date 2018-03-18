@@ -88,7 +88,7 @@ self.sso.user.get_current_user
           remote_addr = '127.0.0.1'
 
           # Get user by UST
-          user_info = self.sso.user.get_current_user(ust, current_app, remote_addr)
+          user_info = self.sso.user.get_current_user(self.cid, ust, current_app, remote_addr)
 
           # Log output for confirmation
           self.logger.info(user_info)

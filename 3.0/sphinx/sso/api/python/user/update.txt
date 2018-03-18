@@ -83,7 +83,7 @@ self.sso.user.update_current_user
                 'email': 'myuser@example.com'
             }
 
-            self.sso.user.update_current_user(data, current_ust, current_app, remote_addr)
+            self.sso.user.update_current_user(self.cid, data, current_ust, current_app, remote_addr)
 
 self.sso.user.update_user_by_id
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -143,6 +143,6 @@ self.sso.user.update_user_by_id
                 'password_expiry': datetime.utcnow() + timedelta(days=90)
             }
 
-            self.sso.user.update_user_by_id(user_id, data, current_ust, current_app, remote_addr)
+            self.sso.user.update_user_by_id(self.cid, user_id, data, current_ust, current_app, remote_addr)
 
 

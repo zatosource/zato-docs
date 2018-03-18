@@ -58,4 +58,4 @@ self.sso.user.delete_user_by_id
           user_id = 'zusr4datdm5k5m8fbb8fttx5d65avm'
 
           # Delete the user
-          self.sso.user.delete_user_by_id(user_id, current_ust, current_app, remote_addr)
+          self.sso.user.delete_user_by_id(self.cid, user_id, current_ust, current_app, remote_addr)

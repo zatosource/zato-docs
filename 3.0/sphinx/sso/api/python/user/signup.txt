@@ -82,7 +82,7 @@ self.sso.user.signup
            ctx.app_list = app_list
 
            # Sign up the user
-           confirm_token = self.sso.user.signup(ctx, 'CRM', '127.0.0.1')
+           confirm_token = self.sso.user.signup(self.cid, ctx, 'CRM', '127.0.0.1')
 
            # Log the confirmation token received
            self.logger.info('Token: %s', confirm_token)
