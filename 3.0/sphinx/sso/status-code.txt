@@ -87,6 +87,7 @@ E007002 session.expired            The session pointed to by input UST exists bu
 E008001 common.invalid_operation   The requested operation is invalid, e.g. a user attempts to delete his or her own account
 E008002 common.invalid_input       At least one of values given on input was not valid
 E008003 common.missing_input       A value was expected on input but it was not provided by the caller
-E009001 search.email_encrypted     A search operation was issued with an email address but emails are encrypted in the database
-                                   and the input query will never match any
+E009001 attr.already_exists        An attempt was made to create an attribute of a name that already exists
+E009002 attr.no_such_attr          An attempt was made to access an attribute of a name that does not exist
+                                   (applies to all of .get, .update and .delete)
 ======= ========================== ==================================================================================================
