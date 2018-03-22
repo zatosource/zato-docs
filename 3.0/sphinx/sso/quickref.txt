@@ -37,9 +37,9 @@ and for each main block of functionality links to both relevant topics and to de
 Quick reference
 ---------------
 
-=============================================================== ===================================================================================== =================================================================================
+=============================================================== ===================================================================================== ==================================================================================
 Topic                                                           REST                                                                                  Python
-=============================================================== ===================================================================================== =================================================================================
+=============================================================== ===================================================================================== ==================================================================================
 :doc:`Users <./topic/user/index>`
 :doc:`User.create <./topic/user/create>`                        POST    :doc:`/zato/sso/user <./api/rest/user/create>`                                :doc:`self.sso.user.create <./api/python/user/create>`
 :doc:`User.signup <./topic/user/signup>`                        POST    :doc:`/zato/sso/user/signup <./api/rest/user/signup>`                         :doc:`self.sso.user.signup <./api/python/user/signup>`
@@ -63,17 +63,23 @@ SuperUser.create                                                 ---            
 :doc:`Session.get <./topic/session/access>`                     GET     :doc:`/zato/sso/session <./api/rest/session/get>`                             :doc:`self.sso.user.session.get <./api/python/session/get>`
 \
 :doc:`User attributes <./1opic/user/attr/index>`
-:doc:`UserAttr.create <./1opic/user/attr/create>`               POST    :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/create>`                      :doc:`self.sso.user.attr.* <./1pi/python/user/attr/index>`
-:doc:`UserAttr.get <./1opic/user/attr/get>`                     GET     :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/get>`                         ”
-:doc:`UserAttr.update <./1opic/user/attr/update>`               PATCH   :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/update>`                      ”
-:doc:`UserAttr.delete <./1opic/user/attr/delete>`               DELETE  :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/delete>`                      ”
+:doc:`create/create_many <./1opic/user/attr/create>`            POST    :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/create>`                      :doc:`self.sso.user.attr.create/create_many <./1pi/python/user/attr/create>`
+:doc:`update/update_many <./1opic/user/attr/update>`            PATCH   :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/update>`                      :doc:`self.sso.user.attr.update/update_many <./1pi/python/user/attr/update>`
+:doc:`set/set_many <./1opic/user/attr/set>`                     PUT     :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/set>`                         :doc:`self.sso.user.attr.set/set_many <./1pi/python/user/attr/set>`
+:doc:`delete/delete_many <./1opic/user/attr/delete>`            DELETE  :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/delete>`                      :doc:`self.sso.user.attr.delete/delete_many <./1pi/python/user/attr/delete>`
+:doc:`get/get_many <./1opic/user/attr/get>`                     GET     :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/get>`                         :doc:`self.sso.user.attr.get/get_many <./1pi/python/user/attr/get>`
+:doc:`exists/exists_many <./1opic/user/attr/exists>`            GET     :doc:`/zato/sso/user/attr/exists <./1pi/rest/user/attr/exists>`               :doc:`self.sso.user.attr.exists/exists_many <./1pi/python/user/attr/exists>`
+:doc:`names <./1opic/user/attr/names>`                          GET     :doc:`/zato/sso/user/attr/names <./1pi/rest/user/attr/names>`                 :doc:`self.sso.user.attr.names/names_many <./1pi/python/user/attr/names>`
 \
 :doc:`Session attributes <./1opic/session/attr/index>`
-:doc:`SessionAttr.create <./1opic/session/attr/create>`         POST    :doc:`/zato/sso/user/session/attr <./1pi/rest/session/attr/create>`           :doc:`self.sso.user.session.attr.* <./1pi/python/session/attr/index>`
-:doc:`SessionAttr.get <./1opic/session/attr/get>`               GET     :doc:`/zato/sso/user/session/attr <./1pi/rest/session/attr/get>`              ”
-:doc:`SessionAttr.update <./1opic/session/attr/update>`         PATCH   :doc:`/zato/sso/user/session/attr <./1pi/rest/session/attr/update>`           ”
-:doc:`SessionAttr.delete <./1opic/session/attr/delete>`         DELETE  :doc:`/zato/sso/user/session/attr <./1pi/rest/session/attr/delete>`           ”
-=============================================================== ===================================================================================== =================================================================================
+:doc:`create/create_many <./1opic/session/attr/create>`         POST    :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/create>`                :doc:`self.sso.session.attr.create/create_many <./1pi/python/session/attr/create>`
+:doc:`update/update_many <./1opic/session/attr/update>`         PATCH   :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/update>`                :doc:`self.sso.session.attr.update/update_many <./1pi/python/session/attr/update>`
+:doc:`set/set_many <./1opic/session/attr/set>`                  PUT     :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/set>`                   :doc:`self.sso.session.attr.set/set_many <./1pi/python/session/attr/set>`
+:doc:`delete/delete_many <./1opic/session/attr/delete>`         DELETE  :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/delete>`                :doc:`self.sso.session.attr.delete/delete_many <./1pi/python/session/attr/delete>`
+:doc:`get/get_many <./1opic/session/attr/get>`                  GET     :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/get>`                   :doc:`self.sso.session.attr.get/get_many <./1pi/python/session/attr/get>`
+:doc:`exists/exists_many <./1opic/session/attr/exists>`         GET     :doc:`/zato/sso/session/attr/exists <./1pi/rest/session/attr/exists>`         :doc:`self.sso.session.attr.exists/exists_many <./1pi/python/session/attr/exists>`
+:doc:`names <./1opic/session/attr/names>`                       GET     :doc:`/zato/sso/session/attr/names <./1pi/rest/session/attr/names>`           :doc:`self.sso.session.attr.names/names_many <./1pi/python/session/attr/names>`
+=============================================================== ===================================================================================== ==================================================================================
 
 More information
 ----------------
