@@ -291,6 +291,7 @@ User management and Single Sign-On API
 
     * **Administration:**
       :doc:`Configuration <sso/config/index>` |
+      :doc:`Command line interface (CLI) <admin/cli/sso>` |
       :doc:`Audit log <sso/audit/index>`
 
     * **API Reference:**

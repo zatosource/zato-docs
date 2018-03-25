@@ -1,0 +1,58 @@
+zato sso create-odb
+===================
+
+Overview
+------------
+
+Creates all the SQL objects needed for Single Sign-On features to work correctly. By default, unless this command is used,
+they are created along with other tables and objects that Zato ODB uses.
+
+Using this command, however, it is possible to create a separate ODB environment for SSO alone, for instance, if the main
+Zato database and SSO one should be distinct, e.g. one should use MySQL and the other PostgreSQL.
+
+Subcommands
+------------
+
+* (None)
+
+Command-specific parameters
+---------------------------
+
+=================== ================================================= ================
+Name                Description                                       Example value
+=================== ================================================= ================
+--postgresql_schema PostgreSQL only: database schema to use           zato_sso
+--odb_password      ODB password                                      tVHbXiAJQn9nJ21W
+odb_type            ODB type, must be one of: ['mysql', 'postgresql'] postgresql
+odb_host            Host the ODB is running on                        localhost
+odb_port            Port the ODB is listening at                      5432
+odb_user            Username to connect to ODB with                   zato_sso1
+odb_db_name         ODB database name                                 zato_sso_db1
+=================== ================================================= ================
+
+Usage
+-----
+
+::
+
+    $ zato sso create-odb [-h] [--store-log] [--verbose] [--store-config]
+      [--postgresql_schema POSTGRESQL_SCHEMA] [--odb_password ODB_PASSWORD]
+      odb_type odb_host odb_port odb_user odb_db_name
+
+::
+
+    $ zato sso create-odb postgresql localhost 5432 zato_sso1 zato_sso_db1
+
+    SSO ODB database password (will not echo):
+    Password again (will not be echo):
+    SSO ODB created successfully
+    $
+
+Changelog
+---------
+
+======= ===================================================================
+Version Notes
+======= ===================================================================
+3.0     Added initially
+======= ===================================================================

@@ -1,0 +1,36 @@
+.. highlight:: bash
+   :linenothreshold: 1000
+
+User attributes
+===============
+
+In addition to :doc:`standard <../index>` attributes describing SSO users, such as username, password or email,
+it is also possible to create and manage additional arbitrary attributes holding any kind of information required.
+
+Custom user attributes exist either for as long as their user exists or, optionally, can be configured to expire after some time.
+They will persist across multiple login sessions but a related feature,
+:doc:`session attributes <../../session/attr/index>`, lets one set attributes for each session, each login, separately.
+
+Each attribute can be optionally stored in the database in an encrypted form - this can be used, for instance,
+with Social Security Numbers or other Personally Identifiable information (PII). Encryption and decryption is performed on the fly,
+no programming is needed.
+
+The API is available for Python code and REST clients, offering a number operations:
+
+============================================================================ ========================================================================== ==================================================================================
+Python                                                                       REST                                                                       Description
+============================================================================ ========================================================================== ==================================================================================
+:doc:`self.sso.user.attr.create <../../../api/python/user/attr/create>`      POST :doc:`/zato/sso/user/attr <../../../api/rest/user/attr/create>`       Creates a new named attribute
+:doc:`self.sso.user.attr.create_many <../../../api/python/user/attr/create>` POST :doc:`/zato/sso/user/attr <../../../api/rest/user/attr/create>`       As above but can create multiple attributes at a time
+:doc:`self.sso.user.attr.update <../../../api/python/user/attr/update>`      PATCH :doc:`/zato/sso/user/attr <../../../api/rest/user/attr/update>`      Updates an already existing attribute
+:doc:`self.sso.user.attr.update_many <../../../api/python/user/attr/update>` PATCH :doc:`/zato/sso/user/attr <../../../api/rest/user/attr/update>`      As above but can update multiple attributes at a time
+:doc:`self.sso.user.attr.set <../../../api/python/user/attr/set>`            PUT :doc:`/zato/sso/user/attr <../../../api/rest/user/attr/set>`           Creates a new named attribute if it doesn't already exist or updates it if it does
+:doc:`self.sso.user.attr.set_many <../../../api/python/user/attr/set>`       PUT :doc:`/zato/sso/user/attr <../../../api/rest/user/attr/set>`           As above but can set multiple attributes at a time
+:doc:`self.sso.user.attr.delete <../../../api/python/user/attr/delete>`      DELETE :doc:`/zato/sso/user/attr <../../../api/rest/user/attr/delete>`     Deletes an attribute
+:doc:`self.sso.user.attr.delete_many <../../../api/python/user/attr/delete>` DELETE :doc:`/zato/sso/user/attr <../../../api/rest/user/attr/delete>`     As above but can delete multiple attributes at a time
+:doc:`self.sso.user.attr.get <../../../api/python/user/attr/get>`            GET :doc:`/zato/sso/user/attr <../../../api/rest/user/attr/get>`           Returns an attribute's value, possibly with its metadata
+:doc:`self.sso.user.attr.get_many <../../../api/python/user/attr/get>`       GET :doc:`/zato/sso/user/attr <../../../api/rest/user/attr/get>`           As above but can return multiple attributes at a time
+:doc:`self.sso.user.attr.exists <../../../api/python/user/attr/exists>`      GET :doc:`/zato/sso/user/attr/exists <../../../api/rest/user/attr/exists>` Checks if an attribute exists
+:doc:`self.sso.user.attr.exists_many <../../../api/python/user/attr/exists>` GET :doc:`/zato/sso/user/attr/exists <../../../api/rest/user/attr/exists>` As above but can check multiple attributes at a time
+:doc:`self.sso.user.attr.names <../../../api/python/user/attr/names>`        GET :doc:`/zato/sso/user/attr/names <../../../api/rest/user/attr/exists>`  Returns names of all attributes defined for a user (only names, without values)
+============================================================================ ========================================================================== ==================================================================================

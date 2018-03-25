@@ -1,5 +1,5 @@
-zato ca
-============================
+zato sso
+========
 
 Overview
 ------------
@@ -10,6 +10,7 @@ Subcommands
 ------------
 
 * :doc:`zato sso change-user-password <./sso-change-user-password>`
+* :doc:`zato sso create-odb <./sso-create-odb>`
 * :doc:`zato sso create-super-user <./sso-create-super-user>`
 * :doc:`zato sso create-user <./sso-create-user>`
 * :doc:`zato sso delete-user <./sso-delete-user>`
