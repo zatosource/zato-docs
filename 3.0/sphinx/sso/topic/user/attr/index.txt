@@ -11,9 +11,15 @@ Custom user attributes exist either for as long as their user exists or, optiona
 They will persist across multiple login sessions but a related feature,
 :doc:`session attributes <../../session/attr/index>`, lets one set attributes for each session, each login, separately.
 
+Name of an attribute is its identifier, there is no separate ID field. The name is unique independently of session attributes,
+i.e. there can be a user attribute of a given name and a distinct session of the same name but there cannot be multiple
+user (nor session) attributes with the same name.
+
 Each attribute can be optionally stored in the database in an encrypted form - this can be used, for instance,
 with Social Security Numbers or other Personally Identifiable information (PII). Encryption and decryption is performed on the fly,
 no programming is needed.
+
+Regular users may access only their own attributes while super-users can manage attributes of any user.
 
 The API is available for Python code and REST clients, offering a number operations:
 
