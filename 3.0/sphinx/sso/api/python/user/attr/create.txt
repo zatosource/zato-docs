@@ -31,7 +31,7 @@ create
   :param value: An arbitrary value assigned to the name
   :type value: any
 
-  :param expiration: After how many seconds, from now, the attribute should expire
+  :param expiration: After how many seconds, from current time, the attribute should expire
   :type expiration: integer
 
   :param encrypt: Should the attribute's value be stored encrypted or not
@@ -116,7 +116,7 @@ Usage
   # Zato
   from zato.server.service import Service
 
-  class MyService(Service):
+  class UserAttrCreateMany(Service):
       def handle(self):
 
           # Current user's data

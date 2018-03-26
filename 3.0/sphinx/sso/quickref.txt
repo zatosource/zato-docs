@@ -64,7 +64,7 @@ SuperUser.create                                                 ---            
 \
 :doc:`User attributes <./topic/user/attr/index>`
 create/create_many                                              POST    :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/create>`                      :doc:`self.sso.user.attr.create/create_many <./api/python/user/attr/create>`
-update/update_many                                              PATCH   :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/update>`                      :doc:`self.sso.user.attr.update/update_many <./1pi/python/user/attr/update>`
+update/update_many                                              PATCH   :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/update>`                      :doc:`self.sso.user.attr.update/update_many <./api/python/user/attr/update>`
 set/set_many                                                    PUT     :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/set>`                         :doc:`self.sso.user.attr.set/set_many <./1pi/python/user/attr/set>`
 delete/delete_many                                              DELETE  :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/delete>`                      :doc:`self.sso.user.attr.delete/delete_many <./1pi/python/user/attr/delete>`
 get/get_many                                                    GET     :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/get>`                         :doc:`self.sso.user.attr.get/get_many <./1pi/python/user/attr/get>`
