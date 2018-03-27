@@ -37,8 +37,11 @@ Additional attributes:
 In the context of SSO (Single-Sign On), users may have access to one or more applications - app_list describes
 to what a given user may log in or otherwise interact with.
 
-Moreover, it is possible to attach an arbitrary set of key/value attributes to each user - they can be used to
-extend information about users to cover supplementary needs, such as timezone, a phone number or address.
+Moreover, it is possible to attach an arbitrary set of key/value
+:doc:`attributes <../attr/index>`
+to users, each attribute possibly encrypted
+and with an optional expiration time - they can be used to extend information about users to cover supplementary needs, such as timezone,
+a phone number or address.
 
 Details
 -------
@@ -54,4 +57,5 @@ Consult the following chapters for user-related topics:
 * :doc:`Updating users <./update>`
 * :doc:`Passwords <./../password/index>`
 * :doc:`Deleting users <./delete>`
+* :doc:`Custom user attributes <../attr/index>`
 * :doc:`Understanding the difference between regular and super-users <./super>`

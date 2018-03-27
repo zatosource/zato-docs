@@ -402,20 +402,17 @@ Zato, the open-source project
    security/*
    stats/*
    sso/*
-   sso/api/*
-   sso/api/python/*
    sso/api/python/user/*
    sso/api/python/user/attr/*
    sso/api/python/session/*
    sso/api/python/session/attr/*
-   sso/api/rest/*
    sso/api/rest/user/*
    sso/api/rest/user/attr/*
    sso/api/rest/session/*
    sso/api/rest/session/attr/*
-   sso/topic/password/*
    sso/topic/user/*
-   sso/topic/user/attr/*
+   sso/topic/password/*
+   sso/topic/attr/*
    sso/topic/session/*
    sso/topic/session/attr/*
    sso/audit/*

@@ -68,7 +68,7 @@ situation may be used, Zato does not interpret it in any way.
           self.audit_pii.warn(self.cid, 'my-operation-on-warn-level', 'user-id')
           self.audit_pii.error(self.cid, 'my-operation-on-error-level', 'user-id')
 
-Each of .info, .warn and .error methods has the same arguments and signature, only cid and op are required:
+Each of .info, .warn and .error methods has the same arguments and signature. Only *cid* and *op* are required:
 
 .. py:method:: info(self, cid, op, current_user='', target_user='', result='', extra='')
 .. py:method:: warn(self, cid, op, current_user='', target_user='', result='', extra='')

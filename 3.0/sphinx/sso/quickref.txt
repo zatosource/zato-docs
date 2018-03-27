@@ -9,8 +9,7 @@ API quick reference
         td a[href="topic/user/index.html"] em,
         td a[href="topic/user/session/index.html"] em,
         td a[href="topic/user/password/reset/index.html"] em,
-        td a[href="topic/user/attr/index.html"] em,
-        td a[href="topic/session/attr/index.html"] em
+        td a[href="topic/attr/index.html"] em
         {
             font-weight:bold;
         }
@@ -62,7 +61,7 @@ SuperUser.create                                                 ---            
 :doc:`Session.renew <./topic/session/access>`                   PATCH   :doc:`/zato/sso/session <./api/rest/session/renew>`                           :doc:`self.sso.user.session.renew <./api/python/session/renew>`
 :doc:`Session.get <./topic/session/access>`                     GET     :doc:`/zato/sso/session <./api/rest/session/get>`                             :doc:`self.sso.user.session.get <./api/python/session/get>`
 \
-:doc:`User attributes <./topic/user/attr/index>`
+:doc:`User attributes <./topic/attr/index>`
 create/create_many                                              POST    :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/create>`                      :doc:`self.sso.user.attr.create/create_many <./api/python/user/attr/create>`
 update/update_many                                              PATCH   :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/update>`                      :doc:`self.sso.user.attr.update/update_many <./api/python/user/attr/update>`
 set/set_many                                                    PUT     :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/set>`                         :doc:`self.sso.user.attr.set/set_many <./api/python/user/attr/set>`
@@ -71,7 +70,7 @@ get/get_many                                                    GET     :doc:`/z
 exists/exists_many                                              GET     :doc:`/zato/sso/user/attr/exists <./1pi/rest/user/attr/exists>`               :doc:`self.sso.user.attr.exists/exists_many <./api/python/user/attr/exists>`
 names                                                           GET     :doc:`/zato/sso/user/attr/names <./1pi/rest/user/attr/names>`                 :doc:`self.sso.user.attr.names <./api/python/user/attr/names>`
 \
-:doc:`Session attributes <./topic/session/attr/index>`
+:doc:`Session attributes <./topic/attr/index>`
 create/create_many                                              POST    :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/create>`                :doc:`self.sso.session.attr.create/create_many <./api/python/session/attr/create>`
 update/update_many                                              PATCH   :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/update>`                :doc:`self.sso.session.attr.update/update_many <./api/python/session/attr/update>`
 set/set_many                                                    PUT     :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/set>`                   :doc:`self.sso.session.attr.set/set_many <./api/python/session/attr/set>`
