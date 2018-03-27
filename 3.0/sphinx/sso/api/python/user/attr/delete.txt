@@ -7,7 +7,7 @@ UserAttr.delete - Python API
 Deletes an existing user attribute. The operation cannot be undone.
 
 There are two versions of the call - .delete is used with a single attribute and .delete_many is used with multiple attributes.
-Performance-wise, it is more efficient to use .delete_many if more than one attribute should be deleted..
+Performance-wise, it is more efficient to use .delete_many if more than one attribute should be deleted.
 
 delete
 ------
