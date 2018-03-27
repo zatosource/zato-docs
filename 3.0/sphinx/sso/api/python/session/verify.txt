@@ -59,11 +59,14 @@ self.sso.user.session.verify
           # Log in current user
           session = self.sso.user.login(username, password, current_app, remote_addr, user_agent)
 
+          # Get current UST
+          ust = session.ust
+
           # Another UST to check
           target_ust = 'gAAAAABaqSjEHUpNOhz9EO2GB_tYTjhG...'
 
           # Check if target UST exists
-          exists = self.sso.user.session.verify(target_ust, session.ust, current_app, remote_addr)
+          exists = self.sso.user.session.verify(self.cid, target_ust, ust, current_app, remote_addr)
 
           # Log result
           self.logger.info('Exists: %s', exists)

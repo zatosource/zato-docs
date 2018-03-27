@@ -58,18 +58,18 @@ Usage
           session = self.sso.user.login(self.cid, username, password,
               current_app, remote_addr, user_agent)
 
-          # Get UST
+          # Get current UST
           ust = session.ust
 
-          # Get user object
-          user = self.sso.user.get_user_by_id(self.cid, session.user_id, ust, current_app, remote_addr)
+          # Get session object
+          session = self.sso.user.session.get(self.cid, ust, ust, current_app, remote_addr)
 
           # Information about the attribute to be set
           name = 'my-attribute'
           value = 'my-value'
 
           # Create a new attribute
-          user.attr.set(name, value)
+          session.attr.set(name, value)
 
 
 set_many
@@ -125,11 +125,11 @@ Usage
           session = self.sso.user.login(self.cid, username, password,
               current_app, remote_addr, user_agent)
 
-          # Get UST
+          # Get current UST
           ust = session.ust
 
-          # Get user object
-          user = self.sso.user.get_user_by_id(self.cid, session.user_id, ust, current_app, remote_addr)
+          # Get session object
+          session = self.sso.user.session.get(self.cid, ust, ust, current_app, remote_addr)
 
           # Prepare a list of dictionaries with attributes to set
           data = [
@@ -139,4 +139,4 @@ Usage
           ]
 
           # Create new attributes
-          user.attr.set_many(data)
+          session.attr.set_many(data)

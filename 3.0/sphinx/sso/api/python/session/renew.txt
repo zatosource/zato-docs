@@ -58,7 +58,7 @@ self.sso.user.session.renew
           session = self.sso.user.login(username, password, current_app, remote_addr, user_agent)
 
           # Renew the session
-          expiration = self.sso.user.session.renew(session.ust, current_app, remote_addr)
+          expiration = self.sso.user.session.renew(self.cid, session.ust, current_app, remote_addr)
 
           # Log result (in UTC)
           self.logger.info('Expiration: %s, %s', expiration, type(expiration))

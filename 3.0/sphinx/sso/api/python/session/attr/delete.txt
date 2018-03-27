@@ -45,21 +45,21 @@ Usage
           session = self.sso.user.login(self.cid, username, password,
               current_app, remote_addr, user_agent)
 
-          # Get UST
+          # Get current UST
           ust = session.ust
 
-          # Get user object
-          user = self.sso.user.get_user_by_id(self.cid, session.user_id, ust, current_app, remote_addr)
+          # Get session object
+          session = self.sso.user.session.get(self.cid, ust, ust, current_app, remote_addr)
 
           # Information about the attribute to be created
           name = 'my-attribute'
           value = 'my-value'
 
           # Create a new attribute
-          user.attr.create(name, value)
+          session.attr.create(name, value)
 
           # Delete the attribute
-          user.attr.delete(name)
+          session.attr.delete(name)
 
 delete_many
 -----------
@@ -97,11 +97,11 @@ Usage
           session = self.sso.user.login(self.cid, username, password,
               current_app, remote_addr, user_agent)
 
-          # Get UST
+          # Get current UST
           ust = session.ust
 
-          # Get user object
-          user = self.sso.user.get_user_by_id(self.cid, session.user_id, ust, current_app, remote_addr)
+          # Get session object
+          session = self.sso.user.session.get(self.cid, ust, ust, current_app, remote_addr)
 
           # Prepare a list of dictionaries with attributes to create
           data = [
@@ -111,7 +111,7 @@ Usage
           ]
 
           # Create new attributes
-          user.attr.create_many(data)
+          session.attr.create_many(data)
 
           # Delete all the attributes
-          user.attr.delete_many(['my-attr1-zxc', 'my-attr2-zxc', 'my-attr3-zxc'])
+          session.attr.delete_many(['my-attr1-zxc', 'my-attr2-zxc', 'my-attr3-zxc'])

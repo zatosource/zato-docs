@@ -47,21 +47,21 @@ Usage
           session = self.sso.user.login(self.cid, username, password,
               current_app, remote_addr, user_agent)
 
-          # Get UST
+          # Get current UST
           ust = session.ust
 
-          # Get user object
-          user = self.sso.user.get_user_by_id(self.cid, session.user_id, ust, current_app, remote_addr)
+          # Get session object
+          session = self.sso.user.session.get(self.cid, ust, ust, current_app, remote_addr)
 
           # Information about the attribute to be created
           name = 'my-attribute'
           value = 'my-value'
 
           # Create a new attribute
-          user.attr.create(name, value)
+          session.attr.create(name, value)
 
           # Check if the attribute exists
-          exists = user.attr.exists(name)
+          exists = session.attr.exists(name)
 
           self.logger.info('Exists -> %s', exists)
 
@@ -113,11 +113,11 @@ Usage
           session = self.sso.user.login(self.cid, username, password,
               current_app, remote_addr, user_agent)
 
-          # Get UST
+          # Get current UST
           ust = session.ust
 
-          # Get user object
-          user = self.sso.user.get_user_by_id(self.cid, session.user_id, ust, current_app, remote_addr)
+          # Get session object
+          session = self.sso.user.session.get(self.cid, ust, ust, current_app, remote_addr)
 
           # Prepare a list of dictionaries with attributes to create
           data = [
@@ -127,10 +127,10 @@ Usage
           ]
 
           # Create new attributes
-          user.attr.create_many(data)
+          session.attr.create_many(data)
 
           # Check if all the attributes just created actually exist
-          result = user.attr.exists_many(['my-attr1-zxc-11', 'my-attr2-zxc-22', 'my-attr3-zxc-33'])
+          result = session.attr.exists_many(['my-attr1-zxc-11', 'my-attr2-zxc-22', 'my-attr3-zxc-33'])
 
           self.logger.info('Result -> %s', result)
 

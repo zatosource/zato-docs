@@ -66,11 +66,14 @@ self.sso.user.session.get
         # Log current user
         session = self.sso.user.login(username, password, current_app, remote_addr, user_agent)
 
+        # Get UST
+        ust = session.ust
+
         # Get current user's session
-        session = self.sso.user.session.get(session.ust, session.ust, current_app, remote_addr)
+        session = self.sso.user.session.get(self.cid, ust, ust, current_app, remote_addr)
 
         # Log result
-        for key, value in sorted(session.items()):
+        for key, value in sorted(session.to_dict().items()):
             self.logger.info('%s %s', key.ljust(15), value)
 
 ::

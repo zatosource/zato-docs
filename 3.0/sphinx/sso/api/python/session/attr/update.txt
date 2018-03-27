@@ -58,11 +58,11 @@ Usage
           session = self.sso.user.login(self.cid, username, password,
               current_app, remote_addr, user_agent)
 
-          # Get UST
+          # Get current UST
           ust = session.ust
 
-          # Get user object
-          user = self.sso.user.get_user_by_id(self.cid, session.user_id, ust, current_app, remote_addr)
+          # Get session object
+          session = self.sso.user.session.get(self.cid, ust, ust, current_app, remote_addr)
 
           # Information about the attribute to be created and then updated
           name = 'my-attribute-abc'
@@ -70,10 +70,10 @@ Usage
           value2 = 'my-value2'
 
           # Create a new attribute
-          user.attr.create(name, value1)
+          session.attr.create(name, value1)
 
           # Update the newly created attribute
-          user.attr.update(name, value2)
+          session.attr.update(name, value2)
 
 
 update_many
@@ -129,11 +129,11 @@ Usage
           session = self.sso.user.login(self.cid, username, password,
               current_app, remote_addr, user_agent)
 
-          # Get UST
+          # Get current UST
           ust = session.ust
 
-          # Get user object
-          user = self.sso.user.get_user_by_id(self.cid, session.user_id, ust, current_app, remote_addr)
+          # Get session object
+          session = self.sso.user.session.get(self.cid, ust, ust, current_app, remote_addr)
 
           # Prepare a list of dictionaries with attributes to create
           data = [
@@ -143,7 +143,7 @@ Usage
           ]
 
           # Create new attributes
-          user.attr.create_many(data)
+          session.attr.create_many(data)
 
           # Now, prepare new values for the attributes
           data = [
@@ -153,4 +153,4 @@ Usage
           ]
 
           # Update all of them
-          user.attr.update_many(data)
+          session.attr.update_many(data)
