@@ -27,7 +27,7 @@ is_encrypted    Is the attribute's value stored encrypted in the database (if Tr
 get
 ---
 
-.. py:method:: get(self, name, decrypt=True, serialize_dt=False)
+.. py:method:: user.attr.get(self, name, decrypt=True, serialize_dt=False)
 
   Returns an existing user attribute.
 
@@ -104,7 +104,7 @@ Usage
 get_many
 --------
 
-.. py:method:: get_many(self, data, decrypt=True, serialize_dt=False)
+.. py:method:: user.attr.get_many(self, data, decrypt=True, serialize_dt=False)
 
   Returns all attributes from the input list. If any of input attributes does not exist, the output dictionary will return None
   for the corresponding key.

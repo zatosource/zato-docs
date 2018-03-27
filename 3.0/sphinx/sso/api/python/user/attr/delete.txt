@@ -12,7 +12,7 @@ Performance-wise, it is more efficient to use .delete_many if more than one attr
 delete
 ------
 
-.. py:method:: delete(self, name)
+.. py:method:: user.attr.delete(self, name)
 
   Creates a new user attribute.
 
@@ -64,7 +64,7 @@ Usage
 delete_many
 -----------
 
-.. py:method:: delete_many(self, data)
+.. py:method:: user.attr.delete_many(self, data)
 
   Deletes all input user attributes.
 

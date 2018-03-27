@@ -12,7 +12,7 @@ with multiple attributes. Performance-wise, it is more efficient to use .exists_
 exists
 ------
 
-.. py:method:: exists(self, name)
+.. py:method:: user.attr.exists(self, name)
 
   Returns a boolean flag indicating if the input attribute exists.
 
@@ -75,7 +75,7 @@ Usage
 exists_many
 -----------
 
-.. py:method:: exists_many(self, data)
+.. py:method:: user.attr.exists_many(self, data)
 
   Checks if attributes from the input list exist. A dictionary of boolean flag is returned for each input attribute name.
 

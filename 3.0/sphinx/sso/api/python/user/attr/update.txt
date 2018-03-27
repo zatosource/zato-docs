@@ -16,7 +16,7 @@ Performance-wise, it is more efficient to use .update_many if more than one attr
 update
 ------
 
-.. py:method:: update(self, name, value, expiration=None, encrypt=False)
+.. py:method:: user.attr.update(self, name, value, expiration=None, encrypt=False)
 
   Updates an existing user attribute.
 
@@ -79,7 +79,7 @@ Usage
 update_many
 -----------
 
-.. py:method:: update_many(self, data, expiration=None, encrypt=False)
+.. py:method:: user.attr.update_many(self, data, expiration=None, encrypt=False)
 
   Updates a series of already existing user attributes.
 

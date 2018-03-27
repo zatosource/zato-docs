@@ -1,23 +1,25 @@
 .. highlight:: python
    :linenothreshold: 0
 
-SessionAttr.delete - Python API
+SessionAttr.exists - Python API
 ===============================
 
-Deletes an existing session attribute. The operation cannot be undone.
+Returns True if a given attribute exists or False otherwise.
 
-There are two versions of the call - .delete is used with a single attribute and .delete_many is used with multiple attributes.
-Performance-wise, it is more efficient to use .delete_many if more than one attribute should be deleted.
+There are two versions of the call - .exists is used with a single attribute and .exists_many (rather than .exist) is used
+with multiple attributes. Performance-wise, it is more efficient to use .exists_many if more than one attribute should be checked.
 
-delete
+exists
 ------
 
-.. py:method:: session.attr.delete(self, name)
+.. py:method:: session.attr.exists(self, name)
 
-  Creates a new session attribute.
+  Returns a boolean flag indicating if the input attribute exists.
 
-  :param name: Name of the attribute to delete
+  :param name: Name of the attribute to check
   :type name: string
+
+  :rtype: bool
 
 Usage
 ~~~~~
@@ -31,7 +33,7 @@ Usage
   # Zato
   from zato.server.service import Service
 
-  class SessionAttrDelete(Service):
+  class SessionAttrExists(Service):
       def handle(self):
 
           # Current user's data
@@ -58,21 +60,35 @@ Usage
           # Create a new attribute
           user.attr.create(name, value)
 
-          # Delete the attribute
-          user.attr.delete(name)
+          # Check if the attribute exists
+          exists = user.attr.exists(name)
 
-delete_many
+          self.logger.info('Exists -> %s', exists)
+
+.. highlight:: bash
+
+::
+
+  INFO - True
+
+
+exists_many
 -----------
 
-.. py:method:: session.attr.delete_many(self, data)
+.. py:method:: session.attr.exists_many(self, data)
 
-  Deletes all input session attributes.
+  Checks if attributes from the input list exist. A dictionary of boolean flag is returned for each input attribute name.
 
-  :param data: A list of names of attributes to delete
+  :param data: A list of names of attributes to check
   :type data: list
+
+  :rtype: A dictionary of attribute names pointing to boolean flags that indicate if a particular attribute exists
 
 Usage
 ~~~~~
+
+.. highlight:: python
+   :linenothreshold: 0
 
 ::
 
@@ -83,7 +99,7 @@ Usage
   # Zato
   from zato.server.service import Service
 
-  class SessionAttrDeleteMany(Service):
+  class SessionAttrExistsMany(Service):
       def handle(self):
 
           # Current user's data
@@ -105,13 +121,21 @@ Usage
 
           # Prepare a list of dictionaries with attributes to create
           data = [
-              {'name':'my-attr1-zxc', 'value':''},
-              {'name':'my-attr2-zxc', 'value':''},
-              {'name':'my-attr3-zxc', 'value':''},
+              {'name':'my-attr1-zxc-11', 'value':'11'},
+              {'name':'my-attr2-zxc-22', 'value':'22'},
+              {'name':'my-attr3-zxc-33', 'value':'33'},
           ]
 
           # Create new attributes
           user.attr.create_many(data)
 
-          # Delete all the attributes
-          user.attr.delete_many(['my-attr1-zxc', 'my-attr2-zxc', 'my-attr3-zxc'])
+          # Check if all the attributes just created actually exist
+          result = user.attr.exists_many(['my-attr1-zxc-11', 'my-attr2-zxc-22', 'my-attr3-zxc-33'])
+
+          self.logger.info('Result -> %s', result)
+
+.. highlight:: bash
+
+::
+
+  INFO - Result -> {u'my-attr2-zxc-22': True, u'my-attr3-zxc-33': True, u'my-attr1-zxc-11': True}

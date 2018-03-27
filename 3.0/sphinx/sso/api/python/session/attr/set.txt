@@ -1,31 +1,26 @@
 .. highlight:: python
    :linenothreshold: 0
 
-UserAttr.create - Python API
+SessionAttr.set - Python API
 ============================
 
-Creates a new user attribute, optionally encrypting it before it is saved in the database. It is also possible to set expiry
-for an attribute, upon reaching of which the attribute will be no longer available.
+Creates a new session attribute or updates an already existing one, optionally encrypting it before it is saved in the database.
+It is also possible to set expiry for an attribute, upon reaching of which the attribute will be no longer available.
 
-An exception is raised if an attribute of a given name already exists - use :doc:`set <./set>` if an
-update should be issued instead of reporting an exception.
+If an attribute of the input name does not exist, it will be created. If it does exist, it will be updated. This is akin
+to the MERGE statement in SQL (also known as upsert).
 
-Unlike :doc:`session attributes <../../session/attr/index>`, user attributes persist across multiple sessions, multiple logins,
-of the person they belong to.
+There are two versions of the call - .set is used with a single attribute and .set_many is used with multiple attributes.
+Performance-wise, it is more efficient to use .set_many if more than one attribute should be created or updated for a session.
 
-Attribute names and other metadata may be stored in server logs. Values are never saved to logs.
+set
+---
 
-There are two versions of the call - .create is used with a single attribute and .create_many is used with multiple attributes.
-Performance-wise, it is more efficient to use .create_many if more than one attribute should be created for a user.
+.. py:method:: session.attr.set(self, name, value, expiration=None, encrypt=False)
 
-create
-------
+  Creates or updates a session attribute.
 
-.. py:method:: user.attr.create(self, name, value, expiration=None, encrypt=False)
-
-  Creates a new user attribute.
-
-  :param name: Name of the attribute to create
+  :param name: Name of the attribute to set
   :type name: string
 
   :param value: An arbitrary value assigned to the name
@@ -49,7 +44,7 @@ Usage
   # Zato
   from zato.server.service import Service
 
-  class UserAttrCreate(Service):
+  class SessionAttrSet(Service):
       def handle(self):
 
           # Current user's data
@@ -69,22 +64,22 @@ Usage
           # Get user object
           user = self.sso.user.get_user_by_id(self.cid, session.user_id, ust, current_app, remote_addr)
 
-          # Information about the attribute to be created
+          # Information about the attribute to be set
           name = 'my-attribute'
           value = 'my-value'
 
           # Create a new attribute
-          user.attr.create(name, value)
+          user.attr.set(name, value)
 
 
-create_many
------------
+set_many
+--------
 
-.. py:method:: user.attr.create_many(self, data, expiration=None, encrypt=False)
+.. py:method:: session.attr.set_many(self, data, expiration=None, encrypt=False)
 
-  Creates a series of user attributes.
+  Creates or updates a series of session attributes.
 
-  :param data: A list of dictionaries, each describing an attribute to create. If any key is missing, the default value is taken
+  :param data: A list of dictionaries, each describing an attribute to set. If any key is missing, the default value is taken
                from the method call's parameters.
 
                =========== ========
@@ -116,7 +111,7 @@ Usage
   # Zato
   from zato.server.service import Service
 
-  class UserAttrCreateMany(Service):
+  class SessionAttrSetMany(Service):
       def handle(self):
 
           # Current user's data
@@ -136,7 +131,7 @@ Usage
           # Get user object
           user = self.sso.user.get_user_by_id(self.cid, session.user_id, ust, current_app, remote_addr)
 
-          # Prepare a list of dictionaries with attributes to create
+          # Prepare a list of dictionaries with attributes to set
           data = [
               {'name':'my-attr1', 'value':'my-value1'},
               {'name':'my-attr2', 'value':'my-value2', 'encrypt':True},
@@ -144,4 +139,4 @@ Usage
           ]
 
           # Create new attributes
-          user.attr.create_many(data)
+          user.attr.set_many(data)

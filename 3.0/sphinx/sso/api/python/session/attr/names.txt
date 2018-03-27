@@ -1,17 +1,17 @@
 .. highlight:: python
    :linenothreshold: 0
 
-UserAttr.names - Python API
-============================
+SessionAttr.names - Python API
+==============================
 
-Returns names of all attributes defined for a given user. The list is not sorted in any way.
+Returns names of all attributes defined for a given session. The list is not sorted in any way.
 
 names
 -----
 
-.. py:method:: user.attr.names(self)
+.. py:method:: session.attr.names(self)
 
-  Returns names of all attributes defined for a user
+  Returns names of all attributes defined for a session
 
 Usage
 ~~~~~
@@ -28,7 +28,7 @@ Usage
   # Zato
   from zato.server.service import Service
 
-  class UserAttrNames(Service):
+  class SessionAttrNames(Service):
       def handle(self):
 
           # Current user's data

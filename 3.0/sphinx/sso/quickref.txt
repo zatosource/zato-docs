@@ -72,13 +72,13 @@ exists/exists_many                                              GET     :doc:`/z
 names                                                           GET     :doc:`/zato/sso/user/attr/names <./1pi/rest/user/attr/names>`                 :doc:`self.sso.user.attr.names <./api/python/user/attr/names>`
 \
 :doc:`Session attributes <./topic/session/attr/index>`
-create/create_many                                              POST    :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/create>`                :doc:`self.sso.session.attr.create/create_many <./1pi/python/session/attr/create>`
-update/update_many                                              PATCH   :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/update>`                :doc:`self.sso.session.attr.update/update_many <./1pi/python/session/attr/update>`
-set/set_many                                                    PUT     :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/set>`                   :doc:`self.sso.session.attr.set/set_many <./1pi/python/session/attr/set>`
-delete/delete_many                                              DELETE  :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/delete>`                :doc:`self.sso.session.attr.delete/delete_many <./1pi/python/session/attr/delete>`
-get/get_many                                                    GET     :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/get>`                   :doc:`self.sso.session.attr.get/get_many <./1pi/python/session/attr/get>`
-exists/exists_many                                              GET     :doc:`/zato/sso/session/attr/exists <./1pi/rest/session/attr/exists>`         :doc:`self.sso.session.attr.exists/exists_many <./1pi/python/session/attr/exists>`
-names                                                           GET     :doc:`/zato/sso/session/attr/names <./1pi/rest/session/attr/names>`           :doc:`self.sso.session.attr.names/names_many <./1pi/python/session/attr/names>`
+create/create_many                                              POST    :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/create>`                :doc:`self.sso.session.attr.create/create_many <./api/python/session/attr/create>`
+update/update_many                                              PATCH   :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/update>`                :doc:`self.sso.session.attr.update/update_many <./api/python/session/attr/update>`
+set/set_many                                                    PUT     :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/set>`                   :doc:`self.sso.session.attr.set/set_many <./api/python/session/attr/set>`
+delete/delete_many                                              DELETE  :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/delete>`                :doc:`self.sso.session.attr.delete/delete_many <./api/python/session/attr/delete>`
+get/get_many                                                    GET     :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/get>`                   :doc:`self.sso.session.attr.get/get_many <./api/python/session/attr/get>`
+exists/exists_many                                              GET     :doc:`/zato/sso/session/attr/exists <./1pi/rest/session/attr/exists>`         :doc:`self.sso.session.attr.exists/exists_many <./api/python/session/attr/exists>`
+names                                                           GET     :doc:`/zato/sso/session/attr/names <./1pi/rest/session/attr/names>`           :doc:`self.sso.session.attr.names <./api/python/session/attr/names>`
 =============================================================== ===================================================================================== ==================================================================================
 
 More information

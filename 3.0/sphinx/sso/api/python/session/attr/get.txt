@@ -1,0 +1,191 @@
+.. highlight:: python
+   :linenothreshold: 0
+
+SessionAttr.get - Python API
+============================
+
+Returns data and metadata of an existing session attribute, by default decrypting its value on the fly.
+
+There are two versions of the call - .get is used with a single attribute and .delete_many is used with multiple attributes.
+Performance-wise, it is more efficient to use .get_many if more than one attribute should be returned.
+
+The object returned is of zato.sso.attr.AttrEntity type, with the properties as below:
+
+=============== ===============================================================================================
+Name            Description
+=============== ===============================================================================================
+name            Attribute's name
+value           Attribute's value
+creation_time   When was the attribute created
+last_modified   When was the attribute last updated
+expiration_time When will the attribute expire
+is_encrypted    Is the attribute's value stored encrypted in the database (if True) or in clear-text (if False).
+                Note that it does indicate if the attribute's value is returned encrypted or decrypted
+                by current function call, instead it pertains to what is kept in the database.
+=============== ===============================================================================================
+
+get
+---
+
+.. py:method:: session.attr.get(self, name, decrypt=True, serialize_dt=False)
+
+  Returns an existing session attribute.
+
+  :param name: Name of the attribute to return
+  :type name: string
+
+  :param decrypt: If the attribute's value is stored encrypted in the database, should it be decrypted before it's returned
+  :type name: bool
+
+  :param serialize_dt: Should date and time be returned as string (if True) or as Python datetime objects (if False)
+  :type name: bool
+
+  :rtype: A zato.sso.attr.AttrEntity object
+
+Usage
+~~~~~
+
+::
+
+  # -*- coding: utf-8 -*-
+
+  from __future__ import absolute_import, division, print_function, unicode_literals
+
+  # Zato
+  from zato.server.service import Service
+
+  class SessionAttrGet(Service):
+      def handle(self):
+
+          # Current user's data
+          username = 'admin1'
+          password = 'abxqDJpXMVXYEO8NOGx9nVZvv4xSew9'
+          current_app = 'CRM'
+          remote_addr = '127.0.0.1'
+          user_agent = 'Firefox 139.0'
+
+          # Log in current user
+          session = self.sso.user.login(self.cid, username, password,
+              current_app, remote_addr, user_agent)
+
+          # Get UST
+          ust = session.ust
+
+          # Get user object
+          user = self.sso.user.get_user_by_id(self.cid, session.user_id, ust, current_app, remote_addr)
+
+          # Information about the attribute to be created
+          name = 'my-attribute'
+          value = 'my-value'
+
+          # Create a new attribute
+          user.attr.create(name, value)
+
+          # Get the attribute
+          attr = user.attr.get(name)
+
+          self.logger.info(attr.name)
+          self.logger.info(attr.value)
+          self.logger.info(attr.creation_time)
+          self.logger.info(attr.last_modified)
+          self.logger.info(attr.expiration_time)
+          self.logger.info(attr.is_encrypted)
+
+::
+
+  INFO - my-attribute
+  INFO - my-value
+  INFO - 2018-03-27 11:33:16
+  INFO - 2018-03-27 11:33:16
+  INFO - 9999-12-31 00:00:00
+  INFO - False
+
+
+get_many
+--------
+
+.. py:method:: session.attr.get_many(self, data, decrypt=True, serialize_dt=False)
+
+  Returns all attributes from the input list. If any of input attributes does not exist, the output dictionary will return None
+  for the corresponding key.
+
+  :param data: A list of names of attributes to return
+  :type data: list
+
+  :rtype: A dictionary of attribute names poitning to zato.sso.attr.AttrEntity objects
+
+Usage
+~~~~~
+
+::
+
+  # -*- coding: utf-8 -*-
+
+  from __future__ import absolute_import, division, print_function, unicode_literals
+
+  # Zato
+  from zato.server.service import Service
+
+  class SessionAttrGetMany(Service):
+      def handle(self):
+
+          # Current user's data
+          username = 'admin1'
+          password = 'abxqDJpXMVXYEO8NOGx9nVZvv4xSew9'
+          current_app = 'CRM'
+          remote_addr = '127.0.0.1'
+          user_agent = 'Firefox 139.0'
+
+          # Log in current user
+          session = self.sso.user.login(self.cid, username, password,
+              current_app, remote_addr, user_agent)
+
+          # Get UST
+          ust = session.ust
+
+          # Get user object
+          user = self.sso.user.get_user_by_id(self.cid, session.user_id, ust, current_app, remote_addr)
+
+          # Prepare a list of dictionaries with attributes to create
+          data = [
+              {'name':'my-attr1-zxc-11', 'value':'11'},
+              {'name':'my-attr2-zxc-22', 'value':'22'},
+              {'name':'my-attr3-zxc-33', 'value':'33'},
+          ]
+
+          # Create new attributes
+          user.attr.create_many(data)
+
+          # Get all the attributes just created
+          data = user.attr.get_many(data.keys())
+
+          for name, attr_info in sorted(['my-attr1-zxc-11', 'my-attr2-zxc-22', 'my-attr3-zxc-33']):
+              self.logger.info('Name -> %s', name)
+              self.logger.info('Data -> %s', attr_info.to_dict())
+
+::
+
+  INFO - Name -> my-attr1-zxc-11
+  INFO - Data -> {u'name': 'my-attr1-zxc-11',
+                  u'creation_time': datetime.datetime(2018, 3, 27, 12, 37, 26),
+                  u'is_encrypted': False,
+                  u'value': u'11',
+                  u'last_modified': datetime.datetime(2018, 3, 27, 12, 39, 18),
+                  u'expiration_time': datetime.datetime(9999, 12, 31, 0, 0)}
+
+  INFO - Name -> my-attr2-zxc-22
+  INFO - Data -> {u'name': 'my-attr2-zxc-22',
+                  u'creation_time': datetime.datetime(2018, 3, 27, 12, 37, 26),
+                  u'is_encrypted': False,
+                  u'value': u'22',
+                  u'last_modified': datetime.datetime(2018, 3, 27, 12, 39, 18),
+                  u'expiration_time': datetime.datetime(9999, 12, 31, 0, 0)}
+
+  INFO - Name -> my-attr3-zxc-33
+  INFO - Data -> {u'name': 'my-attr3-zxc-33',
+                  u'creation_time': datetime.datetime(2018, 3, 27, 12, 37, 26),
+                  u'is_encrypted': False,
+                  u'value': u'33',
+                  u'last_modified': datetime.datetime(2018, 3, 27, 12, 39, 18),
+                  u'expiration_time': datetime.datetime(9999, 12, 31, 0, 0)}
+

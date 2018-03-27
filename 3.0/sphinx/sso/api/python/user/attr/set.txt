@@ -16,7 +16,7 @@ Performance-wise, it is more efficient to use .set_many if more than one attribu
 set
 ---
 
-.. py:method:: set(self, name, value, expiration=None, encrypt=False)
+.. py:method:: user.attr.set(self, name, value, expiration=None, encrypt=False)
 
   Creates or updates a user attribute.
 
@@ -75,7 +75,7 @@ Usage
 set_many
 --------
 
-.. py:method:: set_many(self, data, expiration=None, encrypt=False)
+.. py:method:: user.attr.set_many(self, data, expiration=None, encrypt=False)
 
   Creates or updates a series of user attributes.
 
