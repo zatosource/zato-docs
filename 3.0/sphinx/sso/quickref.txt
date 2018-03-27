@@ -68,7 +68,7 @@ update/update_many                                              PATCH   :doc:`/z
 set/set_many                                                    PUT     :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/set>`                         :doc:`self.sso.user.attr.set/set_many <./api/python/user/attr/set>`
 delete/delete_many                                              DELETE  :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/delete>`                      :doc:`self.sso.user.attr.delete/delete_many <./api/python/user/attr/delete>`
 get/get_many                                                    GET     :doc:`/zato/sso/user/attr <./1pi/rest/user/attr/get>`                         :doc:`self.sso.user.attr.get/get_many <./api/python/user/attr/get>`
-exists/exists_many                                              GET     :doc:`/zato/sso/user/attr/exists <./1pi/rest/user/attr/exists>`               :doc:`self.sso.user.attr.exists/exists_many <./1pi/python/user/attr/exists>`
+exists/exists_many                                              GET     :doc:`/zato/sso/user/attr/exists <./1pi/rest/user/attr/exists>`               :doc:`self.sso.user.attr.exists/exists_many <./api/python/user/attr/exists>`
 names                                                           GET     :doc:`/zato/sso/user/attr/names <./1pi/rest/user/attr/names>`                 :doc:`self.sso.user.attr.names/names_many <./1pi/python/user/attr/names>`
 \
 :doc:`Session attributes <./topic/session/attr/index>`
