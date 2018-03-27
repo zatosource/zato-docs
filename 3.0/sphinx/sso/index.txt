@@ -11,7 +11,7 @@ without a need for applications to maintain their own databases or servers.
 All of the endpoints are SSO-aware (Single Sign-On) which allows people to transparently make use of multiple applications
 without a need for entering credentials in each one.
 
-The same functionality is available to programmers developing Zato services - opening doors to endless API interaction
+The same functionality is available to programmers developing Zato services in Python - opening doors to endless API interaction
 possibilities - from synchronization using IBM MQ, through FTP data export, ZeroMQ alerts to AMQP events and more,
 there are no limits to the kind of processes that can be handled.
 
@@ -23,8 +23,8 @@ Key features
 * Very well suited for modern mobile, serverless, WebSocket-based or single-page applications
 * Secure storage, including encryption and customizable password hashing with strong defaults
 * Supports a variety of workflows, easy to plug into new or existing environments
-* Audit log to trace access to PII
-* Scriptable from command-line
+* Audit log to trace access to PII (Personally Identifiable Information)
+* Scriptable from command line
 
 Topic guides
 ------------
