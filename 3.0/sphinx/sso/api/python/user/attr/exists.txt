@@ -33,7 +33,7 @@ Usage
   # Zato
   from zato.server.service import Service
 
-  class UserAttrGet(Service):
+  class UserAttrExists(Service):
       def handle(self):
 
           # Current user's data
@@ -99,7 +99,7 @@ Usage
   # Zato
   from zato.server.service import Service
 
-  class UserAttrGetMany(Service):
+  class UserAttrExistsMany(Service):
       def handle(self):
 
           # Current user's data
