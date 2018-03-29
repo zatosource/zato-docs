@@ -13,7 +13,7 @@ its underlying session.
 An exception is raised if an attribute of a given name already exists - use :doc:`set <./set>` if an
 update should be issued instead of reporting an exception.
 
-Unlike :doc:`user attributes <../../session/attr/index>`, session attributes are specific to a particular session only
+Unlike :doc:`user attributes <../../../../topic/attr/index>`, session attributes are specific to a particular session only
 and if a user logs in multiple times, all of the sessions will have a distinct set of their attributes.
 
 Attribute names and other metadata may be stored in server logs. Values are never saved to logs.
