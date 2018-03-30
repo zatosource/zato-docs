@@ -52,7 +52,7 @@ Usage
     $ ./build-zato.sh main 3.0 custom1
 
 * The script will take at least 10-20 minutes, depending on CPU and Internet connectivity, on output it will display location
-  in the filesystem on the newly built package
+  in the filesystem of the newly built package
 
 Examples
 --------
@@ -69,4 +69,4 @@ Examples
   ::
 
     $ cd ./rhel7
-    $ ./build-zato.sh main 2.0 custom1
+    $ ./build-zato.sh support/2.0 2.0 custom1

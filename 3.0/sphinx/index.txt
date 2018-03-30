@@ -265,7 +265,7 @@ Programming guide
       :doc:`Debugging<progguide/debugging>`
 
     * **Customizing web admin:**
-      :doc:`Making sure you work on the right environment<progguide/web-admin-settings>`
+      :doc:`Making sure you work in the right environment<progguide/web-admin-settings>`
 
     * **Cryptography:**
       :doc:`Encryption and decryption <progguide/crypto/encrypt>` |
@@ -295,7 +295,7 @@ User management and Single Sign-On API
       :doc:`Audit log <sso/audit/index>`
 
     * **API Reference:**
-      :doc:`Quick index <sso/quickref>` |
+      :doc:`Quick index <sso/ref>` |
       :doc:`Status codes <sso/status-code>`
 
 API Testing
