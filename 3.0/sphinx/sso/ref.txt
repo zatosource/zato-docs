@@ -71,19 +71,17 @@ exists/exists_many                                              GET     :doc:`/z
 names                                                           GET     :doc:`/zato/sso/user/attr/names <./api/rest/user/attr/names>`                 :doc:`self.sso.user.session.attr.names <./api/python/user/attr/names>`
 \
 :doc:`Session attributes <./topic/attr/index>`
-create/create_many                                              POST    :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/create>`                :doc:`self.sso.user.session.attr.create/create_many <./api/python/session/attr/create>`
-update/update_many                                              PATCH   :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/update>`                :doc:`self.sso.user.session.attr.update/update_many <./api/python/session/attr/update>`
-set/set_many                                                    PUT     :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/set>`                   :doc:`self.sso.user.session.attr.set/set_many <./api/python/session/attr/set>`
-delete/delete_many                                              DELETE  :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/delete>`                :doc:`self.sso.user.session.attr.delete/delete_many <./api/python/session/attr/delete>`
-get/get_many                                                    GET     :doc:`/zato/sso/session/attr <./1pi/rest/session/attr/get>`                   :doc:`self.sso.user.session.attr.get/get_many <./api/python/session/attr/get>`
-exists/exists_many                                              GET     :doc:`/zato/sso/session/attr/exists <./1pi/rest/session/attr/exists>`         :doc:`self.sso.user.session.attr.exists/exists_many <./api/python/session/attr/exists>`
-names                                                           GET     :doc:`/zato/sso/session/attr/names <./1pi/rest/session/attr/names>`           :doc:`self.sso.user.session.attr.names <./api/python/session/attr/names>`
+create/create_many                                              POST    :doc:`/zato/sso/session/attr <./api/rest/session/attr/create>`                :doc:`self.sso.user.session.attr.create/create_many <./api/python/session/attr/create>`
+update/update_many                                              PATCH   :doc:`/zato/sso/session/attr <./api/rest/session/attr/update>`                :doc:`self.sso.user.session.attr.update/update_many <./api/python/session/attr/update>`
+set/set_many                                                    PUT     :doc:`/zato/sso/session/attr <./api/rest/session/attr/set>`                   :doc:`self.sso.user.session.attr.set/set_many <./api/python/session/attr/set>`
+delete/delete_many                                              DELETE  :doc:`/zato/sso/session/attr <./api/rest/session/attr/delete>`                :doc:`self.sso.user.session.attr.delete/delete_many <./api/python/session/attr/delete>`
+get/get_many                                                    GET     :doc:`/zato/sso/session/attr <./api/rest/session/attr/get>`                   :doc:`self.sso.user.session.attr.get/get_many <./api/python/session/attr/get>`
+exists/exists_many                                              GET     :doc:`/zato/sso/session/attr/exists <./api/rest/session/attr/exists>`         :doc:`self.sso.user.session.attr.exists/exists_many <./api/python/session/attr/exists>`
+names                                                           GET     :doc:`/zato/sso/session/attr/names <./api/rest/session/attr/names>`           :doc:`self.sso.user.session.attr.names <./api/python/session/attr/names>`
 =============================================================== ===================================================================================== ===========================================================================================
 
 More information
 ----------------
-
-* The :doc:`tutorial <./tutorial/01>` will quickly set you up and show the most commonly used parts
 
 * Topic guides go into specific parts in depth: :doc:`Users <../sso/topic/user/index>` |
   :doc:`Sessions <./topic/session/index>` |

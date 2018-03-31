@@ -29,14 +29,15 @@ Key features
 Topic guides
 ------------
 
-====================================================== =========================================================================
-Topic                                                  Description
-====================================================== =========================================================================
-:doc:`~~Tutorial <./tutorial/01>`                      Getting started with user management and SSO
-:doc:`Quick reference <./ref>`                         All API calls and methods
-:doc:`Users <./topic/user/index>`                      Create, manage and access user accounts
-:doc:`Sessions <./topic/session/index>`                Logging users in or out and checking their existing sessions
-:doc:`Passwords <./topic/password/index>`              Enforcement and validation of user passwords
-:doc:`Configuration <./config/index>`                  Fine-tuning the system
-:doc:`Audit <./audit/index>`                           What kind of audit information is stored where, when and how to access it
-====================================================== =========================================================================
+================================================ ===================================================================
+Topic                                            Description
+================================================ ===================================================================
+:doc:`Quick reference <./ref>`                   All API calls and methods
+:doc:`Users <./topic/user/index>`                Create, manage and access user accounts
+:doc:`Sessions <./topic/session/index>`          Logging users in or out and checking their existing sessions
+:doc:`Passwords <./topic/password/index>`        Enforcement and validation of user passwords
+:doc:`Configuration <./config/index>`            Fine-tuning the system
+:doc:`Audit <./audit/index>`                     What kind of information is stored where, when and how to access it
+:doc:`Command line interface <../admin/cli/sso>` Shell commands for admins to use
+:doc:`Status codes <./status-code>`              Warnings and errors returned by APIs
+================================================ ===================================================================

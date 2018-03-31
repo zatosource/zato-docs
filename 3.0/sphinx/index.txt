@@ -280,11 +280,8 @@ Programming guide
 User management and Single Sign-On API
 ======================================
 
-    * **Introduction:**
-      :doc:`Overview <sso/index>` |
-      Tutorial: :doc:`~~Part 1 <sso/tutorial/01>` | :doc:`~~Part 2 <sso/tutorial/01>`
-
     * **Topics:**
+      :doc:`Overview <sso/index>` |
       :doc:`Users <sso/topic/user/index>` |
       :doc:`Sessions <sso/topic/session/index>` |
       :doc:`Passwords <sso/topic/password/index>`
@@ -417,7 +414,6 @@ Zato, the open-source project
    sso/topic/session/attr/*
    sso/audit/*
    sso/config/*
-   sso/tutorial/*
    test/apimox/*
    test/apitest/*
    test/apitest/step/*

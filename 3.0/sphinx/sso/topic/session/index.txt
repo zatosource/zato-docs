@@ -5,7 +5,7 @@ Sessions
 ========
 
 Sessions represent users that are logged in to the system. Each session may have a number of
-arbitrary :doc:`attributes <./attr/index>` associated that are stored in the database for as long as the session exists.
+arbitrary :doc:`attributes <../attr/index>` associated that are stored in the database for as long as the session exists.
 There is no limit to how many sessions a single user may have active at a time.
 
 Each session is identified by a UST - user session token. A UST is a random string uniquely assigned to each session.
