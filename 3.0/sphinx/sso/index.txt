@@ -1,4 +1,4 @@
-User management and Single Sign-On API
+Single Sign-On and user management API
 ======================================
 
 Overview
