@@ -1,0 +1,38 @@
+Publish/subscribe topics and guaranteed delivery queues
+=======================================================
+
+Overview
+--------
+
+.. image:: /gfx/pubsub/intro.png
+
+Publish/subscribe lets one design integrated environments using an event-based architecture of producers publishing
+business messages to topics and subscribers receiving the messages independently of any other.
+
+While in transit, messages are kept in queues that may exist in RAM or in persistent storage. The latter forms the basis
+of Guaranteed Delivery - a feature which enables delivery of messages even if faced with server restarts or
+unavailability of intended recipients.
+
+Zato provides queues, routing, security, APIs and GUI administration facilities - applications connect using REST, SOAP
+or WebSockets. It is also possible to listen for filesystem events and publish files to topics.
+
+Endpoints
+---------
+
+Publishers
+----------
+
+Subscribers
+-----------
+
+File-system events
+------------------
+
+GUI
+---
+
+API
+---
+
+Administration
+--------------
