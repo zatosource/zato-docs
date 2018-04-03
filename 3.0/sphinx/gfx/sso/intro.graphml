@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:java="http://www.yworks.com/xml/yfiles-common/1.0/java" xmlns:sys="http://www.yworks.com/xml/yfiles-common/markup/primitives/2.0" xmlns:x="http://www.yworks.com/xml/yfiles-common/markup/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:y="http://www.yworks.com/xml/graphml" xmlns:yed="http://www.yworks.com/xml/yed/3" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml/1.1/ygraphml.xsd">
+  <!--Created by yEd 3.14.2-->
+  <key attr.name="Description" attr.type="string" for="graph" id="d0"/>
+  <key for="port" id="d1" yfiles.type="portgraphics"/>
+  <key for="port" id="d2" yfiles.type="portgeometry"/>
+  <key for="port" id="d3" yfiles.type="portuserdata"/>
+  <key attr.name="url" attr.type="string" for="node" id="d4"/>
+  <key attr.name="description" attr.type="string" for="node" id="d5"/>
+  <key for="node" id="d6" yfiles.type="nodegraphics"/>
+  <key for="graphml" id="d7" yfiles.type="resources"/>
+  <key attr.name="url" attr.type="string" for="edge" id="d8"/>
+  <key attr.name="description" attr.type="string" for="edge" id="d9"/>
+  <key for="edge" id="d10" yfiles.type="edgegraphics"/>
+  <graph edgedefault="directed" id="G">
+    <data key="d0"/>
+    <node id="n0">
+      <data key="d6">
+        <y:ShapeNode>
+          <y:Geometry height="119.82679738562092" width="190.6225256532634" x="177.81527446300714" y="73.58660130718954"/>
+          <y:Fill hasColor="false" transparent="false"/>
+          <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="93.31126282663172" y="57.91339869281046">
+            <y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:Shape type="roundrectangle"/>
+          <y:DropShadow color="#FFCCFF" offsetX="2" offsetY="2"/>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n1">
+      <data key="d5"/>
+      <data key="d6">
+        <y:SVGNode>
+          <y:Geometry height="50.97599792480469" width="85.26274376560761" x="153.98233388264958" y="-12.687998962402347"/>
+          <y:Fill color="#CCCCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="40.63137188280382" y="54.97599792480469">
+            <y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="-0.5" nodeRatioX="0.0" nodeRatioY="0.5" offsetX="0.0" offsetY="4.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:SVGNodeProperties usingVisualBounds="false"/>
+          <y:SVGModel svgBoundsPolicy="0">
+            <y:SVGContent refid="1"/>
+          </y:SVGModel>
+        </y:SVGNode>
+      </data>
+    </node>
+    <node id="n2">
+      <data key="d5"/>
+      <data key="d6">
+        <y:SVGNode>
+          <y:Geometry height="78.34029871425956" width="78.50005340576172" x="331.54997329711915" y="-26.370149357129783"/>
+          <y:Fill color="#CCCCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="37.25002670288086" y="82.34029871425956">
+            <y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="-0.5" nodeRatioX="0.0" nodeRatioY="0.5" offsetX="0.0" offsetY="4.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:SVGNodeProperties usingVisualBounds="false"/>
+          <y:SVGModel svgBoundsPolicy="0">
+            <y:SVGContent refid="2"/>
+          </y:SVGModel>
+        </y:SVGNode>
+      </data>
+    </node>
+    <node id="n3">
+      <data key="d5"/>
+      <data key="d6">
+        <y:SVGNode>
+          <y:Geometry height="96.71999999999997" width="74.39999999999998" x="192.4" y="79.60000000000007"/>
+          <y:Fill color="#CCCCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="sandwich" modelPosition="s" textColor="#000000" visible="true" width="4.0" x="35.19999999999999" y="100.71999999999998"/>
+          <y:SVGNodeProperties usingVisualBounds="true"/>
+          <y:SVGModel svgBoundsPolicy="0">
+            <y:SVGContent refid="3"/>
+          </y:SVGModel>
+        </y:SVGNode>
+      </data>
+    </node>
+    <node id="n4">
+      <data key="d5"/>
+      <data key="d6">
+        <y:SVGNode>
+          <y:Geometry height="93.02857142857151" width="108.53333333333337" x="259.9044667829371" y="83.29142857142855"/>
+          <y:Fill color="#CCCCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="sandwich" modelPosition="s" textColor="#000000" visible="true" width="4.0" x="52.26666666666668" y="97.02857142857151"/>
+          <y:SVGNodeProperties usingVisualBounds="true"/>
+          <y:SVGModel svgBoundsPolicy="0">
+            <y:SVGContent refid="4"/>
+          </y:SVGModel>
+        </y:SVGNode>
+      </data>
+    </node>
+    <node id="n5">
+      <data key="d5"/>
+      <data key="d6">
+        <y:SVGNode>
+          <y:Geometry height="84.0" width="84.0" x="228.39999999999998" y="276.5133986928105"/>
+          <y:Fill color="#CCCCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="sandwich" modelPosition="s" textColor="#000000" visible="true" width="4.0" x="40.0" y="88.0"/>
+          <y:SVGNodeProperties usingVisualBounds="true"/>
+          <y:SVGModel svgBoundsPolicy="0">
+            <y:SVGContent refid="5"/>
+          </y:SVGModel>
+        </y:SVGNode>
+      </data>
+    </node>
+    <node id="n6">
+      <data key="d5"/>
+      <data key="d6">
+        <y:ShapeNode>
+          <y:Geometry height="50.0" width="50.0" x="245.39999999999998" y="365.0"/>
+          <y:Fill hasColor="false" transparent="false"/>
+          <y:BorderStyle hasColor="false" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="45.90625" modelName="custom" textColor="#000000" visible="true" width="115.55078125" x="-32.775390625" y="2.046875">Access control
+Single Sign-On
+User management<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:Shape type="rectangle"/>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n7">
+      <data key="d5"/>
+      <data key="d6">
+        <y:SVGNode>
+          <y:Geometry height="37.42157476557422" width="37.41971554663837" x="281.2901422266808" y="209.09182392723625"/>
+          <y:Fill color="#CCCCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="sandwich" modelPosition="s" textColor="#000000" visible="true" width="4.0" x="16.709857773319186" y="41.421574765574206"/>
+          <y:SVGNodeProperties usingVisualBounds="true"/>
+          <y:SVGModel svgBoundsPolicy="0">
+            <y:SVGContent refid="6"/>
+          </y:SVGModel>
+        </y:SVGNode>
+      </data>
+    </node>
+    <node id="n8">
+      <data key="d5"/>
+      <data key="d6">
+        <y:ShapeNode>
+          <y:Geometry height="50.0" width="50.0" x="305.0" y="315.0"/>
+          <y:Fill hasColor="false" transparent="false"/>
+          <y:BorderStyle hasColor="false" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" modelName="custom" textColor="#000000" visible="true" width="31.62109375" x="9.189453125" y="16.015625">Zato<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:Shape type="rectangle"/>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n9">
+      <data key="d5"/>
+      <data key="d6">
+        <y:ShapeNode>
+          <y:Geometry height="35.0" width="35.0" x="224.90446678293713" y="210.30261131002337"/>
+          <y:Fill hasColor="false" transparent="false"/>
+          <y:BorderStyle hasColor="false" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" modelName="custom" textColor="#000000" visible="true" width="34.8671875" x="0.06640625" y="1.53125">REST
+API<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:Shape type="rectangle"/>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n10">
+      <data key="d5"/>
+      <data key="d6">
+        <y:ShapeNode>
+          <y:Geometry height="50.0" width="50.0" x="394.28" y="229.20669934640523"/>
+          <y:Fill hasColor="false" transparent="false"/>
+          <y:BorderStyle hasColor="false" type="line" width="1.0"/>
+          <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="59.875" modelName="custom" textColor="#000000" visible="true" width="107.845703125" x="-17.925196874999585" y="-77.2575">Mobile
+Serverless
+Web browsers
+Single-page apps<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.5" nodeRatioX="0.21995309375000827" nodeRatioY="-0.5" offsetX="0.0" offsetY="-17.382499999999993" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:Shape type="rectangle"/>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <edge id="e0" source="n1" target="n0">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e1" source="n2" target="n0">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e2" source="n0" target="n5">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+  </graph>
+  <data key="d7">
+    <y:Resources>
+      <y:Resource id="1">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="59px" height="34px" viewBox="0 0 59 34" enable-background="new 0 0 59 34" xml:space="preserve"&gt;
+&lt;g&gt;
+	
+		&lt;radialGradient id="SVGID_1_" cx="13.5605" cy="2379.334" r="15.5262" fx="10.5317" fy="2377.6836" gradientTransform="matrix(1 0 0 1 0.2402 -2352.4531)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#B38E5D"/&gt;
+		&lt;stop  offset="1" style="stop-color:#805126"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;path fill="url(#SVGID_1_)" stroke="#5B453B" stroke-width="0.5" stroke-miterlimit="10" d="M24.766,25.613
+		c-2.199-2.197-5.477-2.941-6.033-3.055V18.9H9.64c0,0,0.019,3.451,0,3.436c0,0-3.437,0.498-6.154,3.217
+		c-2.797,2.795-3.236,5.834-3.236,5.834c0,0.969,0.788,1.744,1.762,1.744h24.255c0.974,0,1.761-0.777,1.761-1.744
+		C28.027,31.384,27.105,27.955,24.766,25.613z"/&gt;
+	
+		&lt;radialGradient id="face_x5F_white_1_" cx="13.7114" cy="2365.3154" r="11.7124" fx="11.4265" fy="2364.0706" gradientTransform="matrix(1 0 0 1 0.2402 -2352.4531)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#B38E5D"/&gt;
+		&lt;stop  offset="1" style="stop-color:#805126"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;path id="face_x5F_white_6_" fill="url(#face_x5F_white_1_)" stroke="#5B453B" stroke-width="0.5" stroke-miterlimit="10" d="
+		M21.838,11.679c0.043,5.1-3.369,9.26-7.623,9.293C9.964,21.005,6.483,16.899,6.44,11.8c-0.042-5.1,3.37-9.26,7.622-9.294
+		C18.314,2.473,21.795,6.58,21.838,11.679z"/&gt;
+	
+		&lt;linearGradient id="face_highlight_1_" gradientUnits="userSpaceOnUse" x1="5005.1221" y1="-9568.3623" x2="5016.9365" y2="-9615.0859" gradientTransform="matrix(0.275 0 0 -0.2733 -1363.6604 -2610.9094)"&gt;
+		&lt;stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0.42"/&gt;
+		&lt;stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0.12"/&gt;
+	&lt;/linearGradient&gt;
+	&lt;path id="face_highlight_6_" fill="url(#face_highlight_1_)" d="M13.979,3.167C10.961,3.19,8.605,5.414,7.585,8.36
+		c-0.332,0.96-0.147,2.021,0.49,2.814c1.365,1.699,2.865,3.142,4.73,4.044c1.569,0.759,3.767,1.192,5.946,0.624
+		c1.139-0.296,1.994-1.229,2.188-2.383c0.092-0.547,0.146-1.145,0.143-1.777C21.041,6.977,18.137,3.134,13.979,3.167z"/&gt;
+	&lt;path fill="#4B4B4B" stroke="#000000" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" d="M16.107,4.969
+		c0,0,2.845,1.375,3.845,4.063c1.052,2.826,2.062,4.116,2.095,4c0.938-3.396,0.531-10.719-5.086-10.793
+		C6.733-1.593,4.171,8.219,5.014,12.064c0.539,2.456,1.117,3.343,1.969,4.04C6.983,16.103,7.514,8.782,16.107,4.969z"/&gt;
+	
+		&lt;linearGradient id="body_1_" gradientUnits="userSpaceOnUse" x1="57.4639" y1="-2355.2373" x2="25.2671" y2="-2355.2373" gradientTransform="matrix(0.9852 0 0 -0.9852 -26.617 -2292.2966)"&gt;
+		&lt;stop  offset="0" style="stop-color:#49AD33"/&gt;
+		&lt;stop  offset="1" style="stop-color:#C2DA92"/&gt;
+	&lt;/linearGradient&gt;
+	&lt;path id="body_21_" fill="url(#body_1_)" stroke="#008D33" stroke-width="0.5" d="M0.25,31.384c0,0.97,0.788,1.746,1.762,1.746
+		h24.255c0.974,0,1.761-0.778,1.761-1.746c0,0-0.922-3.432-3.262-5.771c-2.408-2.406-4.123-2.572-4.123-2.572
+		c-0.723,3.492-4.277,4.395-6.503,4.395c-2.227,0-5.75-0.994-6.06-4.395c0,0-1.877-0.207-4.594,2.512
+		C0.689,28.346,0.25,31.384,0.25,31.384z"/&gt;
+	
+		&lt;linearGradient id="neck_x5F_white_1_" gradientUnits="userSpaceOnUse" x1="43.8125" y1="2367.9678" x2="44.5419" y2="2385.4814" gradientTransform="matrix(1 0 0 1 0.2402 -2352.4531)"&gt;
+		&lt;stop  offset="0.2711" style="stop-color:#FFAB4F"/&gt;
+		&lt;stop  offset="1" style="stop-color:#FFD28F"/&gt;
+	&lt;/linearGradient&gt;
+	&lt;path id="neck_x5F_white_5_" fill="url(#neck_x5F_white_1_)" stroke="#FFAB4F" stroke-width="0.5" stroke-miterlimit="10" d="
+		M39.859,18.9h9.094v10.115c-0.656,0.186-8.586,0.217-9.094,0.086V18.9z"/&gt;
+	
+		&lt;linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="43.3115" y1="2364.4336" x2="43.9321" y2="2379.3347" gradientTransform="matrix(1 0 0 1 0.2402 -2352.4531)"&gt;
+		&lt;stop  offset="0.2711" style="stop-color:#FFAB4F"/&gt;
+		&lt;stop  offset="1" style="stop-color:#FFD28F"/&gt;
+	&lt;/linearGradient&gt;
+	&lt;path fill="url(#SVGID_2_)" stroke="#ED9135" stroke-width="0.5" stroke-miterlimit="10" d="M54.986,25.613
+		c-2.199-2.197-5.479-2.941-6.033-3.055V18.9h-9.094c0,0,0.02,3.451,0,3.436c0,0-3.438,0.498-6.153,3.217
+		c-2.796,2.795-3.235,5.834-3.235,5.834c0,0.971,0.787,1.746,1.762,1.746h24.256c0.975,0,1.762-0.777,1.762-1.746
+		C58.248,31.384,57.326,27.955,54.986,25.613z"/&gt;
+	
+		&lt;radialGradient id="face_x5F_white_2_" cx="43.9326" cy="2365.3154" r="11.7104" fx="41.6481" fy="2364.0708" gradientTransform="matrix(1 0 0 1 0.2402 -2352.4531)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#FFD28F"/&gt;
+		&lt;stop  offset="1" style="stop-color:#FFAB4F"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;path id="face_x5F_white_5_" fill="url(#face_x5F_white_2_)" stroke="#ED9135" stroke-width="0.5" stroke-miterlimit="10" d="
+		M52.059,11.679c0.043,5.1-3.369,9.26-7.623,9.293c-4.25,0.032-7.73-4.074-7.773-9.173c-0.042-5.1,3.367-9.26,7.622-9.294
+		C48.535,2.473,52.016,6.58,52.059,11.679z"/&gt;
+	
+		&lt;linearGradient id="face_highlight_2_" gradientUnits="userSpaceOnUse" x1="5115.0127" y1="-9568.3613" x2="5126.8276" y2="-9615.085" gradientTransform="matrix(0.275 0 0 -0.2733 -1363.6604 -2610.9094)"&gt;
+		&lt;stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0.24"/&gt;
+		&lt;stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0.16"/&gt;
+	&lt;/linearGradient&gt;
+	&lt;path id="face_highlight_5_" fill="url(#face_highlight_2_)" d="M44.2,3.167c-3.019,0.023-5.374,2.247-6.394,5.193
+		c-0.332,0.96-0.147,2.021,0.488,2.814c1.364,1.699,2.864,3.142,4.729,4.044c1.568,0.759,3.769,1.192,5.945,0.624
+		c1.139-0.296,1.994-1.229,2.188-2.383c0.092-0.547,0.146-1.145,0.143-1.777C51.262,6.977,48.357,3.134,44.2,3.167z"/&gt;
+	
+		&lt;path id="Hair_Young_Brown_2_" fill="#CC9869" stroke="#99724F" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" d="
+		M40.359,6.625c1.709,2.167,4.666,3.458,4.666,3.458l-0.707-1.75c0,0,3.547,2.345,4.041,2.167c0.482-0.1-0.541-1.903-0.541-1.903
+		s1.568,0.897,2.428,1.984c0.9,1.14,2.143,1.752,2.143,1.752s1.346-10.974-8.521-10.961c-9.508-0.017-7.616,12.467-7.616,12.467
+		L37.568,8.5c0,0,0.457,2.878,0.699,2.438C39.15,7.606,39.65,5.75,40.359,6.625z"/&gt;
+	
+		&lt;radialGradient id="collar_x5F_body_1_" cx="37.6201" cy="2381.0371" r="16.2003" gradientTransform="matrix(1 0 0 1 0.2402 -2352.4531)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#B0E8FF"/&gt;
+		&lt;stop  offset="1" style="stop-color:#74AEEE"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;path id="collar_x5F_body_2_" fill="url(#collar_x5F_body_1_)" stroke="#5491CF" stroke-width="0.5" d="M30.471,31.384
+		c0,0.97,0.787,1.746,1.762,1.746h24.256c0.975,0,1.762-0.778,1.762-1.746c0,0-0.922-3.432-3.264-5.771
+		c-2.406-2.406-5.623-3.072-5.623-3.072c-0.885,0.828-2.805,1.4-5.029,1.4s-4.146-0.572-5.031-1.4c0,0-2.878,0.293-5.595,3.012
+		C30.91,28.346,30.471,31.384,30.471,31.384z"/&gt;
+	
+		&lt;radialGradient id="collar_x5F_r_1_" cx="45.791" cy="2376.1016" r="4.6398" gradientTransform="matrix(1 0 0 1 0.2402 -2352.4531)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#80CCFF"/&gt;
+		&lt;stop  offset="1" style="stop-color:#74AEEE"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;path id="collar_x5F_r_2_" fill="url(#collar_x5F_r_1_)" stroke="#5491CF" stroke-width="0.5" d="M49.301,20.691
+		c0,0-0.287,1.186-1.506,2.221c-1.055,0.896-2.893,1.037-2.893,1.037l1.986,3.107c0,0,1.479-0.818,2.504-1.925
+		c0.961-1.036,0.686-2.739,0.686-2.739L49.301,20.691z"/&gt;
+	
+		&lt;radialGradient id="collar_x5F_l_1_" cx="39.6084" cy="2376.1211" r="4.6429" gradientTransform="matrix(1 0 0 1 0.2402 -2352.4531)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#80CCFF"/&gt;
+		&lt;stop  offset="1" style="stop-color:#74AEEE"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;path id="collar_x5F_l_2_" fill="url(#collar_x5F_l_1_)" stroke="#5491CF" stroke-width="0.5" d="M39.536,20.71
+		c0,0,0.288,1.187,1.506,2.222c1.056,0.896,2.894,1.037,2.894,1.037l-1.986,3.106c0,0-1.479-0.818-2.506-1.925
+		c-0.961-1.037-0.685-2.739-0.685-2.739L39.536,20.71z"/&gt;
+	
+		&lt;radialGradient id="Knob2_1_" cx="44.0244" cy="1607.8691" r="0.485" gradientTransform="matrix(1 0 0 1 0.1602 -1579.7617)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#80CCFF"/&gt;
+		&lt;stop  offset="1" style="stop-color:#74AEEE"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;circle id="Knob2_2_" fill="url(#Knob2_1_)" stroke="#5491CF" stroke-width="0.5" cx="44.35" cy="28.127" r="0.292"/&gt;
+	
+		&lt;radialGradient id="Knob1_1_" cx="44.043" cy="1610.9922" r="0.4847" gradientTransform="matrix(1 0 0 1 0.1602 -1579.7617)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#80CCFF"/&gt;
+		&lt;stop  offset="1" style="stop-color:#74AEEE"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;circle id="Knob1_2_" fill="url(#Knob1_1_)" stroke="#5491CF" stroke-width="0.5" cx="44.369" cy="31.25" r="0.292"/&gt;
+	&lt;path id="path5135_2_" fill="#D54A30" stroke="#B51A19" stroke-width="0.5" d="M43.936,27.611c0,0-0.926,1.027-1.041,3.271
+		c-0.115,2.244,0,2.244,0,2.244h3.273c0,0,0.115,0.03-0.077-2.183c-0.2-2.303-1.194-3.334-1.194-3.334L43.936,27.611L43.936,27.611z
+		"/&gt;
+	&lt;path id="path5131_2_" fill="#D54A30" stroke="#B51A19" stroke-width="0.5" d="M44.377,24.339h0.063l1.275,2.002
+		c0.258,0.478-0.604,0.897-0.729,1.272l-1.139-0.008c-0.121-0.379-1.13-0.684-0.738-1.291L44.377,24.339z"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+</y:Resource>
+      <y:Resource id="2">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="59px" height="59px" viewBox="0 0 59 59" enable-background="new 0 0 59 59" xml:space="preserve"&gt;
+&lt;g&gt;
+	
+		&lt;linearGradient id="neck_x5F_white_1_" gradientUnits="userSpaceOnUse" x1="13.6323" y1="-1502.7422" x2="14.3617" y2="-1520.2559" gradientTransform="matrix(1 0 0 -1 0.2002 -1487.2285)"&gt;
+		&lt;stop  offset="0.2711" style="stop-color:#FFAB4F"/&gt;
+		&lt;stop  offset="1" style="stop-color:#FFD28F"/&gt;
+	&lt;/linearGradient&gt;
+	&lt;path id="neck_x5F_white_19_" fill="url(#neck_x5F_white_1_)" stroke="#FFAB4F" stroke-width="0.5" stroke-miterlimit="10" d="
+		M9.639,18.899h9.093v10.115c-0.656,0.186-8.586,0.218-9.093,0.086V18.899z"/&gt;
+	
+		&lt;linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="13.1294" y1="-1499.207" x2="13.75" y2="-1514.1072" gradientTransform="matrix(1 0 0 -1 0.2002 -1487.2285)"&gt;
+		&lt;stop  offset="0.2711" style="stop-color:#FFAB4F"/&gt;
+		&lt;stop  offset="1" style="stop-color:#FFD28F"/&gt;
+	&lt;/linearGradient&gt;
+	&lt;path fill="url(#SVGID_1_)" stroke="#ED9135" stroke-width="0.5" stroke-miterlimit="10" d="M24.766,25.612
+		c-2.199-2.197-5.477-2.941-6.033-3.055v-3.658H9.639c0,0,0.019,3.452,0,3.435c0,0-3.437,0.499-6.154,3.216
+		c-2.796,2.796-3.235,5.835-3.235,5.835c0,0.971,0.788,1.746,1.762,1.746h24.255c0.974,0,1.761-0.777,1.761-1.746
+		C28.027,31.384,27.105,27.953,24.766,25.612z"/&gt;
+	
+		&lt;radialGradient id="face_x5F_white_1_" cx="13.7515" cy="-1500.0908" r="11.7123" fx="11.4666" fy="-1501.3357" gradientTransform="matrix(1 0 0 -1 0.2002 -1487.2285)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#FFD28F"/&gt;
+		&lt;stop  offset="1" style="stop-color:#FFAB4F"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;path id="face_x5F_white_19_" fill="url(#face_x5F_white_1_)" stroke="#ED9135" stroke-width="0.5" stroke-miterlimit="10" d="
+		M21.838,11.679c0.043,5.1-3.369,9.26-7.623,9.293C9.964,21.006,6.483,16.899,6.44,11.8c-0.042-5.1,3.37-9.261,7.622-9.294
+		C18.314,2.473,21.795,6.579,21.838,11.679z"/&gt;
+	
+		&lt;linearGradient id="face_highlight_1_" gradientUnits="userSpaceOnUse" x1="4300.0391" y1="8522.0703" x2="4311.8545" y2="8568.7988" gradientTransform="matrix(0.275 0 0 0.2733 -1169.7629 -2324.9595)"&gt;
+		&lt;stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0.24"/&gt;
+		&lt;stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0.16"/&gt;
+	&lt;/linearGradient&gt;
+	&lt;path id="face_highlight_19_" fill="url(#face_highlight_1_)" d="M13.979,3.166c-3.018,0.023-5.374,2.247-6.394,5.193
+		c-0.332,0.96-0.147,2.021,0.49,2.814c1.365,1.699,2.865,3.142,4.73,4.044c1.569,0.759,3.767,1.192,5.946,0.624
+		c1.139-0.297,1.994-1.229,2.188-2.383c0.092-0.548,0.146-1.145,0.143-1.777C21.041,6.977,18.137,3.134,13.979,3.166z"/&gt;
+	
+		&lt;path id="Hair_Female_1_Black_9_" fill="#4B4B4B" stroke="#000000" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" d="
+		M14.187,0.25c-5.418,0-10.052,3.624-9.61,12.813c0.282,3.281,2.931,6.021,4.683,6.766C7.795,14.344,9.107,7.317,8.967,7.064
+		c-0.14-0.252,1.769,3.364,1.769,3.364l1.591-4.155c2.771,2.14,0.197,5.654,0.524,5.528c2.129-0.815,2.67-4.614,2.67-4.614
+		s1.364,1.829,1.35,2.752c-0.025,1.781,1.098-3.033,1.098-3.033l0.514,1.016c3.363,4.911,1.842,8.104,0.826,11.391
+		c7.834-0.352,6.146-5.24,4.83-9.203C21.795,3.046,19.604,0.25,14.187,0.25z"/&gt;
+	
+		&lt;linearGradient id="body_1_" gradientUnits="userSpaceOnUse" x1="53.4854" y1="2393.7295" x2="21.2897" y2="2393.7295" gradientTransform="matrix(0.9852 0 0 0.9852 -22.6981 -2330.2188)"&gt;
+		&lt;stop  offset="0" style="stop-color:#49AD33"/&gt;
+		&lt;stop  offset="1" style="stop-color:#C2DA92"/&gt;
+	&lt;/linearGradient&gt;
+	&lt;path id="body_63_" fill="url(#body_1_)" stroke="#008D33" stroke-width="0.5" d="M0.25,31.384c0,0.97,0.788,1.747,1.762,1.747
+		h24.255c0.974,0,1.761-0.779,1.761-1.747c0,0-0.922-3.431-3.262-5.771c-2.408-2.406-4.123-2.572-4.123-2.572
+		c-0.723,3.491-4.277,4.393-6.503,4.393c-2.227,0-5.75-0.994-6.06-4.393c0,0-1.877-0.207-4.594,2.51
+		C0.689,28.345,0.25,31.384,0.25,31.384z"/&gt;
+	
+		&lt;linearGradient id="neck_x5F_white_3_" gradientUnits="userSpaceOnUse" x1="43.8525" y1="-1502.7417" x2="44.5819" y2="-1520.2552" gradientTransform="matrix(1 0 0 -1 0.2002 -1487.2285)"&gt;
+		&lt;stop  offset="0.2711" style="stop-color:#FFAB4F"/&gt;
+		&lt;stop  offset="1" style="stop-color:#FFD28F"/&gt;
+	&lt;/linearGradient&gt;
+	&lt;path id="neck_x5F_white_17_" fill="url(#neck_x5F_white_3_)" stroke="#FFAB4F" stroke-width="0.5" stroke-miterlimit="10" d="
+		M39.859,18.899h9.094v10.115c-0.656,0.186-8.586,0.218-9.094,0.086V18.899z"/&gt;
+	
+		&lt;linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="43.3506" y1="-1499.2075" x2="43.9712" y2="-1514.1077" gradientTransform="matrix(1 0 0 -1 0.2002 -1487.2285)"&gt;
+		&lt;stop  offset="0.2711" style="stop-color:#FFAB4F"/&gt;
+		&lt;stop  offset="1" style="stop-color:#FFD28F"/&gt;
+	&lt;/linearGradient&gt;
+	&lt;path fill="url(#SVGID_2_)" stroke="#ED9135" stroke-width="0.5" stroke-miterlimit="10" d="M54.986,25.612
+		c-2.199-2.197-5.478-2.941-6.033-3.055v-3.658h-9.094c0,0,0.02,3.452,0,3.435c0,0-3.438,0.499-6.153,3.216
+		c-2.796,2.796-3.235,5.835-3.235,5.835c0,0.971,0.787,1.746,1.762,1.746h24.256c0.974,0,1.761-0.777,1.761-1.746
+		C58.248,31.384,57.326,27.953,54.986,25.612z"/&gt;
+	
+		&lt;radialGradient id="face_x5F_white_3_" cx="43.9727" cy="-1500.0908" r="11.7111" fx="41.6881" fy="-1501.3356" gradientTransform="matrix(1 0 0 -1 0.2002 -1487.2285)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#FFD28F"/&gt;
+		&lt;stop  offset="1" style="stop-color:#FFAB4F"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;path id="face_x5F_white_17_" fill="url(#face_x5F_white_3_)" stroke="#ED9135" stroke-width="0.5" stroke-miterlimit="10" d="
+		M52.059,11.679c0.043,5.1-3.369,9.26-7.623,9.293c-4.25,0.034-7.731-4.073-7.774-9.172c-0.042-5.1,3.368-9.261,7.622-9.294
+		C48.536,2.473,52.016,6.579,52.059,11.679z"/&gt;
+	
+		&lt;linearGradient id="face_highlight_3_" gradientUnits="userSpaceOnUse" x1="4409.9326" y1="8522.0703" x2="4421.7476" y2="8568.7969" gradientTransform="matrix(0.275 0 0 0.2733 -1169.7629 -2324.9595)"&gt;
+		&lt;stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0.24"/&gt;
+		&lt;stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0.16"/&gt;
+	&lt;/linearGradient&gt;
+	&lt;path id="face_highlight_17_" fill="url(#face_highlight_3_)" d="M44.2,3.166c-3.019,0.023-5.374,2.247-6.394,5.193
+		c-0.332,0.96-0.147,2.021,0.489,2.814c1.364,1.699,2.864,3.142,4.729,4.044c1.568,0.759,3.768,1.192,5.945,0.624
+		c1.139-0.297,1.994-1.229,2.188-2.383c0.092-0.548,0.146-1.145,0.143-1.777C51.262,6.977,48.357,3.134,44.2,3.166z"/&gt;
+	
+		&lt;path id="hair_x5F_gray_17_" fill="#ECECEC" stroke="#9B9B9B" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" d="
+		M40.359,6.625c0,0,2.66,3.625,7.5,1.875c1.365-0.281,4.529,0.518,4.529,0.518s-1.828-8.085-8.523-7.646
+		c-8.943,0.69-7.615,11.467-7.615,11.467s1.384-0.342,2.518-2.401C39.255,9.553,40.359,6.625,40.359,6.625z"/&gt;
+	
+		&lt;radialGradient id="collar_x5F_body_2_" cx="37.6602" cy="-1515.813" r="16.2003" gradientTransform="matrix(1 0 0 -1 0.2002 -1487.2285)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#B0E8FF"/&gt;
+		&lt;stop  offset="1" style="stop-color:#74AEEE"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;path id="collar_x5F_body_8_" fill="url(#collar_x5F_body_2_)" stroke="#5491CF" stroke-width="0.5" d="M30.471,31.384
+		c0,0.97,0.787,1.747,1.762,1.747h24.256c0.974,0,1.761-0.779,1.761-1.747c0,0-0.922-3.431-3.263-5.771
+		c-2.407-2.406-5.623-3.072-5.623-3.072c-0.885,0.827-2.805,1.4-5.03,1.4s-4.146-0.573-5.031-1.4c0,0-2.878,0.293-5.595,3.01
+		C30.91,28.345,30.471,31.384,30.471,31.384z"/&gt;
+	
+		&lt;radialGradient id="collar_x5F_r_2_" cx="45.8311" cy="-1510.8745" r="4.6401" gradientTransform="matrix(1 0 0 -1 0.2002 -1487.2285)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#80CCFF"/&gt;
+		&lt;stop  offset="1" style="stop-color:#74AEEE"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;path id="collar_x5F_r_8_" fill="url(#collar_x5F_r_2_)" stroke="#5491CF" stroke-width="0.5" d="M49.301,20.69
+		c0,0-0.287,1.185-1.506,2.221c-1.055,0.897-2.893,1.036-2.893,1.036l1.986,3.108c0,0,1.479-0.818,2.504-1.924
+		c0.961-1.036,0.686-2.74,0.686-2.74L49.301,20.69z"/&gt;
+	
+		&lt;radialGradient id="collar_x5F_l_2_" cx="39.6494" cy="-1510.896" r="4.6426" gradientTransform="matrix(1 0 0 -1 0.2002 -1487.2285)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#80CCFF"/&gt;
+		&lt;stop  offset="1" style="stop-color:#74AEEE"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;path id="collar_x5F_l_8_" fill="url(#collar_x5F_l_2_)" stroke="#5491CF" stroke-width="0.5" d="M39.536,20.711
+		c0,0,0.288,1.185,1.506,2.221c1.056,0.896,2.894,1.036,2.894,1.036l-1.987,3.108c0,0-1.479-0.818-2.505-1.925
+		c-0.961-1.036-0.685-2.74-0.685-2.74L39.536,20.711z"/&gt;
+	
+		&lt;radialGradient id="Knob2_2_" cx="44.0645" cy="-742.6421" r="0.4846" gradientTransform="matrix(1 0 0 -1 0.1201 -714.5371)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#80CCFF"/&gt;
+		&lt;stop  offset="1" style="stop-color:#74AEEE"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;circle id="Knob2_8_" fill="url(#Knob2_2_)" stroke="#5491CF" stroke-width="0.5" cx="44.35" cy="28.127" r="0.292"/&gt;
+	
+		&lt;radialGradient id="Knob1_2_" cx="44.083" cy="-745.7642" r="0.4847" gradientTransform="matrix(1 0 0 -1 0.1201 -714.5371)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#80CCFF"/&gt;
+		&lt;stop  offset="1" style="stop-color:#74AEEE"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;circle id="Knob1_8_" fill="url(#Knob1_2_)" stroke="#5491CF" stroke-width="0.5" cx="44.369" cy="31.25" r="0.292"/&gt;
+	
+		&lt;radialGradient id="jacket_x5F_body_1_" cx="36.7842" cy="-1515.3755" r="20.459" gradientTransform="matrix(1 0 0 -1 0.2002 -1487.2285)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#D0D0D0"/&gt;
+		&lt;stop  offset="1" style="stop-color:#9B9B9B"/&gt;
+	&lt;/radialGradient&gt;
+	
+		&lt;path id="jacket_x5F_body_8_" fill="url(#jacket_x5F_body_1_)" stroke="#4B4B4B" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" d="
+		M54.986,25.612c-2.217-2.217-5.111-2.955-5.557-3.059l-2.695,10.572h-4.43L39.686,22.84c-0.145-0.096-0.271-0.196-0.385-0.301
+		c0,0-2.877,0.293-5.595,3.01c-2.796,2.796-3.233,5.835-3.233,5.835c0,0.97,0.786,1.747,1.76,1.747h24.256
+		c0.975,0,1.761-0.779,1.761-1.747C58.248,31.384,57.326,27.953,54.986,25.612z"/&gt;
+	
+		&lt;polygon id="jacket_x5F_r_8_" fill="#9B9B9B" stroke="#4B4B4B" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" points="
+		49.688,21.038 51.305,23.187 50.615,27.835 48.914,28.25 49.547,29.563 47.509,33.126 46.734,33.126 	"/&gt;
+	
+		&lt;polygon id="jacket_x5F_l_8_" fill="#B2B2B2" stroke="#4B4B4B" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" points="
+		39.354,21.038 37.734,23.187 38.426,27.835 40.127,28.25 39.493,29.563 41.531,33.126 42.307,33.126 	"/&gt;
+	&lt;path id="path5135_8_" fill="#D54A30" stroke="#B51A19" stroke-width="0.5" d="M43.936,27.61c0,0-0.926,1.028-1.041,3.271
+		c-0.115,2.244,0,2.244,0,2.244h3.273c0,0,0.115,0.031-0.077-2.182c-0.2-2.302-1.194-3.334-1.194-3.334L43.936,27.61L43.936,27.61z"
+		/&gt;
+	&lt;path id="path5131_8_" fill="#D54A30" stroke="#B51A19" stroke-width="0.5" d="M44.377,24.34h0.063l1.275,2.001
+		c0.258,0.477-0.604,0.898-0.729,1.274l-1.139-0.008c-0.121-0.38-1.129-0.683-0.738-1.292L44.377,24.34z"/&gt;
+	
+		&lt;linearGradient id="neck_x5F_white_4_" gradientUnits="userSpaceOnUse" x1="43.6328" y1="-1527.7417" x2="44.3621" y2="-1545.2545" gradientTransform="matrix(1 0 0 -1 0.2002 -1487.2285)"&gt;
+		&lt;stop  offset="0.2711" style="stop-color:#FFAB4F"/&gt;
+		&lt;stop  offset="1" style="stop-color:#FFD28F"/&gt;
+	&lt;/linearGradient&gt;
+	&lt;path id="neck_x5F_white_11_" fill="url(#neck_x5F_white_4_)" stroke="#FFAB4F" stroke-width="0.5" stroke-miterlimit="10" d="
+		M39.639,43.898h9.094v10.115c-0.655,0.187-8.586,0.219-9.094,0.086V43.898z"/&gt;
+	
+		&lt;linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="43.1309" y1="-1524.2065" x2="43.7515" y2="-1539.1072" gradientTransform="matrix(1 0 0 -1 0.2002 -1487.2285)"&gt;
+		&lt;stop  offset="0.2711" style="stop-color:#FFAB4F"/&gt;
+		&lt;stop  offset="1" style="stop-color:#FFD28F"/&gt;
+	&lt;/linearGradient&gt;
+	&lt;path fill="url(#SVGID_3_)" stroke="#ED9135" stroke-width="0.5" stroke-miterlimit="10" d="M54.766,50.611
+		c-2.199-2.196-5.477-2.94-6.033-3.055v-3.658h-9.094c0,0,0.021,3.453,0,3.436c0,0-3.437,0.499-6.152,3.216
+		c-2.797,2.796-3.235,5.835-3.235,5.835c0,0.971,0.787,1.746,1.763,1.746h24.254c0.975,0,1.762-0.777,1.762-1.746
+		C58.027,56.384,57.105,52.953,54.766,50.611z"/&gt;
+	
+		&lt;radialGradient id="face_x5F_white_4_" cx="43.752" cy="-1525.0908" r="11.7114" fx="41.4673" fy="-1526.3356" gradientTransform="matrix(1 0 0 -1 0.2002 -1487.2285)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#FFD28F"/&gt;
+		&lt;stop  offset="1" style="stop-color:#FFAB4F"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;path id="face_x5F_white_11_" fill="url(#face_x5F_white_4_)" stroke="#ED9135" stroke-width="0.5" stroke-miterlimit="10" d="
+		M51.838,36.68c0.043,5.1-3.369,9.26-7.623,9.293c-4.251,0.033-7.732-4.074-7.775-9.173c-0.041-5.1,3.369-9.261,7.623-9.294
+		C48.314,27.473,51.795,31.579,51.838,36.68z"/&gt;
+	
+		&lt;linearGradient id="face_highlight_4_" gradientUnits="userSpaceOnUse" x1="4409.1299" y1="8613.5469" x2="4420.9448" y2="8660.2725" gradientTransform="matrix(0.275 0 0 0.2733 -1169.7629 -2324.9595)"&gt;
+		&lt;stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0.24"/&gt;
+		&lt;stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0.16"/&gt;
+	&lt;/linearGradient&gt;
+	&lt;path id="face_highlight_11_" fill="url(#face_highlight_4_)" d="M43.979,28.166c-3.018,0.023-5.373,2.247-6.394,5.193
+		c-0.332,0.959-0.147,2.021,0.49,2.813c1.364,1.699,2.864,3.142,4.729,4.044c1.568,0.76,3.768,1.192,5.945,0.624
+		c1.139-0.297,1.994-1.229,2.188-2.383c0.092-0.548,0.146-1.146,0.144-1.776C51.041,31.977,48.137,28.134,43.979,28.166z"/&gt;
+	&lt;path fill="#CC9869" stroke="#99724F" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" d="M46.107,29.969
+		c0,0,2.845,1.375,3.845,4.062c1.052,2.826,2.062,4.117,2.095,4c0.938-3.395,0.531-10.718-5.086-10.792
+		c-10.229-3.832-12.79,5.98-11.947,9.824c0.539,2.457,1.117,3.344,1.971,4.041C36.982,41.104,37.514,33.781,46.107,29.969z"/&gt;
+	
+		&lt;linearGradient id="body_2_" gradientUnits="userSpaceOnUse" x1="83.9365" y1="2419.1064" x2="51.7404" y2="2419.1064" gradientTransform="matrix(0.9852 0 0 0.9852 -22.6981 -2330.2188)"&gt;
+		&lt;stop  offset="0" style="stop-color:#49AD33"/&gt;
+		&lt;stop  offset="1" style="stop-color:#C2DA92"/&gt;
+	&lt;/linearGradient&gt;
+	&lt;path id="body_35_" fill="url(#body_2_)" stroke="#008D33" stroke-width="0.5" d="M30.25,56.384c0,0.97,0.787,1.747,1.762,1.747
+		h24.256c0.974,0,1.76-0.779,1.76-1.747c0,0-0.922-3.431-3.262-5.771c-2.408-2.406-4.123-2.572-4.123-2.572
+		c-0.723,3.49-4.276,4.393-6.504,4.393c-2.227,0-5.75-0.994-6.059-4.393c0,0-1.878-0.207-4.596,2.51
+		C30.689,53.346,30.25,56.384,30.25,56.384z"/&gt;
+	
+		&lt;radialGradient id="neck_x5F_white_5_" cx="14.0952" cy="-1534.9302" r="5.7236" fx="12.9786" fy="-1535.5386" gradientTransform="matrix(1 0 0 -1 0.2002 -1487.2285)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#B38E5D"/&gt;
+		&lt;stop  offset="1" style="stop-color:#805126"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;path id="neck_x5F_white_2_" fill="url(#neck_x5F_white_5_)" stroke="#5B453B" stroke-width="0.5" stroke-miterlimit="10" d="
+		M9.859,43.898h9.094v6.615c-0.656,0.187-8.586,0.219-9.094,0.086V43.898z"/&gt;
+	
+		&lt;radialGradient id="SVGID_4_" cx="13.8213" cy="-1539.1084" r="15.5272" fx="10.7923" fy="-1540.7589" gradientTransform="matrix(1 0 0 -1 0.2002 -1487.2285)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#B38E5D"/&gt;
+		&lt;stop  offset="1" style="stop-color:#805126"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;path fill="url(#SVGID_4_)" stroke="#5B453B" stroke-width="0.5" stroke-miterlimit="10" d="M24.986,50.611
+		c-2.199-2.196-5.477-2.94-6.033-3.055v-3.658H9.859c0,0,0.02,3.453,0,3.436c0,0-3.437,0.499-6.153,3.216
+		c-2.796,2.796-3.235,5.835-3.235,5.835c0,0.971,0.787,1.746,1.762,1.746h24.255c0.974,0,1.761-0.777,1.761-1.746
+		C28.248,56.384,27.326,52.953,24.986,50.611z"/&gt;
+	
+		&lt;radialGradient id="face_x5F_white_5_" cx="13.9722" cy="-1525.0908" r="11.7123" fx="11.6873" fy="-1526.3357" gradientTransform="matrix(1 0 0 -1 0.2002 -1487.2285)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#B38E5D"/&gt;
+		&lt;stop  offset="1" style="stop-color:#805126"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;path id="face_x5F_white_2_" fill="url(#face_x5F_white_5_)" stroke="#5B453B" stroke-width="0.5" stroke-miterlimit="10" d="
+		M22.059,36.68c0.043,5.1-3.369,9.26-7.623,9.293c-4.251,0.033-7.732-4.074-7.775-9.173c-0.042-5.1,3.369-9.261,7.622-9.294
+		C18.536,27.473,22.016,31.579,22.059,36.68z"/&gt;
+	
+		&lt;linearGradient id="face_highlight_5_" gradientUnits="userSpaceOnUse" x1="4300.8428" y1="8613.5449" x2="4312.6582" y2="8660.2734" gradientTransform="matrix(0.275 0 0 0.2733 -1169.7629 -2324.9595)"&gt;
+		&lt;stop  offset="0" style="stop-color:#FFFFFF;stop-opacity:0.42"/&gt;
+		&lt;stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0.12"/&gt;
+	&lt;/linearGradient&gt;
+	&lt;path id="face_highlight_2_" fill="url(#face_highlight_5_)" d="M14.2,28.166c-3.018,0.023-5.374,2.247-6.394,5.193
+		c-0.332,0.959-0.147,2.021,0.49,2.813c1.364,1.699,2.864,3.142,4.73,4.044c1.568,0.76,3.767,1.192,5.945,0.624
+		c1.139-0.297,1.994-1.229,2.188-2.383c0.092-0.548,0.146-1.146,0.143-1.776C21.262,31.977,18.357,28.134,14.2,28.166z"/&gt;
+	
+		&lt;path id="Hair_Young_Black_1_" fill="#4B4B4B" stroke="#000000" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" d="
+		M10.359,31.625c1.709,2.166,4.667,3.459,4.667,3.459l-0.708-1.75c0,0,3.547,2.346,4.041,2.166c0.484-0.1-0.541-1.902-0.541-1.902
+		s1.568,0.896,2.428,1.983c0.9,1.14,2.143,1.752,2.143,1.752s1.346-10.974-8.523-10.961C4.359,26.354,6.25,38.839,6.25,38.839
+		L7.568,33.5c0,0,0.457,2.879,0.699,2.438C9.151,32.605,9.651,30.75,10.359,31.625z"/&gt;
+	
+		&lt;radialGradient id="collar_x5F_body_3_" cx="7.6602" cy="-1540.813" r="16.2003" gradientTransform="matrix(1 0 0 -1 0.2002 -1487.2285)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#B0E8FF"/&gt;
+		&lt;stop  offset="1" style="stop-color:#74AEEE"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;path id="collar_x5F_body_1_" fill="url(#collar_x5F_body_3_)" stroke="#5491CF" stroke-width="0.5" d="M0.471,56.384
+		c0,0.97,0.787,1.747,1.762,1.747h24.255c0.974,0,1.761-0.779,1.761-1.747c0,0-0.922-3.431-3.262-5.771
+		c-2.408-2.406-5.623-3.072-5.623-3.072c-0.885,0.827-2.805,1.4-5.031,1.4s-4.146-0.573-5.031-1.4c0,0-2.878,0.293-5.595,3.01
+		C0.91,53.346,0.471,56.384,0.471,56.384z"/&gt;
+	
+		&lt;radialGradient id="collar_x5F_r_3_" cx="15.8306" cy="-1535.874" r="4.6412" gradientTransform="matrix(1 0 0 -1 0.2002 -1487.2285)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#80CCFF"/&gt;
+		&lt;stop  offset="1" style="stop-color:#74AEEE"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;path id="collar_x5F_r_1_" fill="url(#collar_x5F_r_3_)" stroke="#5491CF" stroke-width="0.5" d="M19.301,45.689
+		c0,0-0.287,1.186-1.506,2.222c-1.055,0.897-2.893,1.036-2.893,1.036l1.986,3.107c0,0,1.479-0.818,2.504-1.924
+		c0.961-1.035,0.686-2.74,0.686-2.74L19.301,45.689z"/&gt;
+	
+		&lt;radialGradient id="collar_x5F_l_3_" cx="9.6494" cy="-1535.896" r="4.6422" gradientTransform="matrix(1 0 0 -1 0.2002 -1487.2285)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#80CCFF"/&gt;
+		&lt;stop  offset="1" style="stop-color:#74AEEE"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;path id="collar_x5F_l_1_" fill="url(#collar_x5F_l_3_)" stroke="#5491CF" stroke-width="0.5" d="M9.536,45.711
+		c0,0,0.288,1.186,1.506,2.221c1.055,0.896,2.893,1.037,2.893,1.037l-1.987,3.107c0,0-1.479-0.818-2.504-1.926
+		c-0.961-1.035-0.685-2.739-0.685-2.739L9.536,45.711z"/&gt;
+	
+		&lt;radialGradient id="Knob2_3_" cx="14.0645" cy="-767.6421" r="0.4842" gradientTransform="matrix(1 0 0 -1 0.1201 -714.5371)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#80CCFF"/&gt;
+		&lt;stop  offset="1" style="stop-color:#74AEEE"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;circle id="Knob2_1_" fill="url(#Knob2_3_)" stroke="#5491CF" stroke-width="0.5" cx="14.35" cy="53.127" r="0.292"/&gt;
+	
+		&lt;radialGradient id="Knob1_3_" cx="14.0835" cy="-770.7642" r="0.4844" gradientTransform="matrix(1 0 0 -1 0.1201 -714.5371)" gradientUnits="userSpaceOnUse"&gt;
+		&lt;stop  offset="0" style="stop-color:#80CCFF"/&gt;
+		&lt;stop  offset="1" style="stop-color:#74AEEE"/&gt;
+	&lt;/radialGradient&gt;
+	&lt;circle id="Knob1_1_" fill="url(#Knob1_3_)" stroke="#5491CF" stroke-width="0.5" cx="14.369" cy="56.25" r="0.292"/&gt;
+	&lt;path id="path5135_1_" fill="#D54A30" stroke="#B51A19" stroke-width="0.5" d="M13.935,52.609c0,0-0.925,1.029-1.04,3.271
+		c-0.115,2.244,0,2.244,0,2.244h3.273c0,0,0.115,0.031-0.077-2.182c-0.2-2.303-1.194-3.334-1.194-3.334H13.935L13.935,52.609z"/&gt;
+	&lt;path id="path5131_1_" fill="#D54A30" stroke="#B51A19" stroke-width="0.5" d="M14.377,49.34h0.062l1.276,2.001
+		c0.258,0.478-0.604,0.897-0.728,1.274l-1.14-0.008c-0.121-0.381-1.128-0.684-0.738-1.293L14.377,49.34z"/&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+</y:Resource>
+      <y:Resource id="3">&lt;?xml version="1.0" ?&gt;&lt;svg height="400px" version="1.1" viewBox="0 0 400 400" width="400px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;&lt;title/&gt;&lt;desc/&gt;&lt;defs&gt;&lt;rect height="260" id="path-1" rx="10" width="160" x="120" y="60"/&gt;&lt;filter filterUnits="objectBoundingBox" height="200%" id="filter-2" width="200%" x="-50%" y="-50%"&gt;&lt;feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"/&gt;&lt;feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/&gt;&lt;feColorMatrix in="shadowBlurOuter1" type="matrix" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/&gt;&lt;/filter&gt;&lt;rect height="180" id="path-3" rx="2" width="120" x="140" y="100"/&gt;&lt;filter filterUnits="objectBoundingBox" height="200%" id="filter-4" width="200%" x="-50%" y="-50%"&gt;&lt;feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/&gt;&lt;feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="1"/&gt;&lt;feColorMatrix in="shadowBlurOuter1" type="matrix" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/&gt;&lt;/filter&gt;&lt;rect height="6" id="path-5" rx="3" width="40" x="180" y="77"/&gt;&lt;filter filterUnits="objectBoundingBox" height="200%" id="filter-6" width="200%" x="-50%" y="-50%"&gt;&lt;feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/&gt;&lt;feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/&gt;&lt;feColorMatrix in="shadowBlurOuter1" type="matrix" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/&gt;&lt;/filter&gt;&lt;circle cx="200" cy="300" id="path-7" r="15"/&gt;&lt;filter filterUnits="objectBoundingBox" height="200%" id="filter-8" width="200%" x="-50%" y="-50%"&gt;&lt;feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/&gt;&lt;feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/&gt;&lt;feColorMatrix in="shadowBlurOuter1" type="matrix" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/&gt;&lt;/filter&gt;&lt;/defs&gt;&lt;g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"&gt;&lt;g id="iphone"&gt;&lt;path d="M200,400 C310.45695,400 400,310.45695 400,200 C400,89.54305 310.45695,0 200,0 C89.54305,0 0,89.54305 0,200 C0,310.45695 89.54305,400 200,400 Z" fill="#AAD8B0" id="Oval-6"/&gt;&lt;g id="Rectangle-38"&gt;&lt;use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"/&gt;&lt;use fill="#697F9B" fill-rule="evenodd" xlink:href="#path-1"/&gt;&lt;/g&gt;&lt;g id="Rectangle-39"&gt;&lt;use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"/&gt;&lt;use fill="#DCF0E6" fill-rule="evenodd" xlink:href="#path-3"/&gt;&lt;/g&gt;&lt;g id="Rectangle-40"&gt;&lt;use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"/&gt;&lt;use fill="#FBF0B8" fill-rule="evenodd" xlink:href="#path-5"/&gt;&lt;/g&gt;&lt;g id="Oval-43"&gt;&lt;use fill="black" fill-opacity="1" filter="url(#filter-8)" xlink:href="#path-7"/&gt;&lt;use fill="#FBF0B8" fill-rule="evenodd" xlink:href="#path-7"/&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;/svg&gt;</y:Resource>
+      <y:Resource id="4">&lt;?xml version="1.0" ?&gt;&lt;svg height="400px" version="1.1" viewBox="0 0 400 400" width="400px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;&lt;title/&gt;&lt;desc/&gt;&lt;defs&gt;&lt;path d="M220,270 L334.005979,270 C337.318532,270 340,267.31365 340,263.99987 L340,86.0001305 C340,82.6858997 337.316385,80 334.005979,80 L65.9940209,80 C62.6814684,80 60,82.6863499 60,86.0001305 L60,263.99987 C60,267.3141 62.6836146,270 65.9940209,270 L180,270 L180,300 L220,300 L220,270 L220,270 L220,270 L220,270 Z M130,303.99923 C130,301.790516 131.795632,300 134.001598,300 L265.998402,300 C268.208423,300 270,301.792468 270,303.99923 L270,316.00077 C270,318.209484 268.204368,320 265.998402,320 L134.001598,320 C131.791577,320 130,318.207532 130,316.00077 L130,303.99923 L130,303.99923 L130,303.99923 L130,303.99923 Z" id="path-1"/&gt;&lt;filter filterUnits="objectBoundingBox" height="200%" id="filter-2" width="200%" x="-50%" y="-50%"&gt;&lt;feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"/&gt;&lt;feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/&gt;&lt;feColorMatrix in="shadowBlurOuter1" type="matrix" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/&gt;&lt;/filter&gt;&lt;rect height="141" id="path-3" rx="2" width="260" x="70" y="99"/&gt;&lt;filter filterUnits="objectBoundingBox" height="200%" id="filter-4" width="200%" x="-50%" y="-50%"&gt;&lt;feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/&gt;&lt;feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="1"/&gt;&lt;feColorMatrix in="shadowBlurOuter1" type="matrix" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/&gt;&lt;/filter&gt;&lt;circle cx="200" cy="255" id="path-5" r="10"/&gt;&lt;filter filterUnits="objectBoundingBox" height="200%" id="filter-6" width="200%" x="-50%" y="-50%"&gt;&lt;feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/&gt;&lt;feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/&gt;&lt;feColorMatrix in="shadowBlurOuter1" type="matrix" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/&gt;&lt;/filter&gt;&lt;/defs&gt;&lt;g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"&gt;&lt;g id="pc"&gt;&lt;path d="M200,400 C310.45695,400 400,310.45695 400,200 C400,89.54305 310.45695,0 200,0 C89.54305,0 0,89.54305 0,200 C0,310.45695 89.54305,400 200,400 Z" fill="#AAD8B0" id="Oval-6"/&gt;&lt;g id="Combined-Shape"&gt;&lt;use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"/&gt;&lt;use fill="#697F9B" fill-rule="evenodd" xlink:href="#path-1"/&gt;&lt;/g&gt;&lt;g id="Rectangle-42"&gt;&lt;use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"/&gt;&lt;use fill="#DCF0E6" fill-rule="evenodd" xlink:href="#path-3"/&gt;&lt;/g&gt;&lt;g id="Oval-45"&gt;&lt;use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-5"/&gt;&lt;use fill="#FBF0B8" fill-rule="evenodd" xlink:href="#path-5"/&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;/svg&gt;</y:Resource>
+      <y:Resource id="5">&lt;?xml version="1.0" ?&gt;&lt;svg enable-background="new 0 0 64 64" height="64px" version="1.1" viewBox="0 0 64 64" width="64px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;&lt;g id="Layer_1"&gt;&lt;g&gt;&lt;circle cx="32" cy="32" fill="#C75C5C" r="32"/&gt;&lt;/g&gt;&lt;g opacity="0.2"&gt;&lt;path d="M32,56c0,0-18-6.811-18-21.495V20.883c0,0,5.81-6.883,18-6.883V56z" fill="#231F20"/&gt;&lt;/g&gt;&lt;g opacity="0.2"&gt;&lt;path d="M32,56c0,0,18-6.811,18-21.495V20.883c0,0-5.81-6.883-18-6.883V56z" fill="#231F20"/&gt;&lt;/g&gt;&lt;g&gt;&lt;path d="M32,54c0,0-18-6.811-18-21.495V18.883c0,0,5.81-6.883,18-6.883V54z" fill="#F5CF87"/&gt;&lt;/g&gt;&lt;g&gt;&lt;path d="M32,54c0,0,18-6.811,18-21.495V18.883c0,0-5.81-6.883-18-6.883V54z" fill="#E0995E"/&gt;&lt;/g&gt;&lt;/g&gt;&lt;g id="Layer_2"/&gt;&lt;/svg&gt;</y:Resource>
+      <y:Resource id="6">&lt;?xml version="1.0" ?&gt;&lt;svg height="32px" version="1.1" viewBox="0 0 32 32" width="32px" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;&lt;title/&gt;&lt;desc/&gt;&lt;defs/&gt;&lt;g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"&gt;&lt;g fill="#929292" id="icon-25-key"&gt;&lt;path d="M17.0336552,13.3678662 C16.3812449,12.407675 16,11.2483598 16,10 C16,6.68629134 18.6862913,4 22,4 C25.3137087,4 28,6.68629134 28,10 C28,13.3137087 25.3137087,16 22,16 C20.7464539,16 19.5826937,15.6155808 18.6201766,14.9581994 L14.5381635,19.0381635 L16.5,21 L15,22.5 L13.037787,20.537787 L10.0370339,23.5370339 L12.5,26 L11,27.5 L8.53665732,25.0366573 L5.8870599,27.6849248 C5.45252802,28.1192385 4.76199383,28.1128958 4.33377865,27.6816824 L4.31539123,27.6631662 C3.88827138,27.2330558 3.88810647,26.5337787 4.31746937,26.1037506 L17.0336552,13.3678662 L17.0336552,13.3678662 L17.0336552,13.3678662 Z M13,22 L11.5,23.5 L11.5,23.5 L14,26 L11,29 L8.5,26.5 L6.62453677,28.3754632 C5.78317976,29.2168202 4.42053288,29.2205817 3.58239782,28.3824466 L3.61755335,28.4176022 C2.78072202,27.5807709 2.78254488,26.2174551 3.62453677,25.3754632 L15.7819315,13.2180685 C15.2822882,12.2545997 15,11.1602658 15,10 C15,6.13400656 18.1340066,3 22,3 C25.8659934,3 29,6.13400656 29,10 C29,13.8659934 25.8659934,17 22,17 C20.8397342,17 19.7454003,16.7177118 18.7819315,16.2180685 L18.7819315,16.2180685 L16,19 L18,21 L15,24 L13,22 L13,22 L13,22 Z M22,14 C24.2091391,14 26,12.2091391 26,10 C26,7.79086089 24.2091391,6 22,6 C19.7908609,6 18,7.79086089 18,10 C18,12.2091391 19.7908609,14 22,14 L22,14 L22,14 Z M22,13 C23.6568543,13 25,11.6568543 25,10 C25,8.34314567 23.6568543,7 22,7 C20.3431457,7 19,8.34314567 19,10 C19,11.6568543 20.3431457,13 22,13 L22,13 L22,13 Z" id="key"/&gt;&lt;/g&gt;&lt;/g&gt;&lt;/svg&gt;</y:Resource>
+    </y:Resources>
+  </data>
+</graphml>

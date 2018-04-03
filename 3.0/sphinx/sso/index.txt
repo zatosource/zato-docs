@@ -4,6 +4,8 @@ Single Sign-On and user management API
 Overview
 --------
 
+.. image:: /gfx/sso/intro.png
+
 Zato offers a series of secure REST endpoints that let applications manage users in an API-driven manner -
 everything from signup, sessions to password reset is accessible through APIs,
 without a need for applications to maintain their own databases or servers.
