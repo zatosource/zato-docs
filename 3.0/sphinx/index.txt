@@ -7,7 +7,7 @@ Getting help
 
 * Read the :doc:`no-nonsense intro to ESB and SOA <intro/esb-soa>`
 
-* :doc:`Download and install<admin/guide/install/index>` the latest version
+* :doc:`Download and install <admin/guide/install/index>` the latest version
 
 * `Priority commercial support and training <https://zato.io/support.html>`_
 
@@ -50,15 +50,15 @@ Introduction
 ============
 
     * **Basic concepts:**
-      :doc:`No-nonsense intro to ESB and SOA<intro/esb-soa>` |
+      :doc:`No-nonsense intro to ESB and SOA <intro/esb-soa>` |
       :doc:`High-level overview <intro/overview-high-level>` |
       :doc:`Technical overview <intro/overview-tech>` |
       :doc:`Nomenclature <intro/nomen>` |
       :doc:`What's new in 3.0 <project/changelog>`
 
     * **Tutorial:**
-      :doc:`Part 1<tutorial/01>` |
-      :doc:`Part 2<tutorial/02>`
+      :doc:`Part 1 <tutorial/01>` |
+      :doc:`Part 2 <tutorial/02>`
 
 I18N
 ====
@@ -80,112 +80,112 @@ Web admin reference
 ===================
 
     * **Overview:**
-      :doc:`Introduction<web-admin/intro>` |
-      :doc:`Securing the web admin<web-admin/security>`
+      :doc:`Introduction <web-admin/intro>` |
+      :doc:`Securing the web admin <web-admin/security>`
 
     * **Clusters:**
-      :doc:`Main view<web-admin/clusters>`
+      :doc:`Main view <web-admin/clusters>`
 
     * **Servers:**
-      :doc:`Main view<web-admin/servers/main>` |
-      :doc:`Adding and removing servers<web-admin/servers/add-remove>`
+      :doc:`Main view <web-admin/servers/main>` |
+      :doc:`Adding and removing servers <web-admin/servers/add-remove>`
 
     * **Load balancer:**
-      :doc:`GUI view<web-admin/load-balancer/gui>` |
-      :doc:`Source code view<web-admin/load-balancer/source-code>` |
-      :doc:`Remote commands<web-admin/load-balancer/remote-commands>` |
-      :doc:`Statistics<web-admin/load-balancer/statistics>`
+      :doc:`GUI view <web-admin/load-balancer/gui>` |
+      :doc:`Source code view <web-admin/load-balancer/source-code>` |
+      :doc:`Remote commands <web-admin/load-balancer/remote-commands>` |
+      :doc:`Statistics <web-admin/load-balancer/statistics>`
 
     * **Services:**
-      :doc:`Main view<web-admin/services/main>` |
-      :doc:`Uploading a service<web-admin/services/upload>`
+      :doc:`Main view <web-admin/services/main>` |
+      :doc:`Uploading a service <web-admin/services/upload>`
 
     * **Service details:**
-      :doc:`Main view<web-admin/service-details/main>` |
-      :doc:`Invoker<web-admin/service-details/invoker>` |
-      :doc:`Source code<web-admin/service-details/source-code>` |
-      :doc:`WSDL<web-admin/service-details/wsdl>` |
-      :doc:`Sample requests/responses<web-admin/service-details/sample-req-resp>` |
-      :doc:`Slow responses<web-admin/service-details/slow-responses>`
+      :doc:`Main view <web-admin/service-details/main>` |
+      :doc:`Invoker <web-admin/service-details/invoker>` |
+      :doc:`Source code <web-admin/service-details/source-code>` |
+      :doc:`WSDL <web-admin/service-details/wsdl>` |
+      :doc:`Sample requests/responses <web-admin/service-details/sample-req-resp>` |
+      :doc:`Slow responses <web-admin/service-details/slow-responses>`
 
     * **Messages:**
-      :doc:`JSON Pointers<web-admin/messages/json-pointer>` |
-      :doc:`XML Namespaces<web-admin/messages/xml-ns>` |
-      :doc:`XPath<web-admin/messages/xpath>`
+      :doc:`JSON Pointers <web-admin/messages/json-pointer>` |
+      :doc:`XML Namespaces <web-admin/messages/xml-ns>` |
+      :doc:`XPath <web-admin/messages/xpath>`
 
     * **Security:**
-      :doc:`API keys<web-admin/security/apikey>` |
-      :doc:`AWS<web-admin/security/aws>` |
-      :doc:`HTTP Basic Auth<web-admin/security/basic-auth>` |
-      :doc:`NTLM<web-admin/security/ntlm>` |
-      :doc:`OAuth<web-admin/security/oauth>` |
-      :doc:`RBAC (Role-based access control)<web-admin/security/rbac/overview>` |
+      :doc:`API keys <web-admin/security/apikey>` |
+      :doc:`AWS <web-admin/security/aws>` |
+      :doc:`HTTP Basic Auth <web-admin/security/basic-auth>` |
+      :doc:`NTLM <web-admin/security/ntlm>` |
+      :doc:`OAuth <web-admin/security/oauth>` |
+      :doc:`RBAC (Role-based access control) <web-admin/security/rbac/overview>` |
       :doc:`SSL/TLS <web-admin/security/tls/overview>` |
-      :doc:`Technical accounts<web-admin/security/tech-account>` |
-      :doc:`WS-Security<web-admin/security/ws-security>` |
-      :doc:`XPath<web-admin/security/xpath>`
+      :doc:`Technical accounts <web-admin/security/tech-account>` |
+      :doc:`WS-Security <web-admin/security/ws-security>` |
+      :doc:`XPath <web-admin/security/xpath>`
 
     * **Connection definitions:**
-      :doc:`AMQP<web-admin/conn-def/amqp>` |
-      :doc:`Cassandra<web-admin/conn-def/cassandra>` |
-      :doc:`JMS WebSphere MQ<web-admin/conn-def/jms-wmq>`
+      :doc:`AMQP <web-admin/conn-def/amqp>` |
+      :doc:`Cassandra <web-admin/conn-def/cassandra>` |
+      :doc:`JMS WebSphere MQ <web-admin/conn-def/jms-wmq>`
 
     * **Channels:**
-      :doc:`AMQP<web-admin/channels/amqp>` |
-      :doc:`JMS WebSphere MQ<web-admin/channels/jms-wmq>` |
-      :doc:`Plain HTTP (REST)<web-admin/channels/plain-http>` |
-      :doc:`SOAP<web-admin/channels/soap>` |
-      :doc:`ZeroMQ<web-admin/channels/zmq>`
+      :doc:`AMQP <web-admin/channels/amqp>` |
+      :doc:`JMS WebSphere MQ <web-admin/channels/jms-wmq>` |
+      :doc:`Plain HTTP (REST) <web-admin/channels/plain-http>` |
+      :doc:`SOAP <web-admin/channels/soap>` |
+      :doc:`ZeroMQ <web-admin/channels/zmq>`
 
     * **Outgoing connections:**
-      :doc:`AMQP<web-admin/outgoing/amqp>` |
-      :doc:`FTP<web-admin/outgoing/ftp>` |
-      :doc:`JMS WebSphere MQ<web-admin/outgoing/jms-wmq>` |
-      :doc:`Plain HTTP (REST)<web-admin/outgoing/plain-http>` |
-      :doc:`Odoo (OpenERP)<web-admin/outgoing/odoo>` |
-      :doc:`SOAP<web-admin/outgoing/soap>` |
-      :doc:`SQL<web-admin/outgoing/sql>` |
-      :doc:`ZeroMQ<web-admin/outgoing/zmq>`
+      :doc:`AMQP <web-admin/outgoing/amqp>` |
+      :doc:`FTP <web-admin/outgoing/ftp>` |
+      :doc:`JMS WebSphere MQ <web-admin/outgoing/jms-wmq>` |
+      :doc:`Plain HTTP (REST) <web-admin/outgoing/plain-http>` |
+      :doc:`Odoo (OpenERP) <web-admin/outgoing/odoo>` |
+      :doc:`SOAP <web-admin/outgoing/soap>` |
+      :doc:`SQL <web-admin/outgoing/sql>` |
+      :doc:`ZeroMQ <web-admin/outgoing/zmq>`
 
     * **HTTP Audit Log:**
-      :doc:`Overview<web-admin/audit-log/http/index>` |
-      :doc:`Configuring<web-admin/audit-log/http/channel/config>` |
-      :doc:`Searching<web-admin/audit-log/http/channel/search>` |
-      :doc:`Displaying details<web-admin/audit-log/http/channel/details>`
+      :doc:`Overview <web-admin/audit-log/http/index>` |
+      :doc:`Configuring <web-admin/audit-log/http/channel/config>` |
+      :doc:`Searching <web-admin/audit-log/http/channel/search>` |
+      :doc:`Displaying details <web-admin/audit-log/http/channel/details>`
 
     * **Search:**
-      :doc:`ElasticSearch<web-admin/search/es>` |
-      :doc:`Solr<web-admin/search/solr>`
+      :doc:`ElasticSearch <web-admin/search/es>` |
+      :doc:`Solr <web-admin/search/solr>`
 
     * **Notifications:**
-      :doc:`Cloud - OpenStack Swift<web-admin/notif/cloud/openstack/swift>` |
-      :doc:`SQL<web-admin/notif/sql>`
+      :doc:`Cloud - OpenStack Swift <web-admin/notif/cloud/openstack/swift>` |
+      :doc:`SQL <web-admin/notif/sql>`
 
     * **Queries:**
-      :doc:`Cassandra (CQL)<web-admin/query/cassandra>`
+      :doc:`Cassandra (CQL) <web-admin/query/cassandra>`
 
     * **E-mail:**
-      :doc:`IMAP<web-admin/email/imap>` |
-      :doc:`SMTP<web-admin/email/smtp>`
+      :doc:`IMAP <web-admin/email/imap>` |
+      :doc:`SMTP <web-admin/email/smtp>`
 
     * **Cloud:**
-      :doc:`AWS S3<web-admin/cloud/aws/s3>` |
-      :doc:`OpenStack Swift<web-admin/cloud/openstack/swift>`
+      :doc:`AWS S3 <web-admin/cloud/aws/s3>` |
+      :doc:`OpenStack Swift <web-admin/cloud/openstack/swift>`
 
     * **Key/value DB (Redis):**
-      :doc:`Data dictionaries<web-admin/kvdb/data-dict>` |
-      :doc:`Remote commands<web-admin/kvdb/remote-commands>`
+      :doc:`Data dictionaries <web-admin/kvdb/data-dict>` |
+      :doc:`Remote commands <web-admin/kvdb/remote-commands>`
 
     * **Scheduler:**
-      :doc:`Main view<web-admin/scheduler/main>`
+      :doc:`Main view <web-admin/scheduler/main>`
 
     * **Statistics:**
-      :doc:`Guide<stats/guide>` |
-      :doc:`Maintenance<stats/maintenance>` |
-      :doc:`Load-balancer's statistics<stats/lb>`
+      :doc:`Guide <stats/guide>` |
+      :doc:`Maintenance <stats/maintenance>` |
+      :doc:`Load-balancer's statistics <stats/lb>`
 
     * **User settings:**
-      :doc:`Main view<web-admin/settings/main>`
+      :doc:`Main view <web-admin/settings/main>`
 
 Programming guide
 =================
@@ -221,34 +221,34 @@ Programming guide
     * **Developing services and applications:**
       :doc:`Overview <progguide/overview>` |
       :doc:`Developing services <progguide/service-dev>` |
-      :doc:`Request and response objects<progguide/request-response>` |
-      :doc:`Channels<progguide/channels>` |
-      :doc:`Outgoing connections<progguide/outconn/overview>` |
-      :doc:`Key/value DB (Redis)<progguide/kvdb>` |
-      :doc:`Scheduler<progguide/scheduler>` |
+      :doc:`Request and response objects <progguide/request-response>` |
+      :doc:`Channels <progguide/channels>` |
+      :doc:`Outgoing connections <progguide/outconn/overview>` |
+      :doc:`Key/value DB (Redis) <progguide/kvdb>` |
+      :doc:`Scheduler <progguide/scheduler>` |
       :doc:`Invoking other services <progguide/invoking-services>` |
-      :doc:`Distributed locks<progguide/dist-locks>` |
-      :doc:`Date/time utils<progguide/datetime>` |
-      :doc:`Python client<progguide/clients/python>` |
-      :doc:`Django and Flask integration<progguide/clients/django-flask>` |
-      :doc:`Security<progguide/security>` |
-      :doc:`Where to keep configuration<progguide/service-local-config>` |
-      :doc:`HTML with Django templates<progguide/html>` |
-      :doc:`Helpers<progguide/helpers>` |
-      :doc:`Documenting<progguide/documenting>`
+      :doc:`Distributed locks <progguide/dist-locks>` |
+      :doc:`Date/time utils <progguide/datetime>` |
+      :doc:`Python client <progguide/clients/python>` |
+      :doc:`Django and Flask integration <progguide/clients/django-flask>` |
+      :doc:`Security <progguide/security>` |
+      :doc:`Where to keep configuration <progguide/service-local-config>` |
+      :doc:`HTML with Django templates <progguide/html>` |
+      :doc:`Helpers <progguide/helpers>` |
+      :doc:`Documenting <progguide/documenting>`
 
     * **REST**
       :doc:`Services <progguide/rest/services>` |
       :doc:`Channels <progguide/rest/channels>` |
       :doc:`Outgoing connections <progguide/rest/outconns>` |
-      :doc:`JSON adapter<progguide/rest/json-adapter>`
+      :doc:`JSON adapter <progguide/rest/json-adapter>`
 
     * **Patterns:**
       :doc:`Fan-out/fan-in <progguide/patterns/fan-out-fan-in>` |
       :doc:`Parallel execution <progguide/patterns/parallel-exec>` |
       :doc:`Invoke/retry <progguide/patterns/invoke-retry>` |
       :doc:`Async invocation with a callback <progguide/patterns/async-invoke>` |
-      :doc:`Designing sync and async message flow<progguide/sync-async/flow>`
+      :doc:`Designing sync and async message flow <progguide/sync-async/flow>`
 
     * **Request/response documents:**
       :doc:`SimpleIO (SIO) <progguide/sio>` |
@@ -260,12 +260,12 @@ Programming guide
       :doc:`Hooking into a service's lifecycle <progguide/service-hooks>`
 
     * **Logging and debugging techniques:**
-      :doc:`Logging<progguide/logging>` |
-      :doc:`Encrypted logs<progguide/enclog/index>` |
-      :doc:`Debugging<progguide/debugging>`
+      :doc:`Logging <progguide/logging>` |
+      :doc:`Encrypted logs <progguide/enclog/index>` |
+      :doc:`Debugging <progguide/debugging>`
 
     * **Customizing web admin:**
-      :doc:`Making sure you work in the right environment<progguide/web-admin-settings>`
+      :doc:`Making sure you work in the right environment <progguide/web-admin-settings>`
 
     * **Cryptography:**
       :doc:`Encryption and decryption <progguide/crypto/encrypt>` |
@@ -277,11 +277,24 @@ Programming guide
       :doc:`PyCharm <progguide/ide/pycharm>` |
       :doc:`Visual Studio Code <progguide/ide/vscode>`
 
-User management and Single Sign-On API
+Publish/subscribe and message queues
+====================================
+
+    * **Overview:**
+      :doc:`Introduction to pub/sub and message queues <pubsub/index>`
+
+    * **Guides:**
+      :doc:`Endpoints <pubsub/topic/endpoint/index>` |
+      :doc:`Topics <pubsub/topic/topic/index>` |
+      :doc:`Subscriptions <pubsub/topic/sub/index>`
+
+Single Sign-On and user management API
 ======================================
 
-    * **Topics:**
-      :doc:`Overview <sso/index>` |
+    * **Overview:**
+      :doc:`Introduction to SSO and user auth API <sso/index>`
+
+    * **Guides:**
       :doc:`Users <sso/topic/user/index>` |
       :doc:`Sessions <sso/topic/session/index>` |
       :doc:`Passwords <sso/topic/password/index>`
@@ -299,29 +312,29 @@ API Testing
 ===========
 
     * **Client requests**:
-      :doc:`Calling APIs with zato-apitest<test/apitest/index>`
+      :doc:`Calling APIs with zato-apitest <test/apitest/index>`
 
     * **Server mocks**:
-      :doc:`Convenient API mocks with zato-apimox<test/apimox/index>`
+      :doc:`Convenient API mocks with zato-apimox <test/apimox/index>`
 
 Administration guide
 ====================
 
     * **Installation and management:**
-      :doc:`Installing Zato binaries<admin/guide/install/index>` |
-      :doc:`Components<admin/guide/install-config/overview>` |
-      :doc:`Command line interface (CLI)<admin/cli/index>` |
-      :doc:`High availability<admin/guide/ha>` |
-      :doc:`Redis HA with Sentinels<admin/guide/redis-ha/sentinels>` |
-      :doc:`Capacity planning<admin/guide/capacity>` |
-      :doc:`Installing services<admin/guide/installing-services>` |
+      :doc:`Installing Zato binaries <admin/guide/install/index>` |
+      :doc:`Components <admin/guide/install-config/overview>` |
+      :doc:`Command line interface (CLI) <admin/cli/index>` |
+      :doc:`High availability <admin/guide/ha>` |
+      :doc:`Redis HA with Sentinels <admin/guide/redis-ha/sentinels>` |
+      :doc:`Capacity planning <admin/guide/capacity>` |
+      :doc:`Installing services <admin/guide/installing-services>` |
       :doc:`Enabling extra libraries <admin/guide/enabling-extra-libs>` |
-      :doc:`Managing server objects en masse<admin/guide/enmasse>` |
-      :doc:`RBAC (Role-based access control)<admin/guide/rbac/overview>` |
-      :doc:`SSL/TLS<admin/guide/tls/overview>` |
-      :doc:`API Specification Service<admin/guide/apispec-pub>` |
-      :doc:`Configuration patterns<admin/guide/config-patterns>` |
-      :doc:`Building custom packages<admin/guide/build-package>`
+      :doc:`Managing server objects en masse <admin/guide/enmasse>` |
+      :doc:`RBAC (Role-based access control) <admin/guide/rbac/overview>` |
+      :doc:`SSL/TLS <admin/guide/tls/overview>` |
+      :doc:`API Specification Service <admin/guide/apispec-pub>` |
+      :doc:`Configuration patterns <admin/guide/config-patterns>` |
+      :doc:`Building custom packages <admin/guide/build-package>`
 
     * **Docker support:**
       :doc:`Quickstart <admin/guide/install/docker>` |
@@ -331,40 +344,40 @@ Architecture
 ============
 
     * **Zato components:**
-      :doc:`Overview<architecture/overview>` |
-      :doc:`Web admin<architecture/web-admin>` |
-      :doc:`Load-balancer<architecture/load-balancer>` |
-      :doc:`Servers<architecture/servers>` |
-      :doc:`SQL ODB<architecture/sql-odb>` |
-      :doc:`Redis<architecture/redis>` |
-      :doc:`Certificate Authority (CA)<architecture/ca>`
+      :doc:`Overview <architecture/overview>` |
+      :doc:`Web admin <architecture/web-admin>` |
+      :doc:`Load-balancer <architecture/load-balancer>` |
+      :doc:`Servers <architecture/servers>` |
+      :doc:`SQL ODB <architecture/sql-odb>` |
+      :doc:`Redis <architecture/redis>` |
+      :doc:`Certificate Authority (CA) <architecture/ca>`
 
 Statistics
 ==========
 
-    * :doc:`Guide<stats/guide>` |
-      :doc:`Maintenance<stats/maintenance>` |
-      :doc:`Load-balancer's statistics<stats/lb>`
+    * :doc:`Guide <stats/guide>` |
+      :doc:`Maintenance <stats/maintenance>` |
+      :doc:`Load-balancer's statistics <stats/lb>`
 
 Security
 ========
 
     * **Users:**
-      :doc:`OS-level and application users<security/users>`
+      :doc:`OS-level and application users <security/users>`
 
     * **Reference:**
-      :doc:`Attack surface<security/attack-surface>` |
-      :doc:`Default configuration values<security/config-defaults>`
+      :doc:`Attack surface <security/attack-surface>` |
+      :doc:`Default configuration values <security/config-defaults>`
 
     * **Other:**
-      :doc:`Reporting security issues<security/reporting-issues>`
+      :doc:`Reporting security issues <security/reporting-issues>`
 
 Zato, the open-source project
 ==============================
 
-    * :doc:`License and getting involved<project/get-involved>` |
-      :doc:`Diversity statement<project/diversity>` |
-      :doc:`Changelog<project/changelog>`
+    * :doc:`License and getting involved <project/get-involved>` |
+      :doc:`Diversity statement <project/diversity>` |
+      :doc:`Changelog <project/changelog>`
 
 .. toctree::
    :hidden:
@@ -396,6 +409,10 @@ Zato, the open-source project
    progguide/patterns/*
    progguide/rest/*
    project/*
+   pubsub/*
+   pubsub/topic/endpoint/*
+   pubsub/topic/topic/*
+   pubsub/topic/sub/*
    security/*
    stats/*
    sso/*
