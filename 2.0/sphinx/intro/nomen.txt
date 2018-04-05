@@ -90,14 +90,6 @@ of how an outgoing connection is actually made, possibly using connection queues
 by Zato without any needed for programmer's input. A programmer only produces JSON, XML or other data that an external resource
 needs and Zato issues a request and hands over the response to the programmer's code.
 
-Business processes
-------------------
-
-Zato services can form
-:doc:`business processes <../proc/bst/index>`
-whose course can be expressed as set of steps or transitions - this allows one to keep
-a tighter grip over the more complex of the flows of messages.
-
 REST publish/subscribe
 ----------------------
 
