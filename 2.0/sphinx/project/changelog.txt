@@ -1,3 +1,89 @@
+3.0 - 2018-NN-NN - **(in development)**
+=======================================
+
+.. note::
+
+   Want to quickly install Zato? Check out this `Dockerfile <https://zato.io/docs/admin/guide/install/docker.html>`_ which will set up
+   a fully working
+   `cluster <https://zato.io/docs/architecture/overview.html>`_
+   with 2
+   `servers <https://zato.io/docs/architecture/servers.html>`_,
+   `load-balancer <https://zato.io/docs/architecture/load-balancer.html>`_
+   and
+   `web-admin <https://zato.io/docs/architecture/web-admin.html>`_
+   in 10 minutes.
+
+* Multi-protocol `publish/subscribe <https://zato.io/docs/3.0/pubsub/index.html>`_ topics with guaranteed delivery message queues turn Zato into
+  a full-featured message broker
+
+* `Single Sign-On and user management API <https://zato.io/docs/3.0/sso/index.html>`_
+
+* `IDE plugins <https://zato.io/docs/3.0/progguide/ide/index.html>`_
+  for
+  `PyCharm <https://zato.io/docs/3.0/progguide/ide/pycharm.html>`_
+  and
+  `Visual Studio Code <https://zato.io/docs/3.0/progguide/ide/vscode.html>`_
+
+* New caching layer
+
+* A series of `security mechanisms <https://zato.io/docs/3.0/gdpr/index.html>`_ to help in achieving EU GDPR compliance (General Data Protection Regulation)
+
+* Automatic API documentation generation
+
+* `WebSocket <https://zato.io/docs/3.0/web-admin/channels/wsx.html>`_ channels
+
+* Memcached connections
+
+* SMS messaging with Twilio
+
+* HashiCorp Vault security definitions
+
+* JSON Web Token security definitions
+
+* Extended hot-deployment to work with static files, including JSON, XML, CSV or any other format
+
+* General performance improvements let Zato servers run up to several times faster -
+  applies to HTTP, AMQP, ZeroMQ and IBM MQ connections
+
+* Reduced RAM consumption through ability to disable selected internal components
+
+* AMQP, ZeroMQ and IBM MQ connections can now be synchronous
+
+* Added support for Alpine Linux
+
+* New crypto mechanisms:
+  `encryption and decryption <https://zato.io/docs/3.0/progguide/crypto/encrypt.html>`_,
+  `hashing secrets <https://zato.io/docs/3.0/progguide/crypto/hash.html>`_,
+  `data signing <https://zato.io/docs/3.0/progguide/crypto/sign.html>`_ as well as
+  `generation of passwords and secrets <https://zato.io/docs/3.0/progguide/crypto/generate.html>`_
+
+* Added passwords to servers
+
+* New server startup hooks and callables
+
+* Scheduler now runs as its own component managed from command-line interface
+
+* New CLI commands:
+
+  * `zato hash get-rounds <https://zato.io/docs/3.0/admin/cli/hash-get-rounds.html>`_ to compute PBKDF2 rounds for secrets hashing
+  * zato sso
+    `create-user <https://zato.io/docs/3.0/admin/cli/sso-create-user.html>`_,
+    `create-super-user <https://zato.io/docs/3.0/admin/cli/sso-create-super-user.html>`_,
+    `delete-user <https://zato.io/docs/3.0/admin/cli/sso-delete-user.html>`_,
+    `change-user-password <https://zato.io/docs/3.0/admin/cli/sso-change-user-password.html>`_,
+    `reset-user-password <https://zato.io/docs/3.0/admin/cli/sso-reset-user-password.html>`_,
+    `lock-user <https://zato.io/docs/3.0/admin/cli/sso-lock-user.html>`_ and
+    `unlock-user <https://zato.io/docs/3.0/admin/cli/sso-unlock-user.html>`_
+    for SSO users management
+
+* Added an internal startup cache that makes servers boot up to several times faster
+
+* Servers now cache internal services on first boot - improves startup time up to several times
+
+* Removed technical accounts - already superseded by API keys in 2.0
+
+* Removed the HTTP-only audit log in favour of a more generic `service audit log <service-audit-log.html>`_
+
 2.0 - 2015-01-28
 ================
 

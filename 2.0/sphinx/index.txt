@@ -288,7 +288,7 @@ Administration guide
 ====================
 
     * **Installation and management:**
-      :doc:`Installing Zato binaries<admin/guide/install/index>` |
+      :doc:`Download and install Zato <admin/guide/install/index>` |
       :doc:`Components<admin/guide/install-config/overview>` |
       :doc:`Command line interface (CLI)<admin/cli/index>` |
       :doc:`High availability<admin/guide/ha>` |
@@ -434,7 +434,6 @@ Zato, the open-source project
    admin/guide/tls/*
    architecture/*
    intro/*
-   proc/bst/*
    progguide/*
    progguide/clients/*
    progguide/enclog/*
