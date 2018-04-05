@@ -1,38 +1,57 @@
 Publish/subscribe topics and guaranteed delivery queues
 =======================================================
 
-Overview
---------
+What it can do
+--------------
 
 .. image:: /gfx/pubsub/intro.png
 
-Publish/subscribe lets one design integrated environments using an event-based architecture of producers publishing
-business messages to topics and subscribers receiving the messages independently of any other.
+Publish/subscribe simplifies integration of distributed and diverse applications, including cloud-based, on premise, mobile
+and IoT ones.
 
-While in transit, messages are kept in queues that may exist in RAM or in persistent storage. The latter forms the basis
-of Guaranteed Delivery - a feature which enables delivery of messages even if faced with server restarts or
-unavailability of intended recipients.
+Integrated environments can be created using an event-based approach of publishers sending
+messages to topics out of which they are delivered to independent subscribers. This promotes the
+architecture that can dynamically adapt to business and technical changes - application can come and go freely without
+influencing each other.
 
-Zato provides queues, routing, security, APIs and GUI administration facilities - applications connect using REST, SOAP
-or WebSockets. It is also possible to listen for filesystem events and publish files to topics.
+While in transit, data is kept in message queues that ensure integrity and availabity of the system. Should a subscribing
+application go down, messages are safely retained until the recipient is ready to read them again.
 
-Endpoints
----------
+Publishers and subscribers may use different communication protocols or data formats. Each subscriber may choose its own
+preferred delivery order and method.
 
-Publishers
-----------
+Users have a GUI to manage all the configuration, including ability to browse message queues and update their contents in place.
 
-Subscribers
------------
+Publish/subscribe provides topics, queues, routing, security, APIs and administration facilities - applications
+publish and consume messages using REST, SOAP, WebSockets or Zato services. It is also possible to listen for
+filesystem events and publish files to topics.
 
-File-system events
-------------------
+Topics
+------
 
-GUI
----
+  * **Introduction:**
+    :doc:`Tutorial <./intro/tutorial/01>` |
+    :doc:`Architecture <./arch/index>`
 
-API
----
+  * **Endpoints:**
+    :doc:`Overview <./topic/endpoint/index>` |
+    :doc:`Publishers <./topic/endpoint/publisher>` |
+    :doc:`Subscribers <./topic/endpoint/subscriber>`
 
-Administration
---------------
+  * **APIs:**
+    :doc:`Overview <./api/index>` |
+    :doc:`REST <./api/rest>` |
+    :doc:`SOAP <./api/soap>` |
+    :doc:`WebSockets <./api/wsx>` |
+    :doc:`Zato services <./api/zato-service>` |
+    :doc:`Flat files <./api/file>`
+
+  * **Configuration and maintenance:**
+    :doc:`Endpoints <./admin/config>` |
+    :doc:`Topics <./admin/config>` |
+    :doc:`Subscriptions <./admin/config>` |
+    :doc:`Logging <./admin/logging>`
+
+  * **Security:**
+    :doc:`Attack surface <./sec/attack-surface>` |
+    :doc:`Defaults <./sec/defaults>`
