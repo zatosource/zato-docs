@@ -1,0 +1,39 @@
+.. highlight:: json
+   :linenothreshold: 0
+
+WebSocket connections
+=====================
+
+WebSocket channels created in :doc:`web-admin <../web-admin/channels/wsx>` are programming language-agnostic, which means that
+they may be used to invoke services and publish or receive :doc:`publish/subscribe <../pubsub/index>` messages
+from any application that speaks WebSockets and JSON, e.g. Python, JavaScript or any other.
+
+To utilize the channels, applications (API clients) need to follow a protocol described in this chapter.
+
+* Upon opening an initial TCP stream, the client needs to obtain a token within a certain time (by default, 5 seconds)
+* Token returned by Zato identifies uniquely this particular client connection down to its TCP socket
+* The token is a random string considered a secret and must not be shared with any other client or connection
+* No other client is allowed to re-use an already issued token and each connection has exactly one token throughout its existence
+* Although the token is a strong random string, it can be used only for client identification and it must not be
+  used on client side for any cryptographical purposes (there are dedicated :doc:`crypto <./crypto/index>` APIs in Zato
+  for such needs)
+* Each token has a TTL, a Time To Live, which defaults to 864000 seconds = 10 days. Each time the channel is invoked the token's
+  TTL is extended by that many seconds from current time. If token reaches its TTL, any subsequent invocation will be rejected
+  and the TCP socket will be closed.
+* Clients must send WebSocket Ping frames (per `RFC-6455 <https://tools.ietf.org/html/rfc6455#section-5.5.2>`_) at least
+  once in 30 seconds. If 5 consecutive pings from a client are missed, the connection is dropped by Zato.
+* Ping frames must not send business data, they are used only to keeping connections alive
+* Applications may both invoke API services as as well take part in :doc:`publish/subscribe <../pubsub/index>`
+  workflows - in the latter case they can act as publishers, subscribers, or both
+
+Logging in and obtaining a token
+--------------------------------
+
+Invoking services
+-----------------
+
+Publishing messages to topics
+-----------------------------
+
+Subscribing to topics
+---------------------
