@@ -30,28 +30,28 @@ Topics
 ------
 
   * **Introduction:**
-    :doc:`Tutorial <./intro/tutorial/01>` |
-    :doc:`Architecture <./arch/index>`
+    :doc:`~~Tutorial <./intro/tutorial/01>` |
+    :doc:`~~Architecture <./arch/index>`
 
   * **Endpoints:**
-    :doc:`Overview <./topic/endpoint/index>` |
-    :doc:`Publishers <./topic/endpoint/publisher>` |
-    :doc:`Subscribers <./topic/endpoint/subscriber>`
+    :doc:`~~Overview <./topic/endpoint/index>` |
+    :doc:`~~Publishers <./topic/endpoint/publisher>` |
+    :doc:`~~Subscribers <./topic/endpoint/subscriber>`
 
   * **APIs:**
-    :doc:`Overview <./api/index>` |
-    :doc:`REST <./api/rest>` |
-    :doc:`SOAP <./api/soap>` |
-    :doc:`WebSockets <./api/wsx>` |
-    :doc:`Zato services <./api/zato-service>` |
-    :doc:`Flat files <./api/file>`
+    :doc:`~~Overview <./api/index>` |
+    :doc:`~~REST <./api/rest>` |
+    :doc:`~~SOAP <./api/soap>` |
+    :doc:`~~WebSockets <./api/wsx>` |
+    :doc:`~~Zato services <./api/zato-service>` |
+    :doc:`~~Flat files <./api/file>`
 
   * **Configuration and maintenance:**
-    :doc:`Endpoints <./admin/config>` |
-    :doc:`Topics <./admin/config>` |
-    :doc:`Subscriptions <./admin/config>` |
-    :doc:`Logging <./admin/logging>`
+    :doc:`~~Endpoints <./admin/config/endpoint>` |
+    :doc:`~~Topics <./admin/config/topic>` |
+    :doc:`~~Subscriptions <./admin/config/subscription>` |
+    :doc:`~~Logging <./admin/logging>`
 
   * **Security:**
-    :doc:`Attack surface <./sec/attack-surface>` |
-    :doc:`Defaults <./sec/defaults>`
+    :doc:`~~Attack surface <./sec/attack-surface>` |
+    :doc:`~~Defaults <./sec/defaults>`

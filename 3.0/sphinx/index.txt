@@ -277,17 +277,6 @@ Programming guide
       :doc:`PyCharm <progguide/ide/pycharm>` |
       :doc:`Visual Studio Code <progguide/ide/vscode>`
 
-Publish/subscribe and message queues
-====================================
-
-    * **Overview:**
-      :doc:`Introduction to pub/sub and message queues <pubsub/index>`
-
-    * **Guides:**
-      :doc:`Endpoints <pubsub/topic/endpoint/index>` |
-      :doc:`Topics <pubsub/topic/topic/index>` |
-      :doc:`Subscriptions <pubsub/topic/sub/index>`
-
 Single Sign-On and user management API
 ======================================
 
@@ -410,9 +399,13 @@ Zato, the open-source project
    progguide/rest/*
    project/*
    pubsub/*
+   pubsub/arch/*
+   pubsub/admin/*
+   pubsub/admin/config/*
+   pubsub/api/*
+   pubsub/intro/tutorial/*
+   pubsub/sec/*
    pubsub/topic/endpoint/*
-   pubsub/topic/topic/*
-   pubsub/topic/sub/*
    security/*
    stats/*
    sso/*
