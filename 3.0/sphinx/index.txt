@@ -135,6 +135,7 @@ Web admin reference
       :doc:`JMS WebSphere MQ <web-admin/channels/jms-wmq>` |
       :doc:`Plain HTTP (REST) <web-admin/channels/plain-http>` |
       :doc:`SOAP <web-admin/channels/soap>` |
+      :doc:`WebSockets <web-admin/channels/wsx>` |
       :doc:`ZeroMQ <web-admin/channels/zmq>`
 
     * **Outgoing connections:**
@@ -216,7 +217,7 @@ Programming guide
       :doc:`Odoo (OpenERP) <progguide/examples/odoo>` |
       :doc:`JSON Pointers <progguide/examples/json-pointer>` |
       :doc:`XPath <progguide/examples/xpath>` |
-      :doc:`Cryptography <progguide/examples/xpath>`
+      :doc:`Cryptography <progguide/examples/crypto>`
 
     * **Developing services and applications:**
       :doc:`Overview <progguide/overview>` |
@@ -226,6 +227,7 @@ Programming guide
       :doc:`Outgoing connections <progguide/outconn/overview>` |
       :doc:`Key/value DB (Redis) <progguide/kvdb>` |
       :doc:`Scheduler <progguide/scheduler>` |
+      :doc:`WebSockets <progguide/wsx>` |
       :doc:`Invoking other services <progguide/invoking-services>` |
       :doc:`Distributed locks <progguide/dist-locks>` |
       :doc:`Date/time utils <progguide/datetime>` |
@@ -237,7 +239,7 @@ Programming guide
       :doc:`Helpers <progguide/helpers>` |
       :doc:`Documenting <progguide/documenting>`
 
-    * **REST**
+    * **REST:**
       :doc:`Services <progguide/rest/services>` |
       :doc:`Channels <progguide/rest/channels>` |
       :doc:`Outgoing connections <progguide/rest/outconns>` |
@@ -268,6 +270,7 @@ Programming guide
       :doc:`Making sure you work in the right environment <progguide/web-admin-settings>`
 
     * **Cryptography:**
+      :doc:`Overview <progguide/crypto/index>` |
       :doc:`Encryption and decryption <progguide/crypto/encrypt>` |
       :doc:`Hashing secrets <progguide/crypto/hash>` |
       :doc:`Data signing <progguide/crypto/sign>`

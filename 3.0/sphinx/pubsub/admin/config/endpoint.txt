@@ -1,0 +1,5 @@
+Configuring pub/sub endpoints
+=============================
+
+Preliminary materials: :doc:`tutorial <../../intro/tutorial/01>`, :doc:`architecture <../../arch/index>`
+and endpoints :doc:`overview <../../topic/endpoint/index>`.

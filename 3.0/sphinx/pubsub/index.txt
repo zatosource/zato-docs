@@ -20,7 +20,8 @@ application go down, messages are safely retained until the recipient is ready t
 Publishers and subscribers may use different communication protocols or data formats. Each subscriber may choose its own
 preferred delivery order and method.
 
-Users have a GUI to manage all the configuration, including ability to browse message queues and update their contents in place.
+Programmers and administrators use a browser-based GUI to access configuration and run-time data, including ability to read
+message queues and update their contents in place.
 
 Publish/subscribe provides topics, queues, routing, security, APIs and administration facilities - applications
 publish and consume messages using REST, SOAP, WebSockets or Zato services. It is also possible to listen for
@@ -53,5 +54,6 @@ Topics
     :doc:`~~Logging <./admin/logging>`
 
   * **Security:**
+    :doc:`~~Securing access to topics and queues <./sec/attack-surface>` |
     :doc:`~~Attack surface <./sec/attack-surface>` |
     :doc:`~~Defaults <./sec/defaults>`

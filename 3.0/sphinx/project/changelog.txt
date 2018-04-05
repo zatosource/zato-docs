@@ -13,7 +13,8 @@
    :doc:`web-admin <../architecture/web-admin>`
    in 10 minutes.
 
-* Multi-protocol publish/subscribe topics with guaranteed delivery message queues turn Zato into a full-featured message broker
+* Multi-protocol :doc:`publish/subscribe <../pubsub/index>` topics with guaranteed delivery message queues turn Zato into
+  a full-featured message broker
 
 * :doc:`Single Sign-On and user management API <../sso/index>`
 
@@ -29,7 +30,7 @@
 
 * Automatic API documentation generation
 
-* WebSocket channels
+* :doc:`WebSocket <../web-admin/channels/wsx>` channels
 
 * Memcached connections
 
@@ -77,9 +78,9 @@
 
 * Added an internal startup cache that makes servers boot up to several times faster
 
-* Servers now cache internal services on first boot, making subsequent ones up to several times faster
+* Servers now cache internal services on first boot - improves startup time up to several times
 
-* Removed technical accounts - superseded by API keys
+* Removed technical accounts - already superseded by API keys in 2.0
 
 * Removed the HTTP-only audit log in favour of a more generic :doc:`service audit log <service-audit-log>`
 
