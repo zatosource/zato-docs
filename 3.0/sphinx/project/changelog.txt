@@ -51,11 +51,10 @@
 
 * Added support for Alpine Linux
 
-* New crypto mechanisms:
+* New :doc:`crypto <../progguide/crypto/index>` mechanisms:
   :doc:`encryption and decryption <../progguide/crypto/encrypt>`,
-  :doc:`hashing secrets <../progguide/crypto/hash>`,
-  :doc:`data signing <../progguide/crypto/sign>` as well as
-  :doc:`generation of passwords and secrets<../progguide/crypto/generate>`
+  :doc:`hashing <../progguide/crypto/hash>` as well as
+  :doc:`generation of passwords and secrets <../progguide/crypto/generate>`
 
 * Added passwords to servers
 

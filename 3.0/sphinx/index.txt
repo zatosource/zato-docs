@@ -266,14 +266,13 @@ Programming guide
       :doc:`Encrypted logs <progguide/enclog/index>` |
       :doc:`Debugging <progguide/debugging>`
 
-    * **Customizing web admin:**
-      :doc:`Making sure you work in the right environment <progguide/web-admin-settings>`
-
     * **Cryptography:**
       :doc:`Overview <progguide/crypto/index>` |
       :doc:`Encryption and decryption <progguide/crypto/encrypt>` |
-      :doc:`Hashing secrets <progguide/crypto/hash>` |
-      :doc:`Data signing <progguide/crypto/sign>`
+      :doc:`Hashing secrets <progguide/crypto/hash>`
+
+    * **Customizing web admin:**
+      :doc:`Making sure you work in the right environment <progguide/web-admin-settings>`
 
     * **IDE integration:**
       :doc:`Overview <progguide/ide/index>` |

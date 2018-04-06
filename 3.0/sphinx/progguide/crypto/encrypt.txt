@@ -1,0 +1,83 @@
+.. highlight:: python
+   :linenothreshold: 0
+
+Crypto - encryption and decryption
+==================================
+
+API below allows for symmetric encryption and decryption using configurable secret keys. After encryption, returned data is
+safe to use in URLs.
+
+The keys are generated when servers are created before they are added to a cluster. Access to the keys must be restricted
+because knowledge of keys lets anyone decrypt any previously encrypted data. By default, the keys are kept in a config file
+called *secrets.conf* but it is possible not to store them on disk - they can be read from command line or environment variables.
+
+If there is more than one server in a cluster, all of them must use the same secret key.
+
+Note that the output of encryption contains the timestamp indicating when it took place. Because a timestamp is included,
+each generated secret will be different even for the same input data.
+
+Under the hood, encryption and decryption are implemented using
+`Fernet <https://cryptography.io/en/latest/fernet/>`_ (AES-128, PKCS7, HMAC-SHA256).
+
+Encryption and decryption
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Python
+``````
+
+::
+
+  # -*- coding: utf-8 -*-
+
+  from __future__ import absolute_import, division, print_function, unicode_literals
+
+  # Zato
+  from zato.server.service import Service
+
+  class MyService(Service):
+      def handle(self):
+
+          # Data to encrypt - note that it must be a bytes object
+          data = b'1234567890'
+
+          # Log data to be manipulated
+          self.logger.info('Data `%s`', data)
+
+          # Encrypt it
+          encrypted = self.crypto.encrypt(data)
+
+          # Log the resulting form
+          self.logger.info('Encrypted `%s`', encrypted)
+
+          # Decrypt it back
+          decrypted = self.crypto.decrypt(encrypted)
+
+          # Log output - will be the same as original data
+          self.logger.info('Decrypted `%s`', decrypted)
+
+.. highlight:: bash
+   :linenothreshold: 0
+
+::
+
+  INFO - Data `1234567890`
+  INFO - Encrypted `gAAAAABaxzkr2RizsroKDWxAZ6oEgaFxZn1duLk_epE194fPEDf8fgfS0j0EgtUc1gv-im6i4N`
+  INFO - Decrypted `1234567890`
+
+Related information
+~~~~~~~~~~~~~~~~~~~
+
+Other crypto APIs:
+
+* :doc:`Generating <./generate>` passwords and secrets
+* :doc:`Hashing <./hash>`
+
+
+Changelog
+~~~~~~~~~
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+3.0                 Added initially
+=================== ===================================================================
