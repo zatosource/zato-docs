@@ -38,6 +38,15 @@ Enabling or disabling SSO
   ..
 
 * The change needs to be applied to all servers and all of them need to restart for the change to become effective
+* Note that after changing the flag to True or False from its previous value, all of the servers need to be started
+  with the *--sync-internal* option, which is used to re-populate an internal cache of built-in objects - however,
+  this needs to be done only once after the flag is changed, using the option afterwards makes the servers boot up
+  longer so it's usage is discouraged
+
+  ::
+
+    $ zato start /path/to/server --sync-internal
+
 
 sso.conf
 --------
