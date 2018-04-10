@@ -6,8 +6,8 @@ What it can do
 
 .. image:: /gfx/pubsub/intro.png
 
-Publish/subscribe simplifies integration of distributed and diverse applications, including cloud-based, on premise, mobile
-and IoT ones.
+Constituting a core part of Zato, publish/subscribe message broker facilities simplify integration of distributed and diverse
+applications, including cloud-based, on premise, mobile and IoT ones.
 
 Integrated environments can be created using an event-based approach of publishers sending
 messages to topics out of which they are delivered to independent subscribers. This promotes the
@@ -24,7 +24,7 @@ Programmers and administrators use a browser-based GUI to access configuration a
 message queues and update their contents in place.
 
 Publish/subscribe provides topics, queues, routing, security, APIs and administration facilities - applications
-publish and consume messages using REST, SOAP, WebSockets or Zato services. It is also possible to listen for
+publish and consume messages using REST, SOAP, WebSockets, Zato services or Java JMS. It is also possible to listen for
 filesystem events and publish files to topics.
 
 Topics
@@ -32,12 +32,10 @@ Topics
 
   * **Introduction:**
     :doc:`~~Tutorial <./intro/tutorial/01>` |
-    :doc:`~~Architecture <./arch/index>`
+    :doc:`Architecture <./arch/index>`
 
   * **Endpoints:**
-    :doc:`~~Overview <./topic/endpoint/index>` |
-    :doc:`~~Publishers <./topic/endpoint/publisher>` |
-    :doc:`~~Subscribers <./topic/endpoint/subscriber>`
+    :doc:`~~Publishers and subscribers <./topic/endpoint/index>`
 
   * **APIs:**
     :doc:`~~Overview <./api/index>` |
@@ -45,6 +43,7 @@ Topics
     :doc:`~~SOAP <./api/soap>` |
     :doc:`~~WebSockets <./api/wsx>` |
     :doc:`~~Zato services <./api/zato-service>` |
+    :doc:`~~Java JMS <./api/jms>` |
     :doc:`~~Flat files <./api/file>`
 
   * **Configuration and maintenance:**

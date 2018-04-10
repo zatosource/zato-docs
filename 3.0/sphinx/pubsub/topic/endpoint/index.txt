@@ -1,0 +1,4 @@
+Publish/subscribe endpoints
+===========================
+
+Preliminary reading: :doc:`Pub/sub architecture <../../arch/index>`.

@@ -57,14 +57,16 @@ sent in email, which Zato can also do. The token is returned in response to the 
       "username":    "user1",
       "password":    "VrF57-H31 7!HIj%fSAz :L9",
       "email":       "user1@example.com",
-      "current_app": "CRM"
+      "current_app": "CRM",
       "app_list":    ["CRM", "ERP"]
     }
   '
 
   {
-    "confirm_token": "zcnt8538ba1f6bef475a8fee1fc8cee65dac"
-  }
+    "status": "ok",
+    "cid": "fc7c23028b15b35d72b8dffb",
+    "confirm_token": "oPpzMWjXFN35rvzPxN2AvcG2WEyBX71f"
+   }
 
 Default validation rules of new users are:
 

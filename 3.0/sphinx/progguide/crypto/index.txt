@@ -13,9 +13,9 @@ low-level crypto primitives. Everything has sound defaults and is ready for imme
 Note that in addition to crypto functions below, Zato also comes with a dedicated
 Single Sign-On and user managemenent API, documented in its own :doc:`chapter <../../sso/index>`.
 
-======================================================= =============================================================
+======================================================= ====================================================================
 Topic                                                   Sample usage and notes
-======================================================= =============================================================
+======================================================= ====================================================================
 :doc:`Encryption and decryption <./encrypt>`            * Storing sensitive information in databases
                                                           (PII, PCI, HIPAA, EU GDPR)
                                                         * Sharing of sensitive information with untrusted parties
@@ -23,7 +23,9 @@ Topic                                                   Sample usage and notes
                                                           to reveal them - use :doc:`hashing <./hash>` instead
 :doc:`Generation of passwords and secrets <./generate>` * Enforcement of strong passwords among users
                                                         * Generation of strong random values, safe for use in URLs
+                                                        * API tokens
+                                                        * Data to be used once only (e.g. account creation confirmation)
 :doc:`Hashing <./hash>`                                 * Safe storage and verification of one's knowledge of
                                                           previously stored secrets, typically passwords or other
                                                           access tokens
-======================================================= =============================================================
+======================================================= ====================================================================
