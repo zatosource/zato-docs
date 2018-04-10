@@ -22,12 +22,29 @@ To utilize the channels, applications (API clients) need to follow a protocol de
   and the TCP socket will be closed.
 * Clients must send WebSocket Ping frames (per `RFC-6455 <https://tools.ietf.org/html/rfc6455#section-5.5.2>`_) at least
   once in 30 seconds. If 5 consecutive pings from a client are missed, the connection is dropped by Zato.
-* Ping frames must not send business data, they are used only to keeping connections alive
+* Ping frames must not send business data, they are used only for keeping connections alive
 * Applications may both invoke API services as as well take part in :doc:`publish/subscribe <../pubsub/index>`
   workflows - in the latter case they can act as publishers, subscribers, or both
 
-Logging in and obtaining a token
---------------------------------
+Connecting, and obtaining a session token
+-----------------------------------------
+
+Right after a TCP connection is established, before logging in, an information entry is stored in server logs. This includes
+data about from what IP address and domain name the connection comes from as well as the address and name of the WebSocket
+channel.
+
+::
+
+  INFO - New connection from 127.0.0.1:51738 (localhost) to 127.0.0.1:48902 (my.wsx.channel)
+
+
+If a client connects but does not initiate the login request within the expected time, the TCP connection will be closed with
+an accompanying warning message in server logs:
+
+::
+
+  WARNING - Peer 127.0.0.1:51738 (localhost) did not create session within 5s,
+  closing its connection to 127.0.0.1:48902 (my.wsx.channel), cid:`23b3cae088382f62106edd67`
 
 Invoking services
 -----------------
@@ -37,3 +54,7 @@ Publishing messages to topics
 
 Subscribing to topics
 ---------------------
+
+
+Reading messages from message queues
+------------------------------------
