@@ -283,7 +283,6 @@ Default: True
 ~~~~~~~~~~~~~~~~~~~
 
 The stanza is a white-list of usernames allowed and, optionally, what remote addresses they may log in from.
-More information is in the :ref:`user guide <sso-topic-user-address-list>`.
 
 [session]
 ~~~~~~~~~

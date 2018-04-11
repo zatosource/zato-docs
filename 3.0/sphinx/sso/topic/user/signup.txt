@@ -8,9 +8,9 @@ This chapter explains how users may interact with APIs to sign themselves up wit
 
 Information below is presented in a task-oriented manner - consult the
 reference chapters for full
-:doc:`REST <../../api/rest/user/index>`
+:doc:`REST <../../api/rest/user/signup>`
 and
-:doc:`Python <../../api/python/user/index>`
+:doc:`Python <../../api/python/user/signup>`
 APIs.
 
 Note that signing up is a process that involves a series of message exchanges - this is unlike

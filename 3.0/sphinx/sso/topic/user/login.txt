@@ -11,9 +11,9 @@ This chapter explains how users may log into applications. While logging users i
 
 Information below is presented in a task-oriented manner - consult the
 reference chapters for full
-:doc:`REST <../../api/rest/user/index>`
+:doc:`REST <../../api/rest/user/login>`
 and
-:doc:`Python <../../api/python/user/index>`
+:doc:`Python <../../api/python/user/login>`
 APIs.
 
 Authentication

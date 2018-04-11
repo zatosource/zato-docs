@@ -32,7 +32,3 @@ password_must_change bool     A flag that super-users may set in order to requir
                               time the other person logs in
 sign_up_status       string   Used in the signup workflow to decide if the signup process is considered completed or not
 ==================== ======== ===============================================================================================================
-
-Note that changing one's password is
-:doc:`documented <./change-password>`
-separately.
