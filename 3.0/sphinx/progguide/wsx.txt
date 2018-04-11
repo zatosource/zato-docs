@@ -15,7 +15,7 @@ To utilize the channels, applications (API clients) need to follow a protocol de
 * The token is a random string considered a secret and must not be shared with any other client or connection
 * No other client is allowed to re-use an already issued token and each connection has exactly one token throughout its existence
 * Although the token is a strong random string, it can be used only for client identification and it must not be
-  used on client side for any cryptographical purposes (there are dedicated :doc:`crypto <./crypto/index>` APIs in Zato
+  used on client side for any cryptographic purposes (there are dedicated :doc:`crypto <./crypto/index>` APIs in Zato
   for such needs)
 * Each token has a TTL, a Time To Live, which defaults to 864000 seconds = 10 days. Each time the channel is invoked the token's
   TTL is extended by that many seconds from current time. If token reaches its TTL, any subsequent invocation will be rejected
@@ -109,7 +109,7 @@ meta.timestamp datetime ---      When the response was produced by Zato, in UTC
 id             string   ---      Response ID - its last element is a correlation ID that can be
                                  used to look up details in server log
 in_reply_to    string   Yes      In reply to what request ID the response is returned
-data           opaque   ---      Business data related to the response. In case of an error
+data           any      ---      Business data related to the response. In case of an error
                                  it will be an error message. Otherwise, it will contain
                                  an element with the session token.
 data.token     string   Yes      A randomly generated session token - returned only if
@@ -140,12 +140,79 @@ Samples:
 Invoking services
 -----------------
 
-Publishing messages to topics
------------------------------
+Clients with a session token can invoke the service that is mounted on a WebSocket channel they are connected to.
 
-Subscribing to topics
----------------------
+It means that if a client wants to invoke multiple services, the service from the channel needs to forward messages to the
+actual ones using *self.invoke* and send the response back to the calling client by assigning it to *self.response.payload*.
+That allows one to implement white-lists where only selected services can be made accessible to the caller and attempts
+to invoke any other one will be rejected.
 
+Request
+~~~~~~~
 
-Reading messages from message queues
-------------------------------------
+============== ======== ======== ============================================================================
+Element        Datatype Optional Notes
+============== ======== ======== ============================================================================
+meta           dict     ---      A dictionary of metadata for the request
+meta.action    string   ---      A constant value of "invoke-service"
+meta.id        string   ---      Same as in "create-session" action
+meta.timestamp datetime ---      ”
+meta.token     string   ---      Session token returned by "create-session" action
+data           any      ---      Arbitrary data required by the channel's service - can be a string, integer,
+                                 dict or anything else that the service expects
+============== ======== ======== ============================================================================
+
+This sample assumes that service *zato.helpers.echo* is mounted on the channel - it's a built-in service that echoes back
+everything in receives on input.
+
+::
+
+  {"meta": {
+    "action": "invoke-service",
+    "id": "36df91fca2444dcaadc7199691217cfd",
+    "timestamp": "2016-11-16T15:53:25.717215",
+    "token": "ws.token.7a1729f99acbfe21b0cca337"},
+   "data": {
+     "customer_id": "123",
+     "account_id": "456"
+    }}
+
+Response
+~~~~~~~~
+
+============== ======== ======== =================================================================
+Element        Datatype Optional Notes
+============== ======== ======== =================================================================
+meta           dict     ---      Same as in "create-session" action
+meta.status    integer  ---      ”
+meta.timestamp datetime ---      ”
+id             string   ---      ”
+in_reply_to    string   Yes      ”
+data           any      ---      Business data related to the response. In case of an error
+                                 it will be an error message. Otherwise, it will contain
+                                 a response that the channel's service returned - may be a string,
+                                 integer, dict or any other datatype
+============== ======== ======== =================================================================
+
+Again, the sample shows what zato.helpers.echo may return if it is assigned to a WebSocket channel.
+
+::
+
+  {"meta":{
+    "status":200,
+    "timestamp":"2018-04-11T11:38:34.400736",
+    "in_reply_to":"36df91fca2444dcaadc7199691217cfd",
+    "id":"zato.ws.srv.rsp-ok.05308f81590751038cc9167f"},
+   "data":{
+     "customer_id":"123",
+     "account_id":"456"
+    }}
+
+Closing sessions and logging out
+--------------------------------
+
+There is no separate API call to close a session and log out. It suffices to close the WebSocket connection along with its TCP
+stream - this will be immediately recognized by Zato and all the relevant shutdown and cleanup actions will be performed.
+
+Afterwards, the session token cannot be used anymore even by the same client; a new session needs to be created with its
+own token instead.
