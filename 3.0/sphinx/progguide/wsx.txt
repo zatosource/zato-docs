@@ -35,6 +35,9 @@ account the fact that there may be a load-balancer performing URL transformation
 Once a connection is created, clients need to create a session and receive a session token. This step needs to be done
 even if for a given WebSocket channel no client credentials are needed.
 
+Clients must use the session token in all requests over the same TCP connection. The token cannot be used any other
+connections, it is specific to one TCP stream.
+
 Right after a TCP connection is established, before logging in, an information entry is stored in server logs. This includes
 data about from what IP address and domain name the connection comes from as well as the address and name of the WebSocket
 channel.
@@ -51,6 +54,13 @@ closed with an accompanying warning message in server logs:
 
   WARNING - Peer 127.0.0.1:51738 (localhost) did not create session within 5s,
   closing its connection to 127.0.0.1:48902 (my.wsx.channel), cid:`23b3cae088382f62106edd67`
+
+Otherwise, if the client creates a session successfully, an informational message will be saved to logs:
+
+::
+
+  INFO - Client 127.0.0.1:57288 (localhost ws.eee4b49d6fd835b424175ed5)
+  logged in successfully to 127.0.0.1:48902 (my.wsx.channel)
 
 Request
 ~~~~~~~
@@ -82,7 +92,7 @@ Sample:
     "username": "user1",
     "secret": "PNVmGkLejnhsAZ5VzzfdHQkvGg",
     "id": "238dc406351444d0869390af9541da59",
-    "timestamp": "2016-11-16T15:53:25.717215",
+    "timestamp": "2018-11-16T15:53:25.717215",
     "client_id": "p.33915",
     "client_name": "Printer #33915, Fifth floor"
     }}
