@@ -147,6 +147,9 @@ actual ones using *self.invoke* and send the response back to the calling client
 That allows one to implement white-lists where only selected services can be made accessible to the caller and attempts
 to invoke any other one will be rejected.
 
+There is also a default WebSockets gateway service that can be used to invoke any service, it is documented in this
+chapter below.
+
 Request
 ~~~~~~~
 
@@ -216,3 +219,16 @@ stream - this will be immediately recognized by Zato and all the relevant shutdo
 
 Afterwards, the session token cannot be used anymore even by the same client; a new session needs to be created with its
 own token instead.
+
+Using the default WebSockets gateway
+------------------------------------
+
+A built-in service called *helpers.web-sockets-gateway* can be mounted on a WebSocket channel to make it possible for clients
+to invoke any other arbitrary service.
+
+Note, however, that clients will truly have access to any service deployed on the server they will connect to, including all
+the internal ones. If this is not desirable, the gateway service can be subclassed to implement a white-listing logic,
+i.e. to filter out requests that attempt to invoke a service outside of the list of permitted ones.
+
+The service's source code is available on
+`GitHub <https://github.com/zatosource/zato/blob/main/code/zato-server/src/zato/server/service/internal/helpers.py>`_.
