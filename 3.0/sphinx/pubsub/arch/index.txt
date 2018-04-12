@@ -70,9 +70,18 @@ API subscriptions may be enabled or disabled for topic - in the former case appl
 access permissions will be allowed to subscribe to topics using APIs such as REST. In the former case, only administrators
 will be able to create subscriptions.
 
-A topic has its maximum depth, which is maintained separately for in-RAM and GD messages. If there are no subscribers for a topic
-and messages keep arriving, at one point the topic's depth will be reached and new messages published will be rejected
-until the previous messages will have been consumed by subscribers or the topic has been cleared by administrators.
+A topic has its maximum depth, which is maintained separately for in-RAM and GD messages. If there are subscriptions
+for a topic but subscribers do not consume messages while the messages keep arriving, at one point the topic's depth will
+be reached and new messages published will be rejected until the previous messages will have been consumed by subscribers
+or the topic has been cleared by administrators. Any extra GD-messages will be rejected and non-GD messages will be saved
+to log files on disk.
+
+For GD-enabled messages, maximum depth is checked globally, no matter how many servers there are in a Zato cluster. For
+in-RAM messages, the depth applies to each server separately.
+
+If a topic has no subscriptions - as opposed to having subscriptions but without subscribers currently reading messages -
+all messages published to the topic will be treated as GD-enabled ones, regardless of whether they were originally sent
+as GD or non-GD messages.
 
 Endpoints
 ---------
