@@ -18,6 +18,8 @@
 
 * :doc:`Single Sign-On and user management API <../sso/index>`
 
+* SAP connections
+
 * :doc:`IDE plugins <../progguide/ide/index>`
   for
   :doc:`PyCharm <../progguide/ide/pycharm>`
