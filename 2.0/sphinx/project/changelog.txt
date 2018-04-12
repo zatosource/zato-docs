@@ -18,6 +18,8 @@
 
 * `Single Sign-On and user management API <https://zato.io/docs/3.0/sso/index.html>`_
 
+* SAP connections
+
 * `IDE plugins <https://zato.io/docs/3.0/progguide/ide/index.html>`_
   for
   `PyCharm <https://zato.io/docs/3.0/progguide/ide/pycharm.html>`_
