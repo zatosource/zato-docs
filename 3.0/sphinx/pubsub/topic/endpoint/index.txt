@@ -10,13 +10,14 @@ Endpoints are the entities that send messages to topics or receive them from que
 a single endpoint will represent a particular application participating in pub/sub processes but there is no requirement
 that there be only one endpoint per application and users are free to create as many endpoints as necessary.
 
-In Zato 3.0, there are several types of endpoints:
+There are several types of endpoints:
 
 * REST
 * SOAP
 * WebSockets
 * Zato services
 * Flat files
+* Java JMS
 
 REST, SOAP and WebSockets need to be :doc:`registered <>` by administrators before they can take part in publish/subscribe.
 Endpoints of this kind can be configured to let them publish messages, subscribe to them or both.
@@ -28,13 +29,15 @@ Flat files are used to :doc:`listen for changes <>` in directories of choice, i.
 to topics about new or changed files, optionally including their contents. File listeners can publish messages to topics
 but they cannot subscribe to them.
 
+:doc:`Java JMS <>` endpoints let Java-based systems seamlessly integrate with Zato and publish/subscribe.
+
 Managing endpoints in web-admin
 -------------------------------
 
 Each endpoint defined in web-admin has a type, name and role. Each is identified by its name which is unique among all other
 endpoints no matter which type they are of.
 
-For REST and SOAP endpoints, API credentials, such as HTTP Basic Auth ones, must be assigned to them.
+For REST, SOAP and Java JMS endpoints, API credentials, such as HTTP Basic Auth ones, must be assigned to them.
 Applications connecting to Zato topics and queues will in run-time use the credentials for authentication.
 
 WebSockets-based endpoints must point to a WebSockets channel which will in turn optionally specify a security definition
@@ -111,3 +114,4 @@ More information
 * Creating, editing or deleting endpoints in :doc:`web-admin <>`
 * Using :doc:`pub/sub in Zato services <>`
 * Configuring :doc:`file listeners <>`
+* Using :doc:`Java JMS topics <>` with Zato publish/subscribe

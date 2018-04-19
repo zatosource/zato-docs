@@ -35,8 +35,8 @@ Topics
     :doc:`Architecture <./arch/index>`
 
   * **Configuration and maintenance:**
-    :doc:`Endpoints <./topic/endpoint/index>` |
     :doc:`~~Topics <./admin/config/topic>` |
+    :doc:`Endpoints <./topic/endpoint/index>` |
     :doc:`~~Subscriptions <./admin/config/subscription>` |
     :doc:`~~Logging <./admin/logging>`
 
