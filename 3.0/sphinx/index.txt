@@ -403,11 +403,12 @@ Zato, the open-source project
    pubsub/*
    pubsub/arch/*
    pubsub/admin/*
-   pubsub/admin/config/*
    pubsub/api/*
+   pubsub/details/endpoint/*
+   pubsub/details/sub/*
+   pubsub/details/topic/*
    pubsub/intro/tutorial/*
    pubsub/sec/*
-   pubsub/topic/endpoint/*
    security/*
    stats/*
    sso/*

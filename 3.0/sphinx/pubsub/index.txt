@@ -34,8 +34,8 @@ Topics
     :doc:`~~Tutorial <./intro/tutorial/01>` |
     :doc:`Architecture <./arch/index>`
 
-  * **Configuration and maintenance:**
-    :doc:`~~Topics <./details/topic/index>` |
+  * **Details:**
+    :doc:`Topics <./details/topic/index>` |
     :doc:`Endpoints <./details/endpoint/index>` |
     :doc:`~~Subscriptions <./details/sub/index>` |
     :doc:`~~Logging <./admin/logging>`
