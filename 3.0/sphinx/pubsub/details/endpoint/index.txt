@@ -16,7 +16,7 @@ There are several types of endpoints:
 * SOAP
 * WebSockets
 * Zato services
-* Flat files
+* File transfer
 * Java JMS
 
 REST, SOAP and WebSockets need to be :doc:`registered <>` by administrators before they can take part in publish/subscribe.
@@ -25,7 +25,7 @@ Endpoints of this kind can be configured to let them publish messages, subscribe
 Zato services do not need to be managed by administrators because they can always :doc:`publish or subscribe <>`
 to all topics.
 
-Flat files are used to :doc:`listen for changes <>` in directories of choice, i.e. they are file listeners that publish information
+File transfer are used to :doc:`listen for changes <>` in directories of choice, i.e. they are file listeners that publish information
 to topics about new or changed files, optionally including their contents. File listeners can publish messages to topics
 but they cannot subscribe to them.
 
@@ -105,13 +105,13 @@ to messages from these topics. It is, however, allowed to both publish and subsc
 Using pub/sub in Zato services
 ------------------------------
 
-Using file listeners
---------------------
+Using file transfer
+-------------------
 
 More information
 ----------------
 
 * Creating, editing or deleting endpoints in :doc:`web-admin <>`
 * Using :doc:`pub/sub in Zato services <>`
-* Configuring :doc:`file listeners <>`
+* Configuring :doc:`file transfer <>`
 * Using :doc:`Java JMS topics <>` with Zato publish/subscribe
