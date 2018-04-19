@@ -1,7 +1,7 @@
 Publish/subscribe endpoints
 ===========================
 
-Preliminary reading: :doc:`Pub/sub architecture <../../arch/index>`.
+Preliminary materials: :doc:`Pub/sub architecture <../../arch/index>`.
 
 Introduction
 ------------
@@ -100,7 +100,7 @@ Auth security 'pubapi'. It is allowed to publish to all topics matching pattern 
 to messages from these topics. It is, however, allowed to both publish and subscribe to messages matching pattern
 */customer/\*/changed*.
 
-.. image:: /gfx/pubsub/topic/endpoint/create.png
+.. image:: /gfx/pubsub/details/create-endpoint.png
 
 Using pub/sub in Zato services
 ------------------------------
