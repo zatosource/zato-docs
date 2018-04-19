@@ -37,7 +37,7 @@ Topics
   * **Details:**
     :doc:`Topics <./details/topic/index>` |
     :doc:`Endpoints <./details/endpoint/index>` |
-    :doc:`~~Subscriptions <./details/sub/index>` |
+    :doc:`Subscriptions <./details/sub/index>` |
     :doc:`~~Logging <./admin/logging>`
 
   * **APIs:**
