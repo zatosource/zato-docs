@@ -102,6 +102,9 @@ to messages from these topics. It is, however, allowed to both publish and subsc
 
 .. image:: /gfx/pubsub/details/create-endpoint.png
 
+Creating an endpoint and giving it rights to publish is sufficient for this endpoint to begin publications immediately,
+there is no other step needed. To receive messages, however, a :doc:`subscription <../sub/index>` needs to be created first.
+
 Using pub/sub in Zato services
 ------------------------------
 
