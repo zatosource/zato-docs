@@ -13,10 +13,30 @@ Stemming from their specific connection requirements, subscriptions for WebSocke
 in advance by administrators.
 
 
-Configuration
--------------
+Creating subscriptions
+----------------------
+
+In web-admin, go to *Pub/sub* → *Subscriptions* → *Create new pub/sub subscriptions*.
 
 .. image:: /gfx/pubsub/details/create-sub.png
+
+All subscriptions are grouped by an endpoint's type. Choosing one of types re-populates the form with elements specific to this
+kind of endpoints.
+
+Each subscription has a delivery server - this is one of servers in the Zato cluster that will queue up in-RAM all messages
+destined for a particular endpoint. It will be also the server that will send outgoing pub/sub messages to the endpoint.
+
+For each endpoint type, one of endpoints need to be selected. Doing it will add to the form all the topics that the chosen
+endpoint is allowed to subscribe to.
+
+Updating subscriptions
+----------------------
+
+Deleting subscriptions
+----------------------
+
+Browsing subscription queues
+----------------------------
 
 WebSockets
 ----------
