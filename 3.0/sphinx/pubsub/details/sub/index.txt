@@ -31,7 +31,8 @@ endpoint is allowed to subscribe to.
 
 If an endpoint is already subscribed to a topic, the topic will be grayed out and disabled to indicate it. Otherwise,
 clicking the checkbox or the Toggle link will enable the subscription. Clicking the topic's name will open the topic's details
-in a new tab.
+in a new tab. There needs to be always at least one new topic toggled when submitting the form, otherwise an error will
+be reported.
 
 A subscription has a delivery method - Notify or Pull. If Notify, Zato will send all the messages to the subscribers as they
 appear in topics. If Pull, this indicates that the endpoint will periodically connect to Zato to check if there are new messages
@@ -51,6 +52,8 @@ message.
 
 For REST and SOAP endpoints, the HTTP method to use during deliveries can be chosen. If delivery method is Notify,
 for endpoints of this type it an outgoing connection needs to be also picked to deliver the messages through.
+
+Clicking "OK" will create the subscription and start a background delivery task.
 
 Updating subscriptions
 ----------------------
