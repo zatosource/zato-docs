@@ -29,6 +29,29 @@ destined for a particular endpoint. It will be also the server that will send ou
 For each endpoint type, one of endpoints need to be selected. Doing it will add to the form all the topics that the chosen
 endpoint is allowed to subscribe to.
 
+If an endpoint is already subscribed to a topic, the topic will be grayed out and disabled to indicate it. Otherwise,
+clicking the checkbox or the Toggle link will enable the subscription. Clicking the topic's name will open the topic's details
+in a new tab.
+
+A subscription has a delivery method - Notify or Pull. If Notify, Zato will send all the messages to the subscribers as they
+appear in topics. If Pull, this indicates that the endpoint will periodically connect to Zato to check if there are new messages
+and Zato will not deliver them itself.
+
+Delivery batch size specifies at most how many messages to deliver to the endpoint in one call. If "list required" is selected,
+all the messages will be always sent wrapped in a list even if there is only one message to be delivered, in which case
+the list will have only that one element.
+
+Delivery max retries signifies after how many delivery attempts of a single message Zato should abandon the task of delivery
+if the message cannot be delivered for any reason - be it a network or any other error.
+
+If there is any error during delivery of messages to the endpoint, the delivery task for this endpoint will pause for a configured
+time, which can be specified separately for TCP-level or other errors. All errors such as "No route to host" or "Unknown host"
+are grouped under TCP error. Other errors include situations where there is TCP connectivity but the endpoint still rejects the
+message.
+
+For REST and SOAP endpoints, the HTTP method to use during deliveries can be chosen. If delivery method is Notify,
+for endpoints of this type it an outgoing connection needs to be also picked to deliver the messages through.
+
 Updating subscriptions
 ----------------------
 
