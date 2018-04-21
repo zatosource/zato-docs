@@ -53,13 +53,43 @@ message.
 For REST and SOAP endpoints, the HTTP method to use during deliveries can be chosen. If delivery method is Notify,
 for endpoints of this type it an outgoing connection needs to be also picked to deliver the messages through.
 
-Clicking "OK" will create the subscription and start a background delivery task.
+Clicking "OK" will create the subscription and start a background delivery task, assuming that the delivery server
+is up and running.
 
-Updating subscriptions
-----------------------
+Updating an endpoint's subscriptions
+------------------------------------
 
-Deleting subscriptions
-----------------------
+In web-admin, go to *Pub/sub* → *Subscriptions* → Click *# of subscriptions* for the required endpoint
+→ Click *Edit* for the required topic
+
+.. image:: /gfx/pubsub/details/update-sub1.png
+
+.. image:: /gfx/pubsub/details/update-sub2.png
+
+.. image:: /gfx/pubsub/details/update-sub3.png
+
+All of the fields in the edit form have the same meaning as in the creation form with the following notes:
+
+* If a delivery server is changed, all new messages for that topic and endpoint will be routed through the new server.
+  Any outstanting messages will not be migrated to the new server and will continue to be delivered using the old server.
+
+* Subscription state can have one of four values:
+
+  =========== ============================================================================================
+  State       Notes
+  =========== ============================================================================================
+  Pub and sub Messages published to topics will be sent to the endpoint's delivery queue and the endpoint
+              is allowed to consume them
+  Pub only    Messages published to topics will be sent to the endpoint's delivery queue but the endpoint
+              is not allowed to consume them
+  Sub only    No new messages may be sent to the endpoint's delivery queue but the endpoint is allowed
+              to consume all the messages that are in its queue
+  Disabled    No new messages will be sent to the endpoint's delivery queue and the endpoint
+              is not allowed to consume any that are in its queue
+  =========== ============================================================================================
+
+Deleting an endpoint's subscriptions
+------------------------------------
 
 Browsing subscription queues
 ----------------------------
