@@ -59,7 +59,7 @@ is up and running.
 Updating an endpoint's subscriptions
 ------------------------------------
 
-In web-admin, go to *Pub/sub* → *Subscriptions* → Click *# of subscriptions* for the required endpoint
+In web-admin, go to *Pub/sub* → *Subscriptions* → Click *# of subscriptions* for the required endpoint.
 → Click *Edit* for the required topic
 
 .. image:: /gfx/pubsub/details/update-sub1.png
@@ -91,8 +91,29 @@ All of the fields in the edit form have the same meaning as in the creation form
 Deleting an endpoint's subscriptions
 ------------------------------------
 
+In web-admin, go to *Pub/sub* → *Subscriptions* → Click *# of subscriptions* for the required endpoint
+→ Click *Delete* for the required topic.
+
+Deleting a subscription for a topic that an endpoint is subscribed to will stop the delivery of any GD or in-RAM messages
+and will ensure that no further messages for this topic will be sent to the chosen endpoint. This operation cannot be undone.
+
 Browsing subscription queues
 ----------------------------
+
+In web-admin, go to *Pub/sub* → *Subscriptions* → Click *# of subscriptions* for the required endpoint
+→ Click *Total* for the required topic.
+
+.. image:: /gfx/pubsub/details/browse-list.png
+
+.. image:: /gfx/pubsub/details/browse-details.png
+   :width: 98%
+
+For each queue of outgoing messages pertaining to a particular subscription, it is possibly to list all of them, including
+GD and in-RAM ones. Entering search terms will narrow down the results to these messages that contain a substring in their
+message prefix (first 64 bytes).
+
+Clicking on a message's ID leads to a page containing both data and metadata about a message, including information about
+what matching security patterns led to the appearance of the message in this endpoint's queue for topic.
 
 WebSockets
 ----------
