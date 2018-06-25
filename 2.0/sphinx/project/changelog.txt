@@ -13,8 +13,8 @@
    `web-admin <https://zato.io/docs/architecture/web-admin.html>`_
    in 10 minutes.
 
-* Multi-protocol `publish/subscribe <https://zato.io/docs/3.0/pubsub/index.html>`_ topics with guaranteed delivery message queues turn Zato into
-  a full-featured message broker
+* A built-in `multi-protocol message broker <https://zato.io/docs/3.0/pubsub/index.html>`_ with publish/subscribe
+  topics and guaranteed delivery queues
 
 * `Single Sign-On and user management API <https://zato.io/docs/3.0/sso/index.html>`_
 
@@ -26,7 +26,7 @@
   and
   `Visual Studio Code <https://zato.io/docs/3.0/progguide/ide/vscode.html>`_
 
-* New caching layer
+* New `caching layer <https://zato.io/blog/posts/api-caching-part-1.html>`_
 
 * A series of `security mechanisms <https://zato.io/docs/3.0/gdpr/index.html>`_ to help in achieving EU GDPR compliance (General Data Protection Regulation)
 
