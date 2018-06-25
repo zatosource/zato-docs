@@ -118,7 +118,7 @@ what matching security patterns led to the appearance of the message in this end
 WebSockets
 ----------
 
-WebSockets-based endpoints :doc:`subscribe to topics using the public API <>` - this is because there is no way
+WebSockets-based endpoints :doc:`subscribe to topics using the public API <../wsx/index>` - this is because there is no way
 to predict to which server a given WebSocket connection will be routed from the cluster's load-balancer which in turn means that
 it is impossible to choose any particular delivery server in the web-admin.
 

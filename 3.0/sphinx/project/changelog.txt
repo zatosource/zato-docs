@@ -13,8 +13,8 @@
    :doc:`web-admin <../architecture/web-admin>`
    in 10 minutes.
 
-* Multi-protocol :doc:`publish/subscribe <../pubsub/index>` topics with guaranteed delivery message queues turn Zato into
-  a full-featured message broker
+* A built-in `multi-protocol message broker <https://zato.io/docs/3.0/pubsub/index.html>`_ with publish/subscribe
+  topics and guaranteed delivery queues
 
 * :doc:`Single Sign-On and user management API <../sso/index>`
 
@@ -26,11 +26,11 @@
   and
   :doc:`Visual Studio Code <../progguide/ide/vscode>`
 
-* New caching layer
+* New `caching layer <https://zato.io/blog/posts/api-caching-part-1.html>`_
 
 * A series of :doc:`security mechanisms <../gdpr/index>` to help in achieving EU GDPR compliance (General Data Protection Regulation)
 
-* Automatic API documentation generation
+* Automatic :doc:`API documentation generation <../admin/cli/apispec>` - Sphinx, OpenAPI and WSDL
 
 * :doc:`WebSocket <../web-admin/channels/wsx>` channels
 
@@ -83,7 +83,7 @@
 
 * Removed technical accounts - already superseded by API keys in 2.0
 
-* Removed the HTTP-only audit log in favour of a more generic :doc:`service audit log <service-audit-log>`
+* Removed the HTTP-only audit log
 
 2.0 - 2015-01-28
 ================

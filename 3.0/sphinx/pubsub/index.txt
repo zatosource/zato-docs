@@ -1,12 +1,12 @@
 Publish/subscribe topics and guaranteed delivery queues
 =======================================================
 
-What it can do
---------------
+What is publish/subscribe?
+--------------------------
 
 .. image:: /gfx/pubsub/intro.png
 
-Constituting a core part of Zato, publish/subscribe message broker facilities simplify integration of distributed and diverse
+Constituting a core part of Zato, publish/subscribe message brokering facilities simplify integration of distributed and diverse
 applications, including cloud-based, on premise, mobile and IoT ones.
 
 Integrated environments can be created using an event-based approach of publishers sending
@@ -44,7 +44,7 @@ Topics
     :doc:`~~Overview <./api/index>` |
     :doc:`~~REST <./api/rest>` |
     :doc:`~~SOAP <./api/soap>` |
-    :doc:`~~WebSockets <./api/wsx>` |
+    :doc:`WebSockets <./api/wsx>` |
     :doc:`~~Zato services <./api/zato-service>` |
     :doc:`~~Java JMS <./api/jms>` |
     :doc:`~~File transfer <./api/file>`

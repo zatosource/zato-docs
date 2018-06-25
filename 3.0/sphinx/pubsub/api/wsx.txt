@@ -1,0 +1,6 @@
+Publish/subscribe and WebSockets
+================================
+
+Preliminary materials: :doc:`Pub/sub architecture <../arch/index>`.
+
+This chapter presents information needed for WebSockets-based API clients to participate in publish/subscribe mechanisms.
