@@ -6,7 +6,7 @@ Installing Zato from source code
 Requirements
 ------------
 
-* Ubuntu, RHEL/CentOS or Debian
+* RHEL/CentOS, Ubuntu, Debian or Alpine Linux
 * Sudo powers
 
 Installation steps
@@ -22,28 +22,20 @@ Installation steps
     code$
 
 
-* Run the installer. If required, it will be ask for a password to sudo:
+* Run the installer. If required, it will ask for a password to sudo:
 
 ::
 
     code$ ./install.sh
     [snip]
 
-* Wait for the installer to complete - it can take 10+ minutes depending on CPU and network connectivity.
-  If for any reason the installation stops (for instance if a connection to PyPI times out), run the following
-  commands to resume it:
-
-::
-
-    code$ ./bin/python bootstrap.py -v 1.7.0
-    code$ ./bin/buildout
 
 * Confirm the installation
 
 ::
 
     code$ ./bin/zato --version
-    Zato 3.0.0pre1.rev-21dbcdfa
+    Zato 3.0.0+rev.f5dbf26b
     code$
 
 That concludes the process - you can refer to the main
