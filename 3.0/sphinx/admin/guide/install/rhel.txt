@@ -6,7 +6,7 @@ Installation on RHEL/CentOS
 Requirements
 ------------
 
-* RHEL/CentOS 6.x, 7.x
+* RHEL/CentOS 6.x, 7.x (64-bit)
 * Root access
 
 Installation steps
@@ -51,13 +51,20 @@ Installation steps
 
     rhel# yum install zato
 
-* Confirm the installation
+* Install latest additions
 
 ::
 
     rhel# su - zato
+    rhel$ cd /opt/zato/current
+    rhel$ git pull
+
+* Confirm the installation
+
+::
+
     rhel$ zato --version
-    Zato 3.0.0+rev.5f04e3ff
+    Zato 3.0.0+rev.f5dbf26b
     rhel$
 
 That concludes the process - you can refer to the main

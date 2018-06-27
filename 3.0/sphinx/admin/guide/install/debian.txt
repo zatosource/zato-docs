@@ -6,7 +6,7 @@ Installation on Debian
 Requirements
 ------------
 
-* Debian 7 Wheezy or Debian 8 Jessie
+* Debian 8 Jessie, 9 Stretch (64-bit)
 * Root access
 
 Installation steps
@@ -17,21 +17,6 @@ Installation steps
 ::
 
     debian# su -
-
-* On Debian Wheezy: Install helper programs and add backports for HAProxy
-
-::
-
-    debian# apt-get install apt-transport-https python-software-properties
-    debian# apt-add-repository 'deb http://ftp.is.debian.org/debian wheezy-backports main'
-    debian# apt-get install --reinstall libffi5
-
-* On Debian Jessie: Install helper programs
-
-::
-
-    debian# apt-get install apt-transport-https python-software-properties \
-        software-properties-common
 
 * Add the package signing key
 
@@ -52,14 +37,21 @@ Installation steps
 
     debian# apt-get install zato
 
-* Confirm the installation
+* Install latest additions
 
 ::
 
     debian# su - zato
-    debian# zato --version
-    Zato 2.0.8.rev-050c6697
-    debian#
+    debian$ cd /opt/zato/current
+    debian$ git pull
+
+* Confirm the installation
+
+::
+
+    debian$ zato --version
+    Zato 3.0.0+rev.f5dbf26b
+    debian$
 
 That concludes the process - you can refer to the main
 :doc:`documentation index <../../../index>`

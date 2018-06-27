@@ -6,7 +6,7 @@ Installation on Ubuntu
 Requirements
 ------------
 
-* Ubuntu 16.04 LTS or 18.04 LTS (64-bit)
+* Ubuntu 16.04 LTS, 18.04 LTS (64-bit)
 * Sudo rights
 
 Installation steps
@@ -44,13 +44,20 @@ Installation steps
 
     ubuntu$ sudo apt-get install zato
 
+* Install latest additions
+
+::
+
+    ubuntu# su - zato
+    ubuntu$ cd /opt/zato/current
+    ubuntu$ git pull
+
 * Confirm the installation:
 
 ::
 
-    ubuntu$ sudo su - zato
     ubuntu$ zato --version
-    Zato 2.0.8.rev-050c6697
+    Zato 3.0.0+rev.f5dbf26b
     ubuntu$
 
 That concludes the process - you can refer to the main
