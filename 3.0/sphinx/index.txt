@@ -313,6 +313,7 @@ Administration guide
 
     * **Installation and management:**
       :doc:`Download and install Zato <admin/guide/install/index>` |
+      :doc:`Installing updates <admin/guide/install/update>` |
       :doc:`Components <admin/guide/install-config/overview>` |
       :doc:`Command line interface (CLI) <admin/cli/index>` |
       :doc:`High availability <admin/guide/ha>` |
@@ -361,6 +362,11 @@ Security
 
     * **Other:**
       :doc:`Reporting security issues <security/reporting-issues>`
+
+Release policy
+==============
+
+    * :doc:`Understanding Zato life-cycle policy <release/policy>`
 
 Zato, the open-source project
 ==============================
@@ -444,6 +450,7 @@ Zato, the open-source project
    web-admin/notif/*
    web-admin/notif/cloud/openstack/*
    web-admin/outgoing/*
+   release/*
    web-admin/query/*
    web-admin/search/*
    web-admin/scheduler/*

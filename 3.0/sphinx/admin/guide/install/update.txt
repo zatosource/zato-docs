@@ -1,0 +1,32 @@
+Installing updates to Zato installation
+=======================================
+
+In accordance with :doc:`Zato release life-cycle policy <../../../release/policy>`, each major release receives
+periodic updates to functionality, including security and stability fixes.
+
+Each such update is always backwards-compatible within the same major release.
+
+To install updates, run the commands below:
+
+* On RHEL/CentOS, Ubuntu and Debian:
+
+  ::
+
+    $ sudo su - zato
+    zato$ cd /opt/zato/current
+    zato$ git pull
+
+* On Alpine Linux
+
+  ::
+
+    $ sudo su - zato
+    zato$ cd /pkg/zato/current
+    zato$ git pull
+
+Afterwards, all Zato components need to be stopped and started again. Additionally, Zato servers need to be started
+with the *--sync-internal* flag, as below:
+
+::
+
+  zato$ zato start /path/to/server --sync-internal
