@@ -1,5 +1,5 @@
-3.0 - 2018-NN-NN - **in development**
-=====================================
+3.0 - 2018-06-30
+================
 
 .. note::
 
@@ -28,9 +28,9 @@
 
 * New `caching layer <https://zato.io/blog/posts/api-caching-part-1.html>`_
 
-* A series of :doc:`security mechanisms <../gdpr/index>` to help in achieving EU GDPR compliance (General Data Protection Regulation)
+* A series of security mechanisms to help in achieving EU GDPR compliance (General Data Protection Regulation)
 
-* Automatic :doc:`API documentation generation <../admin/cli/apispec>` - Sphinx, OpenAPI and WSDL
+* Automatic API documentation generation - Sphinx, OpenAPI/Swagger and WSDL
 
 * :doc:`WebSocket <../web-admin/channels/wsx>` channels
 
