@@ -6,7 +6,7 @@ Installation on Ubuntu
 Requirements
 ------------
 
-* Ubuntu 12.04 LTS, 14.04 LTS, 16.04 LTS
+* Ubuntu 16.04 LTS or 18.04 LTS (64-bit)
 * Sudo rights
 
 Installation steps
@@ -17,13 +17,13 @@ Installation steps
 ::
 
     ubuntu$ sudo apt-get install apt-transport-https
-    ubuntu$ sudo apt-get install python-software-properties
+    ubuntu$ sudo apt-get install software-properties-common
 
-* Install additional package on Ubuntu versions greater than 12.04 LTS
+* Install an additional package on Ubuntu 16.04 LTS
 
 ::
 
-    ubuntu$ sudo apt-get install software-properties-common
+    ubuntu$ sudo apt-get install python-software-properties
 
 * Add the package signing key
 
@@ -35,7 +35,7 @@ Installation steps
 
 ::
 
-    ubuntu$ sudo apt-add-repository https://zato.io/repo/stable/2.0/ubuntu
+    ubuntu$ sudo apt-add-repository https://zato.io/repo/stable/3.0/ubuntu
     ubuntu$ sudo apt-get update
 
 * Install Zato
