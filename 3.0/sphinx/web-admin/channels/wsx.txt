@@ -15,7 +15,7 @@ Used to create, update, delete and browse :doc:`WebSocket channels <../../proggu
 Create and Edit
 ---------------
 
-.. image:: /gfx/web-admin/channels/wsx-update.png
+.. image:: /gfx/web-admin/channels/wsx-create.png
 
 =================== ==============================================================================================================
 Header              Notes

@@ -6,20 +6,10 @@ Overview
 
 Used to create, update, delete and browse through ZeroMQ channels.
 
-Each channel represents a connection through which ZeroMQ messages are 
+Each channel represents a connection through which ZeroMQ messages are
 received by Zato. A given service is invoked for each message received.
 
-Creating or updating a channel (re-)establishes a connection to a ZeroMQ socket
-and there are as many connectors and connections to any socket as there are 
-active channels connected to it. 
-
-For instance, if there are 5 channels to a socket, there will
-be 5 connector processes started in a cluster each maintaining 1 connection
-to the socket pointed to by the channel.
-
-Reading messages off a socket and invoking a service is an asynchronous
-activity - messages are not rolled back onto sockets if there are any errors
-along.
+Creating or updating a channel (re-)establishes a connection to its underlying ZeroMQ socket.
 
 * Menu path: Connections -> Channels -> ZeroMQ
 * Example address: http://localhost:8183/zato/channel/zmq/?cluster=1
@@ -58,7 +48,7 @@ Delete
 Stops a channel's connector and deletes the channel from ODB.
 
 .. _web-admin-channels-zmq-active:
-  
+
 The 'Active' flag
 -----------------
 
@@ -71,5 +61,6 @@ Changelog
 =================== ===================================================================
 Version             Notes
 =================== ===================================================================
+3.0                 Channels no longer require separate connector processes
 1.0                 Added initially
 =================== ===================================================================

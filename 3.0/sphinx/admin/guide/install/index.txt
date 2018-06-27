@@ -20,6 +20,6 @@ Ubuntu                  16.04, 18.04           :doc:`Installation instructions <
 
 Debian                  8.x, 9.x               :doc:`Installation instructions <./debian>`
 
-Docker                  1.0.1+                 :doc:`Quickstart <./docker>` | :doc:`DockerHub <./dockerhub>`
+Docker                  1.0.1+                 :doc:`Quickstart <./docker>`
 Source                  (n/a)                  :doc:`Installing from source code <./source>`
 ======================= ====================== ================================================================================

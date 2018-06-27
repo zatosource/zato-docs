@@ -4,13 +4,13 @@ Connection definitions - AMQP
 Overview
 --------
 
-Used to create, update, delete and browse 
+Used to create, update, delete and browse
 `AMQP 0.9.1 <http://www.rabbitmq.com/tutorials/amqp-concepts.html>`_
 connection definitions.
 
-A definition is a template off of which a concrete connection, either 
+A definition is a template off of which a concrete connection, either
 :doc:`channel <../channels/amqp>`
-or an 
+or an
 :doc:`outgoing one<../outgoing/amqp>`,
 is created. Merely creating a definition doesn't start a connection to a broker.
 
@@ -66,8 +66,8 @@ Deletes an AMQP definition and all the connections that make use of it.
 Changelog
 ---------
 
-=================== ===================================================================
+=================== ==================================================================================
 Version             Notes
-=================== ===================================================================
+=================== ==================================================================================
 1.0                 Added initially
-=================== ===================================================================
+=================== ==================================================================================

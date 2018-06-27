@@ -4,7 +4,7 @@ Service details - main view
 Overview
 --------
 
-Display core information regarding a service deployed on a cluster.
+Displays core information regarding a service deployed on a cluster.
 
 * Menu path: Services -> (find a service and clicks its name)
 * Example address: http://localhost:8183/zato/service/overview/zato.service.invoke/?cluster=1
@@ -12,7 +12,7 @@ Display core information regarding a service deployed on a cluster.
 .. image:: /gfx/web-admin/service-details/main.png
    :width: 95%
 
-   
+
 Statistics
 ----------
 
@@ -28,8 +28,6 @@ All time min/max/mean (ms) Minimum, maximum and mean response time across all in
 1h usage                   How many times was the service invoked in the last hour
 1h min/max/mean (ms)       Minimum, maximum and mean response time in the last hour, in milliseconds
 1h req/s                   Request rate in the last hour
-1h mean trend              Mean response time in the last hour, as a chart
-1h req trend               Request rate in the last hour, as a chart
 ========================== =============================================================================
 
 
@@ -40,7 +38,7 @@ Lists all, if any,
 :doc:`plain HTTP <../channels/plain-http>`,
 :doc:`SOAP <../channels/soap>`,
 :doc:`AMQP <../channels/amqp>`,
-:doc:`JMS WebSphere MQ <../channels/jms-wmq>`,
+:doc:`IBM MQ <../channels/jms-wmq>`,
 :doc:`ZeroMQ <../channels/zmq>`,
 channels
 and
@@ -62,7 +60,7 @@ fs_location  Where was the Python class the service is in found
 object       Name of a Python class the service is implemented as
 remote_user  (currently unused)
 remote_host  (currently unused)
-method       (currently always 'service-store' and effectively unused) How was the
+method       (currently always 'service-store' and reserved for future use) How was the
              service deployed
 ============ =============================================================================
 

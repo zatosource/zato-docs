@@ -1,17 +1,18 @@
-Channels - Plain HTTP (REST)
-============================
+Channels - REST
+===============
 
 Overview
 --------
 
-Used to create, update, delete and browse through plain HTTP channels.
+Used to create, update, delete and browse through plain REST channels.
 
-A plain HTTP channel is a means of accepting synchronous HTTP service invocations.
+A REST channel is a means of accepting synchronous HTTP service invocations.
+
 Contrary to what :doc:`SOAP channels <./soap>` assume, plain HTTP ones don't except
 the data to be in any particular format, it can be anything that can be
 transferred over HTTP, including JSON, CSV, XML or virtually anything.
 
-* Menu path: Connections -> Channels -> Plain HTTP
+* Menu path: Connections -> Channels -> REST
 * Example address: http://localhost:8183/zato/http-soap/?cluster=1&connection=channel&transport=plain_http
 
 .. image:: /gfx/web-admin/channels/plain-http.png
@@ -20,23 +21,25 @@ transferred over HTTP, including JSON, CSV, XML or virtually anything.
 Create and Edit
 ---------------
 
-.. image:: /gfx/web-admin/channels/plain-http-update.png
+.. image:: /gfx/web-admin/channels/plain-http-create.png
 
 ========================= ======================================================================================
 Header                    Notes
 ========================= ======================================================================================
 Name                      Channel name
 Active                    :ref:`Documented below <web-admin-channels-plain-http-active>`
-URL path                  A path to mount this channel on. Must be unique in a cluster. May 
+URL path                  A path to mount this channel on. Must be unique in a cluster. May
                           include patterns - for instance */cust/{cust_id}/program/{prog_id}*
                           will let the service access self.request.input.cust_id
                           and self.request.input.prog_id if
                           using :doc:`SimpleIO <../../progguide/sio>`.
-Merge URL params to req   If using :doc:`SimpleIO <../../progguide/sio>`, should URL parameters be
-                          taken into account when constructing the input to the service
 
-URL params priority       Used to decide which parameters will take precedence if both URL parameters
+
+URL params                Used to decide which parameters will take precedence if both URL parameters
                           and path patterns are used as part of the input to a service.
+
+Merge to request          If using :doc:`SimpleIO <../../progguide/sio>`, should URL parameters be
+                          taken into account when constructing the input to the service
 
 Params priority           Used to decide which parameters will take precedence if URL parameters and/or path
                           parameters are considered part of the input to the service
@@ -46,27 +49,34 @@ Method                    *(Optional)* An HTTP method that must be used by clien
                           this particular channel. It can be any string and Zato won't check
                           if it's a valid HTTP 1.1 method. Leave empty to allow any method
                           be used.
+Encoding                  *(Optional)* Using what format responses should be encoded - leave empty for no
+                          encoding. Currently the only supported value is *gzip*.
+
 Service                   Name of an already existing service to invoke for
                           each HTTP request received
 Data format               *(Optional)* The expected data format Zato should parse
                           incoming messages as. This will also populate a service's
                           :ref:`data_format attribute <progguide-write-service-data_format>`.
-Security definition       Name of a security definition - 
+Security definition       Name of a security definition -
                           :doc:`API keys <../security/apikey>`,
                           :doc:`HTTP Basic Auth <../security/basic-auth>`,
                           :doc:`OAuth <../security/oauth>`,
                           :doc:`SSL/TLS <../security/tls/channels>`,
-                          :doc:`technical account <../security/tech-account>`,
                           :doc:`XPath <../security/xpath>`
-                          or a 
+                          or a
                           :doc:`WS-Security <../security/ws-security>` definition
-                          - to use for securing the access to the channel. 
-                    
+                          - to use for securing the access to the channel.
+
                           Pick 'No security' explicitly to indicate that no such definition
-                          should be used.  This can be used to expose certain services 
-                          without any 
+                          should be used.  This can be used to expose certain services
+                          without any
                           usernames or to indicate that a service will implement a custom
                           security scheme itself.
+
+Cache                     *(Optional)* Using what definitions responses from the channel should cached,
+                          if at all
+Expiry                    *(Optional)* For how many minutes responses should be cached
+
 RBAC                      *(Optional)* Whether the channel uses
                           :doc:`Role-Based Access Control (RBAC) <../../admin/guide/rbac/overview>`.
 ========================= ======================================================================================
@@ -81,12 +91,12 @@ Deletes the channel from ODB and servers. The channel won't exist anymore and in
 a URL it was mounted on will return HTTP 404 error.
 
 .. _web-admin-channels-plain-http-active:
-  
+
 The 'Active' flag
 -----------------
 
 If a channel is made inactive, an attempt to invoke it will result in an HTTP
-404 error. 
+404 error.
 
 Changelog
 ---------
@@ -94,6 +104,12 @@ Changelog
 =================== ===================================================================
 Version             Notes
 =================== ===================================================================
+3.0                 Added new fields:
+
+                    * Encoding
+                    * Cache
+                    * Expiry
+
 2.0                 Added new fields:
 
                     * Merge URL params to req

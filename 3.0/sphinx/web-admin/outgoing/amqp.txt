@@ -6,21 +6,8 @@ Overview
 
 Used to create, update, delete and browse through outgoing AMQP connections.
 
-Each outgoing connection represents a link through which AMQP messages are 
+Each outgoing connection represents a link through which AMQP messages are
 sent by Zato services.
-
-Creating or updating a connection (re-)establishes a link to an AMQP broker
-and there are as many connectors and connections to any broker as there are 
-active outgoing connections and :doc:`channels <../channels/amqp>` in a cluster.
-
-For instance, if there is 1 
-:doc:`AMQP definition <../conn-def/amqp>` and 5 outgoing connections using it, there will
-be 5 connector processes started in a cluster each maintaining 1 connection
-to the broker pointed to by the definition.
-
-Sending messages to a remote broker is an asynchronous activity - messages are not
-rolled back to Zato services if there are any errors
-along.
 
 * Menu path: Connections -> Outgoing -> AMQP
 * Example address: http://localhost:8183/zato/outgoing/amqp/?cluster=1
@@ -46,13 +33,16 @@ Priority            *(Optional)* Default message priority. 9 is the highest one.
 Content type        *(Optional)* Default content type for messages sent
 Encoding            *(Optional)* Default message encoding
 Expiration          *(Optional)* After how many milliseconds messages should expire
-User ID             *(Optional)* User ID sending the message 
+Pool size           How many connections to create to the AMQP broker - note that this
+                    value is for each Zato worker process rather than globally for
+                    the whole Zato cluster
+User ID             *(Optional)* User ID sending the message
                     (consult `AMQP spec <http://www.rabbitmq.com/tutorials/amqp-concepts.html>`_)
-App ID              *(Optional)* App ID sending the message 
+App ID              *(Optional)* App ID sending the message
                     (consult `AMQP spec <http://www.rabbitmq.com/tutorials/amqp-concepts.html>`_)
 =================== =============================================================================
 
-Each optional value can be overridden by a service 
+Each optional value can be overridden by a service
 :doc:`making use of the outgoing connection <../../progguide/outconn/amqp>`.
 
 Delete
@@ -60,27 +50,16 @@ Delete
 
 .. image:: /gfx/web-admin/outgoing/amqp-delete.png
 
-Stops the underlying connector and deletes the connection from ODB.
-
-.. _web-admin-outgoing-amqp-active:
-  
-The 'Active' flag
------------------
-
-If an **outgoing connection** is made **inactive** and there are services still making
-use of it, the **messages** services send **will be lost**. 
-
-You need to ensure no service is able to reach an outgoing connection before
-it's turned off - otherwise **you will lose messages**.
-
-Also an inactive outgoing AMQP connection closes its underlying link to a broker
-but the connector's process continues to run.
+Stops and deletes underlying connections to an AMQP broker.
 
 Changelog
 ---------
 
-=================== ===================================================================
+=================== ==================================================================================
 Version             Notes
-=================== ===================================================================
+=================== ==================================================================================
+3.0                 * Outgoing connections no longer require separate connector processes for each one
+                    * Messages are sent in a synchronous fashion, unlike in previous Zato versions
+                    * Added *Pool size* field
 1.0                 Added initially
-=================== ===================================================================
+=================== ==================================================================================

@@ -31,7 +31,7 @@ What makes Zato unique
 
 * **Open-source ESB**, **SOA**, **REST**, **APIs**, **SSO** and **Cloud Integrations** in **Python**
 
-* Multi-protocol **publish/subscribe topics** with guaranteed delivery **message queues**
+* Includes a multi-protocol **message broker** with **publish/subscribe topics** and guaranteed delivery **message queues**
 
 * Using Python alone offers **increased productivity**
 
@@ -40,9 +40,10 @@ What makes Zato unique
 
 * Browser-based **GUI**, **CLI** and **API** - easy to use and customize
 
-* **Protocols**, **industry standards** and **data formats** - HTTP, REST, JSON, SOAP, AMQP,
-  JMS IBM MQ, ZeroMQ, Redis, SQL, Cassandra, Amazon S3, OpenStack Swift, Odoo,
-  SMTP, IMAP, FTP, Solr, ElasticSearch, integration patterns, RBAC, security and more
+* **Protocols**, **industry standards** and **data formats** - **SAP**, **Odoo** and **IBM MQ** as well as REST, JSON, SOAP, AMQP,
+  JMS, ZeroMQ, WebSockets, Redis, SQL, Cassandra, Amazon S3, OpenStack Swift,
+  SMTP, IMAP, FTP, Solr, ElasticSearch, Memcached, SMS Twilio, Vault, RBAC, integration patterns,
+  cryptography, security and more
 
 * **Commercial support** and **training** available. Growing **community** around the project.
 
@@ -104,7 +105,6 @@ Web admin reference
       :doc:`Main view <web-admin/service-details/main>` |
       :doc:`Invoker <web-admin/service-details/invoker>` |
       :doc:`Source code <web-admin/service-details/source-code>` |
-      :doc:`WSDL <web-admin/service-details/wsdl>` |
       :doc:`Sample requests/responses <web-admin/service-details/sample-req-resp>` |
       :doc:`Slow responses <web-admin/service-details/slow-responses>`
 
@@ -121,19 +121,18 @@ Web admin reference
       :doc:`OAuth <web-admin/security/oauth>` |
       :doc:`RBAC (Role-based access control) <web-admin/security/rbac/overview>` |
       :doc:`SSL/TLS <web-admin/security/tls/overview>` |
-      :doc:`Technical accounts <web-admin/security/tech-account>` |
       :doc:`WS-Security <web-admin/security/ws-security>` |
       :doc:`XPath <web-admin/security/xpath>`
 
     * **Connection definitions:**
       :doc:`AMQP <web-admin/conn-def/amqp>` |
       :doc:`Cassandra <web-admin/conn-def/cassandra>` |
-      :doc:`JMS WebSphere MQ <web-admin/conn-def/jms-wmq>`
+      :doc:`IBM MQ <web-admin/conn-def/jms-wmq>`
 
     * **Channels:**
       :doc:`AMQP <web-admin/channels/amqp>` |
-      :doc:`JMS WebSphere MQ <web-admin/channels/jms-wmq>` |
-      :doc:`Plain HTTP (REST) <web-admin/channels/plain-http>` |
+      :doc:`IBM MQ <web-admin/channels/jms-wmq>` |
+      :doc:`REST <web-admin/channels/plain-http>` |
       :doc:`SOAP <web-admin/channels/soap>` |
       :doc:`WebSockets <web-admin/channels/wsx>` |
       :doc:`ZeroMQ <web-admin/channels/zmq>`
@@ -141,9 +140,10 @@ Web admin reference
     * **Outgoing connections:**
       :doc:`AMQP <web-admin/outgoing/amqp>` |
       :doc:`FTP <web-admin/outgoing/ftp>` |
-      :doc:`JMS WebSphere MQ <web-admin/outgoing/jms-wmq>` |
-      :doc:`Plain HTTP (REST) <web-admin/outgoing/plain-http>` |
-      :doc:`Odoo (OpenERP) <web-admin/outgoing/odoo>` |
+      :doc:`IBM MQ <web-admin/outgoing/jms-wmq>` |
+      :doc:`REST <web-admin/outgoing/plain-http>` |
+      :doc:`Odoo <web-admin/outgoing/odoo>` |
+      :doc:`SAP <web-admin/outgoing/sap>` |
       :doc:`SOAP <web-admin/outgoing/soap>` |
       :doc:`SQL <web-admin/outgoing/sql>` |
       :doc:`ZeroMQ <web-admin/outgoing/zmq>`
@@ -246,11 +246,11 @@ Programming guide
       :doc:`JSON adapter <progguide/rest/json-adapter>`
 
     * **Patterns:**
+      :doc:`Publish/subscribe <pubsub/index>` |
       :doc:`Fan-out/fan-in <progguide/patterns/fan-out-fan-in>` |
       :doc:`Parallel execution <progguide/patterns/parallel-exec>` |
       :doc:`Invoke/retry <progguide/patterns/invoke-retry>` |
-      :doc:`Async invocation with a callback <progguide/patterns/async-invoke>` |
-      :doc:`Designing sync and async message flow <progguide/sync-async/flow>`
+      :doc:`Async invocation with a callback <progguide/patterns/async-invoke>`
 
     * **Request/response documents:**
       :doc:`SimpleIO (SIO) <progguide/sio>` |

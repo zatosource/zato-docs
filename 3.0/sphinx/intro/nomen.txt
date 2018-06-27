@@ -56,6 +56,13 @@ Each Zato environment has a
 in front of its servers to evenly distribute incoming HTTP traffic. The load-balancer
 is an embedded instance of HAProxy.
 
+Scheduler
+---------
+
+A Zato environment comes with a :doc:`<../web-admin/scheduler/main>`, managed through web-admin,
+that runs tasks periodically, according to user-defined schedules.
+
+
 CLI (command line interface)
 ----------------------------
 
