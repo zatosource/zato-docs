@@ -6,7 +6,7 @@ by
 :doc:`editing config files <../admin/guide/install-config/overview>`,
 :doc:`using command line interface <../admin/cli/index>`
 or
-:doc:`invoking the API <../public-api/intro>`,
+invoking the API,
 most of the time you'll spend with Zato will most likely fall on the web admin.
 
 While the other means of administration are usually concerned with preparing
@@ -32,9 +32,6 @@ of already existing clusters and services.
    :width: 90%
 
 .. image:: /gfx/web-admin/intro3.png
-   :width: 90%
-
-.. image:: /gfx/web-admin/intro4.png
    :width: 90%
 
 Read more
