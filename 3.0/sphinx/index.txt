@@ -328,8 +328,7 @@ Administration guide
       :doc:`Building custom packages <admin/guide/build-package>`
 
     * **Docker support:**
-      :doc:`Quickstart <admin/guide/install/docker>` |
-      :doc:`Distributed environments <admin/guide/install/docker-dist>`
+      :doc:`Installing a quickstart environment <admin/guide/install/docker>`
 
 Architecture
 ============
