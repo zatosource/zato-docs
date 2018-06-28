@@ -67,7 +67,6 @@ I18N
     * *CN*
       :doc:`ESB和SOA到底是什么？ <intro/esb-soa-cn>` ·
       `Zato—基于Python的ESB和后端应用服务器 <http://www.infoq.com/cn/articles/zato>`_ ·
-      `Python 发送 AMQP 消息 <http://www.oschina.net/translate/howto-sending-amqp-messages>`_ |
       *CAT* :doc:`Què és un ESB i què és SOA? <intro/esb-soa-ca>` |
       *DE* :doc:`Was bedeutet ESB und SOA überhaupt? <intro/esb-soa-de>` |
       *FR* :doc:`Qu´entend-on á vrai dire par ESB et SOA? <intro/esb-soa-fr>` |
@@ -196,7 +195,7 @@ Programming guide
 
     * **Examples**
       :doc:`Overview <progguide/examples/index>` |
-      :doc:`HTTP (REST) <progguide/examples/http>` |
+      :doc:`REST <progguide/examples/http>` |
       :doc:`SimpleIO (SIO) <progguide/examples/sio>` |
       :doc:`JSON <progguide/examples/json>` |
       :doc:`XML <progguide/examples/xml>` |
@@ -361,15 +360,7 @@ Statistics
 Security
 ========
 
-    * **Users:**
-      :doc:`OS-level and application users <security/users>`
-
-    * **Reference:**
-      :doc:`Attack surface <security/attack-surface>` |
-      :doc:`Default configuration values <security/config-defaults>`
-
-    * **Other:**
-      :doc:`Reporting security issues <security/reporting-issues>`
+    * :doc:`Reporting security issues <security/reporting-issues>`
 
 Release policy
 ==============
