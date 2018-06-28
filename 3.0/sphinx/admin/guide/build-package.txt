@@ -64,9 +64,9 @@ Examples
     $ cd ./deb
     $ ./build-zato.sh main 3.0 custom1
 
-* Building a package for RHEL7 from branch 'support/2.0'
+* Building a package for RHEL7 from branch 'support/3.0'
 
   ::
 
     $ cd ./rhel7
-    $ ./build-zato.sh support/2.0 2.0 custom1
+    $ ./build-zato.sh support/3.0 3.0 custom1
