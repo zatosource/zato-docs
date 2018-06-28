@@ -89,17 +89,8 @@ and in
 :doc:`other <../intro/overview-high-level>`
 :doc:`chapters <../intro/overview-tech>`.
 
-This means you should use `Django <https://www.djangoproject.com/>`_ or another
-project of your liking to create
-frontend applications with and Zato will be very happy to integrate your application
-with any other.
-
-But, while technically
-:doc:`it is possible <../progguide/html>`
-(it's all HTTP and other
-protocols Zato supports, after all), you won't typically write HTML, JS or CSS with Zato.
-
-Zato should be used for creating systems of systems and microservices, not for frontend programming.
+This means that it can be used to create applications, such as administration panels of backend systems
+but typically it is used for APIs, systems of systems and microservices, not for frontend programming.
 
 What will the tutorial achieve, exactly?
 ----------------------------------------

@@ -140,7 +140,7 @@ Web admin reference
       :doc:`ZeroMQ <web-admin/channels/zmq>`
 
     * **Caching:**
-      :doc:`Built-in <web-admin/cache/built-in>` |
+      :doc:`Built-in <web-admin/cache/built-in/index>` |
       :doc:`Memcached <web-admin/cache/memcached>`
 
     * **Outgoing connections:**
@@ -261,8 +261,9 @@ Programming guide
       :doc:`XML <progguide/xml>` |
       :doc:`Other data formats <progguide/other-formats>`
 
-    * **Service hooks:**
-      :doc:`Hooking into a service's lifecycle <progguide/service-hooks>`
+    * **Hooks:**
+      :doc:`Service hooks<progguide/hooks/service>` |
+      :doc:`Server start-up hooks<progguide/hooks/server-startup>`
 
     * **Logging and debugging techniques:**
       :doc:`Logging <progguide/logging>` |
@@ -348,7 +349,7 @@ Architecture
       :doc:`Certificate Authority (CA) <architecture/ca>`
 
     * **Personally Identifiable Information:**
-      :doc:`PII regulations - GDPR, HIPAA, PCI<architecture/pii>`
+      :doc:`PII - GDPR, HIPAA, PDPA and other regulations <architecture/pii>`
 
 Statistics
 ==========

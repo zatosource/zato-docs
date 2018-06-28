@@ -18,7 +18,7 @@
 
 * :doc:`Single Sign-On and user management API <../sso/index>`
 
-* SAP connections
+* :doc:`SAP connections <../web-admin/outgoing/sap>`
 
 * :doc:`IDE plugins <../progguide/ide/index>`
   for
@@ -26,23 +26,23 @@
   and
   :doc:`Visual Studio Code <../progguide/ide/vscode>`
 
-* New `caching layer <https://zato.io/blog/posts/api-caching-part-1.html>`_
+* New :doc:`caching layer <../web-admin/cache/built-in/index>`
 
-* A series of security mechanisms to help in achieving EU GDPR compliance (General Data Protection Regulation)
+* Security mechanisms to help in achieving :doc:`compliance with PII regulations <../architecture/pii>` (e.g. GDPR, HIPAA or PDPA)
 
-* Automatic API documentation generation - Sphinx, OpenAPI/Swagger and WSDL
+* Automatic :doc:`API documentation generation <../admin/cli/apispec>` - Sphinx, OpenAPI/Swagger and WSDL
 
 * :doc:`WebSocket <../web-admin/channels/wsx>` channels
 
-* Memcached connections
+* :doc:`Memcached <../web-admin/cache/memcached>` connections
 
-* SMS messaging with Twilio
+* SMS messaging with :doc:`Twilio <../web-admin/sms/twilio>`
 
-* HashiCorp Vault security definitions
+* :doc:`HashiCorp Vault <../web-admin/security/vault>` security definitions
 
-* JSON Web Token security definitions
+* :doc:`JSON Web Token <../web-admin/security/json-web-token>` security definitions
 
-* Extended hot-deployment to work with static files, including JSON, XML, CSV or any other format
+* Extended hot-deployment to work with :doc:`static files <../admin/guide/hot-deploy>`, including JSON, XML, CSV or any other format
 
 * General performance improvements let Zato servers run up to several times faster -
   applies to HTTP, AMQP, ZeroMQ and IBM MQ connections
@@ -56,7 +56,7 @@
   :doc:`hashing <../progguide/crypto/hash>` as well as
   :doc:`generation of passwords and secrets <../progguide/crypto/generate>`
 
-* Added passwords to servers
+* Added :doc:`passwords to servers <../admin/guide/server/password>`
 
 * New server startup hooks and callables
 
@@ -71,8 +71,8 @@
     :doc:`delete-user <../admin/cli/sso-delete-user>`,
     :doc:`change-user-password <../admin/cli/sso-change-user-password>`,
     :doc:`reset-user-password <../admin/cli/sso-reset-user-password>`,
-    :doc:`lock-user<../admin/cli/sso-lock-user>` and
-    :doc:`unlock-user<../admin/cli/sso-unlock-user>`
+    :doc:`lock-user <../admin/cli/sso-lock-user>` and
+    :doc:`unlock-user <../admin/cli/sso-unlock-user>`
     for SSO users management
 
 * Added an internal startup cache that makes servers boot up to several times faster

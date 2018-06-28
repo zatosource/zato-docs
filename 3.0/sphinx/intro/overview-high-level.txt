@@ -10,7 +10,7 @@ In the classical three-layer architecture of fronted, middleware and backend
 processes, Zato is best suited at the middle or far backend of your IT
 infrastructure.
 
-Areas where Zato shines are business integration - such as implementing an `Enterprise Service Bus (ESB)`_, 
+Areas where Zato shines are business integration - such as implementing an `Enterprise Service Bus (ESB)`_,
 and core services - billing, customer management,
 purchase processing, supporting marketing campaigns, core banking and many
 similar activities that form a backbone of an enterprise.
@@ -54,15 +54,15 @@ to:
   that promotes ease of use and development speed. A Hello World
   service is shown below. Such a service can be hot-deployed onto a cluster
   without a need to restart servers.
-  
-  :: 
-  
+
+  ::
+
       from zato.server.service import Service
-      
+
       class HelloWorld(Service):
           def handle(self):
               self.response.payload = 'How goes it?'
-  
+
 .. _Python: http://python.org/
 
 Interfaces
@@ -106,13 +106,3 @@ browsing the messages and more.
 
 .. image:: /gfx/webadmin1.jpg
    :alt:
-
-Zato, the open-source project
-=============================
-
-Zato is open-source software licensed under a commercial-friendly `LGPL`_ license and is not only
-code proper but also an open-source project promoting open collaboration through
-peer production and the exchange of ideas between developers
-and users. :doc:`Everyone is strongly encouraged to take part in the project<../project/get-involved>`!
-
-.. _LGPL: https://en.wikipedia.org/wiki/LGPL
