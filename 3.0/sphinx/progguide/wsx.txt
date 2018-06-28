@@ -229,6 +229,3 @@ to invoke any other arbitrary service.
 Note, however, that clients will truly have access to any service deployed on the server they will connect to, including all
 the internal ones. If this is not desirable, the gateway service can be subclassed to implement a white-listing logic,
 i.e. to filter out requests that attempt to invoke a service outside of the list of permitted ones.
-
-The service's source code is available on
-`GitHub <https://github.com/zatosource/zato/blob/main/code/zato-server/src/zato/server/service/internal/helpers.py>`_.

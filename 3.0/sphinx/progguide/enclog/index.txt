@@ -15,8 +15,7 @@ It is a perfect fit if information such as
 (Personally Identifiable Information) cannot be stored in clear text, for instance in
 `HIPAA <https://en.wikipedia.org/wiki/HIPAA>`_-compliant applications.
 
-The package is distributed separately `on PyPI <https://pypi.python.org/pypi/zato-enclog/>`_ to make it possible to use it
-outside of core Zato but the next major of Zato will include it by default.
+The package is distributed separately `on PyPI <https://pypi.python.org/pypi/zato-enclog/>`_.
 
 Features
 --------

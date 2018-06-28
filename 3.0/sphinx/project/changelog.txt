@@ -13,7 +13,7 @@
    :doc:`web-admin <../architecture/web-admin>`
    in 10 minutes.
 
-* A built-in `multi-protocol message broker <https://zato.io/docs/3.0/pubsub/index.html>`_ with publish/subscribe
+* A built-in :doc:`multi-protocol message broker <../pubsub/index>` with publish/subscribe
   topics and guaranteed delivery queues
 
 * :doc:`Single Sign-On and user management API <../sso/index>`

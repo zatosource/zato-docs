@@ -116,12 +116,14 @@ Web admin reference
     * **Security:**
       :doc:`API keys <web-admin/security/apikey>` |
       :doc:`AWS <web-admin/security/aws>` |
-      :doc:`HTTP Basic Auth <web-admin/security/basic-auth>` |
+      :doc:`Basic Auth <web-admin/security/basic-auth>` |
+      :doc:`JSON Web Token<web-admin/security/json-web-token>` |
       :doc:`NTLM <web-admin/security/ntlm>` |
       :doc:`OAuth <web-admin/security/oauth>` |
       :doc:`RBAC (Role-based access control) <web-admin/security/rbac/overview>` |
       :doc:`SSL/TLS <web-admin/security/tls/overview>` |
-      :doc:`WS-Security <web-admin/security/ws-security>` |
+      :doc:`Vault <web-admin/security/vault>` |
+      :doc:`WS-Sec <web-admin/security/ws-security>` |
       :doc:`XPath <web-admin/security/xpath>`
 
     * **Connection definitions:**
@@ -137,6 +139,10 @@ Web admin reference
       :doc:`WebSockets <web-admin/channels/wsx>` |
       :doc:`ZeroMQ <web-admin/channels/zmq>`
 
+    * **Caching:**
+      :doc:`Built-in <web-admin/cache/built-in>` |
+      :doc:`Memcached <web-admin/cache/memcached>`
+
     * **Outgoing connections:**
       :doc:`AMQP <web-admin/outgoing/amqp>` |
       :doc:`FTP <web-admin/outgoing/ftp>` |
@@ -148,11 +154,8 @@ Web admin reference
       :doc:`SQL <web-admin/outgoing/sql>` |
       :doc:`ZeroMQ <web-admin/outgoing/zmq>`
 
-    * **HTTP Audit Log:**
-      :doc:`Overview <web-admin/audit-log/http/index>` |
-      :doc:`Configuring <web-admin/audit-log/http/channel/config>` |
-      :doc:`Searching <web-admin/audit-log/http/channel/search>` |
-      :doc:`Displaying details <web-admin/audit-log/http/channel/details>`
+    * **SMS:**
+      :doc:`Twilio <web-admin/sms/twilio>`
 
     * **Search:**
       :doc:`ElasticSearch <web-admin/search/es>` |
@@ -263,6 +266,7 @@ Programming guide
 
     * **Logging and debugging techniques:**
       :doc:`Logging <progguide/logging>` |
+      :doc:`PII logs <progguide/pii-logs>` |
       :doc:`Encrypted logs <progguide/enclog/index>` |
       :doc:`Debugging <progguide/debugging>`
 
@@ -343,6 +347,9 @@ Architecture
       :doc:`Redis <architecture/redis>` |
       :doc:`Certificate Authority (CA) <architecture/ca>`
 
+    * **Personally Identifiable Information:**
+      :doc:`PII regulations - GDPR, HIPAA, PCI<architecture/pii>`
+
 Statistics
 ==========
 
@@ -371,8 +378,7 @@ Release policy
 Zato, the open-source project
 ==============================
 
-    * :doc:`License and getting involved <project/get-involved>` |
-      :doc:`Diversity statement <project/diversity>` |
+    * :doc:`Diversity statement <project/diversity>` |
       :doc:`Changelog <project/changelog>`
 
 .. toctree::
