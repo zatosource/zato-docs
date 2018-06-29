@@ -116,7 +116,7 @@ Web admin reference
       :doc:`API keys <web-admin/security/apikey>` |
       :doc:`AWS <web-admin/security/aws>` |
       :doc:`Basic Auth <web-admin/security/basic-auth>` |
-      :doc:`JSON Web Token<web-admin/security/json-web-token>` |
+      :doc:`JSON Web Token<web-admin/security/jwt>` |
       :doc:`NTLM <web-admin/security/ntlm>` |
       :doc:`OAuth <web-admin/security/oauth>` |
       :doc:`RBAC (Role-based access control) <web-admin/security/rbac/overview>` |

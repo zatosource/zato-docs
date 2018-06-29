@@ -36,7 +36,7 @@
 
 * :doc:`Memcached <../web-admin/cache/memcached>` connections
 
-* SMS messaging with :doc:`Twilio <../web-admin/sms/twilio>`
+* SMS messaging with Twilio
 
 * :doc:`HashiCorp Vault <../web-admin/security/vault>` security definitions
 
