@@ -1,0 +1,49 @@
+Cache - Built-in
+=================
+
+Overview
+--------
+
+Used to create, update, delete and browse built-in cache connections.
+
+* Menu path: Connections -> Cache -> Built-in
+* Example address: http://localhost:8183/zato/cache/built-in/?cluster=1
+
+.. image:: /gfx/web-admin/cache/built-in.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/cache/memcached-create.png
+
+======== =============================================================
+Header   Notes
+======== =============================================================
+Name     Cache name
+Active   A flag to indicate if the cache can be used by services
+Default  Is this cache definition the default one in this Zato cluster
+Debug    Is the connection running in debug mode
+Servers  A list of Memcached servers to use in this connection,
+         each in its own line
+Extra    A list of key=value extra arguments passed directly to the
+         underlying Memcached library, each in its own line
+======== =============================================================
+
+Delete
+------
+
+.. image:: /gfx/web-admin/cache/memcached-delete.png
+
+Deletes the definition from ODB. Note that default definitions cannot be deleted until another definition is made default.
+
+
+Changelog
+---------
+
+======= ===============
+Version Notes
+======= ===============
+3.0     Added initially
+======= ===============
+
