@@ -435,8 +435,7 @@ Zato, the open-source project
    test/apitest/step/*
    tutorial/*
    web-admin/*
-   web-admin/audit-log/http/*
-   web-admin/audit-log/http/channel/*
+   web-admin/cache/*
    web-admin/channels/*
    web-admin/cloud/aws/*
    web-admin/cloud/openstack/*
