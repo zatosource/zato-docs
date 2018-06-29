@@ -1,0 +1,54 @@
+zato apispec
+============
+
+Overview
+------------
+
+Generates API documentation for services that use :doc:`SimpleIO <../../progguide/sio>`. The documentation is output as a
+`Sphinx <http://sphinx-doc.org/>`_
+project containing
+OpenAPI/Swagger, WSDL specifications and a textual description of services.
+
+Subcommands
+------------
+
+* (None)
+
+Command-specific parameters
+---------------------------
+
+========== ======== ==================================================================================
+Name       Required Description
+========== ======== ==================================================================================
+--include  ---      A comma-separated list of service name patterns that should be included in output.
+                    Asterisk [*] may be used to match multiple characters, as in shell glob patterns.
+--exclude  ---      As above but signifies services that should not be output
+========== ======== ==================================================================================
+
+Usage
+-----
+
+::
+
+    $ zato apispec [-h] [--store-log] [--verbose] [--store-config]
+        [--include INCLUDE] [--exclude EXCLUDE]
+        path
+
+::
+
+    $ zato apispec /path/to/server --include="my.api.v2.*, my.api.v3"
+    Output saved to /home/zato/apispec.2018_06_29_07_41_55_693842
+    $
+
+    $ cd /home/zato/apispec.2018_06_29_07_41_55_693842
+    $ make html
+    $ (Documentation is now in ./_build/html/index.html)
+
+Changelog
+---------
+
+======= ===============
+Version Notes
+======= ===============
+3.0     Added initially
+======= ===============

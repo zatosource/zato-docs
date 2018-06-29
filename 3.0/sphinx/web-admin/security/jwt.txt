@@ -4,8 +4,8 @@ Security - JWT
 Overview
 --------
 
-Used to create, update, delete and browse JWT (JSON Web Token) definitions
-that can be used by :doc:`REST <../channels/plain-http>` channels.
+Used to create, update, delete and browse `JWT (JSON Web Token) <https://en.wikipedia.org/wiki/JSON_Web_Token>`_
+definitions that can be used to secure :doc:`REST <../channels/plain-http>` channels.
 
 * Menu path: Security -> JWT
 * Example address: http://localhost:8183/zato/security/jwt/?cluster=1
