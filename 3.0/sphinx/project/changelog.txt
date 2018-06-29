@@ -26,7 +26,7 @@
   and
   :doc:`Visual Studio Code <../progguide/ide/vscode>`
 
-* New :doc:`caching layer <../web-admin/cache/built-in/index>`
+* New `caching layer <https://zato.io/blog/posts/api-caching-part-1.html>`_
 
 * Security mechanisms to help in achieving :doc:`compliance with PII regulations <../architecture/pii>` (e.g. GDPR, HIPAA or PDPA)
 
