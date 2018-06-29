@@ -40,9 +40,9 @@
 
 * :doc:`HashiCorp Vault <../web-admin/security/vault>` security definitions
 
-* :doc:`JSON Web Token <../web-admin/security/json-web-token>` security definitions
+* :doc:`JSON Web Token <../web-admin/security/jwt>` security definitions (JWT)
 
-* Extended hot-deployment to work with :doc:`static files <../admin/guide/hot-deploy>`, including JSON, XML, CSV or any other format
+* Extended hot-deployment to work with static files, including JSON, XML, CSV or any other format
 
 * General performance improvements let Zato servers run up to several times faster -
   applies to HTTP, AMQP, ZeroMQ and IBM MQ connections
@@ -56,7 +56,7 @@
   :doc:`hashing <../progguide/crypto/hash>` as well as
   :doc:`generation of passwords and secrets <../progguide/crypto/generate>`
 
-* Added :doc:`passwords to servers <../admin/guide/server/password>`
+* Added passwords to servers
 
 * New server startup hooks and callables
 

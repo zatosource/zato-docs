@@ -8,7 +8,7 @@ Used to create, update, delete and browse through plain REST channels.
 
 A REST channel is a means of accepting synchronous HTTP service invocations.
 
-Contrary to what :doc:`SOAP channels <./soap>` assume, plain HTTP ones don't except
+Contrary to what :doc:`SOAP channels <./soap>` assume, plain HTTP ones don't expect
 the data to be in any particular format, it can be anything that can be
 transferred over HTTP, including JSON, CSV, XML or virtually anything.
 
