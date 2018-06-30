@@ -44,6 +44,8 @@ Installation steps
     debian# su - zato
     debian$ cd /opt/zato/current
     debian$ git pull
+    debian$ cd ./code
+    debian$ ./bin/pip install -e ./zato-cy
 
 * Confirm the installation
 

@@ -51,6 +51,8 @@ Installation steps
     ubuntu# su - zato
     ubuntu$ cd /opt/zato/current
     ubuntu$ git pull
+    ubuntu$ cd ./code
+    ubuntu$ ./bin/pip install -e ./zato-cy
 
 * Confirm the installation:
 

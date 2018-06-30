@@ -24,6 +24,11 @@ To install updates, run the commands below:
     zato$ cd /pkg/zato/current
     zato$ git pull
 
+* Next, regardless of the OS:
+
+    $ cd ./code
+    $ ./bin/pip install -e ./zato-cy
+
 Afterwards, all Zato components need to be stopped and started again. Additionally, Zato servers need to be started
 with the *--sync-internal* flag, as below:
 
