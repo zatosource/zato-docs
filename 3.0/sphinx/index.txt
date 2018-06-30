@@ -139,7 +139,7 @@ Web admin reference
       :doc:`ZeroMQ <web-admin/channels/zmq>`
 
     * **Caching:**
-      :doc:`Built-in <web-admin/cache/built-in/index>` |
+      :doc:`Built-in <web-admin/cache/builtin/index>` |
       :doc:`Memcached <web-admin/cache/memcached>`
 
     * **Outgoing connections:**
@@ -152,9 +152,6 @@ Web admin reference
       :doc:`SOAP <web-admin/outgoing/soap>` |
       :doc:`SQL <web-admin/outgoing/sql>` |
       :doc:`ZeroMQ <web-admin/outgoing/zmq>`
-
-    * **SMS:**
-      :doc:`Twilio <web-admin/sms/twilio>`
 
     * **Search:**
       :doc:`ElasticSearch <web-admin/search/es>` |
@@ -261,12 +258,10 @@ Programming guide
       :doc:`Other data formats <progguide/other-formats>`
 
     * **Hooks:**
-      :doc:`Service hooks<progguide/hooks/service>` |
-      :doc:`Server start-up hooks<progguide/hooks/server-startup>`
+      :doc:`Service hooks<progguide/hooks/service>`
 
     * **Logging and debugging techniques:**
       :doc:`Logging <progguide/logging>` |
-      :doc:`PII logs <progguide/pii-logs>` |
       :doc:`Encrypted logs <progguide/enclog/index>` |
       :doc:`Debugging <progguide/debugging>`
 
@@ -398,6 +393,7 @@ Zato, the open-source project
    progguide/examples/cloud/aws/*
    progguide/examples/cloud/openstack/*
    progguide/examples/search/*
+   progguide/hooks/*
    progguide/ide/*
    progguide/outconn/*
    progguide/patterns/*
@@ -436,6 +432,7 @@ Zato, the open-source project
    tutorial/*
    web-admin/*
    web-admin/cache/*
+   web-admin/cache/builtin/*
    web-admin/channels/*
    web-admin/cloud/aws/*
    web-admin/cloud/openstack/*

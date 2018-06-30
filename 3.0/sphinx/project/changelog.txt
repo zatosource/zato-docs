@@ -26,15 +26,15 @@
   and
   :doc:`Visual Studio Code <../progguide/ide/vscode>`
 
-* New `caching layer <https://zato.io/blog/posts/api-caching-part-1.html>`_
+* New :doc:`caching layer <../web-admin/cache/builtin/index>`
+
+* :doc:`Memcached <../web-admin/cache/memcached>` connections
 
 * Security mechanisms to help in achieving :doc:`compliance with PII regulations <../architecture/pii>` (e.g. GDPR, HIPAA or PDPA)
 
 * Automatic :doc:`API documentation generation <../admin/cli/apispec>` - Sphinx, OpenAPI/Swagger and WSDL
 
 * :doc:`WebSocket <../web-admin/channels/wsx>` channels
-
-* :doc:`Memcached <../web-admin/cache/memcached>` connections
 
 * SMS messaging with Twilio
 
@@ -61,6 +61,8 @@
 * New server startup hooks and callables
 
 * Scheduler now runs as its own component managed from command-line interface
+
+* Added optional gzip encoding to :doc:`REST <../web-admin/channels/plain-http>` and :doc:`SOAP <../web-admin/channels/plain-http>` channels
 
 * New CLI commands:
 

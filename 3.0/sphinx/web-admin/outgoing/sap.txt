@@ -1,11 +1,13 @@
-Cache - SAP RFC
-===============
+Outgoing connections  - SAP RFC
+===============================
 
 Overview
 --------
 
-Used to create, update, delete and browse SAP RFC connections. Note that newly created definitions
-have their passwords set to an unusable one.
+Used to create, update, delete and browse SAP RFC connections.
+
+Note that newly created definitions have their passwords set to an unusable one and the password needs to be changed
+before first use.
 
 As a prerequisite, `PyRFC <https://github.com/SAP/PyRFC>`_ library needs to be installed before making use of SAP RFC connections.
 

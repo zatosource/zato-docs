@@ -104,17 +104,3 @@ to messages from these topics. It is, however, allowed to both publish and subsc
 
 Creating an endpoint and giving it rights to publish is sufficient for this endpoint to begin publications immediately,
 there is no other step needed. To receive messages, however, a :doc:`subscription <../sub/index>` needs to be created first.
-
-Using pub/sub in Zato services
-------------------------------
-
-Using file transfer
--------------------
-
-More information
-----------------
-
-* Creating, editing or deleting endpoints in :doc:`web-admin <>`
-* Using :doc:`pub/sub in Zato services <>`
-* Configuring :doc:`file transfer <>`
-* Using :doc:`Java JMS topics <>` with Zato publish/subscribe

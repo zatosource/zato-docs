@@ -20,7 +20,7 @@ Secure by design
 ----------------
 
 * Security is an ingrained part of the product, it is not an afterthought; instead, each and every part of
-  the architecture takes strong security into account from its very inception, through development up to ongoing
+  the architecture takes strong security into account from a given part's very inception, through development up to ongoing
   maintenance
 
 Access permissions

@@ -82,10 +82,3 @@ For each topic it is possible to assign a service that will execute in specific 
 or before it is delivered to a subscriber. The service has access to full business data and metadata. This lets one,
 for instance, to transform messages on a per-recipient basis, possibly including changing its data format or enrichment
 with data obtained by invoking other services.
-
-
-More information
-----------------
-
-* Understanding :doc:`GD and in-RAM messages <>`
-* Using services to :doc:`transform messages <>` in transit
