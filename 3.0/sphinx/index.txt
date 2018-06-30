@@ -168,6 +168,9 @@ Web admin reference
       :doc:`IMAP <web-admin/email/imap>` |
       :doc:`SMTP <web-admin/email/smtp>`
 
+    * **SMS:**
+      :doc:`Twilio <web-admin/sms/twilio>`
+
     * **Cloud:**
       :doc:`AWS S3 <web-admin/cloud/aws/s3>` |
       :doc:`OpenStack Swift <web-admin/cloud/openstack/swift>`
@@ -455,3 +458,4 @@ Zato, the open-source project
    web-admin/service-details/*
    web-admin/services/*
    web-admin/settings/*
+   web-admin/sms/*

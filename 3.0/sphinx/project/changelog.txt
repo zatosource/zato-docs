@@ -36,7 +36,7 @@
 
 * :doc:`WebSocket <../web-admin/channels/wsx>` channels
 
-* SMS messaging with Twilio
+* SMS messaging with :doc:`Twilio <../web-admin/sms/twilio>`
 
 * :doc:`HashiCorp Vault <../web-admin/security/vault>` security definitions
 
@@ -108,7 +108,7 @@
 
 * :doc:`Redis-based REST publish/subscribe <../pubsub/index>`
 
-* :doc:`HTTP GUI Audit Log <../web-admin/audit-log/http/index>` for requests and responses
+* :HTTP GUI Audit Log for requests and responses
 
 * Patterns:
   :doc:`fan-out/fan-in <../progguide/patterns/fan-out-fan-in>`,
@@ -201,7 +201,7 @@
 
 * Means for invoking services on :ref:`selected servers only <admin-guide-config-server-invoke_target_patterns_allowed>`
 
-* New :doc:`hook <../progguide/service-hooks>` (:ref:`accept <progguide-write-service-accept>`) for filtering out requests that a service cannot process
+* New :doc:`hook <../progguide/hooks/service>` (:ref:`accept <progguide-write-service-accept>`) for filtering out requests that a service cannot process
 
 * :ref:`Improved logging <admin-guide-config-server-logging>`- Apache-like HTTP access log for servers,
   compatible with popular log parsing tools, logging config uses YAML,
