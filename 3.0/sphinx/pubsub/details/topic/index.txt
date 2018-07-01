@@ -35,7 +35,7 @@ particular system.
 Configuration
 -------------
 
-.. image:: /gfx/pubsub/details/create-topic.png
+.. image:: /gfx/pubsub/details/topic-create.png
 
 Each name must be unique - details of how to form names are presented in the overview of this chapter.
 
@@ -51,6 +51,8 @@ by default covered by GD although it can also be set or overridden on a per-mess
 
 If a message uses GD, its contents will be stored in an SQL database until all subscribers to the topic existing at the time
 of the message's publication confirm that they have received it.
+
+Messages to non-GD topics that have no subscribers at the time of their publications are turned into GD ones.
 
 For each topic, it is possible to set a flag that allows external API clients to subscribe to it. If it is not checked,
 only administrators will be able to create new subscriptions to that topic. In some cases, tight oversight is required
@@ -78,7 +80,12 @@ and every message published will trigger a depth check.
 
 With non-GD messages, current topic's depth is calculated separately for each Zato server. For GD topics, it is counted globally.
 
-For each topic it is possible to assign a service that will execute in specific points, e.g. before the message is published
-or before it is delivered to a subscriber. The service has access to full business data and metadata. This lets one,
-for instance, to transform messages on a per-recipient basis, possibly including changing its data format or enrichment
-with data obtained by invoking other services.
+Sync and delivery intervals concern how often servers will internally synchronize the current state of deliveries to a particular
+topic. For each topic, there is exactly one server that will be responsible for deliveries to that topic. Delivery interval
+indicates how often this server will push out its messages to recipients. Conversely, sync interval dictates how often other
+server push out messages they received for topic to that delivery server.
+
+For each topic it is possible to :ref:`assign a service <pubsub-topic-hook>` that will execute at specific points,
+e.g. before the message is published or before it is delivered to a subscriber. The service has access to full business
+data and metadata. This lets one, for instance, to transform messages on a per-recipient basis, possibly
+including changing its data format or enrichment with data obtained by invoking other services.

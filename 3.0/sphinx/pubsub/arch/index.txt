@@ -200,3 +200,35 @@ but it can be reconfigured to send entries to other destinations such as syslog 
 
 Each entry contains full metadata about the message, for instance, which endpoint published it, based on what security pattern
 access was granted, when the message will expire or what its priority was.
+
+Learn more
+----------
+
+This chapter presented an overview of the publish/subscribe functionality and the ones below go into the details of
+usage and configuration.
+
+If you are just starting out with the feature, be sure to go through the :doc:`tutorial <../intro/tutorial/01>`
+too - it will quickly set you up and show how everything can be used in practice.
+
+* **Endpoints:**
+  :doc:`Publishers and subscribers <../topic/endpoint/index>`
+
+* **APIs:**
+  :doc:`Overview <../api/index>` |
+  :doc:`REST <../api/rest>` |
+  :doc:`SOAP <../api/soap>` |
+  :doc:`WebSockets <../api/wsx>` |
+  :doc:`Zato services <../api/zato-service>` |
+  :doc:`Java JMS <../api/jms>` |
+  :doc:`Flat files <../api/file>`
+
+* **Configuration and maintenance:**
+  :doc:`Endpoints <../admin/config/endpoint>` |
+  :doc:`Topics <../admin/config/topic>` |
+  :doc:`Subscriptions <../admin/config/subscription>` |
+  :doc:`Logging <../admin/logging>`
+
+* **Security:**
+  :doc:`Securing access to topics and queues <../sec/attack-surface>` |
+  :doc:`Attack surface <../sec/attack-surface>` |
+  :doc:`Defaults <../sec/defaults>`

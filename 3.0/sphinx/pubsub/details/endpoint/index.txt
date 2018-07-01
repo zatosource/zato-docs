@@ -12,24 +12,27 @@ that there be only one endpoint per application and users are free to create as 
 
 There are several types of endpoints:
 
-* REST
-* SOAP
-* WebSockets
-* Zato services
-* File transfer
-* Java JMS
+* :doc:`REST <../../api/rest>`
+* :doc:`AMQP <../../api/amqp>`
+* :doc:`WebSockets <../../api/wsx>`
+* :doc:`Zato services <../../api/zato-service>`
+* :doc:`File transfer <../../api/file>`
+* :doc:`Java JMS <../../api/jms>`
 
-REST, SOAP and WebSockets need to be :doc:`registered <>` by administrators before they can take part in publish/subscribe.
-Endpoints of this kind can be configured to let them publish messages, subscribe to them or both.
+REST, AMQP, WebSockets and Java JMS need to be registered by administrators before they can take part
+in publish/subscribe. Endpoints of this kind can be configured to let them publish messages, subscribe to them or both.
 
-Zato services do not need to be managed by administrators because they can always :doc:`publish or subscribe <>`
-to all topics.
+Zato services do not need to be managed by administrators because they can always publish to all topics.
 
-File transfer are used to :doc:`listen for changes <>` in directories of choice, i.e. they are file listeners that publish information
+File transfer are used to :doc:`listen for changes <../../api/file>` in directories of choice, i.e. they are file listeners that publish information
 to topics about new or changed files, optionally including their contents. File listeners can publish messages to topics
 but they cannot subscribe to them.
 
-:doc:`Java JMS <>` endpoints let Java-based systems seamlessly integrate with Zato and publish/subscribe.
+AMQP endpoints subscribe to messages published to topics, i.e. each time a message is published to a topic with an AMQP
+subscriber, a remote AMQP broker will receive its contents.
+
+Java JMS endpoints let Java-based systems seamlessly integrate with Zato in terms of both publications and subscriptions,
+from the perspective of JMS clients Zato acts as a JMS broker.
 
 Managing endpoints in web-admin
 -------------------------------
@@ -75,20 +78,20 @@ Topic                       Notes
 
 It is possible to create various access patterns depending on the intended purpose.
 
-====================== ==================================================================================
-Pattern                Notes
-====================== ==================================================================================
-/usa/va/richmond       Because it does not use special symbols, this matches that exact topic name
-/usa/\*\*              Matches any topics related to the USA, i.e. any that start with this prefix
-/usa/va/\*             Matches any topics related to Virginia, USA. Currently, it would match Richmond
-                       and Washington but should another topic be added, such as /usa/va/arlington,
-                       it will be also matched in run-time even if this topic does not exist at the time
-                       when the endpoint was created or last edited.
-/usa/\*/richmond       Matches any Richmond city in the USA
-/customer/\*\*         Matches all topics related to customers in the CRM
-/customer/\*/changed   Matches all topics related to changes of customers
-/customer/telephone/\* Matches all topics related to changes or deletions of customers
-====================== ==================================================================================
+===================== ==================================================================================
+Pattern               Notes
+===================== ==================================================================================
+/usa/va/richmond      Because it does not use special symbols, this matches that exact topic name
+/usa/**               Matches any topics related to the USA, i.e. any that start with this prefix
+/usa/va/*             Matches any topics related to Virginia, USA. Currently, it would match Richmond
+                      and Washington but should another topic be added, such as /usa/va/arlington,
+                      it will be also matched in run-time even if this topic does not exist at the time
+                      when the endpoint was created or last edited.
+/usa/*/richmond       Matches any Richmond city in the USA
+/customer/**          Matches all topics related to customers in the CRM
+/customer/*/changed   Matches all topics related to changes in customers
+/customer/telephone/* Matches all topics related to changes or deletions in customers
+===================== ==================================================================================
 
 Note that patterns are specified separately for publications and subscriptions and that there must be a matching
 role for the pattern to be taken into account at all, i.e. if an endpoint has publication rights to a topic
