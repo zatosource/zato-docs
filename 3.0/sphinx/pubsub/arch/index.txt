@@ -54,7 +54,7 @@ A detailed audit log lets administrators understand when each message was publis
 Topics
 ------
 
-.. image:: /gfx/pubsub/arch/topic-create.png
+.. image:: /gfx/pubsub/details/topic-create.png
 
 Each topic has a unique name that identifies the topic and its business purpose among other topics. For instance, in the
 screenshot above topic 'customer.new.1' may be used to publish data about new customers added to a company's CRM
@@ -86,7 +86,7 @@ as GD or non-GD messages.
 Endpoints
 ---------
 
-.. image:: /gfx/pubsub/arch/endpoint-create.png
+.. image:: /gfx/pubsub/details/endpoint-create.png
 
 Endpoints - publishers and subscribers - typically represent a single application taking part in publish/subscribe-based
 processes and their names reflect it.
@@ -106,7 +106,7 @@ access pattern.
 Subscriptions
 -------------
 
-.. image:: /gfx/pubsub/arch/subscription-create.png
+.. image:: /gfx/pubsub/details/sub-create.png
 
 Provided that there are correct permission patterns and that relevant topics exist, each endpoint may subscribe to one
 or more topics.
@@ -132,18 +132,18 @@ must be known only to the participant to whom it was issued.
 APIs
 ----
 
-========== ================================================================== ==========================
+========== ================================================================== =================================
 Name       Usage                                                              Read more
-========== ================================================================== ==========================
-Python     Zato services making use of publish/subscribe                      Docs
-REST       External clients exchanging messages using JSON over HTTP          Docs, RAML, Swagger
-SOAP       Applications preferring XML over HTTP                              Docs, WSDL
-WebSockets A low-overhead protocol particularly well suited for IoT endpoints Docs
-Java JMS   Full integration for existing Java systems using JMS               Docs
+========== ================================================================== =================================
+Python     Zato services making use of publish/subscribe                      :doc:`Docs <../api/zato-service>`
+REST       External clients exchanging messages using JSON over HTTP          :doc:`Docs <../api/rest>`
+AMQP       AMQP brokers receiving messages from Zato topics                   :doc:`Docs <../api/amqp>`
+WebSockets A low-overhead protocol particularly well suited for IoT endpoints :doc:`Docs <../api/wsx>`
+Java JMS   Full integration for existing Java systems using JMS               ---
            for enterprise messaging
 Flat files Offers a file listener waiting for new files in the filesystem,
-           e.g. batch files with invoices to be sent to multiple destinations Docs
-========== ================================================================== ==========================
+           e.g. batch files with invoices to be sent to multiple destinations :doc:`Docs <../api/file>`
+========== ================================================================== =================================
 
 GUI
 ---

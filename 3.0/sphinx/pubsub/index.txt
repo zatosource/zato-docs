@@ -47,5 +47,4 @@ Topics
     :doc:`File transfer <./api/file>`
 
   * **Security:**
-    :doc:`~~Securing access to topics and queues <./sec/attack-surface>` |
-    :doc:`~~Defaults <./sec/defaults>`
+    :doc:`Securing access to topics and queues <./sec/index>`

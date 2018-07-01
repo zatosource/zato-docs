@@ -78,20 +78,20 @@ Topic                       Notes
 
 It is possible to create various access patterns depending on the intended purpose.
 
-===================== ==================================================================================
-Pattern               Notes
-===================== ==================================================================================
-/usa/va/richmond      Because it does not use special symbols, this matches that exact topic name
-/usa/**               Matches any topics related to the USA, i.e. any that start with this prefix
-/usa/va/*             Matches any topics related to Virginia, USA. Currently, it would match Richmond
-                      and Washington but should another topic be added, such as /usa/va/arlington,
-                      it will be also matched in run-time even if this topic does not exist at the time
-                      when the endpoint was created or last edited.
-/usa/*/richmond       Matches any Richmond city in the USA
-/customer/**          Matches all topics related to customers in the CRM
-/customer/*/changed   Matches all topics related to changes in customers
-/customer/telephone/* Matches all topics related to changes or deletions in customers
-===================== ==================================================================================
+====================== ==================================================================================
+Pattern                Notes
+====================== ==================================================================================
+/usa/va/richmond       Because it does not use special symbols, this matches that exact topic name
+/usa/\*\*              Matches any topics related to the USA, i.e. any that start with this prefix
+/usa/va/\*             Matches any topics related to Virginia, USA. Currently, it would match Richmond
+                       and Washington but should another topic be added, such as /usa/va/arlington,
+                       it will be also matched in run-time even if this topic does not exist at the time
+                       when the endpoint was created or last edited.
+/usa/\*/richmond       Matches any Richmond city in the USA
+/customer/\*\*          Matches all topics related to customers in the CRM
+/customer/\*/changed   Matches all topics related to changes in customers
+/customer/telephone/\* Matches all topics related to changes or deletions in customers
+====================== ==================================================================================
 
 Note that patterns are specified separately for publications and subscriptions and that there must be a matching
 role for the pattern to be taken into account at all, i.e. if an endpoint has publication rights to a topic
@@ -103,7 +103,7 @@ Auth security 'pubapi'. It is allowed to publish to all topics matching pattern 
 to messages from these topics. It is, however, allowed to both publish and subscribe to messages matching pattern
 */customer/\*/changed*.
 
-.. image:: /gfx/pubsub/details/create-endpoint.png
+.. image:: /gfx/pubsub/details/endpoint-create.png
 
 Creating an endpoint and giving it rights to publish is sufficient for this endpoint to begin publications immediately,
 there is no other step needed. To receive messages, however, a :doc:`subscription <../sub/index>` needs to be created first.
