@@ -9,8 +9,6 @@ Zato documentation contents
     :glob:
 
     *
-    security/*
-    progguide/sync-async/*
 
 Indices, glossary and tables
 ============================

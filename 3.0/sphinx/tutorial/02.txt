@@ -714,7 +714,6 @@ covered but you should already have a solid understanding of some of the core as
     :doc:`invoke/retry <../progguide/patterns/invoke-retry>`
     and
     :doc:`async invocations with callbacks <../progguide/patterns/async-invoke>`
-  * :doc:`HTTP GUI Audit Log <../web-admin/audit-log/http/index>` for requests and responses
   * :doc:`AMQP <../progguide/outconn/amqp>`
   * :doc:`JMS WebSphere MQ <../progguide/outconn/jms-wmq>`
   * :doc:`ZeroMQ <../progguide/outconn/zmq>`
@@ -742,7 +741,6 @@ covered but you should already have a solid understanding of some of the core as
   * :doc:`Role-based access control (RBAC) for HTTP channels <../web-admin/security/rbac/overview>`
   * :doc:`Basic Auth <../web-admin/security/basic-auth>`
   * :doc:`WS-Security <../web-admin/security/ws-security>`
-  * :doc:`technical accounts <../web-admin/security/tech-account>`
   * :doc:`scheduler <../web-admin/scheduler/main>`
   * :doc:`statistics <../stats/guide>`
   * :ref:`New Relic <admin-guide-config-server-newrelic>` monitoring
@@ -756,7 +754,7 @@ covered but you should already have a solid understanding of some of the core as
 * there's
   :doc:`web admin <../web-admin/intro>`,
   an
-  :doc:`API <../public-api/intro>`
+  API
   and
   :doc:`CLI <../admin/cli/index>`
   for you

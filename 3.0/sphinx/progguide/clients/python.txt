@@ -38,35 +38,35 @@ __init__
 Each client class accepts the same set of arguments when creating an instance.
 
 .. py:method:: __init__(address, path, auth=None, session=None, to_bunch=False, max_response_repr=DEFAULT_MAX_RESPONSE_REPR, max_cid_repr=DEFAULT_MAX_CID_REPR, logger=None)
-            
+
   :param address: Address using the format of http://host:port of a Zato server or load-balancer
                   a service to be invoked is defined on
   :type address: string
-  
+
   :param path: URL path of a channel the service to be invoked is accessed through
   :type path: string
-  
-  :param auth: Optional tuple of (username, password), in plain text, corresponding to 
+
+  :param auth: Optional tuple of (username, password), in plain text, corresponding to
                an HTTP Basic Auth definition the channel is secured with
   :type auth: tuple
-  
-  :param to_bunch: Can be used with 
-                   :ref:`AnyServiceInvoker <progguide-clients-python-AnyServiceInvoker>`, 
-                   :ref:`JSONClient <progguide-clients-python-JSONClient>` and 
+
+  :param to_bunch: Can be used with
+                   :ref:`AnyServiceInvoker <progguide-clients-python-AnyServiceInvoker>`,
+                   :ref:`JSONClient <progguide-clients-python-JSONClient>` and
                    :ref:`JSONSIOClient <progguide-clients-python-JSONSIOClient>`
                    only - whether the response should be converted to a Bunch instance
                    before it's returned
   :type to_bunch: bool
-  
-  :param max_response_repr: If using a 
+
+  :param max_response_repr: If using a
                             :ref:`response's <progguide-clients-python-response>`
                             __repr__ method, when it's being
                             printed out on screen for instance, how many characters
-                            of the response actually to output. Defaults 
-                            to 
+                            of the response actually to output. Defaults
+                            to
                             `zato.client.DEFAULT_MAX_RESPONSE_REPR <https://github.com/zatosource/zato/blob/support/2.0/code/zato-client/src/zato/client/__init__.py>`_ which is 2500 characters.
   :type max_response_repr: int
-   
+
   :param max_cid_repr: Used in the same circumstances as max_response_repr. A CID
                         has always 40 characters, however, when logging responses
                         on screen it's sometimes desirable to limit the numbers of characters
@@ -75,7 +75,7 @@ Each client class accepts the same set of arguments when creating an instance.
                         __repr__ will use 'K1490..47697' with any characters in between
                         suppressed. max_cid_repr defaults to 5 and you can use the `zato.client.CID_NO_CLIP <https://github.com/zatosource/zato/blob/support/2.0/code/zato-client/src/zato/client/__init__.py>`_ constant to turn the clipping
                         feature off.
-  :type max_cid_repr: int                        
+  :type max_cid_repr: int
 
 
 .. _progguide-clients-python-AnyServiceInvoker:
@@ -84,12 +84,12 @@ AnyServiceInvoker
 ~~~~~~~~~~~~~~~~~
 
 Invokes any service by its name or ID. This is the manner that is usually most convenient to
-use, however the ease of use comes at a certain price. 
+use, however the ease of use comes at a certain price.
 
 The way it's implemented, a client instance invokes
-:doc:`zato.service.invoke </public-api/details/zato.service.invoke>` using BASE64
+service *zato.service.invoke* using BASE64
 to encode/decode requests/responses to the service you actually want to invoke
-and all that work adds an overhead which means the performance may suffer - 
+and all that work adds an overhead which means the performance may suffer -
 it's up to you to decide whether the loss of performance,
 if any, is acceptable or not.
 
@@ -108,32 +108,32 @@ invoke
   :param payload: Payload to invoke the service with. May be a Python dictionary
                   if it's a :doc:`SIO <../sio>` service and to_json is True.
   :type payload:  any
-  
+
   :param headers: HTTP headers to pass in to the service invoker
   :type headers:  dict
-  
+
   :param channel: :ref:`Channel <progguide-write-service-channel>` the service will be invoked with
   :type channel:  `zato.common.CHANNEL <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py>`_
-  
+
   :param data_format: :ref:`Data format <progguide-write-service-data_format>` the service will be invoked with
   :type data_format:  `zato.common.DATA_FORMAT <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py>`_
-  
+
   :param transport: Transport the service will be invoked over
   :type transport:  `zato.common.TRANSPORT <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py>`_
-  
+
   :param id:    ID of the service to invoke. Either name or id must be provided.
   :type id:     int
-  
+
   :param to_json: Whether payload should be converted to JSON
   :type to_json:  bool
-  
-  :param output_repeated: Whether the expected output is repeated. If left at 
+
+  :param output_repeated: Whether the expected output is repeated. If left at
                           `zato.common.ZATO_NON_GIVEN <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py>`_,
                           it will be assumed to be true if the service name ends in 'list',
                           so that 'my.application.customer.get-list' will by default be assumed to return
                           a :doc:`SIO <../sio>` list of objects
   :type output_repeated:  bool
-  
+
   :rtype: A :ref:`Response <progguide-clients-python-response>` object
 
 ::
@@ -151,10 +151,10 @@ invoke
         print(response.data)
     else:
         print(response.details)
-        
+
 ::
 
-    $ py myclient.py 
+    $ py myclient.py
     {u'pong': u'zato'}
     $
 
@@ -183,10 +183,10 @@ can be correlated with the client request at a later time.
         print(response.data)
     else:
         print(response.details)
-        
+
 ::
 
-    $ py myclient.py 
+    $ py myclient.py
     K159396487714757679933451979778422654591
     $
 
@@ -204,15 +204,15 @@ invoke
 
   :param payload: Payload to invoke the service with
   :type payload:  string
-  
+
   :param headers: HTTP headers to invoke the service with
   :type headers:  dict
-  
+
   :param to_json: Whether payload should be converted to JSON
   :type to_json: bool
-  
+
   :rtype: A :ref:`Response <progguide-clients-python-response>` object
-  
+
 ::
 
     from zato.client import JSONClient
@@ -230,17 +230,17 @@ invoke
         print(response.data)
     else:
         print(response.details)
-        
+
 .. code-block:: javascript
 
     $ py myclient.py
     {u'zato_env': {u'cid': u'K161911401323618049176944341958265621001',
-        u'details': u'', u'result': u'ZATO_OK'}, 
+        u'details': u'', u'result': u'ZATO_OK'},
      u'zato_service_get_by_name_response': {
-        u'impl_name': u'zato.server.service.internal.Ping', u'name': u'zato.ping', 
-        u'may_be_deleted': False, u'id': 118L, u'is_internal': True, 
-        u'is_active': True, u'slow_threshold': 99999L, u'time_min_all_time': 0L, 
-        u'time_mean_all_time': 5.2, u'usage': 67L, u'time_last': 6L, 
+        u'impl_name': u'zato.server.service.internal.Ping', u'name': u'zato.ping',
+        u'may_be_deleted': False, u'id': 118L, u'is_internal': True,
+        u'is_active': True, u'slow_threshold': 99999L, u'time_min_all_time': 0L,
+        u'time_mean_all_time': 5.2, u'usage': 67L, u'time_last': 6L,
         u'time_max_all_time': 8L}}
     $
 
@@ -258,13 +258,13 @@ invoke
 
   :param payload: Payload to invoke the service with
   :type payload:  string
-  
+
   :param headers: HTTP headers to invoke the service with
   :type headers:  dict
-  
+
   :param to_json: Whether payload should be converted to JSON
   :type to_json: bool
-  
+
   :rtype: A :ref:`Response <progguide-clients-python-response>` object
 
 ::
@@ -284,15 +284,15 @@ invoke
         print(response.data)
     else:
         print(response.details)
-        
+
 .. code-block:: javascript
 
     $ py myclient.py
-    {u'name': u'zato.stats.aggregate-by-minute', u'extra': u'', 
-     u'seconds': 60L, u'is_active': True, u'cron_definition': None, 
-     u'job_type': u'interval_based', u'days': None, 
-     u'start_date': u'2013-02-25T09:30:13', u'hours': None, 
-     u'service_name': u'zato.stats.aggregate-by-minute', u'service_id': 258L, 
+    {u'name': u'zato.stats.aggregate-by-minute', u'extra': u'',
+     u'seconds': 60L, u'is_active': True, u'cron_definition': None,
+     u'job_type': u'interval_based', u'days': None,
+     u'start_date': u'2013-02-25T09:30:13', u'hours': None,
+     u'service_name': u'zato.stats.aggregate-by-minute', u'service_id': 258L,
      u'weeks': None, u'repeats': None, u'minutes': None, u'id': 2L}
     $
 
@@ -310,12 +310,12 @@ invoke
 
   :param payload: XML payload to invoke the service with
   :type payload:  string
-  
+
   :param headers: HTTP headers to invoke the service with
   :type headers:  dict
-  
+
   :rtype: A :ref:`Response <progguide-clients-python-response>` object
-  
+
 ::
 
     from zato.client import XMLClient
@@ -351,12 +351,12 @@ invoke
 
   :param payload: SOAP payload to invoke the service with
   :type payload:  string
-  
+
   :param headers: HTTP headers to invoke the service with
   :type headers:  dict
-  
+
   :rtype: A :ref:`Response <progguide-clients-python-response>` object
-  
+
 ::
 
     # lxml
@@ -371,7 +371,7 @@ invoke
 
     client = SOAPClient(address, path, auth)
 
-    payload = """<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
+    payload = """<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
             xmlns="https://zato.io/ns/20130518">
           <soap:Body>
               <zato_service_has_wsdl_request>
@@ -387,13 +387,13 @@ invoke
         out = etree.tostring(response.data)
     else:
         out = etree.tostring(response.details)
-        
+
     print(out)
-    
+
 .. code-block:: xml
 
     $ py myclient.py
-    <zato_service_has_wsdl_response xmlns="https://zato.io/ns/20130518" 
+    <zato_service_has_wsdl_response xmlns="https://zato.io/ns/20130518"
       xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
         <zato_env>
           <cid>K031150888300645689530407544411404011007</cid>
@@ -423,10 +423,10 @@ invoke
 
   :param payload: SOAP payload to invoke the service with
   :type payload:  string
-  
+
   :param headers: HTTP headers to invoke the service with
   :type headers:  dict
-  
+
   :rtype: A :ref:`Response <progguide-clients-python-response>` object
 
 ::
@@ -443,7 +443,7 @@ invoke
 
     client = SOAPSIOClient(address, path, auth)
 
-    payload = """<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
+    payload = """<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
             xmlns="https://zato.io/ns/20130518">
           <soap:Body>
               <zato_service_has_wsdl_request>
@@ -459,12 +459,12 @@ invoke
         out = etree.tostring(response.data)
     else:
         out = etree.tostring(response.details)
-        
+
     print(out)
-    
+
 .. code-block:: xml
 
-    <zato_service_has_wsdl_response xmlns="https://zato.io/ns/20130518" 
+    <zato_service_has_wsdl_response xmlns="https://zato.io/ns/20130518"
       xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
         <zato_env>
           <cid>K015583100463424928664896214562918540979</cid>
@@ -494,7 +494,7 @@ invoke
 
   :param headers: HTTP headers to invoke the service with
   :type headers:  dict
-  
+
   :rtype: A :ref:`Response <progguide-clients-python-response>` object
 
 ::
@@ -521,10 +521,10 @@ Response object
 ---------------
 
 The result of invoking a service, no matter if in a blocking way or asynchronously,
-is always a 
+is always a
 `Response <https://github.com/zatosource/zato/blob/support/2.0/code/zato-client/src/zato/client/__init__.py>`_
 object which provides access to the underlying data a service
-produced along with a couple of useful attributes. 
+produced along with a couple of useful attributes.
 
 Depending on the client class used, the response attributes may hold data of different
 types.
@@ -536,90 +536,90 @@ Name     Datatype             Description
 inner    `requests.Response`_ The inner HTTP response as returned by the `requests <http://python-requests.org>`_ library
 ok       boolean              Whether the invocation succeeded. How it's calculated depends on the client class.
 
-                              * :ref:`AnyServiceInvoker <progguide-clients-python-AnyServiceInvoker>` - if 
-                                :ref:`zato_env <zato_env>` is equal to ZATO_OK
-                                
+                              * :ref:`AnyServiceInvoker <progguide-clients-python-AnyServiceInvoker>` - if
+                                zato_env is equal to ZATO_OK
+
                               * :ref:`JSONClient <progguide-clients-python-JSONClient>` - if inner.ok is True
-                              
-                              * :ref:`JSONSIOClient <progguide-clients-python-JSONSIOClient>` - if 
-                                :ref:`zato_env <zato_env>` is equal to ZATO_OK
-                                
+
+                              * :ref:`JSONSIOClient <progguide-clients-python-JSONSIOClient>` - if
+                                zato_env is equal to ZATO_OK
+
                               * :ref:`XMLClient <progguide-clients-python-XMLClient>` - if inner.ok is True
-                              
+
                               * :ref:`SOAPClient <progguide-clients-python-SOAPClient>` - if inner.ok is True
-                              
-                              * :ref:`SOAPSIOClient <progguide-clients-python-SOAPSIOClient>` - if 
-                                :ref:`zato_env <zato_env>` is equal to ZATO_OK
-                                
+
+                              * :ref:`SOAPSIOClient <progguide-clients-python-SOAPSIOClient>` - if
+                                zato_env is equal to ZATO_OK
+
                               * :ref:`RawDataClient <progguide-clients-python-RawDataClient>`- if inner.ok is True
-                              
+
 has_data boolean              If data a service produced is available. Will be set to True only if ok is True.
-                              Otherwise, if ok is not True, details will contain error information. 
-                                
+                              Otherwise, if ok is not True, details will contain error information.
+
                               Note however that both ok and data can be True if a service was invoked with no problems
                               yet it didn't return any output.
-                                
+
 data     (depends)            Service response in format depending on the client class used. Will be available
                               only if ok and has_data are True.
-                                
+
                               * :ref:`AnyServiceInvoker <progguide-clients-python-AnyServiceInvoker>` - if a service
                                 returns JSON document, the document converted to a Python object. Otherwise,
                                 service response as a string.
-                                
+
                               * :ref:`JSONClient <progguide-clients-python-JSONClient>` - JSON response converted
                                 to a Python object
-                              
-                              * :ref:`JSONSIOClient <progguide-clients-python-JSONSIOClient>` - 
+
+                              * :ref:`JSONSIOClient <progguide-clients-python-JSONSIOClient>` -
                                 :doc:`SIO <../sio>` JSON response converted to a Python object
-                                
+
                               * :ref:`XMLClient <progguide-clients-python-XMLClient>` - XML response converted
-                                to an `ObjectifiedElement <http://lxml.de/objectify.html>`_ 
-                              
+                                to an `ObjectifiedElement <http://lxml.de/objectify.html>`_
+
                               * :ref:`SOAPClient <progguide-clients-python-SOAPClient>` - first child of
                                 /soapenv:Envelope/soapenv:Body converted
-                                to an `ObjectifiedElement <http://lxml.de/objectify.html>`_ 
-                              
+                                to an `ObjectifiedElement <http://lxml.de/objectify.html>`_
+
                               * :ref:`SOAPSIOClient <progguide-clients-python-SOAPSIOClient>`- first child of
                                 /soapenv:Envelope/soapenv:Body converted
-                                to an `ObjectifiedElement <http://lxml.de/objectify.html>`_ 
-                                
+                                to an `ObjectifiedElement <http://lxml.de/objectify.html>`_
+
                               * :ref:`RawDataClient <progguide-clients-python-RawDataClient>` - same as inner.text
 
 details  (depends)            Error details in format depending on the client class used. Will be available
                               if ok is not True.
 
-                              * :ref:`AnyServiceInvoker <progguide-clients-python-AnyServiceInvoker>` - 
-                                taken from :ref:`zato_env<zato_env>`.details
-                                
-                              * :ref:`JSONClient <progguide-clients-python-JSONClient>` - 
+                              * :ref:`AnyServiceInvoker <progguide-clients-python-AnyServiceInvoker>` -
+                                taken from zato_env.details
+
+                              * :ref:`JSONClient <progguide-clients-python-JSONClient>` -
                                 Python traceback as a string resulting from a failed attempt to parse
                                 the service response as JSON
-                              
-                              * :ref:`JSONSIOClient <progguide-clients-python-JSONSIOClient>` - 
-                                taken from :ref:`zato_env<zato_env>`.details
-                                
-                              * :ref:`XMLClient <progguide-clients-python-XMLClient>`- 
-                                Python traceback as a string resulting from a failed attempt to 
+
+                              * :ref:`JSONSIOClient <progguide-clients-python-JSONSIOClient>` -
+                                taken from zato_env.details
+
+                              * :ref:`XMLClient <progguide-clients-python-XMLClient>`-
+                                Python traceback as a string resulting from a failed attempt to
                                 convert the service response into an
-                                `ObjectifiedElement <http://lxml.de/objectify.html>`_ 
-                              
-                              * :ref:`SOAPClient <progguide-clients-python-SOAPClient>` - 
+                                `ObjectifiedElement <http://lxml.de/objectify.html>`_
+
+                              * :ref:`SOAPClient <progguide-clients-python-SOAPClient>` -
                                 if a SOAP Fault was returned, its representation as an
-                                `ObjectifiedElement <http://lxml.de/objectify.html>`_. 
-                                
+                                `ObjectifiedElement <http://lxml.de/objectify.html>`_.
+
                                 If the service
                                 returned no data, a string information stating so.
-                              
-                              * :ref:`SOAPSIOClient <progguide-clients-python-SOAPSIOClient>`- 
+
+                              * :ref:`SOAPSIOClient <progguide-clients-python-SOAPSIOClient>`-
                                 if a SOAP Fault was returned, its representation as an
-                                `ObjectifiedElement <http://lxml.de/objectify.html>`_. 
-                                
+                                `ObjectifiedElement <http://lxml.de/objectify.html>`_.
+
                                 If there was no Fault
                                 yet the service produced no response, a string information stating so.
-                                
-                                If :ref:`zato_env<zato_env>`.result is not ZATO_OK,
+
+                                If zato_env.result is not ZATO_OK,
                                 the contents of zato_env.details.
-                                
+
                               * :ref:`RawDataClient <progguide-clients-python-RawDataClient>` -
                                 same as inner.text
 
@@ -649,7 +649,7 @@ details  (depends)            Error details in format depending on the client cl
     logging.info(response.has_data)
     logging.info(response.details)
     logging.info(response.data)
-    
+
 ::
 
     $ py myclient.py
@@ -657,8 +657,8 @@ details  (depends)            Error details in format depending on the client cl
     200
     True
     None
-    {u'zato_env': {u'cid': u'K172368768454740187781748699048481406944', 
-      u'details': u'', u'result': u'ZATO_OK'}, u'zato_ping_response': 
+    {u'zato_env': {u'cid': u'K172368768454740187781748699048481406944',
+      u'details': u'', u'result': u'ZATO_OK'}, u'zato_ping_response':
         {u'pong': u'zato'}}
     $
 
@@ -678,18 +678,18 @@ Each Response object has a helpful string representation that may at times come 
     response = client.invoke(payload)
 
     print(response)
-    
+
 .. code-block:: javascript
 
     $ py myclient.py
-    <JSONResponse at 0x27fa290 ok:[True] inner.status_code:[200] 
-      cid:[K0610..15505], inner.text:[{"zato_env": {"details": "", "result": "ZATO_OK", 
-        "cid": "K061088476838453632321746870188938415505"}, 
+    <JSONResponse at 0x27fa290 ok:[True] inner.status_code:[200]
+      cid:[K0610..15505], inner.text:[{"zato_env": {"details": "", "result": "ZATO_OK",
+        "cid": "K061088476838453632321746870188938415505"},
           "zato_service_get_by_name_response": {
-            "impl_name": "zato.server.service.internal.Ping", 
-            "name": "zato.ping", "may_be_deleted": false, "is_internal": true, 
-            "is_active": true, "slow_threshold": 99999, "time_min_all_time": 0, 
-            "time_mean_all_time": 3.3, "usage": 70, "time_max_all_time": 8, 
+            "impl_name": "zato.server.service.internal.Ping",
+            "name": "zato.ping", "may_be_deleted": false, "is_internal": true,
+            "is_active": true, "slow_threshold": 99999, "time_min_all_time": 0,
+            "time_mean_all_time": 3.3, "usage": 70, "time_max_all_time": 8,
             "time_last": 3, "id": 118}}]>
     $
 

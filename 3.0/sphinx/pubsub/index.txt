@@ -26,14 +26,3 @@ message queues and update their contents in place.
 Publish/subscribe provides topics, queues, routing, security, APIs and administration facilities - applications
 publish and consume messages using REST, SOAP, WebSockets, Zato services or Java JMS. It is also possible to listen for
 filesystem events and publish files to topics.
-
-Topics
-------
-
-  * **Introduction:**
-    :doc:`Architecture <./arch/index>`
-
-  * **Details:**
-    :doc:`Topics <./details/topic/index>` |
-    :doc:`Endpoints <./details/endpoint/index>` |
-    :doc:`Subscriptions <./details/sub/index>`

@@ -7,7 +7,7 @@ Overview
 --------
 
 In addition to the :doc:`GUI <../../web-admin/intro>`, :doc:`CLI <../cli/index>`
-and :doc:`API <../../public-api/intro>`, you can use the
+and :doc:`API <../../web-admin/intro>`, you can use the
 `enmasse <https://zato.io/download/enmasse>`_ command line tool to manage
 server objects as a group. This lets you store each object configuration in
 YAML or JSON files, in a repository where they can be versioned or backed up
@@ -233,130 +233,123 @@ into a cluster.
 ``def_sec``
     Security definitions. 'type' must be one of:
 
-    * 'apikey' for :doc:`API keys <../../public-api/details/zato.security.apikey.create>`
-    * 'aws' for :doc:`AWS access keys <../../public-api/details/zato.security.aws.create>`
-    * 'basic_auth' for :doc:`HTTP basic authentication <../../public-api/details/zato.security.basic-auth.create>`
-    * 'jwt' for :doc:`JWT <../../public-api/details/zato.security.jwt.create>`
-    * 'ntlm' for :doc:`NTLM credentials <../../public-api/details/zato.security.ntlm.create>`
-    * 'oauth' for :doc:`OAuth <../../public-api/details/zato.security.oauth.create>`
-    * 'tech_acc' for :doc:`technical accounts <../../public-api/details/zato.security.tech-account.create>`
-    * 'vault_connection' for :doc:`vault connections<../../public-api/details/zato.security.vault.connection.create>`
-    * 'wss' for :doc:`WS-Security definitions <../../public-api/details/zato.security.wss.create>`
-    * 'xpath_sec' for :doc:`XPath security <../../public-api/details/zato.security.xpath.create>`
+    * 'apikey' for :doc:`API keys <../../web-admin/security/apikey>`
+    * 'aws' for :doc:`AWS access keys <../../web-admin/security/aws>`
+    * 'basic_auth' for :doc:`HTTP basic authentication <../../web-admin/security/basic-auth>`
+    * 'jwt' for :doc:`JWT <../../web-admin/security/jwt>`
+    * 'ntlm' for :doc:`NTLM credentials <../../web-admin/security/ntlm>`
+    * 'oauth' for :doc:`OAuth <../../web-admin/security/oauth>`
+    * 'vault_connection' for :doc:`vault connections <../../web-admin/security/vault>`
+    * 'wss' for :doc:`WS-Security definitions <../../web-admin/security/ws-security>`
+    * 'xpath_sec' for :doc:`XPath security <../../web-admin/security/xpath>`
 
 ``channel_amqp``
-    :doc:`AMQP channels. <../../public-api/details/zato.channel.amqp.create>`
-    'def' is an AMQP connection definition to use.
+    :doc:`AMQP channels. <../../web-admin/channels/amqp>`
+    Key 'def' is an AMQP connection definition to use.
 
 ``channel_jms_wmq``
-    :doc:`JMS WebSphere MQ channels.
-    <../../public-api/details/zato.channel.jms-wmq.create>` 'def' is a JMS
-    WebSphere MQ connection definition to use.
+    :doc:`IBM MQ channels.
+    <../../web-admin/channels/jms-wmq>` Key 'def' is an IBM MQ connection definition to use.
 
 ``channel_plain_http``
-    :doc:`Plain HTTP channels.
-    <../../public-api/details/zato.http-soap.create>` 'sec_def' is the
+    :doc:`REST channels.
+    <../../web-admin/channels/plain-http>` Key 'sec_def' is the
     security definition to use. 'connection' and 'transport' can be skipped.
 
 ``channel_soap``
-    :doc:`SOAP channels. <../../public-api/details/zato.http-soap.create>`
-    'sec_def' is the security definition to use.  'connection' and 'transport'
+    :doc:`SOAP channels. <../../web-admin/channels/soap>`
+    Key 'sec_def' is the security definition to use.  Keys 'connection' and 'transport'
     can be skipped.
 
 ``channel_zmq``
-    :doc:`Zero MQ channels. <../../public-api/details/zato.channel.zmq.create>`
+    :doc:`Zero MQ channels. <../../web-admin/channels/zmq>`
 
 ``cloud_aws_s3``
-    :doc:`S3 buckets <../../public-api/details/zato.cloud.aws.s3.create>`
+    :doc:`S3 buckets <../../web-admin/cloud/aws/s3>`
 
 ``def_amqp``
-    :doc:`AMQP connection definitions. <../../public-api/details/zato.definition.amqp.create>`
+    :doc:`AMQP connection definitions. <../../web-admin/conn-def/amqp>`
 
 ``def_cassandra``
-    :doc:`Cassandra connection definitions. <../../public-api/details/zato.definition.cassandra.create>`
+    :doc:`Cassandra connection definitions. <../../web-admin/conn-def/cassandra>`
 
 ``def_cloud_openstack_swift``
-    :doc:`OpenStack Swift definitions. <../../public-api/details/zato.cloud.openstack.swift.cassandra.create>`
+    :doc:`OpenStack Swift definitions. <../../web-admin/cloud/openstack/swift>`
 
 ``def_jms_wmq``
-    :doc:`JMS WebSphere MQ definitions. <../../public-api/details/zato.definition.jms-wmq.create>`
+    :doc:`IBM MQ definitions. <../../web-admin/conn-def/jms-wmq>`
 
 ``def_namespace``
-    :doc:`Message namespace definitions. <../../public-api/details/zato.definition.namespace.create>`
+    :doc:`Message namespace definitions. <../../web-admin/messages/xml-ns>`
 
 ``email_imap``
-    :doc:`IMAP mail connections. <../../public-api/details/zato.email.imap.create>`
+    :doc:`IMAP mail connections. <../../web-admin/email/imap>`
 
 ``email_smtp``
-    :doc:`SMTP mail connections. <../../public-api/details/zato.email.smtp.create>`
+    :doc:`SMTP mail connections. <../../web-admin/email/smtp>`
 
 ``json_pointer``
-    :doc:`JSON pointer definitions. <../../public-api/details/zato.message.json-pointer.create>`
+    :doc:`JSON pointer definitions. <../../web-admin/messages/json-pointer>`
 
 ``notif_cloud_openstack_swift``
-    :doc:`OpenStack Swift notifiers. <../../public-api/details/zato.notif.cloud.openstack.swift.create>`
+    :doc:`OpenStack Swift notifiers. <../../web-admin/notif/cloud/openstack/swift>`
 
 ``notif_sql``
-    :doc:`SQL notifiers. <../../public-api/details/zato.notif.sql.txt>`
+    :doc:`SQL notifiers. <../../web-admin/notif/sql>`
 
 ``outconn_amqp``
     :doc:`Outgoing AMQP connections.
-    <../../public-api/details/zato.outgoing.amqp.create>` 'def' is an AMQP
+    <../../web-admin/outgoing/amqp>`. Key 'def' is an AMQP
     connection definition to use.
 
 ``outconn_ftp``
-    :doc:`Outgoing FTP connections. <../../public-api/details/zato.outgoing.ftp.create>`
+    :doc:`Outgoing FTP connections. <../../web-admin/outgoing/ftp>`
 
 ``outconn_jms_wmq``
-    :doc:`Outgoing JMS WebSphere MQ connections.
-    <../../public-api/details/zato.outgoing.jms-wmq.create>` 'def' is a JMS
-    WebSphere MQ connection definition to use.
+    :doc:`Outgoing IBM MQ connections.
+    <../../web-admin/outgoing/jms-wmq>`. Key 'def' is an IBM MQ connection definition to use.
 
 ``outconn_odoo``
-    :doc:`Outgoing Odoo connections. <../../public-api/details/zato.outgoing.odoo.create>`
+    :doc:`Outgoing Odoo connections. <../../web-admin/outgoing/odoo>`
+
+``outconn_sap``
+    :doc:`Outgoing SAP connections. <../../web-admin/outgoing/sap>`
 
 ``outconn_plain_http``
-    :doc:`Outgoing plain HTTP connections.
-    <../../public-api/details/zato.http-soap.create>` 'sec_def' is the
-    security definition to use. 'connection' and 'transport' can be skipped.
+    :doc:`Outgoing REST connections <../../web-admin/outgoing/plain-http>`. Key 'sec_def' is the
+    security definition to use. Keys 'connection' and 'transport' can be skipped.
 
 ``outconn_soap``
     :doc:`Outgoing SOAP connections.
-    <../../public-api/details/zato.http-soap.create>` 'sec_def' is the
-    security definition to use. 'connection' and 'transport' can be skipped.
+    <../../web-admin/outgoing/soap>` Key 'sec_def' is the
+    security definition to use. Keys 'connection' and 'transport' can be skipped.
 
 ``outconn_sql``
-    :doc:`Outgoing SQL connections. <../../public-api/details/zato.outgoing.sql.create>`
-
-``outconn_stomp``
-    :doc:`Outgoing STOMP connections. <../../public-api/details/zato.outgoing.stomp.create>`
+    :doc:`Outgoing SQL connections. <../../web-admin/outgoing/sql>`
 
 ``outconn_zmq``
-    :doc:`Outgoing ZeroMQ connections. <../../public-api/details/zato.outgoing.zmq.create>`
+    :doc:`Outgoing ZeroMQ connections. <../../web-admin/outgoing/zmq>`
 
 ``query_cassandra``
-    :doc:`Cassandra queries. <../../public-api/details/zato.query.cassandra.create>`
+    :doc:`Cassandra queries. <../../web-admin/query/cassandra>`
 
 ``scheduler``
-    :doc:`Scheduler jobs. <../../public-api/details/zato.scheduler.job.create>`
+    :doc:`Scheduler jobs. <../../web-admin/scheduler/main>`
 
 ``search_es``
-    :doc:`ElasticSearch connections. <../../public-api/details/zato.search.es.create>`
+    :doc:`ElasticSearch connections. <../../web-admin/search/es>`
 
 ``search_solr``
-    :doc:`Apache Solr connections. <../../public-api/details/zato.search.solr.create>`
+    :doc:`Apache Solr connections. <../../web-admin/search/solr>`
 
 ``xpath``
-    :doc:`XPath message definitions. <../../public-api/details/zato.xpath.create>`
-
-``zato_channel_stomp``
-    :doc:`Stomp channel definitions. <../../public-api/details/zato.channel.stomp.create>`
+    :doc:`XPath message definitions. <../../web-admin/messages/xpath>`
 
 ``zato_channel_web_socket``
-    :doc:`Web socket channel definitions. <../../public-api/details/zato.channel.web-socket.create>`
+    :doc:`Web socket channel definitions. <../../web-admin/channels/wsx>`
 
 ``zato_sms_twilio``
-    :doc:`Twilio notifiers. <../../public-api/details/zato.channel.web-socket.create>`
+    :doc:`Twilio notifiers. <../../web-admin/sms/twilio>`
 
 
 

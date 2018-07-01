@@ -59,8 +59,8 @@ is an embedded instance of HAProxy.
 Scheduler
 ---------
 
-A Zato environment comes with a :doc:`<../web-admin/scheduler/main>`, managed through web-admin,
-that runs tasks periodically, according to user-defined schedules.
+Each Zato environment comes with scheduler, managed through web-admin,
+that runs tasks periodically, according to user-defined task configuration.
 
 
 CLI (command line interface)
@@ -125,6 +125,6 @@ Admin API
 ---------
 
 99% of what web-admin does can be emulated or built upon by user-defined scripts and programs that take advantage of the
-:doc:`REST or SOAP admin API <../public-api/intro>`.
+REST or SOAP admin API.
 Apart from a few cases, the API offers full control over Zato environments - in fact, web-admin
 underneath is a client making use of the API itself.

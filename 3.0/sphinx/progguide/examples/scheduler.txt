@@ -17,8 +17,8 @@ self.request.raw_request
 
 ::
 
-   from zato.server.service import Service   
-   
+   from zato.server.service import Service
+
    class MyService(Service):
        def handle(self):
            self.logger.info('Got message: {}'.format(self.request.raw_request))
@@ -29,25 +29,19 @@ self.request.raw_request
 Scheduling jobs programmatically
 --------------------------------
 
-It's possible to use 
-:doc:`the API <../../public-api/intro>`
-to
-:doc:`create <../../public-api/details/zato.scheduler.job.create>`
-or otherwise 
-:doc:`manage <../../public-api/details/zato.scheduler.job>`
-scheduler jobs programmatically as in the example below.
+It's possible to use the public API to create or otherwise manage scheduler jobs programmatically as in the example below.
 
 ::
 
     # stdlib
     from datetime import datetime
-    
+
     # Zato
     from zato.server.service import Service
-    
+
     class MyService(Service):
         def handle(self):
-            
+
             request = {
                 'cluster_id': self.server.cluster_id,
                 'name': 'my-job-1',
@@ -57,5 +51,5 @@ scheduler jobs programmatically as in the example below.
                 'start_date': datetime.utcnow().isoformat(), # Always in UTC
                 'cron_definition': '@hourly'
             }
-            
+
             self.invoke('zato.scheduler.job.create', request)

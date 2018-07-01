@@ -7,10 +7,10 @@ Web admin
 
 Web admin is a browser-based admin console, implemented in `Django <https://djangoproject.com>`_,
 used for the management of already existing clusters. That is, admins use
-:doc:`CLI </admin/cli/index>` to create, start or stop clusters and servers and web admin is 
+:doc:`CLI </admin/cli/index>` to create, start or stop clusters and servers and web admin is
 used to control other aspects of cluster that are operational.
 
-A web admin instance uses the :doc:`server public API </public-api/intro>`
+A web admin instance uses the server public API
 to handle administrative tasks, it never directly modifies the contents
 of an :doc:`ODB <./sql-odb>` when it comes to cluster-specific data.
 

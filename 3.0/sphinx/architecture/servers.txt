@@ -33,7 +33,7 @@ Singletons
 
 For each cluster, exactly one server will be designated to a role of the singleton
 server. This is be the sever that will be responsible for managing the tasks
-that must not be run in more than one instance - 
+that must not be run in more than one instance -
 :ref:`a cluster's scheduler <arch-servers-scheduler>` and :ref:`connectors <arch-servers-connectors>`.
 
 When the first server in a cluster starts up, it is assigned the role of the singleton server,
@@ -62,7 +62,7 @@ Redis is used as a message broker for exchanging information
 between servers and between the scheduler and servers. Servers never communicate
 directly, if it's needed for one server to send a message to one or more servers,
 the message is published in Redis and other servers receive it from Redis. This
-is an asynchronous processes. 
+is an asynchronous processes.
 
 When the scheduler needs to invoke a service, it publishes a message
 to Redis, the message is picked up by one of the cluster's servers and again,
@@ -70,7 +70,7 @@ there is no direct communication between the scheduler and servers.
 
 Connectors use Redis too. If a service needs to send a message to AMQP, JMS WebSphere MQ
 or ZeroMQ, or if external applications use this protocols to send messages to Zato,
-they all are routed through Redis in an asynchronous manner. 
+they all are routed through Redis in an asynchronous manner.
 
 .. _arch-servers-scheduler:
 
@@ -105,10 +105,10 @@ if you decide to use Zato's :doc:`Simple IO <../progguide/sio>` mechanism.
 FTP should be understood as both FTP and FTPS. Note that Zato opens a new FTP
 connection for each service invocation, for instance - you scheduled a job
 to be run twice a minute, the job is to invoke a service which will fetch a file
-from an FTP. In that scenario, the service will open and close a new FTP connection twice 
+from an FTP. In that scenario, the service will open and close a new FTP connection twice
 a minute.
 
-Supported SQL databases are 
+Supported SQL databases are
 `Oracle <http://www.oracle.com/us/products/database/overview/index.html>`_
 and
 `PostgreSQL <http://www.postgresql.org>`_.
@@ -142,7 +142,7 @@ to manage clusters.
 
 Web admin is a graphical browser-based console used for configuring most aspects of a running
 cluster. A single web admin instance can be used for connecting to more than one
-cluster. Web admin uses :doc:`Zato's public API </public-api/intro>` for the management,
+cluster. Web admin uses Zato's public API for the management,
 it never directly updates a cluster's state in the ODB.
 
 The :doc:`command-line interface </admin/cli/create-odb>` is used to create,

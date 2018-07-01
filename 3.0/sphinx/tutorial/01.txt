@@ -61,7 +61,6 @@ which is used for executing recurring tasks.
 Services can also make use of
 :doc:`HTTP Basic Auth <../web-admin/security/basic-auth>`,
 :doc:`WS-Security <../web-admin/security/ws-security>`
-:doc:`technical accounts <../web-admin/security/tech-account>`,
 :doc:`API keys <../web-admin/security/apikey>`,
 :doc:`AWS <../web-admin/security/aws>`,
 :doc:`NTLM <../web-admin/security/ntlm>`,
@@ -74,7 +73,7 @@ security definitions.
 
 And there are
 :doc:`CLI <../admin/cli/index>`,
-:doc:`API <../public-api/intro>`
+API
 and a fabulous
 :doc:`web admin <../web-admin/intro>`
 console for admins to use.

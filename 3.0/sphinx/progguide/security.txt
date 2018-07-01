@@ -5,15 +5,12 @@ Transport-level security is service-independent
 -----------------------------------------------
 
 As a service developer, you usually don't need to be concerned with how the service
-has been secured. 
+has been secured.
 
-Administrators use 
-:doc:`HTTP Basic Auth <../web-admin/security/basic-auth>`,
-:doc:`technical accounts <../web-admin/security/tech-account>`
-or
-:doc:`WS-Security <../web-admin/security/ws-security>` to make sure only permitted applications have access
+Administrators attach
+security definitions to channels to make sure only permitted applications have access
 to a service and when you're authoring a service which you know will be using
-one of the three methods of securing the transport layer, you can simply assume 
+one of the three methods of securing the transport layer, you can simply assume
 that the authentication has been performed elsewhere by Zato itself, you don't need to
 add any code yourself.
 
@@ -26,7 +23,7 @@ General recommendations
 
 From a security-conscious programmer's point of view, Zato is essentially a server
 that accepts input from potentially hostile sources and transforms it into an output
-of some sort. 
+of some sort.
 
 As such, despite its not being a typical web application like Django,
 many of general recommendations regarding the development of safe applications

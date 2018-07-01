@@ -27,7 +27,7 @@ Header            Notes
 ================= =======================================================================
 Name              Connection name
 Active            Is the connection active and can be used in services
-Host              Per `PyRFC <https://sap.github.io/PyRFC/>`_ documentation
+Host              Per `PyRFC documentation <https://sap.github.io/PyRFC/>`_
 Instance          ”
 System ID         ”
 User              ”

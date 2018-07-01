@@ -24,7 +24,7 @@ Create and Edit
 Header              Notes
 =================== =============================================================================
 Name                Connection name
-Active              :ref:`Documented below <web-admin-outgoing-amqp-active>`
+Active              Is the connection active and can be used to send messages to AMQP brokers
 Definition          :doc:`AMQP definition <../conn-def/amqp>` to read basic
                     connection information from
 Delivery mode       Whether messages send should be persistent by default

@@ -7,7 +7,7 @@ Programming examples
 Subsequent chapters present how a typical code to perform a given operation,
 such as manipulating JSON or XML, will look like. It is assumed the reader has already
 completed
-:doc:`the tutorial <../../tutorial/01>`, 
+:doc:`the tutorial <../../tutorial/01>`,
 is familiar with Zato's
 :doc:`architecture <../../architecture/overview>`
 and read about
@@ -18,7 +18,7 @@ and
 .. note ::
 
   Depending on how you write code, in what data format, it's possible to write it once only
-  and expose it 
+  and expose it
   :doc:`through <../../web-admin/channels/amqp>`
   :doc:`multiple <../../web-admin/channels/jms-wmq>`
   :doc:`channels <../../web-admin/channels/plain-http>`
@@ -26,12 +26,12 @@ and
   :doc:`without <../../web-admin/channels/zmq>`
   any code changes,
   without programming and without server restarts either.
-  
+
   If you use
-  :doc:`SimpleIO (SIO) <../sio>`, 
+  :doc:`SimpleIO (SIO) <../sio>`,
   the same code can be made available through many independent channels
   using JSON or XML simultaneously.
-  
+
   Also, unless you're implementing a custom security scheme, services can assume that the
   fact they're invoked means that previous authentication/authorization layers granted a client
   application access. You don't need to code security.
@@ -52,10 +52,6 @@ Topic                                             Examples
                                                     * :doc:`Channels <../rest/channels>`
                                                     * :doc:`Outgoing connections <../rest/outconns>`
                                                     * :doc:`JSON adapter <../rest/json-adapter>`
-
-:doc:`REST pub/pub <../../pubsub/index>`          * Publishing messages :doc:`from services <./pubsub>`
-                                                  * How to :doc:`publish <../../pubsub/dev/producer>`
-                                                    and :doc:`subscribe <../../pubsub/dev/consumer>` from REST clients
 
 :doc:`SimpleIO (SIO) <./sio>`                     * :ref:`Making a service accept and return JSON/XML/SOAP <progguide-examples-sio-service>`
 
