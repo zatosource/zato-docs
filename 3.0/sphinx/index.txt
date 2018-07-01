@@ -404,7 +404,6 @@ Zato, the open-source project
    project/*
    pubsub/*
    pubsub/arch/*
-   pubsub/admin/*
    pubsub/api/*
    pubsub/details/endpoint/*
    pubsub/details/sub/*

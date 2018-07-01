@@ -127,5 +127,5 @@ File transfer
 
 Subscriptions for file transfer are regular subscriptions to topics, just like with any other publisher. For instance,
 if an endpoint wishes to subscribe to new invoices from topic */invoices/new*, an administrator may create such a subscription
-in web-admin and file transfer messages, once :doc:`configured <>`, will be delivered to that topic as they
+in web-admin and file transfer messages, once :doc:`configured <../../api/file>`, will be delivered to that topic as they
 arrive in the filesystem, and out of the topic they will be sent to the endpoint's queue.
