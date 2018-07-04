@@ -1,6 +1,8 @@
 Pub/sub - API - Zato services
 =============================
 
+Preliminary materials: :doc:`Pub/sub architecture <../arch/index>`.
+
 Overview
 --------
 
@@ -48,9 +50,6 @@ self.pubsub.publish
    :return: Message ID, either automatically assigned or taken from input if it was provided
    :rtype: str
 
-Sample service
-~~~~~~~~~~~~~~
-
 ::
 
   # -*- coding: utf-8 -*-
@@ -83,21 +82,66 @@ Sample service
 self.pubsub.get_messages
 ------------------------
 
-.. py:method:: self.pubsub.publish(topic_name, **kwargs)
+.. py:method:: self.pubsub.get_messages(topic_name, sub_key)
 
-   Publishes a message to input topic. All parameters are passed in as keyword arguments and all are optional,
-   e.g. message ID does not have to be provided on input unless there is an actual need.
+   Returns all messages enqueued for input sub_key which must be associated with an existing subscription for input topic_name.
 
-   :param str data: Business data being published
-   :param str msg_id: Message ID - callers must ensure this is globally unique (such as UUID4)
-   :param bool has_gd: Indicates if message should be covered by Guaranteed Delivery or not
-   :param int priority: Message priority, 1-9 (1=min)
-   :param int expiration: Message expiration in milliseconds
-   :param str mime_type: MIME type of input data
-   :param str correl_id: Correlation ID, if message is part of a broader series of messages
-   :param str in_reply_to: Message ID of a message this message is a response to, if any
-   :param str ext_client_id: An arbitrary string uniquely identifying the client application, or its instance,
-                             on whose behalf the method is called
-   :param str ext_pub_time: When the message was sent, as interpreted from the perspective of the calling application
-   :return: Message ID, either automatically assigned or taken from input if it was provided
-   :rtype: str
+   :param str topic_name: Name of a topic that messages were published to
+   :param str sub_key: Subscription key to return messages for
+   :return: A list of messages, if any - each element in the list is a dictionary containing data and metadata about the message
+
+   :rtype: list of dicts
+
+::
+
+  # -*- coding: utf-8 -*-
+
+  from __future__ import absolute_import, division, print_function, unicode_literals
+
+  from zato.server.service import Service
+
+  class GetMessages(Service):
+      def handle(self):
+
+          # Prepare input
+          topic_name = '/zato/demo/sample'
+          sub_key = 'zpsk.rest.6b0b83ebea3f6e6a64e8e73f'
+
+          # Get all messages available ..
+          messages = self.pubsub.get_messages(topic_name, sub_key)
+
+          # .. and log them all.
+          self.logger.info('Messages `%s`', messages)
+
+::
+
+  INFO - Messages `[
+    {
+     u'delivery_count': 0,
+     u'has_gd': False,
+     u'server_name': u'server1',
+     u'topic_name': u'/zato/demo/sample',
+     u'pub_time_iso': u'2018-07-04T19:58:08.020493',
+     u'priority': 5,
+     u'expiration_time_iso': u'2086-07-22T23:12:15.020493',
+     u'expiration': 2147483647000,
+     u'server_pid': 19218,
+     u'size': 27,
+     u'data': u'This is a sample message #2',
+     u'sub_key': u'zpsk.rest.6b0b83ebea3f6e6a64e8e73f',
+     u'mime_type': u'text/plain'},
+    {
+      u'delivery_count': 0,
+      u'has_gd': False,
+      u'server_name': u'server1',
+      u'topic_name': u'/zato/demo/sample',
+      u'pub_time_iso': u'2018-07-04T19:58:01.144177',
+      u'priority': 5,
+      u'expiration_time_iso': u'2086-07-22T23:12:08.144177',
+      u'expiration': 2147483647000,
+      u'server_pid': 19218,
+      u'size': 24,
+      u'data': u'This is a sample message',
+      u'sub_key': u'zpsk.rest.6b0b83ebea3f6e6a64e8e73f',
+      u'mime_type': u'text/plain'
+    }]`

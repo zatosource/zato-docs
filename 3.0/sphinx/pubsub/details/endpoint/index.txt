@@ -12,11 +12,11 @@ that there be only one endpoint per application and users are free to create as 
 
 There are several types of endpoints:
 
-* :doc:`REST <./rest>`
+* :doc:`REST <../../api/rest>`
 * :doc:`AMQP <./amqp>`
-* :doc:`WebSockets <./wsx>`
+* :doc:`WebSockets <../../api/wsx>`
 * :doc:`File transfer-based publications <./file>`
-* :doc:`Java JMS <./jms>`
+* Java JMS
 
 REST, AMQP, WebSockets and Java JMS need to be registered by administrators before they can take part
 in publish/subscribe. Endpoints of this kind can be configured to let them publish messages, subscribe to them or both.

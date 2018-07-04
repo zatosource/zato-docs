@@ -64,7 +64,7 @@ Logging
 
 * All error messages are accompanied by a CID in the JSON response - this is a Correlation ID uniquely assigned
   to a particular HTTP request
-* CIDs are also always returned in *X-Zato-CID* response header, regardless if it was an error or not
+* CIDs are also always returned in *X-Zato-CID* response header, regardless if there was an error or not
 * CIDs can be found in *http_access.log* files of the server that handled a particular invocation
 * In case of an error, file *server.log* of the server where it happened, contains details, including a full traceback
 

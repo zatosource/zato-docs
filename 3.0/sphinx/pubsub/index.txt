@@ -38,8 +38,10 @@ Topics
     :doc:`Endpoints <./details/endpoint/index>` |
     :doc:`Subscriptions <./details/sub/index>`
 
-  * **APIs:**
+  * **Usage:**
     :doc:`REST <./api/rest>` |
+    :doc:`AMQP <./details/endpoint/amqp>` |
+    :doc:`WebSockets <./api/wsx>` |
     :doc:`Zato services <./api/zato-service>` |
     :doc:`File transfer <./details/endpoint/file>`
 
