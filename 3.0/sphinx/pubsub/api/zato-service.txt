@@ -1,0 +1,9 @@
+Pub/sub - API - REST
+====================
+
+REST integration with publish/subscribe is built around four cornestone operations:
+
+* Creating subscriptions
+* Publications of messages
+* Getting messages from queues
+* Unsubscribing
