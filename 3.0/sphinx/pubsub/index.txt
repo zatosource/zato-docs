@@ -24,7 +24,7 @@ Programmers and administrators use a browser-based GUI to access configuration a
 message queues and update their contents in place.
 
 Publish/subscribe provides topics, queues, routing, security, APIs and administration facilities - applications
-publish and consume messages using REST, AMQP, WebSockets, Zato services or Java JMS. It is also possible to listen for
+publish and consume messages using REST, WebSockets, Zato services or Java JMS. It is also possible to listen for
 filesystem events and publish files to topics.
 
 Topics
@@ -39,12 +39,10 @@ Topics
     :doc:`Subscriptions <./details/sub/index>`
 
   * **APIs:**
-    :doc:`~~REST <./api/rest>` |
-    :doc:`AMQP <./api/amqp>` |
-    :doc:`~~WebSockets <./api/wsx>` |
-    :doc:`~~Zato services <./api/zato-service>` |
-    :doc:`~~Java JMS <./api/jms>` |
-    :doc:`File transfer <./api/file>`
+    :doc:`REST <./api/rest>` |
+    :doc:`WebSockets <./api/wsx>` |
+    :doc:`Zato services <./api/zato-service>` |
+    :doc:`File transfer <./details/endpoint/file>`
 
   * **Security:**
     :doc:`Securing access to topics and queues <./sec/index>`

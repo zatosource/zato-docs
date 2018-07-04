@@ -1,14 +1,14 @@
 
-Pub/sub - API - AMQP
-====================
+Pub/sub - endpoints - AMQP
+==========================
 
 Overview
 --------
 
 AMQP brokers can automatically receive messages published to Zato topics. First, an AMQP
-:doc:`definition <../../web-admin/conn-def/amqp>`
+:doc:`definition <../../../web-admin/conn-def/amqp>`
 and
-:doc:`outgoing <../../web-admin/outgoing/amqp>`
+:doc:`outgoing <../../../web-admin/outgoing/amqp>`
 connection need to be created.
 
 Next, pub/sub endpoints should be created to grant outgoing AMQP connections access to specific topics or patterns.
@@ -58,7 +58,7 @@ Sleep on socket error How many seconds to sleep on receiving a TCP-level socket 
 Sleep on error error  As above but for non socket-related errors
 Topics                A list of topics to subscribe to - only topics to which the chosen endpoint has
                       subscription permissions are displayed
-AMQP outconn          An :doc:`AMQP outgoing <../../web-admin/outgoing/amqp>` connection to deliver messages through
+AMQP outconn          An :doc:`AMQP outgoing <../../../web-admin/outgoing/amqp>` connection to deliver messages through
 AMQP exchange         AMQP exchange to deliver messages to
 AMQP routing key      AMQP routing key to use during delivery
 ===================== ====================================================================================================

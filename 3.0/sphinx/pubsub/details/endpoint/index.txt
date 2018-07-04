@@ -12,21 +12,20 @@ that there be only one endpoint per application and users are free to create as 
 
 There are several types of endpoints:
 
-* :doc:`REST <../../api/rest>`
-* :doc:`AMQP <../../api/amqp>`
-* :doc:`WebSockets <../../api/wsx>`
-* :doc:`Zato services <../../api/zato-service>`
-* :doc:`File transfer <../../api/file>`
-* :doc:`Java JMS <../../api/jms>`
+* :doc:`REST <./rest>`
+* :doc:`AMQP <./amqp>`
+* :doc:`WebSockets <./wsx>`
+* :doc:`File transfer-based publications <./file>`
+* :doc:`Java JMS <./jms>`
 
 REST, AMQP, WebSockets and Java JMS need to be registered by administrators before they can take part
 in publish/subscribe. Endpoints of this kind can be configured to let them publish messages, subscribe to them or both.
 
 Zato services do not need to be managed by administrators because they can always publish to all topics.
 
-File transfer are used to :doc:`listen for changes <../../api/file>` in directories of choice, i.e. they are file listeners that publish information
-to topics about new or changed files, optionally including their contents. File listeners can publish messages to topics
-but they cannot subscribe to them.
+File transfer are used to :doc:`listen for changes <./file>` in directories of choice, i.e. they are file listeners that publish
+information to topics about new or changed files, optionally including their contents. File listeners can publish messages to
+topics but they cannot subscribe to them.
 
 AMQP endpoints subscribe to messages published to topics, i.e. each time a message is published to a topic with an AMQP
 subscriber, a remote AMQP broker will receive its contents.

@@ -1,5 +1,5 @@
-Pub/sub - API - Flat files
-==========================
+Pub/sub - endpoints - Flat files
+================================
 
 Overview
 --------
@@ -10,9 +10,9 @@ of choice.
 
 An example workflow is:
 
-* Configure :doc:`scheduler <../../web-admin/scheduler/main>` to periodically execute a service
+* Configure :doc:`scheduler <../../../web-admin/scheduler/main>` to periodically execute a service
 * The service saves to local directories files downloaded from remote resources,
-  e.g. using :doc:`FTP connections <../../web-admin/outgoing/ftp>`
+  e.g. using :doc:`FTP connections <../../../web-admin/outgoing/ftp>`
 * Listeners automatically recognize that a new file appeared in a directory and publish its contents to one or more topics
 * Topic subscribers can be REST, AMQP, WebSockets or Java JMS endpoints and all of them receive the file in question
 

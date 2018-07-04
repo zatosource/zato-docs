@@ -118,7 +118,7 @@ what matching security patterns led to the appearance of the message in this end
 WebSockets
 ----------
 
-WebSockets-based endpoints :doc:`subscribe to topics using the public API <../wsx/index>` - this is because there is no way
+WebSockets-based endpoints :doc:`subscribe to topics using the public API <../../api/wsx>` - this is because there is no way
 to predict to which server a given WebSocket connection will be routed from the cluster's load-balancer which in turn means that
 it is impossible to choose any particular delivery server in the web-admin.
 
@@ -127,5 +127,5 @@ File transfer
 
 Subscriptions for file transfer are regular subscriptions to topics, just like with any other publisher. For instance,
 if an endpoint wishes to subscribe to new invoices from topic */invoices/new*, an administrator may create such a subscription
-in web-admin and file transfer messages, once :doc:`configured <../../api/file>`, will be delivered to that topic as they
+in web-admin and file transfer messages, once :doc:`configured <../../details/endpoint/file>`, will be delivered to that topic as they
 arrive in the filesystem, and out of the topic they will be sent to the endpoint's queue.
