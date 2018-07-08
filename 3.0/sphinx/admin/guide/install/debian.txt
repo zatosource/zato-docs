@@ -52,7 +52,7 @@ Installation steps
 ::
 
     debian$ zato --version
-    Zato 3.0.0+rev.f5dbf26b
+    Zato 3.0.0+rev.nnnnnnnn
     debian$
 
 That concludes the process - you can refer to the main
