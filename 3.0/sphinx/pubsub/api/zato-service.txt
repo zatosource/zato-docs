@@ -125,7 +125,7 @@ How to subscribe non-WebSocket endpoints
           endpoint_name = 'My REST Endpoint'
 
           # Subscribe an explicitly named endpoint..
-          sub_key = self.pubsub.publish(topic_name, endpoint_name=endpoint_name)
+          sub_key = self.pubsub.subscribe(topic_name, endpoint_name=endpoint_name)
 
           # .. and log the subscription key received.
           self.logger.info('Received sub_key `%s`', sub_key)
@@ -152,7 +152,7 @@ How to subscribe WebSockets
           topic_name = '/zato/demo/sample'
 
           # Subscribe current WebSocket ..
-          sub_key = self.pubsub.publish(topic_name, use_current_wsx=True, service=self)
+          sub_key = self.pubsub.subscribe(topic_name, use_current_wsx=True, service=self)
 
           # .. and log the subscription key received.
           self.logger.info('Received sub_key `%s`', sub_key)
