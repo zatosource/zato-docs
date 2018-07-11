@@ -9,13 +9,15 @@ Overview
 From the perspective of Zato service authors, publish/subscribe offers a few methods for publications and reception
 of messages:
 
-======================== =======================================================================
-Method                   Notes
-======================== =======================================================================
-self.pubsub.publish      Sends a message to input topic
-self.pubsub.subscribe    Subscribes to a topic, returning subscription key on output
-self.pubsub.get_messages Receives all outstanding messages from input queue by subscription key
-======================== =======================================================================
+=================================== =========================================================================
+Method                              Notes
+=================================== =========================================================================
+self.pubsub.publish                 Sends a message to input topic
+self.pubsub.subscribe               Subscribes to a topic, returning subscription key on output
+self.pubsub.get_messages            Receives all outstanding messages from input queue by subscription key
+self.pubsub.resume_wsx_subscription Invoked on behalf of WebSocket clients to resume delivery of messages
+                                    for an already existing subscription key after clients reconnect to Zato
+=================================== =========================================================================
 
 Note that *get_messages* expects a subscription key - this is because there may be multiple subscriptions
 for each topic so the method needs to know from whose queue to return the messages and it is subscription key
@@ -227,3 +229,37 @@ self.pubsub.get_messages
       u'sub_key': u'zpsk.rest.6b0b83ebea3f6e6a64e8e73f',
       u'mime_type': u'text/plain'
     }]`
+
+self.pubsub.resume_wsx_subscription
+-----------------------------------
+
+.. py:method:: self.pubsub.resume_wsx_subscription(sub_key, service)
+
+   Resumes delivery for input sub_key to a previously created subscription of a WebSocket client that reconnected
+   after having its TCP-level connection dropped (e.g. after closing a web browser's window).
+
+   Input data is validated and sub_key is checked to have been issued to the same endpoint that
+   the calling WebSocket channel is associated with - if this is not fulfilled, an exception is raised (type Exception should
+   be caught).
+
+   :param str sub_key: Subscription key to resume delivery for
+   :param object service: Service that invokes the method (i.e. self)
+   :return: None
+
+::
+
+  # -*- coding: utf-8 -*-
+
+  from __future__ import absolute_import, division, print_function, unicode_literals
+
+  from zato.server.service import Service
+
+  class ResumeWSXSubscription(Service):
+      def handle(self):
+
+          # Prepare input
+          sub_key = 'zpsk.wsx.6b0b83ebea3f6e6a64e8e73f'
+
+          # Resume delivery for that key,
+          # if there is no exception, it means that everything went fine
+          self.pubsub.resume_wsx_subscription(sub_key)
