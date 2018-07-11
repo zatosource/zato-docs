@@ -262,4 +262,4 @@ self.pubsub.resume_wsx_subscription
 
           # Resume delivery for that key,
           # if there is no exception, it means that everything went fine
-          self.pubsub.resume_wsx_subscription(sub_key)
+          self.pubsub.resume_wsx_subscription(sub_key, self)
