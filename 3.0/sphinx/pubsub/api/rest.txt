@@ -15,7 +15,7 @@ REST integration with publish/subscribe is built around four cornestone operatio
 Operation                    REST
 ============================ ===================================================================
 Publication of messages      POST /zato/pubsub/topic/{topic_name}
-Creating subscriptions       POST /zato/pubsub/subscribe/topic/{topic_name}?sub_key=
+Creating subscriptions       POST /zato/pubsub/subscribe/topic/{topic_name}
 Getting messages from queues POST /zato/pubsub/topic/{topic_name}?sub_key=
 Unsubscribing                DELETE /zato/pubsub/subscribe/topic/{topic_name}?sub_key=
 ============================ ===================================================================
