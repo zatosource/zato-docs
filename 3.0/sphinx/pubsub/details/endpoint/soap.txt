@@ -1,0 +1,86 @@
+
+Pub/sub - endpoints - SOAP
+==========================
+
+Overview
+--------
+
+Messages from pub/sub topics can be sent to SOAP subscribers and the contents below describes how to enable it.
+There are several steps involved:
+
+* Creating an :doc:`outgoing SOAP connection <../../../web-admin/outgoing/soap>` based on a WSDL file
+* Creating an endpoint
+* Creating a subscription
+* Authoring a SOAP hook service
+
+The SOAP server is required to expose a WSDL based on which Zato creates a pool of SOAP clients to invoke it.
+
+A user-defined hook service is needed to transform the messages from topics to SOAP format and to invoke the remote
+SOAP server.
+
+Outgoing SOAP connections
+-------------------------
+
+.. image:: /gfx/pubsub/api/menu-outconn-soap.png
+
+.. image:: /gfx/pubsub/api/outconn-soap-create.png
+
+A connection definition point to the remote SOAP server is needed for Zato to know which server to invoke
+with pub/sub message - details of how to fine-tune outgoing SOAP connections are provided in their
+:doc:`own chapter <../../../web-admin/outgoing/soap>`.
+
+Two aspects are of importance:
+
+* URL path must be one pointing to a WSDL file
+* Serialization type must be *Suds*
+
+Endpoints
+---------
+
+.. image:: /gfx/pubsub/api/menu-endpoint.png
+
+.. image:: /gfx/pubsub/api/endpoint-create-soap.png
+
+============== ======================================================================================
+Header         Notes
+============== ======================================================================================
+Name           Endpoint name
+Type           SOAP
+Role           Currently, must be always Subscriber
+Topics allowed A list of patterns for topics that this endpoint will be allowed to subscribe to
+============== ======================================================================================
+
+Subscriptions
+-------------
+
+.. image:: /gfx/pubsub/api/menu-sub.png
+
+.. image:: /gfx/pubsub/api/sub-create-amqp.png
+
+===================== ====================================================================================================
+Header                Notes
+===================== ====================================================================================================
+Type                  AMQP
+Delivery server       From which server messages will be sent to AMQP brokers
+Endpoint              An already existing pub/sub endpoint on whose behalf messages will be sent to AMQP brokers
+Delivery method       Must be always Notify
+Delivery batch size   At most how many messages to send in one batch to AMQP brokers
+List required         Should messages be always be wrapped in a list element, even if there is only one message
+Delivery max retries  How many times to retry delivery for a message until it is considered undeliverable
+Sleep on socket error How many seconds to sleep on receiving a TCP-level socket error in communication with AMQP brokers
+Sleep on error error  As above but for non socket-related errors
+Topics                A list of topics to subscribe to - only topics to which the chosen endpoint has
+                      subscription permissions are displayed
+AMQP outconn          An :doc:`AMQP outgoing <../../../web-admin/outgoing/amqp>` connection to deliver messages through
+AMQP exchange         AMQP exchange to deliver messages to
+AMQP routing key      AMQP routing key to use during delivery
+===================== ====================================================================================================
+
+Changelog
+---------
+
+======= ===============
+Version Notes
+======= ===============
+3.0     Added initially
+======= ===============
