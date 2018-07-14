@@ -55,26 +55,69 @@ Subscriptions
 
 .. image:: /gfx/pubsub/api/menu-sub.png
 
-.. image:: /gfx/pubsub/api/sub-create-amqp.png
+.. image:: /gfx/pubsub/api/sub-create-soap.png
 
 ===================== ====================================================================================================
 Header                Notes
 ===================== ====================================================================================================
-Type                  AMQP
-Delivery server       From which server messages will be sent to AMQP brokers
-Endpoint              An already existing pub/sub endpoint on whose behalf messages will be sent to AMQP brokers
+Type                  SOAP
+Delivery server       From which server messages will be sent to the SOAP server
+Endpoint              An already existing pub/sub endpoint on whose behalf messages will be sent to the SOAP server
 Delivery method       Must be always Notify
-Delivery batch size   At most how many messages to send in one batch to AMQP brokers
+Delivery batch size   At most how many messages to send in one batch
 List required         Should messages be always be wrapped in a list element, even if there is only one message
 Delivery max retries  How many times to retry delivery for a message until it is considered undeliverable
-Sleep on socket error How many seconds to sleep on receiving a TCP-level socket error in communication with AMQP brokers
+Sleep on socket error How many seconds to sleep on receiving a TCP-level socket error in communication with the SOAP server
 Sleep on error error  As above but for non socket-related errors
 Topics                A list of topics to subscribe to - only topics to which the chosen endpoint has
                       subscription permissions are displayed
-AMQP outconn          An :doc:`AMQP outgoing <../../../web-admin/outgoing/amqp>` connection to deliver messages through
-AMQP exchange         AMQP exchange to deliver messages to
-AMQP routing key      AMQP routing key to use during delivery
+SOAP outconn          An :doc:`outgoing SOAP connection <../../../web-admin/outgoing/soap>` through which to send messages
 ===================== ====================================================================================================
+
+SOAP hook services
+------------------
+
+Given that pub/sub messages are most often sent through
+:doc:`REST endpoints <../../api/rest>`,
+in JSON, or
+via :doc:`flat files <./file>`,
+a matter arises of how
+to make SOAP recipients receive messages formatted as XML.
+
+This function is fulfilled by SOAP hook services optionally attached to each channel - they are invoked for each batch of
+messages that are to be sent to SOAP servers. Their task is chiefly to transform messages from the original format
+into one expected by SOAP recipients as indicated by data model in a recipient's WSDL.
+
+Each service has full access to metadata and business data about messages and subscribers and the same hook service
+may be used to implement transformation logic for multiple topics or subscribers.
+
+Hook services are not restricted to transformation alone. If needed in a particular situation, they may reach out
+to other services, other external systems or perhaps suppress publication of a given message if specific conditions
+require it.
+
+A SOAP hook service subclasses *zato.server.service.PubSubHook* and implements *on_outgoing_soap_invoke* method, as below:
+
+::
+
+    # -*- coding: utf-8 -*-
+
+    from __future__ import absolute_import, division, print_function, unicode_literals
+
+    # Zato
+    from zato.server.service import PubSubHook
+
+    class MyHook(PubSubHook):
+        """ Sample SOAP pub/sub hook.
+        """
+        def on_outgoing_soap_invoke(self):
+
+            # SOAP hook logic goes here
+            pass
+
+Such a service needs to be configured for each topic whose subscribers include SOAP endpoints - note that only services
+that subclass PubSubHook will be shown in the HTML drop-down list.
+
+.. image:: /gfx/pubsub/api/sub-update-topic.png
 
 Changelog
 ---------
