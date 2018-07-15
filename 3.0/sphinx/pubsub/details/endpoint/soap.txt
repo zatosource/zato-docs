@@ -85,8 +85,9 @@ a matter arises of how
 to make SOAP recipients receive messages formatted as XML.
 
 This function is fulfilled by SOAP hook services optionally attached to each channel - they are invoked for each batch of
-messages that are to be sent to SOAP servers. Their task is chiefly to transform messages from the original format
-into one expected by SOAP recipients as indicated by data model in a recipient's WSDL.
+messages that are to be sent to SOAP servers. Their chief task is to transform messages from the original format
+into one expected by SOAP recipients as indicated by data model in a recipient's WSDL and to use built-in
+:ref:`functionality <progguide-examples-soap-invoking-wsdl>` to invoke the remote server.
 
 Each service has full access to metadata and business data about messages and subscribers and the same hook service
 may be used to implement transformation logic for multiple topics or subscribers.
@@ -94,6 +95,14 @@ may be used to implement transformation logic for multiple topics or subscribers
 Hook services are not restricted to transformation alone. If needed in a particular situation, they may reach out
 to other services, other external systems or perhaps suppress publication of a given message if specific conditions
 require it.
+
+Indeed, hook services are not even strictly required to invoke the SOAP server - if the service decides that
+the server should be invoked then it may very well not do it.
+
+As long as the hook service does not raise an exception, Zato assumes that that the service completed successfully
+and all the messages have been delivered without any issues. Conversely, raising any sort of exception will signal
+to Zato that delivery of the messages should be repeated after a short break - after as many seconds as configured
+through "Sleep on error error" above.
 
 A SOAP hook service subclasses *zato.server.service.PubSubHook* and implements *on_outgoing_soap_invoke* method, as below:
 
@@ -118,6 +127,11 @@ Such a service needs to be configured for each topic whose subscribers include S
 that subclass PubSubHook will be shown in the HTML drop-down list.
 
 .. image:: /gfx/pubsub/api/sub-update-topic.png
+
+Each SOAP hook service may make use of the following attributes, accessed via *self.request.input.ctx*,
+e.g. self.request.input.ctx.hook_type:
+
+
 
 Changelog
 ---------
