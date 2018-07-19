@@ -5,7 +5,7 @@ Pub/sub - endpoints - SOAP
 Overview
 --------
 
-Messages from pub/sub topics can be sent to SOAP subscribers and the contents below describes how to enable it.
+Messages from pub/sub topics can be sent to SOAP subscribers and the contents below describes how to do it.
 There are several steps involved:
 
 * Creating an :doc:`outgoing SOAP connection <../../../web-admin/outgoing/soap>` based on a WSDL file
@@ -48,6 +48,7 @@ Name           Endpoint name
 Type           SOAP
 Role           Currently, must be always Subscriber
 Topics allowed A list of patterns for topics that this endpoint will be allowed to subscribe to
+               (i.e. receive messages from)
 ============== ======================================================================================
 
 Subscriptions
@@ -131,7 +132,92 @@ that subclass PubSubHook will be shown in the HTML drop-down list.
 Each SOAP hook service may make use of the following attributes, accessed via *self.request.input.ctx*,
 e.g. self.request.input.ctx.hook_type:
 
+================================ =================================================================================================
+self.request.input.ctx           Notes
+================================ =================================================================================================
+hook_type                        Always "on_topic_outgoing_soap_invoke"
+outconn_name                     Name of an :doc:`outgoing SOAP <../../../web-admin/outgoing/soap>` connection to which input data
+                                 should be :ref:`sent <progguide-examples-soap-invoking-wsdl>`
+topic                            Object describing the topic that input data was sent to, described below
+msg                              Contains business data and metadata about the message(s) taken from topic. By default, this is
+                                 a list of messages to send to the remote SOAP end but note that depending
+                                 on how the subscription is :doc:`configured <../sub/index>` (flag "list required"),
+                                 this element may be possibly a list even if there is only one message. Each message has
+                                 a series of attributes, described below.
+================================ =================================================================================================
 
+================================ ================================================== =======================================================
+Topic object                     Notes                                              Sample
+================================ ================================================== =======================================================
+name                             Name of the topic that input messages are          /customer/update/fr
+                                 received from. Note that it will be also
+                                 repeated with each message.
+================================ ================================================== =======================================================
+
+================================ ================================================== =======================================================
+Message object                   Notes                                              Sample
+================================ ================================================== =======================================================
+msg_id                           Message ID                                         zpsm20fb970d4014f4d356c50f2a
+data                             Business payload                                   {"acc":"123", "op":"deduct", "amount":"175",
+                                                                                    "currency":"EUR"}
+size                             Data size, in bytes (UTF-8)                        62
+topic_name                       Topic to which this message was published          /customer/update/fr
+sub_key                          Subscription key of the SOAP subscriber            zpsk.soap.315383075e2ec2ac2c149c6b
+pub_time_iso                     When the message was published, in UTC             2018-07-19T10:13:59.442880
+expiration_time_iso              When the message will expire, in UTC               2086-08-06T13:28:06.442880
+expiration                       Expiration time in milliseconds since pub_time_iso 2147483647000
+mime_type                        What MIME type the business data is of             text/plain
+priority                         Message priority, 1-9 (1=min)                      7
+delivery_count                   How many previous attempts to deliver this message 0
+                                 to the subscriber there have been already
+has_gd                           Was the message published with Guaranteed Delivery True
+                                 turned on
+================================ ================================================== =======================================================
+
+Upon its invocation, a hook service can transform each message to the format that the SOAP server expects and send
+the result out, as below.
+
+Note that the object returned by *self.outgoing.soap.get* is a `Suds <https://bitbucket.org/jurko/suds/wiki/Original%20Documentation>`_
+SOAP client - anything Suds can do is also available to the hook service.
+
+::
+
+    # -*- coding: utf-8 -*-
+
+    from __future__ import absolute_import, division, print_function, unicode_literals
+
+    # Zato
+    from zato.server.service import PubSubHook
+
+    class MyHook(PubSubHook):
+        """ Sample SOAP pub/sub hook.
+        """
+        def on_outgoing_soap_invoke(self):
+
+            # Local aliase
+            ctx = self.request.input.ctx
+
+            # Log information that we are about to send out SOAP requests from topic
+            self.logger.info('About to publish %d message(s) from topic `%s` to SOAP connection `%s`',
+                len(ctx.msg), ctx.topic.name, ctx.outconn_name)
+
+            # Obtain SOAP client from the pool ..
+            with self.outgoing.soap.get(ctx.outconn_name).conn.client() as client:
+
+                # .. assume that each business message has this format:
+                # {"acc":"123", "op":"deduct", "amount":"157", "currency":"EUR"}
+
+                # .. for each message received from the topic ..
+                for item in ctx.msg:
+
+                    # .. get a reference to actual business data ..
+                    data = item.data
+
+                    # .. and invoke the SOAP server
+                    output = client.service.accountDeduct(data['acc'], data['amount'], data['currency'])
+
+                    # Log response from the remote SOAP end
+                    self.logger.info('SOAP status received `%s`', output.StatusCode)
 
 Changelog
 ---------
