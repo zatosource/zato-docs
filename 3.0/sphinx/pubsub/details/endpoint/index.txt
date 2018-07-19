@@ -14,8 +14,10 @@ There are several types of endpoints:
 
 * :doc:`REST <../../api/rest>`
 * :doc:`AMQP <./amqp>`
+* :doc:`SOAP <./soap>`
 * :doc:`WebSockets <../../api/wsx>`
-* :doc:`File transfer-based publications <./file>`
+* :doc:`Zato services <../../api/zato-service>`
+* :doc:`File transfer <./file>`
 * Java JMS
 
 REST, AMQP, WebSockets and Java JMS need to be registered by administrators before they can take part
