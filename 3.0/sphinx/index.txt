@@ -285,6 +285,7 @@ Publish/subscribe
 =================
 
   * **Introduction:**
+    :doc:`Overview <./pubsub/index>` |
     :doc:`Architecture <./pubsub/arch/index>`
 
   * **Details:**
