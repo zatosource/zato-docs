@@ -1,0 +1,113 @@
+.. highlight:: python
+   :linenothreshold: 0
+
+Publish/subscribe tutorial - part 1/3
+=====================================
+
+Introduction
+------------
+
+This is the first part of a tutorial that will explain how to integrate applications
+using
+:doc:`publish/subscribe <../index>`
+topics and guaranteed delivery message queues
+offered by the message broker that :doc:`Zato <../../index>` ships with.
+
+The tutorial will introduce all the concepts and then let you quickly set up a new Zato environment,
+configure a few topics and let distributed systems, each using a different connection protocol, to exchange messages using queues.
+
+Integrations without a broker
+-----------------------------
+
+Let's first define what a message broker, topics and message queues are, as understood by Zato.
+
+A message broker with topics and message queues is software for systems integration that strongly encourages decoupling
+of applications that are being integrated to the point that at its very core it promotes the view that systems should not be
+tied together, that there is a class of integration needs that can be most efficiently realized when systems don't
+even particuarly care about what is outside their operational domains.
+
+A message broker with topics and queues is a specific type of a SOA/API message bus and all the principles from the ESB and SOA
+:doc:`introduction <../../intro/esb-soa>` still apply.
+
+A quintessential application of a message is that for user data integration.
+
+Supposing there are two systems initially, a CRM and self-service portal. Users calling a company's hotline to change details
+such as their correspondence addresses are handled by operators with access to the CRM while other users prefer
+the self-service portal. CRM is the source of truth and the portal pushes all the updates to it.
+
+This may work fine until more and more applications need to be connected, new contact channels, perhaps mobile or otherwise.
+Then the challenges begin to mount. It may turn out that the CRM does not know how to expose new endpoints, or that the new APIs
+do not have storage to retain messages in case of CRM's unavailability. Maybe, for performance reasons, some applications
+should have their own copy of some parts of user data. Or alternatively, each of the applications may be produced
+by a different vendor, each with their own release schedule and none of them too happy to integrate with their competition.
+
+These are real-life obstacles that occur regularly and whose very costs can be cut down significantly by employing topics
+and message queues.
+
+Integrations with a broker
+--------------------------
+
+The whole idea is akin, though not identical, to mailboxes. When you send a postcard, you employ an intermediary,
+a post office or a courier company. This is the party that will handle the message you put into mailbox. If the recipient
+is not at home, they will call back later. Or maybe you prefer to retrieve it yourself from the post office.
+Or perhaps they will forward your message to another address. Or maybe they will reject it altogether for some reasons.
+But the point is, you do not have a direct and dedicated connection straight from your home to any and all of possible
+recipients of all the postcards that you will ever sent, this is not practical on a larger scale.
+
+Unlike with postcards, in API integrations with topics, you don't explicitly call out the recipients of messages by their names.
+Instead, messages are sent to objects called topics, which are high-level containers for messages related to a particular subject.
+
+For instance, all notifications about new customers can be sent to a topic called */customer/new*. Then, all applications that
+need access to this kind of information will subscribe to such a topic and the message broker that Zato has will deliver it to them.
+
+The nice part of it is that applications can come and go at any time without disrupting communication between the remaining ones.
+In the example above, CRM may subscribe to topic /customer/new and if there is only one publisher of messages to this topic
+initially (self-service portal) or if there are a few more, the CRM will still subscribe to one topic only, meaning new
+applications can be plugged into the architecture or taken out independently.
+
+What Zato does is to offer means to carry out these actions. Publications can be performed using REST, flat files or WebSockets
+whereas subscribers connect to the broker using REST, SOAP, AMQP or WebSockets. Just like with couriers, if a recipient,
+a subscriber, is temporarily unavailabile, Zato will store the messages safely until the delivery is possible.
+
+Messages contain business data along with metadata attributes, e.g. their expiration time, MIME type, or priority.
+
+There is also a browser-based GUI that lets you configure every object, including security access patterns, and which also
+has screens to browse messages in topics and queues, e.g. what is currently about to be delivered, who last published
+to such and such topic, based on what conditions this publication was possible and other typical administrative task.
+There are also extensive log and audit files to track access to everything on a low level.
+
+An interesting feature of Zato worth pointing out is that all messages published to the same topic are delivered to a particular
+subscriber in the order of their publication even if there are multiple senders.
+
+As for the topic names, they can be arbitrary but it is customary to use a top-down hierarchy of names,
+with individual parts separated by slash sign. The hierarchies can be of any choice, e.g. by business purpose,
+by geographical attributes, or both, such as */customer/uk/new* or */floor/5/sensor/AER91/readings*.
+
+Note that publish/subscribe topics are not constrained to business integrations alone. This tutorial uses examples built around
+customer accounts because this is a field where a message broker is often employed but Zato can also be used
+for IoT integrations with multiple devices publishing messages to server applications or for any other integration needs
+where the publish/subscribe mechanisms are of benefit.
+
+Putting the concepts together
+-----------------------------
+
+We can now draw a sample diagram of an environment using Zato publish/subscribe topics. For illustration purposes,
+let's assume that there are four participants, each using a topic called /customer/new.
+
+.. image:: /gfx/pubsub/tutorial/01-put-together.png
+
+* Portal - publishes new data to the topic over REST
+* `CRM <https://en.wikipedia.org/wiki/Customer_relationship_management>`_- both publishes new data and subscribes
+  to new messages, both through REST
+* `ERP <https://en.wikipedia.org/wiki/Enterprise_resource_planning>`_ - subscribers to new messages but they must be
+  send as SOAP requests
+* `IVR <https://en.wikipedia.org/wiki/IVR>`_- can only produce flat files
+
+Installing Zato
+---------------
+
+Publishing your first message
+-----------------------------
+
+Read more
+---------

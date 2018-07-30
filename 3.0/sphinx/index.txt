@@ -284,8 +284,13 @@ Programming guide
 Publish/subscribe
 =================
 
-  * **Introduction:**
-    :doc:`Overview <./pubsub/index>` |
+  * **Tutorial:**
+    :doc:`Part 1 <./pubsub/tutorial/01>` |
+    :doc:`Part 2 <./pubsub/tutorial/02>` |
+    :doc:`Part 3 <./pubsub/tutorial/03>`
+
+  * **Overview:**
+    :doc:`Introduction <./pubsub/index>` |
     :doc:`Architecture <./pubsub/arch/index>`
 
   * **Details:**
@@ -434,6 +439,7 @@ Zato, the open-source project
    pubsub/details/topic/*
    pubsub/intro/tutorial/*
    pubsub/sec/*
+   pubsub/tutorial/*
    security/*
    stats/*
    sso/*
