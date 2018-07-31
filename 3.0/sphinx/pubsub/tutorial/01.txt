@@ -24,15 +24,15 @@ Let's first define what a message broker, topics and message queues are, as unde
 A message broker with topics and message queues is software for systems integration that strongly encourages decoupling
 of applications that are being integrated to the point that at its very core it promotes the view that systems should not be
 tied together, that there is a class of integration needs that can be most efficiently realized when systems don't
-even particuarly care about what is outside their operational domains.
+even particularly care about what is outside their operational domains.
 
 A message broker with topics and queues is a specific type of a SOA/API message bus and all the principles from the ESB and SOA
 :doc:`introduction <../../intro/esb-soa>` still apply.
 
 A quintessential application of a message is that for user data integration.
 
-Supposing there are two systems initially, a CRM and self-service portal. Users calling a company's hotline to change details
-such as their correspondence addresses are handled by operators with access to the CRM while other users prefer
+Supposing there are two systems initially, a CRM and self-service portal. Users calling a company's freephone number to change
+details such as their correspondence addresses are handled by operators with access to the CRM while other users prefer
 the self-service portal. CRM is the source of truth and the portal pushes all the updates to it.
 
 This may work fine until more and more applications need to be connected, new contact channels, perhaps mobile or otherwise.
@@ -67,7 +67,7 @@ applications can be plugged into the architecture or taken out independently.
 
 What Zato does is to offer means to carry out these actions. Publications can be performed using REST, flat files or WebSockets
 whereas subscribers connect to the broker using REST, SOAP, AMQP or WebSockets. Just like with couriers, if a recipient,
-a subscriber, is temporarily unavailabile, Zato will store the messages safely until the delivery is possible.
+a subscriber, is temporarily unavailable, Zato will store the messages safely until the delivery is possible.
 
 Messages contain business data along with metadata attributes, e.g. their expiration time, MIME type, or priority.
 
