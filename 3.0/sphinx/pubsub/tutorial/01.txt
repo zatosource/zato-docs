@@ -103,6 +103,25 @@ let's assume that there are four participants, each using a topic called /custom
   send as SOAP requests
 * `IVR <https://en.wikipedia.org/wiki/IVR>`_- can only produce flat files
 
+The only part that still needs to be explained are message queues - they are containers for messages for each distinct subscriber.
+
+That is, when a message is published to a topic, what Zato first does is to move it to a queue of messages for each subscriber.
+Only then can they be actually delivered to the subscriber. This makes sense because each of the recipients may have different
+processing capabilities or perhaps some of them may be offline and delivery of messages to each of the subscribing applications
+should not interfere with one another.
+
+Topics and their related queues may be in-RAM only or backed by persistent storage. In the latter case they are
+called Guaranteed Delivery ones because the messages will be retained in topics and queues even if all applications
+and all Zato servers are down, unlike with in-RAM messages that do not survive restarts of Zato servers.
+
+Thus, to sum it up. Applications use protocols such as REST to publish messages to topics. The same or different applications
+can subscribe to messages from topics. When a message is published to one of topics, Zato knows who is subscribed to that topic
+and moves the message to a queue of messages for each subscriber. Next, messages from each queue are delivered to their
+recipients. All topics and queues operate independently, without influencing each other.
+
+The whole of it produces a clean and tidy integration architecture with applications that are not tightly coupled and Zato
+acting as a container for messages and coordinator of their delivery.
+
 Installing Zato
 ---------------
 
