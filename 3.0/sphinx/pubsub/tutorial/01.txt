@@ -119,11 +119,20 @@ can subscribe to messages from topics. When a message is published to one of top
 and moves the message to a queue of messages for each subscriber. Next, messages from each queue are delivered to their
 recipients. All topics and queues operate independently, without influencing each other.
 
-The whole of it produces a clean and tidy integration architecture with applications that are not tightly coupled and Zato
-acting as a container for messages and coordinator of their delivery.
+The whole of it gives rise to a clean and tidy integration architecture with applications that can safely communicate without
+being tightly coupled and Zato acting as a container for messages and coordinator of their delivery.
 
 Installing Zato
 ---------------
+
+If you don't have Zato :doc:`installed <../../admin/guide/install/index>` already, the easiest way to start with it is to use
+:doc:`Docker <../../admin/guide/install/docker>`.
+Alternatively, you can use packages for
+:doc:`RHEL/CentOS <../../admin/guide/install/rhel>`,
+:doc:`Ubuntu <../../admin/guide/install/ubuntu>`
+or
+:doc:`Debian <../../admin/guide/install/debian>`. Zato works the same no matter what OS it is installed on but
+simplicity's sake, Docker will be used below.
 
 Publishing your first message
 -----------------------------
