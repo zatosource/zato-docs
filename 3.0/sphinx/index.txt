@@ -218,6 +218,7 @@ Programming guide
       :doc:`ElasticSearch <progguide/examples/search/es>` |
       :doc:`Solr <progguide/examples/search/solr>` |
       :doc:`Odoo (OpenERP) <progguide/examples/odoo>` |
+      :doc:`WebSockets <progguide/examples/wsx>` |
       :doc:`JSON Pointers <progguide/examples/json-pointer>` |
       :doc:`XPath <progguide/examples/xpath>` |
       :doc:`Cryptography <progguide/examples/crypto>`

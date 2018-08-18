@@ -45,6 +45,8 @@ Address               Full address of the endpoint to connect to, including prot
 On connect service    A :doc:`hook service <../../progguide/examples/wsx>` to invoke once a connection to the remote end is established
 On message service    A :doc:`hook service <../../progguide/examples/wsx>` to invoke for each message received from the remote end
 On close service      A :doc:`hook service <../../progguide/examples/wsx>` to invoke after the remote end closes the connection
+Security              A username/password to use if the remote end requires authentication. Ignored if
+                      "Is remote end Zato" is not True.
 Pub/sub subscriptions A list of :doc:`pub/sub topics <../../pubsub/index>` to subscribe to once
                       the initial connection is created, each topic in its own line. Ignored if
                       "Is remote end Zato" is not True.
