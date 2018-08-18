@@ -34,7 +34,7 @@
 
 * Automatic :doc:`API documentation generation <../admin/cli/apispec>` - Sphinx, OpenAPI/Swagger and WSDL
 
-* :doc:`WebSocket <../web-admin/channels/wsx>` channels
+* WebSocket :doc:`channels <../web-admin/channels/wsx>` and :doc:`outgoing connections <../web-admin/outgoing/wsx>`
 
 * SMS messaging with :doc:`Twilio <../web-admin/sms/twilio>`
 

@@ -151,6 +151,7 @@ Web admin reference
       :doc:`SAP <web-admin/outgoing/sap>` |
       :doc:`SOAP <web-admin/outgoing/soap>` |
       :doc:`SQL <web-admin/outgoing/sql>` |
+      :doc:`WebSockets <web-admin/outgoing/wsx>` |
       :doc:`ZeroMQ <web-admin/outgoing/zmq>`
 
     * **Search:**

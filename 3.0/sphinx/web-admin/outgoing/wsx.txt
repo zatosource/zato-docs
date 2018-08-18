@@ -1,0 +1,67 @@
+Outgoing connections - WebSockets
+==================================
+
+Overview
+--------
+
+Used to list, create, update, and delete outgoing WebSocket connections. This type of connection lets one send messages to endpoints of two kinds:
+
+* Arbitrary WebSockets
+* Zato WebSocket :doc:`channels <../channels/wsx>`
+
+The former is meant to be used if messages need to be sent to non-Zato based remote WebSockets, no matter what their underlying technology
+or implementation are. The messages are sent without waiting for a response.
+
+The latter are designed specifically to :doc:`invoke services <../../progguide/examples/wsx>` on remote Zato clusters and to
+:doc:`subscribe to messages published <../../pubsub/index>` on remote clusters, thus allowing for Zato-to-Zato communication,
+including synchronous invocations of remote services.
+
+* Menu path: Connections -> Outgoing -> WebSockets
+* Example address: http://localhost:8183/zato/outgoing/wsx/?cluster=1&type_=outconn-wsx
+
+.. image:: /gfx/web-admin/outgoing/wsx.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/outgoing/wsx-update.png
+
+===================== =====================================================================================================================
+Header                Notes
+===================== =====================================================================================================================
+Name                  Connection name
+Active                If False, no messages will be allowed to be sent through this connection
+                      to the remote end
+Is remote end Zato    If True, the remote end of this WebSocket connection will be understood to
+                      be a Zato Web-Socket channel with service *helpers.web-sockets-gateway* mounted
+                      on it. If False, the remote will be understood to be a generic WebSocket
+                      endpoint.
+Auto-reconnect        If True, connections to WebSocket endpoints will automatically try
+                      to reconnect as soon as the remote server drop one. If False, a closed
+                      connection will not be re-established until its Zato server is restarted.
+Address               Full address of the endpoint to connect to, including protocol and URL path,
+                      e.g. ws://10.152.19.37/myapp/wsx
+On connect service    A :doc:`hook service <../../progguide/examples/wsx>` to invoke once a connection to the remote end is established
+On message service    A :doc:`hook service <../../progguide/examples/wsx>` to invoke for each message received from the remote end
+On close service      A :doc:`hook service <../../progguide/examples/wsx>` to invoke after the remote end closes the connection
+Pub/sub subscriptions A list of :doc:`pub/sub topics <../../pubsub/index>` to subscribe to once
+                      the initial connection is created, each topic in its own line. Ignored if
+                      "Is remote end Zato" is not True.
+===================== =====================================================================================================================
+
+Delete
+------
+
+.. image:: /gfx/web-admin/outgoing/wsx-delete.png
+
+Stops the underlying connector and deletes the connection from ODB.
+
+Changelog
+---------
+
+======= ===============
+Version Notes
+======= ===============
+3.0     Added initially
+======= ===============
