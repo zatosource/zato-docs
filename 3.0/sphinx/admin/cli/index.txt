@@ -28,26 +28,27 @@ Commands can be run in a batch mode by using the combination of the
 Summary of commands
 ---------------------
 
-=================================================== ==============================================================================
-Name                                                Description
-=================================================== ==============================================================================
-:doc:`zato ca<./ca>`                                Certificate Authority (CA) management
-:doc:`zato check-config<./check-config>`            Sanity checks against a component's config (currently limited to servers only)
-:doc:`zato component-version<./component-version>`  Shows a Zato component's version
-:doc:`zato create<./create>`                        Creates a Zato object
-:doc:`zato decrypt<./decrypt>`                      Decrypts secrets using a Zato component's private key
-:doc:`zato delete<./delete>`                        Deletes a Zato component
-:doc:`zato encrypt<./encrypt>`                      Encrypts secrets using a Zato component's public key
-:doc:`zato hash get-rounds<./hash-get-rounds>`      Computes configuration for safe hashing of secrets
-:doc:`zato info<./info>`                            Shows information on a Zato component
-:doc:`zato from-config<./from-config>`              Runs commands from a config file
-:doc:`zato quickstart<./quickstart>`                Quickly sets up a working Zato environment
-:doc:`zato service<./service>`                      Service management
-:doc:`zato sso <./sso>`                             User management and Single-Sign On
-:doc:`zato start<./start>`                          Starts a Zato component
-:doc:`zato stop<./stop>`                            Stops a Zato component
-:doc:`zato update<./update>`                        Updates parts of a Zato component
-=================================================== ==============================================================================
+================================================================= ================================================================
+Name                                                              Description
+================================================================= ================================================================
+:doc:`zato ca<./ca>`                                              Certificate Authority (CA) management
+:doc:`zato check-config<./check-config>`                          Sanity checks against a component's config
+:doc:`zato component-version<./component-version>`                Shows a Zato component's version
+:doc:`zato create<./create>`                                      Creates a Zato object
+:doc:`zato crypto create-secret-key <./crypto/create-secret-key>` Creates a new secret key for servers and other commands to use
+:doc:`zato decrypt<./decrypt>`                                    Decrypts secrets using a Zato component's private key
+:doc:`zato delete<./delete>`                                      Deletes a Zato component
+:doc:`zato encrypt<./encrypt>`                                    Encrypts secrets using a Zato component's public key
+:doc:`zato hash get-rounds<./hash-get-rounds>`                    Computes configuration for safe hashing of secrets
+:doc:`zato info<./info>`                                          Shows information on a Zato component
+:doc:`zato from-config<./from-config>`                            Runs commands from a config file
+:doc:`zato quickstart<./quickstart>`                              Quickly sets up a working Zato environment
+:doc:`zato service<./service>`                                    Service management
+:doc:`zato sso <./sso>`                                           User management and Single-Sign On
+:doc:`zato start<./start>`                                        Starts a Zato component
+:doc:`zato stop<./stop>`                                          Stops a Zato component
+:doc:`zato update<./update>`                                      Updates parts of a Zato component
+================================================================= ================================================================
 
 .. _cli_index_zato_version:
 
@@ -57,7 +58,7 @@ Displaying version
 ::
 
   $ zato --version
-  Zato 2.0.8.rev-050c6697
+  Zato 3.0.0+rev.be10fa20
   $
 
 Format:
@@ -97,8 +98,10 @@ Name            Description
 Changelog
 ---------
 
-=================== ===================================================================
-Version             Notes
-=================== ===================================================================
-1.0                 Added initially
-=================== ===================================================================
+======= ==================================================================
+Version Notes
+======= ==================================================================
+3.0     * Added 'zato crypto create-secret-key'
+        * Command 'zato check-config' extended to work with all components
+1.0     Added initially
+======= ==================================================================

@@ -408,6 +408,7 @@ Zato, the open-source project
    :glob:
 
    admin/cli/*
+   admin/cli/crypto/*
    admin/guide/*
    admin/guide/install/*
    admin/guide/install-config/*
