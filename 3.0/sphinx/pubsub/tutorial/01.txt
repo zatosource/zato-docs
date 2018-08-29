@@ -21,25 +21,24 @@ Integrations without a broker
 
 Let's first define what a message broker, topics and message queues are, as understood by Zato.
 
-A message broker with topics and message queues is software for systems integration that strongly encourages decoupling
-of applications that are being integrated to the point that at its very core it promotes the view that systems should not be
-tied together, that there is a class of integration needs that can be most efficiently realized when systems don't
-even particularly care about what is outside their operational domains.
+A message broker with topics and message queues is software for systems integration that strongly encourages
+:doc:`decoupling of applications <../../intro/esb-soa>` that are being integrated into independent actors exchanging
+messages with specific meaning without
+particularly caring about what is outside their operational domains.
 
-A message broker with topics and queues is a specific type of a SOA/API message bus and all the principles from the ESB and SOA
-:doc:`introduction <../../intro/esb-soa>` still apply.
-
-A quintessential application of a message is that for user data integration.
+A quintessential application of a message is that for user data integration in business environments.
 
 Supposing there are two systems initially, a CRM and self-service portal. Users calling a company's freephone number to change
 details such as their correspondence addresses are handled by operators with access to the CRM while other users prefer
 the self-service portal. CRM is the source of truth and the portal pushes all the updates to it.
 
 This may work fine until more and more applications need to be connected, new contact channels, perhaps mobile or otherwise.
-Then the challenges begin to mount. It may turn out that the CRM does not know how to expose new endpoints, or that the new APIs
+Then the challenges begin to mount.
+
+It may turn out that the CRM does not know how to expose new endpoints, or that the new APIs
 do not have storage to retain messages in case of CRM's unavailability. Maybe, for performance reasons, some applications
 should have their own copy of some parts of user data. Or alternatively, each of the applications may be produced
-by a different vendor, each with their own release schedule and none of them too happy to integrate with their competition.
+by a different vendor, each with their own release schedule and none of them overly happy to integrate with their competition.
 
 These are real-life obstacles that occur regularly and whose very costs can be cut down significantly by employing topics
 and message queues.
@@ -47,7 +46,7 @@ and message queues.
 Integrations with a broker
 --------------------------
 
-The whole idea is akin, though not identical, to mailboxes. When you send a postcard, you employ an intermediary,
+The whole idea is quite akin to regular mailboxes. When you send a postcard, you employ an intermediary,
 a post office or a courier company. This is the party that will handle the message you put into mailbox. If the recipient
 is not at home, they will call back later. Or maybe you prefer to retrieve it yourself from the post office.
 Or perhaps they will forward your message to another address. Or maybe they will reject it altogether for some reasons.
@@ -58,14 +57,18 @@ Unlike with postcards, in API integrations with topics, you don't explicitly cal
 Instead, messages are sent to objects called topics, which are high-level containers for messages related to a particular subject.
 
 For instance, all notifications about new customers can be sent to a topic called */customer/new*. Then, all applications that
-need access to this kind of information will subscribe to such a topic and the message broker that Zato has will deliver it to them.
+need access to this kind of information will subscribe to such a topic and the message broker will deliver it to them.
 
 The nice part of it is that applications can come and go at any time without disrupting communication between the remaining ones.
 In the example above, CRM may subscribe to topic /customer/new and if there is only one publisher of messages to this topic
 initially (self-service portal) or if there are a few more, the CRM will still subscribe to one topic only, meaning new
 applications can be plugged into the architecture or taken out independently.
 
-What Zato does is to offer means to carry out these actions. Publications can be performed using REST, flat files or WebSockets
+Topic names can be arbitrary but it is customary to use a top-down hierarchy of names,
+with individual parts separated by slash sign. The hierarchies can be of any choice, e.g. by business purpose,
+by geographical attributes, or both, such as */customer/uk/new* or */floor/5/sensor/AER91/readings*.
+
+With Zato, publications can be performed using REST, flat files or WebSockets
 whereas subscribers connect to the broker using REST, SOAP, AMQP or WebSockets. Just like with couriers, if a recipient,
 a subscriber, is temporarily unavailable, Zato will store the messages safely until the delivery is possible.
 
@@ -78,10 +81,6 @@ There are also extensive log and audit files to track access to everything on a 
 
 An interesting feature of Zato worth pointing out is that all messages published to the same topic are delivered to a particular
 subscriber in the order of their publication even if there are multiple senders.
-
-As for the topic names, they can be arbitrary but it is customary to use a top-down hierarchy of names,
-with individual parts separated by slash sign. The hierarchies can be of any choice, e.g. by business purpose,
-by geographical attributes, or both, such as */customer/uk/new* or */floor/5/sensor/AER91/readings*.
 
 Note that publish/subscribe topics are not constrained to business integrations alone. This tutorial uses examples built around
 customer accounts because this is a field where a message broker is often employed but Zato can also be used
@@ -99,7 +98,7 @@ let's assume that there are four participants, each using a topic called /custom
 * Portal - publishes new data to the topic over REST
 * `CRM <https://en.wikipedia.org/wiki/Customer_relationship_management>`_- both publishes new data and subscribes
   to new messages, both through REST
-* `ERP <https://en.wikipedia.org/wiki/Enterprise_resource_planning>`_ - subscribers to new messages but they must be
+* `ERP <https://en.wikipedia.org/wiki/Enterprise_resource_planning>`_ - subscribes to new messages but they must be
   send as SOAP requests
 * `IVR <https://en.wikipedia.org/wiki/IVR>`_- can only produce flat files
 
@@ -131,11 +130,51 @@ Alternatively, you can use packages for
 :doc:`RHEL/CentOS <../../admin/guide/install/rhel>`,
 :doc:`Ubuntu <../../admin/guide/install/ubuntu>`
 or
-:doc:`Debian <../../admin/guide/install/debian>`. Zato works the same no matter what OS it is installed on but
-simplicity's sake, Docker will be used below.
+:doc:`Debian <../../admin/guide/install/debian>`.
+
+Zato works the same no matter what OS it is installed on but
+simplicity's sake, Docker will be used below. The additional benefit is that our Dockerfile not only installs Zato but also
+automatically sets up a fully working environment.
+
+First, we need to download the Dockerfile and create a Zato image:
+
+::
+
+  $ mkdir -p ~/zato && cd ~/zato && wget https://zato.io/download/docker/3.0/quickstart/Dockerfile
+  $ sudo docker build --no-cache -t zato-3.0 .
+
+This process will take a few minutes. The end result is a Zato environment consisting of a load-balancer, scheduler,
+web-admin and two servers. Each such environment has its own security credentials and we need to retrieve them - we need
+a password for the 'zato' user in SSH and for the 'admin' user in web-admin.
+
+::
+
+  $ sudo docker run zato-3.0 /bin/bash -c 'cat /opt/zato/web_admin_password \
+        /opt/zato/zato_user_password /root/root_user_password'
+
+The environment can now be started:
+
+::
+
+  $ sudo docker run -it -p 3022:22 -p 36379:6379 -p 8183:8183 -p 17010:17010 -p 17011:17011 \
+        -p 11223:11223 zato-3.0
+
+The meaning of the ports exposed is as below. Ports 8183, 11223, 17010 and 17011 are standard ports that Zato uses by default:
+
+* 3022 - SSH
+* 36379 - Redis
+* 8183 - Web-admin
+* 17010 - Server #1
+* 17011 - Server #2
+* 11223 - Load-balancer
 
 Publishing your first message
 -----------------------------
+
+Now that everything is up and running, you can log in to web-admin under http://localhost:8183, username 'admin'
+and password as retrieved above.
+
+Once in there, have a look around and then navigate to Pub/sub -> Topics, you will see a list of topics, as here:
 
 Read more
 ---------
