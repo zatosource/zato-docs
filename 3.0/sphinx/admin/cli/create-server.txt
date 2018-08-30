@@ -18,8 +18,8 @@ Command-specific parameters
 Name                Description                                                          Example value
 =================== ==================================================================== ============================================
 --postgresql_schema PostgreSQL only: database schema to use                              zato
---odb_password      ODB password                                                         kf094z203mck2303
---kvdb_password     Key/value DB password (Redis), if any                                s49344df2349ur4d
+--odb_password      ODB password                                                         BbvIzoeqvz6aE
+--kvdb_password     Key/value DB password (Redis), if any                                20E2q0d3wN7Gw
 --secret_key        A random secret key previously generated with the                    jN09DcGqhICFluzHVgokQj...
                     :doc:`zato crypto create-secret-key <./crypto/create-secret-key>`.
                     It is used to encrypt passwords and other sensitive data in ODB.
@@ -70,19 +70,19 @@ Usage
         ~/crypto/ca-cert.pem
         PROD3 server7
 
-    ODB database password (will not be echoed):
-    Enter the odb_password again (will not be echoed):
+    ODB database password (will not echo):
+    Odb_password again (will not echo):
 
-    Key/value database password (will not be echoed):
-    Enter the kvdb_password again (will not be echoed):
+    Key/value database password (will not echo):
+    Kvdb_password again (will not echo):
     OK
     $
 
 Changelog
 ---------
 
-=================== ===================================================================
-Version             Notes
-=================== ===================================================================
-1.0                 Added initially
-=================== ===================================================================
+======= ===============
+Version Notes
+======= ===============
+1.0     Added initially
+======= ===============

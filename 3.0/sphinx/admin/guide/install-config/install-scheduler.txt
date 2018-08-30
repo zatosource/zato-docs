@@ -20,7 +20,7 @@ Steps
   Note that Zato ships with :doc:`a simple CA <../../cli/ca>`
   that can be used in development environments.
 
-* Issue the :doc:`zato create scheduler <../../cli/create-server>` command
+* Issue the :doc:`zato create scheduler <../../cli/create-scheduler>` command
 
 * Make sure that at least one server is fully started before starting a new scheduler instance - this is needed because
   the scheduler expects for a set of metadata to have been created by one of servers (no matter which, any will suffice)
