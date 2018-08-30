@@ -1,0 +1,94 @@
+.. highlight:: ini
+   :linenothreshold: 0
+
+Configuring the scheduler
+=============================
+
+======================= =============== ==============================================
+Purpose                 File            Example full path
+======================= =============== ==============================================
+Main configuration file scheduler.conf  /env/dev1/scheduler/config/repo/scheduler.conf
+======================= =============== ==============================================
+
+Main config - scheduler.conf
+----------------------------
+
+Discussion
+``````````
+
+.. _admin-guide-config-scheduler-bind.host:
+
+bind.host
+~~~~~~~~~
+
+To what TCP host bind the scheduler's process. Default value is '0.0.0.0'.
+
+.. _admin-guide-config-scheduler-bind.port:
+
+bind.port
+~~~~~~~~~
+
+To what TCP port bind the scheduler's process. Default value is '31530'.
+
+
+.. _admin-guide-config-scheduler-cluster.id:
+
+cluster.id
+~~~~~~~~~~
+
+ID of the cluster the scheduler should execute tasks for.
+
+.. _admin-guide-config-scheduler-cluster.name:
+
+cluster.name
+~~~~~~~~~~~~
+
+Name of the cluster - used only for informational purposes, it is cluster.id which drives it which cluster to connect to.
+
+.. _admin-guide-config-scheduler-cluster.stats_enabled:
+
+cluster.stats_enabled
+~~~~~~~~~~~~~~~~~~~~~
+
+If True, tasks related to
+:doc:`statistics gathering <../../../stats/guide>`
+will be installed in the ODB when the scheduler starts. Otherwise, they will
+not be stored in the database and will not run. Note that changing it to False after they are already created will not
+disable them - in such a case, they need to be made inactive from
+:doc:`web-admin <../../../web-admin/scheduler/main>`.
+
+.. _admin-guide-config-scheduler-odb:
+
+odb.*
+~~~~~
+
+configuration is the same as of stanza **[odb]** in :doc:`server.conf <./config-server>`.
+
+
+.. _admin-guide-config-scheduler-broker:
+
+broker.*
+~~~~~~~~
+
+configuration is the same as of stanza **[kvdb]** in :doc:`server.conf <./config-server>`.
+
+.. _admin-guide-config-scheduler-crypto:
+
+crypto.*
+~~~~~~~~
+
+configuration is the same as of stanza **[crypto]** in :doc:`server.conf <./config-server>`.
+
+.. _admin-guide-config-scheduler-secret_keys:
+
+secret_keys.*
+~~~~~~~~~~~~~
+
+For internal use.
+
+.. _admin-guide-config-scheduler-api_user:
+
+api_users.*
+~~~~~~~~~~~
+
+For internal use.

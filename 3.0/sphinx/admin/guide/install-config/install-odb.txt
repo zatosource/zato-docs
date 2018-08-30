@@ -9,9 +9,8 @@ Steps
 
 * Install one of the supported databases
 
-  * PostgreSQL 9.x
-  * Oracle 11.2.x
-  * MySQL 5.5+
+  * PostgreSQL 9.x+
+  * MySQL/MariaDB 5.5+
 
 Note: SQLite is one of the supported databases as well but doesn't need manual installation beforehand.
 
@@ -21,11 +20,7 @@ Note: SQLite is one of the supported databases as well but doesn't need manual i
 
 * Make Zato user the owner of the database created or grant it permissions to issue DDL
   statements
-  
+
 * Issue the :doc:`zato create odb <../../cli/create-odb>` command
 
 * Revoke any DDL rights given to the Zato user
-
-.. note ::
-
-    A single ODB can be used be used by multiple clusters.

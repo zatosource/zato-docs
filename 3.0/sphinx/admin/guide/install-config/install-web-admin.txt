@@ -17,10 +17,10 @@ Steps
   * Private key
   * Certificate
   * A list of CA certificates web admin can trust
-  
-  Note that Zato ships with :doc:`a simple CA <../../cli/ca>` 
-  that can be used on development environments.
-  
+
+  Note that Zato ships with :doc:`a simple CA <../../cli/ca>`
+  that can be used in development environments.
+
 * Issue the :doc:`zato create web_admin <../../cli/create-web-admin>` command
 
 .. note ::

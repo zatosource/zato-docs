@@ -1,0 +1,33 @@
+.. highlight:: python
+   :linenothreshold: 0
+
+Installing a scheduler
+======================
+
+Steps
+-----
+
+* Make sure `Redis <http://redis.io>`_ is installed and started
+* :doc:`Install an ODB <./install-odb>`
+* :doc:`Install a cluster's config <./install-cluster>`
+* Prepare crypto material, in PEM, with no passwords, for the scheduler to use:
+
+  * Public key
+  * Private key
+  * Certificate
+  * A list of CA certificates the scheduler can trust
+
+  Note that Zato ships with :doc:`a simple CA <../../cli/ca>`
+  that can be used in development environments.
+
+* Issue the :doc:`zato create scheduler <../../cli/create-server>` command
+
+* Make sure that at least one server is fully started before starting a new scheduler instance - this is needed because
+  the scheduler expects for a set of metadata to have been created by one of servers (no matter which, any will suffice)
+
+* Start the scheduler using the :doc:`zato start <../../cli/start>` command
+
+More information
+----------------
+
+:doc:`Click here <./config-scheduler>` for information on how to configure an already existing scheduler.

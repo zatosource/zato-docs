@@ -10,13 +10,13 @@ Installing and configuring Zato components
   :doc:`high-level overview <../../../intro/overview-high-level>`
   and
   :doc:`the technical one <../../../intro/overview-tech>`
-  as well with 
+  as well with
   :doc:`Zato's architecture <../../../architecture/overview>`,
   :doc:`OS-level and application users <../../../security/users>`
-  and 
+  and
   :doc:`the attack surface <../../../security/attack-surface>`
   before you start to install and configure Zato components.
-  
+
   It's also highly recommeded that you :doc:`go through the tutorial first <../../../tutorial/01>`.
 
 Overview
@@ -49,22 +49,22 @@ To set up a completely new Zato environment you need to:
 * Ensure an SQL database is installed and a schema/username for Zato is created.
   Supported databases are:
 
-  * PostgreSQL 9.x
-  * Oracle 11.2.x
-  * MySQL 5.5+
+  * PostgreSQL 9.x+
+  * MySQL/MariaDB 5.5+
   * SQLite 3.x+
-  
+
 * Create a new cluster by:
 
   * Using :doc:`a quickstart cluster <../../cli/quickstart>`
   * Manually creating each of the components needed:
-    
+
     * SQL ODB
     * Cluster's config
     * Web admin
     * Load-balancer
+    * Scheduler
     * Servers
-    
+
     SQL ODB and a cluster's config need to be created first and in that order,
     the rest can be installed in any order.
 
@@ -101,7 +101,7 @@ of a given config file, possibly including any old secrets, such as passwords.
   message:
     Added new unversioned files
   user@dev1:~/zato/server/config/repo$
-  
+
 ::
 
   user@dev1:~/zato/server/config/repo$ bzr diff -r1..2
@@ -117,43 +117,43 @@ of a given config file, possibly including any old secrets, such as passwords.
    gunicorn_timeout=240
    gunicorn_user=
    gunicorn_group=
-  user@dev1:~/zato/server/config/repo$ 
+  user@dev1:~/zato/server/config/repo$
 
 ::
 
   user@dev1:~/zato/server/config/repo$ bzr revert -r 1
-   M  server.conf                                                                                                                           
+   M  server.conf
   user@dev1:~/zato/server/config/repo$
 
 ::
-  
+
   user@dev1:~/zato/server/config/repo$ cat server.conf | grep gunicorn_workers
   gunicorn_workers=4
   user@dev1:~/zato/server/config/repo$
-    
+
 Read more
 ---------
 
 Subsequent chapters present information on how to install each of the Zato components along
 with a discussion on their config files.
 
-================== ====================================================== ===================================================================================
-Component          Install chapter                                        Configure chapter 
-================== ====================================================== ===================================================================================
-Web admin          :doc:`How to install <./install-web-admin>`            :doc:`How to configure <./config-web-admin>`
-Server             :doc:`How to install <./install-server>`               :doc:`How to configure <./config-server>`
-Cluster's config   :doc:`How to install <./install-cluster>`              :doc:`Documented along with other web admin features <../../../web-admin/intro>`
-Quickstart cluster A quickstart cluster is a shortcut way                 Not applicable
-                   to create a working Zato environment 
+================== ====================================================================== ====================================================
+Component          Install chapter                                                        Configure chapter
+================== ====================================================================== ====================================================
+Quickstart cluster A quickstart cluster is a shortcut way                                 (n/a)
+                   to
+                   :doc:`create a working Zato environment <../../cli/quickstart-create>`
+                   in 15 seconds
+Web admin          :doc:`How to install <./install-web-admin>`                            :doc:`How to configure <./config-web-admin>`
+Server             :doc:`How to install <./install-server>`                               :doc:`How to configure <./config-server>`
+Scheduler          :doc:`How to install <./install-scheduler>`                            :doc:`How to configure <./config-scheduler>`
+Cluster's config   :doc:`How to install <./install-cluster>`                              :doc:`Documented along with other web admin features
+                                                                                          <../../../web-admin/intro>`
                    as :doc:`described here <../../cli/quickstart>`
-Load-balancer      :doc:`How to install <./install-lb>`                   :doc:`How to configure <./config-lb>`
-Connectors      
-SQL ODB            :doc:`How to install <./install-odb>`                  Not applicable - once created, the ODB
-                                                                          needs no configuration
-Redis broker       `The Redis project <http://redis.io>`_                 Not applicable
-                   provides information on how to                       
+Load-balancer      :doc:`How to install <./install-lb>`                                   :doc:`How to configure <./config-lb>`
+SQL ODB            :doc:`How to install <./install-odb>`                                  (n/a)
+Redis broker       `The Redis project <http://redis.io>`_                                 (n/a)
+                   provides information on how to
                    install the software
-CA                 :doc:`How to install <./install-ca>`                   Not applicable - the CA should be used
-                                                                          only for development clusters, it's
-                                                                          recommeded you don't reconfigure it
-================== ====================================================== ===================================================================================
+CA                 :doc:`How to install <./install-ca>`                                   (n/a)
+================== ====================================================================== ====================================================
