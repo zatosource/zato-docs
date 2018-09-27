@@ -120,3 +120,9 @@ self.request.wmq.put_date         Date part of when the message was enqueued    
 self.request.wmq.put_time         Time part of when the message was enqueued                   PutTime
 self.request.wmq.reply_to         To what queue responses should be sent, if any are expected  ReplyToQ
 ================================= ============================================================ ===============
+
+Examples
+--------
+
+* Consult the :doc:`dedicated chapter <../examples/index>` with programming examples for more details.
+* To learn more about SimpleIO, click :doc:`here <../sio>`
