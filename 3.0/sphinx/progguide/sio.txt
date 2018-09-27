@@ -188,28 +188,32 @@ The example shows a service using all of the attributes SIO allows for:
   {"service_response": {"session_timeout": "", "priority": "UNKNOWN",
       "is_allowed": false, "should_refresh_creds": true}}
 
-================ ============================================================================================================= ===============
-Attribute        Notes                                                                                                         Default
-================ ============================================================================================================= ===============
-request_elem     Used with XML only - name of the root element that contains business elements.                                'request'
-response_elem    Name of the response element to wrap payload's elements with.                                                 'response'
-input_required   A tuple of names, each name will have to exist in the request. An exception will be raised if any is missing  An empty tuple
-                 on a first attempt to use.
-input_optional   A tuple of names, parameters that can be optionally passed in. No exception will be raised on a missing one.  An empty tuple
-output_required  A tuple of names, the service guarantees that each element will exist in the response. Zato will              An empty tuple
-                 raise an exception if you declare that a service should return an element and the element isn't returned.
-                 If it's XML, the elements will be returned in the ordered they are listed.
+==================== ============================================================================== ==============
+Attribute            Notes                                                                          Default
+==================== ============================================================================== ==============
+request_elem         Used with XML only - name of the root element that contains business elements. 'request'
+response_elem        Name of the response element to wrap payload's elements with. With JSON,       'response'
+                     it may be set to
+                     None in which case no root-level element will be produced in responses at all.
+input_required       A tuple of names, each name will have to exist in the request.                 An empty tuple
+                     An exception will be raised if any is missing
+                     on input.
+input_optional       A tuple of names, parameters that can be optionally passed in. No exception    An empty tuple
+                     will be raised on a missing one.
+output_required      A tuple of names, the service guarantees that each element will exist in the   An empty tuple
+                     response. Zato will
+                     raise an exception if you declare that a service should return an element
+                     and the element isn't returned.
 
-                 Either output_required or output_optional must not be empty.
+output_optional      A tuple of names, they can be returned optionally. Note that when you          An empty tuple
+                     omit any, Zato will still return
+                     that element with an empty value, unless *skip_empty_keys* is True.
 
-output_optional  A tuple of names, they can be returned optionally. Note that when you omit any, Zato will still return        An empty tuple
-                 that element with an empty value.
-                 If it's XML, the elements will be returned in the ordered they are listed.
-
-                 Either output_required or output_optional must not be empty.
-
-default_value    A value to use when an optional element wasn't in the request.                                                None
-================ ============================================================================================================= ===============
+default_value        A value to use when an optional element wasn't in the request.                 None
+skip_empty_keys      If set to True, empty output optional elements will not be returned.           False
+force_empty_keys     A list of output elements that will be returned even if they are empty         An empty list
+                     and *skip_empty_keys* is True
+==================== ============================================================================== ==============
 
 Returning a list of elements
 ----------------------------
@@ -417,9 +421,19 @@ parameters between various datatypes. This can be helpful because otherwise
 all the request parameters could've been strings - this is true for both
 JSON and XML but doubly so for the latter.
 
+Default conventions are:
+
 * If a parameter's name is 'id' it will be converted to an integer
-* If a parameter ends with '_id', '_size' or '_timeout' it will be converted to an integer
-* If a parameter begins with 'is\_', 'needs\_', 'should\_' it will be converted to a bool
+* If a parameter ends with '_count', '_id', '_size' or '_timeout' it will be converted to an integer
+* If a parameter begins with 'by\_', 'has\_', 'is\_', 'may\_', 'needs\_' or 'should\_' it will be converted to a bool
+* If a parameter is one of 'auth_data', 'auth_token', 'password', 'password1', 'password2', 'secret_key' or 'token', its value
+  will be automatically :doc:`encrypted <./crypto/encrypt>` before it is handed over to the service, which means it can be,
+  for instance, stored in the database immediately without a need for manual encryption.
+  Use :doc:`self.crypto.decrypt <./crypto/encrypt>` to decrypt the value.
+
+All of the defaults are configured through a file called *simple-io.conf* which each server ships with. Note that new values
+can be added to it, but existing ones must not be removed because Zato uses them internally. To override any of the defaults,
+use AsIs datatype, as documented below.
 
 ::
 
@@ -482,35 +496,89 @@ type conversions:
   INFO - name:id, value:u'1', type:<type 'unicode'>
 
 
-=========== ====================================================================
+=========== =============================================================================================================
 Name        Notes
-=========== ====================================================================
+=========== =============================================================================================================
 AsIs        A pass-through marker, no conversions will be performed even
-            though normally one would've been attempted
+            though normally one would have been attempted - it is convenient
+            to use it, for instance, to return identifiers that are not integers. By defaults, field *id* is understood
+            to represent an integer, but AsIs('id') may hold any value.
 Boolean     Converted to a bool object
 CSV         Converted to/from comma-separated values
+Date        Converts Python's datetime.date objects to string
+DateTime    Converts Python's datetime.datetime objects to string
 Dict        Converted to a dictionary
 Integer     Converted to an integer
 List        Converted to a list
 ListOfDicts Converted to a list of dictionaries
 Opaque      Similar to AsIs but works with arbitrarily nested structures as well
 Unicode     Converted to a unicode object
-=========== ====================================================================
+=========== =============================================================================================================
+
+Converting date and datetime objects
+------------------------------------
+
+Elements Date and DateTime may be used to convert, respectively,
+`Python's <https://docs.python.org/2/library/datetime.html>`_ datetime.date and datetime.datetime objects.
+This is particularly useful when returning responses based directly on SQLAlchemy objects, such as timestamps or any other
+dates and times. If data input to the elements is not, accordingly, date or datetime, no conversion will be attempted.
+
+Both elements may optionally receive a parameter representing the format that the resulting string will have. The format
+must be a value that Python's `.strftime <https://docs.python.org/2/library/datetime.html#strftime-strptime-behavior>`_
+can accept, such as '%Y-%m-%d' or '%c'.
+
+Additionally, DateTime's default format is literal 'iso' which is a shortcut notation indicating that input value should
+be converted to an ISO-8601 timestamp using its .isoformat() method.
+
+======== ==============
+Element  Default format
+======== ==============
+Date     %Y-%m-%d
+DateTime iso
+======== ==============
+
+Sample usage:
+
+::
+
+  class SimpleIO:
+    input_required = ('user_id',)
+    output_required = (Date('join_date'), DateTime('last_seen'))
+
+  class SimpleIO:
+    input_required = ('user_id',)
+    output_required = (Date('join_date', '%x'), DateTime('last_seen', '%c'))
+
 
 Changelog
 ---------
 
-=================== ===================================================================
-Version             Notes
-=================== ===================================================================
-2.0                 Added new types:
+======= ===================================================================
+Version Notes
+======= ===================================================================
+3.0     Introduced simple-io.conf
+        to keep built-in and custom SimpleIO configuration in
 
-                    * CSV
-                    * Dict
-                    * Float
-                    * List
-                    * ListOfDicts
-                    * Opaque
+        Added new types:
 
-1.0                 Added initially
-=================== ===================================================================
+        * Date
+        * DateTime
+
+        Added new options:
+
+        * skip_empty_keys
+        * force_empty_keys
+
+
+
+2.0     Added new types:
+
+        * CSV
+        * Dict
+        * Float
+        * List
+        * ListOfDicts
+        * Opaque
+
+1.0     Added initially
+======= ===================================================================

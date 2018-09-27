@@ -226,7 +226,7 @@ Programming guide
     * **Developing services and applications:**
       :doc:`Overview <progguide/overview>` |
       :doc:`Developing services <progguide/service-dev>` |
-      :doc:`Request and response objects <progguide/request-response>` |
+      :doc:`Request and response objects <progguide/reqresp/index>` |
       :doc:`Channels <progguide/channels>` |
       :doc:`Outgoing connections <progguide/outconn/overview>` |
       :doc:`Key/value DB (Redis) <progguide/kvdb>` |
@@ -285,11 +285,6 @@ Programming guide
 
 Publish/subscribe
 =================
-
-  * **Tutorial:**
-    :doc:`Part 1 <./pubsub/tutorial/01>` |
-    :doc:`Part 2 <./pubsub/tutorial/02>` |
-    :doc:`Part 3 <./pubsub/tutorial/03>`
 
   * **Overview:**
     :doc:`Introduction <./pubsub/index>` |
@@ -432,6 +427,7 @@ Zato, the open-source project
    progguide/ide/*
    progguide/outconn/*
    progguide/patterns/*
+   progguide/reqresp/*
    progguide/rest/*
    project/*
    pubsub/*

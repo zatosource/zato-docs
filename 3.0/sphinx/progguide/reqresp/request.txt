@@ -1,0 +1,109 @@
+.. highlight:: python
+   :linenothreshold: 0
+
+Request objects
+===============
+
+Overview
+--------
+
+All services always have access to the attributes which describes the request being handled in a general way.
+Additionally, protocol-specific attributes, such as *self.request.http* cover information pertaining to information that
+is limited to a particular protocol.
+
+The chapter first details common attributes and then goes into particulars of each protocol-specific part.
+
+Several attributes and methods return Bunch instances - they are dict-like objects that support dot-notation access
+in addition to regular dict methods, e.g.
+
+::
+
+  def handle(self):
+
+    # Assume there was a parameter called 'user_id' in request
+    data = self.request.bunchified()
+
+    # This will return the ID ..
+    self.logger.info(data.user_id)
+
+    # .. and so will this.
+    self.logger.info(data['user_id'])
+
+Common attributes
+-----------------
+
+=============================== ==================================================================================================
+Attribute                       Description
+=============================== ==================================================================================================
+self.request                    Along with self.channel, one of main attributes describing incoming messages
+self.request.raw_request        Input message exactly as it was received, byte-for-byte, prior to any transformations
+                                or parsing attempts on Zato end
+self.request.input              Input message after parsing it into a channel-specific data format. For JSON messages,
+                                this will be a Bunch object. Available only if :doc:`SimpleIO <../sio>` is used.
+self.request.payload            Input message after parsing it into a channel-specific data format. For JSON messages,
+                                this will be a dict object. Available even if :doc:`SimpleIO <../sio>` is not used.
+                                all path parameters and GET ones. Works even if :doc:`SimpleIO <../sio>` is not used.
+self.request.bunchified()       Returns a Bunch version of self.request.raw_request. Works only with JSON input.
+self.request.deepcopy()         Returns a deep copy of self.request
+
+self.channel                    Along with self.request, describes data and metadata about incoming messages. Unlike self.request,
+                                this attribute is the same for all requests coming through the same channel, i.e. it describes
+                                details of the channel itself rather than each individual message received.
+self.channel.name               Name of the channel the request was received through
+self.channel.type               Type of the channel - will be equal to one of the constants in zato.common.CHANNEL
+self.chan                       Alias to self.channel
+
+self.channel.security           Describes a security definition attached to the channel, if any is at all
+self.channel.security.name      Name of the security definition
+self.channel.security.username  Username used to invoke the channel, if applicable for a particular security type
+self.channel.security.type      Type of the security definition - will be equal to one of the constants
+                                in zato.common.SEC_DEF_TYPE
+self.channel.sec                Alias to self.channel.security
+=============================== ==================================================================================================
+
+HTTP-specific attributes
+------------------------
+
+========================= ==================================================================================================
+Attribute                 Description
+========================= ==================================================================================================
+self.request.http         The attribute to use to access HTTP-specific information
+self.request.http.method  HTTP method used to invoke the service
+self.request.http.GET     All GET parameters as a Bunch object, each value is either an exact one received or a list of
+                          values if there were more than one for a given key
+self.request.http.POST    All POST parameters as a Bunch object, each value is either an exact one received or a list of
+                          values if there were more than one for a given key
+self.request.http.path    URL path that the request was received through, e.g. */customer/123* in
+                          "https://localhost:17010/customer/123", does not include query string
+self.request.http.params  A Bunch object with a concatenation of query string and path parameters. Available even
+                          if :doc:`SimpleIO <../sio>` is not used.
+self.wsgi_environ         While not belonging directly to self.request.http, each service can always have access to the full
+                          WSGI dictionary of data and metadata about the request
+========================= ==================================================================================================
+
+AMQP-specific attributes
+------------------------
+
+========================== ============================================================
+Attribute                  Description
+========================== ============================================================
+self.request.amqp          The attribute to use to access AMQP-specific information
+self.request.amqp.msg      Low-level object represenint the incoming message
+self.request.amqp.ack()    Used by services to acknowledge the reception of a message
+self.request.amqp.reject() Used by services to reject a message back to the AMQP broker
+========================== ============================================================
+
+IBM MQ-specific attributes
+--------------------------
+
+================================= ============================================================ ===============
+Attribute                         Description                                                  MQMD equivalent
+================================= ============================================================ ===============
+self.request.wmq                  The attribute to use to access IBM MQ-specific information   ---
+self.request.wmq.msg_id           Message ID                                                   MsgId
+self.request.wmq.correlation_id   Correlation ID                                               CorrelId
+self.request.wmq.timestamp        Timestamp of when the message was created                    ---
+self.request.wmq.put_date         Date part of when the message was enqueued                   PutDate
+self.request.wmq.put_time         Time part of when the message was enqueued                   PutTime
+self.request.wmq.reply_to         To what queue responses should be sent, if any are expected  ReplyToQ
+================================= ============================================================ ===============
