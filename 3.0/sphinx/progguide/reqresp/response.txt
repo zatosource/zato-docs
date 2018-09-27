@@ -1,5 +1,44 @@
 .. highlight:: python
    :linenothreshold: 0
 
-Response objects
-================
+Request objects
+===============
+
+Overview
+--------
+
+All services produces responses through their *self.response* attribute. Unlike with :doc:`requests <./request>`, there are no
+protocol-specific sub-attributes.
+
+The most general way to create a response, and one that is always possible, is to assign a string or Unicode object to
+*self.response.payload*, e.g. as a result of manual serialization.
+
+However, if using :doc:`SimpleIO <../sio>` or if a channel's definition is JSON or XML, it is also possible
+for Zato to serialize objects directly, e.g. from dicts or SQLAlchemy objects.
+
+
+Response attributes
+-------------------
+
+All of the attributes and methods are always available to all services, regardless of the protocol they are invoked through.
+
+=============================== ==================================================================================================
+Attribute                       Description
+=============================== ==================================================================================================
+self.response                   The main attribute through responses are produced
+self.response.payload
+self.response.content_encoding  *(HTTP only)*
+self.response.content_type      *(HTTP only)*
+self.response.headers           *(HTTP only)*
+self.response.status_code       *(HTTP only)*
+=============================== ==================================================================================================
+
+self.response.payload
+---------------------
+
+Examples
+--------
+
+* Consult the :doc:`dedicated chapter <../examples/index>` with programming examples for more details.
+* To learn more about SimpleIO, click :doc:`here <../sio>`
+* Visit :doc:`this chapter <./request>` to read more about request objects
