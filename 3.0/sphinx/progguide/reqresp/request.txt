@@ -11,6 +11,16 @@ All services always have access to the attributes which describes the request be
 Additionally, protocol-specific attributes, such as *self.request.http* cover information pertaining to information that
 is limited to a particular protocol.
 
+Most commonly accessed attributes are:
+
+======================== ===================================================================================
+Attribute                Description
+======================== ===================================================================================
+self.request.input       To access incoming data if :doc:`SimpleIO <../sio>` is used
+self.request.payload     To access incoming data if :doc:`SimpleIO <../sio>` is not used
+self.request.raw_request To access incoming data as it was received, prior to any parsing or transformations
+======================== ===================================================================================
+
 The chapter first details common attributes and then goes into particulars of each protocol-specific part.
 
 Several attributes and methods return Bunch instances - they are dict-like objects that support dot-notation access
@@ -32,6 +42,9 @@ in addition to regular dict methods, e.g.
 Common attributes
 -----------------
 
+Attributes listed in this section are available to all services, regardless of what kind of channel they are invoked over,
+be it HTTP, AMQP, ZeroMQ, scheduler, SQL notifications or any other.
+
 =============================== ==================================================================================================
 Attribute                       Description
 =============================== ==================================================================================================
@@ -42,7 +55,6 @@ self.request.input              Input message after parsing it into a channel-sp
                                 this will be a Bunch object. Available only if :doc:`SimpleIO <../sio>` is used.
 self.request.payload            Input message after parsing it into a channel-specific data format. For JSON messages,
                                 this will be a dict object. Available even if :doc:`SimpleIO <../sio>` is not used.
-                                all path parameters and GET ones. Works even if :doc:`SimpleIO <../sio>` is not used.
 self.request.bunchified()       Returns a Bunch version of self.request.raw_request. Works only with JSON input.
 self.request.deepcopy()         Returns a deep copy of self.request
 
@@ -72,7 +84,8 @@ self.request.http.method  HTTP method used to invoke the service
 self.request.http.GET     All GET parameters as a Bunch object, each value is either an exact one received or a list of
                           values if there were more than one for a given key
 self.request.http.POST    All POST parameters as a Bunch object, each value is either an exact one received or a list of
-                          values if there were more than one for a given key
+                          values if there were more than one for a given key. Available only if there is no data format
+                          set for channel.
 self.request.http.path    URL path that the request was received through, e.g. */customer/123* in
                           "https://localhost:17010/customer/123", does not include query string
 self.request.http.params  A Bunch object with a concatenation of query string and path parameters. Available even
