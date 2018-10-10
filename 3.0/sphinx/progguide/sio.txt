@@ -527,8 +527,11 @@ Both elements may optionally receive a parameter representing the format that th
 must be a value that Python's `.strftime <https://docs.python.org/2/library/datetime.html#strftime-strptime-behavior>`_
 can accept, such as '%Y-%m-%d' or '%c'.
 
-Additionally, DateTime's default format is literal 'iso' which is a shortcut notation indicating that input value should
+DateTime's default format is literal 'iso' which is a shortcut notation indicating that input value should
 be converted to an ISO-8601 timestamp using its .isoformat() method.
+
+With both Date and DateTime elements, if year is less than 1900, the input format will be ignored and output will be
+produced using the element's .isoformat() method and in such cases, output dates will be always represented as YYYY-MM-DD.
 
 ======== ==============
 Element  Default format
