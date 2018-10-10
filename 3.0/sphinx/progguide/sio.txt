@@ -515,6 +515,24 @@ Opaque      Similar to AsIs but works with arbitrarily nested structures as well
 Unicode     Converted to a unicode object
 =========== =============================================================================================================
 
+Default values
+--------------
+
+Each SimpleIO elements may specify a default value that will be used if none is provided in the request, e.g.
+in the example below self.request.input.is_admin will default to False if is_admin is not given on input.
+
+::
+
+  from zato.server.service import Boolean
+
+  class MyService(Service):
+      class SimpleIO:
+          input_required = 'user_id',
+          input_optional = (Boolean('is_admin', default=False), 'user_name', 'user_type')
+
+If no default is given for an element and default_value is not configured on the SimpleIO's level an empty
+string will be used as the default value.
+
 Converting date and datetime objects
 ------------------------------------
 
