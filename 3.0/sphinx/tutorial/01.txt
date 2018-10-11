@@ -177,14 +177,15 @@ appropriately called
 
 You need to prepare:
 
-* An empty directory ($path)
+* As user zato, an empty directory ($path), such as ~/env/qs-1
 * Host, port and a password for connecting to Redis ($kvdb_host, $kvdb_port and $kvdb_password)
+
+Note that user user zato created during installation does not have any default password. It means that you need either to
+execute 'sudo su - zato' or 'su - zato' to switch to that user or change the zato user's password first as root or another
+account with elevated privileges.
 
 Now run the following command as user zato, substituting placeholders with the information
 you've prepared. You'll be asked for passwords and they won't be echoed.
-
-Note that user user zato created during installation does not have any default password. It means that you need either to
-execute 'su - zato' as root or change the zato user's password first and then switch to it.
 
 In the command below, observe that the Redis password can be empty - indeed, if you've just installed Redis without
 configuring anything, it must be empty because by default Redis doesn't require it.
@@ -212,7 +213,7 @@ For instance:
   [7/8] Web admin created
   [8/8] Management scripts created
   Quickstart cluster quickstart-962637 created
-  Web admin user:[admin], password:[gunn-equi-moni-onio]
+  Web admin user:[admin], password:[Fc8-43IRUVeyWVgKtUR8YqXJSQriJt6x]
   Start the cluster by issuing the /opt/zato/env/qs-1/zato-qs-start.sh command
   Visit https://zato.io/support for more information and support options
   $
@@ -279,14 +280,14 @@ Invoking services with cURL
 
   ::
 
-    $ zato check-config /path/to/server1
+    $ zato check-config $path/server1
     SQL ODB connection OK
     Redis connection OK
     $
 
   ::
 
-    $ zato check-config /path/to/server2
+    $ zato check-config $path/server2
     SQL ODB connection OK
     Redis connection OK
     $
@@ -388,7 +389,7 @@ of the servers in a cluster and it will be picked up automatically by all the no
 without any restarts. This includes updates to services that already exist.
 
 To hot-deploy a service from command line you need to copy the Python module
-it's in into a pick-up dir.
+it's in into a pick-up directory.
 
 In the tutorial you can use either $path/server1/pickup/incoming/services or
 $path/server2/pickup/incoming/services, it doesn't matter which one you'll choose as the other
