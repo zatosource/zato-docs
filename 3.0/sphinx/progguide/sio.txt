@@ -399,7 +399,7 @@ and Zato will extract all the attributes out of it:
 
   class MyService(Service):
       class SimpleIO:
-          input_required = ('id',)
+          input_required = 'id'
           output_required = ('name', 'last_name')
 
       def handle(self):
@@ -527,7 +527,7 @@ in the example below self.request.input.is_admin will default to False if is_adm
 
   class MyService(Service):
       class SimpleIO:
-          input_required = 'user_id',
+          input_required = 'user_id'
           input_optional = (Boolean('is_admin', default=False), 'user_name', 'user_type')
 
 If no default is given for an element and default_value is not configured on the SimpleIO's level an empty
@@ -563,11 +563,11 @@ Sample usage:
 ::
 
   class SimpleIO:
-    input_required = ('user_id',)
+    input_required = 'user_id'
     output_required = (Date('join_date'), DateTime('last_seen'))
 
   class SimpleIO:
-    input_required = ('user_id',)
+    input_required = 'user_id'
     output_required = (Date('join_date', '%x'), DateTime('last_seen', '%c'))
 
 
