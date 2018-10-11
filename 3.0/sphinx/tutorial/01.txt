@@ -159,7 +159,7 @@ Now you can install Zato itself - there are package repositories prepared for:
 * :doc:`Debian <../admin/guide/install/debian>`
 
 Windows and OS X users are recommended to install
-`Ubuntu 14.04 LTS <http://ubuntu.com>`_
+`Ubuntu 16.04 LTS <http://ubuntu.com>`_
 under
 `VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_
 and proceed to
@@ -180,10 +180,13 @@ You need to prepare:
 * An empty directory ($path)
 * Host, port and a password for connecting to Redis ($kvdb_host, $kvdb_port and $kvdb_password)
 
-Now run the following command, substituting placeholders with the information
+Now run the following command as user zato, substituting placeholders with the information
 you've prepared. You'll be asked for passwords and they won't be echoed.
 
-Note that the Redis password can be empty - indeed, if you've just installed Redis without
+Note that user user zato created during installation does not have any default password. It means that you need either to
+execute 'su - zato' as root or change the zato user's password first and then switch to it.
+
+In the command below, observe that the Redis password can be empty - indeed, if you've just installed Redis without
 configuring anything, it must be empty because by default Redis doesn't require it.
 
 ::
@@ -387,15 +390,15 @@ without any restarts. This includes updates to services that already exist.
 To hot-deploy a service from command line you need to copy the Python module
 it's in into a pick-up dir.
 
-In the tutorial you can use either $path/server1/pickup-dir or
-$path/server2/pickup-dir, it doesn't matter which one you'll choose as the other
+In the tutorial you can use either $path/server1/pickup/incoming/services or
+$path/server2/pickup/incoming/services, it doesn't matter which one you'll choose as the other
 server will instantly synchronize its state with the one that will receive the service.
 
-So, choosing $path/server1/pickup-dir, copy the module:
+So, choosing $path/server1/pickup/incoming/services, copy the module:
 
 ::
 
-  $ cp my_service.py $path/server1/pickup-dir
+  $ cp my_service.py $path/server1/pickup/incoming/services
 
 Now, in each server log - ./logs/server.log - there will be as many confirmations
 of a successful deployment as there are worker processes running in your cluster.

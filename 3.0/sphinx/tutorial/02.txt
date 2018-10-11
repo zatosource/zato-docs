@@ -148,7 +148,7 @@ Hot-deploy the service:
 
 ::
 
-  $ cp my_service.py $path/server1/pickup-dir
+  $ cp my_service.py $path/server1/pickup/incoming/services
 
 And invoke it using curl:
 
