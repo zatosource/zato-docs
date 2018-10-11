@@ -530,6 +530,18 @@ in the example below self.request.input.is_admin will default to False if is_adm
           input_required = 'user_id'
           input_optional = (Boolean('is_admin', default=False), 'user_name', 'user_type')
 
+Similarly, specifying default values in output SimpleIO elements makes it possible to return a value if it is
+not explicitly provided in the output assigned to self.response.payload:
+
+::
+
+  from zato.server.service import Int
+
+  class MyService(Service):
+      class SimpleIO:
+          output_optional = Int('max_size', default=100)
+
+
 If no default is given for an element and default_value is not configured on the SimpleIO's level an empty
 string will be used as the default value.
 
