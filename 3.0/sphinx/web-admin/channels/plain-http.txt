@@ -112,6 +112,7 @@ Version             Notes
                     * Encoding
                     * Cache
                     * Expiry
+                    * Match slash
 
 2.0                 Added new fields:
 

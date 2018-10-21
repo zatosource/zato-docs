@@ -102,6 +102,7 @@ Version             Notes
                     * Encoding
                     * Cache
                     * Expiry
+                    * Match slash
 
 1.0                 Added initially
 =================== ===================================================================
