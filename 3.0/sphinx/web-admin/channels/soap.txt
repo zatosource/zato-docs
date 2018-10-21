@@ -20,13 +20,18 @@ Create and Edit
 
 .. image:: /gfx/web-admin/channels/soap-create.png
 
-=================== ===================================================================
+=================== ================================================================================
 Header              Notes
-=================== ===================================================================
+=================== ================================================================================
 Name                Channel name
 Active              :ref:`Documented below <web-admin-channels-soap-active>`
 URL path            A path to mount this channel on. Must be unique in a cluster. URL
                     path and SOAP action must be unique in a cluster.
+
+Match slash         A boolean flag to control if slash characters should be taken into account
+                    or skipped when matching patterns between braces, such as {cust_id}. If False,
+                    a slash character will never be matched in such a pattern.
+
 Method              *(Optional)* An HTTP method that must be used by clients to invoke
                     this particular channel. It can be any string and Zato won't check
                     if it's a valid HTTP 1.1 method. Leave empty to allow any method
@@ -67,7 +72,7 @@ Security definition Name of a security definition -
 Cache               *(Optional)* Using what definitions responses from the channel should cached,
                     if at all
 Expiry              *(Optional)* For how many minutes responses should be cached
-=================== ===================================================================
+=================== ================================================================================
 
 
 Delete

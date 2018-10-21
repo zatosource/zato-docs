@@ -34,6 +34,9 @@ URL path                  A path to mount this channel on. Must be unique in a c
                           and self.request.input.prog_id if
                           using :doc:`SimpleIO <../../progguide/sio>`.
 
+Match slash               A boolean flag to control if slash characters should be taken into account
+                          or skipped when matching patterns between braces, such as {cust_id}. If False,
+                          a slash character will never be matched in such a pattern.
 
 URL params                Used to decide which parameters will take precedence if both URL parameters
                           and path patterns are used as part of the input to a service.
