@@ -16,9 +16,10 @@ Most commonly accessed attributes are:
 ======================== ===================================================================================
 Attribute                Description
 ======================== ===================================================================================
-self.request.input       To access incoming data if :doc:`SimpleIO <../sio>` is used
-self.request.payload     To access incoming data if :doc:`SimpleIO <../sio>` is not used
-self.request.raw_request To access incoming data as it was received, prior to any parsing or transformations
+self.request.input       Used to access incoming data if :doc:`SimpleIO <../sio>` is used
+self.request.payload     Used to access incoming data if :doc:`SimpleIO <../sio>` is not used
+self.request.raw_request Used to access incoming data in exactly the same format as it was received
+                         by the service, prior to any parsing or transformations
 ======================== ===================================================================================
 
 The chapter first details common attributes and then goes into particulars of each protocol-specific part.
