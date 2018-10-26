@@ -623,19 +623,20 @@ Note that it will be available as a non-None value only in the
 request
 ```````
 
-:ref:`request <progguide-req-resp-req>`
+Request
 and
-:ref:`response <progguide-req-resp-resp>`
-attributes are discussed in
-:doc:`a separate chapter <./request-response>`.
+response
+objects are discussed in
+:doc:`a separate chapter <./reqresp/index>`.
 
 response
 ````````
-:ref:`request <progguide-req-resp-req>`
+
+Request
 and
-:ref:`response <progguide-req-resp-resp>`
-attributes are discussed in
-:doc:`a separate chapter <./request-response>`.
+response
+objects are discussed in
+:doc:`a separate chapter <./reqresp/index>`.
 
 slow_threshold
 ``````````````
@@ -697,7 +698,7 @@ one. If a service has been invoked through HTTP, wsgi_environ will be a dictiona
 
 The dictionary under zato.http.response.headers must not be used directly to define
 what HTTP response headers a service will return. Use
-:ref:`response.headers <progguide-req-resp-resp>` instead.
+:doc:`self.response.headers <./reqresp/response>` instead.
 
 Note that the example below assumes the service has been mounted at /service-api.my-service
 through a plain HTTP channel,
@@ -761,7 +762,7 @@ the service has never been invoked, for instance, its usage count won't increase
 only if False should be returned.
 
 Note that in accept the service has already full access to
-:doc:`self.request <request-response>`,
+:doc:`self.request <./reqresp/request>`,
 :ref:`self.environ <progguide-write-service-environ>`
 or
 :ref:`self.wsgi_environ <progguide-write-service-wsgi_environ>`.
@@ -947,7 +948,7 @@ A service is fully initialized and ready to process the request at the time
 handle is being invoked.
 
 Request and response objects are documented in
-:doc:`their own chapter <./request-response>`.
+:doc:`their own chapter <./reqresp/index>`.
 
 .. _progguide-write-service-invoke:
 

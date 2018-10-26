@@ -9,7 +9,7 @@ Used to create, update, delete and browse through outgoing SQL notifications.
 A notification is an SQL query invoked periodically which upon its execution
 runs asynchronously a user-defined service providing the service with all the
 rows fetched by the query, if any, under a 'data' key of the input dictionary
-in :ref:`self.request.raw_request <progguide-req-resp-req>`. The service will be invoked with empty input
+in :doc:`self.request.raw_request <../../progguide/reqresp/request>`. The service will be invoked with empty input
 if the database doesn't return anything in a given iteration.
 
 All `datetime.datetime <https://docs.python.org/2.7/library/datetime.html#datetime-objects>`_
@@ -37,7 +37,7 @@ Connection          An :doc:`outgoing SQL connection <../outgoing/sql>` to use f
 Interval            In seconds. How often to fetch new data. Also, how often to check for changes to the notification's configuration -
                     it will take up to interval seconds for changes to take any effect.
 Service             Name of the service to invoke. All the rows will be in a list in
-                    :ref:`self.request.raw_request <progguide-req-resp-req>`.
+                    :doc:`self.request.raw_request <../../progguide/reqresp/request>`.
 Query               The SQL query to run
 =================== ======================================================================================================================
 

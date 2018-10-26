@@ -41,7 +41,7 @@ Async invoke - explicit callback
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Invoke the target providing the name of a callback to execute once the target completes. Any response produced by the target
-is available, as string, under :doc:`self.request.payload <../request-response>` in the callback.
+is available, as string, under :doc:`self.request.payload <../reqresp/index>` in the callback.
 
 ::
 

@@ -31,7 +31,7 @@ configuration to make a service available through, say, AMQP in addition to Zero
 or HTTP.
 
 Regardless of which channel a service was invoked over, the very same
-:doc:`request and response objects <./request-response>`
+:doc:`request and response objects <./reqresp/index>`
 will be available, same
 :ref:`attributes <progguide-write-service-attributes>`
 and

@@ -31,7 +31,7 @@ An outgoing connection and a service using it would read as follows:
 
         # Zato
         from zato.server.service import Service
-        
+
         class SetBillingInfo(Service):
             """ Updates a customer's billing information.
             """
@@ -56,7 +56,7 @@ Notes:
 
 * As a programmer you never need to leave Python land, (de-)serialization is automatic and one can work with Python dictionaries only
 
-* The response object offers :doc:`access <../request-response>` to the whole of the body, headers and other metadata the endpoint returns
+* The response object offers :doc:`access <../reqresp/index>` to the whole of the body, headers and other metadata the endpoint returns
 
 * Most of the code presented will work with both JSON and XML but for JSON endpoints in particular, accessing  them can be further
   simplified using the dedicated :doc:`JSON adapter <json-adapter>`

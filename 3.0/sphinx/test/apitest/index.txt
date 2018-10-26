@@ -413,6 +413,10 @@ reserved for the tool's own purposes.
 Changelog
 ---------
 
+-  **1.12** - 26-10-2018
+
+-  Dropped the requirement to depend on exact versions of external dependencies
+
 -  **1.11** - 29-01-2017
 
 -  Use non-zero process exit code if any of test scenarios fail

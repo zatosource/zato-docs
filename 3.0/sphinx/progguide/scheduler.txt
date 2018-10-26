@@ -32,7 +32,7 @@ attributes.
 Note that are service hooks specific to scheduler jobs available.
 
 When creating a new job definition, you can specify extra data. In run-time,
-this will accessible to a service in its :ref:`request.payload <progguide-req-resp-req>`
+this will accessible to a service in its :doc:`request.payload <./reqresp/index>`
 attribute.
 
 .. image:: /gfx/progguide/scheduler-job1.png

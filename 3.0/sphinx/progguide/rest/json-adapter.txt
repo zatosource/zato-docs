@@ -18,17 +18,17 @@ it's possible to configure the service in a declarative manner, without a need t
 The two required attributes a adapter needs to configure are *outconn* and *method* indicating which
 :doc:`outgoing HTTP connection <../../web-admin/outgoing/plain-http>` to use and what the HTTP verb is.
 
-A service such as the one below will use :ref:`self.request.payload <progguide-req-resp-req>` as input to be *POST*-ed to the outgoing connection called
+A service such as the one below will use :doc:`self.request.payload <../reqresp/index>` as input to be *POST*-ed to the outgoing connection called
 *billing.eai9*.
 
 ::
 
    # -*- coding: utf-8 -*-
-   
+
    from __future__ import absolute_import, division, print_function, unicode_literals
-   
+
    from zato.server.service.adapter import JSONAdapter
-   
+
    class SetBillingInfo(JSONAdapter):
        """ Updates a customer's billing information.
        """
