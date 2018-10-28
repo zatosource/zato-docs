@@ -415,6 +415,7 @@ Changelog
 
 -  **1.12** - 26-10-2018
 
+-  Added compatibility with PostgreSQL 10+
 -  Dropped the requirement to depend on exact versions of external dependencies
 
 -  **1.11** - 29-01-2017
