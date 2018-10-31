@@ -19,7 +19,7 @@ The tool is the recommended way to test :doc:`Zato-based solutions <../../index>
 but is completely independent from the core Zato platform and can be used to test
 any other APIs as well.
 
-In addition to HTTP itself supports AMQP, ZeroMQ, WebSphere MQ,
+In addition to HTTP, Zato itself supports AMQP, ZeroMQ, WebSphere MQ,
 including JMS, Redis, FTP, OpenERP, SMTP, IMAP, SQL, Amazon S3,
 OpenStack Swift and more so it's guaranteed zato-apitest will grow
 support for more protocols and transport layers with time.

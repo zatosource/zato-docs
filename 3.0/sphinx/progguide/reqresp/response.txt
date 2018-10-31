@@ -7,7 +7,7 @@ Response objects
 Overview
 --------
 
-All services produces responses through their *self.response* attribute. Unlike with :doc:`requests <./request>`, there are no
+All services produce responses through their *self.response* attribute. Unlike with :doc:`requests <./request>`, there are no
 protocol-specific sub-attributes.
 
 The most general way to create a response, and one that is always possible, is to assign a string or Unicode object to

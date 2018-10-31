@@ -257,6 +257,7 @@ Programming guide
       :doc:`Async invocation with a callback <progguide/patterns/async-invoke>`
 
     * **Request/response documents:**
+      :doc:`Overview <progguide/reqresp/index>` |
       :doc:`SimpleIO (SIO) <progguide/sio>` |
       :doc:`JSON <progguide/json>` |
       :doc:`XML <progguide/xml>` |

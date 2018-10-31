@@ -102,7 +102,7 @@ AMQP-specific attributes
 Attribute                  Description
 ========================== ============================================================
 self.request.amqp          The attribute to use to access AMQP-specific information
-self.request.amqp.msg      Low-level object represenint the incoming message
+self.request.amqp.msg      Low-level object representing the incoming message
 self.request.amqp.ack()    Used by services to acknowledge the reception of a message
 self.request.amqp.reject() Used by services to reject a message back to the AMQP broker
 ========================== ============================================================
