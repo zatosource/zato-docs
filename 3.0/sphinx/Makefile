@@ -14,6 +14,8 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
 .PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest
 
+default: html
+
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  html       to make standalone HTML files"
@@ -34,9 +36,12 @@ help:
 	@echo "  doctest    to run all doctests embedded in the documentation (if enabled)"
 	@echo "  virtualenv to get a working version of Sphinx under virtualenv
 
+clean-all:
+	rm -rf $(CURDIR)/zato_docs_env/
+	$(MAKE) clean
+
 clean:
 	rm -rf $(BUILDDIR)/*
-	rm -rf $(CURDIR)/zato_docs_env/
 
 html:
 	$(SPHINXBUILD) -b djangohtml $(ALLSPHINXOPTS) $(BUILDDIR)/html
