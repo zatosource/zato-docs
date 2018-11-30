@@ -31,6 +31,7 @@ Summary of commands
 ================================================================= ================================================================
 Name                                                              Description
 ================================================================= ================================================================
+:doc:`zato apispec<./apispec>`                                    Generates API specifications as OpenAPI, WSDL and Sphinx 
 :doc:`zato ca<./ca>`                                              Certificate Authority (CA) management
 :doc:`zato check-config<./check-config>`                          Sanity checks against a component's config
 :doc:`zato component-version<./component-version>`                Shows a Zato component's version

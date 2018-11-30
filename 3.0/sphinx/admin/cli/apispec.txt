@@ -6,8 +6,19 @@ Overview
 
 Generates API documentation for services that use :doc:`SimpleIO <../../progguide/sio>`. The documentation is output as a
 `Sphinx <http://sphinx-doc.org/>`_
-project containing
-OpenAPI/Swagger, WSDL specifications and a textual description of services.
+project containing OpenAPI/Swagger, WSDL specifications and a textual description of services.
+
+Before executing zato apispec command, make sure that `Sphinx <http://sphinx-doc.org/>`_ is installed in the system.
+
+After running the command, navigate to the output directory and run the command below to build
+HTML pages with the documentation:
+
+::
+
+   $ cd <output-dir>
+   $ make html
+
+Where <output-dir> is the directory that was created or overwritten by zato apispec command.
 
 Subcommands
 ------------
@@ -17,13 +28,18 @@ Subcommands
 Command-specific parameters
 ---------------------------
 
-========== ======== ==================================================================================
-Name       Required Description
-========== ======== ==================================================================================
---include  ---      A comma-separated list of service name patterns that should be included in output.
-                    Asterisk [*] may be used to match multiple characters, as in shell glob patterns.
---exclude  ---      As above but signifies services that should not be output
-========== ======== ==================================================================================
+=============== ======== ==================================================================================
+Name            Required Description
+=============== ======== ==================================================================================
+path            Yes      File-system path to a running Zato server
+--include       ---      A comma-separated list of service name patterns that should be included in output.
+                         Asterisk [*] may be used to match multiple characters, as in shell glob patterns.
+--exclude       ---      As above but signifies services that should not be output
+--with-internal ---      If given on input, Zato's own services will be output too
+--dir           ---      Directory to save the documentation to; if --delete-dir is not provided,
+                         the command will refuse to continue if the output directory exists
+--delete-dir    ---      Whether the directory pointed to by --dir should be deleted if it already exists
+=============== ======== ==================================================================================
 
 Usage
 -----
@@ -31,18 +47,20 @@ Usage
 ::
 
     $ zato apispec [-h] [--store-log] [--verbose] [--store-config]
-        [--include INCLUDE] [--exclude EXCLUDE]
-        path
+                    [--include INCLUDE] [--with-internal] [--exclude EXCLUDE]
+                    [--dir DIR] [--delete-dir]
+                    path
+
 
 ::
 
-    $ zato apispec /path/to/server --include="my.api.v2.*, my.api.v3"
-    Output saved to /home/zato/apispec.2018_06_29_07_41_55_693842
+    $ zato apispec /path/to/server --include="my.api.v2.*, my.api.v3" --dir my-apispec
+    Output saved to /home/zato/my-apispec
     $
 
-    $ cd /home/zato/apispec.2018_06_29_07_41_55_693842
+    $ cd /home/zato/my-apispec
     $ make html
-    $ (Documentation is now in ./_build/html/index.html)
+    $ (Documentation is now in /home/zato/my-apispec/_build/html/index.html)
 
 Changelog
 ---------
