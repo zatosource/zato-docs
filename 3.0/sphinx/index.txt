@@ -241,7 +241,7 @@ Programming guide
       :doc:`Where to keep configuration <progguide/service-local-config>` |
       :doc:`HTML with Django templates <progguide/html>` |
       :doc:`Helpers <progguide/helpers>` |
-      :doc:`Documenting <progguide/documenting>`
+      :doc:`Public API <api/index>`
 
     * **REST:**
       :doc:`Services <progguide/rest/services>` |
@@ -413,6 +413,7 @@ Zato, the open-source project
    admin/guide/redis-ha/*
    admin/guide/tls/*
    architecture/*
+   api/*
    intro/*
    progguide/*
    progguide/clients/*
