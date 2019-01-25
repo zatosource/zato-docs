@@ -16,7 +16,7 @@ Installation steps
 
 ::
 
-    ubuntu$ sudo apt-get install apt-transport-https
+    ubuntu$ sudo apt-get install apt-transport-https curl
     ubuntu$ sudo apt-get install software-properties-common
 
 * Install an additional package on Ubuntu 16.04 LTS
@@ -54,10 +54,9 @@ Installation steps
 
 ::
 
-    ubuntu# su - zato
+    ubuntu$ sudo su - zato
     ubuntu$ cd /opt/zato/current
     ubuntu$ git pull
-    ubuntu$ cd ./code
     ubuntu$ ./bin/pip install -e ./zato-cy
 
 * Confirm the installation:
