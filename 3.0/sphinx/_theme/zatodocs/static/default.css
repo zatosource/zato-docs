@@ -40,11 +40,19 @@ h3, h4, h5 {
     background-color:#ff3 !important;
 }
 
-#s-what-makes-zato-unique {
-    background-color:#ddd;
-    padding:12px
-}
-
 .highlight .c {
     color:#666 !important;
+}
+
+#getting-help {
+    float:right !important;
+    background-color:#ddd !important;
+    padding:12px !important;
+    min-height: 310px !important;
+}
+
+#what-makes-zato-unique {
+    background-color:#ddd !important;
+    padding:12px !important;
+    min-height: 310px !important;
 }
