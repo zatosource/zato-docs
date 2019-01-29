@@ -25,11 +25,12 @@ Installation steps
 
     ubuntu$ sudo apt-get install python-software-properties
 
-* Enable an additional repository on Ubuntu 18.04 LTS
+* Additional dependencies on Ubuntu 18.04 LTS
 
 ::
 
     ubuntu$ sudo add-apt-repository universe
+    ubuntu$ sudo apt-get install tzdata
 
 * Add the package signing key
 

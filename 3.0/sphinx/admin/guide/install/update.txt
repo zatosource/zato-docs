@@ -28,7 +28,6 @@ To install updates, run the commands below:
 
   ::
 
-      $ cd ./code
       $ ./bin/pip install -e ./zato-cy
 
 * Afterwards, all Zato components need to be stopped and started again. To increase high-availability, stop and start the
