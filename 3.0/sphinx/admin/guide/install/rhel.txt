@@ -58,7 +58,7 @@ Installation steps
     rhel# su - zato
     rhel$ cd /opt/zato/current
     rhel$ git pull
-    rhel$ ./bin/pip install -e ./zato-cy
+    rhel$ ./update.sh
 
 * Confirm the installation
 
