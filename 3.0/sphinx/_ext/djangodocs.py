@@ -16,11 +16,13 @@ except ImportError:
         except ImportError:
             json = None
 
+from docutils.transforms.universal import SmartQuotes as SmartyPantsHTMLTranslator
+from docutils.parsers.rst import Directive
+
 from sphinx import addnodes, roles
 from sphinx.builders.html import StandaloneHTMLBuilder
-from sphinx.writers.html import SmartyPantsHTMLTranslator
 from sphinx.util.console import bold
-from sphinx.util.compat import Directive
+
 
 # RE for option descriptions without a '--' prefix
 simple_option_desc_re = re.compile(
