@@ -110,17 +110,19 @@ self.request.amqp.reject() Used by services to reject a message back to the AMQP
 IBM MQ-specific attributes
 --------------------------
 
-================================= ============================================================ ===============
-Attribute                         Description                                                  MQMD equivalent
-================================= ============================================================ ===============
-self.request.wmq                  The attribute to use to access IBM MQ-specific information   ---
-self.request.wmq.msg_id           Message ID                                                   MsgId
-self.request.wmq.correlation_id   Correlation ID                                               CorrelId
-self.request.wmq.timestamp        Timestamp of when the message was created                    ---
-self.request.wmq.put_date         Date part of when the message was enqueued                   PutDate
-self.request.wmq.put_time         Time part of when the message was enqueued                   PutTime
-self.request.wmq.reply_to         To what queue responses should be sent, if any are expected  ReplyToQ
-================================= ============================================================ ===============
+================================== ============================================================ ===============
+Attribute                          Description                                                  MQMD equivalent
+================================== ============================================================ ===============
+self.request.ibm_mq                The attribute to use to access IBM MQ-specific information   ---
+self.request.ibm_mq.msg_id         Message ID                                                   MsgId
+self.request.ibm_mq.correlation_id Correlation ID                                               CorrelId
+self.request.ibm_mq.timestamp      Timestamp of when the message was created                    ---
+self.request.ibm_mq.put_date       Date part of when the message was enqueued                   PutDate
+self.request.ibm_mq.put_time       Time part of when the message was enqueued                   PutTime
+self.request.ibm_mq.reply_to       To what queue responses should be sent, if any are expected  ReplyToQ
+self.request.ibm_mq.mqmd           The whole MQMD header as it was received from MQ             MQMD
+self.request.ibm_mq.data           The same as self.request.raw_request - added for convenience ---
+================================== ============================================================ ===============
 
 More information
 ----------------
