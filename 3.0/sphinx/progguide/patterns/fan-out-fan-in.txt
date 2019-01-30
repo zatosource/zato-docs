@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 Patterns - Fan-out/Fan-in
 =========================
@@ -17,7 +17,7 @@ Target services run in parallel, asynchronously, and are not notified of each ot
 configured also run asynchronously without blocking each other.
 
 The diagram below depicts the feature in its full scope. A source service fans out to 2 target services, each with a list
-of their completion callbacks. Only when both target services finish execution, the flow of processing fans in to 
+of their completion callbacks. Only when both target services finish execution, the flow of processing fans in to
 a final list of callbacks that are guaranteed that the targets have all been already invoked.
 
 .. image:: /gfx/progguide/patterns/fan-out-fan-in.png
@@ -122,7 +122,7 @@ A callback is a regular Zato service that is invoked in specific moments of a fa
 as a final and target callback. Each callback is invoked asynchronously, in isolation from any other callbacks defined.
 
 Upon execution, each callback's :ref:`self.channel <progguide-write-service-channel>` attribute will be set to either
-*FANOUT_ON_FINAL* or *FANOUT_ON_TARGET* from 
+*FANOUT_ON_FINAL* or *FANOUT_ON_TARGET* from
 `zato.common.CHANNEL <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py>`_.
 
 On input, a final callback's *self.request.payload* attribute will be a Python dictionary with the contents in the format as below:

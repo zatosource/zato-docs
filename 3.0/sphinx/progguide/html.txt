@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 Outputting HTML with Django templates
 =====================================
@@ -18,7 +18,7 @@ Consider the example below:
 ::
 
   from zato.server.service.internal.helpers import HTMLService
-  
+
   HTML_TEMPLATE = """
   <!DOCTYPE html>
   <html>
@@ -30,17 +30,17 @@ Consider the example below:
     </body>
   </html>
   """
-  
+
   class MyReports(HTMLService):
-  
+
       def handle(self):
-  
+
           # Obtain current date and assume the imaginary job's result was OK
           ctx = {
               'report_date': self.time.today(),
               'result': 'OK'
           }
-  
+
           # Set HTML payload, will also produce the Content-Type header
           self.set_html_payload(ctx, HTML_TEMPLATE)
 

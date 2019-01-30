@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 XML examples
 ============
@@ -20,7 +20,7 @@ you can use anything and Zato won't constrain you.
 Accessing XML request
 ---------------------
 
-XML document will be converted to an 
+XML document will be converted to an
 `ObjectifiedElement <http://lxml.de/objectify.html>`_ - elements are accessed
 using dotted notation, their textual values are available through the .text attribute
 and .get is used to fetch attributes.
@@ -28,34 +28,34 @@ and .get is used to fetch attributes.
 ::
 
     from zato.server.service import Service
-    
+
     class MyService(Service):
         def handle(self):
             root = self.request.payload
             self.logger.info(type(root))
             self.logger.info(root.cust.id.text)
             self.logger.info(root.cust.get('type'))
-            
+
 ::
 
   $ curl localhost:11223/example -d '<data><cust type="soho"><id>123</id></cust></data>'
   $
-  
+
 ::
 
     INFO - <type 'lxml.objectify.ObjectifiedElement'>
     INFO - 123
     INFO - soho
 
-You have access to each part of the API offered by 
-`lxml <http://lxml.de>`_, 
+You have access to each part of the API offered by
+`lxml <http://lxml.de>`_,
 for instance, to iterate
 over child elements use the .getchildren method.
 
 ::
 
     from zato.server.service import Service
-    
+
     class MyService(Service):
         def handle(self):
             root = self.request.payload
@@ -66,7 +66,7 @@ over child elements use the .getchildren method.
 
   $ curl localhost:11223/example -d '<data><ids><id>1</id><id>2</id><id>3</id></ids></data>'
   $
-  
+
 .. code-block:: text
 
     INFO - 1
@@ -81,30 +81,30 @@ Creating responses
 
 Assign a string representation of an XML document to return to self.response.payload. It doesn't
 matter how the string payload is produced thus both examples below result in the same
-response. 
+response.
 
 ::
 
     from zato.server.service import Service
-    
+
     class MyService(Service):
         def handle(self):
             self.response.payload = '<data><customer><id>123</id></customer></data>'
-            
+
 ::
 
     # lxml
     from lxml.builder import E as e
     from lxml.etree import tostring
-    
+
     # Zato
     from zato.server.service import Service
-    
+
     class MyService(Service):
         def handle(self):
             root = e.data(e.customer(e.id('123')))
             self.response.payload = tostring(root)
-            
+
 ::
 
     $ curl localhost:11223/example -d '<root/>'
@@ -131,20 +131,20 @@ to use this address https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xm
     # lxml
     from lxml.builder import E as e
     from lxml.etree import tostring
-    
+
     # Zato
     from zato.server.service import Service
-    
+
     class MyService(Service):
         def handle(self):
             root = e.mydata(e.mysubelement(e.mysub2('abc')))
-            request = tostring(root) 
-            
+            request = tostring(root)
+
             out = self.outgoing.plain_http.get('EuroBank')
             response = out.conn.post(self.cid, request)
-            
+
             self.response.payload = response.text
-            
+
 ::
 
 	$ curl localhost:17010/example -d '<root/>'
@@ -161,7 +161,7 @@ to use this address https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xm
 			<Cube currency='JPY' rate='127.93'/>
 			<Cube currency='BGN' rate='1.9558'/>
 
-		
-	(snip)		
+
+	(snip)
 	...
 	...

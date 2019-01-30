@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 REST channels
 =============
@@ -21,17 +21,17 @@ Note that in order to take advantage of URL path patterns and URL parameters a s
 ::
 
     # -*- coding: utf-8 -*-
-    
+
     from __future__ import absolute_import, division, print_function, unicode_literals
-    
+
     from zato.server.service import Service
-    
+
     class GetBalance(Service):
-    
+
         class SimpleIO:
             input_required = ('cust_no', 'account_no')
             output_required = ('balance', 'currency')
-    
+
         def handle(self):
 
             # Confirm input was received
@@ -59,7 +59,7 @@ Now the service can be invoked using a nice and clean URL:
 
     $ curl http://localhost:11223/customer/balance/37172/HAZDM017/ ; echo
     {"response": {"currency": "EUR", "balance": "357.19"}}
-    $ 
+    $
 
 And the contents of server.log confirms that the input was received fine:
 

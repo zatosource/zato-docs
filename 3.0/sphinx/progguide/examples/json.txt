@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 JSON examples
 =============
@@ -17,7 +17,7 @@ By default, a JSON message is converted to a Python dictionary.
 ::
 
    from zato.server.service import Service
-   
+
    class MyService(Service):
        def handle(self):
            self.logger.info(type(self.request.payload))
@@ -28,7 +28,7 @@ By default, a JSON message is converted to a Python dictionary.
 
   $ curl localhost:11223/example -d '{"mydata":{"cust":{"id":1,"name":"Jack Brown"}}}'
   $
-  
+
 ::
 
   INFO - <type 'dict'>
@@ -48,21 +48,21 @@ and use dotted notation to reference elements of the request.
 
    # bunch
    from bunch import bunchify
-   
+
    # Zato
    from zato.server.service import Service
-   
+
    class MyService(Service):
        def handle(self):
            mydata = bunchify(self.request.payload['mydata'])
            self.logger.info(mydata.cust.id)
            self.logger.info(mydata.cust.name)
-           
+
 ::
 
   $ curl localhost:11223/example -d '{"mydata":{"cust":{"id":1,"name":"Jack Brown"}}}'
   $
-  
+
 ::
 
   INFO - 1
@@ -80,23 +80,23 @@ achieve the same.
 ::
 
    from zato.server.service import Service
-   
+
    class MyService(Service):
        def handle(self):
-           self.response.payload = """{"customer": {"products": [{"type": "AMZN", 
+           self.response.payload = """{"customer": {"products": [{"type": "AMZN",
              "id": 1}, {"type": "KZUA", "id": 2}], "id": 123, "name": "John Brown"}}"""
 
 ::
 
    # anyjson
    from anyjson import dumps
-   
+
    # Zato
    from zato.server.service import Service
-   
+
    class MyService(Service):
        def handle(self):
-           
+
            response = {
              'customer': {
                'id':123,
@@ -105,20 +105,20 @@ achieve the same.
                    {'id':1, 'type':'AMZN'},
                    {'id':2, 'type':'KZUA'}
            ]}}
-   
+
            self.response.payload = dumps(response)
 
 ::
 
    # anyjson
    from anyjson import dumps
-   
+
    # bunch
    from bunch import Bunch
-   
+
    # Zato
    from zato.server.service import Service
-   
+
    class MyService(Service):
        def handle(self):
            response = Bunch()
@@ -128,19 +128,19 @@ achieve the same.
            response.customer.products = []
            response.customer.products.append({'id':1, 'type':'AMZN'})
            response.customer.products.append({'id':2, 'type':'KZUA'})
-   
+
            self.response.payload = dumps(response)
 
-Output below reformatted for clarity.   
-           
+Output below reformatted for clarity.
+
 ::
 
   $ curl localhost:11223/example -d '{}'
-  {"customer": 
+  {"customer":
     {"products": [
       {"type": "AMZN", "id": 1},
-      {"type": "KZUA", "id": 2}], 
-   "id": 123, 
+      {"type": "KZUA", "id": 2}],
+   "id": 123,
    "name": "John Brown"}}
   $
 
@@ -149,15 +149,15 @@ Output below reformatted for clarity.
 Invoking a JSON service using GET
 ---------------------------------
 
-Create a 
+Create a
 :doc:`plain HTTP <../../web-admin/outgoing/plain-http>`
-outgoing connection to a remote JSON service, 
+outgoing connection to a remote JSON service,
 `such as this one provided by Yahoo! <http://finance.yahoo.com/webservice/v1/symbols/allcurrencies/quote?format=json>`_
 and
 :doc:`invoke <../outconn/http>`
 it through self.outgoing.plain_http.
 
-The response is a string that can be turned into a Python dictionary or a 
+The response is a string that can be turned into a Python dictionary or a
 `Bunch <http://pypi.python.org/pypi/bunch>`_
 instance, like in the examples below.
 
@@ -165,49 +165,49 @@ instance, like in the examples below.
 
     # anyjson
     from anyjson import loads
-    
+
     # Zato
     from zato.server.service import Service
-    
+
     class MyService(Service):
         def handle(self):
             response = self.outgoing.plain_http.get('Yahoo! Finance').conn.get(self.cid)
             data = loads(response.text)
-            
+
             for item in data['list']['resources']:
                 name = item['resource']['fields']['name']
                 price = item['resource']['fields']['price']
-                
+
                 self.logger.info('{} {}'.format(name, price))
-                
+
 ::
 
     # anyjson
     from anyjson import loads
-    
+
     # bunch
     from bunch import bunchify
-    
+
     # Zato
     from zato.server.service import Service
-    
+
     class MyService(Service):
         def handle(self):
             response = self.outgoing.plain_http.get('Yahoo! Finance').conn.get(self.cid)
             data = bunchify(loads(response.text))
-            
+
             for item in data.list.resources:
                 name = item.resource.fields.name
                 price = item.resource.fields.price
-                
+
                 self.logger.info('{} {}'.format(name, price))
 
 .. _progguide-examples-json-invoking-post:
-                
+
 Invoking a JSON service using POST
 ----------------------------------
 
-Create a 
+Create a
 :doc:`plain HTTP outgoing connection <../../web-admin/outgoing/plain-http>`
 to a remote JSON service and
 :doc:`invoke <../outconn/http>`
@@ -219,16 +219,16 @@ to the .post method.
 
     # anyjson
     from anyjson import dumps
-    
+
     # Zato
     from zato.server.service import Service
-    
+
     class MyService(Service):
         def handle(self):
-    
+
             cust_profile = self.outgoing.plain_http.get('CRM Customer Profile')
-    
+
             request = dumps({'cust_id':1, 'name':'Foo Bar'})
             response = cust_profile.conn.post(self.cid, request)
-    
+
             self.logger.info(response.text)

@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 Other data formats
 ==================
@@ -14,7 +14,7 @@ If not using
 :doc:`XML <./xml>`,
 :doc:`SOAP <./soap>`
 or
-:doc:`CSV <./csv>`, 
+:doc:`CSV <./csv>`,
 data in virtually any format can be accepted
 but the so called 'binary' data needs to be encoded using, for instance, BASE64.
 Zato doesn't place any limits on what sort of information is exchanged and how it's
@@ -34,17 +34,17 @@ like that:
 ::
 
    from zato.server.service import Service
-   
+
    class MyService(Service):
        def handle(self):
            data = self.request.payload.decode('base64')
            self.logger.info(data)
-           
+
 ::
 
    $ curl localhost:11223/example -d 'SGVsbG8gWmF0byE=\n'
    $
-   
+
 ::
 
    INFO - Hello Zato!

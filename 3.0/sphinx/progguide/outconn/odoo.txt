@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 Odoo connections
 ================
@@ -22,10 +22,10 @@ self.outgoing.odoo[name].conn.client()
 .. py:method:: .outgoing.odoo[name].conn.client():
 
   Returns an object to issue Odoo queries with.
-  
+
   :param name: Name of the :doc:`Odoo connection <../../web-admin/outgoing/odoo>`
   :type name: string
-  
+
   :rtype: (An `openerplib.main.Connection <https://github.com/nicolas-van/openerp-client-lib/blob/master/openerplib/main.py>`_ instance)
 
 Usage example
@@ -34,13 +34,13 @@ Usage example
 ::
 
   from zato.server.service import Service
-  
+
   class MyService(Service):
       def handle(self):
           with self.outgoing.odoo.get('My Connection').conn.client() as conn:
-  
+
               model = conn.get_model('res.partner')
-  
+
               for model_id in model.search([('name', 'like', 'Name')]):
                   self.logger.info(model.read(model_id, ['name']))
 

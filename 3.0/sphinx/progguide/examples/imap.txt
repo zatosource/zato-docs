@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 IMAP
 ====
@@ -16,13 +16,13 @@ Receiving e-mails
 ::
 
         from zato.server.service import Service
-        
+
         class MyService(Service):
             def handle(self):
                 conn = self.email.imap.get('My Connection').conn
-        
+
                 for msg_id, msg in conn.get():
-        
+
                     # Access the message
                     self.logger.info(msg.data)
 
@@ -36,16 +36,16 @@ Call *.mark_seen()* on a message object to mark it as seen.
 ::
 
         from zato.server.service import Service
-        
+
         class MyService(Service):
             def handle(self):
                 conn = self.email.imap.get('My Connection').conn
-        
+
                 for msg_id, msg in conn.get():
-        
+
                     # Access the message
                     self.logger.info(msg.data)
-        
+
                     # To mark the message seen
                     msg.mark_seen()
 
@@ -59,15 +59,15 @@ Call *.delete()* on a message object to mark it as seen.
 ::
 
         from zato.server.service import Service
-        
+
         class MyService(Service):
             def handle(self):
                 conn = self.email.imap.get('My Connection').conn
-        
+
                 for msg_id, msg in conn.get():
-        
+
                     # Access the message
                     self.logger.info(msg.data)
-        
+
                     # To delete the message
                     msg.delete()

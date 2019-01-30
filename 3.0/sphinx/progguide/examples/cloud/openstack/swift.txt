@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 OpenStack Swift
 ===============
@@ -41,10 +41,10 @@ Accessing the underlying library
 --------------------------------
 
 Connections to to Swift are built using the OpenStack's
-`swiftclient <http://docs.openstack.org/developer/python-swiftclient/swiftclient.html>`_ library whose 
+`swiftclient <http://docs.openstack.org/developer/python-swiftclient/swiftclient.html>`_ library whose
 swiftclient.client.Connection objects are what the *client* actually is.
 
-The client offers means to access full Swift API for reading, deleting and other operations on Swift objects - 
+The client offers means to access full Swift API for reading, deleting and other operations on Swift objects -
 consult the
 `client's documentation <http://docs.openstack.org/developer/python-swiftclient/swiftclient.html>`_
 for usage details.

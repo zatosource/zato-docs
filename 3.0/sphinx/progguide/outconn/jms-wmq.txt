@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 JMS WebSphere MQ outgoing connections
 ======================================
@@ -7,7 +7,7 @@ JMS WebSphere MQ outgoing connections
 Overview
 --------
 
-Asynchronously sends a message to a WebSphere MQ queue manager using 
+Asynchronously sends a message to a WebSphere MQ queue manager using
 :doc:`connection <../../web-admin/conn-def/jms-wmq>`
 :doc:`parameters <../../web-admin/outgoing/jms-wmq>`
 specified.
@@ -26,7 +26,7 @@ and `Spring Python <http://static.springsource.org/spring-python/1.2.x/sphinx/ht
 
 .. note::
 
-    Before making using of the connections, 
+    Before making using of the connections,
     :doc:`PyMQI needs to be first manually enabled <../../admin/guide/enabling-extra-libs>`
     by administrators.
 
@@ -42,11 +42,11 @@ self.outgoing.jms_wmq.send
 
   Uses an outgoing connection of a given name to send a JMS message to a WebSphere MQ
   queue manager.
-  
+
   Optional parameters, if not given, take values from the connection template,
   which in turn uses default values Spring Python provides and these are in accordance
   with the JMS spec.
-  
+
   :param msg: Message to send
   :param out_name: Outgoing connection to use
   :param queue: Name of the queue to put a message on
@@ -55,7 +55,7 @@ self.outgoing.jms_wmq.send
   :param priority: Message priority between 1 and 9 - 1 being the minimum priority
   :param max_chars_printed: How many characters of the message should Spring Python write out to logs
                             when running in DEBUG mode
-  
+
   :type msg: string
   :type out_name: string
   :type queue: string
@@ -63,7 +63,7 @@ self.outgoing.jms_wmq.send
   :type expiration: int
   :type priority: int
   :type max_chars_printed: int
-  
+
   :rtype: (None)
 
 Usage example
@@ -72,21 +72,21 @@ Usage example
 ::
 
   from zato.server.service import Service
-      
+
   class MyService(Service):
       def handle(self):
-              
+
           # Request parameters
           msg = 'Hello MQ!'
           out_name = 'Customer Cases'
           queue = 'CUSTOMER.CASES.1'
-          
+
           # Send the message to a queue manager
           self.outgoing.jms_wmq.send(msg, out_name, queue)
 
-When caught travelling over the wire the raw bytes sent across to the 
+When caught travelling over the wire the raw bytes sent across to the
 queue manager can be confirmed to be a JMS message indeed.
-          
+
 ::
 
   RFH \x00\x00\x00\x02\x00\x00\x00\xa0\x00\x00\x01\x11\x00\x00\x04\xb8

@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 IMAP connections
 ================
@@ -37,19 +37,19 @@ Usage example
 ::
 
   from zato.server.service import Service
-  
+
   class MyService(Service):
       def handle(self):
           conn = self.email.imap.get('My Connection').conn
-  
+
           for msg_id, msg in conn.get():
-  
+
               # Access the message
               self.logger.info(msg.data)
-  
+
               # To mark the message seen
               msg.mark_seen()
-  
+
               # To delete it
               msg.delete()
 

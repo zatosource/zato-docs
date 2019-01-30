@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 HTTP (REST) programming examples
 ================================
@@ -10,12 +10,12 @@ Exposing a service over HTTP
 ----------------------------
 
 Any services can be exposed over HTTP with no programming needed by creating
-a 
+a
 :doc:`plain HTTP channel <../../web-admin/channels/plain-http>`
 with data format set to either JSON, XML or to no particular data format at all. For SOAP messages,
-create a 
+create a
 :doc:`SOAP channel <../../web-admin/channels/soap>`.
-For any other data format, create a plain 
+For any other data format, create a plain
 :doc:`HTTP channel <../../web-admin/channels/plain-http>`
 without setting a data format.
 
@@ -36,7 +36,7 @@ Accessing raw request
 
 .. note ::
 
-   Other chapters document the usage of 
+   Other chapters document the usage of
    :doc:`JSON <./json>`,
    :doc:`XML <./xml>`,
    :doc:`SOAP <./soap>`
@@ -48,12 +48,12 @@ The raw request is always available as a string/unicode under self.request.raw_r
 ::
 
    from zato.server.service import Service
-   
+
    class MyService(Service):
        def handle(self):
            self.logger.info(type(self.request.raw_request))
            self.logger.info(self.request.raw_request)
-           
+
 ::
 
     $ zato service invoke /opt/server1/ example.my-service --payload '{"hello":"world"}'
@@ -78,7 +78,7 @@ Note that self.wsgi_environ will be empty if the service wasn't invoked over HTT
 ::
 
    from zato.server.service import Service
-   
+
    class MyService(Service):
        def handle(self):
            for key, name in sorted(self.wsgi_environ.items()):
@@ -116,7 +116,7 @@ Note that self.wsgi_environ will be empty if the service wasn't invoked over HTT
    INFO - wsgi.url_scheme:http
    INFO - wsgi.version:(1, 0)
    INFO - zato.http.response.headers:{'X-Zato-CID':'K307616012828167595790695840344328947136'}
-   
+
 .. _progguide-examples-http-access-url-query:
 
 Accessing request URL query parameters
@@ -131,20 +131,20 @@ Note that self.wsgi_environ will be empty if the service wasn't invoked over HTT
 
    # stdlib
    from urlparse import parse_qs
-   
+
    # Zato
    from zato.server.service import Service
-   
+
    class MyService(Service):
        def handle(self):
            qs = parse_qs(self.wsgi_environ['QUERY_STRING'])
-           self.logger.info(qs['foo']) 
+           self.logger.info(qs['foo'])
 
 ::
 
    $ curl http://localhost:11223/example?foo=bar
    $
-   
+
 .. code-block:: text
 
    INFO - ['bar']
@@ -155,7 +155,7 @@ Setting response headers
 ------------------------
 
 self.response.headers is a dictionary of custom headers to return. Any headers
-set by users, except for 
+set by users, except for
 
 * WWW-Authenticate
 * Any header beginning with X-Zato
@@ -165,7 +165,7 @@ take precedence over what Zato would've set by default.
 ::
 
    from zato.server.service import Service
-   
+
    class MyService(Service):
        def handle(self):
            self.response.headers['x-my-header1'] = 'my-value1'
@@ -182,7 +182,7 @@ take precedence over what Zato would've set by default.
    > User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 OpenSSL/1.0.1
    > Host: localhost:11223
    > Accept: */*
-   > 
+   >
    < HTTP/1.1 200 OK
    < Server: gunicorn/0.16.1
    < Date: Wed, 26 Jun 2013 13:17:43 GMT
@@ -192,7 +192,7 @@ take precedence over what Zato would've set by default.
    < x-my-header1: my-value1
    < x-my-header2: my-value2
    < X-Zato-CID: K287602893024298564961884370476235580086
-   < 
+   <
    * Closing connection #0
    $
 
@@ -203,9 +203,9 @@ Setting content type and status code
 ------------------------------------
 
 self.response.status_code is where the status code can be set using constants
-from Python's builtin 
+from Python's builtin
 `httlib <docs.python.org/2.7/library/httplib.html>`_
-module. 
+module.
 
 Use self.response.content_type for setting the response's content type.
 
@@ -213,15 +213,15 @@ Use self.response.content_type for setting the response's content type.
 
    # stdlib
    import httplib
-   
+
    # Zato
    from zato.server.service import Service
-   
+
    class MyService(Service):
        def handle(self):
            self.response.status_code = httplib.FORBIDDEN
            self.response.content_type = 'application/vnd.android.package-archive'
-           
+
 .. code-block:: text
    :emphasize-lines: 9,14
 
@@ -232,7 +232,7 @@ Use self.response.content_type for setting the response's content type.
    > User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu) libcurl/7.22.0 OpenSSL/1.0.1
    > Host: localhost:11223
    > Accept: */*
-   > 
+   >
    < HTTP/1.1 403 Forbidden
    < Server: gunicorn/0.16.1
    < Date: Wed, 26 Jun 2013 13:39:28 GMT
@@ -240,23 +240,23 @@ Use self.response.content_type for setting the response's content type.
    < Transfer-Encoding: chunked
    < Content-Type: application/vnd.android.package-archive
    < X-Zato-CID: K267783121129868870975023808525790139266
-   < 
+   <
    * Closing connection #0
-   $ 
+   $
 
 .. _progguide-examples-http-attachments:
 
 Returning attachments
 ---------------------
 
-Use self.response.payload to set the actual attachment's body and an HTTP 
+Use self.response.payload to set the actual attachment's body and an HTTP
 Content-Disposition header to signal to clients that it's an attachment and what
 its name is.
 
 ::
 
    from zato.server.service import Service
-   
+
    class MyService(Service):
        def handle(self):
            self.response.payload = 'Welcome to README'

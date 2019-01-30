@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 Search - ElasticSearch
 ======================
@@ -39,14 +39,14 @@ Searching
 ::
 
   from zato.server.service import Service
-  
+
   class MyService(Service):
       def handle(self):
           with self.search.solr['My Connection'].conn.client() as client:
-  
+
               # Fetch all documents
               result = client.search('*:*')
-  
+
               # Let's find out what we were given
               for item in result.docs:
                   self.logger.info(item)
@@ -67,11 +67,11 @@ Deleting
 ::
 
   from zato.server.service import Service
-  
+
   class MyService(Service):
       def handle(self):
           with self.search.solr.get('My Connection').conn.client() as client:
-  
+
               # Delete a document by its ID
               client.delete('my-id1')
 

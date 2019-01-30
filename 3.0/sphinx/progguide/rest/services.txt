@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 REST services
 =============
@@ -46,7 +46,7 @@ HTTP 405 Method Not Allowed is returned automatically.
     > User-Agent: curl/7.35.0
     > Host: localhost:11223
     > Accept: */*
-    > 
+    >
     < HTTP/1.1 200 OK
     * Server Zato is not blacklisted
     < Server: Zato
@@ -55,10 +55,10 @@ HTTP 405 Method Not Allowed is returned automatically.
     < Transfer-Encoding: chunked
     < Content-Type: application/vnd.example.customer
     < X-Zato-CID: K057V46CGYZJTG35J59AFNCQ3FT0
-    < 
+    <
     * Closing connection 0
     {"cust_name":"Mike Drums"}
-    $ 
+    $
 
 .. code-block:: text
     :emphasize-lines: 1,5,10
@@ -71,7 +71,7 @@ HTTP 405 Method Not Allowed is returned automatically.
     > User-Agent: curl/7.35.0
     > Host: 127.0.0.1:11223
     > Accept: */*
-    > 
+    >
     < HTTP/1.1 204 No Content
     * Server Zato is not blacklisted
     < Server: Zato
@@ -79,7 +79,7 @@ HTTP 405 Method Not Allowed is returned automatically.
     < Connection: close
     < Content-Type: application/json
     < X-Zato-CID: K077H15C4BMQV24W87Z2BSR1MZYF
-    < 
+    <
     * Closing connection 0
     $
 
@@ -94,7 +94,7 @@ HTTP 405 Method Not Allowed is returned automatically.
     > User-Agent: curl/7.35.0
     > Host: 127.0.0.1:11223
     > Accept: */*
-    > 
+    >
     < HTTP/1.1 405 Method Not Allowed
     * Server Zato is not blacklisted
     < Server: Zato
@@ -103,9 +103,9 @@ HTTP 405 Method Not Allowed is returned automatically.
     < Transfer-Encoding: chunked
     < Content-Type: application/json
     < X-Zato-CID: K05CRTF6PJBZWZNR5WBYZHW2TSWM
-    < 
+    <
     * Closing connection 0
-    $ 
+    $
 
 Notes:
 

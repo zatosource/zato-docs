@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 AMQP usage examples
 ===================
@@ -16,8 +16,8 @@ The request will be in self.request.payload.
 
 ::
 
-   from zato.server.service import Service   
-   
+   from zato.server.service import Service
+
    class MyService(Service):
        def handle(self):
            self.logger.info('Got message: {}'.format(self.request.payload))
@@ -28,7 +28,7 @@ The request will be in self.request.payload.
 Sending messages to exchanges
 -----------------------------
 
-Create a new 
+Create a new
 :doc:`outgoing AMQP connection <../../web-admin/outgoing/amqp>`
 and send a message like in the example below. The
 :doc:`full API <../outconn/amqp>`
@@ -36,8 +36,8 @@ allows to set or override custom headers and properties.
 
 ::
 
-   from zato.server.service import Service   
-   
+   from zato.server.service import Service
+
    class MyService(Service):
        def handle(self):
            self.outgoing.amqp.send('my-message', 'outconn-name', '/exchange', 'route-key')

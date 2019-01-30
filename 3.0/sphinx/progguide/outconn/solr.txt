@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 Solr queries
 ============
@@ -22,10 +22,10 @@ self.search.solr[name].conn.client()
 .. py:method:: .search.solr[name].conn.client():
 
   Returns an object to issue Solr queries with.
-  
+
   :param name: Name of the :doc:`Solr connection <../../web-admin/search/solr>`
   :type name: string
-  
+
   :rtype: (A `pysolr.Solr <https://pypi.python.org/pypi/pysolr/>`_ instance)
 
 Usage example

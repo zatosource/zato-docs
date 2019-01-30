@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 Crypto - encryption and decryption
 ==================================
@@ -56,7 +56,7 @@ Python
           self.logger.info('Decrypted `%s`', decrypted)
 
 .. highlight:: bash
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 ::
 

@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 Cassandra queries
 =================
@@ -26,10 +26,10 @@ self.cassandra_conn.get
 
   Fetches an object representing a connection to a Cassandra server.
   The object's .execute method lets one issue CQL queries.
-  
+
   :param name: Name of the :doc:`Cassandra connection definition <../../web-admin/conn-def/cassandra>` to issue queries with.
   :type name: string
-  
+
   :rtype: (A `cassandra.cluster.Session <https://datastax.github.io/python-driver/api/cassandra/cluster.html#cassandra.cluster.Session>`_ object)
 
 Precompiled queries
@@ -49,7 +49,7 @@ self.cassandra_query.get
 
   :param name: Name of the :doc:`Cassandra precompiled query <../../web-admin/query/cassandra>` to execute.
   :type name: string
-  
+
   :rtype: (An object to issue already existing CQL query templates with)
 
 Usage examples
@@ -61,12 +61,12 @@ Ad-hoc queries
 ::
 
   from zato.server.service import Service
-  
+
   class MyService(Service):
       def handle(self):
           conn = self.cassandra_conn.get('My Database').conn
           result = conn.execute('SELECT * FROM schema_columns')
-  
+
           self.logger.info(result)
 
 ::
@@ -75,7 +75,7 @@ Ad-hoc queries
      [{u'index_options': u'null', u'index_name': None, u'keyspace_name': u'system',
       u'index_type': None, u'validator': u'org.apache.cassandra.db.marshal.BytesType',
       u'columnfamily_name': u'IndexInfo', u'component_index': None, u'type': u'compact_value'}]
-      
+
 
 Precompiled queries
 ~~~~~~~~~~~~~~~~~~~
@@ -89,12 +89,12 @@ Assuming an existing :doc:`query <../../web-admin/query/cassandra>` such as belo
 ::
 
   from zato.server.service import Service
-  
+
   class MyService(Service):
       def handle(self):
           query = self.cassandra_query.get('My Query')
           result = query.execute(client_id=123, account_id=456)
-  
+
           self.logger.info(result)
 
 ::

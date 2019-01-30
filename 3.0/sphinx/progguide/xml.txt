@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 XML
 ===
@@ -19,75 +19,75 @@ and :doc:`hot-deploy <../admin/guide/installing-services>` it.
 ::
 
    from zato.server.service import Service
-   
+
    class MyService(Service):
        def handle(self):
            pass
-           
+
 .. image:: /gfx/progguide/xml-channel1.png
    :align: center
-   
-   
+
+
 Accessing request elements
 --------------------------
 
-*  
+*
    If a channel the service is exposed over defines the data format to be XML,
    Zato will parse the incoming request using `lxml <http://lxml.de>`_
-   and the service's self.request.payload object will be set to the root element 
-   of the XML using an instance of 
+   and the service's self.request.payload object will be set to the root element
+   of the XML using an instance of
    `lxml.objectify.ObjectifiedElement <http://lxml.de/objectify.html>`_.
    Hence below we can access cust_info.cust.cust_id directly as though they were
    regular attributes of an object.
-   
+
    ::
-   
+
       from zato.server.service import Service
-      
+
       class MyService(Service):
           def handle(self):
               if self.request.payload.cust_info.cust.cust_id == 1:
                   self.logger.info('Got it!')
-   
+
    .. code-block:: xml
-   
+
       $ curl localhost:17010/xml-example.my-service -d '
         <root><cust_info><cust><cust_id>1</cust_id></cust></cust_info></root>'
-      
+
    ::
-   
+
      INFO - Got it!
-  
-  
-*  
+
+
+*
    If an element is optional and doesn't exist in the request, you can't simply reference it,
    an AttributeError will be raised. Instead, you need to use getattr() to find out
    if it's been provided.
-   
+
    ::
-   
+
       from zato.server.service import Service
-      
+
       class MyService(Service):
           def handle(self):
               cust_type = getattr(self.request.payload, 'cust_type', None)
               if cust_type == 'AZE':
                   self.logger.info('Got it!')
-                  
-* 
+
+*
    You access lists of elements by iterating over their parent element using .getchildren()
 
    ::
-      
+
       from zato.server.service import Service
-      
+
       class MyService(Service):
           def handle(self):
               for elem in self.request.payload.cust_info.address_list.getchildren():
                   self.logger.info(elem)
-               
+
    .. code-block:: xml
-   
+
       $ curl localhost:17010/xml-example.my-service -d '<root><cust_info>
             <address_list>
                 <address>Nerviërslaan 31 Avenue</address>
@@ -95,60 +95,60 @@ Accessing request elements
             </address_list>
       </cust_info></root>'
 
-   ::   
-      
+   ::
+
       INFO - Nerviërslaan 31 Avenue
       INFO - Juan de Aliaga 230
-      
+
 *
 
    Attributes are accessed using an element's .get method.
 
    ::
-   
+
       # Zato
       from zato.server.service import Service
-      
+
       class MyService(Service):
           def handle(self):
               cust_id = self.request.payload.cust.get('id')
               self.logger.info('cust_id:[{}]'.format(cust_id))
-              
+
    .. code-block:: javascript
-   
+
       $ curl localhost:17010/xml-example.my-service -d '<root><cust id="1"/></root>'
 
-   ::   
-      
+   ::
+
       INFO - cust_id:[1]
-      
+
 *
    You can also reference elements using their namespaces. Note in the example
    below that whole document is in the 'example.com/1' namespace but the element
    we want to get, relation_type, uses 'example.com/2', hence we cannot access it
    using plain dot notation.
-   
+
 
    ::
-   
+
       from zato.server.service import Service
-      
+
       class MyService(Service):
           def handle(self):
               relation_type = getattr(
                 self.request.payload.cust_info, '{example.com/2}relation_type')
               if relation_type == 'AAA':
                   self.logger.info('Got it!')
-                  
+
    .. code-block:: xml
-   
+
       $ curl localhost:17010/xml-example.my-service -d '
       <root xmlns="example.com/1"><cust_info>
          <relation_type xmlns="example.com/2">AAA</relation_type>
       </cust_info></root>'
-   
+
    ::
-   
+
      INFO - Got it!
 
 *
@@ -156,21 +156,21 @@ Accessing request elements
    in handy if you want to parse it using your own tools of choice. Note however that in this
    case you shouldn't set the channel's data format to XML so that Zato doesn't
    parse it unnecessarily.
-   
+
    ::
-   
+
       from zato.server.service import Service
-      
+
       class MyService(Service):
           def handle(self):
               self.logger.info('XML:[{}]'.format(self.request.raw_request))
-              
+
    .. code-block:: xml
-   
+
       $ curl localhost:17010/xml-example.my-service -d '<root><cust_id>1</cust_id></root>'
-      
+
    ::
-   
+
       INFO - XML:[<root><cust_id>1</cust_id></root>]
 
 Producing response
@@ -180,49 +180,49 @@ Producing response
 
    You just need to assign a unicode string representing an XML document to
    self.response.payload and it's completely up to you how the string is procured.
-   
+
    Using `lxml <http://lxml.de>`_ is one easy way:
-   
+
    ::
-   
+
       # lxml
       from lxml import etree
       from lxml import objectify
-      
+
       # Zato
       from zato.server.service import Service
-      
+
       class MyService(Service):
           def handle(self):
               cust_data = etree.Element('cust_data')
               phone_number = objectify.SubElement(cust_data, 'phone_number')
               phone_number.text = '123-456-789'
-              
+
               self.response.payload = etree.tostring(cust_data)
-              
+
    .. code-block:: xml
-   
+
       $ curl localhost:17010/xml-example.my-service -d ''
       <cust_data><phone_number>123-456-789</phone_number></cust_data>
-      
 
-* 
+
+*
 
    It doesn't matter how the string is obtained, it can even be assigned directly.
-   
+
    ::
 
       from zato.server.service import Service
-      
+
       class MyService(Service):
           def handle(self):
               self.response.payload = '<customer><id>1</id></customer>'
-              
+
    .. code-block:: xml
-   
+
       $ curl localhost:17010/xml-example.my-service -d ''
       <customer><id>1</id></customer>
-      
+
 SOAP support
 ------------
 
@@ -234,28 +234,28 @@ You need to create SOAP channels instead of plain HTTP ones.
 
 .. image:: /gfx/progguide/xml-soap-channel1.png
    :align: center
-   
+
 Now your service will receive the first child of /soapenv:Envelope/soapenv:Body
 in self.request.payload and just like with plain XML above, you need to assign
 a unicode string value to self.response.payload. This time however, the payload
-will be automatically wrapped in a SOAP envelope for you. 
+will be automatically wrapped in a SOAP envelope for you.
 
 ::
 
    # -*- coding: utf-8 -*-
-   
+
    # lxml
    from lxml import etree
-   
+
    # Zato
    from zato.server.service import Service
-   
+
    class MyService(Service):
        def handle(self):
            cust_id = getattr(self.request.payload, '{example.com/1}cust_id')
            self.logger.info('cust_id:[{}]'.format(cust_id))
            self.response.payload = '<cust xmlns="example.com/1"><name>楊朱</name></cust>'
-           
+
 .. code-block:: xml
 
    $ curl localhost:17010/soap-example.my-service \
@@ -268,7 +268,7 @@ will be automatically wrapped in a SOAP envelope for you.
       </ns:root>
      </soapenv:Body>
     </soapenv:Envelope>'
-    
+
     <?xml version='1.0' encoding='UTF-8'?>
     <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
         xmlns="https://zato.io/ns/20130518">
@@ -278,7 +278,7 @@ will be automatically wrapped in a SOAP envelope for you.
       </cust>
      </soap:Body>
     </soap:Envelope>
-  
+
 ::
 
   INFO - cust_id:[1]

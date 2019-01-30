@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 SessionAttr.names - Python API
 ==============================
@@ -17,7 +17,7 @@ Usage
 ~~~~~
 
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 ::
 

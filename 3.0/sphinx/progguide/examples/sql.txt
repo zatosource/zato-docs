@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 SQL usage examples
 ==================
@@ -14,7 +14,7 @@ It's easiest to use the Python's built-in
 `contextlib.closing <http://docs.python.org/2.7/library/contextlib.html#contextlib.closing>`_
 manager for doing it.
 
-The full API is documented 
+The full API is documented
 :doc:`here <../outconn/sql>`.
 
 .. _progguide-examples-sql-raw:
@@ -26,17 +26,17 @@ Issuing raw SQL
 
    # stdlib
    from contextlib import closing
-   
+
    # Zato
    from zato.server.service import Service
-   
+
    class MyService(Service):
        def handle(self):
-           
+
            # Always use templates and bind variables
            template = 'SELECT name FROM http_soap WHERE data_format=:data_format'
            parameters = {'data_format':'json'}
-           
+
            with closing(self.outgoing.sql.get('my-conn').session()) as session:
                result = session.execute(template, parameters)
                for item in result:

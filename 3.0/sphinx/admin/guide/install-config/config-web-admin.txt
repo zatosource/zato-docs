@@ -1,5 +1,5 @@
 .. highlight:: json
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 Configuring a web admin console
 ===============================
@@ -121,11 +121,11 @@ DATABASE_PASSWORD
 @@@@@@@@@@@@@@@@@
 
 Database user's password to use, encrypted using web admin's private key. The password
-can be 
+can be
 :doc:`decrypted <../../cli/decrypt>`
 and
 :doc:`encrypted <../../cli/encrypt>`
-from command line using 
+from command line using
 :doc:`the CLI <../../cli/index>`.
 
 DATABASE_HOST
@@ -156,14 +156,14 @@ Same as `Django's SITE_ID <https://docs.djangoproject.com/en/1.5/ref/settings/#s
 SECRET_KEY
 @@@@@@@@@@
 
-Same as `Django's SECRET_KEY <https://docs.djangoproject.com/en/1.5/ref/settings/#secret-key>`_. 
+Same as `Django's SECRET_KEY <https://docs.djangoproject.com/en/1.5/ref/settings/#secret-key>`_.
 
 Encrypted using web admin's private key. The key
-can be 
+can be
 :doc:`decrypted <../../cli/decrypt>`
 and
 :doc:`encrypted <../../cli/encrypt>`
-from command line using 
+from command line using
 :doc:`the CLI <../../cli/index>`.
 
 ADMIN_INVOKE_NAME
@@ -177,11 +177,11 @@ ADMIN_INVOKE_PASSWORD
 Technical user's password.
 
 Encrypted using web admin's private key. The password
-can be 
+can be
 :doc:`decrypted <../../cli/decrypt>`
 and
 :doc:`encrypted <../../cli/encrypt>`
-from command line using 
+from command line using
 :doc:`the CLI <../../cli/index>`.
 
 ADMIN_INVOKE_PATH
@@ -236,7 +236,7 @@ to configure how and where logging messages should be  written to.
 
 Of special interest are keys:
 
-* ''.level - sets the log level for anything but Zato 
+* ''.level - sets the log level for anything but Zato
 * zato.level - sets the log level for main Zato logger
 
 .. _admin-guide-config-web-admin-crypto:

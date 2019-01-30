@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 Patterns - Invoke/retry
 =======================
@@ -15,7 +15,7 @@ There are 3 modes of operations:
 * Invoke a service synchronously and if the call fails, repeat the call a configured number of times still blocking
   the service issuing the call - all the calls are blocking
 
-* Invoke a service synchronously but if it fails, repeat the call in background invoking a callback when the target service finally replies - 
+* Invoke a service synchronously but if it fails, repeat the call in background invoking a callback when the target service finally replies -
   only the first call is blocking
 
 * Invoke a service asynchronously straightaway, repeating the call in background if it doesn't succeed the first and subsequent times -

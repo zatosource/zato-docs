@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 SMTP
 ====
@@ -17,7 +17,7 @@ Sending regular e-mails
 
         from zato.common import SMTPMessage
         from zato.server.service import Service
-        
+
         class MyService(Service):
             def handle(self):
 
@@ -45,7 +45,7 @@ Set *is_html* to True to signal that the message contains HTML.
 
         from zato.common import SMTPMessage
         from zato.server.service import Service
-        
+
         class MyService(Service):
             def handle(self):
 

@@ -1,5 +1,5 @@
 .. highlight:: json
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 Configuring the load-balancer
 =============================
@@ -24,7 +24,7 @@ and :doc:`should be usually modified using the web admin <../../../web-admin/loa
 One thing that you may want to edit is the username and password to browse the
 load-balancer's statistics with, available under 'defaults -> stats auth'.
 
-However, if you're an advanced HAProxy user you may wish to update other parts 
+However, if you're an advanced HAProxy user you may wish to update other parts
 yourself too, just keep in mind that any lines containing the '# ZATO' string must
 not be deleted and the comment must be left intact.
 
@@ -63,8 +63,8 @@ The file is in JSON and its keys are:
 haproxy_command
 @@@@@@@@@@@@@@@
 
-The operating system's command that should be executed to start 
-`HAPproxy <http://haproxy.1wt.eu/>`_, 
+The operating system's command that should be executed to start
+`HAPproxy <http://haproxy.1wt.eu/>`_,
 which is the underlying tool used as a load-balancer.
 
 host
@@ -107,7 +107,7 @@ verify_fields
 @@@@@@@@@@@@@
 
 An optional dictionary of key/value fields in a client certificate that must exist
-in incoming requests to the agent. 
+in incoming requests to the agent.
 
 log_config
 @@@@@@@@@@
@@ -160,7 +160,7 @@ to configure how and where logging messages should be  written to.
 
 Of special interest are keys:
 
-* ''.level - sets the log level for anything but Zato 
+* ''.level - sets the log level for anything but Zato
 * zato.level - sets the log level for main Zato logger
 
 .. _admin-guide-config-lb-crypto:

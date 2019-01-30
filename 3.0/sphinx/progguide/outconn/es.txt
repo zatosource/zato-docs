@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 Elastic Search queries
 ======================
@@ -25,10 +25,10 @@ self.search.es.get
   The connection supports a range of operations
   explained in the `elasticsearch-py  project's documentation <https://elasticsearch-py.readthedocs.org/en/master/api.html>`_,
   such as .search, .index, .create, .get, .exists and others.
-  
+
   :param name: Name of the :doc:`ElasticSearch connection <../../web-admin/search/es>`
   :type name: string
-  
+
   :rtype: (An object whose .conn attribute is an `elasticsearch.client.ElasticSearch <https://elasticsearch-py.readthedocs.org/en/master/api.html#elasticsearch>`_ instance)
 
 Usage example
@@ -37,15 +37,15 @@ Usage example
 ::
 
   from zato.server.service import Service
-  
+
   class MyService(Service):
       def handle(self):
           conn = self.search.es.get('My ES Connection').conn
-  
+
           # Create a document
           result = conn.create('my-index', 'my-doc-type', {'hello':'world'}, 'doc-id')
           self.logger.info(result)
-  
+
           # And look it up
           result = conn.search(q='hello:*')
           self.logger.info(result)

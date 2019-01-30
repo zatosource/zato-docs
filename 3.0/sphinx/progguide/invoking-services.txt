@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 Invoking other services
 =======================
@@ -8,21 +8,21 @@ Invoking other services
     This chapter documents how other services running in a Zato cluster can be invoked.
     Visit :doc:`here <./outconn/overview>` for information how to establish connections to external
     services and resources.
-    
+
 Choosing a mode of invocation
 =============================
 
-Services can be invoked 
+Services can be invoked
 :ref:`synchronously <progguide-write-service-invoke>`
-or in an 
+or in an
 :ref:`asynchronous manner <progguide-write-service-invoke_async>`
 so that you
 can choose whether the invoking service is blocked waiting for the response
-or if the other service should be run in background. 
+or if the other service should be run in background.
 
 Note that for the latter,
 you won't receive a response directly, instead, when invoking another service asynchronously
-you are given a 
+you are given a
 :ref:`CID <progguide-write-service-cid>` the service being invoked will also receive so that
 its response, if any, can be correlated later on, using other Zato mechanisms, specific to your
 application.
@@ -30,8 +30,8 @@ application.
 Regardless of the invocation method, there is no difference in how requests are passed
 in.
 
-If a service is being run programmatically its 
-:ref:`channel attribute <progguide-write-service-channel>` 
+If a service is being run programmatically its
+:ref:`channel attribute <progguide-write-service-channel>`
 will be 'invoke' or 'invoke-async' depending on the invocation style.
 
 A service cannot invoke itself synchronously. It's possible for a service to
@@ -40,25 +40,25 @@ invoke itself asynchronously but doing so will create an infinite loop.
 How to pass a request to another service
 ========================================
 
-* 
+*
 
     Passing a request is most convenient if another service uses :doc:`Simple IO (SIO) <./sio>`,
     in such cases it's possible to use a plain Python dictionary as input data.
-    
+
     .. note ::
 
       Zato uses SIO in its own services and this is how they can be invoked.
-    
+
     ::
 
         from zato.server.service import Service
 
         class MyService(Service):
             def handle(self):
-            
+
                 # A regular dictionary will do when invoking an SIO service
                 input_data = {'cluster_id': 1}
-                
+
                 response = self.invoke('zato.security.get-list', input_data, as_bunch=True)
                 for item in response.zato_security_get_list_response:
                     self.logger.info(item.name)
@@ -66,7 +66,7 @@ How to pass a request to another service
 
 * Use the 'data_format' parameter if a service expects the incoming data to be in a particular
   data format, such as JSON or XML.
-  
+
   ::
 
     # stdlib
@@ -78,26 +78,26 @@ How to pass a request to another service
 
     class MyService(Service):
         def handle(self):
-        
+
             input_data = {'customer_id': 123, 'phone_no': '123-456-789'}
             input_data = dumps(input_data) # Convert to JSON
-            
+
             service_name = 'invoking.my-service2'
             self.invoke(service_name, input_data, data_format=DATA_FORMAT.JSON)
-            
+
             self.logger.info(response)
 
     class MyService2(Service):
         def handle(self):
-        
+
             # Note how the payload is already a Python dictionary
             # and doesn't need to be parsed manually
             self.logger.info(self.request.payload['customer_id'])
-      
+
 * Same thing but done asynchronously:
-  
+
   ::
-  
+
     # stdlib
     from json import dumps
 
@@ -122,7 +122,7 @@ How to pass a request to another service
             # Note how the payload is already a Python dictionary
             # and doesn't need to be parsed manually
             self.logger.info(self.request.payload['customer_id'])
-      
+
 Reading responses
 =================
 
@@ -130,9 +130,9 @@ Reading responses
   use them directly or to convert a response to a Bunch in order to use the
   dot-notation when accessing the response's elements. Thus, the examples below
   are equivalent.
-  
+
   ::
-  
+
     from zato.server.service import Service
 
     class MyService(Service):
@@ -145,12 +145,12 @@ Reading responses
             input_required = ('cust_id',)
             output_required = ('cust_name',)
             response_elem = 'my_response_elem'
-            
+
         def handle(self):
             self.response.payload.cust_name = 'Alexis Abramov'
-            
+
   ::
-  
+
     from zato.server.service import Service
 
     class MyService(Service):
@@ -163,15 +163,15 @@ Reading responses
             input_required = ('cust_id',)
             output_required = ('cust_name',)
             response_elem = 'my_response_elem'
-            
+
         def handle(self):
             self.response.payload.cust_name = 'Alexis Abramov'
-            
+
 * Services that don't use SIO will create string responses that will have to be
-  parsed manually. 
-  
+  parsed manually.
+
   ::
-  
+
     # stdlib
     from json import dumps, loads
 
@@ -188,22 +188,22 @@ Reading responses
         def handle(self):
             cust_data = {'cust_name': 'Alexis Abramov'}
             self.response.payload = dumps(cust_data)
-            
+
 * When invoking a service asynchronously you don't know when its response will be
   produced nor what server the service will be executed on even though on the source-code
   level they both may be defined in the very same Python module as in the example
-  below. 
-  
+  below.
+
   Hence, the response from
-  an asynchronous invocation is the :ref:`CID <progguide-write-service-cid>` 
-  the service which is being invoked will receive. 
-  
+  an asynchronous invocation is the :ref:`CID <progguide-write-service-cid>`
+  the service which is being invoked will receive.
+
   You can use the CID returned
   to correlate asynchronous responses when they are available - how it's performed
   is up to your application.
-  
+
   ::
-  
+
     from zato.server.service import Service
 
     class MyService(Service):
@@ -214,9 +214,9 @@ Reading responses
     class MyService2(Service):
         def handle(self):
             self.logger.info('My CID is {}'.format(self.cid))
-            
+
   ::
-  
+
     INFO - Got CID K117816978965978292208766150986347804459
     INFO - My CID is K117816978965978292208766150986347804459
 

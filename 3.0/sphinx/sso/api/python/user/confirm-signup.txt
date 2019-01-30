@@ -1,6 +1,6 @@
 
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 User.confirm_signup - Python API
 ================================

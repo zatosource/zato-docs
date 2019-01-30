@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 Search - ElasticSearch
 ======================
@@ -93,11 +93,11 @@ in order to learn how to access other features such as bulk deleting, counting a
 ::
 
   from zato.server.service import Service
-  
+
   class MyService(Service):
       def handle(self):
           conn = self.search.es.get('My Connection').conn
-  
+
           self.logger.info(conn.__class__)
 
 ::

@@ -1,14 +1,14 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 Making sure you work on the right environment
 =============================================
 
-A single 
+A single
 :doc:`web admin </architecture/web-admin>`
 instance can be used to handle multiple environments,
 such as production, tests and development, and to help you with differentiating
-which environment you currently work with, you can assign 
+which environment you currently work with, you can assign
 (click :doc:`'My settings' <../web-admin/settings/main>` in the top-right corner) a color to each cluster
 so that, for instance, a production cluster will be in yellow while development
 will use green.
@@ -25,8 +25,8 @@ user has their own set of colors.
    :align: center
 
 ::
-   
+
    .. makes a bar appear when working on that environment.
-   
+
 .. image:: /gfx/progguide/web-admin-settings2.png
    :align: center

@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 Debugging
 =========
@@ -25,9 +25,9 @@ critical situations.
 Always provide context when logging information. There's no joy in spending
 a night on diagnosing an issue at a client's site because a service's author decided
 it was best to log information that 'An unexpected error has been encountered'. With Zato,
-it's trivial to log 
-:ref:`input <progguide-write-service-log_input>`/:ref:`output <progguide-write-service-log_output>` 
-and the current stacktrace and these two pieces of information are usually the very 
+it's trivial to log
+:ref:`input <progguide-write-service-log_input>`/:ref:`output <progguide-write-service-log_output>`
+and the current stacktrace and these two pieces of information are usually the very
 minimum of what should be logged along.
 
 Consult your admins and with everyone interested in the subject work out an approach
@@ -39,10 +39,10 @@ that's not WARN or more severe could be ignored by production admins.
 Samples
 -------
 
-Remember that Zato is able to collect sample 
+Remember that Zato is able to collect sample
 :doc:`service requests and responses <../web-admin/service-details/sample-req-resp>`. If a service
 possibly produces an incorrect response and you have access to other environment the same service
-is deployed in and the latter doesn't cause problems, you can compare its sample response and decide 
+is deployed in and the latter doesn't cause problems, you can compare its sample response and decide
 when the former one's is proper or not.
 
 Slow responses

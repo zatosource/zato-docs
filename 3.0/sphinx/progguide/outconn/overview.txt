@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 Outgoing connections
 ====================
@@ -8,18 +8,18 @@ Outgoing connections
    :align: center
 
 Each service can automatically access external resources using a range of protocols
-documented in subsequent chapters. 
+documented in subsequent chapters.
 
 HTTP-based publish/subscribe offers another alternative to direct messaging between applications
 and is :doc:`documented <../../pubsub/index>` separately.
 
-Some of the protocols are synchronous while communicating over the rest is 
+Some of the protocols are synchronous while communicating over the rest is
 performed asynchronously, in a fire-and-forget manner.
 
-Note that you always need to take 
+Note that you always need to take
 :doc:`high-availability (HA) <../../admin/guide/ha>`
-into account, particularly so 
-if you're using 
+into account, particularly so
+if you're using
 :doc:`AMQP <./amqp>` or
 :doc:`JMS WebSphere MQ <./jms-wmq>`
 outgoing connections.

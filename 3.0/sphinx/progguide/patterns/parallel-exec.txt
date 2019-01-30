@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 Patterns - Parallel execution
 =============================
@@ -86,8 +86,8 @@ no matter if any raises an exception or ot.
 
 Each callback is invoked asynchronously, in isolation from any other callbacks defined.
 
-Upon execution, each callback's :ref:`self.channel <progguide-write-service-channel>` attribute will be set to 
-*PARALLEL_EXEC_ON_TARGET* from 
+Upon execution, each callback's :ref:`self.channel <progguide-write-service-channel>` attribute will be set to
+*PARALLEL_EXEC_ON_TARGET* from
 `zato.common.CHANNEL <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py>`_.
 
 On input, a callback's *self.request.payload* attribute will be a Python dictionary with the contents in the format as below:
