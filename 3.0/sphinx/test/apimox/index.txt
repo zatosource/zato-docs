@@ -1,5 +1,5 @@
-.. highlight:: bash
-   
+.. highlight:: text
+
 Convenient API mocks with zato-apimox
 =====================================
 
@@ -61,7 +61,7 @@ found in URL path and query string.
 
     $ curl http://localhost:44333/demo?hello=sky
     {"Isn't apimox great?":"Sure it is!"}
-    $ 
+    $
 
 ::
 
@@ -84,7 +84,7 @@ found in URL path and query string.
     <root>
      <element>Greetings!</element>
     </root>
-    $ 
+    $
 
 
 Initializing environments
@@ -99,7 +99,7 @@ own mocks.
     $ apimox init ~/projects/my-apimox/
     OK, initialized.
     Run `apimox run /home/user/projects/my-apimox` for a live demo.
-    $ 
+    $
 
 Starting and stopping mocks
 ---------------------------
@@ -154,7 +154,7 @@ Mocks run in foreground. To stop a mock server, press *Ctrl-C* in terminal.
     INFO - ZMQ PULL listening on tcp://0.0.0.0:55000
     ^C
     Aborted!
-    $ 
+    $
 
 Mock environment layout
 -----------------------
@@ -580,15 +580,15 @@ Use *status* key to set a status code required in response, for instance:
     > User-Agent: curl/7.35.0
     > Host: localhost:44333
     > Accept: */*
-    > 
+    >
     < HTTP/1.1 501 Not Implemented
     < Content-Type: application/json
     < Date: Mon, 28 Sep 2015 15:45:40 GMT
     < Content-Length: 17
-    < 
+    <
     * Connection #0 to host localhost left intact
     {"hello":"there"}
-    $ 
+    $
 
 
 
@@ -613,12 +613,12 @@ Use *content_type* key to set any  content type needed in response, for instance
     > User-Agent: curl/7.35.0
     > Host: localhost:44333
     > Accept: */*
-    > 
+    >
     < HTTP/1.1 200 OK
     < Content-Type: text/vnd.my.content.type
     < Date: Mon, 28 Sep 2015 15:49:10 GMT
     < Content-Length: 17
-    < 
+    <
     * Connection #0 to host localhost left intact
     {"hello":"there"}
     $
@@ -650,7 +650,7 @@ to be a file name existing in the environment's *http/response/txt* directory an
     > User-Agent: curl/7.35.0
     > Host: localhost:44333
     > Accept: */*
-    > 
+    >
     < HTTP/1.1 200 OK
     < X-MyOtherKey: MyOtherValue
     < X-MyKey: MyValue
@@ -659,7 +659,7 @@ to be a file name existing in the environment's *http/response/txt* directory an
     < Content-Type: application/json
     < Date: Wed, 30 Sep 2015 07:55:31 GMT
     < Content-Length: 17
-    < 
+    <
     * Connection #0 to host localhost left intact
     {"hello":"there"}
     $
@@ -698,7 +698,7 @@ the value X-MyHeader1 has in common.txt.
     > User-Agent: curl/7.35.0
     > Host: localhost:44333
     > Accept: */*
-    > 
+    >
     < HTTP/1.1 200 OK
     < X-Hello: Howdy
     < X-MyHeader2: MyValue2
@@ -706,7 +706,7 @@ the value X-MyHeader1 has in common.txt.
     < Content-Type: application/json
     < Date: Wed, 30 Sep 2015 08:04:18 GMT
     < Content-Length: 17
-    < 
+    <
     * Connection #0 to host localhost left intact
     $
 

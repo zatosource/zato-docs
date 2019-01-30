@@ -50,12 +50,16 @@ admin.log.
 
 The first one is the service that web-admin invoked and what request was used:
 
+.. highlight:: text
+
 ::
 
   INFO - name:`zato.scheduler.job.get-list`,
          request:`{u'query': u'', u'paginate': True, u'cluster_id': 1, u'cur_page': 1}`
 
 The second one is the response that the API service responded with:
+
+.. highlight:: text
 
 ::
 
@@ -145,6 +149,8 @@ Thus:
 
 As noted earlier, any HTTP verb can be used, hence the two approaches below will achieve the same result:
 
+.. highlight:: bash
+
 ::
 
   $ curl -XPOST http://pubapi:<pass>@localhost:11223/zato/api/invoke/zato.server.get-list?cluster_id=1
@@ -162,6 +168,8 @@ for HTTP Basic Auth user pubapi before it can be used. It can be install via pip
 in a particular situation.
 
 The example below illustrates the usage of the same service as in the REST section:
+
+.. highlight:: python
 
 ::
 
@@ -187,6 +195,8 @@ The example below illustrates the usage of the same service as in the REST secti
 
   # And display the response
   print(response.data)
+
+.. highlight:: text
 
 ::
 

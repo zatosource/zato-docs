@@ -49,21 +49,21 @@ def setup(app):
         rolename      = "lookup",
         indextemplate = "pair: %s; field lookup type",
     )
-    app.add_description_unit(
+    app.add_object_type(
         directivename = "django-admin",
         rolename      = "djadmin",
         indextemplate = "pair: %s; django-admin command",
         parse_node    = parse_django_admin_node,
     )
-    app.add_description_unit(
+    app.add_object_type(
         directivename = "django-admin-option",
         rolename      = "djadminopt",
         indextemplate = "pair: %s; django-admin command-line option",
         parse_node    = parse_django_adminopt_node,
     )
     app.add_config_value('django_next_version', '0.0', True)
-    app.add_directive('versionadded', VersionDirective)
-    app.add_directive('versionchanged', VersionDirective)
+    #app.add_directive('versionadded', VersionDirective)
+    #app.add_directive('versionchanged', VersionDirective)
     app.add_transform(SuppressBlockquotes)
     app.add_builder(DjangoStandaloneHTMLBuilder)
 
@@ -236,7 +236,6 @@ class DjangoStandaloneHTMLBuilder(StandaloneHTMLBuilder):
         if json is None:
             self.warn("cannot create templatebuiltins.js due to missing simplejson dependency")
             return
-        self.info(bold("writing templatebuiltins.js..."))
         xrefs = self.env.domaindata["std"]["objects"]
         templatebuiltins = {
             "ttags": [n for ((t, n), (l, a)) in xrefs.items()

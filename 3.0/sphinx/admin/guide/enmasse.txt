@@ -1,4 +1,5 @@
-.. highlight:: bash
+.. role:: bash(code)
+   :language: bash
 
 Managing server objects en masse
 ================================

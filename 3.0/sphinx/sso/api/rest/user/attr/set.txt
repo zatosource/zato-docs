@@ -1,4 +1,4 @@
-.. highlight:: bash
+.. highlight:: text
    :linenothreshold: 1000
 
 UserAttr.set - REST API

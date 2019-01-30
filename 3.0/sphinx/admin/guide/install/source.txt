@@ -1,5 +1,3 @@
-.. highlight:: sh
-
 Installing Zato from source code
 ================================
 

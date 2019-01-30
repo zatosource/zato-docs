@@ -85,7 +85,7 @@ topic. For each topic, there is exactly one server that will be responsible for 
 indicates how often this server will push out its messages to recipients. Conversely, sync interval dictates how often other
 server push out messages they received for topic to that delivery server.
 
-For each topic it is possible to :ref:`assign a service <pubsub-topic-hook>` that will execute at specific points,
+For each topic it is possible to assign a service that will execute at specific points,
 e.g. before the message is published or before it is delivered to a subscriber. The service has access to full business
 data and metadata. This lets one, for instance, to transform messages on a per-recipient basis, possibly
 including changing its data format or enrichment with data obtained by invoking other services.

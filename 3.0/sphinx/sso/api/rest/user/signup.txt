@@ -1,5 +1,4 @@
-
-.. highlight:: python
+.. highlight:: text
    :linenothreshold: 0
 
 User.signup - REST API

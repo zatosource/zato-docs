@@ -1,4 +1,4 @@
-.. highlight:: ini
+.. highlight:: text
    :linenothreshold: 1000
 
 SSO configuration

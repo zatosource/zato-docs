@@ -1,5 +1,5 @@
 .. highlight:: python
-   :linenothreshold: 0
+   :linenothreshold: 1
 
 Django and Flask integration
 ============================
@@ -30,8 +30,8 @@ Why two services and when to use either?
 
 Which approach to use, whether serialize manually or let Zato do it, depends on which Python client will be used:
 
-* :ref:`AnyServiceInvoker <progguide-clients-python-AnyServiceInvoker>`
-* :ref:`JSONClient <progguide-clients-python-JSONClient>`
+* :doc:`AnyServiceInvoker <./python>`
+* :doc:`JSONClient <./python>`
 
 The difference between them is that AnyServiceInvoker connects to a special built-in service which in turn invokes user services
 whereas JSONClient connects to target services directly.
@@ -73,6 +73,9 @@ Steps:
 * To set it up locally, execute the commands below. This will clone the repository, install everything under
   `virtualenv <https://virtualenv.pypa.io/en/latest/>`_ and run a Django development server on http://localhost:8188/
 
+  .. highlight:: bash
+     :linenothreshold: 1
+
   ::
 
     $ git clone https://github.com/zatosource/zato-django-integration.git
@@ -84,7 +87,7 @@ Steps:
 * Enter any string that will serve as an ID of a customer whose name to return
 
 * You can also pick whether to use :ref:`AnyServiceInvoker <progguide-clients-python-AnyServiceInvoker>` or
-  :ref:`JSONClient <progguide-clients-python-JSONClient>` for calling Zato - either way the result will be the same.
+  :doc:`JSONClient <./python>` for calling Zato - either way the result will be the same.
 
 .. image:: /gfx/progguide/clients/django-flask/django-result.png
 
@@ -116,7 +119,7 @@ Discussion:
 
   client_any = AnyServiceInvoker(CLIENT_ADDRESS, CLIENT_PATH_ANY, CLIENT_CREDENTIALS)
   client_json = JSONClient(CLIENT_ADDRESS, CLIENT_PATH_JSON, CLIENT_CREDENTIALS)
-  
+
   class ZatoMiddleware(object):
       def process_request(self, req):
           req.client_any = client_any
@@ -165,6 +168,9 @@ Steps:
 * To set it up locally, execute the commands below. This will clone the repository, install everything under
   `virtualenv <https://virtualenv.pypa.io/en/latest/>`_ and run a Django development server on http://localhost:8199/
 
+  .. highlight:: bash
+     :linenothreshold: 1
+
   ::
 
     $ git clone https://github.com/zatosource/zato-flask-integration.git
@@ -176,7 +182,7 @@ Steps:
 * Enter any string that will serve as an ID of a customer whose name to return
 
 * You can also pick whether to use :ref:`AnyServiceInvoker <progguide-clients-python-AnyServiceInvoker>` or
-  :ref:`JSONClient <progguide-clients-python-JSONClient>` for calling Zato - either way the result will be the same.
+  :doc:`JSONClient <./python>` for calling Zato - either way the result will be the same.
 
 .. image:: /gfx/progguide/clients/django-flask/flask-result.png
 
@@ -212,7 +218,7 @@ Discussion:
 * Both AnyServiceInvoker and JSONClient are stateless, they don't keep any state around. They can be simply created once and used
   when needed.
 
-* How Flask 
+* How Flask
   `calls Zato <https://github.com/zatosource/zato-flask-integration/blob/master/sampleapp/customer.py#L74>`_
   depends on whether AnyServiceInvoker or JSONClient is used. With the former
   the name of the target service needs to be provided on input in addition to the actual request. With the latter, only the
