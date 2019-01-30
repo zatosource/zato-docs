@@ -21,7 +21,7 @@ Note that you always need to take
 into account, particularly so
 if you're using
 :doc:`AMQP <./amqp>` or
-:doc:`JMS WebSphere MQ <./jms-wmq>`
+:doc:`IBM MQ <./jms-wmq>`
 outgoing connections.
 
 =================================== ===========
@@ -33,7 +33,7 @@ Protocol                            Synchronous
 :doc:`FTP <./ftp>`                  Yes
 :doc:`HTTP <./http>`                Yes
 :doc:`IMAP <./imap>`                Yes
-:doc:`JMS WebSphere MQ <./jms-wmq>` ---
+:doc:`IBM MQ <./jms-wmq>` ---
 :doc:`Odoo (OpenERP) <./odoo>`      Yes
 :doc:`SMTP <./smtp>`                Yes
 :doc:`Solr <./solr>`                Yes

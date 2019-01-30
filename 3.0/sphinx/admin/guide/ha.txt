@@ -20,11 +20,11 @@ Reminding a couple of facts will make it easier to discuss the matter:
 * Each cluster has a single HTTP load-balancer in front of it so the traffic
   is always distribute fairly over all servers
 
-* If a cluster establishes any AMQP, JMS WebSphere MQ or ZeroMQ connections,
+* If a cluster establishes any AMQP, IBM MQ or ZeroMQ connections,
   these are always managed by connector processes - there are as many connectors
   as there are channels and outgoing connections using these 3 technologies.
 
-  As far as AMQP and JMS WebSphere MQ go, connectors are used for both channels
+  As far as AMQP and IBM MQ go, connectors are used for both channels
   and outgoing connections. With ZeroMQ, only channels use connectors and outgoing connections
   are created from Zato servers directly without connectors.
 

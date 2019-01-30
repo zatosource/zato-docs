@@ -1,28 +1,21 @@
 .. highlight:: python
    :linenothreshold: 1
 
-JMS WebSphere MQ outgoing connections
+IBM MQ outgoing connections
 ======================================
 
 Overview
 --------
 
-Asynchronously sends a message to a WebSphere MQ queue manager using
+Sends a message to an IBM MQ queue manager using
 :doc:`connection <../../web-admin/conn-def/jms-wmq>`
 :doc:`parameters <../../web-admin/outgoing/jms-wmq>`
 specified.
 
-The application on the receiving end is assumed to have been written in Java
-using MQ JMS API. This allows for seamless integration with Java JMS WMQ systems -
+The application on the receiving end may be written in Java
+using MQ JMS API. This allows for seamless integration with Java JMS MQ systems -
 from their point of view Zato, despite being written in Python, will appear to be
 a Java application.
-
-The message is first published on the :doc:`Zato broker </architecture/redis>`
-off of which the connector process responsible for communication with this particular
-queue manager picks it up and actually sends it to the remote queue.
-
-The underlying client JMS WMQ libraries are `PyMQI <https://github.com/dsuch/pymqi>`_
-and `Spring Python <http://static.springsource.org/spring-python/1.2.x/sphinx/html/jms.html>`_.
 
 .. note::
 
@@ -35,17 +28,13 @@ API
 
 .. _progguide-outconn-jms-wmq.send:
 
-self.outgoing.jms_wmq.send
+self.outgoing.ibm_mq.send
 ``````````````````````````
 
 .. py:method:: send(msg, out_name, queue, delivery_mode=None, expiration=None, priority=None, max_chars_printed=None):
 
-  Uses an outgoing connection of a given name to send a JMS message to a WebSphere MQ
+  Uses an outgoing connection of a given name to send a message to an IBM MQ
   queue manager.
-
-  Optional parameters, if not given, take values from the connection template,
-  which in turn uses default values Spring Python provides and these are in accordance
-  with the JMS spec.
 
   :param msg: Message to send
   :param out_name: Outgoing connection to use
@@ -82,14 +71,4 @@ Usage example
           queue = 'CUSTOMER.CASES.1'
 
           # Send the message to a queue manager
-          self.outgoing.jms_wmq.send(msg, out_name, queue)
-
-When caught travelling over the wire the raw bytes sent across to the
-queue manager can be confirmed to be a JMS message indeed.
-
-::
-
-  RFH \x00\x00\x00\x02\x00\x00\x00\xa0\x00\x00\x01\x11\x00\x00\x04\xb8
-  MQSTR   \x00\x00\x00\x00\x00\x00\x04\xb8\x00\x00\x00x
-  <jms><Dst>queue:///CUSTOMER.CASES.1</Dst><Tms>1367515530623</Tms><Dlv>1</Dlv>
-  <Exp>1367515535623</Exp><Pri>5</Pri></jms> Hello MQ!
+          self.outgoing.ibm_mq.send(msg, out_name, queue)

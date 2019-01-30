@@ -10,7 +10,7 @@ Channels
 Services accept requests either from jobs initiated by the
 :doc:`scheduler <./scheduler>` or via
 :doc:`AMQP <../web-admin/channels/amqp>`,
-:doc:`JMS WebSphere MQ <../web-admin/channels/jms-wmq>`,
+:doc:`IBM MQ <../web-admin/channels/jms-wmq>`,
 :doc:`plain HTTP <../web-admin/channels/plain-http>`,
 :doc:`SOAP <../web-admin/channels/soap>` and
 :doc:`ZeroMQ <../web-admin/channels/zmq>`
@@ -49,7 +49,7 @@ Note that you always need to take
 into account, particularly so
 if you're using
 :doc:`AMQP <../web-admin/channels/amqp>`,
-:doc:`JMS WebSphere MQ <../web-admin/channels/jms-wmq>`
+:doc:`IBM MQ <../web-admin/channels/jms-wmq>`
 or
 :doc:`ZeroMQ <../web-admin/channels/zmq>` channels.
 

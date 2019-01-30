@@ -205,7 +205,7 @@ Programming guide
       :doc:`Other data formats <progguide/examples/other-formats>` |
       :doc:`AMQP <progguide/examples/amqp>` |
       :doc:`FTP <progguide/examples/ftp>` |
-      :doc:`JMS WebSphere MQ <progguide/examples/jms-wmq>` |
+      :doc:`IBM MQ <progguide/examples/jms-wmq>` |
       :doc:`Redis <progguide/examples/redis>` |
       :doc:`Scheduler <progguide/examples/scheduler>` |
       :doc:`SQL <progguide/examples/sql>` |

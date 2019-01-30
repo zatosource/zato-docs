@@ -662,7 +662,6 @@ Log files
 Name                    Notes
 ======================= ==========================================================================================================
 admin.log               I/O of admin services used for reconfiguration of running servers
-connector.log           Messages stored by connectors to AMQP, WebSphere MQ and ZeroMQ
 http_access.log         An Apache-compatible HTTP access log
 kvdb.log                Messages related to key/value DB (Redis)
 pubsub.log              Messages related to publish/subscribe

@@ -715,7 +715,7 @@ covered but you should already have a solid understanding of some of the core as
     and
     :doc:`async invocations with callbacks <../progguide/patterns/async-invoke>`
   * :doc:`AMQP <../progguide/outconn/amqp>`
-  * :doc:`JMS WebSphere MQ <../progguide/outconn/jms-wmq>`
+  * :doc:`IBM MQ <../progguide/outconn/jms-wmq>`
   * :doc:`ZeroMQ <../progguide/outconn/zmq>`
   * :doc:`SimpleIO (SIO)<../progguide/sio>`
   * :doc:`JSON <../progguide/json>`

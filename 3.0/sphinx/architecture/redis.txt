@@ -4,7 +4,7 @@ Redis
 .. image:: /gfx/arch-redis.png
    :align: center
 
-Redis key/value database (KVDB) is used by servers to store data that is 
+Redis key/value database (KVDB) is used by servers to store data that is
 of highly dynamic or volatile nature. Each cluster needs a KVDB and each KVDB
 belongs to a single cluster only, Redis cannot be shared between clusters.
 
@@ -58,7 +58,7 @@ Distributed locks
 Some processes taking place within a cluster need to be performed by one
 of multiple processes or servers only. For instance, there are typically multiple
 gunicorn workers supporting a Zato server and they all start up asynchronously.
-Only one of them should be allowed to deploy services assigned to a server 
+Only one of them should be allowed to deploy services assigned to a server
 and Redis is used to implement a distributed lock for that purpose.
 
 .. _arch-redis-broker:
@@ -66,19 +66,12 @@ and Redis is used to implement a distributed lock for that purpose.
 Broker messages
 ---------------
 
-Servers never communicate directly. If one server needs to inform one or more
+Servers usually do not communicate directly. If one server needs to inform one or more
 servers of, for instance, a change in its configuration, a message in published
 on Redis and other servers, subscribed on Redis channels, pick it up.
 
 Likewise, a message the cluster's scheduler wants to send to one of the servers
 will be published to Redis and a server will receive it asynchronously.
-
-Connectors are the other part of a Zato cluster that use Redis. Message exchanging
-using AMQP, WebSphere MQ and ZeroMQ is never performed directly between services
-and external applications - services send messages to Redis, connectors pick
-them up and send them over to queues. Conversely, when a connector receives a 
-message on queue, the message is published on Redis and one of the server subscribed
-receives it asynchronously.
 
 .. _arch-redis-data-dict:
 

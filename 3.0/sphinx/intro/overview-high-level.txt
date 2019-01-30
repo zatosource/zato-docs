@@ -77,7 +77,7 @@ regardless of its origin and programming language used. The interfaces include:
 * Redis-based publish/subscribe for REST applications
 * FTP(S)
 * AMQP
-* WebSphere MQ
+* IBM MQ
 * ZeroMQ
 * JMS
 * SOAP

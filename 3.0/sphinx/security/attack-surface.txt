@@ -4,8 +4,8 @@ Attack surface
 Overview
 --------
 
-This chapter defines Zato's attack surface, these parts of a cluster's 
-resources that can be used by an adversary to attack Zato. 
+This chapter defines Zato's attack surface, these parts of a cluster's
+resources that can be used by an adversary to attack Zato.
 
 The attack surface is discussed in terms of entry and exit points in order to give you
 an understanding of how an attacker could gain access to a cluster. Some notes
@@ -19,7 +19,7 @@ configuration files, including ports they're running on, if any,
 and any crypto resources that are in use, such as keys and certificates.
 
 Crypto material used by Zato components is not protected by passwords.
-    
+
 Web admin, load-balancer and servers, all of them Python's own
 `logging package <http://docs.python.org/2.7/library/logging.html>`_.
 Depending on their configuration, the logs will written out either to local files
@@ -31,7 +31,7 @@ Zato's :doc:`CLI </admin/cli/index>` can be used to start, stop
 and manage other aspects of web admin, load-balancer and servers.
 
 Exactly one of servers in a cluster is considered a connector server. This is the
-server that will start AMQP, JMS WebSphere MQ and ZeroMQ connectors in order
+server that will start AMQP, IBM MQ and ZeroMQ connectors in order
 to accept or send messages coming through these protocols. Note that when a connector
 server goes down, another server will assume its role.
 
@@ -100,10 +100,10 @@ Exit points
 ~~~~~~~~~~~
 
 Servers access other services, either Zato's own or belonging to external systems,
-through AMQP, FTP, JMS WebSphere MQ, Plain HTTP, SOAP, SQL or ZeroMQ.
+through AMQP, FTP, IBM MQ, Plain HTTP, SOAP, SQL or ZeroMQ.
 
 Servers need to access Redis and SQL ODB, both read and write, for a proper functioning.
-It's not required for servers to have any sort of a DDL authority 
+It's not required for servers to have any sort of a DDL authority
 in the SQL ODB.
 
 SQL ODB
@@ -112,7 +112,7 @@ SQL ODB
 Entry points
 ~~~~~~~~~~~~
 
-SQL ODB is accessed by the web admin and servers, for both read and writes. Once 
+SQL ODB is accessed by the web admin and servers, for both read and writes. Once
 the SQL ODB has been created, no Zato component will attempt to issue any
 DDL statements against it.
 
@@ -127,7 +127,7 @@ Web admin
 Entry points
 ~~~~~~~~~~~~
 
-Web admin is primarily a web console implemented in Django, accessed through a browser. 
+Web admin is primarily a web console implemented in Django, accessed through a browser.
 
 The web console is listening on a TCP socket. Depending on how it's been configured,
 traffic to the console will be either plain HTTP or HTTPS.
@@ -153,5 +153,5 @@ the password needed to browse the latter's statistics, addresses of servers
 running in a cluster and every other bit of configuration.
 
 A few features of web admin require direct access, for both read and write,
-to the SQL ODB using either Django's SQL API or SQLAlchemy. Web admin won't 
+to the SQL ODB using either Django's SQL API or SQLAlchemy. Web admin won't
 issue DDL queries in the SQL ODB.

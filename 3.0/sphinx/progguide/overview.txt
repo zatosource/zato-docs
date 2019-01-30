@@ -27,7 +27,7 @@ through the most commonly used
 protocols and transports -
 :doc:`Plain HTTP, SOAP, JSON <./outconn/http>`,
 :doc:`AMQP <./outconn/amqp>`,
-:doc:`JMS WebSphere MQ <./outconn/jms-wmq>`,
+:doc:`IBM MQ <./outconn/jms-wmq>`,
 :doc:`ZeroMQ <./outconn/zmq>`,
 :doc:`SQL <./outconn/sql>`,
 and

@@ -1,7 +1,7 @@
 .. highlight:: python
    :linenothreshold: 1
 
-JMS WebSphere MQ usage examples
+IBM MQ usage examples
 ===============================
 
 .. _progguide-examples-jms-wmq-receiving:
@@ -9,7 +9,7 @@ JMS WebSphere MQ usage examples
 Receiving messages from queues
 ------------------------------
 
-No programming is needed to receive messages from JMS WebSphere MQ queues. Create a new
+No programming is needed to receive messages from IBM MQ queues. Create a new
 :doc:`channel <../../web-admin/channels/jms-wmq>`
 and a given service will be invoked for each message taken off a queue.
 The request, stripped off the MQRFH2 JMS headers, will be in self.request.payload.
@@ -29,7 +29,7 @@ Sending messages to queues
 --------------------------
 
 Create a new
-:doc:`outgoing JMS WebSphere MQ connection <../../web-admin/outgoing/jms-wmq>`
+:doc:`outgoing IBM MQ connection <../../web-admin/outgoing/jms-wmq>`
 and send a message like in the example below.
 
 The :doc:`full API <../outconn/jms-wmq>`
@@ -44,4 +44,4 @@ appears as though Zato was a Java application.
 
    class MyService(Service):
        def handle(self):
-           self.outgoing.jms_wmq.send('my-message', 'outgoing-connection-name', 'QUEUE.1')
+           self.outgoing.ibm_mq.send('my-message', 'outgoing-connection-name', 'QUEUE.1')

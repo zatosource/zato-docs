@@ -68,7 +68,7 @@ When the scheduler needs to invoke a service, it publishes a message
 to Redis, the message is picked up by one of the cluster's servers and again,
 there is no direct communication between the scheduler and servers.
 
-Connectors use Redis too. If a service needs to send a message to AMQP, JMS WebSphere MQ
+Connectors use Redis too. If a service needs to send a message to AMQP, IBM MQ
 or ZeroMQ, or if external applications use this protocols to send messages to Zato,
 they all are routed through Redis in an asynchronous manner.
 
@@ -117,7 +117,7 @@ Access to SQL resources is implemented using the `SQLAlchemy <http://sqlalchemy.
 Connectors
 ----------
 
-AMQP, JMS WebSphere MQ and ZeroMQ are protocols that Zato uses asynchronously
+AMQP, IBM MQ and ZeroMQ are protocols that Zato uses asynchronously
 through cluster connectors. For that protocols, each channel and an outgoing connection
 will start a new connector, e.g. if there are 3 AMQP channels and 2 ZeroMQ outgoing
 connections defined, there will be 5 connectors started by the :ref:`singleton server <arch-servers-singletons>`.

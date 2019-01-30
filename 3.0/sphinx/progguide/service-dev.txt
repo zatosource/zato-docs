@@ -100,7 +100,7 @@ in your services.
 Depending on the choices you make, it will be usually possible to make the very
 same service, with no changes to the code, available across multiple
 :doc:`channels <./channels>`
-- AMQP, JMS WebSphere MQ, Plain HTTP, SOAP and ZeroMQ
+- AMQP, IBM MQ, Plain HTTP, SOAP and ZeroMQ
 
 You can store data in
 Redis,
@@ -113,7 +113,7 @@ A service can
 as well as access resources outside a Zato environment.
 The latter ones include
 :doc:`AMQP <./outconn/amqp>`,
-:doc:`JMS WebSphere MQ <./outconn/jms-wmq>`,
+:doc:`IBM MQ <./outconn/jms-wmq>`,
 :doc:`Plain HTTP <./outconn/http>`,
 :doc:`SOAP <./outconn/http>`,
 :doc:`ZeroMQ <./outconn/zmq>`
@@ -551,7 +551,7 @@ Lets one invoke external
 :doc:`FTP <./outconn/ftp>`,
 :doc:`AMQP <./outconn/amqp>`,
 :doc:`ZeroMQ <./outconn/zmq>`,
-:doc:`JMS WebSphere MQ <./outconn/jms-wmq>`,
+:doc:`IBM MQ <./outconn/jms-wmq>`,
 :doc:`SQL <./outconn/sql>`,
 :doc:`Plain HTTP <./outconn/http>`
 and

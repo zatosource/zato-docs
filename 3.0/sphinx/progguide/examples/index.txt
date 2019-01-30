@@ -83,7 +83,7 @@ Topic                                             Examples
                                                   * :ref:`Listing directories <progguide-examples-ftp-listing>`
                                                   * :ref:`Reading files <progguide-examples-ftp-reading>`
 
-:doc:`JMS WebSphere MQ <./jms-wmq>`               * :ref:`Receiving messages from queues <progguide-examples-jms-wmq-receiving>`
+:doc:`IBM MQ <./jms-wmq>`                         * :ref:`Receiving messages from queues <progguide-examples-jms-wmq-receiving>`
                                                   * :ref:`Sending messages to queues <progguide-examples-jms-wmq-sending>`
 
 :doc:`Redis <./redis>`                            * :ref:`Simple keys <progguide-examples-redis-simple-keys>`
