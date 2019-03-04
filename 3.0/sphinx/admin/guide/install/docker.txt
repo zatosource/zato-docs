@@ -18,8 +18,8 @@ Quickstart cluster
 
 ::
 
-    host$ mkdir -p ~/zato-docker && cd ~/zato-docker && \
-            wget https://zato.io/download/docker/3.0/quickstart/Dockerfile
+    host$ mkdir -p ~/zato-docker && cd ~/zato-docker && wget -i \
+          https://raw.githubusercontent.com/zatosource/zato-build/master/docker/quickstart/filelist
 
 * Build Zato Docker image
 
@@ -27,19 +27,19 @@ Quickstart cluster
 
     host$ sudo docker build --no-cache -t zato-3.0 .
 
-* Retrieve your dynamically generated passwords. The first one is to Zato web-admin, the other is for ssh connections.
-
-::
-
-    host$ sudo docker run zato-3.0 /bin/bash -c 'cat /opt/zato/web_admin_password \
-            /opt/zato/zato_user_password'
-
 * Create a container in which Zato components will be launched:
 
 ::
 
-    host$ sudo docker run -it -p 22 -p 6379:6379 -p 8183:8183 -p 17010:17010 -p 17011:17011 \
-            -p 11223:11223 zato-3.0
+    host$ sudo docker run -it --rm -p 22 -p 6379:6379 -p 8183:8183 -p 17010:17010 -p 17011:17011 \
+            -p 11223:11223 --name zato zato-3.0
+
+* Retrieve your dynamically generated passwords. The first one is to Zato web-admin, the other is for ssh connections.
+
+::
+
+    host$ sudo docker exec zato /bin/bash -c 'cat /opt/zato/web_admin_password \
+            /opt/zato/zato_user_password'
 
 That concludes the process - a web-admin instance is running on http://localhost:8183 and you can log into
 it with the username 'admin' using the password printed on the terminal above.
@@ -47,6 +47,26 @@ it with the username 'admin' using the password printed on the terminal above.
 You can also connect via SSH to the container under which Zato is running.
 User: zato. Password: second one of the two printed on terminal above.
 
-You can refer to the main
-:doc:`documentation index <../../../index>`
-now.
+Environment Variables Available
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Zato image uses several environment variables which can be used to fine-tune the resulting installation.
+
+They are not required to use, and default values will be substituted if any is missing,
+but they may be employed to configure particular details of each of the components.
+
+======================== =================================================================================================
+Variable                 Notes
+======================== =================================================================================================
+ZATO_SSH_PASSWORD        Password for user `zato` to access through ssh. If not defined,
+                         the value is generated automatically at runtime.
+ZATO_WEB_ADMIN_PASSWORD  Password for the web admin’s technical account user to connect with. If not defined,
+                         the value is generated automatically at runtime.
+REDIS_HOSTNAME           Redis service hostname. Default value is **localhost**.
+ODB_TYPE                 ODB type to use. Must be one of: `mysql`, `postgresql` or `sqlite`. Default value is **sqlite**.
+ODB_HOSTNAME             ODB hostname.
+ODB_PORT                 ODB port.
+ODB_NAME                 ODB database.
+ODB_USERNAME             ODB username.
+ODB_PASSWORD             ODB password.
+======================== =================================================================================================
