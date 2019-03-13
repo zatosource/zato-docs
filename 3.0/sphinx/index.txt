@@ -355,7 +355,8 @@ Administration guide
       :doc:`SSL/TLS <admin/guide/tls/overview>` |
       :doc:`API Specification Service <admin/guide/apispec-pub>` |
       :doc:`Configuration patterns <admin/guide/config-patterns>` |
-      :doc:`Building custom packages <admin/guide/build-package>`
+      :doc:`Building custom packages <admin/guide/build-package>` |
+      :doc:`Bash completion update <admin/guide/bash-completion-update>`
 
     * **Docker support:**
       :doc:`Installing a quickstart environment <admin/guide/install/docker>`
