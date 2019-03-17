@@ -361,6 +361,9 @@ Administration guide
     * **Docker support:**
       :doc:`Installing a quickstart environment <admin/guide/install/docker>`
 
+    * **Vagrant support:**
+      :doc:`Running a quickstart environment <admin/guide/install/vagrant>`
+
 Architecture
 ============
 
