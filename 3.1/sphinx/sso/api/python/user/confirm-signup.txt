@@ -1,0 +1,51 @@
+
+.. highlight:: python
+   :linenothreshold: 1
+
+User.confirm_signup - Python API
+================================
+
+Lets users confirm their intent to sign up with the SSO system. On input, a :doc:`confirmation token <./signup>`
+must be sent. There is no response if the call succeeds, otherwise an SSOException may be raised.
+
+API
+---
+
+self.sso.user.confirm_signup
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. py:method:: confirm_signup(self, cid, confirm_token, current_app, remote_addr)
+
+  Signs up users with the SSO system.
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
+  :type cid: string
+
+  :param confirm_token: Signup confirmation token :doc:`obtained <./signup>` previously
+  :type confirm_token: string
+
+  :param current_app: Name of application the current user is issuing the call from
+  :type current_app: string
+
+  :param remote_addr: User's remote address
+  :type remote_addr: string
+
+  :rtype: (None)
+
+::
+
+   # -*- coding: utf-8 -*-
+
+   from __future__ import absolute_import, division, print_function, unicode_literals
+
+   # Zato
+   from zato.server.service import Service
+
+   class ConfirmSignup(Service):
+       def handle(self):
+
+           # Read in from request
+           confirm_token = 'MpPAHsQAc6_x2GlddSLfNE_mlFWqoS59'
+
+           # Confirm signup; no exception = success
+           self.sso.user.confirm_signup(self.cid, confirm_token, 'CRM', '127.0.0.1')

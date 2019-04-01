@@ -23,7 +23,7 @@ Getting help
 
 * `Twitter <https://twitter.com/zatosource>`_ for quick questions and answers
 
-* Documentation for: `3.0 </docs/3.0/>`_ (current) · `2.0 </docs/2.0/>`_ (previous)
+* Documentation for: `3.0 </docs/3.0/>`_ (current) · `3.1 </docs/3.1/>`_ (in-dev)
 
 
 What makes Zato unique

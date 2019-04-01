@@ -1,0 +1,26 @@
+.. highlight:: sh
+
+Bash completion update
+======================
+
+Update process steps
+--------------------
+
+* Download and replace /etc/bash_completion.d/zato:
+
+::
+
+    host$ sudo wget -O /etc/bash_completion.d/zato \
+            https://raw.githubusercontent.com/zatosource/zato-build/master/bash_completion/zato
+
+
+You can logout and login to refresh the bash session or you can do the next step to reload Bash completion staying in the same session:
+
+* Reload Bash completion:
+
+::
+
+    host$ source /etc/bash_completion.d/zato
+
+
+That concludes the process, obtaining and updated version of Zato's Bash completion script.

@@ -1,0 +1,21 @@
+enclog demo
+===========
+
+Generates a new
+`Fernet key <https://cryptography.io/en/latest/fernet/>`_,
+encrypts well-known clear-text data with the key and decrypts it back
+showing everything on screen as it progresses.
+
+Usage
+-----
+
+::
+
+    $ enclog demo
+
+    Plain text: {"user":"Jane Xi"}
+    Key:        N1KXzlR4ZgKzSUBCohkf ..
+    Encrypted:  gAAAAABWaKUUSipRmTfZ-OrSX2vRmrBmmMA41VgCqNU-1IaV6hDUCvH_F7GDExzSHMS-3PyTHl8 ..
+    Decrypted:  {"user":"Jane Xi"}
+
+    $

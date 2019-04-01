@@ -1,0 +1,74 @@
+Security - XPath
+================
+
+Overview
+--------
+
+Used to create, update, delete and browse `XPath <https://en.wikipedia.org/wiki/XPath>`_
+security definitions that can be used by  :doc:`plain HTTP <../channels/plain-http>` channels whose data format is XML.
+
+XPath security lets one grant access to services basing on whether incoming XML requests contain custom
+username and password elements or attributes.
+
+* Menu path: Security -> XPath
+* Example address: http://localhost:8183/zato/security/xpath/?cluster=1
+
+.. image:: /gfx/web-admin/security/xpath.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/security/xpath-create.png
+
+==================== =========================================================================================================
+Header               Notes
+==================== =========================================================================================================
+Name                 Definition name
+Username expression  XPath expression evaluation of which should yield the username provided in the request
+Password expression  XPath expression evaluation of which should yield the password provided in the request
+Username             The username expected to be provided in the request
+==================== =========================================================================================================
+
+A newly created security definition has a secret set to a random UUID4 and needs to be changed in order for 
+the definition to be usable.
+
+XPath expressions as presented in the Create form can be used to access credentials such as below, for instance:
+
+.. code-block:: xml
+
+        <?xml version="1.0"?>
+        <request username="my-username">
+            <secret>my-password</secret>
+            <payload action="get-customer" id="1" />
+        </request>
+
+Change password
+---------------
+
+.. image:: /gfx/web-admin/security/xpath-change-password.png
+
+Updates a definition's password - the password is stored in the ODB along with
+other details of a security definition. This is not a required field and the password
+can be omitted altogether if it's not needed at all.
+
+Delete
+------
+
+.. image:: /gfx/web-admin/security/xpath-delete.png
+
+Deletes a security definition and all the connections that make use of it.
+
+.. note ::
+
+  It needs to be emphasized that any plain HTTP channels that were using the
+  definition will also be deleted automatically.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================

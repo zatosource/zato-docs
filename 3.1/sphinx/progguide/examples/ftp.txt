@@ -1,0 +1,81 @@
+.. highlight:: python
+   :linenothreshold: 1
+
+FTP usage examples
+==================
+
+FTP servers are accessed through the
+`fs <http://docs.pyfilesystem.org/en/latest/>`_
+library and any method
+the library supports is available to Zato services as well.
+
+Hence the code below serves as a set of examples only, it's not a full reference.
+
+.. _progguide-examples-ftp-putting:
+
+Putting files on server
+-----------------------
+
+::
+
+   from zato.server.service import Service
+
+   class MyService(Service):
+       def handle(self):
+           conn = self.outgoing.ftp.get('My FTP')
+           contents = conn.setcontents('/tmp/myfile', 'Hello\nFTP!\n')
+
+.. code-block:: text
+
+   $ cat /tmp/myfile
+   Hello
+   FTP!
+   $
+
+.. _progguide-examples-ftp-listing:
+
+Listing directories
+-------------------
+
+::
+
+   from zato.server.service import Service
+
+   class MyService(Service):
+       def handle(self):
+           conn = self.outgoing.ftp.get('My FTP')
+           listing = conn.listdir('/usr')
+           self.logger.info(listing)
+
+::
+
+   INFO - [u'bin', u'src', u'sbin', u'lib32', u'lib', u'share', u'include']
+
+.. _progguide-examples-ftp-reading:
+
+Reading files
+-------------
+
+.. code-block:: text
+
+   $ cat /tmp/myfile
+   123
+   456
+   789
+   $
+
+::
+
+   from zato.server.service import Service
+
+   class MyService(Service):
+       def handle(self):
+           conn = self.outgoing.ftp.get('My FTP')
+           contents = conn.getcontents('/tmp/myfile')
+           self.logger.info(contents)
+
+.. code-block:: text
+
+  INFO - 123
+  456
+  789
