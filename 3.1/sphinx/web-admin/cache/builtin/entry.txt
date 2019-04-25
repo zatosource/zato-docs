@@ -1,0 +1,84 @@
+Cache - Built-in - Entries
+============================
+
+Overview
+--------
+
+Used to look up, create, edit and delete entries in built-in caches.
+
+* Menu path: Connections -> Cache -> Built-in -> (Choose a cache) -> (Click its name)
+* Example address: http://localhost:8183/zato/cache/builtin/entries/3/?cluster=1
+
+.. image:: /gfx/web-admin/cache/builtin-entry-list.png
+   :width: 98%
+
+============ ================================================================================
+Header       Notes
+============ ================================================================================
+Key          Entry key - can be of any length and may include arbitrary Unicode characters
+Value        Value - same notes as with keys
+Idx          Position at which the key is found in cache - goes from 0 up to the cache's max
+             size. A key is moved to position 0 each time it is read.
+Expiry (s)   Optional expiry in second, counted from the insertion's time or last write
+Expires at   Expiry date
+Server (PID) Server and process ID that returned information about entries - each server
+             process maintains its own cache instance and the metadata will not always
+             be the same
+Hits         How many times the key has been read so far
+Last read    Last time the key was read
+Prev. read   Previous to last time the key was read
+Last write   Last time the key was written to
+Prev. write  Previous to last time the key was written to
+============ ================================================================================
+
+All dates are provided in current user's timezone as configured in :doc:`settings <../../settings/main>`.
+
+Search
+------
+
+Cache entries can be looked up by keys, values or both. By default lookups are carried out by keys but explicit prefixes
+can be used to enforce search by key **k:** or value **v:** - multiple search parameters may provided - they will be and-joined.
+Queries may contain any Unicode characters.
+
+.. image:: /gfx/web-admin/cache/builtin-entry-search1.png
+
+.. image:: /gfx/web-admin/cache/builtin-entry-search2.png
+
+.. image:: /gfx/web-admin/cache/builtin-entry-search3.png
+
+.. image:: /gfx/web-admin/cache/builtin-entry-search4.png
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/cache/builtin-entry-create.png
+
+================ ===============================================================================================
+Header           Notes
+================ ===============================================================================================
+Key              Entry key - may contain arbitrary Unicode characters
+Value            Entry value - also may contain any Unicode characters
+Key data type    Defaults to *String/unicode* but may be changed to *Integer* if the key is actually an integer
+Value data type  As above but set the data type of value
+Expiry           An optional expiration time in seconds
+Replace existing If checked and there is already a key of that name, its value will be overwritten
+                 with the new one. Otherwise, an error will be returned that such a key already exists
+                 along with information what its current value is.
+================ ===============================================================================================
+
+Delete
+------
+
+.. image:: /gfx/web-admin/cache/builtin-entry-delete.png
+
+Deletes the entry from cache. This operation cannot be undone.
+
+Changelog
+---------
+
+======= ===============
+Version Notes
+======= ===============
+3.0     Added initially
+======= ===============
+

@@ -1,0 +1,143 @@
+.. highlight:: python
+   :linenothreshold: 1
+
+WebSocket usage examples
+========================
+
+Receiving messages from WebSocket channels
+------------------------------------------
+
+No programming is needed to receive messages from :doc:`WebSocket channels <../../web-admin/channels/wsx>` -
+simply create a channel, mount a service on it and it will be invoked each time a new messages arrives.
+
+Sending messages to remote endpoints
+------------------------------------
+
+Create a new
+:doc:`outgoing WebSocket connection <../../web-admin/outgoing/wsx>`
+and send a message like in the example below.
+
+::
+
+   from zato.server.service import Service
+
+   class MyService(Service):
+       def handle(self):
+
+           # Message to send - needs to be a string/unicode object
+           msg = 'My message'
+
+           # Name of the connection to send messages through
+           conn_name = 'My WSX Connection'
+
+           # Obtain a client from the connection pool
+           with self.out.wsx.get(conn_name).conn.client() as client:
+
+               # Send a message - note that there will be no response
+               client.send(msg)
+
+Invoking remote Zato services
+-----------------------------
+
+Create a new
+:doc:`outgoing WebSocket connection <../../web-admin/outgoing/wsx>`
+and send a message like in the example below. Note that unlike in the example above, a response is produced on output,
+i.e. the calling service waits for the reply to become available.
+
+::
+
+   from zato.server.service import Service
+
+   class MyService(Service):
+       def handle(self):
+
+           # Message to send - needs to be a dictionary with name of the service to invoke
+           # as well as its input data, if any is required.
+           msg = {
+                'service':'zato.helpers.echo',
+                'request': {
+                    'elem1': 'value1',
+                    'elem2': 'value2',
+                }
+            }
+
+           # Name of the connection to send messages through
+           conn_name = 'My Zato WSX Connection'
+
+           # Obtain a client from the connection pool
+           with self.out.wsx.get(conn_name).conn.client() as client:
+
+               # Send the message and read its response
+               response = client.send(msg)
+
+               # Or, client.invoke can be used with Zato WebSocket connections,
+               # this method is an alias to client.send
+               response = client.invoke(msg)
+
+               # Log the response received
+               self.logger.info('Response is `%s`', response.data)
+
+::
+
+  INFO - Response is `{u'elem2': u'value2', u'elem1': u'value1'}`
+
+Hook services - receiving messages and reacting to events
+---------------------------------------------------------
+
+:doc:`Outgoing WebSocket connection <../../web-admin/outgoing/wsx>` can be assigned hook services that will be invoked
+upon receiving well-defined events related to connections:
+
+* When the connection is established
+* When the remote end sends a message
+* When the connection has been closed by the remote end
+
+The same service can be used for any and all of the hooks. To differentiate between them, each hook is assigned a constant
+from *zato.common.WEB_SOCKET.OUT_MSG_TYPE*, respectively:
+
+* CONNECT
+* MESSAGE
+* CLOSE
+
+Note that for WebSocket connections pointing to Zato channels with pub/sub topics, the MESSAGE hook will be invoked each
+time the remote Zato server publishes a message.
+
+Each hook receives on input a SimpleIO *ctx* object containing details of the event. The *ctx* object has the following
+properties:
+
+====== ================= ===============================================================================
+Name   Available in hook Description
+====== ================= ===============================================================================
+type   Any               What kind of message this is - may be useful if the same service is used
+                         as more than one hook
+data   MESSAGE           Data sent from the remote endpoint
+code   CLOSE             Code sent from the remote endpoint when it was closing the connection
+reason CLOSE             Textual reason sent from the remote endpoint when it was closing the connection
+====== ================= ===============================================================================
+
+In the usage example below, the same service is used as a hook for both MESSAGE and CLOSE events.
+
+::
+
+    # -*- coding: utf-8 -*-
+
+    from __future__ import absolute_import, division, print_function, unicode_literals
+
+    # Zato
+    from zato.common import WEB_SOCKET
+    from zato.server.service import Opaque, Service
+
+    class MyService(Service):
+        class SimpleIO:
+            input_optional = (Opaque('ctx'),)
+
+        def handle(self, msg_type=WEB_SOCKET.OUT_MSG_TYPE):
+            ctx = self.request.input.ctx
+
+            if ctx.type == msg_type.MESSAGE:
+                self.logger.info('Data received: `%s`', ctx.data)
+
+            elif ctx.type == msg_type.CLOSE:
+                self.logger.info('Remote end closed the connection')
+                self.logger.info('Code: `%s`', ctx.code)
+                self.logger.info('Reason: `%s`', ctx.reason)
+

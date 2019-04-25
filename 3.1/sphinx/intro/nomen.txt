@@ -1,0 +1,130 @@
+
+==================
+Nomenclature
+==================
+
+Introduction
+------------
+
+This chapter offers a quick reference-style overview of key terms used throughout the Zato documentation.
+
+Clusters and servers
+--------------------
+
+A
+:doc:`Zato cluster <../architecture/overview>`
+if a grouping of servers that run internal and user-defined services. Each servers always belongs to a cluster
+and a cluster has at least one server. There is no limit to how many servers there can be assigned to a cluster.
+
+Servers in a cluster can all run in the same operating system or in multiple ones. There can be multiple Zato environments
+running in one operating system and conversely, a single Zato environment can be spread across multiple systems.
+
+All servers always run the same set of services and all servers are always active, i.e. there is no notion of a standby server
+although servers can be taken offline with regards to the HTTP traffic they receive.
+
+Hot-deployment
+--------------
+
+Most actions performed against a Zato environment, for instance, installation of new services or updates to configuration,
+can be performed without any restarts. A hot-deployment performed using one server is internally synchronized by Zato with other
+members of a cluster without any need for manual updates in each server.
+
+Services
+--------
+
+A
+:doc:`Zato service <../progguide/service-dev>`
+is Python code offering interesting functionality forming business processes between domain systems in an
+integrated environment. This is the core building block used to build a
+:doc:`services-oriented architecture (SOA) <../intro/esb-soa>`.
+
+In coding terms, it is a Python class making use of the programming API Zato offers. This is the code that Zato programmers
+produce.
+
+Web-admin
+---------
+
+:doc:`Web-admin <../web-admin/intro>`
+is a web-based console used to manage clusters, servers, channels and other entities constituting a Zato environment.
+Each Zato environment has one web-admin instance.
+
+Load-balancer
+-------------
+
+Each Zato environment has a
+:doc:`load-balancer <../architecture/load-balancer>`
+in front of its servers to evenly distribute incoming HTTP traffic. The load-balancer
+is an embedded instance of HAProxy.
+
+Scheduler
+---------
+
+Each Zato environment comes with scheduler, managed through web-admin,
+that runs tasks periodically, according to user-defined task configuration.
+
+
+CLI (command line interface)
+----------------------------
+
+A wide range of admin commands is offered through a
+:doc:`CLI <../admin/cli/index>`
+instead of or in addition to web-admin to aid in scripting and other
+routine tasks.
+
+Channels
+--------
+
+A typical service is always independent of the means through which it becomes accessible to the outside world, that is,
+a service itself is not tied to any particular network protocol or data format. It just receives input data, performs its
+operations and produces output.
+
+It is the channel's function to make a given service available under, say, REST, AMQP, ZeroMQ or any other protocol Zato supports
+- channel is the place where the translation between intricate aspects of a protocol to the input for a service takes place.
+
+Since each server in a Zato cluster is always identical, each server has access to the list of channels that in turn are said
+to expose services behind them.
+
+Channels are created declaratively in web-admin or en-masse and each service can be independently mounted on multiple channels.
+
+Outgoing connections
+--------------------
+
+Each service can access external resources such as REST, AMQP, SMTP, Amazon S3 and more. An
+outgoing connection
+encapsulates
+all the details needed to make use of a given resource and offers a programmer-friendly API that hides all the actual details
+of how an outgoing connection is actually made, possibly using connection queues or other constructs that are internally managed
+by Zato without any needed for programmer's input. A programmer only produces JSON, XML or other data that an external resource
+needs and Zato issues a request and hands over the response to the programmer's code.
+
+Security
+--------
+
+Each Zato channel or outgoing connection can be protected with a
+security definition,
+such as HTTP Basic Auth, OAuth or TLS certificates. Each such
+definition is independent of one or more channels it is assigned to and changing details of security definition is
+automatically propagated to all channels using it.
+
+Statistics
+----------
+
+:doc:`Statistics <../stats/guide>` can be collected on several levels with diagrams and
+comparison tables available for most commonly used and slowest
+services in the last hour, day, month, year or for arbitrary dates.
+
+En-masse
+--------
+
+:doc:`En-masse <../admin/guide/enmasse>`
+is the command-line companion to web-admin. While web-admin offers an intuitive way to manage server objects from one's
+browser, en-masse lets one store the definitions of channels, security mechanism and more in JSON files that can be put in a code
+repository and used to install or update objects from command line in an automated fashion.
+
+Admin API
+---------
+
+99% of what web-admin does can be emulated or built upon by user-defined scripts and programs that take advantage of the
+REST or SOAP admin API.
+Apart from a few cases, the API offers full control over Zato environments - in fact, web-admin
+underneath is a client making use of the API itself.

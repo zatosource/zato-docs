@@ -1,0 +1,50 @@
+
+.. highlight:: bash
+   :linenothreshold: 1000
+
+Accessing user sessions
+=======================
+
+* After users :doc:`log in <../user/login>`, their sessions are identified by a UST - User Session Token - which has its expiration time,
+  i.e. time-to-live,  that can be extended through a Python or REST call
+* There are three APIs to access user sessions: renew, verify and get. The difference between them is that:
+
+  * Renew:
+
+    * Checks that the session exists and if it does, it will renew it
+    * On output, returns the session's new expiration time
+    * Can be used by both super-users and regular ones
+
+  * Verify:
+
+    * Only returns a boolean flag indicating that the session exists or not, it will not renew it
+    * Does not extend the session's expiration time
+    * Can be used only by super-users
+
+  * Get:
+
+    * Checks that the session exists and even if it does, it will not renew it
+    * On output, returns all the metadata about the session
+    * Can be used only by super-users
+
+* Each call serves a different purpose:
+
+  * Renew is used on behalf of users to extend their sessions
+
+  * Verify is used by super-users to check if a given session exists without changing its expiration time
+
+  * Get is used by super-users to get details of a session without changing its expiration time
+
+* On a higher level, calling get also implictly works like verify in that it returns data only if the session exists
+  but using verify instead of get is more efficient in terms of CPU and RAM needed because only a boolean flag is returned
+  instead of a whole set of metadata about the session
+
+* Note that it is not possible to renew a session if it's already expired or if the underlying user's password has expired
+
+* API call reference:
+
+  * REST: :doc:`renew <../../api/rest/session/renew>`, :doc:`verify <../../api/rest/session/verify>`
+    and :doc:`get <../../api/rest/session/get>`
+
+  * Python: :doc:`renew <../../api/python/session/renew>`, :doc:`verify <../../api/python/session/verify>`
+    and :doc:`get <../../api/python/session/get>`

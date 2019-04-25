@@ -1,0 +1,132 @@
+zato hash get-rounds
+====================
+
+Overview
+--------
+
+Computes the number of :doc:`rounds <../../sso/config/index>` for a Zato hashing algorithm so as to make it
+require a specific amount of time to complete.
+
+An algorithm, such as PBKDF2, requires a parameter called rounds that governs how complex the creation
+of a hashed secret is. The more rounds the more secure the result is at the cost of
+increased run-time power consumption and CPU use.
+
+The number of rounds depends on CPU frequency and should be as big
+as it is practical in a given environment, that is, as big as it can be while taking non-functional user requirements,
+such as the maximum login time or electricity usage.
+
+The command requires a single parameter *goal* which is the number of seconds that creating a hashed value should take,
+i.e. a single user or API client requesting the result will wait that many seconds each time the hashed value
+is computed in run-time, which happens, for instance, during user :doc:`authentication in SSO <../../sso/topic/user/login>`.
+
+As an example, with a goal of 0.2 and its resulting rounds, each user's password verification will take 0.2 second
+(plus other relevant overhead outside of hashing, such as HTTP communication).
+
+In current version, the only supported algorithm is PBKDF2-SHA512 with a salt size of 64 bytes (512 bits).
+
+Computation results are applicable only to Zato components using CPUs of the same frequency
+- they should not be used outside of Zato and values obtained in other environments cannot be compared
+directly with results of this command.
+
+Note that the value produced is rounded up to the nearest multiple of 5,000. For instance, both 90,000 and 93,000 rounds
+will be reported as 95,000.
+
+Subcommands
+------------
+
+* (None)
+
+Command-specific parameters
+---------------------------
+
+================================================= =======================================================================
+Name                                              Description
+================================================= =======================================================================
+goal                                              For how long a delay, in seconds, to compute the number of rounds for
+--json                                            Whether result should be produced in JSON
+--rounds-only                                     Whether result should be only a single integer representing the rounds,
+                                                  without any adornments or metadata
+================================================= =======================================================================
+
+Usage
+-----
+
+::
+
+    $ usage: zato hash get-rounds [-h] [--store-log] [--verbose] [--store-config]
+        [--json] [--rounds-only]
+        goal
+
+*  In the example below, using this particular CPU, 100000 rounds are needed for the hash computation to complete in 0.2 second.
+
+::
+
+    $ zato hash get-rounds 0.2
+    ----------------------------------------------------------------------
+    Algorithm ........... PBKDF2-SHA512, salt size 64 bytes (512 bits)
+    CPU brand ........... Intel(R) Core(TM) i7-4790K CPU @ 4.00GHz
+    CPU frequency........ 4.36 GHz
+    Goal ................ 0.2 sec
+    ----------------------------------------------------------------------
+    Done % .............. 5
+    Done % .............. 10
+    Done % .............. 15
+    Done % .............. 20
+    Done % .............. 25
+    Done % .............. 30
+    Done % .............. 35
+    Done % .............. 40
+    Done % .............. 45
+    Done % .............. 50
+    Done % .............. 55
+    Done % .............. 60
+    Done % .............. 65
+    Done % .............. 70
+    Done % .............. 75
+    Done % .............. 80
+    Done % .............. 85
+    Done % .............. 90
+    Done % .............. 95
+    Done % .............. 100
+    ----------------------------------------------------------------------
+    Performance ......... 480,000 rounds/s
+    Required for goal ... 100,000 rounds
+    ----------------------------------------------------------------------
+    $
+
+* Same as above, but result is in JSON (formatted for clarity). Note that there is no progress reported.
+
+::
+
+    $ zato hash get-rounds 0.2 --json
+    {
+     "rounds": 100000,
+     "rounds_str": "100,000",
+     "algorithm": "PBKDF2-SHA512",
+     "salt_size": 64,
+     "rounds_per_second": 494000,
+     "rounds_per_second_str": "494,000",
+     "cpu_info": {
+       "brand": "Intel(R) Core(TM) i7-4790K CPU @ 4.00GHz",
+       "hz_actual": "4.3756 GHz"
+      }
+    }
+    $
+
+* Write out only rounds to stdout, without any other information. No progress is reported while computation takes place.
+
+::
+
+    $ zato hash get-rounds 0.2 --rounds-only --verbose
+    100000
+    $
+
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+3.0                 Added initially
+=================== ===================================================================

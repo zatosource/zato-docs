@@ -1,0 +1,35 @@
+Cache - Built-in
+=================
+
+Overview
+--------
+
+In addition to :doc:`Memcached <../memcached>` connections, Zato ships with its own caching layer
+that includes `a range of operations <https://zato.io/blog/posts/api-caching-part-1.html>`_
+for Python or REST clients and a dedicated GUI.
+
+Moreover, :doc:`REST <../../channels/plain-http>` and :doc:`SOAP <../../channels/soap>` channels can automatically
+cache their responses without any programming needed.
+
+Each Zato environment may have an unlimited number of caches, each potentially governed by different configuration.
+One of the caches is the default one that is used unless a different one is explicitly employed.
+
+Built-in caches are in-RAM only, there is no persistent storage and server restarts will delete their contents.
+Future Zato versions will add options to optionally keep entries on disk.
+
+The following chapters document the GUI that administrators and programmers use to manage caches, look up entries,
+add new ones or update entries that already exist.
+
+* :doc:`Caches <./cache>`
+* :doc:`Cache entries <./entry>`
+
+
+Changelog
+---------
+
+======= ===============
+Version Notes
+======= ===============
+3.0     Added initially
+======= ===============
+

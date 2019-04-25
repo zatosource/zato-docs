@@ -1,0 +1,68 @@
+
+.. highlight:: python
+   :linenothreshold: 1
+
+Session.renew - Python API
+==========================
+
+Renews current session, returning its new expiration time on output (in UTC).
+
+Note that the call will raise an exception if:
+
+* The session has already expired
+* The underlying user's password has already expired
+
+API
+---
+
+self.sso.user.session.renew
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. py:method:: renew(self, cid, current_ust, current_app, remote_addr)
+
+  Creates a new super-user.
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
+  :type cid: string
+
+  :param current_ust: Current user's UST, the one to renew
+  :type current_ust: string
+
+  :param current_app: Name of application the current user is issuing the call from
+  :type current_app: string
+
+  :param remote_addr: Current user's remote address
+  :type remote_addr: string
+
+  :rtype: expiration_time - A datetime object representing the session's new expiration time
+
+::
+
+  # -*- coding: utf-8 -*-
+
+  from __future__ import absolute_import, division, print_function, unicode_literals
+
+  # Zato
+  from zato.server.service import Service
+
+  class RenewSession(Service):
+      def handle(self):
+
+          username = 'admin1'
+          password = 'abxqDJpXMVXYEO8NOGx9nVZvv4xSew9-'
+          current_app = 'CRM'
+          remote_addr = '127.0.0.1'
+          user_agent = 'Firefox 139.0'
+
+          # Log current user
+          session = self.sso.user.login(username, password, current_app, remote_addr, user_agent)
+
+          # Renew the session
+          expiration = self.sso.user.session.renew(self.cid, session.ust, current_app, remote_addr)
+
+          # Log result (in UTC)
+          self.logger.info('Expiration: %s, %s', expiration, type(expiration))
+
+::
+
+  INFO - Expiration: 2018-03-14 15:24:39.361223, <type 'datetime.datetime'>

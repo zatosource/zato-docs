@@ -1,0 +1,66 @@
+Security - HashiCorp Vault
+==========================
+
+Overview
+--------
+
+Used to create, update, delete and browse `HashiCorp Vault <https://www.vaultproject.io/>`_ definitions
+that can be used to secure :doc:`REST <../channels/plain-http>` and
+:doc:`WebSocket <../channels/wsx>`
+channels.
+
+* Menu path: Security -> Vault -> Connections
+* Example address: http://localhost:8183/zato/security/vault/conn/?cluster=1
+
+.. image:: /gfx/web-admin/security/vault.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/security/vault-create.png
+
+============================= ====================================================================
+Header                        Notes
+============================= ====================================================================
+Name                          Definition name
+URL                           Vault server's address
+Token                         Token using which to connect to the Vault server
+Default authentication method Using which Vault security backend to authenticate incoming requests
+                              if there is no service attached to this definitions
+Service                       Name of a service that will decided, on a per-request basis,
+                              which Vault security backend to use for authentication.
+                              May be left blank in which case the default authentication method
+                              will be used
+Timeout                       Maximum timeout in connections to Vault
+Allow redirects               Should redirects be allowed in connections to Vault
+Verify TLS                    If connections to Vault are over TLS, should the server's certificate
+                              be verified against specific CAs
+TLS key and cert              TLS material to use if Zato should use a client certificate
+                              in connections to Vault
+TLS CA certs                  A list of CAs to verify Vault server's certificate (if using TLS)
+============================= ====================================================================
+
+A newly created security definition has a password set to a random UUID4
+and needs to be changed in order to be usable.
+
+Delete
+------
+
+.. image:: /gfx/web-admin/security/vault-delete.png
+
+Deletes a security definition and all the channels that make use of it.
+
+.. note ::
+
+  It needs to be emphasized that any channels that were using the
+  definition will also be deleted automatically.
+
+Changelog
+---------
+
+======= ===============
+Version Notes
+======= ===============
+3.0     Added initially
+======= ===============

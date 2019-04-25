@@ -1,0 +1,51 @@
+.. highlight:: python
+   :linenothreshold: 1
+
+User.logout - Python API
+========================
+
+Logs a user out of an existing SSO session - this makes the user no longer logged into any of the SSO-based applications.
+
+There is no response on success. A ValidationError is raised if input is invalid, for instance, if UST does not exist.
+
+API
+---
+
+self.sso.user.logout
+~~~~~~~~~~~~~~~~~~~~
+
+.. py:method:: logout(self, cid, ust, current_app, remote_addr)
+
+  Logs a user out of an existing SSO session.
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
+  :type cid: string
+
+  :param ust: User session token to log out by
+  :type ust: string
+
+  :param current_app: Name of application the user is using to log out from SSO
+  :type current_app: string
+
+  :param remote_addr: User's remote address
+  :type remote_addr: string
+
+  :rtype: None
+
+::
+
+  # -*- coding: utf-8 -*-
+
+  from __future__ import absolute_import, division, print_function, unicode_literals
+
+  # Zato
+  from zato.server.service import Service
+
+  class Logout(Service):
+      def handle(self):
+
+        ust = 'gAAAAABak9qaHvm9RCGc6WWpvjl9cT...'
+        current_app = 'CRM'
+        remote_addr = '127.0.0.1'
+
+        self.sso.user.logout(self.cid, ust, current_app, remote_addr)

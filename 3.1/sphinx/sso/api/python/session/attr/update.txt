@@ -1,0 +1,156 @@
+.. highlight:: python
+   :linenothreshold: 1
+
+SessionAttr.update - Python API
+===============================
+
+Updates an already existing attribute, optionally encrypting it before it is saved in the database. It is also possible to set expiry
+for an attribute, upon reaching of which the attribute will be no longer available.
+
+An exception is raised if an attribute of a given name does not already exists - use :doc:`set <./set>` if an
+attribute should be created in such a case instead of raising an exception.
+
+There are two versions of the call - .update is used with a single attribute and .update_many is used with multiple attributes.
+Performance-wise, it is more efficient to use .update_many if more than one attribute should be updated for a session.
+
+update
+------
+
+.. py:method:: session.attr.update(self, name, value, expiration=None, encrypt=False)
+
+  Updates an existing session attribute.
+
+  :param name: Name of the attribute to update
+  :type name: string
+
+  :param value: An arbitrary value assigned to the name
+  :type value: any
+
+  :param expiration: After how many seconds, from current time, the attribute should expire
+  :type expiration: integer
+
+  :param encrypt: Should the attribute's value be stored encrypted or not
+  :type encrypt: bool
+
+Usage
+~~~~~
+
+::
+
+  # -*- coding: utf-8 -*-
+
+  from __future__ import absolute_import, division, print_function, unicode_literals
+
+  # Zato
+  from zato.server.service import Service
+
+  class SessionAttrUpdate(Service):
+      def handle(self):
+
+          # Current user's data
+          username = 'admin1'
+          password = 'abxqDJpXMVXYEO8NOGx9nVZvv4xSew9'
+          current_app = 'CRM'
+          remote_addr = '127.0.0.1'
+          user_agent = 'Firefox 139.0'
+
+          # Log in current user
+          session = self.sso.user.login(self.cid, username, password,
+              current_app, remote_addr, user_agent)
+
+          # Get current UST
+          ust = session.ust
+
+          # Get session object
+          session = self.sso.user.session.get(self.cid, ust, ust, current_app, remote_addr)
+
+          # Information about the attribute to be created and then updated
+          name = 'my-attribute-abc'
+          value1 = 'my-value1'
+          value2 = 'my-value2'
+
+          # Create a new attribute
+          session.attr.create(name, value1)
+
+          # Update the newly created attribute
+          session.attr.update(name, value2)
+
+
+update_many
+-----------
+
+.. py:method:: session.attr.update_many(self, data, expiration=None, encrypt=False)
+
+  Updates a series of already existing user attributes.
+
+  :param data: A list of dictionaries, each describing an attribute to update. If any key is missing, the default value is taken
+               from the method call's parameters.
+
+               =========== ========
+               Key         Optional
+               =========== ========
+               name        ---
+               value       ---
+               expiration  Yes
+               encrypt     Yes
+               =========== ========
+
+  :type data: dict
+
+  :param expiration: After how many seconds, from now, the attribute should expire (may be overridden in each dict)
+  :type expiration: integer
+
+  :param encrypt: Should the attribute's value be stored encrypted or not (may be overridden in each dict)
+  :type encrypt: bool
+
+Usage
+~~~~~
+
+::
+
+  # -*- coding: utf-8 -*-
+
+  from __future__ import absolute_import, division, print_function, unicode_literals
+
+  # Zato
+  from zato.server.service import Service
+
+  class SessionAttrUpdateMany(Service):
+      def handle(self):
+
+          # Current user's data
+          username = 'admin1'
+          password = 'abxqDJpXMVXYEO8NOGx9nVZvv4xSew9'
+          current_app = 'CRM'
+          remote_addr = '127.0.0.1'
+          user_agent = 'Firefox 139.0'
+
+          # Log in current user
+          session = self.sso.user.login(self.cid, username, password,
+              current_app, remote_addr, user_agent)
+
+          # Get current UST
+          ust = session.ust
+
+          # Get session object
+          session = self.sso.user.session.get(self.cid, ust, ust, current_app, remote_addr)
+
+          # Prepare a list of dictionaries with attributes to create
+          data = [
+              {'name':'my-attr1', 'value':'my-value1'},
+              {'name':'my-attr2', 'value':'my-value2', 'encrypt':True},
+              {'name':'my-attr3', 'value':'my-value3', 'expiration':3600},
+          ]
+
+          # Create new attributes
+          session.attr.create_many(data)
+
+          # Now, prepare new values for the attributes
+          data = [
+              {'name':'my-attr1', 'value':'my-value1-abc'},
+              {'name':'my-attr2', 'value':'my-value2-abc'},
+              {'name':'my-attr3', 'value':'my-value3-abc'},
+          ]
+
+          # Update all of them
+          session.attr.update_many(data)

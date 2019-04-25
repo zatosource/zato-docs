@@ -1,0 +1,74 @@
+Channels - AMQP
+===============
+
+Overview
+--------
+
+Used to create, update, delete and browse through AMQP channels.
+
+Each channel represents a pool of connections through which AMQP broker messages are
+received by Zato. A given service is invoked for each message received.
+
+* Menu path: Connections -> Channels -> AMQP
+* Example address: http://localhost:8183/zato/channel/amqp/?cluster=1
+
+.. image:: /gfx/web-admin/channels/amqp.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/channels/amqp-create.png
+
+=================== ===================================================================
+Header              Notes
+=================== ===================================================================
+Name                Channel name
+Active              :ref:`Documented below <web-admin-channels-amqp-active>`
+Definition          :doc:`AMQP definition <../conn-def/amqp>` to read basic
+                    connection information from
+Queue               Name of the AMQP queue to fetch messages from
+Consumer tag prefix Each channel can be given a prefix that can be used to
+                    tell channels apart from AMQP's end, e.g. each Zato
+                    environment can use a different one
+Ack mode            In what way to acknowledge a message if the channel's service
+                    does not do it explicitly
+Prefetch count      QoS prefetch count set for connections created by this channel
+Pool size           How many connections to create to the AMQP broker - note that this
+                    value is for each Zato worker process rather than globally for
+                    the whole Zato cluster
+Service             Name of an already existing service to invoke for
+                    each AMQP message received
+Data format         *(Optional)* The expected data format Zato should parse
+                    incoming messages as. This will also populate a service's
+                    :ref:`data_format attribute <progguide-write-service-data_format>`.
+=================== ===================================================================
+
+Delete
+------
+
+.. image:: /gfx/web-admin/channels/amqp-delete.png
+
+Stops a channel's connector and deletes the channel from ODB.
+
+.. _web-admin-channels-amqp-active:
+
+The 'Active' flag
+-----------------
+
+If a channel is made inactive, its underlying AMQP connection will be stopped
+but the connector itself will be still running.
+
+Changelog
+---------
+
+=================== ===========================================================================================
+Version             Notes
+=================== ===========================================================================================
+3.0                 * Channels are now synchronous and messages taken off queues are no longer in auto-ack mode
+                      as in previous Zato versions
+                    * Added *Pool size* field
+                    * Added *Ack mode* field
+                    * Added *Prefetch count* field
+1.0                 Added initially
+=================== ===========================================================================================

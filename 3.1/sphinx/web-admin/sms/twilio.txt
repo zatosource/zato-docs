@@ -1,0 +1,65 @@
+SMS - Twilio
+=================
+
+Overview
+--------
+
+Used to create, update, delete or browse SMS Twilio connections and to text directly from web-admin.
+
+* Menu path: Connections -> SMS -> Twilio
+* Example address: http://localhost:8183/zato/sms/twilio/?cluster=1
+
+.. image:: /gfx/web-admin/sms/twilio.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/sms/twilio-create.png
+
+============ =============================================================================
+Header       Notes
+============ =============================================================================
+Name         Connection name
+Active       A flag to indicate if the connection can be used by services
+Account SID  As obtained from Twilio
+Auth token   ”
+Default from Default value for the sender (can be a phone number or textual label)
+             if no explicit value is provided by a service texting through
+             this connection
+Default to   Same as above but concerns the recipient of messages (must be a phone number)
+============ =============================================================================
+
+Send a message
+--------------
+
+Displays a form to text from web-admin.
+
+.. image:: /gfx/web-admin/sms/twilio-send.png
+  :width: 99%
+
+====== ===============================================================================
+Header Notes
+====== ===============================================================================
+Text   Text to send
+From   Sender of the message, if not given the connection's Default from will be used
+To     Recipient of the message, if not given the connection's Default to will be used
+====== ===============================================================================
+
+Delete
+------
+
+.. image:: /gfx/web-admin/sms/twilio-delete.png
+
+Deletes the definition from ODB. The operation cannot be undone.
+
+
+Changelog
+---------
+
+======= ===============
+Version Notes
+======= ===============
+3.0     Added initially
+======= ===============
+

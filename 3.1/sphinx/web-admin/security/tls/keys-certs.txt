@@ -1,0 +1,65 @@
+Security - SSL/TLS - Outgoing - Keys and certs
+==============================================
+
+Overview
+--------
+
+Used to create, update, delete and browse `SSL/TLS <https://en.wikipedia.org/wiki/Transport_Layer_Security>`_
+private keys and certificates that can be used by :doc:`Plain HTTP <../../outgoing/plain-http>` and :doc:`SOAP <../../outgoing/soap>`
+outgoing connections to authenticate themselves to external resources.
+
+* Menu path: Security -> SSL/TLS -> Outgoing -> Keys and certs
+* Example address: http://localhost:8183/zato/security/tls/key-cert/?cluster=1
+
+.. image:: /gfx/web-admin/security/tls/keys-certs.png
+   :width: 95%
+
+Upload and Edit
+---------------
+
+.. image:: /gfx/web-admin/security/tls/keys-certs-create.png
+
+========== ================================================================================================================
+Header     Notes
+========== ================================================================================================================
+Name       Definition name
+Conditions A concatenation of a certificate and private key, in PEM. For instance, the contents of everything.pem obtained
+           as follows:
+
+           .. code-block:: bash
+
+             $ cat my.cert.pem my.key.pem > everything.pem
+
+========== ================================================================================================================
+
+Each of the servers in a cluster stores the unencrypted key/certificate pair in its own *tls/keys-certs*
+configuration directory. For instance, if a path to the server is /esb/server1 then the full path to the directory
+is */esb/server1/config/repo/tls/keys-certs*.
+
+Having stored the key/certificate pair on file-system a server confirms the full path in server.log, such as below (broken out
+into two lines for clarity):
+
+::
+
+    INFO Key/cert pair saved under \
+      `/esb/s1/config/repo/tls/keys-certs/RSA__4096_bits__C_AU__CN_Cli4__emailAddress_Cli4.pem`
+
+Delete
+------
+
+.. image:: /gfx/web-admin/security/tls/keys-certs-delete.png
+
+Deletes a security definition and all the objects that make use of it.
+
+.. note ::
+
+  It needs to be emphasized that any outgoing connections that were using the definition will also be deleted automatically.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================

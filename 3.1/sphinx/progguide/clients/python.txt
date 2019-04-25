@@ -1,0 +1,193 @@
+.. highlight:: python
+   :linenothreshold: 1
+
+Python client
+=============
+
+Zato provides a convenience client, called AnyServiceInvoker, for use by other Python applications to invoke
+services in a given cluster. Because Zato services can be exposed through many methods, there is no hard requirement
+that Python applications use the client, instead it's rather meant to be an easy to use API client
+that a Zato user would like to have in any case.
+
+CLI's :doc:`zato service invoke </admin/cli/service-invoke>` and the :doc:`web admin </architecture/web-admin>`
+both use :ref:`AnyServiceInvoker <progguide-clients-python-AnyServiceInvoker>`.
+
+.. _progguide-clients-python-AnyServiceInvoker:
+
+AnyServiceInvoker
+-----------------
+
+__init__
+~~~~~~~~
+
+.. py:method:: __init__(address, path, auth=None, session=None, to_bunch=False, max_response_repr=DEFAULT_MAX_RESPONSE_REPR, max_cid_repr=DEFAULT_MAX_CID_REPR, logger=None)
+
+  :param address: Address using the format of http://host:port of a Zato server or load-balancer
+                  a service to be invoked is defined on
+  :type address: string
+
+  :param path: URL path of a channel the service to be invoked is accessed through
+  :type path: string
+
+  :param auth: Optional tuple of (username, password), in plain text, corresponding to
+               an HTTP Basic Auth definition the channel is secured with
+  :type auth: tuple
+
+  :param to_bunch: Whether the response should be converted to a Bunch instance
+                   before it's returned
+  :type to_bunch: bool
+
+  :param max_response_repr: If using a
+                            :ref:`response's <progguide-clients-python-response>`
+                            __repr__ method, when it's being
+                            printed out on screen for instance, how many characters
+                            of the response actually to output. Defaults
+                            to
+                            `zato.client.DEFAULT_MAX_RESPONSE_REPR <https://github.com/zatosource/zato/blob/support/3.0/code/zato-client/src/zato/client/__init__.py>`_ which is 2500 characters.
+  :type max_response_repr: int
+
+  :param max_cid_repr: Used in the same circumstances as max_response_repr. A CID
+                        has always 40 characters, however, when logging responses
+                        on screen it's sometimes desirable to limit the numbers of characters
+                        printed on either end of a CID. For instance, if CID is
+                        4d38731837f90a3b5906fbc0 and max_cid_repr is 5,
+                        __repr__ will use '4d387..6fbc0' with any characters in between
+                        suppressed. max_cid_repr defaults to 5 and you can use the `zato.client.CID_NO_CLIP <https://github.com/zatosource/zato/blob/support/3.0/code/zato-client/src/zato/client/__init__.py>`_ constant to turn the clipping
+                        feature off.
+  :type max_cid_repr: int
+
+
+.. _progguide-clients-python-invoke:
+
+invoke
+``````
+
+.. py:method:: invoke(name=None, payload='', headers=None, channel='invoke', data_format='json', transport=None, id=None, to_json=True, output_repeated=ZATO_NOT_GIVEN)
+
+  Invokes a service synchronously, the client will block waiting for the response.
+
+  :param name:    Name of the service to invoke. Either name or id must be provided.
+  :type name:     string
+
+  :param payload: Payload to invoke the service with. May be a Python dictionary
+                  if it's a :doc:`SIO <../sio>` service and to_json is True.
+  :type payload:  any
+
+  :param headers: HTTP headers to pass in to the service invoker
+  :type headers:  dict
+
+  :param channel: :ref:`Channel <progguide-write-service-channel>` the service will be invoked with
+  :type channel:  `zato.common.CHANNEL <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py>`_
+
+  :param data_format: :ref:`Data format <progguide-write-service-data_format>` the service will be invoked with
+  :type data_format:  `zato.common.DATA_FORMAT <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py>`_
+
+  :param transport: Transport the service will be invoked over
+  :type transport:  `zato.common.TRANSPORT <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py>`_
+
+  :param id:    ID of the service to invoke. Either name or id must be provided.
+  :type id:     int
+
+  :param to_json: Whether payload should be converted to JSON
+  :type to_json:  bool
+
+  :param output_repeated: Whether the expected output is repeated. If left at
+                          `zato.common.ZATO_NON_GIVEN <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py>`_,
+                          it will be assumed to be true if the service name ends in 'list',
+                          so that 'my.application.customer.get-list' will by default be assumed to return
+                          a :doc:`SIO <../sio>` list of objects
+  :type output_repeated:  bool
+
+  :rtype: A :ref:`Response <progguide-clients-python-response>` object
+
+::
+
+    from zato.client import AnyServiceInvoker
+
+    address = 'http://localhost:11223'
+    path = '/zato/admin/invoke'
+    auth = ('admin.invoke', 'ccd77ca1ff414c3e8308e3f35d8292df')
+
+    client = AnyServiceInvoker(address, path, auth)
+    response = client.invoke('zato.ping')
+
+    if response.ok:
+        print(response.data)
+    else:
+        print(response.details)
+
+::
+
+    $ py myclient.py
+    {u'pong': u'zato'}
+    $
+
+.. _progguide-clients-python-invoke_async:
+
+invoke_async
+````````````
+
+Invokes a service asynchronously. Works exactly like :ref:`invoke <progguide-clients-python-invoke>`
+except that the client isn't blocked. Instead a message to invoke the service is published
+in Redis and client receives the CID a service has been invoked with so that its actual response
+can be correlated with the client request at a later time.
+
+::
+
+    from zato.client import AnyServiceInvoker
+
+    address = 'http://localhost:11223'
+    path = '/zato/admin/invoke'
+    auth = ('admin.invoke', 'ccd77ca1ff414c3e8308e3f35d8292df')
+
+    client = AnyServiceInvoker(address, path, auth)
+    response = client.invoke_async('zato.ping')
+
+    if response.ok:
+        print(response.data)
+    else:
+        print(response.details)
+
+::
+
+    $ py myclient.py
+    f53b59e2215cc7cb608d0382
+    $
+
+.. _progguide-clients-python-response:
+
+Response object
+---------------
+
+The result of invoking a service, no matter if in a blocking way or asynchronously,
+is always a
+`Response <https://github.com/zatosource/zato/blob/support/2.0/code/zato-client/src/zato/client/__init__.py>`_
+object which provides access to the underlying data a service
+produced along with a couple of useful attributes.
+
+Depending on the client class used, the response attributes may hold data of different
+types.
+
+
+======== ==================== ===========================================================================================
+Name     Datatype             Description
+======== ==================== ===========================================================================================
+inner    `requests.Response`_ The inner HTTP response as returned by the `requests <http://python-requests.org>`_ library
+ok       boolean              Whether the invocation succeeded, True if zato_env.result is equal to ZATO_OK
+
+has_data boolean              If data a service produced is available. Will be set to True only if ok is True.
+                              Otherwise, if ok is not True, details will contain error information.
+
+                              Note however that both ok and data can be True if a service was invoked with no problems
+                              yet it didn't return any output.
+
+data     (depends)            Service response in format depending on the client class used. Will be available
+                              only if ok and has_data are True. If a service
+                              returns JSON document, the document converted to a Python object. Otherwise,
+                              service response as a string.
+
+details  (depends)            Taken from zato_env.details
+
+======== ==================== ===========================================================================================
+
+.. _requests.Response: http://docs.python-requests.org/en/latest/api/#requests.Response

@@ -1,0 +1,74 @@
+.. highlight:: python
+   :linenothreshold: 1
+
+IBM MQ outgoing connections
+======================================
+
+Overview
+--------
+
+Sends a message to an IBM MQ queue manager using
+:doc:`connection <../../web-admin/conn-def/jms-wmq>`
+:doc:`parameters <../../web-admin/outgoing/jms-wmq>`
+specified.
+
+The application on the receiving end may be written in Java
+using MQ JMS API. This allows for seamless integration with Java JMS MQ systems -
+from their point of view Zato, despite being written in Python, will appear to be
+a Java application.
+
+.. note::
+
+    Before making using of the connections,
+    :doc:`PyMQI needs to be first manually enabled <../../admin/guide/enabling-extra-libs>`
+    by administrators.
+
+API
+---
+
+.. _progguide-outconn-jms-wmq.send:
+
+self.outgoing.ibm_mq.send
+``````````````````````````
+
+.. py:method:: send(msg, out_name, queue, delivery_mode=None, expiration=None, priority=None, max_chars_printed=None):
+
+  Uses an outgoing connection of a given name to send a message to an IBM MQ
+  queue manager.
+
+  :param msg: Message to send
+  :param out_name: Outgoing connection to use
+  :param queue: Name of the queue to put a message on
+  :param delivery_mode: Whether the message should be persistent or not
+  :param expiration: After how many milliseconds after reaching the queue should the message expire
+  :param priority: Message priority between 1 and 9 - 1 being the minimum priority
+  :param max_chars_printed: How many characters of the message should Spring Python write out to logs
+                            when running in DEBUG mode
+
+  :type msg: string
+  :type out_name: string
+  :type queue: string
+  :type delivery_mode: DELIVERY_MODE_NON_PERSISTENT or DELIVERY_MODE_PERSISTENT from the `springpython.jms module <https://github.com/SpringSource/spring-python/blob/master/src/springpython/jms/__init__.py>`_
+  :type expiration: int
+  :type priority: int
+  :type max_chars_printed: int
+
+  :rtype: (None)
+
+Usage example
+-------------
+
+::
+
+  from zato.server.service import Service
+
+  class MyService(Service):
+      def handle(self):
+
+          # Request parameters
+          msg = 'Hello MQ!'
+          out_name = 'Customer Cases'
+          queue = 'CUSTOMER.CASES.1'
+
+          # Send the message to a queue manager
+          self.outgoing.ibm_mq.send(msg, out_name, queue)

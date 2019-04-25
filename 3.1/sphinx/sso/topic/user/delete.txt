@@ -1,0 +1,16 @@
+.. highlight:: bash
+   :linenothreshold: 1000
+
+Deleting users
+==============
+
+A logged in super-user can delete other users using
+:doc:`REST <../../api/rest/user/delete>`,
+:doc:`Python <../../api/python/user/delete>`
+or from
+:doc:`command line <../../../admin/cli/sso-delete-user>`. Regular users cannot delete any kind of users.
+
+It is not possible even for super-users to delete their own accounts, i.e. super-users need to be deleted
+either by other super-users or using a CLI command.
+
+Deletion is irrevocable - there is no undo and all data about the user, related session or attributes is deleted.

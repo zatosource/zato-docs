@@ -1,0 +1,45 @@
+Search - ElasticSearch
+======================
+
+Overview
+--------
+
+Used to create, update, delete and browse through `ElasticSearch <http://www.elasticsearch.com/>`_ connections.
+
+* Menu path: Connections -> Search -> ElasticSearch
+* Example address: http://localhost:8183/zato/search/es/?cluster=1
+
+.. image:: /gfx/web-admin/search/es.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/search/es-create.png
+
+=================== =============================================================================
+Header              Notes
+=================== =============================================================================
+Name                Connection name
+Active              Whether the query is active and can be used
+Hosts               ElasticSearch hosts to connect to, each on its own line
+Timeout             How long to wait for responses from ElasticSearch, in seconds
+Send body as        What HTTP method to use when sending requests to servers, defaults to POST
+=================== =============================================================================
+
+Delete
+------
+
+.. image:: /gfx/web-admin/search/es-delete.png
+
+Deletes the query.
+
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================

@@ -1,0 +1,68 @@
+.. highlight:: python
+   :linenothreshold: 1
+
+IMAP connections
+================
+
+Overview
+--------
+
+Synchronously reads, deletes or mark as seen messages from remote IMAP servers.
+
+The underlying client IMAP library is `imbox <https://github.com/martinrusev/imbox>`_ wrapped in a set of Zato classes.
+
+API
+---
+
+.. _progguide-outconn-email-imap-get:
+
+self.email.imap.get
+```````````````````
+
+.. py:method:: get(name):
+
+  Fetches an object whose .conn attribute represents a connection to an IMAP server.
+
+  The object's .get method returns message IDs and messages according to fetch criteria configured in the
+  :doc:`IMAP connection <../../web-admin/email/imap>`
+
+  :param name: Name of the IMAP connection to use
+  :type name: string
+
+  :rtype: (A `zato.server.connection.email.IMAPConnection <https://github.com/zatosource/zato/blob/support/2.0/code/zato-server/src/zato/server/connection/email.py>`_ object)
+
+Usage example
+-------------
+
+::
+
+  from zato.server.service import Service
+
+  class MyService(Service):
+      def handle(self):
+          conn = self.email.imap.get('My Connection').conn
+
+          for msg_id, msg in conn.get():
+
+              # Access the message
+              self.logger.info(msg.data)
+
+              # To mark the message seen
+              msg.mark_seen()
+
+              # To delete it
+              msg.delete()
+
+::
+
+  2015-01-06 21:55:31,863 - INFO - 5451:Dummy-65 - imap1.my-service:22 -
+    {'body': {'plain': ['\r\nHello\r\n'], 'html': []},
+    'headers': [{'Name': 'MIME-Version', 'Value': '1.0'},
+    {'Name': 'X-Spam-Score', 'Value': '-1.899'}, {'Name': 'X-Spam-Status', 'Value': 'No,
+    score=-1.899 tagged_above=-999 required=3\r\n\ttests=[BAYES_00=-1.9, URIBL_BLOCKED=0.001]'},
+    {'Name': 'Content-Type', 'Value': 'text/plain; charset=utf-8'}],
+    'date': u'Tue, 06 Jan 2015 21:52:48 +0100',
+    'subject': u'Hello', 'sent_from': [{'name': u'My Name',
+    'email': 'myaddress@invalid'}],
+    'message_id': u'<54AC4B20.1040703@invalid>',
+    'sent_to': [{'name': u'', 'email': 'hello@invalid'}]}

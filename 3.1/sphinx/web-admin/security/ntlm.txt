@@ -1,0 +1,59 @@
+Security - NTLM
+===============
+
+Overview
+--------
+
+Used to create, update, delete and browse NTLM security definitions 
+that can be used only in specialized suds-based :doc:`outgoing SOAP <../outgoing/soap>` connections.
+
+* Menu path: Security -> NTLM
+* Example address: http://localhost:8183/zato/security/ntlm/?cluster=1
+
+.. image:: /gfx/web-admin/security/ntlm.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/security/ntlm-create.png
+
+======== =====================================================
+Header   Notes
+======== =====================================================
+Name     Definition name
+Username NTLM username to provide when calling a SOAP resource
+======== =====================================================
+
+A newly created security definition has a secret set to a random UUID4 and needs to be changed in order for 
+the definition to be usable.
+
+Change password
+---------------
+
+.. image:: /gfx/web-admin/security/ntlm-change-secret.png
+
+Updates a definition's password - the password is stored in the ODB along with
+other details of a security definition. This is not a required field and the password
+can be omitted altogether if it's not needed at all.
+
+Delete
+------
+
+.. image:: /gfx/web-admin/security/ntlm-delete.png
+
+Deletes a security definition and all the connections that make use of it.
+
+.. note ::
+
+  It needs to be emphasized that any SOAP outgoing connections that were using the
+  definition will also be deleted automatically.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================

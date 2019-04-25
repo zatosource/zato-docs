@@ -1,0 +1,54 @@
+Queries - Cassandra
+===================
+
+Overview
+--------
+
+Used to create, update, delete and browse through pre-compiled CQL query templates. In run-time, services provide
+actual values to be substituted in place of a template's placeholders.
+
+Compiled queries execute significantly faster than ad-hoc ones issued using
+:doc:`Cassandra connections <../conn-def/cassandra>`
+directly.
+
+* Menu path: Connections -> Queries -> Cassandra
+* Example address: http://localhost:8183/zato/query/cassandra/?cluster=1
+
+.. image:: /gfx/web-admin/query/cassandra.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/query/cassandra-create.png
+
+=================== =============================================================================
+Header              Notes
+=================== =============================================================================
+Name                Query name
+Active              Whether the query is active and can be issued
+Connection          :doc:`Connection <../conn-def/cassandra>` to store the query for
+Value               The query template to be compiled, for instance:
+
+                    ::
+
+                       SELECT * FROM schema_columns WHERE keyspace_name =: keyspace_name
+
+=================== =============================================================================
+
+Delete
+------
+
+.. image:: /gfx/web-admin/query/cassandra-delete.png
+
+Deletes the query.
+
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================

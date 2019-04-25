@@ -1,0 +1,51 @@
+Security - JWT
+==============
+
+Overview
+--------
+
+Used to create, update, delete and browse `JWT (JSON Web Token) <https://en.wikipedia.org/wiki/JSON_Web_Token>`_
+definitions that can be used to secure :doc:`REST <../channels/plain-http>` channels.
+
+* Menu path: Security -> JWT
+* Example address: http://localhost:8183/zato/security/jwt/?cluster=1
+
+.. image:: /gfx/web-admin/security/jwt.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/security/jwt-create.png
+
+======== ========================================================
+Header   Notes
+======== ========================================================
+Name     Definition name
+Username Username to require from API clients
+TTL      Token's time to live
+======== ========================================================
+
+A newly created security definition has a password set to a random UUID4
+and needs to be changed in order to be usable.
+
+Delete
+------
+
+.. image:: /gfx/web-admin/security/jwt-delete.png
+
+Deletes a security definition and all the connections that make use of it.
+
+.. note ::
+
+  It needs to be emphasized that any REST channel that was using the
+  definition will also be deleted automatically.
+
+Changelog
+---------
+
+======= ===============
+Version Notes
+======= ===============
+3.0     Added initially
+======= ===============
