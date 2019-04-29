@@ -60,6 +60,34 @@ For instance, to map local directory **/my/services** to **/opt/hot-deploy** in 
     host$ sudo docker run -it --rm -p 22 -p 6379:6379 -p 8183:8183 -p 17010:17010 -p 17011:17011 \
         -p 11223:11223 -v /my/services/:/opt/hot-deploy/ --name zato zato-3.0
 
+Importing enmasse definitions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A starting container can import :doc:`enmasse <../enmasse>` definitions with objects that the cluster running in the
+container should use.
+
+In this manner, channels, connections and other pieces of a cluster's configuration can be recreated each time
+a new container is spun up.
+
+In order for a container to read in an enmasse file, it needs to be made available to the container through
+a mounted volume which is next used by the **ZATO_ENMASSE_FILE** environment variable.
+
+For instance:
+
+* On host, there is a directory called /my/enmasse
+* In the container, this directory will be mapped to /opt/enmasse
+* Inside the host's directory, there will be an enmasse file called export.yml
+* To automatically import definitions from this file, configuration such as below should be used - mapping volumes
+  and then exporting the file's full location, from the container's perspective, to an environment variable
+
+::
+
+    host$ sudo docker run -it --rm -p 22 -p 6379:6379 -p 8183:8183 -p 17010:17010 -p 17011:17011 \
+        -p 11223:11223 -v /my/services/:/opt/hot-deploy/ \
+        -v /my/enmasse/:/opt/enmasse/ -e ZATO_ENMASSE_FILE=/opt/enmasse/export.yml \
+        --name zato zato-3.0
+
+
 Environment variables available
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -68,18 +96,21 @@ The Zato image uses several environment variables which can be used to fine-tune
 They are not required to use, and default values will be substituted if any is missing,
 but they may be employed to configure particular details of each of the components.
 
-======================== =================================================================================================
-Variable                 Notes
-======================== =================================================================================================
-ZATO_SSH_PASSWORD        Password for user `zato` to access through ssh. If not defined,
-                         the value is generated automatically at runtime.
-ZATO_WEB_ADMIN_PASSWORD  Password for the web admin’s technical account user to connect with. If not defined,
-                         the value is generated automatically at runtime.
-REDIS_HOSTNAME           Redis service hostname. Default value is **localhost**.
-ODB_TYPE                 ODB type to use. Must be one of: `mysql`, `postgresql` or `sqlite`. Default value is **sqlite**.
-ODB_HOSTNAME             ODB hostname.
-ODB_PORT                 ODB port.
-ODB_NAME                 ODB database.
-ODB_USERNAME             ODB username.
-ODB_PASSWORD             ODB password.
-======================== =================================================================================================
+============================ =================================================================================================
+Variable                     Notes
+============================ =================================================================================================
+ZATO_SSH_PASSWORD            Password for user `zato` to access through ssh. If not defined,
+                             the value is generated automatically at runtime.
+ZATO_WEB_ADMIN_PASSWORD      Password for the web admin’s technical account user to connect with. If not defined,
+                             the value is generated automatically at runtime.
+ZATO_IDE_PUBLISHER_PASSWORD  Password for user `ide_publisher`, used for IDE integration. If not defined,
+                             the value has to be set manually.
+ZATO_ENMASSE_FILE            Full path to :doc:`an enmasse file <../enmasse>` with object definitions to been imported.
+REDIS_HOSTNAME               Redis service hostname. Default value is **localhost**.
+ODB_TYPE                     ODB type to use. Must be one of: `mysql`, `postgresql` or `sqlite`. Default value is **sqlite**.
+ODB_HOSTNAME                 ODB hostname.
+ODB_PORT                     ODB port.
+ODB_NAME                     ODB database.
+ODB_USERNAME                 ODB username.
+ODB_PASSWORD                 ODB password.
+============================ =================================================================================================
