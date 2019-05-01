@@ -32,11 +32,11 @@ display_name         string   Yes      ---              Display name
 first_name           string   Yes      ---              First name
 middle_name          string   Yes      ---              Middle name
 last_name            string   Yes      ---              Last name
-is_approved          bool     Yes      Yes              Should this account be considered approved?
 is_locked            bool     Yes      Yes              Should this account be locked?
 password_expiry      string   Yes      Yes              When will that account's password expire?
 password_must_change bool     Yes      Yes              Is the user required to change password on next login?
 sign_up_status       string   Yes      Yes              Signup process status, accepted values are: before_confirmation, to_approve, final
+approval_status      string   Yes      Yes              Approval status, accepted values are: before_decision, approved, rejected
 ==================== ======== ======== ================ ===================================================================================
 
 
