@@ -13,9 +13,10 @@
    :doc:`web-admin <../architecture/web-admin>`
    in 10 minutes.
 
-* Enhanced support for Docker, including :doc:`quickstart <../admin/guide/install/docker>`, Compose, Swarm and Kubernetes
+* Enhanced support for Docker, including :doc:`quickstart <../admin/guide/install/docker>`, Compose,
+  Swarm, Kubernetes and Amazon ECS
 
-* Support for Python 3.4+ in addition to Python 2.7
+* Added support for Python 3.4+ in addition to Python 2.7
 
 * New tutorials: SOA/API, publish/subscribe topics/message queues, Single Sign-On, caching and file transfer
 
@@ -35,17 +36,19 @@
 
 * Added JSON-RPC channels
 
-* Extensions to Single-Sign On: two-factor authentication, whitelisting, multi-credentials accounts and rate limiting
+* Added rate limiting - exact and approximate
 
-* Added invocation rate limiting options: exact and approximate
+* Added IP whitelisting
+
+* Extensions to Single-Sign On: two-factor authentication and multi-credentials accounts
+
+* Added means to list SSO user sessions
 
 * Added Accept headers configuration to REST channels
 
 * Multiple REST channels may now reuse URL paths as long as their HTTP methods differ
 
-* Added new SimpleIO types and data formats
-
-* Added ability to connect Zato clusters using WebSockets, including subscription to events in other clusters
+* Added ability to connect Zato clusters using WebSockets, including subscriptions to events in other clusters
 
 * Added TOTP two-factor authentication to web-admin
 
@@ -57,6 +60,7 @@
 
 * General performance boosts, particularly in the area of REST connections
 
+* Dropped support for RHEL/CentOS 6 (v.7 is still fully supported)
 
 3.0 - 2018-06-30
 ================

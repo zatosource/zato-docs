@@ -27,7 +27,7 @@ The basic attributes of users are:
 * first_name, middle_name and last_name
 
 Depending on needs, either display_name or first/middle/last name can be used - the very notion of first and other names
-may possibly not exist in a user's culture, hence Zato can be configured enforce their existence or not.
+may possibly not exist in a user's culture, hence Zato can be configured to enforce their existence or not.
 
 Additional attributes:
 
