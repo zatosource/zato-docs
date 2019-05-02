@@ -26,7 +26,7 @@ Name        Datatype Optional Notes
 =========== ======== ======== ================================================================================================
 ust         string   ---      Current user's session token (UST)
 current_app string   ---      Name of application that the call is attempted from
-user_id     string   ---      ID of the user to set an attribute or attributes of
+user_id     string   Yes      ID of the user to set an attribute or attributes of
 name        string   Yes      If a single attribute is to be set, the attribute's name
 value       string   Yes      If a single attribute is to be set, the attribute's value
 data        list     Yes      If multiple attributes are to be set, a list of dictionaries,
