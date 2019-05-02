@@ -13,8 +13,10 @@
    :doc:`web-admin <../architecture/web-admin>`
    in 10 minutes.
 
-* Enhanced support for Docker, including :doc:`quickstart <../admin/guide/install/docker>`, Compose,
-  Swarm, Kubernetes and Amazon ECS
+* Enhanced support for Docker, including :doc:`quickstart <../admin/guide/install/docker>`,
+  Swarm
+  and
+  Kubernetes
 
 * Added support for Python 3.4+ in addition to Python 2.7
 
