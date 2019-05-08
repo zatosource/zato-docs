@@ -18,7 +18,7 @@
   and
   Kubernetes
 
-* Added support for Python 3.4+ in addition to Python 2.7
+* Added support for Python 3.5+ in addition to Python 2.7
 
 * New tutorials: SOA/API, publish/subscribe topics/message queues, Single Sign-On, caching and file transfer
 
@@ -44,7 +44,7 @@
 
 * Extensions to Single-Sign On: two-factor authentication and multi-credentials accounts
 
-* Added means to list SSO user sessions
+* Added means to :doc:`list SSO user sessions <../sso/api/rest/session/get-list>`
 
 * Added Accept headers configuration to REST channels
 
