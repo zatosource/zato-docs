@@ -36,49 +36,50 @@ and for each main block of functionality links to both relevant topics and to de
 Quick reference
 ---------------
 
-=============================================================== ===================================================================================== ===========================================================================================
-Topic                                                           REST                                                                                  Python
-=============================================================== ===================================================================================== ===========================================================================================
+==================================================== ============================================================================= =======================================================================================
+Topic                                                REST                                                                          Python
+==================================================== ============================================================================= =======================================================================================
 :doc:`Users <./topic/user/index>`
-:doc:`User.create <./topic/user/create>`                        POST    :doc:`/zato/sso/user <./api/rest/user/create>`                                :doc:`self.sso.user.create <./api/python/user/create>`
-:doc:`User.signup <./topic/user/signup>`                        POST    :doc:`/zato/sso/user/signup <./api/rest/user/signup>`                         :doc:`self.sso.user.signup <./api/python/user/signup>`
-:doc:`User.confirm_signup <./topic/user/signup>`                PATCH   :doc:`/zato/sso/user/signup <./api/rest/user/confirm-signup>`                 :doc:`self.sso.user.confirm_signup <./api/python/user/confirm-signup>`
-:doc:`User.approve <./topic/user/signup>`                       POST    :doc:`/zato/sso/user/approve <./api/rest/user/approve>`                       :doc:`self.sso.user.approve <./api/python/user/approve>`
-:doc:`User.reject <./topic/user/signup>`                        POST    :doc:`/zato/sso/user/reject <./api/rest/user/reject>`                         :doc:`self.sso.user.reject <./api/python/user/reject>`
-:doc:`User.login <./topic/user/login>`                          POST    :doc:`/zato/sso/user/login <./api/rest/user/login>`                           :doc:`self.sso.user.login <./api/python/user/login>`
-:doc:`User.logout <./topic/user/logout>`                        POST    :doc:`/zato/sso/user/logout <./api/rest/user/logout>`                         :doc:`self.sso.user.logout <./api/python/user/logout>`
-:doc:`User.get <./topic/user/get>`                              GET     :doc:`/zato/sso/user <./api/rest/user/get>`                                   :doc:`self.sso.user.get_user_by_* <./api/python/user/get>`
-:doc:`User.search <./topic/user/search>`                        GET     :doc:`/zato/sso/user/search <./api/rest/user/search>`                         :doc:`self.sso.user.search <./api/python/user/search>`
-:doc:`User.update <./topic/user/update>`                        PATCH   :doc:`/zato/sso/user <./api/rest/user/update>`                                :doc:`self.sso.user.update <./api/python/user/update>`
-:doc:`User.delete <./topic/user/delete>`                        DELETE  :doc:`/zato/sso/user <./api/rest/user/delete>`                                :doc:`self.sso.user.delete <./api/python/user/delete>`
-:doc:`User.change_password <./topic/password/index>`            PATCH   :doc:`/zato/sso/user/password <./api/rest/user/change-password>`              :doc:`self.sso.user.change_password <./api/python/user/change-password>`
+:doc:`User.create <./topic/user/create>`             POST   :doc:`/zato/sso/user <./api/rest/user/create>`                         :doc:`self.sso.user.create <./api/python/user/create>`
+:doc:`User.signup <./topic/user/signup>`             POST   :doc:`/zato/sso/user/signup <./api/rest/user/signup>`                  :doc:`self.sso.user.signup <./api/python/user/signup>`
+:doc:`User.confirm_signup <./topic/user/signup>`     PATCH  :doc:`/zato/sso/user/signup <./api/rest/user/confirm-signup>`          :doc:`self.sso.user.confirm_signup <./api/python/user/confirm-signup>`
+:doc:`User.approve <./topic/user/signup>`            POST   :doc:`/zato/sso/user/approve <./api/rest/user/approve>`                :doc:`self.sso.user.approve <./api/python/user/approve>`
+:doc:`User.reject <./topic/user/signup>`             POST   :doc:`/zato/sso/user/reject <./api/rest/user/reject>`                  :doc:`self.sso.user.reject <./api/python/user/reject>`
+:doc:`User.login <./topic/user/login>`               POST   :doc:`/zato/sso/user/login <./api/rest/user/login>`                    :doc:`self.sso.user.login <./api/python/user/login>`
+:doc:`User.logout <./topic/user/logout>`             POST   :doc:`/zato/sso/user/logout <./api/rest/user/logout>`                  :doc:`self.sso.user.logout <./api/python/user/logout>`
+:doc:`User.get <./topic/user/get>`                   GET    :doc:`/zato/sso/user <./api/rest/user/get>`                            :doc:`self.sso.user.get_user_by_* <./api/python/user/get>`
+:doc:`User.search <./topic/user/search>`             GET    :doc:`/zato/sso/user/search <./api/rest/user/search>`                  :doc:`self.sso.user.search <./api/python/user/search>`
+:doc:`User.update <./topic/user/update>`             PATCH  :doc:`/zato/sso/user <./api/rest/user/update>`                         :doc:`self.sso.user.update <./api/python/user/update>`
+:doc:`User.delete <./topic/user/delete>`             DELETE :doc:`/zato/sso/user <./api/rest/user/delete>`                         :doc:`self.sso.user.delete <./api/python/user/delete>`
+:doc:`User.change_password <./topic/password/index>` PATCH  :doc:`/zato/sso/user/password <./api/rest/user/change-password>`       :doc:`self.sso.user.change_password <./api/python/user/change-password>`
 \
 :doc:`Super-users <./topic/user/super>`
-SuperUser.create                                                 ---                                                                                  :doc:`self.sso.user.create_super_user <./api/python/user/create-super-user>`
+SuperUser.create                                                 ---                                                               :doc:`self.sso.user.create_super_user <./api/python/user/create-super-user>`
 \
 :doc:`Sessions <./topic/session/index>`
-:doc:`Session.verify <./topic/session/access>`                  POST    :doc:`/zato/sso/session <./api/rest/session/verify>`                          :doc:`self.sso.user.session.verify <./api/python/session/verify>`
-:doc:`Session.renew <./topic/session/access>`                   PATCH   :doc:`/zato/sso/session <./api/rest/session/renew>`                           :doc:`self.sso.user.session.renew <./api/python/session/renew>`
-:doc:`Session.get <./topic/session/access>`                     GET     :doc:`/zato/sso/session <./api/rest/session/get>`                             :doc:`self.sso.user.session.get <./api/python/session/get>`
+:doc:`Session.verify <./topic/session/access>`       POST   :doc:`/zato/sso/user/session <./api/rest/session/verify>`              :doc:`self.sso.user.session.verify <./api/python/session/verify>`
+:doc:`Session.renew <./topic/session/access>`        PATCH  :doc:`/zato/sso/user/session <./api/rest/session/renew>`               :doc:`self.sso.user.session.renew <./api/python/session/renew>`
+:doc:`Session.get <./topic/session/access>`          GET    :doc:`/zato/sso/user/session <./api/rest/session/get>`                 :doc:`self.sso.user.session.get <./api/python/session/get>`
+:doc:`Session.get_list <./topic/session/access>`     GET    :doc:`/zato/sso/user/session/list <./api/rest/session/list>`           :doc:`self.sso.user.session.get_list <./api/python/session/list>`
 \
 :doc:`User attributes <./topic/attr/index>`
-create/create_many                                              POST    :doc:`/zato/sso/user/attr <./api/rest/user/attr/create>`                      :doc:`self.sso.user.session.attr.create/create_many <./api/python/user/attr/create>`
-update/update_many                                              PATCH   :doc:`/zato/sso/user/attr <./api/rest/user/attr/update>`                      :doc:`self.sso.user.session.attr.update/update_many <./api/python/user/attr/update>`
-set/set_many                                                    PUT     :doc:`/zato/sso/user/attr <./api/rest/user/attr/set>`                         :doc:`self.sso.user.session.attr.set/set_many <./api/python/user/attr/set>`
-delete/delete_many                                              DELETE  :doc:`/zato/sso/user/attr <./api/rest/user/attr/delete>`                      :doc:`self.sso.user.session.attr.delete/delete_many <./api/python/user/attr/delete>`
-get/get_many                                                    GET     :doc:`/zato/sso/user/attr <./api/rest/user/attr/get>`                         :doc:`self.sso.user.session.attr.get/get_many <./api/python/user/attr/get>`
-exists/exists_many                                              GET     :doc:`/zato/sso/user/attr/exists <./api/rest/user/attr/exists>`               :doc:`self.sso.user.session.attr.exists/exists_many <./api/python/user/attr/exists>`
-names                                                           GET     :doc:`/zato/sso/user/attr/names <./api/rest/user/attr/names>`                 :doc:`self.sso.user.session.attr.names <./api/python/user/attr/names>`
+create/create_many                                   POST   :doc:`/zato/sso/user/attr <./api/rest/user/attr/create>`               :doc:`self.sso.user.session.attr.create/create_many <./api/python/user/attr/create>`
+update/update_many                                   PATCH  :doc:`/zato/sso/user/attr <./api/rest/user/attr/update>`               :doc:`self.sso.user.session.attr.update/update_many <./api/python/user/attr/update>`
+set/set_many                                         PUT    :doc:`/zato/sso/user/attr <./api/rest/user/attr/set>`                  :doc:`self.sso.user.session.attr.set/set_many <./api/python/user/attr/set>`
+delete/delete_many                                   DELETE :doc:`/zato/sso/user/attr <./api/rest/user/attr/delete>`               :doc:`self.sso.user.session.attr.delete/delete_many <./api/python/user/attr/delete>`
+get/get_many                                         GET    :doc:`/zato/sso/user/attr <./api/rest/user/attr/get>`                  :doc:`self.sso.user.session.attr.get/get_many <./api/python/user/attr/get>`
+exists/exists_many                                   GET    :doc:`/zato/sso/user/attr/exists <./api/rest/user/attr/exists>`        :doc:`self.sso.user.session.attr.exists/exists_many <./api/python/user/attr/exists>`
+names                                                GET    :doc:`/zato/sso/user/attr/names <./api/rest/user/attr/names>`          :doc:`self.sso.user.session.attr.names <./api/python/user/attr/names>`
 \
 :doc:`Session attributes <./topic/attr/index>`
-create/create_many                                              POST    :doc:`/zato/sso/session/attr <./api/rest/session/attr/create>`                :doc:`self.sso.user.session.attr.create/create_many <./api/python/session/attr/create>`
-update/update_many                                              PATCH   :doc:`/zato/sso/session/attr <./api/rest/session/attr/update>`                :doc:`self.sso.user.session.attr.update/update_many <./api/python/session/attr/update>`
-set/set_many                                                    PUT     :doc:`/zato/sso/session/attr <./api/rest/session/attr/set>`                   :doc:`self.sso.user.session.attr.set/set_many <./api/python/session/attr/set>`
-delete/delete_many                                              DELETE  :doc:`/zato/sso/session/attr <./api/rest/session/attr/delete>`                :doc:`self.sso.user.session.attr.delete/delete_many <./api/python/session/attr/delete>`
-get/get_many                                                    GET     :doc:`/zato/sso/session/attr <./api/rest/session/attr/get>`                   :doc:`self.sso.user.session.attr.get/get_many <./api/python/session/attr/get>`
-exists/exists_many                                              GET     :doc:`/zato/sso/session/attr/exists <./api/rest/session/attr/exists>`         :doc:`self.sso.user.session.attr.exists/exists_many <./api/python/session/attr/exists>`
-names                                                           GET     :doc:`/zato/sso/session/attr/names <./api/rest/session/attr/names>`           :doc:`self.sso.user.session.attr.names <./api/python/session/attr/names>`
-=============================================================== ===================================================================================== ===========================================================================================
+create/create_many                                   POST   :doc:`/zato/sso/session/attr <./api/rest/session/attr/create>`         :doc:`self.sso.user.session.attr.create/create_many <./api/python/session/attr/create>`
+update/update_many                                   PATCH  :doc:`/zato/sso/session/attr <./api/rest/session/attr/update>`         :doc:`self.sso.user.session.attr.update/update_many <./api/python/session/attr/update>`
+set/set_many                                         PUT    :doc:`/zato/sso/session/attr <./api/rest/session/attr/set>`            :doc:`self.sso.user.session.attr.set/set_many <./api/python/session/attr/set>`
+delete/delete_many                                   DELETE :doc:`/zato/sso/session/attr <./api/rest/session/attr/delete>`         :doc:`self.sso.user.session.attr.delete/delete_many <./api/python/session/attr/delete>`
+get/get_many                                         GET    :doc:`/zato/sso/session/attr <./api/rest/session/attr/get>`            :doc:`self.sso.user.session.attr.get/get_many <./api/python/session/attr/get>`
+exists/exists_many                                   GET    :doc:`/zato/sso/session/attr/exists <./api/rest/session/attr/exists>`  :doc:`self.sso.user.session.attr.exists/exists_many <./api/python/session/attr/exists>`
+names                                                GET    :doc:`/zato/sso/session/attr/names <./api/rest/session/attr/names>`    :doc:`self.sso.user.session.attr.names <./api/python/session/attr/names>`
+==================================================== ============================================================================= =======================================================================================
 
 More information
 ----------------
