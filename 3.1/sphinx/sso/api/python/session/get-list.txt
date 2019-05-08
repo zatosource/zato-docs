@@ -1,0 +1,80 @@
+
+.. highlight:: python
+   :linenothreshold: 1
+
+Session.get_list - Python API
+=============================
+
+Consult documentation of the :doc:`corresponding REST endpoint <../../rest/session/get-list>` for overview.
+
+API
+---
+
+self.sso.user.session.get_list
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. py:method:: get_list(self, cid, ust, target_ust, current_ust, current_app, remote_addr)
+
+  Returns details of a session pointed to by target_ust.
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
+  :type cid: string
+
+  :param ust: Current user's UST to return sessions by
+  :type ust: string
+
+  :param ust: If ust is not given on input, another user's UST
+  :type target_ust: string
+
+  :param ust: If target_ust is provided, a super-user's UST
+  :type current_ust: string
+
+  :param ust: Name of application the current user is issuing the call from
+  :type current_app: string
+
+  :param ust: Current user's remote address
+  :type remote_addr: string
+
+  :rtype:          A list of dictionaries, each describing an individual sessions,
+                   the meaning of each dictionary's keys is the same as in
+                   the :doc:`REST endpoint <../../rest/session/get-list>`
+
+::
+
+    # -*- coding: utf-8 -*-
+
+    from __future__ import absolute_import, division, print_function, unicode_literals
+
+    # Zato
+    from zato.server.service import Service
+
+    class GetSessionList(Service):
+        def handle(self):
+
+            username = 'admin1'
+            password = 'hQ9nl93UDqGus'
+            current_app = 'CRM'
+            remote_addr = '127.0.0.1'
+            user_agent = 'Firefox 139.0'
+
+            # Log current user
+            session = self.sso.user.login(self.cid, username, password, current_app,
+                remote_addr, user_agent)
+
+            # Get UST
+            ust = session.ust
+
+            # Get current user's session
+            session_list = self.sso.user.session.get_list(self.cid, ust, None, None,
+                current_app, remote_addr, user_agent)
+
+            # Log information about each of the sessions found
+            for item in session_list:
+                self.logger.info('Auth type / principal / remote address: %s %s %s',
+                    item['auth_type'], item['auth_principal'], item['remote_addr'])
+
+::
+
+  INFO - Auth type / principal / remote address: default admin1 192.168.1.242
+  INFO - Auth type / principal / remote address: default admin1 172.17.0.1
+  INFO - Auth type / principal / remote address: default admin1 10.174.183.1

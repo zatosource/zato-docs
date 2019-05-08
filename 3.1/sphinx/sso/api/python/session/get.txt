@@ -33,7 +33,7 @@ self.sso.user.session.get
   :param remote_addr: Current user's remote address
   :type remote_addr: string
 
-  :rtype: exists - A dictionary of metadata describing the session from target_ust. All keys and values
+  :rtype: - A dictionary of metadata describing the session from target_ust. All keys and values
                    are always returned on output:
 
                    =============== ======== =================================================
