@@ -1,12 +1,12 @@
 .. highlight:: sh
 
-Installation under Docker
-=========================
+Installation under Vagrant
+==========================
 
 Requirements
 ------------
 
-* Vagrant >= 2.2
+* Vagrant, any version
 
 Installation steps
 ------------------
@@ -29,28 +29,13 @@ Quickstart
 
     user@host$ vagrant up
 
-* Access the Virtual Machine using ssh.
+* Access the virtual machine using ssh.
 
 .. code-block:: shell-session
 
     user@host$ vagrant ssh
     vagrant@zato:$ sudo su - zato
     zato@zato:~$
-
-
-* Specify password for Zato web-admin.
-
-.. code-block:: shell-session
-
-    user@host$ ZATO_WEB_ADMIN_PASSWORD="webadminpassword" vagrant up
-
-
-* Specify password for Zato's :doc:`IDE integration <../../../progguide/ide/index>`.
-
-.. code-block:: shell-session
-
-    user@host$ ZATO_IDE_PUBLISHER_PASSWORD="publisherpassword" vagrant up
-
 
 * Retrieve your dynamically generated password for Zato web-admin.
 
@@ -61,19 +46,15 @@ Quickstart
 That concludes the process - a web-admin instance is running on http://localhost:8183 and you can log into
 it with the username 'admin' using the password printed on the terminal above.
 
-Environment Variables Available
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Environment variables
+~~~~~~~~~~~~~~~~~~~~~
 
-The Zato's Vagrant support uses several environment variables which can be used to fine-tune the resulting installation.
+A couple of environment variables can be used to fine-tune the resulting installation. If any is missing,
+a default value will be automatically generated.
 
-They are not required to use, and default values will be substituted if any is missing,
-but they may be employed to configure particular details of each of the components.
-
-=========================== =================================================================================================
+=========================== ==================================================================
 Variable                    Notes
-=========================== =================================================================================================
-ZATO_WEB_ADMIN_PASSWORD     Password for the web admin’s technical account user to connect with. If not defined,
-                            the value is generated automatically at runtime.
-ZATO_IDE_PUBLISHER_PASSWORD Password for the account user used for :doc:`IDE integration <../../../progguide/ide/index>`.
-                            If not defined, it has to be set using the Zato's web interface.
-=========================== =================================================================================================
+=========================== ==================================================================
+ZATO_WEB_ADMIN_PASSWORD     Password to login to web-admin with
+ZATO_IDE_PUBLISHER_PASSWORD Password for :doc:`IDE integration <../../../progguide/ide/index>`
+=========================== ==================================================================

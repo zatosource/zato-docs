@@ -6,7 +6,7 @@ Installation under Docker
 Requirements
 ------------
 
-* Docker 1.0.1+
+* Docker, any version
 
 Installation steps
 ------------------
