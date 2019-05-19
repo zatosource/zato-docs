@@ -54,6 +54,8 @@
 
 * Added TOTP two-factor authentication to web-admin
 
+* Added TLS to AMQP connections
+
 * Servers start and stop up several times faster than previously
 
 * When creating new servers, usage of TLS CA is no longer required
