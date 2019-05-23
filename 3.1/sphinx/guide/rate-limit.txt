@@ -1,0 +1,32 @@
+IP rate-limiting and white-listing
+==================================
+
+Overview
+--------
+
+IP rate-limiting and white-listing let one restrict access to Zato objects based on two sets of conditions:
+
+* How many times in a given time a particular object is accessed (rate-limiting)
+* Where incoming requests come from (white-listing)
+
+It is possible to express rules of varying , such as the simple one below:
+
+* This service can be used at most 1,000 times a day
+
+Or a more intricate one:
+
+* This user may use the system at most 10,000 times a day
+
+  * But only from such and such IP ranges
+
+* The person's API credentials should be included in the limit too
+
+  * But they have their own additional limit - at most 50 times an hour
+  * Unless the requests are being made from localhost in which case the limit is 200 times a minute
+
+Building blocks
+---------------
+
+Rate-limiting definitions can be attached to objects, each of which may possibly have a parent object whose definition
+may be checked too:
+
