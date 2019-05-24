@@ -112,6 +112,22 @@ Each line is in the format of **source = limit**. Whitespace around the equals s
     * 500/h = five hundred times an hour
     * 10000/d = ten thousand times a day
 
+Applying changes to definitions
+-------------------------------
+
+Any part of a rate-limiting definition can be changed at any time, e.g. limits may be freely changed whenever it is required.
+
+Each time a definition is changed its internal hit counter is reset - for instance:
+
+* The definition previously let at most 1,000 requests a day
+* A given object was already accessed 500 times
+* Now, the definition was changed to let at most 2,000 requests a day
+* At this point, callers will face the limit of 2,000 requests a day,
+  the fact about the already reached 500 requests will not be taken into account
+
+The only change that does not reset the counter is modifying the "Is active" flag - toggling the definition's state
+between active or inactive, no matter how many times, does not reset its hit counter.
+
 Examples
 --------
 
@@ -143,3 +159,4 @@ No limits all, no matter the source address:
 .. code-block:: text
 
   * = *
+

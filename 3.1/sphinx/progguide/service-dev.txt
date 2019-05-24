@@ -638,6 +638,38 @@ response
 objects are discussed in
 :doc:`a separate chapter <./reqresp/index>`.
 
+.. _progguide-write-service-schema:
+
+schema
+``````
+A service may specify a [JSON schema](https://json-schema.org/) to be used for validation of input data via the
+**schema** attribute. The value of the attribute is a filename containing the schema.
+
+If the filename is an absolute path, it will be used as-is, e.g. if it is '/opt/zato/schema/myschema.json' then this is the
+path to the schema in the filesystem where the schema needs to reside.
+
+If the filename is a relative path, it is in relation to a server's *config/repo/schema/json* directory. For instance,
+if a service is in directory /opt/zato/server1 and schema is 'myschema.json' then the file will be expected to be found
+in /opt/zato/server1/config/repo/schema/json/myschema.json.
+
+Each time a JSON Schema changes any service using it needs to be redeployed.
+
+JSON Schema is used for input validation only, it does not validate the output that a service produces.
+
+From the perspective of a service that uses JSON Schema, if the service's handle method is called, it means that the validation
+succeeded.
+
+::
+
+  from zato.server.service import Service
+
+  class MyService(Service):
+
+      schema = 'myschema.json'
+
+      def handle(self):
+          self.logger.info('My input was validated with JSON Schema')
+
 slow_threshold
 ``````````````
 Response time threshold, in milliseconds, after exceeding of which a service
