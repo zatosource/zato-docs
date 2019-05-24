@@ -18,9 +18,9 @@ API
 self.sso.user.session.renew
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: renew(self, cid, current_ust, current_app, remote_addr)
+.. py:method:: renew(self, cid, current_ust, current_app, remote_addr, user_agent=None)
 
-  Creates a new super-user.
+  Renews a user session.
 
   :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
   :type cid: string
@@ -33,6 +33,9 @@ self.sso.user.session.renew
 
   :param remote_addr: Current user's remote address
   :type remote_addr: string
+
+  :param user_agent: User agent string
+  :type user_agent: string
 
   :rtype: expiration_time - A datetime object representing the session's new expiration time
 

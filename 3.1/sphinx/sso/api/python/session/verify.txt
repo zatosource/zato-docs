@@ -16,7 +16,7 @@ API
 self.sso.user.session.verify
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: verify(self, cid, target_ust, current_ust, current_app, remote_addr)
+.. py:method:: verify(self, cid, target_ust, current_ust, current_app, remote_addr, user_agent=None)
 
   Creates a new super-user.
 
@@ -34,6 +34,9 @@ self.sso.user.session.verify
 
   :param remote_addr: Current user's remote address
   :type remote_addr: string
+
+  :param user_agent: User agent string
+  :type user_agent: string
 
   :rtype: exists - A boolean flag indicating whether input target_ust exists and has not expired
 
