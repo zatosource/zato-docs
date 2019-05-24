@@ -106,21 +106,19 @@ session attribute A handle to the underlying `Requests <http://docs.python-reque
 
 .. _progguide-outconn-get:
 
-.. py:method:: get(cid, params=None, prefetch=True, *args, **kwargs):
+.. py:method:: get(cid, params=None, *args, **kwargs):
 
   Issues an HTTP GET request.
 
   :param cid: A correlation ID that can be used to establish a connection between
               the Zato request and any entries in the logs the other end may produce
 
-  :param params: A dictionary of GET parameters to use
-  :param prefetch: If the response should be downloaded immediately
+  :param params: A dictionary of parameters to use, including URL path ones
   :param args: Positional arguments passed to the underlying HTTP library
   :param kwargs: Keyword arguments passed to the underlying HTTP library
 
   :type cid: string
   :type params: dict
-  :type prefetch: bool
   :type args: tuple
   :type kwargs: dict
 
@@ -132,7 +130,7 @@ session attribute A handle to the underlying `Requests <http://docs.python-reque
 .post
 `````
 
-.. py:method:: post(cid, data='', prefetch=True, *args, **kwargs):
+.. py:method:: post(cid, data='', params=None, *args, **kwargs):
 
   Issues an HTTP POST request.
 
@@ -140,13 +138,12 @@ session attribute A handle to the underlying `Requests <http://docs.python-reque
               the Zato request and any entries in the logs the other end may produce
 
   :param data: String data to send to the remote peer
-  :param prefetch: If the response should be downloaded immediately
+  :param params: A dictionary of parameters to use, including URL path ones
   :param args: Positional arguments passed to the underlying HTTP library
   :param kwargs: Keyword arguments passed to the underlying HTTP library
 
   :type cid: string
   :type post: string
-  :type prefetch: bool
   :type args: tuple
   :type kwargs: dict
 
