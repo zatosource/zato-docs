@@ -289,3 +289,14 @@ How to unsubscribe
 How to disconnect
 -----------------
 
+::
+
+  let client = ZatoWSXClient();
+
+  // Configure and connect the client here
+  ...
+
+  // Call a method to disconnect the client - this will
+  // send reason code 1000 and a message indicating which
+  // client it is that closed the connection.
+  client.disconnect();
