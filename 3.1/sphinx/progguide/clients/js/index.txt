@@ -1,39 +1,182 @@
-JavaScript clients for Zato
-===========================
+Zato WebSocket JavaScript client
+================================
 
-Zato offers a single NPM package with two JavaScript clients, each meant to be used in specific situations:
+Overview
+========
 
-* :doc:`RESTClient <./rest>` - a stateless REST client for request-response invocations that are always initiated by the client.
-  It may publish messages to topics and create subscriptions but it is not possible for this client to receive any notification
-  from the server.
+In addition to typical service invocations, WebSocket (WSX) connections let the client to participate in messaging scenarios
+with clients acting both as initiators and recipients of messages.
 
-* :doc:`WSXClient <./wsx>` - a stateful WebSocket-based client for request-response invocations and pub/sub messages that may
-  initiated either by the client or server. This client is able to receive noticiations from Zato servers.
+In particular, pub/sub communication is a good fit for WSX because it allows servers to push notifications to connected
+WSX clients without requiring that clients poll for new messages.
 
-====== ======== ================ ======= ========= ====================
-Client Stateful Request/response Publish Subscribe Server notifications
-====== ======== ================ ======= ========= ====================
-REST   ---      Yes              Yes     Limited   --
-WSX    Yes      Yes              Yes     Full      Yes
-====== ======== ================ ======= ========= ====================
+Installation
+============
 
-Recommendations which client to use are as follows.
+Add the NPM `zato-js-client <>`_ to your project's dependencies.
 
-Use :doc:`RESTClient <./rest>` if:
+GitHub
+======
 
-  * There are no messages sent from the server to client, i.e. the communication is always from the direction of client
-    to servers
+If you would like to check the client's source code, it is available `on GitHub <https://github.com/zatosource/zato-js-client>`_.
 
-  * Configuring WebSocket connections in not possible, e.g. if there are load-balancers between clients and servers
-    which do allow WebSocket connections
+Prerequisites
+=============
 
-  * Publish/subscribe is either not used at all or messages occur very seldom - this is because RESTClient may only
-    poll for messages from topics instead of receiving server notifications like WSXClient does
+Before a WSX channel for clients can be created, one needs to upload a new service that will act as a configuration gateway,
+allowing the client to invoke only selected services.
 
-Use :doc:`WSXClient <./wsx>` if:
+The service subclasses *zato.server.service.internal.helpers.WebSocketsGateway* which actually does the whole work, and one needs only
+to specify a list of services allowed.
 
-  * Publish/subscribe is expected to be employed on a regular basis
+In this way, each client may be given a subset of services that it should have access to.
 
-  * Using WebSocket connections is possible
+For instance, the configuration below will let a client invoke services 'zato.ping' and 'zato.ping2' and none other of possibly
+many services available through servers.
 
-  * Maximum performance is required - RESTClient is fast but WSXClient can be faster still because there is no overhead of HTTP
+::
+
+  # -*- coding: utf-8 -*-
+
+  # Zato
+  from zato.server.service.internal.helpers import WebSocketsGateway
+
+  class MyWSXGateway(WebSocketsGateway):
+
+      # Give the service a unique name
+      name = 'my.wsx.gateway'
+
+      # Only these services may be invoked
+      services_allowed = [
+          'zato.ping',
+          'zato.ping2',
+      ]
+
+In web-admin
+============
+
+* Create :doc:`HTTP Basic Auth <../../../web-admin/security/basic-auth>` credentials to use by the client
+* Create a :doc:`WSX channel <../../../web-admin/channels/wsx>` and make sure that it uses the service uploaded in
+  the previous step, e.g.:
+
+  .. image:: /gfx/progguide/clients/js/create-wsx-channel.png
+
+JavaScript
+==========
+
+Once the NPM `zato-js-client <>`_ package is installed, the clients usage follows a few principles:
+
+* Several attributes can be configured before the client is created
+* One client may invoke multiple services or publish and subscribe messages to and from multiple topics
+* Client will reconnect automatically if the server drops connection for any reason
+* If the client is used from a web browser and the browser is restarted or page refreshed (F5, Ctrl-R),
+  the client will not persist and a new client will not automatically have access to previous client instance's
+  pub/sub subscriptions, if any were created
+
+Configurable attributes
+-----------------------
+
+Basic connection details
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. highlight:: javascript
+
+::
+
+  // Zato client object
+  let client = ZatoWSXClient();
+
+  // A unique ID representing this very client
+  const client_id = Math.random().toString(24) + '-' + new Date().toISOString();
+
+  // A human-readable name of the client, does not have to be unique,
+  const client_name = 'My API client';
+
+  // Where to find the Zato WSX channel
+  const address = 'ws://localhost:50103/myapi'
+
+  // Basic Auth credentials created previously
+  const username = 'username1';
+  const secret = 'secret1';
+
+  // Fill out configuration
+  client.client_id = client_id;
+  client.client_name = client_name;
+  client.address = address;
+  client.username = username;
+  client.secret = secret;
+
+Callbacks
+~~~~~~~~~
+
+Each client needs to be supplied with two callback functions, invoked in specific situations:
+
+* When the client connects or reconnects to a Zato channel
+
+.. highlight:: javascript
+
+::
+
+  function when_ready(client) {
+    console.log('Connected to '+ client.address);
+  }
+
+* Each time a message from Zato is received, either a notification or a response to a previously sent request
+
+.. highlight:: javascript
+
+::
+
+  // A callback function to be invoked for each message received from Zato
+  function on_message_received(client, msg, in_reply_to) {
+
+    // Serialize to JSON for logging purposes
+    const msg_as_string = JSON.stringify(msg);
+
+    // If there is 'in_reply_to', this message must be a response to a previous request ..
+    if(in_reply_to) {
+        console.log('Response received' + msg_as_string);
+    }
+
+    // .. otherwise, this is a request, a notification, from server.
+    else {
+      console.log('Request received' + msg_as_string);
+    }
+  }
+
+The callback functions need to be assigned to a previously created client instance:
+
+.. highlight:: javascript
+
+::
+
+  let client = ZatoWSXClient();
+
+  // (Skip basic configuration options here)
+  ...
+
+  // This will be invoked when the client connects
+  client.when_ready = when_ready;
+
+  // This will be invoked each time a message from Zato is received
+  client.on_message_received = on_message_received;
+
+----------------
+
+How to connect
+--------------
+
+How to invoke services
+----------------------
+
+How to publish messages
+-----------------------
+
+How to subscribe to messages
+----------------------------
+
+How to unsubscribe
+------------------
+
+How to disconnect
+-----------------

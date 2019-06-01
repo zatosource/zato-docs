@@ -1,2 +1,0 @@
-Zato REST JavaScript client
-===========================
