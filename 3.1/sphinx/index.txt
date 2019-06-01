@@ -237,8 +237,6 @@ Programming guide
       :doc:`Invoking other services <progguide/invoking-services>` |
       :doc:`Distributed locks <progguide/dist-locks>` |
       :doc:`Date/time utils <progguide/datetime>` |
-      :doc:`Python client <progguide/clients/python>` |
-      :doc:`Django and Flask integration <progguide/clients/django-flask>` |
       :doc:`Security <progguide/security>` |
       :doc:`Where to keep configuration <progguide/service-local-config>` |
       :doc:`HTML with Django templates <progguide/html>` |
@@ -267,6 +265,11 @@ Programming guide
 
     * **Hooks:**
       :doc:`Service hooks<progguide/hooks/service>`
+
+    * **Clients:**
+      :doc:`Python <progguide/clients/python>` |
+      :doc:`JavaScript <progguide/clients/js/index>` |
+      :doc:`Django and Flask integration <progguide/clients/django-flask>`
 
     * **Logging and debugging techniques:**
       :doc:`Logging <progguide/logging>` |
@@ -424,6 +427,7 @@ Zato, the open-source project
    intro/*
    progguide/*
    progguide/clients/*
+   progguide/clients/js/*
    progguide/crypto/*
    progguide/enclog/*
    progguide/enclog/cli/*

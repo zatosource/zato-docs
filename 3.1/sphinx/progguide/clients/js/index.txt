@@ -1,0 +1,39 @@
+JavaScript clients for Zato
+===========================
+
+Zato offers a single NPM package with two JavaScript clients, each meant to be used in specific situations:
+
+* :doc:`RESTClient <./rest>` - a stateless REST client for request-response invocations that are always initiated by the client.
+  It may publish messages to topics and create subscriptions but it is not possible for this client to receive any notification
+  from the server.
+
+* :doc:`WSXClient <./wsx>` - a stateful WebSocket-based client for request-response invocations and pub/sub messages that may
+  initiated either by the client or server. This client is able to receive noticiations from Zato servers.
+
+====== ======== ================ ======= ========= ====================
+Client Stateful Request/response Publish Subscribe Server notifications
+====== ======== ================ ======= ========= ====================
+REST   ---      Yes              Yes     Limited   --
+WSX    Yes      Yes              Yes     Full      Yes
+====== ======== ================ ======= ========= ====================
+
+Recommendations which client to use are as follows.
+
+Use :doc:`RESTClient <./rest>` if:
+
+  * There are no messages sent from the server to client, i.e. the communication is always from the direction of client
+    to servers
+
+  * Configuring WebSocket connections in not possible, e.g. if there are load-balancers between clients and servers
+    which do allow WebSocket connections
+
+  * Publish/subscribe is either not used at all or messages occur very seldom - this is because RESTClient may only
+    poll for messages from topics instead of receiving server notifications like WSXClient does
+
+Use :doc:`WSXClient <./wsx>` if:
+
+  * Publish/subscribe is expected to be employed on a regular basis
+
+  * Using WebSocket connections is possible
+
+  * Maximum performance is required - RESTClient is fast but WSXClient can be faster still because there is no overhead of HTTP
