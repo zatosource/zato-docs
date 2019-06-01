@@ -55,7 +55,6 @@ Also available in
 :doc:`Français <./esb-soa-fr>`,
 :doc:`italiano <esb-soa-it>`,
 :doc:`Português <./esb-soa-pt>`,
-:doc:`ру́сский <esb-soa-ru>`,
 :doc:`Türkçe <./esb-soa-tr>`
 and
 :doc:`中文 <./esb-soa-cn>`.
