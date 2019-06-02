@@ -54,7 +54,12 @@ Topic                                                REST                       
 :doc:`User.change_password <./topic/password/index>` PATCH  :doc:`/zato/sso/user/password <./api/rest/user/change-password>`       :doc:`self.sso.user.change_password <./api/python/user/change-password>`
 \
 :doc:`Super-users <./topic/user/super>`
-SuperUser.create                                                 ---                                                               :doc:`self.sso.user.create_super_user <./api/python/user/create-super-user>`
+SuperUser.create                                     ---                                                                           :doc:`self.sso.user.create_super_user <./api/python/user/create-super-user>`
+\
+:doc:`Linked accounts <./topic/user/linked-auth>`
+LinkedAuth.create                                    POST   :doc:`/zato/sso/user/linked <./api/rest/user/linked/create>`           :doc:`self.sso.user.create_linked_auth <./api/python/user/linked/create>`
+LinkedAuth.get                                       GET    :doc:`/zato/sso/user/linked <./api/rest/user/linked/get>`              :doc:`self.sso.user.get_linked_auth_list <./api/python/user/linked/get>`
+LinkedAuth.delete                                    DELETE :doc:`/zato/sso/user/linked <./api/rest/user/linked/delete>`           :doc:`self.sso.user.delete_linked_auth <./api/python/user/linked/delete>`
 \
 :doc:`Sessions <./topic/session/index>`
 :doc:`Session.verify <./topic/session/access>`       POST   :doc:`/zato/sso/user/session <./api/rest/session/verify>`              :doc:`self.sso.user.session.verify <./api/python/session/verify>`

@@ -43,6 +43,12 @@ to users, each attribute possibly encrypted
 and with an optional expiration time - they can be used to extend information about users to cover supplementary needs, such as timezone,
 a phone number or address.
 
+User accounts may be :doc:`linked <./linked-auth>` to
+:doc:`Basic Auth <../../../web-admin/security/basic-auth>`
+or
+:doc:`JWT <../../../web-admin/security/jwt>`
+definitions, enabling in this way multi-auth accounts.
+
 Details
 -------
 
@@ -59,3 +65,4 @@ Consult the following chapters for user-related topics:
 * :doc:`Deleting users <./delete>`
 * :doc:`Custom user attributes <../attr/index>`
 * :doc:`Understanding the difference between regular and super-users <./super>`
+* :doc:`How to link user accounts <./linked-auth>`
