@@ -19,7 +19,7 @@ already opened.
 
 This lets an SSO user to have additional credentials that can be treated as API keys.
 
-Note that linked accounts fully participate in
+Linked accounts fully participate in
 :doc:`rate-limiting and IP white-listing <../../../guide/rate-limit>` which makes it possible to express scenarios such as
 the sample one below:
 
