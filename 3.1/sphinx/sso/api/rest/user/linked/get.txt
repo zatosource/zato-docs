@@ -64,7 +64,7 @@ Usage
          "auth_type": "basic_auth",
          "auth_username": "my.username",
          "creation_time": "2019-06-03T08:32:34.151267",
-         "is_active": "true"
+         "is_active": true
        }
      ]
     }
