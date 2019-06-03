@@ -23,7 +23,7 @@ self.sso.user.create_linked_auth
   :param ust: Current user's UST
   :type ust: string
 
-  :param user_id: Current user's UST
+  :param user_id: ID of the SSO user to link an account to
   :type user_id: string
 
   :param auth_type: Type of the security definition that is being linked to the SSO user, must be 'basic_auth' or 'jwt'
@@ -43,55 +43,32 @@ self.sso.user.create_linked_auth
 
 ::
 
-# -*- coding: utf-8 -*-
+  # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import, division, print_function, unicode_literals
+  from __future__ import absolute_import, division, print_function, unicode_literals
 
-# Zato
+  # Zato
 
-from zato.server.service import Service
+  from zato.server.service import Service
 
-class CreateLink(Service):
-    def handle(self):
+  class CreateLink(Service):
+      def handle(self):
 
-        # Request metadata
-        current_ust = 'gAAAAABc9YDOwa4it_lLu3tHDjdKGdjHHzLTddA_qVIxjT_HXJuTUhn-TAspto1McwtQ5jGbqfJVeSzBQM0h91AUBhUAD1gtKcrjHAn2IvlHrKwEzy35-Ds='
-        current_app = 'CRM'
-        remote_addr = '127.0.0.1'
+          # Request metadata
+          current_ust = 'gAAAAABc9YDOwa4it_lLu3tHDjdKGdjHHzLTd...'
+          current_app = 'CRM'
+          remote_addr = '127.0.0.1'
 
-        # ID of the user to create a link for
-        user_id = 'zusr3tm8jhgqjd9smtdt7erb427s9x'
+          # ID of the user to create a link for
+          user_id = 'zusr3tm8jhgqjd9smtdt7erb427s9x'
 
-        # Account to link to the user
-        auth_type = 'basic_auth'
-        auth_username = 'my.account'
+          # Account to link to the user
+          auth_type = 'basic_auth'
+          auth_username = 'my.account'
 
-        # The link shall be active
-        is_active = True
+          # The link shall be active
+          is_active = True
 
-        # ust, user_id, auth_type, auth_username, is_active, current_app, remote_addr
-
-        # Create the link
-        self.sso.user.create_linked_auth(self.cid, current_ust, user_id, auth_type, auth_username, is_active,
-          current_app, remote_addr)
-
-::
-
-  INFO {
-    'display_name': 'My User',
-    'is_active': True,
-    'is_internal': False,
-    'is_super_user': True,
-    'is_approval_needed': True,
-    'approval_status': 'before_decision',
-    'approval_status_mod_by': 'zusr3qnafn39208krbt0vt2nypx2ta',
-    'approval_status_mod_time': datetime.datetime(2020, 2, 28, 11, 33, 13, 359733),
-    'is_locked': False,
-    'password_expiry': datetime.datetime(2020, 2, 28, 11, 33, 13, 359733),
-    'password_must_change': True,
-    'password_last_set': datetime.datetime(2018, 2, 28, 11, 33, 13, 359733),
-    'sign_up_time': datetime.datetime(2018, 2, 28, 11, 33, 13, 359733),
-    'sign_up_status': 'final',
-    'username': 'user1',
-    'user_id': 'zusr1e2xwnk9p89ty8y0skcpy795c9'
-  }
+          # Create the link
+          self.sso.user.create_linked_auth(self.cid, current_ust, user_id,
+            auth_type, auth_username, is_active, current_app, remote_addr)

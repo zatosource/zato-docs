@@ -17,6 +17,10 @@ For instance, if user 'Joan Doe' has a linked Basic Auth account 'joan.doe' and 
 in to a system, a new SSO session will be opened for 'Joan Doe' in addition to any other existing session
 already opened, which lets an SSO user have additional credentials that can be treated as API keys.
 
+From the SSO's perspective, a linked account is merely a different set of credentials that a particular SSO user
+may employ, there is no further functional difference in logging as the SSO user directly or if it is done via Basic Auth
+or JWT.
+
 Linked accounts fully participate in
 :doc:`rate-limiting and IP white-listing <../../../guide/rate-limit>` which makes it possible to express scenarios such as
 the sample one below:
