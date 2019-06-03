@@ -15,9 +15,7 @@ used for logging in are associated with.
 
 For instance, if user 'Joan Doe' has a linked Basic Auth account 'joan.doe' and that account is used for logging
 in to a system, a new SSO session will be opened for 'Joan Doe' in addition to any other existing session
-already opened.
-
-This lets an SSO user to have additional credentials that can be treated as API keys.
+already opened, which lets an SSO user have additional credentials that can be treated as API keys.
 
 Linked accounts fully participate in
 :doc:`rate-limiting and IP white-listing <../../../guide/rate-limit>` which makes it possible to express scenarios such as
@@ -25,3 +23,17 @@ the sample one below:
 
 * The main SSO user has a limit of 1,000 requests/day, no matter how many per hour
 * User's linked accounts have a limit of 100 requests/hour, no matter how many per day
+
+REST API
+--------
+
+* LinkedAuth.Create
+* LinkedAuth.Get
+* LinkedAuth.Delete
+
+Python API
+----------
+
+* create_linked_auth
+* get_linked_auth_list
+* delete_linked_auth
