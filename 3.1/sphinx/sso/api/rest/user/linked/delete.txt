@@ -12,7 +12,6 @@ Deletes a previously
 :doc:`link <../../../../topic/user/linked-auth>`
 between an SSO user and a security definition.
 
-
   * HTTP method: DELETE
   * URL path: /zato/sso/user/linked
 
