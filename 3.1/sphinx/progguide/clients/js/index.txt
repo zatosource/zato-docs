@@ -16,12 +16,15 @@ The pub/sub part of the client is a wrapper around the WebSocket API with
 Installation
 ============
 
-Add the NPM `zato-js-client <>`_ to your project's dependencies.
+Add the NPM `zato-js-client <https://www.npmjs.com/package/zato-js-client>`_ to your project's dependencies.
+
+If under Node.js, the client returns an error message 'ReferenceError: WebSocket is not defined', make sure
+to add the 'ws' package to the project, e.g. *npm install ws*.
 
 GitHub
 ======
 
-If you would like to check the client's source code, it is available `on GitHub <https://github.com/zatosource/zato-js-client>`_.
+Client's source code is available `on GitHub <https://github.com/zatosource/zato-js-client>`_.
 
 Prerequisites
 =============
@@ -69,7 +72,7 @@ In web-admin
 JavaScript
 ==========
 
-Once the NPM `zato-js-client <>`_ package is installed, the clients usage follows a few principles:
+Once the NPM `zato-js-client <https://www.npmjs.com/package/zato-js-client>`_ package is installed, the clients usage follows a few principles:
 
 * Several attributes can be configured before the client is created
 * One client may invoke multiple services or publish and subscribe messages to and from multiple topics
@@ -89,7 +92,7 @@ Basic connection details
 ::
 
   // Zato client object
-  let client = ZatoWSXClient();
+  let client = new ZatoWSXClient();
 
   // A unique ID representing this very client
   const client_id = Math.random().toString(24) + '-' + new Date().toISOString();
@@ -155,7 +158,7 @@ The callback functions need to be assigned to a previously created client instan
 
 ::
 
-  let client = ZatoWSXClient();
+  let client = new ZatoWSXClient();
 
   // (Skip basic configuration options here)
   ...
@@ -173,7 +176,7 @@ How to connect
 
 ::
 
-  let client = ZatoWSXClient();
+  let client = new ZatoWSXClient();
 
   // Provide configuration here
   ...
@@ -195,7 +198,7 @@ How to invoke services
 
 ::
 
-  let client = ZatoWSXClient();
+  let client = new ZatoWSXClient();
 
   // Configure and connect the client here
   ...
@@ -218,7 +221,7 @@ How to subscribe to messages
 
 ::
 
-  let client = ZatoWSXClient();
+  let client = new ZatoWSXClient();
 
   // Configure and connect the client here
   ...
@@ -251,7 +254,7 @@ Note that the metadata 'ctx' object contains fields, such as in_reply_to or prio
 
 ::
 
-  let client = ZatoWSXClient();
+  let client = new ZatoWSXClient();
 
   // Configure and connect the client here
   ...
@@ -277,7 +280,7 @@ How to unsubscribe
 
 ::
 
-  let client = ZatoWSXClient();
+  let client = new ZatoWSXClient();
 
   // Configure and connect the client here
   ...
@@ -291,7 +294,7 @@ How to disconnect
 
 ::
 
-  let client = ZatoWSXClient();
+  let client = new ZatoWSXClient();
 
   // Configure and connect the client here
   ...
