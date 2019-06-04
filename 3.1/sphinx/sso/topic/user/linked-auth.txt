@@ -31,13 +31,13 @@ the sample one below:
 REST API
 --------
 
-* LinkedAuth.Create
-* LinkedAuth.Get
-* LinkedAuth.Delete
+* :doc:`LinkedAuth.Create <../../api/rest/user/linked/create>`
+* :doc:`LinkedAuth.Get <../../api/rest/user/linked/get>`
+* :doc:`LinkedAuth.Delete <../../api/rest/user/linked/delete>`
 
 Python API
 ----------
 
-* create_linked_auth
-* get_linked_auth_list
-* delete_linked_auth
+* :doc:`create_linked_auth <../../api/python/user/linked/create>`
+* :doc:`get_linked_auth_list <../../api/python/user/linked/get>`
+* :doc:`delete_linked_auth <../../api/python/user/linked/delete>`

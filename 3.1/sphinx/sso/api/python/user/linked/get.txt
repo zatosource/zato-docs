@@ -1,0 +1,96 @@
+
+.. highlight:: python
+   :linenothreshold: 1
+
+LinkedAuth.get - Python API
+================================
+
+Returns a link of security definitions :doc:`linked <../../../../topic/user/linked-auth>` to the input SSO user.
+
+Regular users may look up their own linked accounts whereas super-users may provide a user_id to return accounts for.
+
+API
+---
+
+self.sso.user.get_linked_auth_list
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. py:method:: get_linked_auth_list(self, cid, ust, current_app, remote_addr, user_id=None)
+
+  Returns a list of accounts linked to an SSO user. If user_id is given, input ust must belong to a super-user.
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../../audit/index>`
+  :type cid: string
+
+  :param ust: Current user's UST
+  :type ust: string
+
+  :param current_app: Name of application the call is made from
+  :type current_app: string
+
+  :param remote_addr: Current user's remote address
+  :type remote_addr: string
+
+  :param user_id: ID of the SSO user to link an account to
+  :type user_id: string
+
+  :rtype: A list of dictionaries, each of which describes a single link.
+
+          ================= ======== ======================================================================================================
+          Key               Datatype Notes
+          ================= ======== ======================================================================================================
+          user_id           string   ID of the SSO user linked to
+          auth_type         string   Type of the definition linked to, will be 'basic_auth' or 'jwt'
+          auth_username     string   Username from the definition linked to
+          auth_id           int      ID from the definition linked to
+          creation_time     datetime When the link was created
+          is_active         bool     Is the link active? I.e. can the linked to definition can be used to log a user in?
+          is_internal       bool     Is the link internal to Zato? Will be False for all user-defined links, True otherwise.
+          auth_source       string   Reserved for future use
+          auth_principal    string   Reserved for future use
+          has_ext_principal bool     Reserved for future use
+          ================= ======== ======================================================================================================
+
+::
+
+  # -*- coding: utf-8 -*-
+
+  from __future__ import absolute_import, division, print_function, unicode_literals
+
+  # Zato
+
+  from zato.server.service import Service
+
+  class GetLinks(Service):
+      def handle(self):
+
+          # Request metadata
+          current_ust = 'gAAAAABc9lm75ETkIfF2Wi8YvRU4szBg_2LGFFg3Fs...'
+          current_app = 'CRM'
+          remote_addr = '127.0.0.1'
+
+          # ID of the user to return links for
+          user_id = 'zusr3tm8jhgqjd9smtdt7erb427s9x'
+
+          # Get user's links
+          response = self.sso.user.get_linked_auth_list(self.cid, current_ust,
+            current_app, remote_addr, user_id)
+
+          self.logger.info(response)
+
+::
+
+  INFO - [
+   {
+    'user_id': 'zusr3tm8jhgqjd9smtdt7erb427s9x',
+    'auth_type': 'basic_auth',
+    'auth_username': 'my.username',
+    'auth_id': 2,
+    'creation_time': datetime.datetime(2019, 6, 4, 11, 44, 59, 109637),
+    'is_active': True,
+    'is_internal': False,
+    'auth_source': 'reserved',
+    'auth_principal': 'reserved',
+    'has_ext_principal': False
+    }
+  ]

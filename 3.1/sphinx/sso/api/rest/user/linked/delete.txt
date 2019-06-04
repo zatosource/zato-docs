@@ -48,7 +48,7 @@ Usage
 
   $ curl -XDELETE localhost:17010/zato/sso/user/linked -d '
     {
-     "current_ust": "gAAAAABavk-65BuvKI0JFPeuJ9Tp3pHtNMeFWhVUEBVKExuaVE9KDLFpik4loT7kGHtb4GR2CZbfZL1o0yFeDNyoo2tDqBD8M5h-_JHfw8qlDy7B5ea9O4k=",
+     "current_ust": "gAAAAABavk-65BuvKI0JFPeuJ9Tp3pHtNMe...",
      "current_app": "CRM",
      "user_id": "zusr6fh6fdgd4997ksjkpx7qnk659q",
      "auth_type": "basic_auth",
