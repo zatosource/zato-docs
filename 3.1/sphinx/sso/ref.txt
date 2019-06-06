@@ -52,6 +52,7 @@ Topic                                                REST                       
 :doc:`User.update <./topic/user/update>`             PATCH  :doc:`/zato/sso/user <./api/rest/user/update>`                         :doc:`self.sso.user.update <./api/python/user/update>`
 :doc:`User.delete <./topic/user/delete>`             DELETE :doc:`/zato/sso/user <./api/rest/user/delete>`                         :doc:`self.sso.user.delete <./api/python/user/delete>`
 :doc:`User.change_password <./topic/password/index>` PATCH  :doc:`/zato/sso/user/password <./api/rest/user/change-password>`       :doc:`self.sso.user.change_password <./api/python/user/change-password>`
+:doc:`User.reset_totp_key <./topic/user/totp>`       PATCH  :doc:`/zato/sso/user/totp <./api/rest/user/reset-totp>`                :doc:`self.sso.user.reset_totp_key <./api/python/user/reset-totp>`
 \
 :doc:`Super-users <./topic/user/super>`
 SuperUser.create                                     ---                                                                           :doc:`self.sso.user.create_super_user <./api/python/user/create-super-user>`
