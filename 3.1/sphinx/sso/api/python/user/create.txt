@@ -25,20 +25,24 @@ self.sso.user.create_user
 
                Keys accepted:
 
-               ==================== ======== ======== ==========================================================================================
-               Key                  Optional Default  Notes
-               ==================== ======== ======== ==========================================================================================
-               username             ---      ---      Must be unique among all users
-               password             Yes      192 bits If not given, a random string of 192 bits will be assigned
-               password_must_change Yes      False
-               display_name         Yes      ---      Display name
-               first_name           Yes      ---      First name
-               middle_name          Yes      ---      Middle name
-               last_name            Yes      ---      Last name
-               email                Yes      ---      User's email
-               is_locked            Yes      ---      Should the account be locked upon creation, i.e. logging in will not be possible
-               sign_up_status       Yes      final    User's initial signup status, by default it is 'final' meaning the user is fully signed up
-               ==================== ======== ======== ==========================================================================================
+               ==================== ======== =============== ==========================================================================================
+               Key                  Optional Default         Notes
+               ==================== ======== =============== ==========================================================================================
+               username             ---      ---             Must be unique among all users
+               password             Yes      192 bits        If not given, a random string of 192 bits will be assigned
+               password_must_change Yes      False           Is the user required to change the password before they log in
+               display_name         Yes      ---             Display name
+               first_name           Yes      ---             First name
+               middle_name          Yes      ---             Middle name
+               last_name            Yes      ---             Last name
+               email                Yes      ---             User's email
+               is_locked            Yes      ---             Should the account be locked upon creation, i.e. logging in will not be possible
+               sign_up_status       Yes      final           User's initial signup status, by default it is 'final' meaning the user is fully signed up
+               is_totp_enabled      Yes      False           Should TOTP-based two factor authentication be enabled for user
+               totp_key             Yes      Auto-generated  User's TOTP key, one will be auto-generated for user if it is not given on input,
+                                                             even if is_totp_enabled is False
+               totp_label           Yes      <default-label> An arbitrary label assigned to user's TOTP key for convenience
+               ==================== ======== =============== ==========================================================================================
 
   :type data: string
 

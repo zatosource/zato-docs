@@ -32,6 +32,10 @@ display_name         string   Yes      ---              Display name
 first_name           string   Yes      ---              First name
 middle_name          string   Yes      ---              Middle name
 last_name            string   Yes      ---              Last name
+is_totp_enabled      bool     Yes      ---              Should TOTP-based two factor authentication be enabled for user
+totp_key             string   Yes      ---              User's TOTP key, one will be auto-generated for user if it is not given on input,
+                                                        even if is_totp_enabled is False
+totp_label           string   Yes      ---              An arbitrary label assigned to user's TOTP key for convenience
 is_locked            bool     Yes      Yes              Should this account be locked?
 password_expiry      string   Yes      Yes              When will that account's password expire?
 password_must_change bool     Yes      Yes              Is the user required to change password on next login?

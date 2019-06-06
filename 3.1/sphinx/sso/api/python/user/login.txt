@@ -19,7 +19,7 @@ API
 self.sso.user.login
 ~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: login(self, cid, username, password, current_app, remote_addr, user_agent=None,
+.. py:method:: login(self, cid, username, password, current_app, remote_addr, totp_code=None, user_agent=None,
         has_remote_addr=False, has_user_agent=False, new_password='')
 
   Logs a user in, optionally sending login metadata or a new password, if it was required.
@@ -38,6 +38,9 @@ self.sso.user.login
 
   :param remote_addr: User's remote address
   :type remote_addr: string
+
+  :param user_agent: Optional TOTP code if user has two-factor authentication enabled
+  :type user_agent: string
 
   :param user_agent: User agent string
   :type user_agent: string

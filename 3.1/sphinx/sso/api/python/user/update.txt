@@ -38,6 +38,9 @@ self.sso.user.update_current_user
               * first_name
               * middle_name
               * last_name
+              * is_totp_enabled
+              * totp_key
+              * totp_label
 
               Super-users may send additionally:
 

@@ -27,6 +27,7 @@ Name         Datatype Optional Notes
 username     string   ---      Username to log in with
 password     string   ---      Password for username
 current_app  string   ---      Name of application that the call is attempted from
+totp_code    string   ---      Optional TOTP code if user has two-factor authentication enabled
 new_password string   Yes      Required only if current password has already expired or user needs to set a new one
 remote_addr  string   Yes      Remote address (IP) of the API client, accepted only if :doc:`configuration <../../../config/index>` allows it
 user_agent   string   Yes      User agent string of the API client, accepted only if :doc:`configuration <../../../config/index>` allows it
