@@ -52,11 +52,13 @@
 
 * Added ability to connect Zato clusters using WebSockets, including subscriptions to events in other clusters
 
+* Added means to broadcast messages to all WebSocket clients in addition to invocations of individual ones
+
 * Added TOTP two-factor authentication to web-admin
 
 * Added TLS to AMQP connections
 
-* Servers start and stop up several times faster than previously
+* Servers start and stop up to several times faster than previously
 
 * When creating new servers, usage of TLS CA is no longer required
 
