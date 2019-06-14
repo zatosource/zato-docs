@@ -416,6 +416,8 @@ Zato, the open-source project
    admin/cli/crypto/*
    admin/guide/*
    admin/guide/install/*
+   admin/guide/install/py27/*
+   admin/guide/install/py3/*
    admin/guide/install-config/*
    admin/guide/migrate/*
    admin/guide/rbac/*
