@@ -1,0 +1,7 @@
+Zato installation under Docker
+==============================
+
+Instructions for:
+
+* :doc:`Python 2.7 <./py27/docker>`
+* :doc:`Python 3.x <./py3/docker>`

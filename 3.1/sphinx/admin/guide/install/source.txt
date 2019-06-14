@@ -1,0 +1,7 @@
+Zato installation from source code
+==================================
+
+Instructions for:
+
+* :doc:`Python 2.7 <./py27/source>`
+* :doc:`Python 3.x <./py3/source>`
