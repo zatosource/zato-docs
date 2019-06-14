@@ -36,12 +36,12 @@ Installation steps
 
     ubuntu$ curl -s https://zato.io/repo/zato-3.1-C9B13DF28CFE287D.pgp.txt | sudo apt-key add -
 
-* Add Zato repo and update sources
+* Add Zato repository
 
 ::
 
     ubuntu$ sudo add-apt-repository \
-       "deb [arch=amd64] https://zato.io/repo/stable/3.1/py27/ubuntu bionic main"
+       "deb [arch=amd64] https://zato.io/repo/stable/3.1/py27/ubuntu $(lsb_release -cs) main"
 
 * Install Zato
 
@@ -55,7 +55,6 @@ Installation steps
 
     ubuntu$ sudo su - zato
     ubuntu$ cd /opt/zato/current
-    ubuntu$ git pull
     ubuntu$ ./update.sh
 
 * Confirm the installation:

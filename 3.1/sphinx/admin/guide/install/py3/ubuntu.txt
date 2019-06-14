@@ -1,4 +1,4 @@
-Installation on Ubuntu (Python 3.x)
+Installation on Ubuntu (Python 3)
 ===================================
 
 Requirements
@@ -34,14 +34,14 @@ Installation steps
 
 ::
 
-    ubuntu$ curl -s https://zato.io/repo/zato-0CBD7F72.pgp.asc | sudo apt-key add -
+    ubuntu$ curl -s https://zato.io/repo/zato-3.1-C9B13DF28CFE287D.pgp.txt | sudo apt-key add -
 
-* Add Zato repo and update sources
+* Add Zato repository
 
 ::
 
-    ubuntu$ sudo apt-add-repository https://zato.io/repo/stable/3.0/ubuntu
-    ubuntu$ sudo apt-get update
+    ubuntu$ sudo add-apt-repository \
+       "deb [arch=amd64] https://zato.io/repo/stable/3.1/py3/ubuntu $(lsb_release -cs) main"
 
 * Install Zato
 
@@ -55,7 +55,6 @@ Installation steps
 
     ubuntu$ sudo su - zato
     ubuntu$ cd /opt/zato/current
-    ubuntu$ git pull
     ubuntu$ ./update.sh
 
 * Confirm the installation:
@@ -63,9 +62,9 @@ Installation steps
 ::
 
     ubuntu$ zato --version
-    Zato 3.0.0+rev.nnnnnnnn
+    Zato 3.1+rev.nnnnnnn-py3.n.n
     ubuntu$
 
 That concludes the process - you can refer to the main
-:doc:`documentation index <../../../index>`
+:doc:`documentation index <../../../../index>`
 now.

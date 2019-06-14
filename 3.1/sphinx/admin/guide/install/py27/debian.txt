@@ -10,7 +10,7 @@ Requirements
 Installation steps
 ------------------
 
-* Log on as root
+* Log in as root
 
 ::
 
@@ -20,14 +20,14 @@ Installation steps
 
 ::
 
-    debian# curl -s https://zato.io/repo/zato-0CBD7F72.pgp.asc | apt-key add -
+    debian# curl -s https://zato.io/repo/zato-3.1-C9B13DF28CFE287D.pgp.txt | apt-key add -
 
-* Add Zato repo and update sources
+* Add Zato repository
 
 ::
 
-    debian# apt-add-repository https://zato.io/repo/stable/2.0/debian
-    debian# apt-get update
+    debian# add-apt-repository \
+       "deb [arch=amd64] https://zato.io/repo/stable/3.1/py27/debian $(lsb_release -cs) main"
 
 * Install Zato
 
@@ -41,7 +41,6 @@ Installation steps
 
     debian# su - zato
     debian$ cd /opt/zato/current
-    debian$ git pull
     debian$ ./update.sh
 
 * Confirm the installation
@@ -49,7 +48,7 @@ Installation steps
 ::
 
     debian$ zato --version
-    Zato 3.0.0+rev.nnnnnnnn
+    Zato 3.1+rev.nnnnnnn-py2.7.n
     debian$
 
 That concludes the process - you can refer to the main
