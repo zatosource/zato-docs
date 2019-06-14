@@ -4,7 +4,7 @@ Installation on RHEL/CentOS (Python 3.x)
 Requirements
 ------------
 
-* RHEL/CentOS 6.x, 7.x (64-bit)
+* RHEL/CentOS 7.x
 * Root access
 
 Installation steps
@@ -20,21 +20,21 @@ Installation steps
 
 ::
 
-    rhel# curl -sO https://zato.io/repo/zato-0CBD7F72.pgp.asc
-    rhel# rpm --import ~/zato-0CBD7F72.pgp.asc
+    rhel# curl -sO https://zato.io/repo/zato-3.1-C9B13DF28CFE287D.pgp.txt
+    rhel# rpm --import ~/zato-3.1-C9B13DF28CFE287D.pgp.txt
 
 * Add the following repository definition
 
 ::
 
-    rhel# vim /etc/yum.repos.d/zato-3.0.repo
+    rhel# vim /etc/yum.repos.d/zato-3.1.repo
 
-    [zato-3.0]
-    name=zato-3.0
-    baseurl=https://zato.io/repo/stable/3.0/rhel/el$releasever/$basearch
+    [zato-3.1]
+    name=zato-3.1
+    baseurl=https://zato.io/repo/stable/3.1/py3/rhel/el$releasever/$basearch
     enabled=1
     gpgcheck=1
-    gpgkey=https://zato.io/repo/zato-0CBD7F72.pgp.asc
+    gpgkey=https://zato.io/repo/zato-3.1-C9B13DF28CFE287D.pgp.txt
 
 * Refresh the package list
 
@@ -55,7 +55,6 @@ Installation steps
 
     rhel# su - zato
     rhel$ cd /opt/zato/current
-    rhel$ git pull
     rhel$ ./update.sh
 
 * Confirm the installation
@@ -63,9 +62,9 @@ Installation steps
 ::
 
     rhel$ zato --version
-    Zato 3.0.0+rev.nnnnnnnn
+    Zato 3.1+rev.nnnnnnn-py3.n.n
     rhel$
 
 That concludes the process - you can refer to the main
-:doc:`documentation index <../../../index>`
+:doc:`documentation index <../../../../index>`
 now.
