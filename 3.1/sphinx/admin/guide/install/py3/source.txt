@@ -24,7 +24,7 @@ Installation steps
 
 ::
 
-    code$ ./install.sh
+    code$ ./install.sh -p python3
     [snip]
 
 
@@ -33,9 +33,9 @@ Installation steps
 ::
 
     code$ ./bin/zato --version
-    Zato 3.0.0+rev.nnnnnnnn
+    Zato 3.1+rev.nnnnnnn-py3.n.n
     code$
 
 That concludes the process - you can refer to the main
-:doc:`documentation index <../../../index>`
+:doc:`documentation index <../../../../index>`
 now.
