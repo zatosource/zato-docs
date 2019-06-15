@@ -15,7 +15,6 @@ Windows                 Any                    Install `Ubuntu 18.04 LTS <http:/
                                                :doc:`installation instructions on Ubuntu <./ubuntu>`
 Mac                     Any                    (ditto)
 Docker                  Any                    :doc:`Python 2.7 <./py27/docker>` | :doc:`Python 3.x <./py3/docker>`
-Vagrant                 Any                    :doc:`Python 2.7 <./py27/vagrant>` | :doc:`Python 3.x <./py3/vagrant>`
 Ubuntu                  16.04, 18.04           :doc:`Python 2.7 <./py27/ubuntu>` | :doc:`Python 3.x <./py3/ubuntu>`
 RHEL/CentOS             7.x                    :doc:`Python 2.7 <./py27/rhel>` | :doc:`Python 3.x <./py3/rhel>`
 Debian                  8.x, 9.x               :doc:`Python 2.7 <./py27/debian>` | :doc:`Python 3.x <./py3/debian>`
