@@ -1,0 +1,7 @@
+Zato installation under Kubernetes
+==================================
+
+Instructions for:
+
+* :doc:`Python 2.7 <./py27/kubernetes>`
+* :doc:`Python 3.x <./py3/kubernetes>`
