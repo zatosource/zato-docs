@@ -365,7 +365,8 @@ Administration guide
 
     * **Docker support:**
       :doc:`Installing a quickstart environment <admin/guide/install/docker>`
-
+      :doc:`Installing a Zato in Docker Swarm <admin/guide/install/swarm>`
+      
     * **Vagrant support:**
       :doc:`Running a quickstart environment <admin/guide/install/vagrant>`
 

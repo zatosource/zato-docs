@@ -1,0 +1,7 @@
+Zato's Docker image in Docker Swarm
+===================================
+
+Instructions for:
+
+* :doc:`Python 2.7 <./py27/swarm>`
+* :doc:`Python 3.x <./py3/swarm>`
