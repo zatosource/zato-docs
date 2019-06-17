@@ -119,7 +119,7 @@ ODB_PORT                     ODB port.
 ODB_NAME                     ODB database.
 ODB_USERNAME                 ODB username.
 ODB_PASSWORD                 ODB password.
-SECRET_KEY                   A random secret key previously generated with the                    jN09DcGqhICFluzHVgokQj...
+SECRET_KEY                   A random secret key previously generated with
                              :doc:`zato crypto create-secret-key <../../../cli/crypto/create-secret-key>`.
                              It is used to encrypt passwords and other sensitive data in ODB.
                              Must be the same for all servers in a single cluster. If not
