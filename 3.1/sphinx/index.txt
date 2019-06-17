@@ -364,7 +364,9 @@ Administration guide
       :doc:`Bash completion update <admin/guide/bash-completion-update>`
 
     * **Docker support:**
-      :doc:`Installing a quickstart environment <admin/guide/install/docker>`
+      :doc:`Installing a quickstart environment <admin/guide/install/docker>` |
+      :doc:`Installing a Zato in Docker Swarm <admin/guide/install/swarm>` |
+      :doc:`Installing a Zato in Kubernetes <admin/guide/install/kubernetes>`
 
     * **Vagrant support:**
       :doc:`Running a quickstart environment <admin/guide/install/vagrant>`
