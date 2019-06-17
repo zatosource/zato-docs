@@ -1,9 +1,15 @@
 .. highlight:: sh
 
-Zato's Docker image in Docker Swarm (Python 3.x)
-================================================
+Installation under Docker Swarm (Python 3.x)
+============================================
 
-This image include the last Zato version with an entrypoint script that can be used for every Zato component.
+This image includes the last Zato version with an entrypoint script that can be used for every Zato component.
+
+Requirements
+------------
+
+* Docker Compose
+* Docker Machine
 
 Docker image
 ------------
@@ -12,20 +18,13 @@ Download the Docker image for local usage:
 
 ::
 
-    host$ sudo docker pull registry.gitlab.com/zatosource/docker-registry/cloud:3.1-py3
+    host$ sudo docker pull registry.gitlab.com/zatosource/docker-registry/cloud:3.1-py27
 
-
-Requirements
-------------
-
-* Docker version 1.13 or higher.
-* Docker Compose.
-* Docker Machine.
 
 Start a local Docker Swarm
 --------------------------
 
-* Start a Virtual Machine
+* Start a virtual machine
 
 ::
 
@@ -54,11 +53,13 @@ Deploy Zato to local Docker Swarm
     host$ git clone https://github.com/zatosource/zato-build.git
     host$ cd zato-build/docker/swarm/
 
-* Install `Dockerize <https://github.com/powerman/dockerize#installation>`_ . It will be used to create the docker-compose.yml using environment variables.
+* Install `Dockerize <https://github.com/powerman/dockerize#installation>`_ .
+  It will be used to create the docker-compose.yml file using environment variables.
 
-* Edit the file **environment** and customize the environment variables. **SECRET_KEY** and **JWT_SECRET_KEY** variables are mandatory.
+* Edit the file **environment** and customize the environment variables.
+  SECRET_KEY and JWT_SECRET_KEY variables are mandatory.
 
-* Generate the docker-compose.yml with your values from **environment**.
+* Generate the docker-compose.yml with your values from **environment**
 
 ::
 
@@ -83,20 +84,20 @@ Deploy Zato to local Docker Swarm
 
     host$ eval $(docker-machine env default)
 
-- Check log of Zato server 1 (the Zato Server container name will be different)
+- Check logs of Zato server 1 (container name will be different)
 
 ::
 
     host$ docker logs -f zato_zato_server.1.c21pmddnwlh0vh0wt8ap6cw8j
 
-- Check access to Zato servers
+- Confirm access to Zato servers
 
 ::
 
     host$ curl http://$(docker-machine ip default):17010/zato/ping
     {"zato_env": {"details": "", "result": "ZATO_OK", "cid": "93bf40452dc0cc2a9d548614"}, "zato_ping_response": {"pong": "zato"}}
 
-- Get Zato's Web Admin interface URL
+- Get the URL for web-admin
 
 ::
 
@@ -107,7 +108,7 @@ Deploy Zato to local Docker Swarm
 Environment variables available
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Zato image uses several environment variables which can be used to fine-tune the resulting installation.
+The image uses several environment variables which can be used to fine-tune the resulting installation.
 
 They are not required to use, and default values will be substituted if any is missing,
 but they may be employed to configure particular details of each of the components.

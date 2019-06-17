@@ -14,16 +14,12 @@
    in 10 minutes.
 
 * Enhanced support for Docker,
-  including :doc:`Quickstart <../admin/guide/install/index>`,
-  :doc:`Swarm <../admin/guide/install/index>`
+  including :doc:`Quickstart <../admin/guide/install/docker>`,
+  :doc:`Swarm <../admin/guide/install/swarm>`
   and
-  :doc:`Kubernetes <../admin/guide/install/index>`
+  :doc:`Kubernetes <../admin/guide/install/kubernetes>`
 
-* Added support for Python 3.5+ in addition to Python 2.7
-
-* New tutorials: SOA/API, publish/subscribe topics/message queues, Single Sign-On, caching and file transfer
-
-* New quickstart Vagrantfile
+* Added support for Python 3.6+ in addition to Python 2.7
 
 * Added MongoDB connections
 
