@@ -39,6 +39,25 @@
     });
 })(jQuery);
 </script>
+
+  <style type="text/css">
+    #get-support {
+      background-color: #0f52ba;
+      padding:5px !important;
+      margin:3px !important;
+      color: #fff !important;
+      text-decoration:none;
+      font-weight:600;
+      border-radius: 4px;
+      font-style:italic;
+    }
+
+    #get-support:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+
 {% endblock %}
 
 {% block document %}
@@ -46,17 +65,17 @@
     <div id="hd">
       <h1><a href="{{ pathto('index') }}">{{ docstitle }}</a></h1>
       <div id="global-nav">
-        <a title="Get support" href="https://zato.io/support.html">Get support →</a>
+        <a id="get-support" title="Get support" href="https://zato.io/support.html">Get support →</a>
       </div>
       <div class="nav">{{ secondnav() }}</div>
     </div>
-    
+
     <div id="bd">
       <div id="yui-main">
         <div class="yui-b">
           <div class="yui-g" id="{{ pagename|replace('/', '-') }}">
             {% block body %}{% endblock %}
-          </div>         
+          </div>
         </div>
       </div>
       {% block sidebarwrapper %}
@@ -67,11 +86,11 @@
               <h3>Last update:</h3>
               <p class="topless">{{ last_updated }}</p>
             {%- endif %}
-          </div> 
+          </div>
         {% endif %}
       {% endblock %}
     </div>
-    
+
     <div id="ft">
       <div class="nav">{{ secondnav() }}</div>
     </div>
@@ -89,7 +108,7 @@
         <ul><li>{{ title }}</li></ul>
         {% for p in parents %}</li></ul>{% endfor %}
       </li>
-  </ul>  
+  </ul>
 {% endblock %}
 
 {# Empty some default blocks out #}
