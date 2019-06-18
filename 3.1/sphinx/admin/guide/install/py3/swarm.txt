@@ -116,6 +116,11 @@ but they may be employed to configure particular details of each of the componen
 ============================ =================================================================================================
 Variable                     Notes
 ============================ =================================================================================================
+CLUSTER_NAME                 Cluster name.
+LB_HOSTNAME                  Load balancer hostname. Used to communicate to the servers.
+LB_PORT                      Load balancer port. Used to communicate to the servers.
+ZATO_POSITION                Specify the Zato component for this container. Must be one of: **load-balancer** (used only to create
+                             the ODB and the cluster), **scheduler**, **server** and **webadmin**.
 ZATO_WEB_ADMIN_PASSWORD      Password for the web admin’s technical account user to connect with. If not defined,
                              the value is generated automatically at runtime.
 ZATO_IDE_PUBLISHER_PASSWORD  Password for user `ide_publisher`, used for IDE integration. If not defined,
@@ -141,4 +146,5 @@ JWT_SECRET_KEY               A random secret key previously generated with
                              If JWT is used, must be the same for all servers in a single
                              cluster. If not provided, a new key will be generated
                              automatically.
+VERBOSE                      Verbose output in logs.
 ============================ =================================================================================================
