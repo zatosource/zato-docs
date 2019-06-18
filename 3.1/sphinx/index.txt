@@ -23,7 +23,7 @@ Getting help
 
 * `Twitter <https://twitter.com/zatosource>`_ for quick questions and answers
 
-* Documentation for: `3.1 </docs/3.1/>`_ (in-dev) · `3.0 </docs/2.0/>`_ (current)
+* Documentation for: `3.1 </docs/3.1/>`_ (current) · `3.0 </docs/3.0/>`_ (previous)
 
 
 What makes Zato unique
@@ -60,9 +60,6 @@ Introduction
     * **Tutorial:**
       :doc:`Part 1 <tutorial/01>` |
       :doc:`Part 2 <tutorial/02>`
-
-    * **Guides:**
-      :doc:`Rate-limiting <guide/rate-limit>`
 
 I18N
 ====
@@ -223,7 +220,8 @@ Programming guide
       :doc:`WebSockets <progguide/examples/wsx>` |
       :doc:`JSON Pointers <progguide/examples/json-pointer>` |
       :doc:`XPath <progguide/examples/xpath>` |
-      :doc:`Cryptography <progguide/examples/crypto>`
+      :doc:`Cryptography <progguide/examples/crypto>` |
+      :doc:`Rate-limiting <guide/rate-limit>`
 
     * **Developing services and applications:**
       :doc:`Overview <progguide/overview>` |

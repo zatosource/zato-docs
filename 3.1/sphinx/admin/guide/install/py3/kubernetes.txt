@@ -1,9 +1,15 @@
 .. highlight:: sh
 
-Zato's Docker image in Kubernetes (Python 3.x)
-==============================================
+Installation under Kubernetes (Python 3.x)
+==========================================
 
-This image include the last Zato version with an entrypoint script that can be used for every Zato component.
+This image includes the last Zato version with an entrypoint script that can be used for every Zato component.
+
+Requirements
+------------
+
+* Kubernetes
+* kubectl
 
 Docker image
 ------------
@@ -14,12 +20,6 @@ Download the Docker image for local usage:
 
     host$ sudo docker pull registry.gitlab.com/zatosource/docker-registry/cloud:3.1-py3
 
-
-Requirements
-------------
-
-* Kubernetes.
-* kubectl.
 
 Start a local Kubernetes with Minikube
 --------------------------------------
@@ -43,11 +43,12 @@ Deploy Zato to local Kubernetes
     host$ git clone https://github.com/zatosource/zato-build.git
     host$ cd zato-build/docker/kubernetes/
 
-* Install `Dockerize <https://github.com/powerman/dockerize#installation>`_ . It will be used to create the zato-k8.yaml using environment variables.
+* Install `Dockerize <https://github.com/powerman/dockerize#installation>`_ . It will be used to create the
+  zato-k8.yaml file using environment variables.
 
-* Edit the file **environment** and customize the environment variables. **SECRET_KEY** and **JWT_SECRET_KEY** variables are mandatory.
+* Edit the **environment** file  and customize the environment variables. SECRET_KEY and JWT_SECRET_KEY variables are mandatory
 
-* Generate the zato-k8.yaml with your values from **environment**.
+* Generate the zato-k8.yaml with your values from environment
 
 ::
 
@@ -66,7 +67,7 @@ Deploy Zato to local Kubernetes
 
     host$ kubectl apply -f zato-k8.yaml
 
-* Check if the deploy is running
+* Check if components are running:
 
 ::
 
@@ -80,13 +81,13 @@ Deploy Zato to local Kubernetes
     server-85bcf4ccbd-gqbs2      0/1     ContainerCreating   0          22s
     webadmin-54688f5445-n4xkz    0/1     ContainerCreating   0          22s
 
-- Check log of Zato server (the Zato Server pod name will be different)
+- Check Zato server logs (pod name will be different)
 
 ::
 
     host$ kubectl logs --namespace=zato server-85bcf4ccbd-2lw45
 
-- Get Zato's Web Admin interface URL
+- Get the URL for web-admin
 
 ::
 
@@ -118,7 +119,7 @@ ODB_PORT                     ODB port.
 ODB_NAME                     ODB database.
 ODB_USERNAME                 ODB username.
 ODB_PASSWORD                 ODB password.
-SECRET_KEY                   A random secret key previously generated with the                    jN09DcGqhICFluzHVgokQj...
+SECRET_KEY                   A random secret key previously generated with
                              :doc:`zato crypto create-secret-key <../../../cli/crypto/create-secret-key>`.
                              It is used to encrypt passwords and other sensitive data in ODB.
                              Must be the same for all servers in a single cluster. If not

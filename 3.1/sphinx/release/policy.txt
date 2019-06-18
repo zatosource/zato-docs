@@ -9,7 +9,7 @@ latest LTS April Ubuntu releases.
 
 Each major release receives 1 year of free support and at least 2 years of `commercial support <https://zato.io/support.html>`_.
 
-A major release is distributed as a binary package for RHEL/CentOS, Ubuntu, Debian or Alpine Linux.
+A major release is distributed as a binary package or image for Docker, RHEL/CentOS, Ubuntu and Debian.
 
 As long as a given major release is supported, it periodically :doc:`receives <../admin/guide/install/update>` stability
 or security fixes and new enhancements to functionality. All such changes are always backwards-compatible within
@@ -24,10 +24,10 @@ Note that commercial support contracts can always tailor the life-cycle policy f
 creation of packages at any time or support extending to as many years as required
 - contact support@zato.io for more information.
 
-Key dates for Zato 3.0:
+Key dates for Zato 3.1:
 
 ============= ================== ========================
 Release date  Free support until Commercial support until
 ============= ================== ========================
-2018-06-30    2019-06-30         2020-06-30 (at least)
+2019-06-18    2020-06-18         2021-06-18 (at least)
 ============= ================== ========================

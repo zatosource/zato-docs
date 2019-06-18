@@ -1,4 +1,4 @@
-3.1 - 2019-06-NN
+3.1 - 2019-06-18
 ================
 
 .. note::
@@ -13,16 +13,13 @@
    :doc:`web-admin <../architecture/web-admin>`
    in 10 minutes.
 
-* Enhanced support for Docker, including :doc:`quickstart <../admin/guide/install/docker>`,
-  Swarm
+* Enhanced support for Docker,
+  including :doc:`Quickstart <../admin/guide/install/docker>`,
+  :doc:`Swarm <../admin/guide/install/swarm>`
   and
-  Kubernetes
+  :doc:`Kubernetes <../admin/guide/install/kubernetes>`
 
-* Added support for Python 3.5+ in addition to Python 2.7
-
-* New tutorials: SOA/API, publish/subscribe topics/message queues, Single Sign-On, caching and file transfer
-
-* New quickstart Vagrantfile
+* Added support for Python 3.6+ in addition to Python 2.7
 
 * Added MongoDB connections
 
