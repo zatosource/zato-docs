@@ -39,6 +39,8 @@
 
 * Added IP whitelisting
 
+* Added a :doc:`JavaScript client <../progguide/clients/js/index>` for Zato services and message topics
+
 * Extensions to Single-Sign On: two-factor authentication and multi-credentials accounts
 
 * Added means to :doc:`list SSO user sessions <../sso/api/rest/session/get-list>`
