@@ -1,0 +1,97 @@
+.. highlight:: python
+   :linenothreshold: 1
+
+Response objects
+================
+
+Overview
+--------
+
+All services produce responses through their *self.response* attribute. Unlike with :doc:`requests <./request>`, there are no
+protocol-specific sub-attributes.
+
+The most general way to create a response, and one that is always possible, is to assign a string or Unicode object to
+*self.response.payload*, e.g. as a result of manual serialization.
+
+However, if using :doc:`SimpleIO <../sio>` or if a channel's definition is JSON or XML, it is also possible
+for Zato to serialize objects directly, e.g. from dicts or SQLAlchemy objects.
+
+
+Response attributes
+-------------------
+
+All of the attributes and methods are always available to all services, regardless of the protocol they are invoked through
+though in the case of HTTP-specific ones, using them will be a no-op if the service is not invoked through HTTP.
+
+=============================== ==================================================================================================
+Attribute                       Description
+=============================== ==================================================================================================
+self.response                   The main attribute via which responses are produced
+self.response.payload           The object to which responses are assigned, i.e. this is the attribute through which
+                                a service's business data is returned, such as a JSON message
+self.response.status_code       *(HTTP only)* An integer status code such as 200 or 401 to return in response
+self.response.content_encoding  *(HTTP only)* Sets response's Content-Encoding header value
+self.response.content_type      *(HTTP only)* Sets response's Content-Type header value
+self.response.headers           *(HTTP only)* A dictionary of header name/value to set in the response
+=============================== ==================================================================================================
+
+self.response.payload
+---------------------
+
+Assiging to self.response.payload lets one return responses from services. It can be done in several ways:
+
+By assigning a string/unicode object directly. This approach is always available:
+
+::
+
+    def handle(self):
+        self.response.payload = '{"id":123, "name":"John Doe"}'
+
+If using :doc:`SimpleIO <../sio>`, all the attributes can be assigned to as they appear in the SimpleIO definition,
+either one, as a dictionary or as a list. Serialization to JSON or XML will be done by Zato automatically,
+depending on service's channel definition.
+
+::
+
+  def handle(self):
+      self.response.payload = {'id':123, 'name':'John Doe'}
+
+To return a list of objects, slice notation is used (again, data format for channel needs to be JSON or XML):
+
+::
+
+  def handle(self):
+      data = [
+          {'id':123, 'name': 'John Doe'},
+          {'id':456, 'name': 'Jane Xi'},
+      ]
+      self.response.payload[:] = data
+
+Assigning attributes individually:
+
+::
+
+  def handle(self):
+      self.response.payload.id = 123
+      self.response.payload.name = 'John Doe'
+
+If using :doc:`SimpleIO <../sio>`, it is also possible to assign SQLAlchemy objects directly from an SQL query:
+
+::
+
+  def handle(self):
+
+      # Get user from database
+      user = session.query(UserModel).\
+        filter(UserModel.id==123).\
+        one()
+
+      # Assign the user object directly to response
+      self.response.payload = user
+
+Examples
+--------
+
+* Consult the :doc:`dedicated chapter <../examples/index>` with programming examples for more details.
+* To learn more about SimpleIO, click :doc:`here <../sio>`
+* Visit :doc:`this chapter <./request>` to read more about request objects

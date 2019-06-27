@@ -1,0 +1,40 @@
+
+zato update openid
+====================
+
+Updates a claimed ID of a web-admin's user. The user must already exist in web-admin prior
+to the command's execution.
+
+Command-specific parameters
+---------------------------
+
+================================================= ================================== ==============================
+Name                                              Description                        Example value
+================================================= ================================== ==============================
+path                                              Path to the web admin directory    ~/zato1/web-admin/
+username                                          Username to update a claimed ID of jane.roe
+claimed-id                                        URL of the claimed ID              https://sso.example.com/myuser
+================================================= ================================== ==============================
+
+Usage
+-----
+
+::
+
+    $ zato update openid [-h] [--store-log] [--verbose] [--store-config]
+        path username claimed-id
+
+::
+
+    $ zato update openid ~/zato1/web-admin/ jane.roe https://sso.example.com/myuser
+    OK
+    $
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================

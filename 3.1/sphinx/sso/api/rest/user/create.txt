@@ -1,0 +1,118 @@
+.. highlight:: text
+   :linenothreshold: 1000
+
+User.create - REST API
+======================
+
+Overview
+--------
+
+Creates a new regular user. Input UST must belong to a logged in super-user.
+
+  * HTTP method: POST
+  * URL path: /zato/sso/user
+
+Request
+-------
+
+==================== ======== ======== =====================================================================================================================
+Name                 Datatype Optional Notes
+==================== ======== ======== =====================================================================================================================
+ust                  string   ---      Current user's session token (UST)
+current_app          string   ---      Name of application that the call is attempted from
+username             string   ---      Must be unique among all users
+password             string   Yes      If not given, a random string of 192 bits will be assigned
+password_must_change bool     Yes      Whether user must change the password on first login
+email                string   Yes      User's email
+display_name         string   Yes      Display name
+first_name           string   Yes      First name
+middle_name          string   Yes      Middle name
+last_name            string   Yes      Last name
+is_totp_enabled      bool     Yes      Should TOTP-based two factor authentication be enabled for user
+totp_key             string   Yes      User's TOTP key, one will be auto-generated for user if it is not given on input,
+                                       even if is_totp_enabled is False
+totp_label           string   Yes      An arbitrary label assigned to user's TOTP key for convenience
+is_locked            bool     Yes      Should the account be locked upon creation, i.e. logging in will not be possible until
+                                       :doc:`unlocked <../../../../admin/cli/sso-unlock-user>`
+sign_up_status       string   Yes      User's initial signup status, by default it is 'final' meaning the user is fully signed up
+==================== ======== ======== =====================================================================================================================
+
+
+Response
+--------
+
+======================== ======== ======== ====================================================================================================================
+Name                     Datatype Optional Notes
+======================== ======== ======== ====================================================================================================================
+cid                      string   ---      Correlation ID assigned to request
+status                   string   ---      Overall :doc:`status code <../../../status-code>`
+sub_status               list     Yes      Returned only if status is not "ok", a list of :doc:`error or warning codes <../../../status-code>`
+user_id                  string   ---      ID of the user returned
+username                 string   ---      Username of the user
+email                    string   Yes      E-mail
+display_name             string   Yes      Display name
+first_name               string   Yes      First name
+middle_name              string   Yes      Middle name
+last_name                string   Yes      Last name
+is_active                bool     Yes      Returned to superIf the
+is_internal              bool     Yes      Does the account belong to Zato internally?
+is_super_user            bool     Yes      Is the user a super-user?
+is_approval_needed       bool     ---      Is a super-user's approval needed for this account to become fully active?
+approval_status          string   ---      Current approval status, one of: before_decision, approved, rejected
+approval_status_mod_by   string   ---      By whom the approval status was last changed, will be 'auto' for users created from command line
+approval_status_mod_time datetime ---      When was that approval status last changed
+is_locked                bool     Yes      Has this account been locked by a super-user?
+locked_time              string   Yes      If locked, when was it?
+locked_by                string   Yes      If locked, who by?
+creation_ctx             string   Yes      Opaque metadata describing account creation
+approv_rej_time          string   Yes      If approved or rejected, when was it?
+approv_rej_by            string   Yes      If approved or rejected, who by?
+password_expiry          string   Yes      When will that account's password expire?
+password_is_set          bool     Yes      (Reserved for future use)
+password_must_change     bool     Yes      Is the user required to change password on next login?
+password_last_set        string   Yes      When was the password last set?
+sign_up_status           string   Yes      Signup process status, returned values are: before_confirmation, to_approve, final
+sign_up_time             datetime Yes      When did the user sign up with the system?
+is_totp_enabled          bool     Yes      Should TOTP-based two factor authentication be enabled for user
+totp_key                 string   Yes      User's TOTP key, one will be auto-generated for user if it is not given on input,
+                                           even if is_totp_enabled is False
+totp_label               string   Yes      An arbitrary label assigned to user's TOTP key for convenience
+======================== ======== ======== ====================================================================================================================
+
+Usage
+-----
+
+::
+
+  $ curl -XPOST localhost:17010/zato/sso/user -d '
+    {
+     "ust": "gAAAAABalqIqH4T2cEry9wYmFUJKzJo7...",
+     "current_app": "CRM",
+     "username": "user1",
+     "email": "myuser@example.com",
+     "display_name": "My User"
+    }
+    '
+
+    {
+        "approval_status": "before_decision",
+        "approval_status_mod_by": "auto",
+        "approval_status_mod_time": "2018-02-24T12:56:58",
+        "cid": "de00deb0471188dcdd9913a8",
+        "display_name": "My User",
+        "email": "myuser@example.com",
+        "is_active": true,
+        "is_approval_needed": true,
+        "is_internal": false,
+        "is_locked": false,
+        "is_super_user": false,
+        "password_expiry": "2020-02-25T15:39:53",
+        "password_is_set": true,
+        "password_last_set": "2018-02-25T15:39:53",
+        "password_must_change": false,
+        "sign_up_status": "final",
+        "sign_up_time": "2018-02-24T12:56:58",
+        "status": "ok",
+        "user_id": "zusrx2efj1q1h98n9q00tgx8scefv",
+        "username": "user1"
+    }

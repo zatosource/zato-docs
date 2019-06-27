@@ -1,0 +1,43 @@
+Messages - XML Namespaces
+=========================
+
+Overview
+--------
+
+Used to create, update, delete and browse through `XML Namespaces <https://en.wikipedia.org/wiki/XML_Namespace>`_
+that can be used in :doc:`XPath expression <./xpath>`.
+
+
+* Menu path: Messages -> XML -> Namespaces
+* Example address: http://localhost:8183/zato/messages/namespace/?cluster=1
+
+.. image:: /gfx/web-admin/messages/xpath.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/messages/xpath-create.png
+
+=================== ======================================================================================================================
+Header              Notes
+=================== ======================================================================================================================
+Name                Namespace's name - an alias used in :doc:`XPath expression <./xpath>`.
+Value               The value of the namespace
+=================== ======================================================================================================================
+
+Delete
+------
+
+.. image:: /gfx/web-admin/messages/xpath-delete.png
+
+Deletes an XML namespace but does not delete any related XPath expressions.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================

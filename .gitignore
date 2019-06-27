@@ -1,4 +1,6 @@
 */sphinx/_build/
+*/sphinx/env/
+*/sphinx/man
 */sphinx/zato_docs_env/
 *.*~
 *.pyc

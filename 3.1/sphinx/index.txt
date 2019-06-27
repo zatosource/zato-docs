@@ -1,0 +1,506 @@
+
+Open-source ESB, SOA, REST, APIs, SSO and Cloud Integrations in Python
+----------------------------------------------------------------------
+
+Getting help
+============
+
+* Read the :doc:`no-nonsense intro to ESB and SOA <intro/esb-soa>`
+
+* :doc:`Download and install <admin/guide/install/index>` the latest version
+
+* `Priority commercial support and training <https://zato.io/support.html>`_
+
+* `Visit GitHub <https://github.com/zatosource/zato>`_ to fork code and contribute ideas
+
+* Read the `Zato Blog <https://zato.io/blog/index.html>`_
+
+* Ask around on the `forum <https://forum.zato.io/>`_
+
+* Join the `#zato IRC channel <https://webchat.freenode.net/?channels=zato>`_ on Freenode network
+
+* Look up fellow professionals on `LinkedIn <https://www.linkedin.com/groups?gid=5015554>`_
+
+* `Twitter <https://twitter.com/zatosource>`_ for quick questions and answers
+
+* Documentation for: `3.1 </docs/3.1/>`_ (current) · `3.0 </docs/3.0/>`_ (previous)
+
+
+What makes Zato unique
+======================
+
+* **Open-source ESB**, **SOA**, **REST**, **APIs**, **SSO** and **Cloud Integrations** in **Python**
+
+* Includes a multi-protocol **message broker** with **publish/subscribe topics** and guaranteed delivery **message queues**
+
+* Using Python alone offers **increased productivity**
+
+* **HA load-balancer**, **hot-deployment** and **hot-reconfiguration** almost everywhere -
+  forget server restarts
+
+* Browser-based **GUI**, **CLI** and **API** - easy to use and customize
+
+* **Protocols**, **industry standards** and **data formats** - **SAP**, **Odoo** and **IBM MQ** as well as REST, JSON, SOAP, AMQP,
+  JMS, ZeroMQ, WebSockets, Redis, SQL, Cassandra, Amazon S3, OpenStack Swift,
+  LDAP, Active Directory, Apache, Kafka, SMTP, IMAP, FTP, Solr, ElasticSearch, Memcached, SMS Twilio, Vault,
+  Slack, Telegram, RBAC, integration patterns, cryptography, security and more
+
+* **Commercial support** and **training** available. Growing **community** around the project.
+
+Introduction
+============
+
+    * **Basic concepts:**
+      :doc:`No-nonsense intro to ESB and SOA <intro/esb-soa>` |
+      :doc:`High-level overview <intro/overview-high-level>` |
+      :doc:`Technical overview <intro/overview-tech>` |
+      :doc:`Nomenclature <intro/nomen>` |
+      :doc:`What's new in 3.1 <project/changelog>`
+
+    * **Tutorial:**
+      :doc:`Part 1 <tutorial/01>` |
+      :doc:`Part 2 <tutorial/02>`
+
+I18N
+====
+
+    * *CN*
+      :doc:`ESB和SOA到底是什么？ <intro/esb-soa-cn>` ·
+      `Zato—基于Python的ESB和后端应用服务器 <http://www.infoq.com/cn/articles/zato>`_ ·
+      *CAT* :doc:`Què és un ESB i què és SOA? <intro/esb-soa-ca>` |
+      *DE* :doc:`Was bedeutet ESB und SOA überhaupt? <intro/esb-soa-de>` |
+      *FR* :doc:`Qu´entend-on á vrai dire par ESB et SOA? <intro/esb-soa-fr>` |
+      *IT* :doc:`Sì, ma cosa sono ESB e SOA? <intro/esb-soa-it>` |
+      *NL* :doc:`Wat zijn ESB en SOA eigenlijk? <intro/esb-soa-nl>` |
+      *PT*  :doc:`O que ESB e SOA são, afinal? <intro/esb-soa-pt>` |
+      *TR* :doc:`ESB ve SOA ne anlama geliyor yani? <intro/esb-soa-tr>`
+
+Web admin reference
+===================
+
+    * **Overview:**
+      :doc:`Introduction <web-admin/intro>` |
+      :doc:`Securing the web admin <web-admin/security>`
+
+    * **Clusters:**
+      :doc:`Main view <web-admin/clusters>`
+
+    * **Servers:**
+      :doc:`Main view <web-admin/servers/main>` |
+      :doc:`Adding and removing servers <web-admin/servers/add-remove>`
+
+    * **Load balancer:**
+      :doc:`GUI view <web-admin/load-balancer/gui>` |
+      :doc:`Source code view <web-admin/load-balancer/source-code>` |
+      :doc:`Remote commands <web-admin/load-balancer/remote-commands>` |
+      :doc:`Statistics <web-admin/load-balancer/statistics>`
+
+    * **Services:**
+      :doc:`Main view <web-admin/services/main>` |
+      :doc:`Uploading a service <web-admin/services/upload>`
+
+    * **Service details:**
+      :doc:`Main view <web-admin/service-details/main>` |
+      :doc:`Invoker <web-admin/service-details/invoker>` |
+      :doc:`Source code <web-admin/service-details/source-code>` |
+      :doc:`Sample requests/responses <web-admin/service-details/sample-req-resp>` |
+      :doc:`Slow responses <web-admin/service-details/slow-responses>`
+
+    * **Messages:**
+      :doc:`JSON Pointers <web-admin/messages/json-pointer>` |
+      :doc:`XML Namespaces <web-admin/messages/xml-ns>` |
+      :doc:`XPath <web-admin/messages/xpath>`
+
+    * **Security:**
+      :doc:`API keys <web-admin/security/apikey>` |
+      :doc:`AWS <web-admin/security/aws>` |
+      :doc:`Basic Auth <web-admin/security/basic-auth>` |
+      :doc:`JSON Web Token<web-admin/security/jwt>` |
+      :doc:`NTLM <web-admin/security/ntlm>` |
+      :doc:`OAuth <web-admin/security/oauth>` |
+      :doc:`RBAC (Role-based access control) <web-admin/security/rbac/overview>` |
+      :doc:`SSL/TLS <web-admin/security/tls/overview>` |
+      :doc:`Vault <web-admin/security/vault>` |
+      :doc:`WS-Sec <web-admin/security/ws-security>` |
+      :doc:`XPath <web-admin/security/xpath>`
+
+    * **Connection definitions:**
+      :doc:`AMQP <web-admin/conn-def/amqp>` |
+      :doc:`Cassandra <web-admin/conn-def/cassandra>` |
+      :doc:`IBM MQ <web-admin/conn-def/jms-wmq>`
+
+    * **Channels:**
+      :doc:`AMQP <web-admin/channels/amqp>` |
+      :doc:`IBM MQ <web-admin/channels/jms-wmq>` |
+      :doc:`REST <web-admin/channels/plain-http>` |
+      :doc:`SOAP <web-admin/channels/soap>` |
+      :doc:`WebSockets <web-admin/channels/wsx>` |
+      :doc:`ZeroMQ <web-admin/channels/zmq>`
+
+    * **Caching:**
+      :doc:`Built-in <web-admin/cache/builtin/index>` |
+      :doc:`Memcached <web-admin/cache/memcached>`
+
+    * **Outgoing connections:**
+      :doc:`AMQP <web-admin/outgoing/amqp>` |
+      :doc:`FTP <web-admin/outgoing/ftp>` |
+      :doc:`IBM MQ <web-admin/outgoing/jms-wmq>` |
+      :doc:`REST <web-admin/outgoing/plain-http>` |
+      :doc:`Odoo <web-admin/outgoing/odoo>` |
+      :doc:`SAP <web-admin/outgoing/sap>` |
+      :doc:`SOAP <web-admin/outgoing/soap>` |
+      :doc:`SQL <web-admin/outgoing/sql>` |
+      :doc:`WebSockets <web-admin/outgoing/wsx>` |
+      :doc:`ZeroMQ <web-admin/outgoing/zmq>`
+
+    * **Search:**
+      :doc:`ElasticSearch <web-admin/search/es>` |
+      :doc:`Solr <web-admin/search/solr>`
+
+    * **Notifications:**
+      :doc:`Cloud - OpenStack Swift <web-admin/notif/cloud/openstack/swift>` |
+      :doc:`SQL <web-admin/notif/sql>`
+
+    * **Queries:**
+      :doc:`Cassandra (CQL) <web-admin/query/cassandra>`
+
+    * **E-mail:**
+      :doc:`IMAP <web-admin/email/imap>` |
+      :doc:`SMTP <web-admin/email/smtp>`
+
+    * **SMS:**
+      :doc:`Twilio <web-admin/sms/twilio>`
+
+    * **Cloud:**
+      :doc:`AWS S3 <web-admin/cloud/aws/s3>` |
+      :doc:`OpenStack Swift <web-admin/cloud/openstack/swift>`
+
+    * **Key/value DB (Redis):**
+      :doc:`Data dictionaries <web-admin/kvdb/data-dict>` |
+      :doc:`Remote commands <web-admin/kvdb/remote-commands>`
+
+    * **Scheduler:**
+      :doc:`Main view <web-admin/scheduler/main>`
+
+    * **Statistics:**
+      :doc:`Guide <stats/guide>` |
+      :doc:`Maintenance <stats/maintenance>` |
+      :doc:`Load-balancer's statistics <stats/lb>`
+
+    * **User settings:**
+      :doc:`Main view <web-admin/settings/main>`
+
+Programming guide
+=================
+
+    * **Examples**
+      :doc:`Overview <progguide/examples/index>` |
+      :doc:`REST <progguide/examples/http>` |
+      :doc:`SimpleIO (SIO) <progguide/examples/sio>` |
+      :doc:`JSON <progguide/examples/json>` |
+      :doc:`XML <progguide/examples/xml>` |
+      :doc:`SOAP <progguide/examples/soap>` |
+      :doc:`CSV <progguide/examples/csv>` |
+      :doc:`Other data formats <progguide/examples/other-formats>` |
+      :doc:`AMQP <progguide/examples/amqp>` |
+      :doc:`FTP <progguide/examples/ftp>` |
+      :doc:`IBM MQ <progguide/examples/jms-wmq>` |
+      :doc:`Redis <progguide/examples/redis>` |
+      :doc:`Scheduler <progguide/examples/scheduler>` |
+      :doc:`SQL <progguide/examples/sql>` |
+      :doc:`ZeroMQ <progguide/examples/zmq>` |
+      :doc:`Cassandra CQL <progguide/examples/cassandra>` |
+      :doc:`SMTP <progguide/examples/smtp>` |
+      :doc:`IMAP <progguide/examples/imap>` |
+      :doc:`Amazon S3 <progguide/examples/cloud/aws/s3>` |
+      :doc:`OpenStack Swift <progguide/examples/cloud/openstack/swift>` |
+      :doc:`ElasticSearch <progguide/examples/search/es>` |
+      :doc:`Solr <progguide/examples/search/solr>` |
+      :doc:`Odoo (OpenERP) <progguide/examples/odoo>` |
+      :doc:`WebSockets <progguide/examples/wsx>` |
+      :doc:`JSON Pointers <progguide/examples/json-pointer>` |
+      :doc:`XPath <progguide/examples/xpath>` |
+      :doc:`Cryptography <progguide/examples/crypto>` |
+      :doc:`Rate-limiting <guide/rate-limit>`
+
+    * **Developing services and applications:**
+      :doc:`Overview <progguide/overview>` |
+      :doc:`Developing services <progguide/service-dev>` |
+      :doc:`Request and response objects <progguide/reqresp/index>` |
+      :doc:`Channels <progguide/channels>` |
+      :doc:`Outgoing connections <progguide/outconn/overview>` |
+      :doc:`Key/value DB (Redis) <progguide/kvdb>` |
+      :doc:`Scheduler <progguide/scheduler>` |
+      :doc:`WebSockets <progguide/wsx>` |
+      :doc:`Invoking other services <progguide/invoking-services>` |
+      :doc:`Distributed locks <progguide/dist-locks>` |
+      :doc:`Date/time utils <progguide/datetime>` |
+      :doc:`Security <progguide/security>` |
+      :doc:`Where to keep configuration <progguide/service-local-config>` |
+      :doc:`HTML with Django templates <progguide/html>` |
+      :doc:`Helpers <progguide/helpers>` |
+      :doc:`Public API <api/index>`
+
+    * **REST:**
+      :doc:`Services <progguide/rest/services>` |
+      :doc:`Channels <progguide/rest/channels>` |
+      :doc:`Outgoing connections <progguide/rest/outconns>` |
+      :doc:`JSON adapter <progguide/rest/json-adapter>`
+
+    * **Patterns:**
+      :doc:`Publish/subscribe <pubsub/index>` |
+      :doc:`Fan-out/fan-in <progguide/patterns/fan-out-fan-in>` |
+      :doc:`Parallel execution <progguide/patterns/parallel-exec>` |
+      :doc:`Invoke/retry <progguide/patterns/invoke-retry>` |
+      :doc:`Async invocation with a callback <progguide/patterns/async-invoke>`
+
+    * **Request/response documents:**
+      :doc:`Overview <progguide/reqresp/index>` |
+      :doc:`SimpleIO (SIO) <progguide/sio>` |
+      :doc:`JSON <progguide/json>` |
+      :doc:`XML <progguide/xml>` |
+      :doc:`Other data formats <progguide/other-formats>`
+
+    * **Hooks:**
+      :doc:`Service hooks<progguide/hooks/service>`
+
+    * **Clients:**
+      :doc:`Python <progguide/clients/python>` |
+      :doc:`JavaScript <progguide/clients/js/index>` |
+      :doc:`Django and Flask integration <progguide/clients/django-flask>`
+
+    * **Logging and debugging techniques:**
+      :doc:`Logging <progguide/logging>` |
+      :doc:`Encrypted logs <progguide/enclog/index>` |
+      :doc:`Debugging <progguide/debugging>`
+
+    * **Cryptography:**
+      :doc:`Overview <progguide/crypto/index>` |
+      :doc:`Encryption and decryption <progguide/crypto/encrypt>` |
+      :doc:`Hashing secrets <progguide/crypto/hash>`
+
+    * **Customizing web admin:**
+      :doc:`Making sure you work in the right environment <progguide/web-admin-settings>`
+
+    * **IDE integration:**
+      :doc:`Overview <progguide/ide/index>` |
+      :doc:`PyCharm <progguide/ide/pycharm>` |
+      :doc:`Visual Studio Code <progguide/ide/vscode>`
+
+Publish/subscribe
+=================
+
+  * **Overview:**
+    :doc:`Introduction <./pubsub/index>` |
+    :doc:`Architecture <./pubsub/arch/index>`
+
+  * **Details:**
+    :doc:`Topics <./pubsub/details/topic/index>` |
+    :doc:`Endpoints <./pubsub/details/endpoint/index>` |
+    :doc:`Subscriptions <./pubsub/details/sub/index>`
+
+  * **Usage:**
+    :doc:`REST <./pubsub/api/rest>` |
+    :doc:`AMQP <./pubsub/details/endpoint/amqp>` |
+    :doc:`SOAP <./pubsub/details/endpoint/soap>` |
+    :doc:`WebSockets <./pubsub/api/wsx>` |
+    :doc:`Zato services <./pubsub/api/zato-service>` |
+    :doc:`File transfer <./pubsub/details/endpoint/file>`
+
+  * **Security:**
+    :doc:`Securing access to topics and queues <./pubsub/sec/index>`
+
+
+Single Sign-On and user management API
+======================================
+
+    * **Overview:**
+      :doc:`Introduction to SSO and user auth API <sso/index>`
+
+    * **Guides:**
+      :doc:`Users <sso/topic/user/index>` |
+      :doc:`Sessions <sso/topic/session/index>` |
+      :doc:`Passwords <sso/topic/password/index>`
+
+    * **Administration:**
+      :doc:`Configuration <sso/config/index>` |
+      :doc:`Command line interface (CLI) <admin/cli/sso>` |
+      :doc:`Audit log <sso/audit/index>`
+
+    * **API Reference:**
+      :doc:`Quick index <sso/ref>` |
+      :doc:`Status codes <sso/status-code>`
+
+API Testing
+===========
+
+    * **Client requests**:
+      :doc:`Calling APIs with zato-apitest <test/apitest/index>`
+
+    * **Server mocks**:
+      :doc:`Convenient API mocks with zato-apimox <test/apimox/index>`
+
+Administration guide
+====================
+
+    * **Installation and management:**
+      :doc:`Download and install Zato <admin/guide/install/index>` |
+      :doc:`Installing updates <admin/guide/install/update>` |
+      :doc:`Components <admin/guide/install-config/overview>` |
+      :doc:`Command line interface (CLI) <admin/cli/index>` |
+      :doc:`High availability <admin/guide/ha>` |
+      :doc:`Redis HA with Sentinels <admin/guide/redis-ha/sentinels>` |
+      :doc:`Capacity planning <admin/guide/capacity>` |
+      :doc:`Installing services <admin/guide/installing-services>` |
+      :doc:`Enabling extra libraries <admin/guide/enabling-extra-libs>` |
+      :doc:`Managing server objects en masse <admin/guide/enmasse>` |
+      :doc:`RBAC (Role-based access control) <admin/guide/rbac/overview>` |
+      :doc:`SSL/TLS <admin/guide/tls/overview>` |
+      :doc:`API Specification Service <admin/guide/apispec-pub>` |
+      :doc:`Configuration patterns <admin/guide/config-patterns>` |
+      :doc:`Building custom packages <admin/guide/build-package>` |
+      :doc:`Bash completion update <admin/guide/bash-completion-update>`
+
+    * **Docker support:**
+      :doc:`Installing a quickstart environment <admin/guide/install/docker>` |
+      :doc:`Installing a Zato in Docker Swarm <admin/guide/install/swarm>` |
+      :doc:`Installing a Zato in Kubernetes <admin/guide/install/kubernetes>`
+
+    * **Vagrant support:**
+      :doc:`Running a quickstart environment <admin/guide/install/vagrant>`
+
+Architecture
+============
+
+    * **Zato components:**
+      :doc:`Overview <architecture/overview>` |
+      :doc:`Web admin <architecture/web-admin>` |
+      :doc:`Load-balancer <architecture/load-balancer>` |
+      :doc:`Servers <architecture/servers>` |
+      :doc:`SQL ODB <architecture/sql-odb>` |
+      :doc:`Redis <architecture/redis>` |
+      :doc:`Certificate Authority (CA) <architecture/ca>`
+
+    * **Personally Identifiable Information:**
+      :doc:`PII - GDPR, HIPAA, PDPA and other regulations <architecture/pii>`
+
+Statistics
+==========
+
+    * :doc:`Guide <stats/guide>` |
+      :doc:`Maintenance <stats/maintenance>` |
+      :doc:`Load-balancer's statistics <stats/lb>`
+
+Security
+========
+
+    * :doc:`Reporting security issues <security/reporting-issues>`
+
+Release policy
+==============
+
+    * :doc:`Understanding Zato life-cycle policy <release/policy>`
+
+Zato, the open-source project
+==============================
+
+    * :doc:`Diversity statement <project/diversity>` |
+      :doc:`Changelog <project/changelog>`
+
+.. toctree::
+   :hidden:
+   :titlesonly:
+   :glob:
+
+   admin/cli/*
+   admin/cli/crypto/*
+   admin/guide/*
+   admin/guide/install/*
+   admin/guide/install/py27/*
+   admin/guide/install/py3/*
+   admin/guide/install-config/*
+   admin/guide/migrate/*
+   admin/guide/rbac/*
+   admin/guide/redis-ha/*
+   admin/guide/tls/*
+   architecture/*
+   api/*
+   guide/*
+   intro/*
+   progguide/*
+   progguide/clients/*
+   progguide/clients/js/*
+   progguide/crypto/*
+   progguide/enclog/*
+   progguide/enclog/cli/*
+   progguide/enclog/install/*
+   progguide/examples/*
+   progguide/examples/cloud/aws/*
+   progguide/examples/cloud/openstack/*
+   progguide/examples/search/*
+   progguide/hooks/*
+   progguide/ide/*
+   progguide/outconn/*
+   progguide/patterns/*
+   progguide/reqresp/*
+   progguide/rest/*
+   project/*
+   pubsub/*
+   pubsub/arch/*
+   pubsub/api/*
+   pubsub/details/endpoint/*
+   pubsub/details/sub/*
+   pubsub/details/topic/*
+   pubsub/intro/tutorial/*
+   pubsub/sec/*
+   pubsub/tutorial/*
+   security/*
+   stats/*
+   sso/*
+   sso/api/python/user/*
+   sso/api/python/user/attr/*
+   sso/api/python/user/linked/*
+   sso/api/python/session/*
+   sso/api/python/session/attr/*
+   sso/api/rest/user/*
+   sso/api/rest/user/attr/*
+   sso/api/rest/user/linked/*
+   sso/api/rest/session/*
+   sso/api/rest/session/attr/*
+   sso/topic/user/*
+   sso/topic/password/*
+   sso/topic/attr/*
+   sso/topic/session/*
+   sso/topic/session/attr/*
+   sso/audit/*
+   sso/config/*
+   test/apimox/*
+   test/apitest/*
+   test/apitest/step/*
+   tutorial/*
+   web-admin/*
+   web-admin/cache/*
+   web-admin/cache/builtin/*
+   web-admin/channels/*
+   web-admin/cloud/aws/*
+   web-admin/cloud/openstack/*
+   web-admin/conn-def/*
+   web-admin/email/*
+   web-admin/kvdb/*
+   web-admin/load-balancer/*
+   web-admin/messages/*
+   web-admin/notif/*
+   web-admin/notif/cloud/openstack/*
+   web-admin/outgoing/*
+   release/*
+   web-admin/query/*
+   web-admin/search/*
+   web-admin/scheduler/*
+   web-admin/security/*
+   web-admin/security/rbac/*
+   web-admin/security/tls/*
+   web-admin/servers/*
+   web-admin/service-details/*
+   web-admin/services/*
+   web-admin/settings/*
+   web-admin/sms/*

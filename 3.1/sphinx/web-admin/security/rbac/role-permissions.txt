@@ -1,0 +1,43 @@
+Security - RBAC - Role permissions
+==================================
+
+Overview
+--------
+
+Used for creating or deleting permissions assigned to roles for use in selected services.
+
+* Menu path: Security -> RBAC -> Role permissions
+* Example address: http://localhost:8183/zato/security/rbac/role-permission/?cluster=1
+
+.. image:: /gfx/web-admin/security/rbac/role-permissions.png
+   :width: 95%
+
+Create
+------
+
+.. image:: /gfx/web-admin/security/rbac/role-permissions-create.png
+
+========== ======================================================================================
+Header     Notes
+========== ======================================================================================
+Role       Name of a role whose permissions are modified.
+Service    Service the permission is given to operate on.
+Permission Name of the permission to be granted for the selected role against the chosen service.
+========== ======================================================================================
+
+Delete
+------
+
+Deletes an mapping between the role, service and permission. None of the individual components
+is deleted, only the association between the three.
+
+.. image:: /gfx/web-admin/security/rbac/role-permissions-delete.png
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================

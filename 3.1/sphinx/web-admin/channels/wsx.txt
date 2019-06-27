@@ -1,0 +1,63 @@
+Channels - WebSockets
+=====================
+
+Overview
+--------
+
+Used to create, update, delete and browse :doc:`WebSocket channels <../../progguide/wsx>`.
+
+* Menu path: Connections -> Channels -> WebSockets
+* Example address: http://localhost:8183/zato/channel/web-socket/?cluster=1
+
+.. image:: /gfx/web-admin/channels/wsx.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/channels/wsx-create.png
+
+=================== ==============================================================================================================
+Header              Notes
+=================== ==============================================================================================================
+Name                Channel name
+Active              :ref:`Documented below <web-admin-channels-wsx-active>`
+Address             TCP address and URL path the channel should bind to. The port must be unique - there cannot be multiple
+                    channels using the same port. Note that creating a channel will only make it available on servers and the
+                    load-balancer needs to be configured separately, as in this
+                    `article <https://zato.io/blog/posts/load-balance-http-web-sockets.html>`_.
+Service             Name of a Zato service to invoke upon receiving each incoming message
+Security definition *(Optional)* Name of a security definition to check credentials through while logging a WebSockets client in
+New token wait time How much time, in seconds, clients have to log in with their credentials (if any) and receive the connection
+                    token after they open an initial TCP connection. This is to prevent clients that open TCP stream which are
+                    never used.
+Token TTL           Each WebSocket connection is identified by a token, equivalent to a session cookie in HTTP. This value
+                    is the token's Time To Live upon exceeding of which any subsequent invocations will be closed.
+                    Each invocation of the channel extends TTL by that many seconds from current time.
+=================== ==============================================================================================================
+
+
+Delete
+------
+
+.. image:: /gfx/web-admin/channels/wsx-delete.png
+
+Deletes the channel from ODB and servers. The channel won't exist anymore and invoking
+an address it was mounted on will return a TCP connection error.
+
+.. _web-admin-channels-wsx-active:
+
+The 'Active' flag
+-----------------
+
+If a channel is made inactive, its TCP socket will not be created, i.e. any attempts to connect to the channel's
+port will result in a TCP connection refused error.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+3.0                 Added initially
+=================== ===================================================================

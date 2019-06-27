@@ -1,0 +1,83 @@
+.. highlight:: python
+   :linenothreshold: 1
+
+Patterns - Asynchronous invocation with a callback
+==================================================
+
+Overview
+--------
+
+Services invoked asynchronously run in background without blocking the service initiating the call.
+
+Upon executing
+:ref:`self.invoke_async <progguide-write-service-invoke_async>`
+the calling service receives a Correlation ID that will be passed in to the target service being executed
+asynchronously as the latter's
+:ref:`self.cid <progguide-write-service-cid>` so that requests can be correlated with responses.
+
+Additionally, the source service can provide the name of a service that will serve as a callback sink consuming
+responses from the target service after it completes.
+
+Usage examples and API
+----------------------
+
+Async invoke with no callback
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Invoke :ref:`self.invoke_async <progguide-write-service-invoke_async>` so the target service is run in background.
+A Correlation ID is returned on output - the target service can access it under :ref:`self.cid <progguide-write-service-cid>`.
+
+::
+
+   from zato.server.service import Service
+
+   class MyService(Service):
+
+       def handle(self):
+           cid = self.invoke_async('zato.helpers.input-logger', 'Hello from async!')
+           self.logger.info('I received a CID %r', cid)
+
+Async invoke - explicit callback
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Invoke the target providing the name of a callback to execute once the target completes. Any response produced by the target
+is available, as string, under :doc:`self.request.payload <../reqresp/index>` in the callback.
+
+::
+
+    from zato.server.service import Service
+
+    class MyService(Service):
+
+        def handle(self):
+            self.invoke_async('zato.ping', 'Hello from async!', callback='my.callback')
+
+    class MyCallback(Service):
+        name = 'my.callback'
+
+        def handle(self):
+            self.logger.info('I received %r', self.request.payload)
+
+Async invoke - callback by convention
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+By convention, if there is a service whose name is the name of the invoking service plus *-async-callback*, that service will
+be used as the callback sink.
+
+For instance, if a Python module contains a service with the name equal to that of the invoking service followed by
+*AsyncCallback*, such as MyService and MyServiceAsyncCallback below, that service will be considered a callback for all asynchronous invocations -
+here, all async replies to calls from MyService will be delivered to MyServiceAsyncCallback.
+
+::
+
+    from zato.server.service import Service
+
+    class MyService(Service):
+
+        def handle(self):
+            self.invoke_async('zato.ping', 'Hello from async!')
+
+    class MyServiceAsyncCallback(Service):
+
+        def handle(self):
+            self.logger.info('I also received %r', self.request.payload)

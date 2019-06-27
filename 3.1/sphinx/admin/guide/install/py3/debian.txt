@@ -1,0 +1,56 @@
+Installation on Debian (Python 3.x)
+===================================
+
+Requirements
+------------
+
+* Debian 8 Jessie, 9 Stretch (64-bit)
+* Root access
+
+Installation steps
+------------------
+
+* Log in as root
+
+::
+
+    debian# su -
+
+* Add the package signing key
+
+::
+
+    debian# curl -s https://zato.io/repo/zato-3.1-C9B13DF28CFE287D.pgp.txt | apt-key add -
+
+* Add Zato repository
+
+::
+
+    debian# add-apt-repository \
+       "deb [arch=amd64] https://zato.io/repo/stable/3.1/py3/debian $(lsb_release -cs) main"
+
+* Install Zato
+
+::
+
+    debian# apt-get install zato
+
+* Install latest additions
+
+::
+
+    debian# su - zato
+    debian$ cd /opt/zato/current
+    debian$ ./update.sh
+
+* Confirm the installation
+
+::
+
+    debian$ zato --version
+    Zato 3.1+rev.nnnnnnn-py3.n.n
+    debian$
+
+That concludes the process - you can refer to the main
+:doc:`documentation index <../../../../index>`
+now.

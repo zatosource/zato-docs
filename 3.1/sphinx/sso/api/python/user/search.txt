@@ -1,0 +1,226 @@
+
+.. highlight:: python
+   :linenothreshold: 1
+
+User.search - Python API
+========================
+
+Super-users may look up other users using several search criteria, such as display name, user ID or username. Consult the
+:doc:`introduction <../../../topic/user/search>`
+to user search APIs for more information on how the parameters can be combined.
+
+In Python, to find users, a zato.sso.SearchCtx object is created and filled in with the desired criteria, e.g. last name to find
+or pagination configuration.
+
+On output, a list of results is returned, possibly empty or with one matching element only, along with metadata describing
+what is being returned, such as current page or total number of results.
+
+Passwords are never returned on output.
+
+SearchCtx has the following properties that can be set, none of them is required and by default all users are returned
+in groups of 50 per page.
+
+=============== ======== ============================ =============================================================================
+Name            Datatype Default                      Notes
+=============== ======== ============================ =============================================================================
+user_id         string   ---                          ID of user to find (will match either one or no user)
+username        string   ---                          Username (ditto)
+email           string   ---                          E-mail (There is no requirement that it be unique)
+display_name    string   ---                          Match by display name
+first_name      string   ---                          Match by first name
+middle_name     string   ---                          Match by middle name
+last_name       string   ---                          Match by last name
+sign_up_status  string   ---                          User's sign up status, must be one of: before_confirmation, to_approve, final
+approval_status string   ---                          User's approval status, must be one of: before_decision, approved, rejected
+paginate        bool     True                         Should the results be paginated
+cur_page        int      1                            Current page to return from a list of result pages (counted from 1)
+page_size       int      50                           How many results to return on a single page
+name_op         string   *zato.sso.const.search.and_* How to join name criteria (display/first/middle/last name), by AND or OR
+is_name_exact   bool     True                         Are name critera considered exact values to match or are they substrings
+=============== ======== ============================ =============================================================================
+
+
+API
+---
+
+self.sso.user.search
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. py:method:: search(self, cid, ctx, current_ust, current_app, remote_addr)
+
+  Looks up users by input criteria and returns a list of results, possibly empty or with only one matching user.
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
+  :type cid: string
+
+  :param ctx: Search configuration
+  :type ctx: zato.sso.UserCtx
+
+  :param current_ust: Current user's UST
+  :type current_ust: string
+
+  :param current_app: Name of application the current user is issuing the call from
+  :type current_app: string
+
+  :param remote_addr: User's remote address
+  :type remote_addr: string
+
+  :rtype: A dictionary of metadata describing the result and a list of results
+
+          All of keys pertaining to metadata will always exist:
+
+          ============= ======== ======================================================================================================
+          Key           Datatype Notes
+          ============= ======== ======================================================================================================
+          total         int      How many users matched input criteria in total
+          num_pages     int      How many pages of results there are (counted from 1)
+          page_size     int      What is the size of an individual page (rewritten from input)
+          cur_page      int      What is the current page that is returned (counted from 1)
+          has_next_page bool     Is there a next page to navigate to
+          has_prev_page bool     Is there a previous page to navigate to
+          next_page     int      What is the next page to navigate to (counted from 1 and applicable only if has_next_page is True)
+          prev_page     int      What is the previous page to navigate to (counted from 1 and applicable only if has_prev_page is True)
+          ============= ======== ======================================================================================================
+
+          Each element in the list of results is a zato.sso.User object, representing a particular user, with attributes as below.
+          Further, the object's .to_dict() method will serialize all the data to a Python dictionary.
+
+          ======================== ======== ======== ====================================================================================================
+          Name                     Datatype Optional Notes
+          ======================== ======== ======== ====================================================================================================
+          user_id                  string   ---      ID of the user returned
+          username                 string   ---      Username of the user
+          email                    string   Yes      E-mail
+          display_name             string   Yes      Display name
+          first_name               string   Yes      First name
+          middle_name              string   Yes      Middle name
+          last_name                string   Yes      Last name
+          is_totp_enabled          bool     Yes      Should TOTP-based two factor authentication be enabled for user
+          totp_key                 string   Yes      Auto-generated  User's TOTP key, one will be auto-generated for user if it is not given on input,
+                                                     even if is_totp_enabled is False
+          totp_label               string   Yes      An arbitrary label assigned to user's TOTP key for convenience
+          is_active                bool     Yes      (Reserved for future use)
+          is_internal              bool     Yes      Does the account belong to Zato internally?
+          is_super_user            bool     Yes      Is the user a super-user?
+          is_approval_needed       bool     Yes      Is a super-user's approval needed for this account to become fully active?
+          approval_status          string   Yes      Current approval status, one of: before_decision, approved, rejected
+          approval_status_mod_by   string   Yes      By whom the approval status was last changed, will be 'auto' for users created from command line
+          approval_status_mod_time datetime Yes      When was the approval status last changed
+          is_locked                bool     Yes      Has this account been locked by a super-user?
+          locked_time              string   Yes      If locked, when was it?
+          locked_by                string   Yes      If locked, who by?
+          creation_ctx             string   Yes      (Reserved for future use)
+          approv_rej_time          string   Yes      If approved or rejected, when was it?
+          approv_rej_by            string   Yes      If approved or rejected, who by?
+          password_expiry          string   Yes      When will that account's password expire?
+          password_is_set          bool     Yes      (Reserved for future use)
+          password_must_change     bool     Yes      Is the user required to change password on next login?
+          password_last_set        string   Yes      When was the password last set?
+          sign_up_status           string   Yes      Signup process status, returned values are: before_confirmation, to_approve, final
+          sign_up_time             datetime Yes      When did the user sign up with the system?
+          ======================== ======== ======== ====================================================================================================
+
+::
+
+    # -*- coding: utf-8 -*-
+
+    from __future__ import absolute_import, division, print_function, unicode_literals
+
+    # stdlib
+    from datetime import datetime, timedelta
+    from logging import getLogger
+    from random import randint
+
+    # Zato
+    from zato.server.service import Service
+    from zato.sso import SearchCtx
+
+    class UserSearch(Service):
+        def handle(self):
+
+            username = 'admin1'
+            password = 'XwCwG9wmz5oI643iMbF.lGGeH.X49imQxD8n7zMDgha.xoZfUc3g'
+            session = self.sso.user.login(username, password, 'CRM', '127.0.0.1', 'My UA', False, False)
+
+            # Search data
+            ctx = SearchCtx()
+            ctx.last_name = 'smith'
+            ctx.page_size = 2
+            ctx.cur_page = 2
+
+            data = self.sso.user.search(self.cid, ctx, session.ust, 'CRM', '127.0.0.1')
+
+            # Log metadata
+            self.logger.info('total.................... %s', data['total'])
+            self.logger.info('num_pages................ %s', data['num_pages'])
+            self.logger.info('page_size................ %s', data['page_size'])
+            self.logger.info('cur_page................. %s', data['cur_page'])
+            self.logger.info('has_next_page............ %s', data['has_next_page'])
+            self.logger.info('has_prev_page............ %s', data['has_prev_page'])
+            self.logger.info('next_page................ %s', data['next_page'])
+            self.logger.info('prev_page................ %s', data['prev_page'])
+
+            # Log users found
+            for row in data['result']:
+                self.logger.info('.' * 60)
+                for key, value in sorted(row.to_dict().items()):
+                    self.logger.info('%s %s', key.ljust(25), value)
+
+::
+
+   INFO - total.................... 6
+   INFO - num_pages................ 3
+   INFO - page_size................ 2
+   INFO - cur_page................. 2
+   INFO - has_next_page............ True
+   INFO - has_prev_page............ True
+   INFO - next_page................ 3
+   INFO - prev_page................ 1
+   INFO - ............................................................
+   INFO - approval_status           approved
+   INFO - approval_status_mod_by    zusr69g59s4x3v9n1bwj978vfnf330
+   INFO - approval_status_mod_time  2018-03-10 17:41:04
+   INFO - creation_ctx              None
+   INFO - display_name              Judith Smith
+   INFO - email                     None
+   INFO - first_name                Judith
+   INFO - is_active                 True
+   INFO - is_internal               False
+   INFO - is_locked                 False
+   INFO - is_super_user             False
+   INFO - last_name                 Smith
+   INFO - locked_by                 None
+   INFO - locked_time               None
+   INFO - middle_name               None
+   INFO - password_expiry           2020-03-09 17:41:03
+   INFO - password_is_set           True
+   INFO - password_last_set         2018-03-10 17:41:03
+   INFO - password_must_change      False
+   INFO - sign_up_status            final
+   INFO - sign_up_time              2018-03-10 17:41:03
+   INFO - user_id                   zusr3yqm708em08yn9tqmff5n1dkb6
+   INFO - username                  judith.smith
+   INFO - ............................................................
+   INFO - approval_status           approved
+   INFO - approval_status_mod_by    zusr69g59s4x3v9n1bwj978vfnf330
+   INFO - approval_status_mod_time  2018-03-10 17:38:17
+   INFO - creation_ctx              None
+   INFO - display_name              Paul Greensmith
+   INFO - email                     None
+   INFO - first_name                Paul
+   INFO - is_active                 True
+   INFO - is_internal               False
+   INFO - is_locked                 False
+   INFO - is_super_user             False
+   INFO - last_name                 Greensmith
+   INFO - locked_by                 None
+   INFO - locked_time               None
+   INFO - middle_name               None
+   INFO - password_expiry           2020-03-09 17:38:16
+   INFO - password_is_set           True
+   INFO - password_last_set         2018-03-10 17:38:16
+   INFO - password_must_change      False
+   INFO - sign_up_status            final
+   INFO - sign_up_time              2018-03-10 17:38:16
+   INFO - user_id                   zusr3ny5pfyn4p8xp8ftp0yryjszms
+   INFO - username                  paul.greensmith

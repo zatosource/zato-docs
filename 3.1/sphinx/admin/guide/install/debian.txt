@@ -1,0 +1,7 @@
+Zato installation on Debian
+===========================
+
+Instructions for:
+
+* :doc:`Python 2.7 <./py27/debian>`
+* :doc:`Python 3.x <./py3/debian>`
