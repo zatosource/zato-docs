@@ -21,13 +21,13 @@
 
 * Added support for Python 3.6+ in addition to Python 2.7
 
-* Added MongoDB connections
+* Added `MongoDB connections <https://zato.io/blog/posts/mongodb.html>`_
 
-* Added LDAP connections, including Active Directory
+* Added `LDAP connections, including Active Directory <https://zato.io/blog/posts/ldap-active-directory.html>`_
 
 * Added Apache Kafka connections
 
-* Added SFTP connections
+* Added `SFTP connections <https://zato.io/blog/posts/sftp.html>`_
 
 * Added instant messaging connections: Slack and Telegram
 
@@ -47,17 +47,24 @@
 
 * Added Accept headers configuration to REST channels
 
-* Multiple REST channels may now reuse URL paths as long as their HTTP methods differ
+* Multiple REST channels may now `reuse URL <https://zato.io/blog/posts/http-accept-method-headers.html>`_
+  paths as long as their HTTP methods differ
 
-* Added ability to connect Zato clusters using WebSockets, including subscriptions to events in other clusters
+* Added `JSON Schema validation <https://zato.io/blog/posts/json-schema.html>`_
 
-* Added means to broadcast messages to all WebSocket clients in addition to invocations of individual ones
+* Added ability to `connect Zato clusters <https://zato.io/blog/posts/connect-clusters-websockets.html>`_
+  using WebSockets, including subscriptions to events in other clusters
 
-* Added TOTP two-factor authentication to web-admin
+* Added means to `broadcast messages <https://zato.io/blog/posts/wsx-broadcast.html>`_
+  to all WebSocket clients in addition to invocations of individual ones
+
+* Added `TOTP two-factor authentication to web-admin <https://zato.io/blog/posts/web-admin-totp.html>`_
 
 * Added TLS to AMQP connections
 
-* Servers start and stop up to several times faster than previously
+* Servers start and stop up to
+  `several times <https://zato.io/blog/posts/server-startup.html>`_
+  `faster <https://zato.io/blog/posts/deploying-services.html>`_ than previously
 
 * When creating new servers, usage of TLS CA is no longer required
 
