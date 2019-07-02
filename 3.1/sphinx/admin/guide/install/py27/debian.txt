@@ -40,7 +40,7 @@ Installation steps
 ::
 
     debian# su - zato
-    debian$ cd /opt/zato/current
+    debian$ cd /opt/zato/current && git checkout -- ./requirements.txt
     debian$ ./update.sh
 
 * Confirm the installation
