@@ -70,6 +70,6 @@ self.sso.user.reset_totp_key
           key_label = 'My SSO key'
 
           # Change the key and label now
-          totp_key = self.sso.user.reset_totp_key(self.cid, current_ust,
+          totp_key = self.sso.user.reset_totp_key(self.cid, ust,
              user_id, key, key_label, current_app, remote_addr)
           self.logger.info('New key: %s', totp_key)
