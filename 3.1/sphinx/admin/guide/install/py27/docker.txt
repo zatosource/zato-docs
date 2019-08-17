@@ -41,6 +41,8 @@ it with the username 'admin' using the password printed on the terminal above.
 You can also connect via SSH to the container under which Zato is running.
 User: zato. Password: second one of the two printed on terminal above.
 
+.. _install-py27-docker-quickstart:
+
 Hot-deployment with mounted volumes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

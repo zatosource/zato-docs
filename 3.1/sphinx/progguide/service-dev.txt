@@ -36,9 +36,8 @@ it's still a valid service.
 Programming conventions
 -----------------------
 
-* Services are developed in Python 2.7 or Python 3.6+. There is no functional difference
-  between choosing either although new environments are advised to choose Python 3 unless
-  there is a compelling reason to prefer 2.7.
+* Services are developed in Python 2.7 or Python 3.5+. There is no functional difference
+  between choosing either Python version.
 
 * You can't use the name 'zato', case-insensitively, anywhere. Any such names
   are reserved and can't be used. For instance, 'zato.sample', 'my:zato:data',
@@ -52,17 +51,17 @@ Programming conventions
   of UTF-8, ASCII will also be accepted but you're advised to always use UTF-8 anyway.
   Any other encodings, such as ISO-8859-1 or EBCDIC, are invalid.
 
-* If using Python 2.7, you are strongly encouraged to use the following header in each source code
-  file you will keep services in. In fact, if you stumble upon any issues
-  and need support you will be first asked that this header be added before any
-  other advice can be given. Don't forget to set your code editor to write out
+* If using Python 2.7, you need to use the following header in each source code
+  file you will keep services in. In fact, if you require assistance or
+  support you will be first asked that this header be added before any
+  other advice can be given. Do not forget to set your code editor to write out
   files in UTF-8 too.
 
   This serves a couple of purposes:
 
   * Makes sure you actually use UTF-8 in your code
   * Lets you get prepared for Python 3.x
-  * Ensures you use the same Python features Zato's own internal services
+  * Ensures you use the same Python features Zato's own internal services do
 
   ::
 
@@ -205,23 +204,8 @@ class.
 cid
 ```
 
-A correlation ID (CID) of this request. Each request is assigned a CID
-which is 128 bits of random data, encoded as a string.
+A correlation ID (CID) of this request. Each request is assigned a CID which is 96 bits of random data, encoded as a string.
 
-The string is prefixed with the letter 'K' to ensure that it always start with a character. There
-is nothing special about the letter 'K', it is simply a character chosen as a prefix.
-Don't assume the prefix
-will always be 'K', future Zato versions may make it configurable or change it
-without prior notice.
-
-Note that when
-:ref:`publishing <progguide-write-service-broker-client-publish>`
-a
-`SERVICE.PUBLISH.value <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/broker_message.py>`_
-message to more than one server, each server worker will receive a request
-with the same CID.
-
-CID has always 28 characters.
 
 .. warning ::
 
@@ -237,7 +221,7 @@ CID has always 28 characters.
 
   class MyService(Service):
       def handle(self):
-          self.logger.info('cid:[{}]'.format(self.cid))
+          self.logger.info('cid:`%s`', self.cid)
 
 ::
 
@@ -245,7 +229,7 @@ CID has always 28 characters.
 
 ::
 
-  INFO - cid:[K280592090634247650299684980809341216327]
+  INFO - cid:`06fa7b5d25ed0118f3c0c14a`
 
 .. _progguide-write-service-data_format:
 
