@@ -64,23 +64,34 @@ What will the tutorial achieve, exactly?
 From the business perspective, we will implement a process as follows:
 
 * Users request that their pre-paid SIM card be recharged
+
 * Zato will accept requests
+
 * Zato will ask the scoring system if a particular user request should be allowed
   and if so, should the user perhaps receive an extra bonus
-* If the request is allowed, a background notification will be sent to the billing system
-* If not, users will receive an error message
-* If the amount for the card to be recharged with should exceed a particular limit,
+
+* If the request is allowed, the user receives a success message and two background notifications are sent:
+
+  * To a system that will actually recharge the card (Intelligent Network, IN)
+  * To an SMS Center (SMSC) to let the user know that the operation succeeded
+
+* If users are not allowed, they will receive an error message
+
+* If allowed and the amount for the card to be recharged with should exceed a particular limit,
   a monitoring system will get an asynchronous publish/subscribe notification and an email
   will be sent to operators of the system
 
-The applications involved will use different protocols or data formats, such as REST, JSON, XML,
+The applications involved will use different protocols or data formats, such as REST, JSON, SOAP, XML,
 publish/subscribe and SMTP (for email).
 
 .. image:: /gfx/tutorial/process.png
 
-In real world, if this were an actual telecommunication operator, the process would be much more complex but
-this tutorial is already representative of the way the actual business processes
-can be implemented in Zato - any extensions to what we are going to implement would follow the same logic and rules.
+What we will implement will be a real and fully working process, one that could be applicable to an actual
+telecommunication operator though, depending on an operator, the process could be much more complex,
+there could be more systems involved or different protocols could be employed.
+
+Yet, this tutorial is already representative of the way actual business processes can be implemented in Zato -
+any extensions to what we are going to implement would follow the same logic and techniques.
 
 Note that in the process we do not specify exactly what kind of a client application users have access to,
 be it a mobile app, SMS gateway or anything else - we will get back to this subject later.
