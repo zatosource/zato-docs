@@ -18,7 +18,7 @@ Download the Docker image for local usage:
 
 ::
 
-    host$ sudo docker pull registry.gitlab.com/zatosource/docker-registry/cloud:3.1-py3
+    host$ sudo docker pull registry.gitlab.com/zatosource/docker-registry/cloud:3.1
 
 
 Start a local Kubernetes with Minikube
@@ -116,7 +116,9 @@ ZATO_WEB_ADMIN_PASSWORD      Password for the web admin’s technical account us
 ZATO_IDE_PUBLISHER_PASSWORD  Password for user `ide_publisher`, used for IDE integration. If not defined,
                              the value has to be set manually.
 ZATO_ADMIN_INVOKE_PASSWORD   Password used for internal communication. If not defined, the value has to be set manually.
-ZATO_ENMASSE_FILE            Full path or URL to :doc:`an enmasse file <../../enmasse>` with object definitions to been imported.
+ZATO_ENMASSE_FILE            Full path to a file or URL to :doc:`an enmasse file <../../enmasse>` with object
+                             definitions to been imported. If the value is a path to a file, make sure the file available to
+                             the Pod in the server.
 REDIS_HOSTNAME               Redis service hostname. Default value is **localhost**.
 ODB_TYPE                     ODB type to use. Must be one of: `mysql` or `postgresql`.
 ODB_HOSTNAME                 ODB hostname.
