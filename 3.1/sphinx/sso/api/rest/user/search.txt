@@ -59,6 +59,10 @@ result.display_name             string   Yes      Display name
 result.first_name               string   Yes      First name
 result.middle_name              string   Yes      Middle name
 result.last_name                string   Yes      Last name
+result.is_totp_enabled          bool     Yes      Should TOTP-based two factor authentication be enabled for user
+result.totp_key                 string   Yes      User's TOTP key, one will be auto-generated for user if it is not given on input,
+                                                  even if is_totp_enabled is False
+result.totp_label               string   Yes      An arbitrary label assigned to user's TOTP key for convenience
 result.is_active                bool     Yes      (Reserved for future use)
 result.is_internal              bool     Yes      Does the account belong to Zato internally?
 result.is_super_user            bool     Yes      Is the user a super-user?

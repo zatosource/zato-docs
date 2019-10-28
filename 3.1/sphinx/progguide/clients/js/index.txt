@@ -1,0 +1,305 @@
+.. highlight:: javascript
+   :linenothreshold: 1
+
+Zato JavaScript client
+======================
+
+Overview
+========
+
+Zato offers an NPM package with a WebSocket-based JavaScript client that lets one invoke services and participate
+in publish/subscribe processes.
+
+The pub/sub part of the client is a wrapper around the WebSocket API with
+:doc:`its own additional documentation <../../../pubsub/api/wsx>`.
+
+Installation
+============
+
+Add the NPM `zato-js-client <https://www.npmjs.com/package/zato-js-client>`_ to your project's dependencies.
+
+If under Node.js, the client returns an error message 'ReferenceError: WebSocket is not defined', make sure
+to add the 'ws' package to the project, e.g. *npm install ws*.
+
+GitHub
+======
+
+Client's source code is available `on GitHub <https://github.com/zatosource/zato-js-client>`_.
+
+Prerequisites
+=============
+
+Before a WSX channel for clients can be created, one needs to upload a new service that will act as a configuration gateway,
+allowing the client to invoke only selected services.
+
+The service subclasses *zato.server.service.internal.helpers.WebSocketsGateway* which actually does the whole work, and one needs only
+to specify a list of services allowed.
+
+In this way, each client may be given a subset of services that it should have access to.
+
+For instance, the configuration below will let a client invoke services 'zato.ping' and 'zato.ping2' and none other of possibly
+many services available through servers.
+
+.. highlight:: python
+
+::
+
+  # -*- coding: utf-8 -*-
+
+  # Zato
+  from zato.server.service.internal.helpers import WebSocketsGateway
+
+  class MyWSXGateway(WebSocketsGateway):
+
+      # Give the service a unique name
+      name = 'my.wsx.gateway'
+
+      # Only these services may be invoked
+      services_allowed = [
+          'zato.ping',
+          'zato.ping2',
+      ]
+
+In web-admin
+============
+
+* Create :doc:`HTTP Basic Auth <../../../web-admin/security/basic-auth>` credentials to use by the client
+* Create a :doc:`WSX channel <../../../web-admin/channels/wsx>` and make sure that it uses the service uploaded in
+  the previous step, e.g.:
+
+  .. image:: /gfx/progguide/clients/js/create-wsx-channel.png
+
+JavaScript
+==========
+
+Once the NPM `zato-js-client <https://www.npmjs.com/package/zato-js-client>`_ package is installed, the clients usage follows a few principles:
+
+* Several attributes can be configured before the client is created
+* One client may invoke multiple services or publish and subscribe messages to and from multiple topics
+* Client will reconnect automatically if the server drops connection for any reason
+* If the client is used from a web browser and the browser is restarted or page refreshed (F5, Ctrl-R),
+  the client will not persist and a new client will not automatically have access to previous client instance's
+  pub/sub subscriptions, if any were created
+
+Configurable attributes
+-----------------------
+
+Basic connection details
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. highlight:: javascript
+
+::
+
+  // Zato client object
+  let client = new ZatoWSXClient();
+
+  // A unique ID representing this very client
+  const client_id = Math.random().toString(24) + '-' + new Date().toISOString();
+
+  // A human-readable name of the client, does not have to be unique,
+  const client_name = 'My API client';
+
+  // Where to find the Zato WSX channel
+  const address = 'ws://localhost:50103/myapi'
+
+  // Basic Auth credentials created previously
+  const username = 'username1';
+  const secret = 'secret1';
+
+  // Fill out configuration
+  client.client_id = client_id;
+  client.client_name = client_name;
+  client.address = address;
+  client.username = username;
+  client.secret = secret;
+
+Callbacks
+~~~~~~~~~
+
+Each client needs to be supplied with two callback functions, invoked in specific situations:
+
+* When the client connects or reconnects to a Zato channel
+
+.. highlight:: javascript
+
+::
+
+  function when_ready(client) {
+    console.log('Connected to '+ client.address);
+  }
+
+* Each time a message from Zato is received, either a notification or a response to a previously sent request
+
+.. highlight:: javascript
+
+::
+
+  // A callback function to be invoked for each message received from Zato
+  function on_message_received(client, msg, in_reply_to) {
+
+    // Serialize to JSON for logging purposes
+    const msg_as_string = JSON.stringify(msg);
+
+    // If there is 'in_reply_to', this message must be a response to a previous request ..
+    if(in_reply_to) {
+        console.log('Response received' + msg_as_string);
+    }
+
+    // .. otherwise, this is a request, a notification, from server.
+    else {
+      console.log('Request received' + msg_as_string);
+    }
+  }
+
+The callback functions need to be assigned to a previously created client instance:
+
+.. highlight:: javascript
+
+::
+
+  let client = new ZatoWSXClient();
+
+  // (Skip basic configuration options here)
+  ...
+
+  // This will be invoked when the client connects
+  client.when_ready = when_ready;
+
+  // This will be invoked each time a message from Zato is received
+  client.on_message_received = on_message_received;
+
+----------------
+
+How to connect
+--------------
+
+::
+
+  let client = new ZatoWSXClient();
+
+  // Provide configuration here
+  ...
+
+  // Issue a call that will connect to the server
+  client.connect();
+
+  // For how long to wait for the connection - each iteration is 100 ms,
+  // hence 20000 * 100 ms = wait for up to 2000 seconds (~30 minutes).
+  const iters = 20000;
+
+  // Wait for the connection - once it is established,
+  // the client's when_ready callback will be invoked.
+  client.wait_until_ready(iters);
+
+
+How to invoke services
+----------------------
+
+::
+
+  let client = new ZatoWSXClient();
+
+  // Configure and connect the client here
+  ...
+
+  // Create a unique message ID for that request
+  const msg_id = client.new_message_id();
+
+  // Service to invoke
+  const service = 'my.service';
+
+  // Request for the service
+  const request = {'Hello': 'Zato'};
+
+  // Invoke the server - once the response arrives,
+  // the client's on_message_received callback will be invoked.
+  client.invoke(service, request, msg_id);
+
+How to subscribe to messages
+----------------------------
+
+::
+
+  let client = new ZatoWSXClient();
+
+  // Configure and connect the client here
+  ...
+
+  const topic = '/my/topic';
+
+  // This can be used if the client is subscribing the first time
+  client.subscribe(topic);
+
+  // This can be used if the client was already subscribed
+  // and the subscription still exists on server, e.g.
+  // if the connection between client or server was temporarily
+  // disrupted this method should be used because it will reuse
+  // the previous subscription instead of creating a new one.
+  client.subscribe_or_resume(topic);
+
+  // This can be used to resume a subscription without trying
+  // to create a new one if it did not exist. It is required
+  // that the previous subscription key be known here.
+  const sub_key = '...';
+
+  client.resume(sub_key, topic);
+
+
+How to publish messages
+-----------------------
+
+Note that the metadata 'ctx' object contains fields, such as in_reply_to or priority that are
+:doc:`documented separately <../../../pubsub/api/wsx>`..
+
+::
+
+  let client = new ZatoWSXClient();
+
+  // Configure and connect the client here
+  ...
+
+  // Method .publish accepts a topic name to publish a message to
+  // as well as a set of metadata fields - in this example only
+  // message priority and MIME type will be set in the ctx object.
+  const topic = '/my/topic';
+
+  const ctx = {
+    'priority': 7,
+    'mime_type': 'text/csv',
+  }
+
+  // Data to publish - note that it cae
+  const data = 'my,csv,data';
+
+  // Publish the message now along with its metadata
+  client.publish(topic, data, ctx);
+
+How to unsubscribe
+------------------
+
+::
+
+  let client = new ZatoWSXClient();
+
+  // Configure and connect the client here
+  ...
+
+  // Call a method to delete an already existing subscription
+  // using a previously obtained subscription key to a known topic.
+  client.unsubscribe(sub_key, topic);
+
+How to disconnect
+-----------------
+
+::
+
+  let client = new ZatoWSXClient();
+
+  // Configure and connect the client here
+  ...
+
+  // Call a method to disconnect the client - this will
+  // send reason code 1000 and a message indicating which
+  // client it is that closed the connection.
+  client.disconnect();

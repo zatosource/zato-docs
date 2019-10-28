@@ -27,7 +27,7 @@ The basic attributes of users are:
 * first_name, middle_name and last_name
 
 Depending on needs, either display_name or first/middle/last name can be used - the very notion of first and other names
-may possibly not exist in a user's culture, hence Zato can be configured enforce their existence or not.
+may possibly not exist in a user's culture, hence Zato can be configured to enforce their existence or not.
 
 Additional attributes:
 
@@ -42,6 +42,14 @@ Moreover, it is possible to attach an arbitrary set of key/value
 to users, each attribute possibly encrypted
 and with an optional expiration time - they can be used to extend information about users to cover supplementary needs, such as timezone,
 a phone number or address.
+
+User accounts may be :doc:`linked <./linked-auth>` to
+:doc:`Basic Auth <../../../web-admin/security/basic-auth>`
+or
+:doc:`JWT <../../../web-admin/security/jwt>`
+definitions, enabling in this way multi-auth accounts.
+
+Each user may enable two-factor authentication based on :doc:`TOTP <./totp>`.
 
 Details
 -------
@@ -59,3 +67,5 @@ Consult the following chapters for user-related topics:
 * :doc:`Deleting users <./delete>`
 * :doc:`Custom user attributes <../attr/index>`
 * :doc:`Understanding the difference between regular and super-users <./super>`
+* :doc:`Two-factor authentication (TOTP) <./totp>`
+* :doc:`How to link user accounts <./linked-auth>`

@@ -36,9 +36,9 @@ it's still a valid service.
 Programming conventions
 -----------------------
 
-* Services are developed in `Python 2.7.x <http://docs.python.org/2.7/>`_. No
-  other Python versions can be used although adding support for Python 3.x is planned
-  and the codebase along with all its dependencies is almost entirely Python 3-ready.
+* Services are developed in Python 2.7 or Python 3.6+. There is no functional difference
+  between choosing either although new environments are advised to choose Python 3 unless
+  there is a compelling reason to prefer 2.7.
 
 * You can't use the name 'zato', case-insensitively, anywhere. Any such names
   are reserved and can't be used. For instance, 'zato.sample', 'my:zato:data',
@@ -52,7 +52,7 @@ Programming conventions
   of UTF-8, ASCII will also be accepted but you're advised to always use UTF-8 anyway.
   Any other encodings, such as ISO-8859-1 or EBCDIC, are invalid.
 
-* You are strongly encouraged to use the following header in each source code
+* If using Python 2.7, you are strongly encouraged to use the following header in each source code
   file you will keep services in. In fact, if you stumble upon any issues
   and need support you will be first asked that this header be added before any
   other advice can be given. Don't forget to set your code editor to write out
@@ -637,6 +637,38 @@ and
 response
 objects are discussed in
 :doc:`a separate chapter <./reqresp/index>`.
+
+.. _progguide-write-service-schema:
+
+schema
+``````
+A service may specify a [JSON schema](https://json-schema.org/) to be used for validation of input data via the
+**schema** attribute. The value of the attribute is a filename containing the schema.
+
+If the filename is an absolute path, it will be used as-is, e.g. if it is '/opt/zato/schema/myschema.json' then this is the
+path to the schema in the filesystem where the schema needs to reside.
+
+If the filename is a relative path, it is in relation to a server's *config/repo/schema/json* directory. For instance,
+if a service is in directory /opt/zato/server1 and schema is 'myschema.json' then the file will be expected to be found
+in /opt/zato/server1/config/repo/schema/json/myschema.json.
+
+Each time a JSON Schema changes any service using it needs to be redeployed.
+
+JSON Schema is used for input validation only, it does not validate the output that a service produces.
+
+From the perspective of a service that uses JSON Schema, if the service's handle method is called, it means that the validation
+succeeded.
+
+::
+
+  from zato.server.service import Service
+
+  class MyService(Service):
+
+      schema = 'myschema.json'
+
+      def handle(self):
+          self.logger.info('My input was validated with JSON Schema')
 
 slow_threshold
 ``````````````

@@ -23,11 +23,15 @@ current_app          string   ---      Name of application that the call is atte
 username             string   ---      Must be unique among all users
 password             string   Yes      If not given, a random string of 192 bits will be assigned
 password_must_change bool     Yes      Whether user must change the password on first login
+email                string   Yes      User's email
 display_name         string   Yes      Display name
 first_name           string   Yes      First name
 middle_name          string   Yes      Middle name
 last_name            string   Yes      Last name
-email                string   Yes      User's email
+is_totp_enabled      bool     Yes      Should TOTP-based two factor authentication be enabled for user
+totp_key             string   Yes      User's TOTP key, one will be auto-generated for user if it is not given on input,
+                                       even if is_totp_enabled is False
+totp_label           string   Yes      An arbitrary label assigned to user's TOTP key for convenience
 is_locked            bool     Yes      Should the account be locked upon creation, i.e. logging in will not be possible until
                                        :doc:`unlocked <../../../../admin/cli/sso-unlock-user>`
 sign_up_status       string   Yes      User's initial signup status, by default it is 'final' meaning the user is fully signed up
@@ -69,6 +73,10 @@ password_must_change     bool     Yes      Is the user required to change passwo
 password_last_set        string   Yes      When was the password last set?
 sign_up_status           string   Yes      Signup process status, returned values are: before_confirmation, to_approve, final
 sign_up_time             datetime Yes      When did the user sign up with the system?
+is_totp_enabled          bool     Yes      Should TOTP-based two factor authentication be enabled for user
+totp_key                 string   Yes      User's TOTP key, one will be auto-generated for user if it is not given on input,
+                                           even if is_totp_enabled is False
+totp_label               string   Yes      An arbitrary label assigned to user's TOTP key for convenience
 ======================== ======== ======== ====================================================================================================================
 
 Usage

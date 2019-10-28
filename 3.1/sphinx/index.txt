@@ -23,7 +23,7 @@ Getting help
 
 * `Twitter <https://twitter.com/zatosource>`_ for quick questions and answers
 
-* Documentation for: `3.1 </docs/3.1/>`_ (in-dev) · `3.0 </docs/2.0/>`_ (current)
+* Documentation for: `3.1 </docs/3.1/>`_ (current) · `3.0 </docs/3.0/>`_ (previous)
 
 
 What makes Zato unique
@@ -73,7 +73,6 @@ I18N
       *IT* :doc:`Sì, ma cosa sono ESB e SOA? <intro/esb-soa-it>` |
       *NL* :doc:`Wat zijn ESB en SOA eigenlijk? <intro/esb-soa-nl>` |
       *PT*  :doc:`O que ESB e SOA são, afinal? <intro/esb-soa-pt>` |
-      *RU* :doc:`Что такое ESB и SOA? <intro/esb-soa-ru>` |
       *TR* :doc:`ESB ve SOA ne anlama geliyor yani? <intro/esb-soa-tr>`
 
 Web admin reference
@@ -221,7 +220,8 @@ Programming guide
       :doc:`WebSockets <progguide/examples/wsx>` |
       :doc:`JSON Pointers <progguide/examples/json-pointer>` |
       :doc:`XPath <progguide/examples/xpath>` |
-      :doc:`Cryptography <progguide/examples/crypto>`
+      :doc:`Cryptography <progguide/examples/crypto>` |
+      :doc:`Rate-limiting <guide/rate-limit>`
 
     * **Developing services and applications:**
       :doc:`Overview <progguide/overview>` |
@@ -235,8 +235,6 @@ Programming guide
       :doc:`Invoking other services <progguide/invoking-services>` |
       :doc:`Distributed locks <progguide/dist-locks>` |
       :doc:`Date/time utils <progguide/datetime>` |
-      :doc:`Python client <progguide/clients/python>` |
-      :doc:`Django and Flask integration <progguide/clients/django-flask>` |
       :doc:`Security <progguide/security>` |
       :doc:`Where to keep configuration <progguide/service-local-config>` |
       :doc:`HTML with Django templates <progguide/html>` |
@@ -265,6 +263,11 @@ Programming guide
 
     * **Hooks:**
       :doc:`Service hooks<progguide/hooks/service>`
+
+    * **Clients:**
+      :doc:`Python <progguide/clients/python>` |
+      :doc:`JavaScript <progguide/clients/js/index>` |
+      :doc:`Django and Flask integration <progguide/clients/django-flask>`
 
     * **Logging and debugging techniques:**
       :doc:`Logging <progguide/logging>` |
@@ -359,7 +362,9 @@ Administration guide
       :doc:`Bash completion update <admin/guide/bash-completion-update>`
 
     * **Docker support:**
-      :doc:`Installing a quickstart environment <admin/guide/install/docker>`
+      :doc:`Installing a quickstart environment <admin/guide/install/docker>` |
+      :doc:`Installing a Zato in Docker Swarm <admin/guide/install/swarm>` |
+      :doc:`Installing a Zato in Kubernetes <admin/guide/install/kubernetes>`
 
     * **Vagrant support:**
       :doc:`Running a quickstart environment <admin/guide/install/vagrant>`
@@ -411,6 +416,8 @@ Zato, the open-source project
    admin/cli/crypto/*
    admin/guide/*
    admin/guide/install/*
+   admin/guide/install/py27/*
+   admin/guide/install/py3/*
    admin/guide/install-config/*
    admin/guide/migrate/*
    admin/guide/rbac/*
@@ -418,9 +425,11 @@ Zato, the open-source project
    admin/guide/tls/*
    architecture/*
    api/*
+   guide/*
    intro/*
    progguide/*
    progguide/clients/*
+   progguide/clients/js/*
    progguide/crypto/*
    progguide/enclog/*
    progguide/enclog/cli/*
@@ -450,10 +459,12 @@ Zato, the open-source project
    sso/*
    sso/api/python/user/*
    sso/api/python/user/attr/*
+   sso/api/python/user/linked/*
    sso/api/python/session/*
    sso/api/python/session/attr/*
    sso/api/rest/user/*
    sso/api/rest/user/attr/*
+   sso/api/rest/user/linked/*
    sso/api/rest/session/*
    sso/api/rest/session/attr/*
    sso/topic/user/*

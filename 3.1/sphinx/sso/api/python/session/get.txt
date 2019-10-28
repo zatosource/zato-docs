@@ -14,7 +14,7 @@ API
 self.sso.user.session.get
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: get(self, cid, target_ust, current_ust, current_app, remote_addr)
+.. py:method:: get(self, cid, target_ust, current_ust, current_app, remote_addr, user_agent=None)
 
   Returns details of a session pointed to by target_ust.
 
@@ -33,17 +33,20 @@ self.sso.user.session.get
   :param remote_addr: Current user's remote address
   :type remote_addr: string
 
-  :rtype: exists - A dictionary of metadata describing the session from target_ust. All keys and values
-                   are always returned on output:
+  :param user_agent: User agent string
+  :type user_agent: string
 
-                   =============== ======== =================================================
-                   Key             Datatype Notes
-                   =============== ======== =================================================
-                   creation_time   datetime When the session was created, in UTC
-                   expiration_time datetime When the session will expire, in UTC
-                   remote_addr     string   From what remote address the session was created
-                   user_agent      string   Using what user agent the session was created
-                   =============== ======== =================================================
+  :rtype:  A dictionary of metadata describing the session from target_ust. All keys and values
+           are always returned on output:
+
+           =============== ======== =================================================
+           Key             Datatype Notes
+           =============== ======== =================================================
+           creation_time   datetime When the session was created, in UTC
+           expiration_time datetime When the session will expire, in UTC
+           remote_addr     string   From what remote address the session was created
+           user_agent      string   Using what user agent the session was created
+           =============== ======== =================================================
 
 ::
 

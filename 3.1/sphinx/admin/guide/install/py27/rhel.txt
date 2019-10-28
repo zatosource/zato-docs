@@ -1,0 +1,70 @@
+Installation on RHEL/CentOS (Python 2.7)
+========================================
+
+Requirements
+------------
+
+* RHEL/CentOS 7.x
+* Root access
+
+Installation steps
+------------------
+
+* Log on as root
+
+::
+
+    rhel$ su -
+
+* Add the package signing key
+
+::
+
+    rhel# curl -sO https://zato.io/repo/zato-3.1-C9B13DF28CFE287D.pgp.txt
+    rhel# rpm --import ~/zato-3.1-C9B13DF28CFE287D.pgp.txt
+
+* Add the following repository definition
+
+::
+
+    rhel# vim /etc/yum.repos.d/zato-3.1.repo
+
+    [zato-3.1]
+    name=zato-3.1
+    baseurl=https://zato.io/repo/stable/3.1/py27/rhel/el$releasever/$basearch
+    enabled=1
+    gpgcheck=1
+    gpgkey=https://zato.io/repo/zato-3.1-C9B13DF28CFE287D.pgp.txt
+
+* Refresh the package list
+
+::
+
+    rhel# yum clean expire-cache
+    rhel# yum check-update
+
+* Install Zato
+
+::
+
+    rhel# yum install zato
+
+* Install latest additions
+
+::
+
+    rhel# su - zato
+    rhel$ cd /opt/zato/current && git checkout -- ./requirements.txt
+    rhel$ ./update.sh
+
+* Confirm the installation
+
+::
+
+    rhel$ zato --version
+    Zato 3.1+rev.nnnnnnn-py2.7.n
+    rhel$
+
+That concludes the process - you can refer to the main
+:doc:`documentation index <../../../../index>`
+now.

@@ -44,6 +44,10 @@ display_name             string   Yes      ---              Display name
 first_name               string   Yes      ---              First name
 middle_name              string   Yes      ---              Middle name
 last_name                string   Yes      ---              Last name
+is_totp_enabled          bool     Yes      ---              Should TOTP-based two factor authentication be enabled for user
+totp_key                 string   Yes      ---              User's TOTP key, one will be auto-generated for user if it is not given on input,
+                                                            even if is_totp_enabled is False
+totp_label               string   Yes      ---              An arbitrary label assigned to user's TOTP key for convenience
 is_active                bool     Yes      Yes              (Reserved for future use)
 is_internal              bool     Yes      Yes              Does the account belong to Zato internally?
 is_super_user            bool     Yes      Yes              Is the user a super-user?
