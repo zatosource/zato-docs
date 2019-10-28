@@ -109,4 +109,5 @@ ODB_PORT                     ODB port.
 ODB_NAME                     ODB database.
 ODB_USERNAME                 ODB username.
 ODB_PASSWORD                 ODB password.
+ZATO_ENMASSE_INITIAL_SLEEP   Waiting time between hot-deploy and importing the enmasse file. Default to 30 seconds.
 ============================ =================================================================================================
