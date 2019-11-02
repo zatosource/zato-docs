@@ -137,7 +137,7 @@ Otherwise, if not using Docker, follow the two-step instructions below.
 Creating a quickstart cluster
 -----------------------------
 
-Is Zato installed already? Great, now, if you are not using Docker, let's create a quickstart cluster,
+Is Zato installed already? Great, now, if you are not using Docker, let us create a quickstart cluster,
 which is the kind of cluster
 created by running the
 :doc:`CLI command <../../admin/cli/index>`,
@@ -240,7 +240,7 @@ Port                               Notes
 
 .. image:: /gfx/tutorial/quickstart-ports.png
 
-Keep in mind that the load-balancer and servers can all run on different hosts, but to keep focused
+Keep in mind that the load-balancer and servers can all run on different hosts, but to stay focused
 on basic things first, it is a quickstart cluster which installs everything on localhost that this tutorial uses.
 
 And although this is a tutorial only, this can be a good approach to easily create any serious Zato environment later on.
@@ -272,9 +272,8 @@ Invoking services with curl
     Redis connection OK
     $
 
-  If there is no output as shown above, the ./zato-qs-start.sh command below will not succeed.
-
-  **Again, please make sure Redis will allow Zato to establish connections.**
+  If there is no output as shown above, the ./zato-qs-start.sh command below will not succeed. Again, please make sure
+  that Redis will allow Zato to establish connections.
 
 First off, let us start the environment:
 
@@ -354,8 +353,8 @@ The tutorial assumes that you use a standalone VM but note that if you are under
 either copy the file to to container or map /opt/hot-deploy in the container to a directory of choice on your host -
 check :ref:`Docker quickstart installation <install-py3-docker-quickstart>` docs for details.
 
-Weso we use either $path/server1/pickup/incoming/services or
-$path/server2/pickup/incoming/services, it does not matter which one you will choose as the other
+There will be two directories to hot-deploy services through, $path/**server1**/pickup/incoming/services and
+$path/**server2**/pickup/incoming/services, it does not matter which one you choose as the other
 server will instantly synchronize its state with the one that will have received the service.
 
 So, choosing $path/server1/pickup/incoming/services, copy the module:
@@ -364,7 +363,7 @@ So, choosing $path/server1/pickup/incoming/services, copy the module:
 
   $ cp api.py $path/server1/pickup/incoming/services
 
-Now, in each server log file (server.log), there will be a confirmation
+Now, in each server log file (server.log), a confirmation message will appear:
 
 ::
 
@@ -372,9 +371,9 @@ Now, in each server log file (server.log), there will be a confirmation
 
 Our service is there but we can not reach it from the client application yet because
 it is not exposed through any
-:doc:`channels <../../progguide/channels>` - a single service can be used over
+:doc:`channel <../../progguide/channels>` - a single service can be used over
 many independent channels, each using different security configuration, transport
-protocols, data format etc.
+protocols, data format and more.
 
 You need to explicitly tell Zato how to make a given service available to all
 and each of external systems interested in invoking it. You do it in
@@ -386,8 +385,7 @@ password if you do not have access to them anymore.
 
 .. image:: /gfx/tutorial/web-admin-login.png
 
-From the main menu pick *Services*, choose your cluster, type *api* in the
-search box and click *Show services*.
+From the main menu pick *Services*, type *api* in the search box and click *Show services*.
 
 .. image:: /gfx/tutorial/web-admin-search.png
    :width: 95%
@@ -413,92 +411,84 @@ Still in web-admin, navigate to Connections -> Channels -> REST
 
 .. image:: /gfx/tutorial/web-admin-channels-new.png
 
-zzz
-
-Some of the fields may not be self-explanatory so there is, of course,
-:doc:`a chapter <../web-admin/channels/plain-http>`
-in the
-:doc:`web admin guide <../web-admin/intro>`
-where it's all detailed.
-
 Note that in order to emphasize the point that a service's name is decoupled
-from names of any channels that may be using it or from an HTTP path it's mounted
+from names of any channels that may be using it or from an HTTP path it is mounted
 under, those values are all different in the tutorial.
 
 .. image:: /gfx/tutorial/web-admin-channels-new-success.png
+   :width: 95%
 
-And that's it. The channel has been created, all servers have been notified of
+And that is it. The channel has been created, all servers have been notified of
 its having been formed so they automatically hot-updated their HTTP configuration and we can
-now use curl again to invoke our creation.
+now use curl again to invoke our newly created REST endpoint.
 
 ::
 
-  $ curl localhost:11223/tutorial/first-service
+  $ curl localhost:11223/api/recharge-card
   $
 
-This doesn't produce any output because the service returns none, it's only
+This does not produce any output because the service returns none, it is only
 logging its input data to server logs so this is where we need to look for
 a palpable proof that a service was indeed invoked.
 
 Note that the request went through a load-balancer and because we use local
-files instead of logging to syslog, we can't be sure which server's logs to check
-hence you need to grep in both of them and look for an entry similar to the one below
-(reformatted a bit for clarity)
+files instead of logging to syslog, we can not be sure which server's logs to check
+hence you need to grep in both of them and look for an entry similar to the one below.
+
+Its contents is the full data and metadata pertaining to the incoming request.
 
 ::
 
-  INFO - 5428:Dummy-178 - my-service.get-client-details:703 - {u'impl_name': u'my_service.GetClientDetails',
-    u'name': u'my-service.get-client-details',
-    u'cid': u'K05A9DMYMJ023SB2E4B57BS6N3FW',
-    u'invocation_time': datetime.datetime(2014, 12, 3, 21, 17, 16, 480128),
-    u'job_type': None, u'data_format': u'json',
-    u'slow_threshold': 99999, u'request.payload': u'',
-    u'wsgi_environ': {u'zato.http.POST': <QueryDict: {}>,
-      u'zato.http.remote_addr': '127.0.0.1',
-      u'zato.request_timestamp_utc': <Arrow [2014-12-03T21:17:16.427072+00:00]>,
-      'SERVER_PROTOCOL': 'HTTP/1.1',
-      'SERVER_SOFTWARE': 'Zato',
-      u'zato.http.channel_item': Bunch(audit_enabled=False, audit_max_payload=0, audit_repl_patt_type=None,
-        connection=u'channel', data_format=u'json', has_rbac=False, host=None, id=536L,
-        impl_name=u'my_service.GetClientDetails', is_active=True, is_internal=False,
-        match_target=u':::/tutorial/first-service',
-        match_target_compiled=<Parser u':::/tutorial/firs...'>,
-        merge_url_params_req=True, method=u'', name=u'Get Client Details',
-        params_pri=u'channel-params-over-msg', ping_method=None,
-        pool_size=None, replace_patterns_json_pointer=[],
-        replace_patterns_xpath=[], service_id=386L,
-        service_impl_name=u'my_service.GetClientDetails',
-        service_name=u'my-service.get-client-details',
-        soap_action=u'', soap_version=None,
-        transport=u'plain_http', url_params_pri=u'qs-over-path',
-        url_path=u'/tutorial/first-service'),
-      'SCRIPT_NAME': '',
-      'wsgi.input': <gunicorn.http.body.Body object at 0x7f3d399f3690>,
-      'REQUEST_METHOD': 'GET', 'HTTP_HOST': 'localhost:11223',
-      'PATH_INFO': '/tutorial/first-service', 'wsgi.multithread': False,
-      'QUERY_STRING': '', 'HTTP_CONNECTION': 'close',
-      u'zato.oauth.post_data': {}, 'HTTP_ACCEPT': '*/*',
-      u'zato.local_tz': <DstTzInfo 'Europe/Berlin' PMT+0:58:00 STD>,
-      'HTTP_USER_AGENT': 'curl/7.35.0', 'wsgi.version': (1, 0),
-      'REMOTE_PORT': '80', 'RAW_URI': '/tutorial/first-service',
-      'REMOTE_ADDR': '127.0.0.1', 'wsgi.run_once': False,
-      'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7f3d5c6631e0>,
-      'wsgi.multiprocess': True,
-      u'zato.request_timestamp': datetime.datetime(
-        2014, 12, 3, 22, 17, 16, 427072, tzinfo=<DstTzInfo 'Europe/Berlin' CET+1:00:00 STD>),
-      u'zato.http.GET': {}, 'wsgi.url_scheme': 'http',
-      'gunicorn.socket': <socket at 0x7f3d397e3050
-        fileno=46 sock=127.0.0.1:17010 peer=127.0.0.1:58083>,
-      'SERVER_NAME': 'localhost', 'SERVER_PORT': '11223',
-      u'zato.http.response.headers': {u'X-Zato-CID': u'K05A9DMYMJ023SB2E4B57BS6N3FW'},
-      'HTTP_X_FORWARDED_FOR': '127.0.0.1',
-      'wsgi.file_wrapper': <class gunicorn.http.wsgi.FileWrapper at 0x7f3d4de107a0>},
-      u'environ': {}, u'usage': 1,
-      u'channel': u'http-soap'}
+  INFO - api.recharge-card:0 - {'request.payload': b'', 'channel': 'http-soap',
+    'cid': 'efbb3ddd4a2716396546c481', 'data_format': '',
+    'environ': {}, 'impl_name': 'api.RechargeCard',
+    'invocation_time': datetime.datetime(2019, 11, 2, 16, 0, 56, 299),
+    'job_type': None, 'name': 'api.recharge-card', 'slow_threshold': None,
+    'usage': 1, 'wsgi_environ':
+    {wsgi.version': (1, 0), 'wsgi.multithread': True, 'wsgi.multiprocess': False,
+    'wsgi.file_wrapper': <class 'zato.server.ext.zunicorn.http.wsgi.FileWrapper'>,
+    'wsgi.input': <zato.server.ext.zunicorn.http.body.Body object at 0x7f9bea6af710>,
+    'gunicorn.socket': <gevent._socket3.socket object, fd=71,
+    family=2, type=2049, proto=0>, 'REQUEST_METHOD': 'GET', 'QUERY_STRING': '',
+    'RAW_URI': '/api/recharge-card',
+    'SERVER_PROTOCOL': 'HTTP/1.1', 'HTTP_HOST': 'localhost:11223',
+    'HTTP_USER_AGENT': 'curl/7.58.0', 'HTTP_ACCEPT': '*/*',
+    'HTTP_X_FORWARDED_FOR': '127.0.0.1',
+    'HTTP_CONNECTION': 'close', 'wsgi.url_scheme': 'http', 'REMOTE_ADDR': '127.0.0.1',
+    'REMOTE_PORT': '41408', 'SERVER_NAME': '0.0.0.0', 'SERVER_PORT': '17010',
+    'PATH_INFO': '/api/recharge-card', 'SCRIPT_NAME': '',
+    'zato.local_tz': <DstTzInfo 'Europe/Prague' LMT+0:58:00 STD>,
+    'zato.request_timestamp_utc': datetime.datetime(2019, 11, 2, 16, 0, 55, 999675),
+    'zato.request_timestamp': datetime.datetime(2019, 11, 2, 17, 0, 55, 999675,
+    tzinfo=<DstTzInfo 'Europe/Prague' CET+1:00:00 STD>),
+    'zato.http.response.headers': {'X-Zato-CID': 'efbb3ddd4a2716396546c481'},
+    'zato.http.remote_addr': '127.0.0.1', 'zato.channel_item':
+    {'connection': 'channel', 'content_type': None, 'data_format': '',
+    'host': None, 'id': 689,
+    'has_rbac': False, 'impl_name': 'api.RechargeCard', 'is_active': True,
+    'is_internal': False,
+    'merge_url_params_req': True, 'method': '', 'name': 'Recharge Card',
+    'params_pri': 'channel-params-over-msg', 'ping_method': None, 'pool_size': None,
+    'service_id': 756, 'service_name': 'api.recharge-card', 'soap_action': '',
+    'soap_version': None,
+    'transport': 'plain_http', 'url_params_pri': 'qs-over-path',
+    'url_path': '/api/recharge-card',
+    'sec_use_rbac': False, 'cache_type': None, 'cache_id': '',
+    'cache_name': None, 'cache_expiry': 0,
+    'content_encoding': '',
+    'match_slash': True, 'service_whitelist': '',
+    'service_impl_name': 'api.RechargeCard',
+    'is_rate_limit_active': False, 'rate_limit_def': '',
+    'rate_limit_type': 'APPROXIMATE', 'rate_limit_check_parent_def': False},
+    'zato.http.raw_request': b'',
+    'zato.oauth.post_data': {}, 'zato.http.GET': {}, 'zato.http.POST': {},
+    'zato.http.path_params': {}}
 
-And that concludes the first part! You've created a cluster, a service, hot-deployed it
-and then invoked it successfully. The :doc:`next part <./02>` will focus much
+And that concludes the first part! You have created a multi-component cluster and a service. The service was hot-deployed
+and then invoked successfully.
+
+The :doc:`next part <./02>` will focus much
 more on the business functionality now that the general framework to work within has
 been laid down.
 
-:doc:`Continue on to part 2/2 <./02>`
+:doc:`Continue on to part 2/3 <./02>`
