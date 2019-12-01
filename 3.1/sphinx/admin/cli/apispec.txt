@@ -6,7 +6,7 @@ Overview
 
 Generates API documentation for services that use :doc:`SimpleIO <../../progguide/sio>`. The documentation is output as a
 `Sphinx <http://sphinx-doc.org/>`_
-project containing OpenAPI/Swagger, WSDL specifications and a textual description of services.
+project containing an OpenAPI specification and a textual description of services.
 
 Before executing zato apispec command, make sure that `Sphinx <http://sphinx-doc.org/>`_ is installed in the system.
 
