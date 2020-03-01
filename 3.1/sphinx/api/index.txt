@@ -15,7 +15,7 @@ is an API client itself and it uses the same services that users may employ in t
 This chapter introduces the core usage concepts and provides usage examples in Python and REST.
 
 A separate chapter presents all the `public API services <https://zato.io/docs/3.0/api/spec/>`_
-along with their `OpenAPI <https://zato.io/docs/3.0/api/_downloads/openapi.yaml>`_ specification.
+along with their `OpenAPI <https://zato.io/docs/3.0/api/spec/_downloads/openapi.yaml>`_ specification.
 
 Overview
 --------
@@ -32,7 +32,7 @@ Each service's name reflects the domain it is concerned with, e.g. all services 
 will deal with SMTP connections only.
 
 All of the public services are `listed separately <https://zato.io/docs/3.0/api/spec/>`_. For each service, its description
-and input/output are provided. Their `OpenAPI <https://zato.io/docs/3.0/api/_downloads/openapi.yaml>`_ specification can be used
+and input/output are provided. Their `OpenAPI <https://zato.io/docs/3.0/api/spec/_downloads/openapi.yaml>`_ specification can be used
 to generate API clients automatically.
 
 Collecting usage examples
