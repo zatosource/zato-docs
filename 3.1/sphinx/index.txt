@@ -364,7 +364,8 @@ Administration guide
     * **Docker support:**
       :doc:`Installing a quickstart environment <admin/guide/install/docker>` |
       :doc:`Installing a Zato in Docker Swarm <admin/guide/install/swarm>` |
-      :doc:`Installing a Zato in Kubernetes <admin/guide/install/kubernetes>`
+      :doc:`Installing a Zato in Kubernetes <admin/guide/install/kubernetes>` |
+      :doc:`Installing a Zato in Kubernetes using Helm <admin/guide/install/kubernetes-helm>`
 
     * **Vagrant support:**
       :doc:`Running a quickstart environment <admin/guide/install/vagrant>`
