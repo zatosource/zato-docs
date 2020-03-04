@@ -34,7 +34,7 @@ For more details, or for other options, see `the installation guide <https://hel
 Deploy Zato to local Kubernetes
 ---------------------------------
 
-* Clone GitHub repository to the the template
+* Clone GitHub repository to access the Helm Charts
 
 ::
 
