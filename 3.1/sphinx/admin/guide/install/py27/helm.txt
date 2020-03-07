@@ -51,11 +51,11 @@ Edit the file helm/Chart.yaml and change the value of **appVersion** from **3.1*
 
     host$ cat myoptions.yml
     # Some customization variables:
-    secretKey: "hS4KVhIMPUGxoS1M6xYLq1UW0_lZOFe5eDoRs9Q9Hy0="
-    jwt_secretKey: "p5m2wJxDF3xxFrZLdDu8m15fRUak4eZDPJl5Bfz_wm8="
+    secretKey: "<secret>"
+    jwt_secretKey: "<secret>"
     zatoWebAdminPassword: "zato"
     zatoIdePublisherPassword: "zato"
-    zatoAdminInvokePassword: "c97f1aa4-8a20-441e-b46d-d37711a06afc"
+    zatoAdminInvokePassword: "<secret>"
     odbPassword: "zato"
     ingress:
         enabled: true
