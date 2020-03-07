@@ -68,7 +68,7 @@ Edit the file helm/Chart.yaml and change the value of **appVersion** from **3.1*
 
 When the services are deployed a corresponding message is shown in the output with instructions of how to connect to web-admin.
 
-When the ingress is enabled:
+When Kubernetes' ingress is enabled, like in the previous configuration variables in myoptions.yml, the output message will be like this:
 
 ::
 
@@ -82,7 +82,7 @@ When the ingress is enabled:
     1. Ingress is enabled and the specified application URL is:
     http://zato.minikube.local/
 
-When the parameter \-\-set can be used to override values too:
+The parameter \-\-set can be used to override values too. In this case, it disabled Kubernetes' ingress and a different message is displayed:
 
 ::
 
