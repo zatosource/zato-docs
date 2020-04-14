@@ -1,4 +1,4 @@
-.. highlight:: python
+.. highlight:: text
    :linenothreshold: 1
 
 Debugging

@@ -54,13 +54,13 @@ The raw request is always available as a string/unicode under self.request.raw_r
            self.logger.info(type(self.request.raw_request))
            self.logger.info(self.request.raw_request)
 
-::
+.. code-block:: text
 
     $ zato service invoke /opt/server1/ example.my-service --payload '{"hello":"world"}'
     (None)
     $
 
-::
+.. code-block:: text
 
     INFO - <type 'unicode'>
     INFO - {"hello":"world"}
@@ -84,12 +84,12 @@ Note that self.wsgi_environ will be empty if the service wasn't invoked over HTT
            for key, name in sorted(self.wsgi_environ.items()):
                self.logger.info('{}:{}'.format(key, name))
 
-::
+.. code-block:: text
 
    $ curl http://localhost:11223/example
    $
 
-::
+.. code-block:: text
 
    INFO - HTTP_ACCEPT:*/*
    INFO - HTTP_CONNECTION:close
@@ -140,7 +140,7 @@ Note that self.wsgi_environ will be empty if the service wasn't invoked over HTT
            qs = parse_qs(self.wsgi_environ['QUERY_STRING'])
            self.logger.info(qs['foo'])
 
-::
+.. code-block:: text
 
    $ curl http://localhost:11223/example?foo=bar
    $
