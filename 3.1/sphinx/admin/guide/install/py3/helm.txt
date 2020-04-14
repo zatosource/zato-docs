@@ -26,8 +26,7 @@ Start a local Kubernetes with Minikube
 Install Helm
 ---------------------------------
 
-Download a binary release of the Helm client. You can use tools like homebrew,
-or look at `the official releases page <https://github.com/helm/helm/releases/>`_.
+Download a binary release of the Helm client. You can use tools like Homebrew, or look at `the official releases page <https://github.com/helm/helm/releases/>`_.
 
 For more details, or for other options, see `the installation guide <https://helm.sh/docs/intro/install/>`_.
 
@@ -48,11 +47,11 @@ Deploy Zato to local Kubernetes
 
     host$ cat myoptions.yml
     # Some customization variables:
-    secretKey: "hS4KVhIMPUGxoS1M6xYLq1UW0_lZOFe5eDoRs9Q9Hy0="
-    jwt_secretKey: "p5m2wJxDF3xxFrZLdDu8m15fRUak4eZDPJl5Bfz_wm8="
+    secretKey: "<secret>"
+    jwt_secretKey: "<secret>"
     zatoWebAdminPassword: "zato"
     zatoIdePublisherPassword: "zato"
-    zatoAdminInvokePassword: "c97f1aa4-8a20-441e-b46d-d37711a06afc"
+    zatoAdminInvokePassword: "<secret>"
     odbPassword: "zato"
     ingress:
         enabled: true
@@ -63,10 +62,9 @@ Deploy Zato to local Kubernetes
 
 * Deploy Zato to Kubernetes using Helm
 
-When the services are deployed a corresponding message is shown in the output with instructions
-of how to connect to web-admin.
+When the services are deployed a corresponding message is shown in the output with instructions of how to connect to web-admin.
 
-When the ingress is enabled:
+When Kubernetes' ingress is enabled, like in the previous configuration variables in myoptions.yml, the output message will be like this:
 
 ::
 
@@ -80,7 +78,7 @@ When the ingress is enabled:
     1. Ingress is enabled and the specified application URL is:
     http://zato.minikube.local/
 
-When the parameter \-\-set can be used to override values too:
+The parameter \-\-set can be used to override values too. In this case, it disabled Kubernetes' ingress and a different message is displayed:
 
 ::
 
@@ -140,7 +138,7 @@ but they may be employed to configure particular details of each of the componen
 Variable                     Notes
 ============================ =================================================================================================
 clusterName                  Cluster name.
-zatoWebAdminPassword         Password for the web admin’s technical account user to connect with. If not defined,
+zatoWebAdminPassword         Password for the web-admin’s technical account user to connect with. If not defined,
                              the value is generated automatically at runtime.
 zatoIdePublisherPassword     Password for user `ide_publisher`, used for IDE integration. If not defined,
                              the value has to be set manually.
@@ -168,7 +166,7 @@ jwtSecretKey                 A random secret key previously generated with
                              If JWT is used, must be the same for all servers in a single
                              cluster. If not provided, a new key will be generated
                              automatically.
-ingress.hosts[0].host        Hostname used to access **webadmin** through Kubernetes' ingress.
+ingress.hosts[0].host        Hostname used to access **web-admin** through Kubernetes' ingress.
 ============================ =================================================================================================
 
 To access the full list of options, you can check the `values.yml <https://github.com/zatosource/zato-build/blob/master/docker/kubernetes/helm/values.yaml>`_ file.
