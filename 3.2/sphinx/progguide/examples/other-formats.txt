@@ -40,11 +40,11 @@ like that:
            data = self.request.payload.decode('base64')
            self.logger.info(data)
 
-::
+.. code-block:: text
 
    $ curl localhost:11223/example -d 'SGVsbG8gWmF0byE=\n'
    $
 
-::
+.. code-block:: text
 
    INFO - Hello Zato!

@@ -24,12 +24,12 @@ By default, a JSON message is converted to a Python dictionary.
            self.logger.info(self.request.payload)
            self.logger.info(self.request.payload['mydata']['cust']['id'])
 
-::
+.. code-block:: text
 
   $ curl localhost:11223/example -d '{"mydata":{"cust":{"id":1,"name":"Jack Brown"}}}'
   $
 
-::
+.. code-block:: text
 
   INFO - <type 'dict'>
   INFO - {u'mydata': {u'cust': {u'id': 1L, u'name': u'Jack Brown'}}}
@@ -58,12 +58,12 @@ and use dotted notation to reference elements of the request.
            self.logger.info(mydata.cust.id)
            self.logger.info(mydata.cust.name)
 
-::
+.. code-block:: text
 
   $ curl localhost:11223/example -d '{"mydata":{"cust":{"id":1,"name":"Jack Brown"}}}'
   $
 
-::
+.. code-block:: text
 
   INFO - 1
   INFO - Jack Brown
@@ -133,7 +133,7 @@ achieve the same.
 
 Output below reformatted for clarity.
 
-::
+.. code-block:: text
 
   $ curl localhost:11223/example -d '{}'
   {"customer":

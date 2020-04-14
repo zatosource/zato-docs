@@ -55,7 +55,7 @@ Note that the URL path contains parameters enclosed between *{* and *}* and *Mer
 
 Now the service can be invoked using a nice and clean URL:
 
-::
+.. code-block:: text
 
     $ curl http://localhost:11223/customer/balance/37172/HAZDM017/ ; echo
     {"response": {"currency": "EUR", "balance": "357.19"}}
@@ -63,7 +63,7 @@ Now the service can be invoked using a nice and clean URL:
 
 And the contents of server.log confirms that the input was received fine:
 
-::
+.. code-block:: text
 
     INFO - Customer: 37172
     INFO - Account: HAZDM017
@@ -77,7 +77,7 @@ embedded in a path.
 .. image:: /gfx/progguide/rest/query-params.png
    :width: 95%
 
-::
+.. code-block:: text
 
     $ curl "http://localhost:11223/customer/balance?cust_no=198271&account_no=KMZQ62M" ; echo
     {"response": {"currency": "EUR", "balance": "357.19"}}
@@ -85,7 +85,7 @@ embedded in a path.
 
 Again, server.log confirms the input was the same:
 
-::
+.. code-block:: text
 
     INFO - Customer: 198271
     INFO - Account: KMZQ62M
@@ -95,14 +95,14 @@ Using JSON payload
 
 Note that it's always possible to invoke the very same service by using JSON payload on input:
 
-::
+.. code-block:: text
 
     $ curl http://localhost:11223/customer/balance -d \
         '{"cust_no":"38631", "account_no":"JZM92KH"}' ; echo
     {"response": {"currency": "EUR", "balance": "357.19"}}
     $
 
-::
+.. code-block:: text
 
     INFO - Customer: 38631
     INFO - Account: JZM92KH

@@ -51,7 +51,7 @@ Note that the channel doesn't specify any particular data format.
                   if line:
                       self.logger.info('Got elements: {}'.format(line))
 
-   ::
+.. code-block:: text
 
       $ cat data.csv
       q,w,e;
@@ -59,11 +59,11 @@ Note that the channel doesn't specify any particular data format.
       u,i,o;
       $
 
-   ::
+.. code-block:: text
 
       $ curl localhost:17010/other-example.my-service -d @data.csv
 
-   ::
+.. code-block:: text
 
       INFO - Got elements: ['q', 'w', 'e']
       INFO - Got elements: ['r', 't', 'y']
@@ -76,7 +76,7 @@ Note that the channel doesn't specify any particular data format.
    type too, like in the `Short Payment Descriptor <https://en.wikipedia.org/wiki/Short_Payment_Descriptor>`_
    example below.
 
-   ::
+.. code-block:: text
 
       from zato.server.service import Service
 
@@ -85,7 +85,7 @@ Note that the channel doesn't specify any particular data format.
               self.response.payload = 'SPD*1.0*ACC:CZ2408000000190000000123*MSG:My debts'
               self.response.content_type = 'application/x-shortpaymentdescriptor'
 
-   ::
+.. code-block:: text
 
       $ curl localhost:17010/other-example.my-service
       SPD*1.0*ACC:CZ2408000000190000000123*MSG:My debts
