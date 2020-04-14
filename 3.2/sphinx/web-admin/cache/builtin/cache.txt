@@ -1,0 +1,61 @@
+Cache - Built-in - Main page
+============================
+
+Overview
+--------
+
+Used to create, update, delete and browse built-in cache definitions.
+
+* Menu path: Connections -> Cache -> Built-in
+* Example address: http://localhost:8183/zato/cache/builtin/?cluster=1
+
+.. image:: /gfx/web-admin/cache/builtin-cache-list.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/cache/builtin-cache-create.png
+
+================== ================================================================================
+Header             Notes
+================== ================================================================================
+Name               Cache name
+Active             A flag to indicate if the cache can be used by services or channels
+Default            Is this cache definition the default one in this Zato cluster
+Max size           Each cache may have a maximum size - in case the number of entries in the
+                   cache exceeds this size, the least recently used entries will be evicted.
+                   Note that this value is maintained separately for each Zato server
+                   process, not for the whole cluster.
+Max item size      Each item in cache may have a maximum size, counted in characters
+                   or bytes, depending if the entry is a Unicode object or not. Insertion
+                   of entries bigger than this size will not be allowed and such entries
+                   will be rejected.
+Extend exp. on get If there is a TTL for a particular entry in cache, should that TTL
+                   be extended on GET (read) operations against such a key
+Extend exp. on set As above but for SET operations (writes)
+================== ================================================================================
+
+Clear
+------
+
+.. image:: /gfx/web-admin/cache/builtin-cache-clear.png
+
+Clears the cache completely in all server processes, i.e. deletes all of its entries. This cannot be undone.
+
+Delete
+------
+
+.. image:: /gfx/web-admin/cache/builtin-cache-delete.png
+
+Deletes the definition from ODB. Note that default definitions cannot be deleted until another definition is made default.
+
+Changelog
+---------
+
+======= ===============
+Version Notes
+======= ===============
+3.0     Added initially
+======= ===============
+

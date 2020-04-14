@@ -1,0 +1,60 @@
+Cloud - OpenStack Swift
+=======================
+
+Overview
+--------
+
+Used to create, update, delete and browse through outgoing `OpenStack Swift <https://en.wikipedia.org/wiki/Amazon_S3>`_
+such as `Rackspace Files <https://www.rackspace.com/cloud/files>`_ and implementations.
+
+Connections can be used by services to access Swift containers and objects :doc:`in run-time <../../../progguide/examples/cloud/openstack/swift>`
+or in :doc:`OpenStack Swift notifications <../../notif/cloud/openstack/swift>`.
+
+* Menu path: Cloud -> OpenStack -> Swift
+* Example address: http://localhost:8183/zato/cloud/openstack/swift/?cluster=1
+
+.. image:: /gfx/web-admin/cloud/openstack/swift.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/cloud/openstack/swift-create.png
+
+======================== ========================================================================================================================================
+Header                   Notes
+======================== ========================================================================================================================================
+Name                     Connection name
+Active                   Whether connections can be used by services or not
+Auth version             Authentication version used by the remote storage
+Pool size                How big the connection pool will be
+Auth URL                 The main entry point to authenticate in. This is the only URL required in order to use Swift.
+User                     Username to connect with
+Tenant name              Swift tenant, if relevant
+Key/password             Either an API key or password to connect with
+# of retries             How many times to retry if inital connections to Swift fail
+Starting backoff         In seconds, initial delay between connection attempts if not connected immediately
+Max backoff              In seconds, maximum delay between connection attempts if not connected immediately
+Validate TLS certs?      Whether to validate Swift server's certificates
+Path to CA TLS certs     Path to custom CA certs for validation, if relevant
+Is SNET?                 Set to True if running in Rackspace's ServiceNet internal network
+Custom options           Each line is a key=value pair of options passed directly to the underlying
+                         `swiftclient.client.Connection's <http://docs.openstack.org/developer/python-swiftclient/swiftclient.html#module-swiftclient.client>`_
+                         __init__ method as os_options.
+======================== ========================================================================================================================================
+
+Delete
+------
+
+.. image:: /gfx/web-admin/cloud/openstack/swift-delete.png
+
+Deletes the connection pool. Will also stop any :doc:`notifiers <../../notif/cloud/openstack/swift>` using the connection.
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+2.0                 Added initially
+=================== ===================================================================

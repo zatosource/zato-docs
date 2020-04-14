@@ -1,0 +1,7 @@
+Zato installation on RHEL/CentOS
+================================
+
+Instructions for:
+
+* :doc:`Python 2.7 <./py27/rhel>`
+* :doc:`Python 3.x <./py3/rhel>`

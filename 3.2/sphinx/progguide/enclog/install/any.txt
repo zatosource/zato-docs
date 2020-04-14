@@ -1,0 +1,52 @@
+Installing zato-enclog for Python applications
+==============================================
+
+The only step required to install :doc:`zato-enclog <../index>` outside of :doc:`Zato <../../../index>` is to pull it
+`from PyPI <https://pypi.python.org/pypi/zato-enclog/>`_, for instance, using pip:
+
+::
+
+  $ sudo pip install zato-enclog
+  Collecting zato-enclog
+    Downloading zato-enclog-x.y.z.tar.gz
+
+  [...]
+
+  Installing collected packages: zato-enclog
+    Running setup.py install for zato-enclog
+  $
+  $ enclog demo
+
+  Plain text: {"user":"Jane Xi"}
+  Key:        D_VAfbXkabCKLnEx-xm0CP4c41JOIlK0p1c-pTzm2dY=
+  Encrypted:  gAAAAABWZyfBUJHc1iEPaIkmSHrkXMCkRTZco-aoAzRR7kNqMtHLtd7qrWj9WKBpYCa [...]
+  Decrypted:  {"user":"Jane Xi"}
+
+  $
+
+Usage
+=====
+
+::
+
+  import logging
+  from zato.enclog import EncryptedLogFormatter, genkey
+
+  level = logging.INFO
+  format = '%(levelname)s - %(message)s'
+
+  key = genkey()
+  formatter = EncryptedLogFormatter(key, format)
+
+  handler = logging.StreamHandler()
+  handler.setFormatter(formatter)
+
+  logger = logging.getLogger('')
+  logger.addHandler(handler)
+  logger.setLevel(level)
+
+  logger.info('This will be encrypted')
+
+Note that the key is the only means to decrypt encrypted logs. Should it be lost, no decryption will be possible.
+
+Use :doc:`enclog open <../cli/open>` and :doc:`enclog tailf <../cli/tailf>` to read encrypted logs.

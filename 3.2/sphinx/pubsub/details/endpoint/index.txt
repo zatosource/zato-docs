@@ -1,0 +1,110 @@
+Publish/subscribe endpoints
+===========================
+
+Preliminary materials: :doc:`Pub/sub architecture <../../arch/index>`.
+
+Introduction
+------------
+
+Endpoints are the entities that send messages to topics or receive them from queues. In a typical architecture,
+a single endpoint will represent a particular application participating in pub/sub processes but there is no requirement
+that there be only one endpoint per application and users are free to create as many endpoints as necessary.
+
+There are several types of endpoints:
+
+* :doc:`REST <../../api/rest>`
+* :doc:`AMQP <./amqp>`
+* :doc:`SOAP <./soap>`
+* :doc:`WebSockets <../../api/wsx>`
+* :doc:`Zato services <../../api/zato-service>`
+* :doc:`File transfer <./file>`
+* Java JMS
+
+REST, AMQP, WebSockets and Java JMS need to be registered by administrators before they can take part
+in publish/subscribe. Endpoints of this kind can be configured to let them publish messages, subscribe to them or both.
+
+Zato services do not need to be managed by administrators because they can always publish to all topics.
+
+File transfer are used to :doc:`listen for changes <./file>` in directories of choice, i.e. they are file listeners that publish
+information to topics about new or changed files, optionally including their contents. File listeners can publish messages to
+topics but they cannot subscribe to them.
+
+AMQP endpoints subscribe to messages published to topics, i.e. each time a message is published to a topic with an AMQP
+subscriber, a remote AMQP broker will receive its contents.
+
+Java JMS endpoints let Java-based systems seamlessly integrate with Zato in terms of both publications and subscriptions,
+from the perspective of JMS clients Zato acts as a JMS broker.
+
+Managing endpoints in web-admin
+-------------------------------
+
+Each endpoint defined in web-admin has a type, name and role. Each is identified by its name which is unique among all other
+endpoints no matter which type they are of.
+
+For REST, SOAP and Java JMS endpoints, API credentials, such as HTTP Basic Auth ones, must be assigned to them.
+Applications connecting to Zato topics and queues will in run-time use the credentials for authentication.
+
+WebSockets-based endpoints must point to a WebSockets channel which will in turn optionally specify a security definition
+to be used for authentication.
+
+A role of Publisher, Subscriber or Publisher/Subscriber may be assigned to each endpoint. This dictates if an endpoint may,
+in principle, publish or subscribe to topics.
+
+Access to topics is based on patterns, that is, a single access pattern may cover multiple topics, possibly including ones
+that do not exist at the time of an endpoint's creation.
+
+It is customary to arrange topic names and their respective permission patterns in hierarchical structures, going from
+the broadest elements to the more specific ones using a slash */* for the separator, akin to file paths in a filesystem.
+
+Special symbol that can be used in patterns are:
+
+====== ============= =====================================================
+Symbol Name          Notes
+====== ============= =====================================================
+\*     Asterisk      Matches zero or more characters, excluding the slash
+\*\*   Two asterisks Matches zero or more characters, including the slash
+====== ============= =====================================================
+
+Supposing there are several topics:
+
+=========================== =========================================================================
+Topic                       Notes
+=========================== =========================================================================
+/usa/va/richmond            Events related to Richmond, Virginia, USA
+/usa/va/washington          Events related to Washington, Virginia, USA
+/customer/address/changed   Notifications about changed addresses of customers in a company's CRM
+/customer/telephone/changed Notifications about changed telephones of customers in a company's CRM
+/customer/telephone/deleted Notifications about deleted telephones of customers in a company's CRM
+=========================== =========================================================================
+
+It is possible to create various access patterns depending on the intended purpose.
+
+====================== ==================================================================================
+Pattern                Notes
+====================== ==================================================================================
+/usa/va/richmond       Because it does not use special symbols, this matches that exact topic name
+/usa/\*\*              Matches any topics related to the USA, i.e. any that start with this prefix
+/usa/va/\*             Matches any topics related to Virginia, USA. Currently, it would match Richmond
+                       and Washington but should another topic be added, such as /usa/va/arlington,
+                       it will be also matched in run-time even if this topic does not exist at the time
+                       when the endpoint was created or last edited.
+/usa/\*/richmond       Matches any Richmond city in the USA
+/customer/\*\*          Matches all topics related to customers in the CRM
+/customer/\*/changed   Matches all topics related to changes in customers
+/customer/telephone/\* Matches all topics related to changes or deletions in customers
+====================== ==================================================================================
+
+Note that patterns are specified separately for publications and subscriptions and that there must be a matching
+role for the pattern to be taken into account at all, i.e. if an endpoint has publication rights to a topic
+but its role is a Subscriber then it will not be able to publish the message despite correct access rights. This can be used
+to temporarily revoke publication or subscription rights without a need to redefine permissions.
+
+In the example below, a REST endpoint called CRM is of a Publisher/Subscriber role. It uses credentials defined in a HTTP Basic
+Auth security 'pubapi'. It is allowed to publish to all topics matching pattern */usa/va/\** but it is not allowed to subscribe
+to messages from these topics. It is, however, allowed to both publish and subscribe to messages matching pattern
+*/customer/\*/changed*.
+
+.. image:: /gfx/pubsub/details/endpoint-create.png
+
+Creating an endpoint and giving it rights to publish is sufficient for this endpoint to begin publications immediately,
+there is no other step needed. To receive messages, however, a :doc:`subscription <../sub/index>` needs to be created first.

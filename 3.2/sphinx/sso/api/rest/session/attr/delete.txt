@@ -1,0 +1,63 @@
+.. highlight:: text
+   :linenothreshold: 1000
+
+SessionAttr.delete - REST API
+=============================
+
+Overview
+--------
+
+Deletes an existing session attribute or attributes. The operation cannot be undone. It is not an error to delete an attribute
+that does not exist.
+
+While the call's :doc:`Python equivalent <../../../python/session/attr/delete>` has two versions, one for individual and the
+other for multiple attributes, with REST there is a single endpoint to cover both cases. Yet, just like in the Python
+call, it is more efficient to delete multiple attributes in one REST call instead of repeatedly deleting individual ones.
+
+  * HTTP method: DELETE
+  * URL path: /zato/sso/session/attr
+
+Request
+-------
+
+=========== ======== ======== ========================================================================================
+Name        Datatype Optional Notes
+=========== ======== ======== ========================================================================================
+current_ust string   ---      Current user's session token (UST)
+target_ust  string   ---      Target session's UST, the one that is being manipulated (may be the same as current_ust)
+current_app string   ---      Name of application that the call is attempted from
+name        string   Yes      If a single attribute is to be deleted, the attribute's name
+data        list     Yes      If multiple attributes are to be deleted, this is a list of their names
+=========== ======== ======== ========================================================================================
+
+
+Response
+--------
+
+========== ======== ======== ===========================================================================
+Name       Datatype Optional Notes
+========== ======== ======== ===========================================================================
+cid        string   ---      Correlation ID assigned to request
+status     string   ---      Overall :doc:`status code <../../../../status-code>`
+sub_status list     Yes      Returned only if status is not "ok", a list of :doc:`error or warning codes
+                             <../../../../status-code>`
+========== ======== ======== ===========================================================================
+
+Usage
+-----
+
+::
+
+  $ curl -XDELETE localhost:17010/zato/sso/session/attr -d '
+    {
+     "current_ust": "gAAAAABavk-65BuvKI0JFPeuJ9Tp3pHtNMeFWhVUEBVKExuaVE9KDLFpik4loT7kGHtb4GR2CZbfZL1o0yFeDNyoo2tDqBD8M5h-_JHfw8qlDy7B5ea9O4k=",
+     "target_ust": "gAAAAABavk-65BuvKI0JFPeuJ9Tp3pHtNMeFWhVUEBVKExuaVE9KDLFpik4loT7kGHtb4GR2CZbfZL1o0yFeDNyoo2tDqBD8M5h-_JHfw8qlDy7B5ea9O4k=",
+     "current_app": "CRM",
+     "name": "my-attribute"
+    }
+    '
+
+    {
+     "status": "ok",
+     "cid": "e07c2f8fa0bb5d3b17dcf181"
+    }

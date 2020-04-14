@@ -1,0 +1,184 @@
+.. highlight:: python
+   :linenothreshold: 1
+
+Patterns - Invoke/retry
+=======================
+
+Overview
+--------
+
+Invoke/retry lets services invoke other services, repeating the invocation if it fails initially or later on. If run in background,
+a callback service can be provided that will be invoked if the target service replies eventually or if it never does.
+
+There are 3 modes of operations:
+
+* Invoke a service synchronously and if the call fails, repeat the call a configured number of times still blocking
+  the service issuing the call - all the calls are blocking
+
+* Invoke a service synchronously but if it fails, repeat the call in background invoking a callback when the target service finally replies -
+  only the first call is blocking
+
+* Invoke a service asynchronously straightaway, repeating the call in background if it doesn't succeed the first and subsequent times -
+  none of the calls is blocking
+
+============= ================== =================
+Call mode     Initial invocation Further retries
+============= ================== =================
+Sync + sync   Blocking           Blocking
+Sync + async  Blocking           In background
+Async + async In background      In background
+============= ================== =================
+
+Note that regardless of the usage mode the invoke/retry mechanism becomes operative only if the target service raises an exception -
+anything that subclasses Python's built-in Exception will be enough. Without an exception raised to signal that something went
+wrong there will be no repeated invocations.
+
+Usage examples and API
+----------------------
+
+Sync + sync mode
+~~~~~~~~~~~~~~~~
+
+Invokes a service and repeats the execution a given number of times blocking the calling service if the target one doesn't reply.
+Ultimately, either ZatoException is raised by the pattern or a response is produced.
+
+::
+
+  from zato.common import ZatoException
+  from zato.server.service.internal.helpers import Service
+
+  class MyService(Service):
+
+      def handle(self):
+
+          try:
+
+              # The service to invoke
+              target = 'my.retry.target'
+
+              # How many times to invoke it and how long to sleep between the calls
+              config = {
+                'repeats': 3,
+                  'seconds': 1
+              }
+
+              # Call invoke/retry
+              response = self.patterns.invoke_retry.invoke(target, **config)
+
+              # Everything went fine in the end
+              self.logger.info('Response received %r', response)
+
+          # We enter here if all the invocations ended in an exception
+          except ZatoException, e:
+              self.logger.warn('Caught an exception %s', e.message)
+
+Sync + async mode
+~~~~~~~~~~~~~~~~~
+
+Invokes a service blockingly and retries in background if the invocation fails. Returns Correlation ID of the background
+call so requests can be correlated with responses. A callback will be invoked with either response from the target or information
+that it couldn't be invoked.
+
+::
+
+  from zato.server.service.internal.helpers import Service
+
+  class MyService(Service):
+
+      def handle(self):
+
+          # The service to invoke
+          target = 'my.retry.target'
+
+          # How many times to invoke and how long to sleep between the calls,
+          # also a flag indicating that should the initial call fail, it will be
+          # repeated in async next on. Finally, a callback to invoke should async be used
+          # and a dictionary of context the callback will receive (can be omitted).
+          config = {
+              'repeats': 3,
+              'seconds': 1,
+              'async_fallback':True,
+              'callback': 'my.retry.callback',
+              'context': {'hi':'there'},
+          }
+
+          # Call invoke/retry and obtain a Correlation ID
+          cid = self.patterns.invoke_retry.invoke(target, **config)
+
+          # Can be used for correlating requests and responses
+          self.logger.info('CID %s', cid)
+
+Async + async mode
+~~~~~~~~~~~~~~~~~~
+
+Invokes a service in background and, if the call fails, continues to invoke it asynchronously. Never blocks the calling service
+which receives Correlation ID of the invoke/retry call to use in correlating issued request with the response callback gets (if any).
+Once the response is produced by the target a callback is invoked. Alternatively, if the target never replies with a non-error message,
+the callback receives information stating so.
+
+::
+
+  from zato.server.service.internal.helpers import Service
+
+  class MyService(Service):
+
+      def handle(self):
+
+          # The service to invoke
+          target = 'my.retry.target'
+
+          # How many times to invoke and how long to sleep between the calls,
+          # also a callback to invoke and a dictionary of context
+          # the callback will receive (can be omitted).
+          config = {
+              'repeats': 3,
+              'seconds': 1,
+              'callback': 'my.retry.callback',
+              'context': {'hi':'there'},
+          }
+
+          # Call invoke/retry and obtain a Correlation ID
+          cid = self.patterns.invoke_retry.invoke_async(target, **config)
+
+          # Can be used for correlating requests and responses
+          self.logger.info('CID %s', cid)
+
+Authoring callbacks
+~~~~~~~~~~~~~~~~~~~
+
+Invoke/retry callback is a service which in its *self.request.payload* attribute will receive on input a Python dictionary of
+the format as follows. The callback will be invoked no matter if the target replied successfully or not.
+
+::
+
+  {
+    'ok': False,
+    'source': 'retry.my-service',
+    'target': 'my.retry.target',
+    'retry_repeats': 3,
+    'retry_seconds': 1,
+    'call_cid': 'K04BAWB349PEBBYCPY6GQVSH4W0E',
+    'orig_cid': 'K07MKN0TY2FRMCGHQA1HZR2JMBEM',
+    'req_ts_utc': '2015-01-21T20:25:25.446454+00:00',
+    'context': {'hi': 'there'},
+  }
+
+============= ====================================================================================
+Key           Notes
+============= ====================================================================================
+ok            True/False indicating whether target produced a response at all
+source        Calling service
+target        Called service
+retry_repeats How many times to retry invocation if it failed the first time
+retry_seconds How long to wait between retries
+call_cid      Correlation ID target was invoked with
+orig_cid      Correlation ID source was originally invoked with
+req_ts_utc    When was the target invoked, in UTC
+context       A dictionary of arbitrary user-defined data passed from source to the callback
+============= ====================================================================================
+
+Specifying intervals
+~~~~~~~~~~~~~~~~~~~~
+
+Note that the time to wait for in between the retries can be always expressed in both *minutes* and *seconds* and at least
+one of these needs to be provided on input. Internally, minutes will be converted to seconds.

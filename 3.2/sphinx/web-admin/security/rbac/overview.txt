@@ -1,0 +1,16 @@
+Security - RBAC (Role-based access control)
+===========================================
+
+:doc:`HTTP channels <../../channels/plain-http>`
+can be secured with credentials grouped into roles forming hierarchies allowing or disallowing
+client applications perform indicated actions against services.
+
+Following chapters go through all the web-admin forms supporting the process of RBAC management:
+
+* :doc:`Roles <roles>`
+* :doc:`Client roles <client-roles>`
+* :doc:`Permissions <permissions>`
+* :doc:`Permissions for roles <role-permissions>`
+
+:doc:`A dedicated guide <../../../admin/guide/rbac/overview>` provides detailed information on performing typical
+tasks related to RBAC.

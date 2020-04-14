@@ -1,0 +1,96 @@
+.. highlight:: python
+   :linenothreshold: 1
+
+User.login - Python API
+=======================
+
+Logs a user into the system. On success, returns session info, including a UST (user session token) that represents
+a particular session of that user with the SSO environment.
+
+On invalid input raises zato.sso.api.ValidationError which contains details in the form of
+:doc:`status and sub-status codes <../../../status-code>`
+pointing to specific erroneous conditions.
+
+Note that only users whose approval_status is "approved" will be able to log in, otherwise an error will be raised.
+
+API
+---
+
+self.sso.user.login
+~~~~~~~~~~~~~~~~~~~
+
+.. py:method:: login(self, cid, username, password, current_app, remote_addr, user_agent=None,
+        has_remote_addr=False, has_user_agent=False, new_password='', totp_code=None)
+
+  Logs a user in, optionally sending login metadata or a new password, if it was required.
+
+  :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
+  :type cid: string
+
+  :param username: Name of a user to log in
+  :type username: string
+
+  :param password: That user's password
+  :type password: string
+
+  :param current_app: Name of application the user is logging in from
+  :type current_app: string
+
+  :param remote_addr: User's remote address
+  :type remote_addr: string
+
+  :param user_agent: Optional TOTP code if user has two-factor authentication enabled
+  :type user_agent: string
+
+  :param user_agent: User agent string
+  :type user_agent: string
+
+  :param has_remote_addr: Should be set to True if input remote_addr was sent explicitly by user in JSON or to False if
+                          it was extracted by the caller (e.g. from the WSGI environment)
+  :type has_remote_addr: bool
+
+  :param has_user_agent: Should be set to True if input user_agent was sent explicitly by user in JSON or to False if
+                          it was extracted by the caller (e.g. from the WSGI environment)
+  :type has_user_agent: bool
+
+  :param new_password: User's new password - should be sent in if the password for user is currently required to be changed
+  :type new_password: string
+
+  :rtype: A zato.sso.session.SessionInfo object with attributes:
+
+    * username - taken from input
+    * ust - UST, in encrypted form
+    * user_id - ID of the newly logged in user
+    * creation_time - when was the session created, in UTC
+    * expiration_time - when will the session expire, in UTC
+
+::
+
+  # -*- coding: utf-8 -*-
+
+  from __future__ import absolute_import, division, print_function, unicode_literals
+
+  # Zato
+  from zato.server.service import Service
+
+  class Login(Service):
+      def handle(self):
+
+          username = 'regular1'
+          password = '0Z-XQCZ8sK1oeP9Ft8YeQgKxUDhM34HE'
+          current_app = 'CRM'
+          remote_addr = '127.0.0.1'
+          user_agent = 'Firefox 139.0'
+
+          session_info = self.sso.user.login(self.cid,
+              username, password, current_app, remote_addr, user_agent)
+
+          self.logger.info('UST %s', session_info.ust)
+          self.logger.info('Created %s', session_info.creation_time.isoformat())
+          self.logger.info('Expires %s', session_info.expiration_time.isoformat())
+
+::
+
+  INFO - UST gAAAAABaktuYYlg00..
+  INFO - Created 2018-02-25T15:51:52.081767
+  INFO - Expires 2018-02-25T16:51:52.081767

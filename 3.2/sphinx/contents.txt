@@ -1,0 +1,18 @@
+.. _contents:
+
+=============================
+Zato documentation contents
+=============================
+
+.. toctree::
+    :hidden:
+    :glob:
+
+    *
+
+Indices, glossary and tables
+============================
+
+* :ref:`genindex`
+* :ref:`modindex`
+

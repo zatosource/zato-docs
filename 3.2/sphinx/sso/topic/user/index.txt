@@ -1,0 +1,71 @@
+.. highlight:: bash
+   :linenothreshold: 1000
+
+User management
+===============
+
+This chapter explains basic details of what user objects are and what rules apply to their APIs.
+
+User objects
+------------
+
+* Users represent people accessing applications on whose behalf Zato provides security mechanisms
+* Users may have access to one or more application
+* Users may send sign up requests to open an account
+* Users may be regular ones or :doc:`super-users <./super>`
+
+All of the broader parts of the functionality can be turned on or off as needed, for instance, it is possible to disable
+the ability for users to sign up themselves. Read the :doc:`configuration chapter <../../config/index>` for details.
+
+The basic attributes of users are:
+
+* user_id
+* username
+* password
+* email
+* display_name, or
+* first_name, middle_name and last_name
+
+Depending on needs, either display_name or first/middle/last name can be used - the very notion of first and other names
+may possibly not exist in a user's culture, hence Zato can be configured to enforce their existence or not.
+
+Additional attributes:
+
+* app_list
+* attrs
+
+In the context of SSO (Single-Sign On), users may have access to one or more applications - app_list describes
+to what a given user may log in or otherwise interact with.
+
+Moreover, it is possible to attach an arbitrary set of key/value
+:doc:`attributes <../attr/index>`
+to users, each attribute possibly encrypted
+and with an optional expiration time - they can be used to extend information about users to cover supplementary needs, such as timezone,
+a phone number or address.
+
+User accounts may be :doc:`linked <./linked-auth>` to
+:doc:`Basic Auth <../../../web-admin/security/basic-auth>`
+or
+:doc:`JWT <../../../web-admin/security/jwt>`
+definitions, enabling in this way multi-auth accounts.
+
+Each user may enable two-factor authentication based on :doc:`TOTP <./totp>`.
+
+Details
+-------
+
+Consult the following chapters for user-related topics:
+
+* :doc:`Sign-up process <./signup>`
+* :doc:`How to create users as a super-user <./create>`
+* :doc:`How to log in <./login>`
+* :doc:`How to log out <./logout>`
+* :doc:`Getting details of users <./get>`
+* :doc:`Searching for users <./search>`
+* :doc:`Updating users <./update>`
+* :doc:`Passwords <./../password/index>`
+* :doc:`Deleting users <./delete>`
+* :doc:`Custom user attributes <../attr/index>`
+* :doc:`Understanding the difference between regular and super-users <./super>`
+* :doc:`Two-factor authentication (TOTP) <./totp>`
+* :doc:`How to link user accounts <./linked-auth>`

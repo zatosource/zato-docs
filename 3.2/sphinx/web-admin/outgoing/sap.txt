@@ -1,0 +1,55 @@
+Outgoing connections  - SAP RFC
+===============================
+
+Overview
+--------
+
+Used to create, update, delete and browse SAP RFC connections.
+
+Note that newly created definitions have their passwords set to an unusable one and the password needs to be changed
+before first use.
+
+As a prerequisite, `PyRFC <https://github.com/SAP/PyRFC>`_ library needs to be installed before making use of SAP RFC connections.
+
+* Menu path: Connections -> Outgoing -> SAP RFC
+* Example address: http://localhost:8183/zato/outgoing/sap/?cluster=1
+
+.. image:: /gfx/web-admin/outgoing/sap.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/outgoing/sap-create.png
+
+================= =======================================================================
+Header            Notes
+================= =======================================================================
+Name              Connection name
+Active            Is the connection active and can be used in services
+Host              Per `PyRFC documentation <https://sap.github.io/PyRFC/>`_
+Instance          ”
+System ID         ”
+User              ”
+Client            ”
+SAP router string ”
+Pool size         How many connections to SAP establish on behalf of this Zato definition
+================= =======================================================================
+
+Delete
+------
+
+.. image:: /gfx/web-admin/outgoing/sap-delete.png
+
+Deletes the definition from ODB.
+
+
+Changelog
+---------
+
+======= ===============
+Version Notes
+======= ===============
+3.0     Added initially
+======= ===============
+

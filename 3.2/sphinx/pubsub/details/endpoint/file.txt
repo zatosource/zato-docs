@@ -1,0 +1,62 @@
+Pub/sub - endpoints - Flat files
+================================
+
+Overview
+--------
+
+Each Zato server is equipped with file listeners that are notified of changes to user-defined directories. It is possible
+to configure the listeners so as to publish information about new files, including their contents, as they appear in directories
+of choice.
+
+An example workflow is:
+
+* Configure :doc:`scheduler <../../../web-admin/scheduler/main>` to periodically execute a service
+* The service saves to local directories files downloaded from remote resources,
+  e.g. using :doc:`FTP connections <../../../web-admin/outgoing/ftp>`
+* Listeners automatically recognize that a new file appeared in a directory and publish its contents to one or more topics
+* Topic subscribers can be REST, AMQP, WebSockets or Java JMS endpoints and all of them receive the file in question
+
+Configuration
+-------------
+
+File transfer is managed through configuration files in each server's *config/repo/pickup.conf* file. For instance, if a given
+server is installed in /opt/zato/env/prod/server1 the full path will be /opt/zato/env/prod/server1/config/repo/pickup.conf.
+
+The file is in INI format. Each stanza deals with files to be picked up and published from a single directory, as below.
+The configuration can be potentially different for each server in cluster. After changes to the file, the server this
+file belongs to needs to be restarted.
+
+::
+
+  [invoices]
+  pickup_from=./pickup/incoming/invoices
+  move_processed_to=./pickup/processed/invoices
+  patterns=invoice*.csv, invoice*.dat
+  read_on_pickup=True
+  delete_after_pickup=True
+  topics=/crm/invoices, /erp/invoices
+
+==================== =============================================================================
+Key                  Notes
+==================== =============================================================================
+pickup_from          The directory to listen for file changes in. May be an absolute path
+                     or relative to the directory where the server is installed.
+move_processed_to    The directory to move files to after they are published. Same as above
+                     with regards to absolute or relative paths.
+patterns             A comma-separated list of file patterns to take into account. Files whose
+                     names do not match any of patterns will be ignored.
+read_on_pickup       If True (default), the contents of the file will be published along with
+                     metadata. If False, only metadata, such as file name, will be published.
+delete_after_pickup  If True (default), the file will be deleted from the *pickup_from*
+                     directory after the publication
+topics               A comma-separate list of topics to publish the matching files to
+==================== =============================================================================
+
+Changelog
+---------
+
+======= ===============
+Version Notes
+======= ===============
+3.0     Added initially
+======= ===============

@@ -1,0 +1,59 @@
+Outgoing connections - IBM MQ
+=============================
+
+Overview
+--------
+
+Used to create, update, delete and browse outgoing IBM MQ connections.
+
+Each outgoing connection represents a link through which MQ messages are
+sent by Zato services.
+
+Sending messages to a queue manager is an asynchronous activity - messages are not
+rolled back to Zato services if there are any errors
+along.
+
+* Menu path: Connections -> Outgoing -> IBM MQ
+* Example address: http://localhost:8183/zato/outgoing/jms-wmq/?cluster=1
+
+.. image:: /gfx/web-admin/outgoing/jms-wmq.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/outgoing/jms-wmq-create.png
+
+=================== ================================================================================
+Header              Notes
+=================== ================================================================================
+Name                Connection name
+Active              :ref:`Documented below <web-admin-outgoing-jms-wmq-active>`
+Definition          :doc:`IBM MQ definition <../conn-def/jms-wmq>` to read basic
+                    connection information from
+Delivery mode       Whether messages send should be persistent by default
+                    or not
+Encoding            *(Optional)* Default message encoding
+Expiration          *(Optional)* After how many milliseconds messages should expire
+=================== ================================================================================
+
+Each optional value can be overridden by a service
+:doc:`making use of the outgoing connection <../../progguide/outconn/jms-wmq>`.
+
+Delete
+------
+
+.. image:: /gfx/web-admin/outgoing/jms-wmq-delete.png
+
+Stops the underlying connector and deletes the connection from ODB.
+
+.. _web-admin-outgoing-jms-wmq-active:
+
+Changelog
+---------
+
+=================== ===================================================================
+Version             Notes
+=================== ===================================================================
+1.0                 Added initially
+=================== ===================================================================

@@ -1,0 +1,43 @@
+Then context is cleaned up
+==========================
+
+Usage example
+-------------
+
+::
+
+    Feature: zato-apitest docs
+
+    Scenario: Then context is cleaned up
+
+        Given address "http://apitest-demo.zato.io"
+        Given URL path "/demo/xml"
+        Given format "XML"
+        Given namespace prefix "cust" of "http://example.com/crm"
+
+        When the URL is invoked
+
+        Then context is cleaned up
+
+    Scenario: Start afresh
+
+        Given address "http://apitest-demo.zato.io"
+        Given URL path "/demo/xml"
+        Given format "XML"
+
+        When the URL is invoked
+
+        Then context is cleaned up
+
+Discussion
+----------
+
+-  ``Then context is cleaned up`` cleans up any scenario-specific data,
+   such as namespaces or date formats. Without it, they are carried over
+   to subsequent scenarios.
+
+-  In the example, prefix "cust" would be available in the second
+   scenario even without defining it explicitly had it not been for
+   ``Then context is cleaned up``.
+
+

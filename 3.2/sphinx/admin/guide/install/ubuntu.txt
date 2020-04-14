@@ -1,0 +1,7 @@
+Zato installation on Ubuntu
+===========================
+
+Instructions for:
+
+* :doc:`Python 2.7 <./py27/ubuntu>`
+* :doc:`Python 3.x <./py3/ubuntu>`

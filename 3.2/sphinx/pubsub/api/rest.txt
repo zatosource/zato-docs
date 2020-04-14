@@ -1,0 +1,299 @@
+Pub/sub - API - REST
+====================
+
+Overview
+--------
+
+Before making use of the REST pub/sub API, a REST
+:doc:`endpoint <../details/endpoint/index>`
+needs to be created. Alternatively,
+you can get started with the functionality by using the built-in demo account, described at the end of this chapter.
+
+REST integration with publish/subscribe is built around four cornestone operations:
+
+============================ ===================================================================
+Operation                    REST
+============================ ===================================================================
+Publication of messages      POST /zato/pubsub/topic/{topic_name}
+Creating subscriptions       POST /zato/pubsub/subscribe/topic/{topic_name}
+Getting messages from queues POST /zato/pubsub/topic/{topic_name}?sub_key=
+Unsubscribing                DELETE /zato/pubsub/subscribe/topic/{topic_name}?sub_key=
+============================ ===================================================================
+
+REST calls that provide expected HTTP Basic Auth credentials are able to publish messages to topics, assuming that the caller
+has proper publication permissions to the topics the messages are sent to.
+
+Each pub/sub endpoint is able to create a subscription provided that the caller uses correct HTTP Basic Auth credentials
+and that sufficient access permissions are in place to let the endpoint subscribe to a topic of choice. A subscription
+key is returned on output. One endpoint cannot subscribe to the same topic more than once.
+
+At any time, already subscribed endpoints may get newest messages waiting in their queues - this is an operation that changes
+the server-side state which is why POST is used instead of GET.
+
+Applications creating subscriptions using this API are expected to periodically get their messages (pull-style) - as an alternative,
+if REST subscriptions are
+:doc:`created <../details/sub/index>`
+by Zato administrators using web-admin, Zato itself will be able to deliver new messages to the recipients (notify-style).
+
+If a subscription is no longer needed, a REST endpoint may unsubscribe, which will invalidate and delete the endpoint's
+subscription key.
+
+Data format
+-----------
+
+* All requests and responses are always in JSON
+* Authentication is always with HTTP Basic Auth
+* On response, either business data is returned if the call was successful or, on errors, a JSON *zato_env* element is
+  returned with details. That is, the presence of *zato_env* indicates an error, as below:
+
+  * Everything is OK:
+
+    ::
+
+      {"sub_key": "zpsk.rest.871810ec70be101f614dde75", "queue_depth": 0}
+
+  * An error has occurred and *zato_env* is given on output:
+
+    ::
+
+      {"zato_env": {"details": "Subscription to topic `/zato/demo/sample` already exists",
+           "result": "ZATO_ERROR", "cid": "152c841c34769c9477c74d38"}}
+
+Logging
+-------
+
+* All error messages are accompanied by a CID in the JSON response - this is a Correlation ID uniquely assigned
+  to a particular HTTP request
+* CIDs are also always returned in *X-Zato-CID* response header, regardless if there was an error or not
+* CIDs can be found in *http_access.log* files of the server that handled a particular invocation
+* In case of an error, file *server.log* of the server where it happened, contains details, including a full traceback
+
+Publication of messages
+-----------------------
+
+Topic name must be provided in URL path. MIME type is read from the input Content-Type HTTP header and is turned into
+*text/json* if it is equal to *application/x-www-form-urlencoded*. all the other parameters are sent in JSON request.
+
+==== ===============================
+Verb URL
+==== ===============================
+POST /zato/pubsub/topic/{topic_name}
+==== ===============================
+
+Request
+~~~~~~~
+
+============= ======== ======== =====================================================================
+Parameter     Datatype Required Notes
+============= ======== ======== =====================================================================
+data          string   Yes      Actual data of the message that is being published
+priority      integer  ---      Message priority from 1 to 9 (1=min). Defaults to 5 if not given.
+expiration    integer  ---      Expiration in seconds, there is no default value
+correl_id     string   ---      Correlation ID. If the message belongs to a series of messages,
+                                this can be used to correlate them.
+in_reply_to   string   ---      If the message is in reply to a previous one, this is the field
+                                with the value of the previous message's ID
+ext_client_id string   ---      An arbitrary string uniquely identifying the calling application
+                                or its instance - used for logging and audit purposes
+has_gd        bool     ---      Whether the message that is published should be governed by
+                                Guaranteed Delivery (if True) or not. Defaults to False.
+============= ======== ======== =====================================================================
+
+Response
+~~~~~~~~
+
+========= ======== ======== =====================================================================
+Parameter Datatype Required Notes
+========= ======== ======== =====================================================================
+msg_id    string   Yes      Unique ID assigned to the input message (96 bits of random data)
+========= ======== ======== =====================================================================
+
+Samples
+~~~~~~~
+
+OK, data sent and message ID returned:
+
+::
+
+  $ curl -XPOST http://pubsub1:pass1@localhost:17010/zato/pubsub/topic//zato/demo/sample \
+    -d '{"data":"hello", "priority":2}' ; echo
+  {"msg_id": "zpsm1a150dbfb8ab3cb676a471b5"}
+  $
+
+Error, no data sent on input:
+
+::
+
+  $ curl -XPOST http://pubsub1:pass1@localhost:17010/zato/pubsub/topic//zato/demo/sample ; echo
+  {"zato_env": {"details": "No data sent on input", "result": "ZATO_ERROR", "cid": "b64b473b6f29c6"}}
+  $
+
+
+Creating subscriptions
+----------------------
+
+Topic name must be provided in URL path and there are no other request parameters.
+
+==== =======================================================
+Verb URL
+==== =======================================================
+POST /zato/pubsub/subscribe/topic/{topic_name}
+==== =======================================================
+
+Request
+~~~~~~~
+
+n/a
+
+Response
+~~~~~~~~
+
+=========== ======== ======== ==============================================================================================
+Parameter   Datatype Required Notes
+=========== ======== ======== ==============================================================================================
+sub_key     string   Yes      A unique subscription key generated for this client (96 bits of random data). Must be treated
+                              as a secret and guarded accordingly
+queue_depth integer  Yes      How many messages are already known to have been enqueued for the calling client in this topic
+=========== ======== ======== ==============================================================================================
+
+Samples
+-------
+
+OK, subscription created and response returned:
+
+::
+
+  $ curl -XPOST http://pubsub1:pass1@localhost:17010/zato/pubsub/subscribe/topic//zato/demo/sample ; echo
+  {"queue_depth": 0, "sub_key": "zpsk.rest.ca023c88f258d5fb411f812a"}
+  $
+
+
+Error, subscription to input topic already exists for this client:
+
+::
+
+  $ curl -XPOST http://pubsub1:pass1@localhost:17010/zato/pubsub/subscribe/topic//zato/demo/sample ; echo
+  {"zato_env": {"details": "Subscription to topic `/zato/demo/sample` already exists",
+    "result": "ZATO_ERROR", "cid": "5f32311da14a4f0b8b659f24"}}
+  $
+
+Getting messages from queues
+----------------------------
+
+Topic name must be provided in URL path. Subscription key (sub_key) may be sent in query string or JSON request,
+there is no difference.
+
+==== =======================================================
+Verb URL
+==== =======================================================
+POST /zato/pubsub/topic/{topic_name}?sub_key=
+==== =======================================================
+
+Samples
+~~~~~~~
+
+OK, messages returned. Note that they are always sorted in LIFO order, i.e. from newest to oldest.
+
+::
+
+  $ curl -XPOST http://pubsub1:pass1@localhost:17010/zato/pubsub/topic//zato/demo/sample -d \
+    '{"sub_key":"zpsk.rest.ca023c88f258d5fb411f812a"}'; echo
+    {
+        "data": "This is a sample message #2",
+        "delivery_count": 0,
+        "expiration": 998877,
+        "expiration_time_iso": "2018-07-04T17:32:46.224820",
+        "ext_client_id": "CLIENT-EXT-2",
+        "has_gd": true,
+        "mime_type": "text/plain",
+        "priority": 5,
+        "pub_time_iso": "2018-07-04T17:16:07.347820",
+        "size": 27,
+        "sub_key": "zpsk.rest.ca023c88f258d5fb411f812a",
+        "topic_name": "/zato/demo/sample"
+    },
+    {
+        "data": "This is a sample message #1",
+        "delivery_count": 0,
+        "expiration": 12341234,
+        "expiration_time_iso": "2018-07-04T20:41:31.043810",
+        "ext_client_id": "CLIENT-EXT-1",
+        "has_gd": true,
+        "mime_type": "text/plain",
+        "priority": 5,
+        "pub_time_iso": "2018-07-04T17:15:49.809810",
+        "size": 27,
+        "sub_key": "zpsk.rest.ca023c88f258d5fb411f812a",
+        "topic_name": "/zato/demo/sample"
+    },
+
+  $
+
+OK, no messages available:
+
+::
+
+  $ curl -XPOST http://pubsub1:pass1@localhost:17010/zato/pubsub/topic//zato/demo/sample -d \
+    '{"sub_key":"zpsk.rest.ca023c88f258d5fb411f812a"}'; echo
+  []
+  $
+
+Error, no such subscription key:
+
+::
+
+  $ curl -XPOST http://pubsub1:pass1@localhost:17010/zato/pubsub/topic//zato/demo/sample -d \
+    '{"sub_key":"invalid"}'; echo
+  {"zato_env": {"details": "You are not allowed to access this resource",
+    "result": "ZATO_ERROR", "cid": "8defb01eab84"}}
+  $
+
+Unsubscribing
+-------------
+
+Topic name must be provided in URL path. Subscription key (sub_key) may be sent in query string or JSON request,
+there is no difference.
+
+====== =======================================================
+Verb   URL
+====== =======================================================
+DELETE /zato/pubsub/subscribe/topic/{topic_name}?sub_key=
+====== =======================================================
+
+Samples
+-------
+
+OK, unsubscribed successfully:
+
+::
+
+  $ curl -XDELETE http://pubsub1:pass1@localhost:17010/zato/pubsub/subscribe/topic//zato/demo/sample -d \
+    '{"sub_key":"zpsk.rest.8b4ab99f4fa787966bee8be3"}' ; echo
+  {}
+  $
+
+Error - for instance, there is no such subscription key (details are in *server.log*):
+
+::
+
+  $ curl -XDELETE http://pubsub1:pass1@localhost:17010/zato/pubsub/subscribe/topic//zato/demo/sample -d \
+    '{"sub_key":"zpsk.rest.8b4ab99f4fa787966bee8be3"}' ; echo
+  {"zato_env": {"details": "You are not allowed to access this resource",
+    "result": "ZATO_ERROR", "cid": "a8bace4e2909df791b8887d6"}}
+  $
+
+Demo data
+---------
+
+* All Zato clusters come with a set of demo objects:
+
+  * Topic *\/zato\/demo\/sample*
+  * Endpoint *zato.pubsub.demo.endpoint* with permissions for publications and subscriptions to topics matching
+    pattern *\/zato\/demo\/**
+
+* The default endpoint has no preset password - it is randomly generated (UUID4) in each environment
+
+* To make use of the endpoint, change its underlying HTTP Basic Auth definition's password
+  :doc:`in web-admin <../../web-admin/security/basic-auth>` (username *zato.pubsub.demo.secdef*)
+
+* Afterwards, the endpoint can be used for demo purposes using the REST calls described in this chapter

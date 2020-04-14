@@ -1,0 +1,165 @@
+.. highlight:: text
+   :linenothreshold: 1
+
+User.search - REST API
+======================
+
+Super-users may look up other users using several search criteria, such as display name, user ID or username. Consult the
+:doc:`introduction <../../../topic/user/search>`
+to user search APIs for more information on how the parameters can be combined.
+
+On output, a list of results is returned, possibly empty or with one matching element only, along with metadata describing
+what is being returned, such as current page or total number of results.
+
+Passwords are never returned on output.
+
+Input parameters may be sent in query string or JSON body - there is no difference.
+
+  * HTTP method: GET
+  * URL path: /zato/sso/user/search
+
+Request
+-------
+
+=============== ======== ======== ======= ========================================================================================
+Name            Datatype Optional Default Notes
+=============== ======== ======== ======= ========================================================================================
+ust             string   ---      ---     Current user's session token (UST)
+current_app     string   ---      ---     Name of application that the call is attempted from
+user_id         string   Yes      ---     ID of user to find (will match either one or no user)
+username        string   Yes      ---     Username (ditto)
+email           string   Yes      ---     E-mail (There is no requirement that it be unique)
+display_name    string   Yes      ---     Match by display name
+first_name      string   Yes      ---     Match by first name
+middle_name     string   Yes      ---     Match by middle name
+last_name       string   Yes      ---     Match by last name
+sign_up_status  string   Yes      ---     User's sign up status, must be one of: before_confirmation, to_approve, final
+approval_status string   Yes      ---     User's approval status, must be one of: before_decision, approved, rejected
+paginate        bool     Yes      true    Should the results be paginated
+cur_page        int      Yes      1       Current page to return from a list of result pages (counted from 1)
+page_size       int      Yes      50      How many results to return on a single page
+name_op         string   Yes      "and"   How to join name criteria (display/first/middle/last name), must be one of "and" or "or"
+is_name_exact   bool     Yes      true    Are name critera considered exact values to match or are they substrings
+=============== ======== ======== ======= ========================================================================================
+
+Response
+--------
+
+=============================== ======== ======== ====================================================================================================
+Name                            Datatype Optional Notes
+=============================== ======== ======== ====================================================================================================
+cid                             string   ---      Correlation ID assigned to request
+status                          string   ---      Overall :doc:`status code <../../../status-code>`
+sub_status                      list     Yes      Returned only if status is not "ok", a list of :doc:`error or warning codes <../../../status-code>`
+result                          list     ---      A list of results, possibly empty. Each element is a dictionary describing a single user.
+result.user_id                  string   ---      ID of the user returned
+result.username                 string   ---      Username of the user
+result.email                    string   Yes      E-mail
+result.display_name             string   Yes      Display name
+result.first_name               string   Yes      First name
+result.middle_name              string   Yes      Middle name
+result.last_name                string   Yes      Last name
+result.is_totp_enabled          bool     Yes      Should TOTP-based two factor authentication be enabled for user
+result.totp_key                 string   Yes      User's TOTP key, one will be auto-generated for user if it is not given on input,
+                                                  even if is_totp_enabled is False
+result.totp_label               string   Yes      An arbitrary label assigned to user's TOTP key for convenience
+result.is_active                bool     Yes      (Reserved for future use)
+result.is_internal              bool     Yes      Does the account belong to Zato internally?
+result.is_super_user            bool     Yes      Is the user a super-user?
+result.is_approval_needed       bool     Yes      Is a super-user's approval needed for this account to become fully active?
+result.approval_status          string   Yes      Current approval status, one of: before_decision, approved, rejected
+result.approval_status_mod_by   string   Yes      By whom the approval status was last changed, will be 'auto' for users created from command line
+result.approval_status_mod_time datetime Yes      When was the approval status last changed
+result.is_locked                bool     Yes      Has this account been locked by a super-user?
+result.locked_time              string   Yes      If locked, when was it?
+result.locked_by                string   Yes      If locked, who by?
+result.creation_ctx             string   Yes      (Reserved for future use)
+result.approv_rej_time          string   Yes      If approved or rejected, when was it?
+result.approv_rej_by            string   Yes      If approved or rejected, who by?
+result.password_expiry          string   Yes      When will that account's password expire?
+result.password_is_set          bool     Yes      (Reserved for future use)
+result.password_must_change     bool     Yes      Is the user required to change password on next login?
+result.password_last_set        string   Yes      When was the password last set?
+result.sign_up_status           string   Yes      Signup process status, returned values are: before_confirmation, to_approve, final
+result.sign_up_time             datetime Yes      When did the user sign up with the system?
+=============================== ======== ======== ====================================================================================================
+
+Usage
+-----
+
+::
+
+    $ curl "localhost:17010/zato/sso/user/search" -d '
+    {
+     "ust": "gAAAAABapYP...",
+     "current_app": "CRM",
+     "last_name": "smith",
+     "is_name_exact": false,
+     "page_size": 2
+    }
+    '
+
+    {
+        "cid": "cef98c3476d000b6685e685d",
+        "cur_page": 1,
+        "has_next_page": true,
+        "has_prev_page": false,
+        "next_page": 2,
+        "num_pages": 3,
+        "page_size": 2,
+        "status": "ok",
+        "total": 6
+        "result": [
+            {
+                "approval_status": "approved",
+                "approval_status_mod_by": "zusr69g59s4x3v9n1bwj978vfnf330",
+                "approval_status_mod_time": "2018-03-10T17:41:26",
+                "creation_ctx": null,
+                "display_name": "Paul Greensmith",
+                "email": "",
+                "first_name": "Paul",
+                "is_active": true,
+                "is_internal": false,
+                "is_locked": false,
+                "is_super_user": false,
+                "last_name": "Greensmith",
+                "locked_by": null,
+                "locked_time": null,
+                "middle_name": null,
+                "password_expiry": "2020-03-09T17:41:25",
+                "password_is_set": true,
+                "password_last_set": "2018-03-10T17:41:25",
+                "password_must_change": false,
+                "sign_up_status": "final",
+                "sign_up_time": "2018-03-10T17:41:25",
+                "user_id": "zusr5ts4qz0j5389ma37ja5j4zmtby",
+                "username": "paul.greensmith"
+            },
+            {
+                "approval_status": "approved",
+                "approval_status_mod_by": "zusr69g59s4x3v9n1bwj978vfnf330",
+                "approval_status_mod_time": "2018-03-10T17:41:04",
+                "creation_ctx": null,
+                "display_name": "Judith Smith",
+                "email": "",
+                "first_name": "Judith",
+                "is_active": true,
+                "is_internal": false,
+                "is_locked": false,
+                "is_super_user": false,
+                "last_name": "Smith",
+                "locked_by": null,
+                "locked_time": null,
+                "middle_name": null,
+                "password_expiry": "2020-03-09T17:41:03",
+                "password_is_set": true,
+                "password_last_set": "2018-03-10T17:41:03",
+                "password_must_change": false,
+                "sign_up_status": "final",
+                "sign_up_time": "2018-03-10T17:41:03",
+                "user_id": "zusr3yqm708em08yn9tqmff5n1dkb6",
+                "username": "judith.smith"
+            }
+        ]
+    }
+

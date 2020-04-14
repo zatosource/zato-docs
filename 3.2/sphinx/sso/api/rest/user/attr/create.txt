@@ -1,0 +1,81 @@
+.. highlight:: text
+   :linenothreshold: 1000
+
+UserAttr.create - REST API
+==========================
+
+Overview
+--------
+
+Creates a new :doc:`user attribute <../../../../topic/attr/index>`,
+optionally encrypting it before it is saved in the database. It is also possible to set expiry
+for an attribute, upon reaching of which the attribute will be no longer available.
+
+An exception is raised if an attribute of a given name already exists - use :doc:`set <./set>` if an
+update should be issued instead of reporting an exception.
+
+Unlike :doc:`session attributes <../../../../topic/attr/index>`, user attributes persist across multiple sessions, multiple logins,
+of the person they belong to.
+
+Attribute names and other metadata may be stored in server logs. Values are never saved to logs.
+
+While the call's :doc:`Python equivalent <../../../python/user/attr/create>` has two versions, one for individual and the
+other for multiple attributes, with REST there is a single endpoint to cover both cases. Yet, just like in the Python
+call, it is more efficient to create multiple attributes in one REST call instead of repeatedly creating individual ones.
+
+  * HTTP method: POST
+  * URL path: /zato/sso/user/attr
+
+Request
+-------
+
+=========== ======== ======== ================================================================================================
+Name        Datatype Optional Notes
+=========== ======== ======== ================================================================================================
+ust         string   ---      Current user's session token (UST)
+current_app string   ---      Name of application that the call is attempted from
+user_id     string   Yes      ID of the user to create an attribute or attributes for
+name        string   Yes      If a single attribute is to be created, the attribute's name
+value       string   Yes      If a single attribute is to be created, the attribute's value
+data        list     Yes      If multiple attributes are to be created, a list of dictionaries,
+                              each describing an individual attribute,
+                              like in the create_many :doc:`Python API <../../../python/user/attr/create>`
+encrypt     bool     Yes      Should the attribute's value be encrypted before it is saved to the database. Defaults to False.
+expiration  int      Yes      After how many seconds from current time the attribute should expire.
+                              By default it will never expire.
+=========== ======== ======== ================================================================================================
+
+
+Response
+--------
+
+========== ======== ======== ===========================================================================
+Name       Datatype Optional Notes
+========== ======== ======== ===========================================================================
+cid        string   ---      Correlation ID assigned to request
+status     string   ---      Overall :doc:`status code <../../../../status-code>`
+sub_status list     Yes      Returned only if status is not "ok", a list of :doc:`error or warning codes
+                             <../../../../status-code>`
+========== ======== ======== ===========================================================================
+
+Usage
+-----
+
+::
+
+  $ curl -XPOST localhost:17010/zato/sso/user/attr -d '
+    {
+     "current_ust": "gAAAAABavk-65BuvKI0JFPeuJ9Tp3pHtNMeFWhVUEBVKExuaVE9KDLFpik4loT7kGHtb4GR2CZbfZL1o0yFeDNyoo2tDqBD8M5h-_JHfw8qlDy7B5ea9O4k=",
+     "current_app": "CRM",
+     "user_id": "zusr6fh6fdgd4997ksjkpx7qnk659q",
+     "name": "my-rest-attribute",
+     "value": "my-rest-value",
+     "encrypt": true,
+     "expiration": 3600
+    }
+    '
+
+    {
+     "status": "ok",
+     "cid": "01513a304ef4409ed2a6caf3"
+    }
