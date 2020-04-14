@@ -7,7 +7,7 @@ JSON
 Overview
 --------
 
-As with :doc:`XML <./xml>`, it's most convenient to use :doc:`Simple IO (SIO) <./sio>`
+As with :doc:`XML <./xml>`, it's most convenient to use :doc:`Simple IO (SIO) <./sio/index>`
 to accept or return JSON in your services but if that's not an option using
 JSON directly is still a piece of cake.
 
@@ -160,5 +160,5 @@ Simple IO (SIO)
 
 .. note ::
 
-   Consider using :doc:`SIO <./sio>` if you're developing a new application or its
+   Consider using :doc:`SIO <./sio/index>` if you're developing a new application or its
    existing data model allows you to, SIO is even more easier to work with.

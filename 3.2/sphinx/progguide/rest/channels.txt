@@ -16,7 +16,7 @@ the development of REST channels, including the most popular ones using JSON.
 * RBAC can be used to assign roles and actions to clients applications and HTTP verbs they use (documented in :doc:`a separate chapter <../../admin/guide/rbac/overview>`)
 
 Note that in order to take advantage of URL path patterns and URL parameters a service needs to use
-:doc:`SimpleIO <../sio>`, such as the one below which will be used throughout the chapter.
+:doc:`SimpleIO <../sio/index>`, such as the one below which will be used throughout the chapter.
 
 ::
 

@@ -16,8 +16,8 @@ Most commonly accessed attributes are:
 ======================== ===================================================================================
 Attribute                Description
 ======================== ===================================================================================
-self.request.input       Used to access incoming data if :doc:`SimpleIO <../sio>` is used
-self.request.payload     Used to access incoming data if :doc:`SimpleIO <../sio>` is not used
+self.request.input       Used to access incoming data if :doc:`SimpleIO <../sio/index>` is used
+self.request.payload     Used to access incoming data if :doc:`SimpleIO <../sio/index>` is not used
 self.request.raw_request Used to access incoming data in exactly the same format as it was received
                          by the service, prior to any parsing or transformations
 ======================== ===================================================================================
@@ -53,9 +53,9 @@ self.request                    Along with self.channel, one of main attributes 
 self.request.raw_request        Input message exactly as it was received, byte-for-byte, prior to any transformations
                                 or parsing attempts on Zato end
 self.request.input              Input message after parsing it into a channel-specific data format. For JSON messages,
-                                this will be a Bunch object. Available only if :doc:`SimpleIO <../sio>` is used.
+                                this will be a Bunch object. Available only if :doc:`SimpleIO <../sio/index>` is used.
 self.request.payload            Input message after parsing it into a channel-specific data format. For JSON messages,
-                                this will be a dict object. Available even if :doc:`SimpleIO <../sio>` is not used.
+                                this will be a dict object. Available even if :doc:`SimpleIO <../sio/index>` is not used.
 self.request.bunchified()       Returns a Bunch version of self.request.raw_request. Works only with JSON input.
 self.request.deepcopy()         Returns a deep copy of self.request
 
@@ -90,7 +90,7 @@ self.request.http.POST    All POST parameters as a Bunch object, each value is e
 self.request.http.path    URL path that the request was received through, e.g. */customer/123* in
                           "https://localhost:17010/customer/123", does not include query string
 self.request.http.params  A Bunch object with a concatenation of query string and path parameters. Available even
-                          if :doc:`SimpleIO <../sio>` is not used.
+                          if :doc:`SimpleIO <../sio/index>` is not used.
 self.wsgi_environ         While not belonging directly to self.request.http, each service can always have access to the full
                           WSGI dictionary of data and metadata about the request
 ========================= ==================================================================================================
@@ -128,5 +128,5 @@ More information
 ----------------
 
 * Consult the :doc:`dedicated chapter <../examples/index>` with programming examples for more details.
-* To learn more about SimpleIO, click :doc:`here <../sio>`
+* To learn more about SimpleIO, click :doc:`here <../sio/index>`
 * Visit :doc:`this chapter <./response>` to read more about response objects

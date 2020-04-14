@@ -42,7 +42,7 @@ How to pass a request to another service
 
 *
 
-    Passing a request is most convenient if another service uses :doc:`Simple IO (SIO) <./sio>`,
+    Passing a request is most convenient if another service uses :doc:`Simple IO (SIO) <./sio/index>`,
     in such cases it's possible to use a plain Python dictionary as input data.
 
     .. note ::

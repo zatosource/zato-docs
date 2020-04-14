@@ -244,7 +244,7 @@
 
 * Dictionary and list message navigation
 
-* New :doc:`Simple IO (SIO) <../progguide/sio>` types: CSV, Dict, Float, List, ListOfDicts, Opaque
+* New :doc:`Simple IO (SIO) <../progguide/sio/index>` types: CSV, Dict, Float, List, ListOfDicts, Opaque
 
 * Added :doc:`RPM packages for RHEL/CentOS 7 <../admin/guide/install/rhel>`
 

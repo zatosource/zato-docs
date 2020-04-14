@@ -70,7 +70,7 @@ invoke
   :type name:     string
 
   :param payload: Payload to invoke the service with. May be a Python dictionary
-                  if it's a :doc:`SIO <../sio>` service and to_json is True.
+                  if it's a :doc:`SIO <../sio/index>` service and to_json is True.
   :type payload:  any
 
   :param headers: HTTP headers to pass in to the service invoker
@@ -95,7 +95,7 @@ invoke
                           `zato.common.ZATO_NON_GIVEN <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py>`_,
                           it will be assumed to be true if the service name ends in 'list',
                           so that 'my.application.customer.get-list' will by default be assumed to return
-                          a :doc:`SIO <../sio>` list of objects
+                          a :doc:`SIO <../sio/index>` list of objects
   :type output_repeated:  bool
 
   :rtype: A :ref:`Response <progguide-clients-python-response>` object

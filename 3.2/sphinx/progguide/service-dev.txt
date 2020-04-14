@@ -90,7 +90,7 @@ Typically, a service will receive some input and produce an output. Both steps
 are optional but usually at least one of them will be performed.
 
 You can use
-:doc:`Simple IO (SIO)<./sio>`,
+:doc:`Simple IO (SIO)<./sio/index>`,
 :doc:`JSON <./json>`,
 :doc:`XML <./xml>`
 or
@@ -1014,24 +1014,24 @@ invoke
 
   :param payload: Request data to invoke a service with. This can be a regular
                   Python dictionary if the service which is invoked uses
-                  :doc:`SIO<./sio>`.
+                  :doc:`SIO<./sio/index>`.
 
   :param channel: :ref:`Channel type <progguide-write-service-channel>` a service will think it's invoked over
   :type channel: `zato.common.CHANNEL <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py>`_
 
   :param data_format: :ref:`Data format <progguide-write-service-data_format>` a service expects, if any.
-                      Can be skipped if the service uses :doc:`SIO<./sio>` and payload is a dictionary.
+                      Can be skipped if the service uses :doc:`SIO<./sio/index>` and payload is a dictionary.
   :type data_format: `zato.common.DATA_FORMAT <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py>`_
 
   :param transport: Transport a service will think it's invoked with
   :type transport: `zato.common.TRANSPORT <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py>`_
 
-  :param serialize: If the service which is invoked uses :doc:`SIO <./sio>`,
+  :param serialize: If the service which is invoked uses :doc:`SIO <./sio/index>`,
                     whether its response should be serialized to data_format.
                     If False, a Python dictionary will be returned, unless as_bunch is True.
   :type serialize: bool
 
-  :param as_bunch: If the service which is invoked uses :doc:`SIO <./sio>`,
+  :param as_bunch: If the service which is invoked uses :doc:`SIO <./sio/index>`,
                     whether to return its response as a
                     `Bunch <http://pypi.python.org/pypi/bunch>`_ object.
   :type as_bunch: bool
@@ -1088,7 +1088,7 @@ invoke_async
 
   :param payload: Request data to invoke a service with. This can be a regular
                   Python dictionary if the service which is invoked uses
-                  :doc:`SIO<./sio>`.
+                  :doc:`SIO<./sio/index>`.
 
   :param channel: Same as for :ref:`invoke <progguide-write-service-invoke>`
   :param data_format: 〃

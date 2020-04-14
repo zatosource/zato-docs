@@ -22,10 +22,10 @@ available over various access methods.
 
   Naturally, when not using SIO, Zato does allow for accepting and returning
   any documents in
-  :doc:`JSON <./json>`,
-  :doc:`XML <./xml>`
+  :doc:`JSON <../json>`,
+  :doc:`XML <../xml>`
   or indeed, in
-  :doc:`any data format <./other-formats>`.
+  :doc:`any data format <../other-formats>`.
 
 .. note ::
 
@@ -55,7 +55,7 @@ API, for example:
         def handle(self):
             self.response.payload.is_allowed = self.get_data()
 
-Save it in an sio_example.py file, :doc:`hot-deploy<../admin/guide/installing-services>` it and add new channels the service
+Save it in an sio_example.py file, :doc:`hot-deploy<../../admin/guide/installing-services>` it and add new channels the service
 will be exposed over. For this exercise, let's use JSON and SOAP.
 
 JSON channel example
@@ -359,7 +359,7 @@ SQLAlchemy objects
 
 You can directly use SQLAlchemy query results, Zato will convert it itself.
 This is great if you want to use
-:doc:`SQL connections <./outconn/sql>` as it simply means you only have to write SQLAlchemy
+:doc:`SQL connections <../outconn/sql>` as it simply means you only have to write SQLAlchemy
 queries without a need for converting their results into the payload format.
 
 Let's say you've defined your database table as follows:
@@ -427,9 +427,9 @@ Default conventions are:
 * If a parameter ends with '_count', '_id', '_size' or '_timeout' it will be converted to an integer
 * If a parameter begins with 'by\_', 'has\_', 'is\_', 'may\_', 'needs\_' or 'should\_' it will be converted to a bool
 * If a parameter is one of 'auth_data', 'auth_token', 'password', 'password1', 'password2', 'secret_key' or 'token', its value
-  will be automatically :doc:`encrypted <./crypto/encrypt>` before it is handed over to the service, which means it can be,
+  will be automatically :doc:`encrypted <../crypto/encrypt>` before it is handed over to the service, which means it can be,
   for instance, stored in the database immediately without a need for manual encryption.
-  Use :doc:`self.crypto.decrypt <./crypto/encrypt>` to decrypt the value.
+  Use :doc:`self.crypto.decrypt <../crypto/encrypt>` to decrypt the value.
 
 All of the defaults are configured through a file called *simple-io.conf* which each server ships with. Note that new values
 can be added to it, but existing ones must not be removed because Zato uses them internally. To override any of the defaults,
@@ -589,7 +589,6 @@ Changelog
 ======= ===================================================================
 Version Notes
 ======= ===================================================================
-
 3.0     Introduced simple-io.conf
         to keep built-in and custom SimpleIO configuration in
 
@@ -602,6 +601,8 @@ Version Notes
 
         * skip_empty_keys
         * force_empty_keys
+
+
 
 2.0     Added new types:
 

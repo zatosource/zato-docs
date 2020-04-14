@@ -4,7 +4,7 @@
 Other data formats
 ==================
 
-If you can't use :doc:`SIO <./sio>`, :doc:`JSON <./json>` or :doc:`XML <./xml>`
+If you can't use :doc:`SIO <./sio/index>`, :doc:`JSON <./json>` or :doc:`XML <./xml>`
 your services can still accept and return data of any type
 provided they're not so called binary data - such information needs to
 wrapped in BASE64 or a similar encoding.
@@ -95,5 +95,5 @@ Simple IO (SIO)
 
 .. note ::
 
-   Again, please consider using :doc:`SIO <./sio>` if you're developing a new application or its
+   Again, please consider using :doc:`SIO <./sio/index>` if you're developing a new application or its
    existing data model allows you to.

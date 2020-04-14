@@ -256,7 +256,7 @@ Programming guide
 
     * **Request/response documents:**
       :doc:`Overview <progguide/reqresp/index>` |
-      :doc:`SimpleIO (SIO) <progguide/sio>` |
+      :doc:`SimpleIO (SIO) <progguide/sio/index>` |
       :doc:`JSON <progguide/json>` |
       :doc:`XML <progguide/xml>` |
       :doc:`Other data formats <progguide/other-formats>`
@@ -445,6 +445,7 @@ Zato, the open-source project
    progguide/patterns/*
    progguide/reqresp/*
    progguide/rest/*
+   progguide/sio/*
    project/*
    pubsub/*
    pubsub/arch/*

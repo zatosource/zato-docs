@@ -49,7 +49,7 @@ and
 :doc:`WS-Security <../web-admin/security/ws-security>`.
 
 Zato's
-:doc:`SimpleIO (SIO) <./sio>`
+:doc:`SimpleIO (SIO) <./sio/index>`
 mechanism allows you to write code once while still being able to expose
 it through multiple protocols and interfaces without any code change nor restarts.
 

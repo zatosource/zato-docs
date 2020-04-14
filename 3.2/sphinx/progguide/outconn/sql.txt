@@ -29,7 +29,7 @@ as in an example below.
 
 The underlying SQL toolkit is `SQLAlchemy <http://www.sqlalchemy.org/>`_.
 
-When using :doc:`Simple IO (SIO) <../sio>` in conjunction with `SQLAlchemy <http://www.sqlalchemy.org/>`_
+When using :doc:`Simple IO (SIO) <../sio/index>` in conjunction with `SQLAlchemy <http://www.sqlalchemy.org/>`_
 models, services are able  to construct responses - JSON or XML ones - directly out of a model's instance,
 such as in a usage example.
 
@@ -124,7 +124,7 @@ You can use SQLAlchemy models:
 
   INFO - <myapp.model.Customer object at 0x5b4c810>>
 
-SQLAlchemy and :doc:`SIO <../sio>` can be used to create responses directly out
+SQLAlchemy and :doc:`SIO <../sio/index>` can be used to create responses directly out
 of the former's models:
 
 ::

@@ -7,7 +7,7 @@ XML
 Overview
 --------
 
-As with :doc:`JSON <./json>`, it's most convenient to use :doc:`Simple IO (SIO) <./sio>` to accept or return XML
+As with :doc:`JSON <./json>`, it's most convenient to use :doc:`Simple IO (SIO) <./sio/index>` to accept or return XML
 in your services but if that's not an option it's still very easy to use XML
 directly. In fact, if you choose to use `lxml <http://lxml.de>`_, you won't even
 have to manipulate XML as such at all - everything will be generated for you.
@@ -289,5 +289,5 @@ Simple IO (SIO)
 
 .. note ::
 
-   Consider using :doc:`SIO <./sio>` if you're developing a new application or its
+   Consider using :doc:`SIO <./sio/index>` if you're developing a new application or its
    existing data model allows you to, SIO is even more easier to work with.

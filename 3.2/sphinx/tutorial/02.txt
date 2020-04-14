@@ -469,7 +469,7 @@ As time passes, our service gets more popular and a new client application appea
 on the scene. They also want to receive the same informations but they're adamant
 to use XML only. Like it or not, we need to accept their requirements.
 
-Luckily for us, Zato introduces a concept of :doc:`SimpleIO (SIO) <../progguide/sio>`.
+Luckily for us, Zato introduces a concept of :doc:`SimpleIO (SIO) <../progguide/sio/index>`.
 
 The idea is, you only declare that your service will return such and such elements
 and how they should be mapped onto a specific data format is up to Zato.
@@ -621,7 +621,7 @@ Our original JSON channel is still there:
     "2013-05-14T10:42:14.401555"}}
  $
 
-So there you have it. When using :doc:`SIO <../progguide/sio>` you are not required
+So there you have it. When using :doc:`SIO <../progguide/sio/index>` you are not required
 to directly deal with any specific data format, you just treat everything as though
 it were all dicts or bunches and Zato converts it to and for you.
 
@@ -717,7 +717,7 @@ covered but you should already have a solid understanding of some of the core as
   * :doc:`AMQP <../progguide/outconn/amqp>`
   * :doc:`IBM MQ <../progguide/outconn/jms-wmq>`
   * :doc:`ZeroMQ <../progguide/outconn/zmq>`
-  * :doc:`SimpleIO (SIO)<../progguide/sio>`
+  * :doc:`SimpleIO (SIO)<../progguide/sio/index>`
   * :doc:`JSON <../progguide/json>`
   * :doc:`SOAP <../progguide/xml>`
   * :doc:`SQL <../progguide/outconn/sql>`

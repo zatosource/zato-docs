@@ -32,7 +32,7 @@ URL path                  A path to mount this channel on. Must be unique in a c
                           include patterns - for instance */cust/{cust_id}/program/{prog_id}*
                           will let the service access self.request.input.cust_id
                           and self.request.input.prog_id if
-                          using :doc:`SimpleIO <../../progguide/sio>`.
+                          using :doc:`SimpleIO <../../../progguide/sio/index>`.
 
 Match slash               A boolean flag to control if slash characters should be taken into account
                           or skipped when matching patterns between braces, such as {cust_id}. If False,
@@ -41,7 +41,7 @@ Match slash               A boolean flag to control if slash characters should b
 URL params                Used to decide which parameters will take precedence if both URL parameters
                           and path patterns are used as part of the input to a service.
 
-Merge to request          If using :doc:`SimpleIO <../../progguide/sio>`, should URL parameters be
+Merge to request          If using :doc:`SimpleIO <../../../progguide/sio/index>`, should URL parameters be
                           taken into account when constructing the input to the service
 
 Params priority           Used to decide which parameters will take precedence if URL parameters and/or path

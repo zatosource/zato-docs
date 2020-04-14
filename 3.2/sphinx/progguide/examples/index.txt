@@ -28,7 +28,7 @@ and
   without programming and without server restarts either.
 
   If you use
-  :doc:`SimpleIO (SIO) <../sio>`,
+  :doc:`SimpleIO (SIO) <../sio/index>`,
   the same code can be made available through many independent channels
   using JSON or XML simultaneously.
 

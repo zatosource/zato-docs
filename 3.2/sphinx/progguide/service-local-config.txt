@@ -133,7 +133,7 @@ be visible to the services straightaway.
 A config service
 ----------------
 
-You can store configuration in plain Python in a :doc:`SimpleIO-based (SIO) <./sio>`
+You can store configuration in plain Python in a :doc:`SimpleIO-based (SIO) <./sio/index>`
 service designated to a role of a config service. This will be a service that itself won't usually accept
 any external requests nor will it be allowed to invoke it through a channel
 or scheduler.

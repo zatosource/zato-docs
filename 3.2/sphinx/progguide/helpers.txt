@@ -29,7 +29,7 @@ everything that is required.
 SIOInputLogger
 --------------
 
-Similar to InputLogger but logs :doc:`SimpleIO <./sio>` input only. Usage idea - as with InputLogger but here a service
+Similar to InputLogger but logs :doc:`SimpleIO <./sio/index>` input only. Usage idea - as with InputLogger but here a service
 would need to subclass or mix in SIOInputLogger instead of mounting it directly on a channel.
 
 HTMLService

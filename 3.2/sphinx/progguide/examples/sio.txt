@@ -9,7 +9,7 @@ SimpleIO (SIO) examples
 Making a service accept and return JSON/XML/SOAP
 ------------------------------------------------
 
-:doc:`SIO <../sio>` is a declarative syntax for accepting/returning simple requests/responses.
+:doc:`SIO <../sio/index>` is a declarative syntax for accepting/returning simple requests/responses.
 You can either return a group of attributes or a list of such groups. If hierarchies
 or nested structures are needed, use higher-level services to create a composite
 service out of SIO-based ones.

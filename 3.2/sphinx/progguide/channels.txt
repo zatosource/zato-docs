@@ -38,7 +38,7 @@ and
 :ref:`methods <progguide-write-service-methods>`,
 and the service
 can make use of the same API for producing responses using
-:doc:`Simple IO <./sio>`,
+:doc:`Simple IO <./sio/index>`,
 :doc:`JSON <./json>`,
 :doc:`XML <./xml>`
 or

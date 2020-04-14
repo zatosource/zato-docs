@@ -52,7 +52,7 @@ Serialize access across multiple services
 Locks can be given arbitrary names - that lets them be held by otherwise unrelated services that indeed don't even need to know
 of each other's existence.
 
-The name may come from anywhere - below it is taken from a service's :doc:`SimpleIO <./sio>` input with the net result being that for a given
+The name may come from anywhere - below it is taken from a service's :doc:`SimpleIO <./sio/index>` input with the net result being that for a given
 customer account only one service throughout the whole cluster can be executed.
 
 ::
