@@ -68,4 +68,4 @@ Web admin
 
 * Right after a web admin's user has been created, its password is a randomly
   generated UUID4 stored in clear text in the SQL ODB. It can be changed using
-  the :doc:`zato update password </admin/cli/update-crypto>` command.
+  the :doc:`zato update password </admin/cli/update-password>` command.

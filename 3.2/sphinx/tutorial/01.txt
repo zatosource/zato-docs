@@ -190,7 +190,7 @@ you've prepared. You'll be asked for passwords and they won't be echoed.
 In the command below, observe that the Redis password can be empty - indeed, if you've just installed Redis without
 configuring anything, it must be empty because by default Redis doesn't require it.
 
-::
+.. code-block:: text
 
   $ zato quickstart create $path sqlite $kvdb_host $kvdb_port \
     --kvdb_password $kvdb_password --verbose
@@ -278,14 +278,14 @@ Invoking services with cURL
 
   You can check it by running these commands:
 
-  ::
+.. code-block:: text
 
     $ zato check-config $path/server1
     SQL ODB connection OK
     Redis connection OK
     $
 
-  ::
+.. code-block:: text
 
     $ zato check-config $path/server2
     SQL ODB connection OK
@@ -301,7 +301,7 @@ Invoking services with cURL
 
 First off, let's start the thing we've just brought to this world:
 
-::
+.. code-block:: text
 
   $ ./zato-qs-start.sh
   Starting the Zato quickstart environment
@@ -320,7 +320,7 @@ Zato comes with several goodies meant to ease with development and one of them
 is the zato.ping service which is automatically mounted on /zato/ping so it
 can be invoked through the load-balancer using curl (output below is slightly reformatted for clarity).
 
-::
+.. code-block:: text
 
   $ curl localhost:11223/zato/ping ; echo
   {
@@ -397,7 +397,7 @@ server will instantly synchronize its state with the one that will receive the s
 
 So, choosing $path/server1/pickup/incoming/services, copy the module:
 
-::
+.. code-block:: text
 
   $ cp my_service.py $path/server1/pickup/incoming/services
 
@@ -468,7 +468,7 @@ And that's it. The channel has been created, all servers have been notified of
 its having been formed so they automatically hot-updated their HTTP configuration and we can
 now use curl again to invoke our creation.
 
-::
+.. code-block:: text
 
   $ curl localhost:11223/tutorial/first-service
   $

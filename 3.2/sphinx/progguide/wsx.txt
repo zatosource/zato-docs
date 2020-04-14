@@ -42,7 +42,7 @@ Right after a TCP connection is established, before logging in, an information e
 data about from what IP address and domain name the connection comes from as well as the address and name of the WebSocket
 channel.
 
-::
+.. code-block:: text
 
   INFO - New connection from 127.0.0.1:51738 (localhost) to 127.0.0.1:48902 (my.wsx.channel)
 
@@ -50,14 +50,14 @@ channel.
 If a client connects but does not initiate the create-session request within the expected time, the TCP connection will be
 closed with an accompanying warning message in server logs:
 
-::
+.. code-block:: text
 
   WARNING - Peer 127.0.0.1:51738 (localhost) did not create session within 5s,
   closing its connection to 127.0.0.1:48902 (my.wsx.channel), cid:`23b3cae088382f62106edd67`
 
 Otherwise, if the client creates a session successfully, an informational message will be saved to logs:
 
-::
+.. code-block:: text
 
   INFO - Client 127.0.0.1:57288 (localhost ws.eee4b49d6fd835b424175ed5)
   logged in successfully to 127.0.0.1:48902 (my.wsx.channel)
