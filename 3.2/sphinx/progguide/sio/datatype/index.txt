@@ -1,0 +1,115 @@
+.. highlight:: python
+   :linenothreshold: 10
+
+SimpleIO data types reference
+=============================
+
+Each element in a SimpleIO (SIO) definition has a specific data type. Unless it is overridden, the **data type**
+of an SIO element implictly **defaults to Text**.
+
+All data types can be imported from the **zato.server.service** package, e.g.:
+
+::
+
+   from zato.server.service import AsIs, List
+
+Various **convenience prefixes and suffixes** can be used to reduce the number of imports -
+read the :doc:`full documentation <./conv>` here.
+
+
+SIO data types available
+------------------------
+
+The table below contains all the SIO data types available along with a brief description for each. The following
+sections document each in detail.
+
+========= ============================================================================================
+Data type Notes
+========= ============================================================================================
+AsIs
+Bool
+CSV
+Date
+DateTime
+Decimal
+Dict
+DictList
+Float
+Int
+List
+Text
+UTC
+UUID
+========= ============================================================================================
+
+AsIs
+~~~~
+
+Bool
+~~~~
+
+CSV
+~~~
+
+Date
+~~~~
+
+DateTime
+~~~~~~~~
+
+Decimal
+~~~~~~~
+
+Dict
+~~~~
+
+DictList
+~~~~~~~~
+
+Float
+~~~~~
+
+Int
+~~~
+
+List
+~~~~
+
+Text
+~~~~
+UTC
+~~~
+
+UUID
+~~~~
+
+
+SIO data types and data formats
+-------------------------------
+
+The following table contains information which SIO data types are available for which data format. With JSON,
+it is possible to use all of the SIO data types whereas other data formats cannot make use of container-like
+data types.
+
+A runtime exception will be raised if a service has an SIO definition over a channel whose data format that is incompatible,
+e.g. if a CSV document is sent to a service whose SIO definition contains a DictList element, this will result
+in an exception.
+
+========= ==== === === ====
+Data type JSON XML CSV POST
+========= ==== === === ====
+AsIs      Yes  Yes Yes Yes
+Bool      Yes  Yes Yes Yes
+CSV       Yes  Yes --- Yes
+Date      Yes  Yes Yes Yes
+DateTime  Yes  Yes Yes Yes
+Decimal   Yes  Yes Yes Yes
+Dict      Yes  --- --- ---
+DictList  Yes  --- --- ---
+Float     Yes  Yes Yes Yes
+Int       Yes  Yes Yes Yes
+List      Yes  --- --- ---
+Text      Yes  Yes Yes Yes
+UTC       Yes  Yes Yes Yes
+UUID      Yes  Yes Yes Yes
+========= ==== === === ====

@@ -5,15 +5,17 @@ SimpleIO (SIO)
 ==============
 
 SimpleIO (SIO) is a feature of Zato that allows one to develop services in a way
-that is reusable across multiple data formats and transports. That is, a service
-can be written once but it's still possible to expose it, for instance, via XML
-through AMQP, and via JSON over HTTP.
+that is reusable across multiple data formats and transports.
+
+That is, a service can be written once but it is still possible to expose it, for instance, via XML
+through AMQP, and via JSON over HTTP, all from the single source code without
+any programming needed.
 
 Once a service has been deployed, no code changes nor restarts are needed to make it
 available over various access methods.
 
 An SIO service is one which has an inner class named **SimpleIO** that conforms to a certain
-API, for example:
+API. Here is an example:
 
 ::
 
@@ -34,39 +36,39 @@ API, for example:
 
 Save it in an sio_example.py file, :doc:`hot-deploy<../../admin/guide/installing-services>` it
 and new channels for the service can be added immediately now - each independent and possibly using
-a different data format without influencing any other for the same service.
+a different data format without influencing any other channel using the same service.
 
 Features
 --------
 
-* Can use JSON, HTTP POST/GET, XML, SOAP and CSV over various channels
-* Can be used to generate API documentation in OpenAPI and WSDL formats
-* Automatically parses incoming messages to validate and build developer-friendly input objects
 * Lets one program API integrations in a more high-level, abstract way, without having to deal
   with protocol or data format-level matters
+* Automatically parses incoming messages to validate and build developer-friendly input objects
+* Can use JSON, HTTP POST/GET, XML, SOAP and CSV over various channels
+* Can be used to generate API documentation in OpenAPI and WSDL formats
 
 Details
 -------
 
 Each chapter is concerned with a particular aspect of SIO.
 
-====================================== ====================================================================
-Chapter                                Notes
-====================================== ====================================================================
-Quick tutorial                         A brief introduction to SimpleIO - creates a new service and exposes
-                                       it through a few independent channels, each with its own data
-                                       format without any changes to code
-How to declare input and output        To use SimpleIO, a service needs to conform to certain expectations,
-                                       this chapter introduces SIO and its main configuration options
-Understanding the data types available There is a range of SIO data types, each with its own options,
-                                       all of them documented in this chapter
-I/O data formats available             Each SIO service can accept and produce messages in several formats,
-                                       all of which are documented here
-Configuration files                    Many parts of SIO are configurable - learn more about the options
-                                       available
-Generating API documentation           An SIO service can be automatically exposed via OpenAPI or WSDL,
-                                       learn the details in this chapter
-====================================== ====================================================================
+================================================================ ====================================================================
+Chapter                                                          Notes
+================================================================ ====================================================================
+Quick tutorial                                                   A brief introduction to SimpleIO - creates a new service and exposes
+                                                                 it through a few independent channels, each with its own data
+                                                                 format without any changes to code
+How to declare input and output                                  To use SimpleIO, a service needs to conform to certain expectations,
+                                                                 this chapter introduces SIO and its main configuration options
+:doc:`Understanding SimpleIO data types <./datatype/index>`      There is a range of SIO data types, each with its own options,
+                                                                 all of them documented in this chapter
+I/O data formats available                                       Each SIO service can accept and produce messages in several formats,
+                                                                 all of which are documented here
+Configuration files                                              Many parts of SIO are configurable - learn more about the options
+                                                                 available
+Generating API documentation                                     An SIO service can be automatically exposed via OpenAPI or WSDL,
+                                                                 learn the details in this chapter
+================================================================ ====================================================================
 
 
 Changelog
