@@ -447,6 +447,7 @@ Zato, the open-source project
    progguide/rest/*
    progguide/sio/*
    progguide/sio/datatype/*
+   progguide/sio/example/*
    project/*
    pubsub/*
    pubsub/arch/*

@@ -268,3 +268,21 @@ List      Yes  ---      --- ---
 Text      Yes  Yes      Yes Yes
 UUID      Yes  Yes      Yes Yes
 ========= ==== ======== === ====
+
+Convenience prefixes and suffixes
+---------------------------------
+
+To make one's source code use less imports and declarations use fewer explicit SIO data types,
+it is possible to apply :doc:`convenience prefixes and suffixes <./conv>`.
+
+For instance, both of the definitions below are equivalent, yet the first one is more convenient to read:
+
+::
+
+    class SimpleIO:
+        input = 'user_id', 'is_active', 'has_account'
+
+::
+
+    class SimpleIO:
+        input = Int('user_id'), Bool('is_active'), Bool('has_account')

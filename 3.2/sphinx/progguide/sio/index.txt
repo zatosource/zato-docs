@@ -58,8 +58,8 @@ Chapter                                                          Notes
 Quick tutorial                                                   A brief introduction to SimpleIO - creates a new service and exposes
                                                                  it through a few independent channels, each with its own data
                                                                  format without any changes to code
-How to declare input and output                                  To use SimpleIO, a service needs to conform to certain expectations,
-                                                                 this chapter introduces SIO and its main configuration options
+:doc:`How to declare input and output <./declare>`               How to declare a service's input and output parameters in an
+                                                                 idiomatic way
 :doc:`Understanding SimpleIO data types <./datatype/index>`      There is a range of SIO data types, each with its own options,
                                                                  all of them documented in this chapter
 I/O data formats available                                       Each SIO service can accept and produce messages in several formats,
@@ -68,6 +68,11 @@ Configuration files                                              Many parts of S
                                                                  available
 Generating API documentation                                     An SIO service can be automatically exposed via OpenAPI or WSDL,
                                                                  learn the details in this chapter
+Usage example for various data formats and channels              :doc:`JSON <./example/json>`,
+                                                                 :doc:`XML <./example/xml>`,
+                                                                 :doc:`SOAP <./example/soap>`,
+                                                                 :doc:`CSV <./example/csv>`,
+                                                                 :doc:`POST <./example/post>`
 ================================================================ ====================================================================
 
 

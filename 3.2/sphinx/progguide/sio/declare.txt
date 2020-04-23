@@ -1,0 +1,5 @@
+.. highlight:: python
+   :linenothreshold: 1
+
+Declaring input and output in SimpleIO
+======================================
