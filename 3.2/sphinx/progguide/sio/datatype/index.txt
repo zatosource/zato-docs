@@ -4,18 +4,18 @@
 SimpleIO data types reference
 =============================
 
-Each element in a SimpleIO (SIO) definition has a specific data type. Unless it is overridden, the **data type**
-of an SIO element implictly **defaults to Text**.
+* Each element in a :doc:`SimpleIO (SIO) definition <../index>` has a specific data type
 
-All data types can be imported from the **zato.server.service** package, e.g.:
+* All data types can be imported from the **zato.server.service** package, e.g.:
 
 ::
 
-   from zato.server.service import AsIs, List
+     from zato.server.service import AsIs, List
 
-Various **convenience prefixes and suffixes** can be used to reduce the number of imports -
-read the :doc:`full documentation <./conv>` here.
+* Unless it is overridden, the **data type** of an SIO element implictly **defaults to Text**
 
+* Various **convenience prefixes and suffixes** can be used by idiomatic declarations -
+  read the :doc:`full documentation here<./conv>`
 
 SIO data types available
 ------------------------
@@ -23,66 +23,222 @@ SIO data types available
 The table below contains all the SIO data types available along with a brief description for each. The following
 sections document each in detail.
 
-========= ============================================================================================
-Data type Notes
-========= ============================================================================================
-AsIs
-Bool
-CSV
-Date
-DateTime
-Decimal
-Dict
-DictList
-Float
-Int
-List
-Text
-UTC
-UUID
-========= ============================================================================================
+======================================= ============================================================================================
+Data type                               Notes
+======================================= ============================================================================================
+:ref:`AsIs <sio-datatype-asis>`         A passthrough element which ensures that the service receives data exactly as it was sent,
+                                        without any conversions by Zato. It is useful in case where the automatic data type
+                                        conversion is not required, e.g. by default an element named is_active would be converted
+                                        to a boolean value but AsIs('is_active') will indicate that no conversion should be
+                                        attempted.
+:ref:`Bool <sio-datatype-bool>`         Converts input data to a Python bool instance.
+:ref:`CSV <sio-datatype-csv>`           Expects for input data to be a comma-separated list and converts it to a Python list.
+:ref:`Date <sio-datatype-date>`         Converts input data to a datetime.date instance.
+:ref:`DateTime <sio-datatype-datetime>` Converts input data to a datetime.datetime instance.
+:ref:`Decimal <sio-datatype-decimal>`   Converts input data to a decimal.Decimal instance.
+:ref:`Dict <sio-datatype-dict>`         Converts input data to a Python dict object.
+:ref:`DictList <sio-datatype-dictlist>` Converts input data to a Python list of dict objects.
+:ref:`Float <sio-datatype-float>`       Converts input data to a Python float object.
+:ref:`Int <sio-datatype-int>`           Converts input data to a Python int object.
+:ref:`List <sio-datatype-list>`         Converts input data to a Python list instance.
+:ref:`Text <sio-datatype-text>`         Converts input data to a Python string (Unicode) object.
+:ref:`UUID <sio-datatype-uuid>`         Converts input data to a Python uuid.UUID4 object.
+======================================= ============================================================================================
+
+.. _sio-datatype-asis:
 
 AsIs
 ~~~~
 
+Can be used with: JSON, XML/SOAP, CSV and POST
+
+Elements of type AsIs are used to indicate that Zato should not convert input data in any way, e.g.,
+to override default conversions through suffixes and prefixes.
+
+For instance, in the definition below, values of user_id would be by default converted to integers by Zato
+because the element ends in _id which triggers automatic conversion per the :doc:`the default configuration<./conv>` \.\.
+
+::
+
+    class SimpleIO:
+        input = 'user_id'
+
+\.\. however, if user IDs are non-numeric then this would result in a conversion error whereas with AsIs,
+no conversion will be carried out:
+
+::
+
+    class SimpleIO:
+        input = AsIs('user_id')
+
+.. _sio-datatype-bool:
+
 Bool
 ~~~~
+
+Can be used with: JSON, XML/SOAP, CSV and POST
+
+Converts input data to Python bool instances - True, False - based on following values, respectively:
+
+* 'true', 'yes', 'on', 'y', 't', '1'
+* 'false', 'no', 'off', 'n', 'f', '0'
+
+.. _sio-datatype-csv:
 
 CSV
 ~~~
 
+Can be used with: JSON, XML/SOAP and POST
+
+Converts input comma-separated data to a list of string elements. For instance \.\.
+
+::
+
+    class SimpleIO:
+        input = CSV('my_data')
+
+\.\. if 'my_data' is given the value of 'myuser,my_display_name,1997,off' then the service will received a list of
+the following strings on input in self.request.input.my_data: ['myuser', 'my_display_name', '1997', 'off'].
+
+.. _sio-datatype-date:
+
 Date
 ~~~~
 
+Can be used with: JSON, XML/SOAP, CSV and POST
+
+Converts an input string to a Python's built-in `datetime.date <https://docs.python.org/3/library/datetime.html#date-objects>`_
+instance. Input must have an unambiguous format, such as YYYY-MM-DD, otherwise conversion may have an undefined result,
+e.g. if input is 12/12/12 it is not clear which of the elements is year, month or day.
+
+.. _sio-datatype-datetime:
+
 DateTime
 ~~~~~~~~
+
+Can be used with: JSON, XML/SOAP, CSV and POST
+
+Like Date but converts to `datetime.datetime <https://docs.python.org/3/library/datetime.html#datetime-objects>`_ objects.
+
+
+.. _sio-datatype-decimal:
 
 Decimal
 ~~~~~~~
 
+Can be used with: JSON, XML/SOAP, CSV and POST
+
+Converts an input string to a Python's built-in `decimal.Decimal <https://docs.python.org/3/library/decimal.html>`_
+instance.
+
+.. _sio-datatype-dict:
+
 Dict
 ~~~~
+
+Can be used with: JSON
+
+Converts an input JSON dict to a Python dict, optionally validating the existence or lack of keys and sub-keys. Can embed
+other SIO elements including other Dict ones.
+
+If no keys are listed in the element's declaration, any and all JSON keys will be accepted.
+
+For instance:
+
+::
+
+    class SimpleIO:
+        input = Dict('user_data')
+
+The above will convert user_data to a Python dict in self.request.input.user_data regardless of its form in JSON as long
+it is a dict (hashmap).
+
+If keys are provided explicitly, only what is provided in the declaration will exist in the service's input, e.g.
+
+::
+
+    class SimpleIO:
+        input = Dict('user_data', 'username', 'display_name')
+
+The above created a definition in which an input 'user_data' dictionary must exist and it must contain two keys:
+'username' and 'display_name'. Any other input keys from user_data will be ignored.
+
+Dict keys may point to other SimpleIO definitions:
+
+::
+
+    class SimpleIO:
+        input = Dict('user_data', 'username', 'display_name', Dict('address', 'street', 'region'))
+
+That definition has an embedded Dict object which expects a JSON sub-dict under key 'address' with keys 'street' and 'region',
+such as below:
+
+.. code-block:: json
+
+    {
+      "user_data": {
+        "username": "my_name",
+        "display_name": "My Display Name",
+        "address": {
+          "street": "My Street",
+          "region": "My Region"
+        }
+      }
+    }
+
+.. _sio-datatype-dictlist:
 
 DictList
 ~~~~~~~~
 
+Can be used with: JSON
+
+Works exactly like Dict but expects a JSON list od dictionaries (hashmaps) on input. Otherwise, everything that applies
+to Dict applies to DictList as well.
+
+.. _sio-datatype-float:
+
 Float
 ~~~~~
+
+Can be used with: JSON, XML/SOAP, CSV and POST
+
+Converts input data to Python float instances.
+
+.. _sio-datatype-int:
 
 Int
 ~~~
 
+Can be used with: JSON, XML/SOAP, CSV and POST
+
+Converts input data to Python int instances.
+
+.. _sio-datatype-list:
+
 List
 ~~~~
 
+Can be used with: JSON
+
+Converts input data to Python list instances. Does not check the contents of the input list - if this is required,
+use :ref:`Dict elements <sio-datatype-dict>`.
+
+.. _sio-datatype-text:
+
 Text
 ~~~~
-UTC
-~~~
+
+Can be used with: JSON, XML/SOAP, CSV and POST
+
+.. _sio-datatype-uuid:
 
 UUID
 ~~~~
 
+Can be used with: JSON, XML/SOAP, CSV and POST
+
+Converts input data to Python's built-in `uuid.UUID4 <https://docs.python.org/3/library/uuid.html>`_ instances.
 
 SIO data types and data formats
 -------------------------------
@@ -95,21 +251,20 @@ A runtime exception will be raised if a service has an SIO definition over a cha
 e.g. if a CSV document is sent to a service whose SIO definition contains a DictList element, this will result
 in an exception.
 
-========= ==== === === ====
-Data type JSON XML CSV POST
-========= ==== === === ====
-AsIs      Yes  Yes Yes Yes
-Bool      Yes  Yes Yes Yes
-CSV       Yes  Yes --- Yes
-Date      Yes  Yes Yes Yes
-DateTime  Yes  Yes Yes Yes
-Decimal   Yes  Yes Yes Yes
-Dict      Yes  --- --- ---
-DictList  Yes  --- --- ---
-Float     Yes  Yes Yes Yes
-Int       Yes  Yes Yes Yes
-List      Yes  --- --- ---
-Text      Yes  Yes Yes Yes
-UTC       Yes  Yes Yes Yes
-UUID      Yes  Yes Yes Yes
-========= ==== === === ====
+========= ==== ======== === ====
+Data type JSON XML/SOAP CSV POST
+========= ==== ======== === ====
+AsIs      Yes  Yes      Yes Yes
+Bool      Yes  Yes      Yes Yes
+CSV       Yes  Yes      --- Yes
+Date      Yes  Yes      Yes Yes
+DateTime  Yes  Yes      Yes Yes
+Decimal   Yes  Yes      Yes Yes
+Dict      Yes  ---      --- ---
+DictList  Yes  ---      --- ---
+Float     Yes  Yes      Yes Yes
+Int       Yes  Yes      Yes Yes
+List      Yes  ---      --- ---
+Text      Yes  Yes      Yes Yes
+UUID      Yes  Yes      Yes Yes
+========= ==== ======== === ====
