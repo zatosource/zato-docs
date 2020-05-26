@@ -2,26 +2,25 @@
 .. highlight:: python
    :linenothreshold: 1
 
-User.delete - Python API
+User.lock - Python API
 ========================
 
-Deletes a user by ID - may be a regular one or super-super. Current user must be a super-user.
-It is not possible to delete one's own account - another super-user must do it.
+Locks a user account. Current user must be a super-user.
 
 API
 ---
 
-self.sso.user.delete_user_by_id
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+self.sso.user.lock_user
+~~~~~~~~~~~~~~~~~~~~~~~
 
-.. py:method:: delete_user_by_id(self, cid, user_id, current_ust, current_app, remote_addr):
+.. py:method:: lock_user(self, cid, user_id, current_ust, current_app, remote_addr):
 
-  Deletes a user by ID.
+  Locks a user.
 
   :param cid: Correlation ID used by :doc:`audit log <../../../audit/index>`
   :type cid: string
 
-  :param user_id: ID of the user to delete
+  :param user_id: ID of the user to lock
   :type user_id: string
 
   :param current_ust: Current user's UST
@@ -47,7 +46,7 @@ self.sso.user.delete_user_by_id
   # Zato
   from zato.server.service import Service
 
-  class DeleteUser(Service):
+  class LockUser(Service):
       def handle(self):
 
           # Request metadata
@@ -55,8 +54,8 @@ self.sso.user.delete_user_by_id
           current_app = 'CRM'
           remote_addr = '127.0.0.1'
 
-          # User to delete
-          user_id = 'zusr4datdm5k5m8fbb8fttx5d65avm'
+          # User to lock
+          user_id = 'zusr6htgg7hhdj8zrvvatbyfawxfsw'
 
-          # Delete the user
-          self.sso.user.delete_user_by_id(self.cid, user_id, current_ust, current_app, remote_addr)
+          # Lock the user
+          self.sso.user.lock_user(self.cid, user_id, current_ust, current_app, remote_addr)
