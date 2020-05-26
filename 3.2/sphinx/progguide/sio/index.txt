@@ -64,7 +64,7 @@ Quick tutorial                                                   A brief introdu
                                                                  all of them documented in this chapter
 I/O data formats available                                       Each SIO service can accept and produce messages in several formats,
                                                                  all of which are documented here
-Configuration files                                              Many parts of SIO are configurable - learn more about the options
+:doc:`Configuration files <./config/index>`                      Parts of SIO are configurable - learn more about the options
                                                                  available
 Generating API documentation                                     An SIO service can be automatically exposed via OpenAPI or WSDL,
                                                                  learn the details in this chapter

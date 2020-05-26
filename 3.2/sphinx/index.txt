@@ -446,6 +446,7 @@ Zato, the open-source project
    progguide/reqresp/*
    progguide/rest/*
    progguide/sio/*
+   progguide/sio/config/*
    progguide/sio/datatype/*
    progguide/sio/example/*
    project/*
