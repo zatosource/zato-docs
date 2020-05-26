@@ -7,6 +7,8 @@ User.unlock - Python API
 
 Unlocks a user account. Current user must be a super-user.
 
+Use :doc:`User.lock <./unlock>` to lock users.
+
 API
 ---
 
