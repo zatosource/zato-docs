@@ -1,6 +1,6 @@
 .. highlight:: sh
 
-Quickstart installation under Docker (Python 2.7)
+Quickstart installation under Docker (Python 3.x)
 =================================================
 
 Requirements
