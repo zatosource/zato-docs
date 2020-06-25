@@ -139,5 +139,5 @@ doctest:
 	      "results in $(BUILDDIR)/doctest/output.txt."
 
 virtualenv:
-	virtualenv --no-site-packages env
+	virtualenv env
 	./env/bin/pip install -r requirements.txt
