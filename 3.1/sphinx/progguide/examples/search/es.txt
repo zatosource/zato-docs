@@ -26,7 +26,7 @@ Indexing
 
 In server.log:
 
-::
+.. code-block:: text
 
   INFO - PUT http://es:9200/my-idx/my-type/my-id?op_type=create [status:201 request:0.057s]
 
@@ -52,7 +52,7 @@ Searching
 
 In server.log:
 
-::
+.. code-block:: text
 
   INFO - GET http://es:9200/_search?q=hello%3A%2A [status:200 request:0.058s]
   INFO - {u'hits': {u'hits': [{u'_score': 1.0, u'_type': u'my-type', u'_id': u'my-id' ..
@@ -75,7 +75,7 @@ Deleting
 
 In server.log:
 
-::
+.. code-block:: text
 
   INFO - DELETE http://es:9200/my-idx/my-type/my-id [status:200 request:0.003s]
 
@@ -100,6 +100,6 @@ in order to learn how to access other features such as bulk deleting, counting a
 
           self.logger.info(conn.__class__)
 
-::
+.. code-block:: text
 
   INFO - <class 'elasticsearch.client.Elasticsearch'>

@@ -55,7 +55,7 @@ Note that the URL path contains parameters enclosed between *{* and *}* and *Mer
 
 Now the service can be invoked using a nice and clean URL:
 
-::
+.. code-block:: javascript
 
     $ curl http://localhost:11223/customer/balance/37172/HAZDM017/ ; echo
     {"response": {"currency": "EUR", "balance": "357.19"}}
@@ -77,7 +77,7 @@ embedded in a path.
 .. image:: /gfx/progguide/rest/query-params.png
    :width: 95%
 
-::
+.. code-block:: javascript
 
     $ curl "http://localhost:11223/customer/balance?cust_no=198271&account_no=KMZQ62M" ; echo
     {"response": {"currency": "EUR", "balance": "357.19"}}
@@ -95,7 +95,7 @@ Using JSON payload
 
 Note that it's always possible to invoke the very same service by using JSON payload on input:
 
-::
+.. code-block:: javascript
 
     $ curl http://localhost:11223/customer/balance -d \
         '{"cust_no":"38631", "account_no":"JZM92KH"}' ; echo
@@ -150,4 +150,3 @@ message and serialize the response out of the payload a service produces.
 
 It's also possible not to set the data format to any specific one, for instance, if using `HL7 v2 <https://en.wikipedia.org/wiki/HL7>`_
 the service will parse the message itself.
-

@@ -83,7 +83,7 @@ The repository is created and managed completely behind the scenes and needs no
 manual management however it's worth pointing out that it contains the whole history
 of a given config file, possibly including any old secrets, such as passwords.
 
-::
+.. code-block:: text
 
   user@dev1:~/zato/server/config/repo$ bzr log
   ------------------------------------------------------------
@@ -102,7 +102,7 @@ of a given config file, possibly including any old secrets, such as passwords.
     Added new unversioned files
   user@dev1:~/zato/server/config/repo$
 
-::
+.. code-block:: text
 
   user@dev1:~/zato/server/config/repo$ bzr diff -r1..2
   === modified file 'server.conf'
@@ -119,13 +119,13 @@ of a given config file, possibly including any old secrets, such as passwords.
    gunicorn_group=
   user@dev1:~/zato/server/config/repo$
 
-::
+.. code-block:: text
 
   user@dev1:~/zato/server/config/repo$ bzr revert -r 1
    M  server.conf
   user@dev1:~/zato/server/config/repo$
 
-::
+.. code-block:: text
 
   user@dev1:~/zato/server/config/repo$ cat server.conf | grep gunicorn_workers
   gunicorn_workers=4

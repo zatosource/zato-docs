@@ -60,7 +60,7 @@ Running servers in foreground
 
 Start servers using the *--fg* flag so they run in foreground logging to stdout. Afterwards, they can be stopped with Ctrl-C.
 
-::
+.. code-block:: text
 
   $ zato start /path/to/server --fg
 
@@ -77,13 +77,13 @@ the data will be displayed on stdout.
 
 The signal needs to be sent to the server's PID. Use :doc:`zato info <../admin/cli/info>` to obtain one, as below:
 
-::
+.. code-block:: text
 
    $ zato info /path/to/server | grep master_proc_pid
 
 Supposing the PID is 7319, to dump all threads and greenlets:
 
-::
+.. code-block:: text
 
    $ kill -SIGURG 7319
 

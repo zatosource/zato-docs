@@ -49,12 +49,12 @@ Accessing request elements
               if self.request.payload.cust_info.cust.cust_id == 1:
                   self.logger.info('Got it!')
 
-   .. code-block:: xml
+   .. code-block:: text
 
       $ curl localhost:17010/xml-example.my-service -d '
         <root><cust_info><cust><cust_id>1</cust_id></cust></cust_info></root>'
 
-   ::
+   .. code-block:: text
 
      INFO - Got it!
 
@@ -95,7 +95,7 @@ Accessing request elements
             </address_list>
       </cust_info></root>'
 
-   ::
+   .. code-block:: text
 
       INFO - Nerviërslaan 31 Avenue
       INFO - Juan de Aliaga 230
@@ -118,7 +118,7 @@ Accessing request elements
 
       $ curl localhost:17010/xml-example.my-service -d '<root><cust id="1"/></root>'
 
-   ::
+   .. code-block:: text
 
       INFO - cust_id:[1]
 
@@ -147,7 +147,7 @@ Accessing request elements
          <relation_type xmlns="example.com/2">AAA</relation_type>
       </cust_info></root>'
 
-   ::
+   .. code-block:: text
 
      INFO - Got it!
 

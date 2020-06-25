@@ -116,7 +116,7 @@ invoke
     else:
         print(response.details)
 
-::
+.. code-block:: text
 
     $ py myclient.py
     {u'pong': u'zato'}
@@ -148,7 +148,7 @@ can be correlated with the client request at a later time.
     else:
         print(response.details)
 
-::
+.. code-block:: text
 
     $ py myclient.py
     f53b59e2215cc7cb608d0382

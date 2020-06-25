@@ -191,11 +191,11 @@ class.
       def handle(self):
           self.logger.info('channel:[{}]'.format(self.channel))
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service
 
-::
+.. code-block:: text
 
   INFO - channel:[invoke]
 
@@ -239,11 +239,11 @@ CID has always 28 characters.
       def handle(self):
           self.logger.info('cid:[{}]'.format(self.cid))
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service
 
-::
+.. code-block:: text
 
   INFO - cid:[K280592090634247650299684980809341216327]
 
@@ -271,11 +271,11 @@ class.
       def handle(self):
           self.logger.info('data_format:[{}]'.format(self.data_format))
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service --data-format json
 
-::
+.. code-block:: text
 
   INFO - data_format:[json]
 
@@ -305,11 +305,11 @@ Zato will never use environ for its own purposes.
           for name in('seen_before_invoke', 'seen_handle'):
               self.logger.info('{}:[{}]'.format(name, self.environ[name]))
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service
 
-::
+.. code-block:: text
 
   INFO - seen_before_invoke:[True]
   INFO - seen_handle:[True]
@@ -349,11 +349,11 @@ with :ref:`name <progguide-write-service-name>`.
       def handle(self):
           self.logger.info('impl_name:[{}]'.format(self.impl_name))
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service
 
-::
+.. code-block:: text
 
   INFO - impl_name:[service_api.MyService]
 
@@ -379,11 +379,11 @@ and
       def handle(self):
           self.logger.info('invocation_time:[{}]'.format(self.invocation_time))
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service
 
-::
+.. code-block:: text
 
   INFO - invocation_time:[2013-02-17 17:47:01.045913]
 
@@ -411,11 +411,11 @@ The constants are defined in the
       def handle(self):
           self.logger.info('job_type:[{}]'.format(self.job_type))
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service
 
-::
+.. code-block:: text
 
   INFO - job_type:[None]
 
@@ -437,11 +437,11 @@ is available as self.kvdb.conn.
           usage = self.kvdb.conn.get(key)
           self.logger.info('{} was invoked {} time(s)'.format(self.name, usage))
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service
 
-::
+.. code-block:: text
 
   INFO - service-api.my-service was invoked 16 time(s)
 
@@ -471,11 +471,11 @@ Observe how the log output contains the CID now:
       def handle(self):
           self.logger.info('Hello!', cid=self.cid)
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service
 
-::
+.. code-block:: text
 
   2013-02-17 19:48:33,585 - K300817487686039172650072756834592513215 - Hello!
 
@@ -498,11 +498,11 @@ Visit :ref:`get_name <progguide-write-service-get_name>` for a way to override i
       def handle(self):
           self.logger.info('name:[{}]'.format(self.name))
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service
 
-::
+.. code-block:: text
 
   INFO - name:[service-api.my-service]
 
@@ -532,7 +532,7 @@ context manager in the example below.
               for item in session.query(Cluster).all():
                   self.logger.info(item.name)
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service
 
@@ -582,7 +582,7 @@ processing_time will be equal to 0 if it took less than 1 ms.
       def finalize_handle(self):
           self.logger.info('Processing took {} ms'.format(self.processing_time))
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service
 
@@ -612,7 +612,7 @@ Note that it will be available as a non-None value only in the
       def finalize_handle(self):
           self.logger.info('Processing took {}'.format(self.processing_time_raw))
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service
 
@@ -685,7 +685,7 @@ of a service are stored for a later inspection.
       def handle(self):
           self.logger.info('My threshold is {} ms'.format(self.slow_threshold))
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service
 
@@ -705,7 +705,7 @@ How many times the service has run, including the current invocation.
       def handle(self):
           self.logger.info('My usage is {}'.format(self.usage))
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service
 
@@ -746,7 +746,7 @@ as an access method,  wsgi_environ would've been empty.
           for key, name in sorted(self.wsgi_environ.items()):
               self.logger.info('{}:{}'.format(key, name))
 
-::
+.. code-block:: text
 
   $ curl localhost:17010/service-api.my-service
 
@@ -956,11 +956,11 @@ automatically generates.
       def get_name():
           return 'Something Else'
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service
 
-::
+.. code-block:: text
 
   INFO - My name is Something Else
 
@@ -1054,7 +1054,7 @@ invoke
             for item in response.zato_security_get_list_response:
                 self.logger.info(item.name)
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service
 
@@ -1117,7 +1117,7 @@ invoke_async
       def handle(self):
           self.invoke_async('zato.helpers.input-logger', 'My payload')
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service
 
@@ -1181,11 +1181,11 @@ input HTTP headers which log_input has access to.
         def handle(self):
             self.log_input("Let's find out what the input was")
 
-::
+.. code-block:: text
 
   $ curl localhost:17010/service-api.my-service -d 'Hello'
 
-::
+.. code-block:: text
 
   INFO - Let's find out what the input was {u'impl_name': u'req_resp.MyService',
       u'name': u'req-resp.my-service',
@@ -1238,11 +1238,11 @@ log_output
           self.log_output('What was the output?', logging.DEBUG,
               ['wsgi_environ', 'name', 'impl_name'])
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service
 
-::
+.. code-block:: text
 
   DEBUG - What was the output? {u'response.payload': 'Greetings!',
       u'handle_return_time': datetime.datetime(2013, 2, 19, 8, 37, 36, 469453),
@@ -1286,7 +1286,7 @@ translate
             result = self.translate('CRM', 'COUNTRY_CODE', 'AUS', 'BILLING', 'COUNTRY_CODE')
             self.logger.info('Result is {}'.format(result))
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service
 
@@ -1353,7 +1353,7 @@ could be delivered - the message will be lost.
           }
           self.broker_client.publish(msg)
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-service
 
@@ -1420,7 +1420,7 @@ convenience wrapper to send a message to a single worker only.
           }
           self.broker_client.invoke_async(msg)
 
-::
+.. code-block:: text
 
   $ zato service invoke /opt/zato/server1 service-api.my-servicePUBLISH
 
@@ -1446,4 +1446,3 @@ instead of a single one.
 
   Don't forget about the :ref:`invoke_async <progguide-write-service-invoke_async>`
   method, which is a convenience wrapper for executing other services asynchronously.
-

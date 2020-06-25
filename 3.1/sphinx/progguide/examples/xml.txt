@@ -36,7 +36,7 @@ and .get is used to fetch attributes.
             self.logger.info(root.cust.id.text)
             self.logger.info(root.cust.get('type'))
 
-::
+.. code-block:: text
 
   $ curl localhost:11223/example -d '<data><cust type="soho"><id>123</id></cust></data>'
   $
@@ -62,7 +62,7 @@ over child elements use the .getchildren method.
             for child in root.ids.getchildren():
                 self.logger.info(child.text)
 
-::
+.. code-block:: text
 
   $ curl localhost:11223/example -d '<data><ids><id>1</id><id>2</id><id>3</id></ids></data>'
   $
@@ -105,7 +105,7 @@ response.
             root = e.data(e.customer(e.id('123')))
             self.response.payload = tostring(root)
 
-::
+.. code-block:: text
 
     $ curl localhost:11223/example -d '<root/>'
     <data><customer><id>123</id></customer></data>
@@ -145,7 +145,7 @@ to use this address https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xm
 
             self.response.payload = response.text
 
-::
+.. code-block:: text
 
 	$ curl localhost:17010/example -d '<root/>'
 	<?xml version="1.0" encoding="UTF-8"?>

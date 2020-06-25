@@ -255,7 +255,7 @@ OpenAPI
 
 To facilitate access to the API from non-Python based applications, all of the services are formally represented
 in the
-`OpenAPI <https://zato.io/docs/3.0/api/_downloads/openapi.yaml>`_
+`OpenAPI <https://zato.io/docs/3.0/api/spec/_downloads/openapi.yaml>`_
 `format <https://en.wikipedia.org/wiki/OpenAPI_Specification>`_.
 
 This allows one to access Zato API from any programming language or environment that support OpenAPI. For instance,

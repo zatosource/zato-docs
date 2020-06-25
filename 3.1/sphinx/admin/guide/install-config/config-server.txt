@@ -392,13 +392,13 @@ If not empty, in order to confirm correctness of the setting, a starting server 
 
 For instance, if set to de_DE.utf8:
 
-::
+.. code-block:: python
 
   INFO - Locale is `de_DE.utf8`, amount of 12345 -> `12.345,00 €`
 
 Yet when set to ja_JP.UTF-8
 
-::
+.. code-block:: python
 
   INFO - Locale is `ja_JP.UTF-8`, amount of 12345 -> `￥12,345`
 
@@ -627,7 +627,7 @@ Logging configuration - logging.conf
 Format
 ``````
 
-::
+.. code-block:: yaml
 
     loggers:
         '':
@@ -686,7 +686,7 @@ Service sources - service-sources.txt
 Example
 ```````
 
-::
+.. code-block:: text
 
   ./my-services/import1
   ./my-services/import2

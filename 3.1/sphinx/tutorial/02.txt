@@ -146,13 +146,13 @@ information, combine it and produce a nice looking JSON document may look like t
 
 Hot-deploy the service:
 
-::
+.. code-block:: text
 
   $ cp my_service.py $path/server1/pickup/incoming/services
 
 And invoke it using curl:
 
-::
+.. code-block:: javascript
 
   $ curl localhost:11223/tutorial/first-service -d '{"cust_id":123, "cust_type":"A"}'
     {"first_name": "Sean", "last_name": "O'Brien",
@@ -233,7 +233,7 @@ case, the recipient only logs all the requests received is not our business.
 Assuming you've installed Zato binaries in $install_dir, you can run the server
 like below - note that the command really is 'py', not 'python':
 
-::
+.. code-block:: text
 
   $install_dir/bin/py zmq-server1.py
   INFO - Fraud detection app running on tcp://127.0.0.1:35101
@@ -315,7 +315,7 @@ Hot-deploy the service below and observe the fraud detection system's logs:
 
 
 
-::
+.. code-block:: javascript
 
   $ curl localhost:11223/tutorial/first-service -d '{"cust_id":123, "cust_type":"A"}'
   {"last_payment_amount": "357", "first_name": "Sean",
@@ -590,7 +590,7 @@ Go to Connections -> Channels -> Plain HTTP
 
 The channel can be invoked right away (XML pretty-printed for clarity):
 
-::
+.. code-block:: xml
 
   $ curl localhost:11223/tutorial/first-service/xml -d \
         '<request><cust_id>123</cust_id><cust_type>A</cust_type></request>'
@@ -610,7 +610,7 @@ The channel can be invoked right away (XML pretty-printed for clarity):
 
 Our original JSON channel is still there:
 
-::
+.. code-block:: javascript
 
  $ curl localhost:11223/tutorial/first-service -d '{"cust_id":123, "cust_type":"A"}'
  {"response":

@@ -133,7 +133,7 @@ Example
 Format
 ``````
 
-::
+.. code-block:: yaml
 
     loggers:
         '':

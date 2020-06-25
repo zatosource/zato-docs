@@ -449,13 +449,13 @@ use AsIs datatype, as documented below.
               self.logger.info(
                 'name:{}, value:{}, type:{}'.format(name, value, type(value)))
 
-::
+.. code-block:: javascript
 
   $ curl localhost:17010/json/sio-example.my-service -d '{"id":1, "customer_id":3,
     "pool_size":"10", "job_timeout":"300", "is_active":false,
     "needs_reset":"true", "should_continue":false}'
 
-::
+.. code-block:: text
 
   INFO - name:needs_reset, value:True, type:<type 'bool'>
   INFO - name:should_continue, value:False, type:<type 'bool'>
@@ -483,7 +483,7 @@ type conversions:
               self.logger.info(
                 'name:{}, value:{}, type:{}'.format(name, repr(value), type(value)))
 
-::
+.. code-block:: javascript
 
   $ curl localhost:17010/json/sio-example.my-service -d '{"id":"1",
     "reset_required":"true", "type":"30", "cust_id":1}'
