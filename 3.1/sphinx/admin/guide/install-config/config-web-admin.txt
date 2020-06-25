@@ -189,14 +189,6 @@ ADMIN_INVOKE_PATH
 
 HTTP path admin services the console should invoke are available on.
 
-.. _admin-guide-config-web-admin-open-id:
-
-OPENID_SSO_SERVER_URL
-@@@@@@@@@@@@@@@@@@@@@
-
-URL of an OpenID provider that will be employed to log users into web-admin. A :doc:`CLI command <../../cli/update-openid>`
-is used to assign claimed IDs to already existing web-admin users.
-
 .. _admin-guide-config-web-admin-logging:
 
 Logging configuration - logging.conf

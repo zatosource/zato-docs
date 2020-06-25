@@ -299,7 +299,7 @@
 
 * :ref:`Startup <admin-guide-config-server-startup_services_first_worker>` :ref:`services <admin-guide-config-server-startup_services_any_worker>` invoked when a server is starting
 
-* :ref:`OpenID in web admin <admin-guide-config-web-admin-open-id>`
+* OpenID in web admin <admin-guide-config-web-admin-open-id
 
 * Constants in `zato.common.broker_message <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/broker_message.py>`_
   became wrappers around integers - use *.value* attribute to reference them. For instance, SERVICE.PUBLISH.value instead of SERVICE.PUBLISH.

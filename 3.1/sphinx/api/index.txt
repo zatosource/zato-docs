@@ -4,7 +4,7 @@ Zato API
 ========
 
 Zato offers a full API to manage all the aspects of servers by user-built tools or applications. All the API services
-can be used either via `REST <https://zato.io/docs/3.0/api/spec/>`_ or from :doc:`command line <../admin/cli/service-invoke>`.
+can be used either via `REST <https://zato.io/docs/3.1/api/spec/>`_ or from :doc:`command line <../admin/cli/service-invoke>`.
 
 It is possible to access
 server resources in an automated manner, just like it is possible to do it using
@@ -14,8 +14,8 @@ is an API client itself and it uses the same services that users may employ in t
 
 This chapter introduces the core usage concepts and provides usage examples in Python and REST.
 
-A separate chapter presents all the `public API services <https://zato.io/docs/3.0/api/spec/>`_
-along with their `OpenAPI <https://zato.io/docs/3.0/api/spec/_downloads/openapi.yaml>`_ specification.
+A separate chapter presents all the `public API services <https://zato.io/docs/3.1/api/spec/>`_
+along with their `OpenAPI <https://zato.io/docs/3.1/api/spec/_downloads/openapi.yaml>`_ specification.
 
 Overview
 --------
@@ -31,8 +31,8 @@ functionality outside of CRUD.
 Each service's name reflects the domain it is concerned with, e.g. all services whose name starts with zato.email.smtp
 will deal with SMTP connections only.
 
-All of the public services are `listed separately <https://zato.io/docs/3.0/api/spec/>`_. For each service, its description
-and input/output are provided. Their `OpenAPI <https://zato.io/docs/3.0/api/spec/_downloads/openapi.yaml>`_ specification can be used
+All of the public services are `listed separately <https://zato.io/docs/3.1/api/spec/>`_. For each service, its description
+and input/output are provided. Their `OpenAPI <https://zato.io/docs/3.1/api/spec/_downloads/openapi.yaml>`_ specification can be used
 to generate API clients automatically.
 
 Collecting usage examples
@@ -77,7 +77,7 @@ The second one is the response that the API service responded with:
             "service_id": 854, "weeks": null, "repeats": null, "minutes": 60,
             "start_date": "2018-11-11T22:01:57"}]
 
-The same principle applies to any other services from the `public API <https://zato.io/docs/3.0/api/spec/>`_ - any usage example
+The same principle applies to any other services from the `public API <https://zato.io/docs/3.1/api/spec/>`_ - any usage example
 can be obtained from a live environment by using the web-admin and looking up requests and responses in admin.log.
 
 API access via REST
@@ -103,7 +103,7 @@ To invoke a service via REST, the steps are:
 Thus:
 
 * For illustration purposes, let's assume that the service chosen is
-  `zato.server.get-list <https://zato.io/docs/3.0/api/spec/service_zato_server_get_list.html>`_ which returns all servers
+  `zato.server.get-list <https://zato.io/docs/3.1/api/spec/service_zato_server_get_list.html>`_ which returns all servers
   defined for input cluster.
 
 * On its reference page, one can find that cluster_id is the only required parameter.
@@ -255,7 +255,7 @@ OpenAPI
 
 To facilitate access to the API from non-Python based applications, all of the services are formally represented
 in the
-`OpenAPI <https://zato.io/docs/3.0/api/spec/_downloads/openapi.yaml>`_
+`OpenAPI <https://zato.io/docs/3.1/api/spec/_downloads/openapi.yaml>`_
 `format <https://en.wikipedia.org/wiki/OpenAPI_Specification>`_.
 
 This allows one to access Zato API from any programming language or environment that support OpenAPI. For instance,
