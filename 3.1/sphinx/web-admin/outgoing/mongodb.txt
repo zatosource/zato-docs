@@ -1,0 +1,95 @@
+Outgoing connections - MongoDB
+==============================
+
+Overview
+--------
+
+Used to list, create, update, and delete outgoing MongoDB connection definitions.
+
+Each definition creates a pool of connections, each of which is based on the
+`PyMongo <https://pypi.org/project/pymongo/>`_
+library.
+
+* Menu path: Connections -> Outgoing -> MongoDB
+* Example address: http://localhost:8183/zato/outgoing/mongodb/?cluster=1&type_=outconn-mongodb
+
+.. image:: /gfx/web-admin/outgoing/mongodb.png
+   :width: 95%
+
+Create and Edit
+---------------
+
+.. image:: /gfx/web-admin/outgoing/mongodb-update.png
+
+===================== ========================================================================
+Header                Notes
+===================== ========================================================================
+Name                  Connection name
+Active                If False, no messages will be allowed to be sent through this connection
+                      to the remote end
+TLS on                Whether connections to MongoDB should be encrypted
+TLS v.                Which TLS version to use when connecting to MongoDB
+===================== ========================================================================
+
+All the other parameters correspond to attributes in the pymongo.MongoClient class.
+
+Note that all time-related parameters are in seconds unlike with pymongo.MongoClient
+where they are to be provided in milliseconds, e.g. a Max. idle  of 600 means
+a maximum idle timeout of 600 seconds rather than 600 milliseconds.
+
+===================== ========================================================================
+Header                pymongo.MongoClient attribute
+===================== ========================================================================
+TZ                    tz_aware
+App name              appname
+Pool size             maxPoolSize
+Doc. class            document_class
+Max. idle             maxIdleTimeMS
+HB                    heartbeatFrequencyMS
+Auth user             username
+Auth source           authSource
+Auth type             authMechanism
+Timeout connection    connectTimeoutMS
+Timeout socket        socketTimeoutMS
+Timeout srv. select   serverSelectionTimeoutMS
+Timeout WQ            waitQueueTimeoutMS
+Compressor list       compressors
+Compressor zlib level zlibCompressionLevel
+Write to repl.        w
+Write timeout         wtimeout
+Write req. journal    j
+Write fsync           fsync
+Write retry           retryWrites
+Read pref. type       readPreference
+Read pref. tags       readPreferenceTags
+Read pref. max. stale maxStalenessSeconds
+TLS cert. validation  ssl_cert_reqs
+TLS match hosts       ssl_match_hostname
+TLS priv. key         ssl_keyfile
+TLS priv. key pass.   ssl_pem_passphrase
+TLS cert. file        ssl_certfile
+TLS CA cert. file     ssl_ca_certs
+TLS CRL file          ssl_crlfile
+===================== ========================================================================
+
+Delete
+------
+
+.. image:: /gfx/web-admin/outgoing/mongodb-delete.png
+
+Stops the underlying connector and deletes the connection definition from ODB.
+
+Ping
+----
+
+Clicking "Ping" will connect to the remote MongoDB instance and issue a no-op command
+to confirm that connection parameters are valid.
+
+Changelog
+---------
+
+======= ===============
+Version Notes
+======= ===============
+3.1     Added initially
+======= ===============

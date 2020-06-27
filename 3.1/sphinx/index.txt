@@ -145,6 +145,7 @@ Web admin reference
       :doc:`AMQP <web-admin/outgoing/amqp>` |
       :doc:`FTP <web-admin/outgoing/ftp>` |
       :doc:`IBM MQ <web-admin/outgoing/jms-wmq>` |
+      :doc:`MongoDB <web-admin/outgoing/mongodb>` |
       :doc:`REST <web-admin/outgoing/plain-http>` |
       :doc:`Odoo <web-admin/outgoing/odoo>` |
       :doc:`SAP <web-admin/outgoing/sap>` |
