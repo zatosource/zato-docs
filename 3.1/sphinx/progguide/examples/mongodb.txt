@@ -1,0 +1,77 @@
+.. highlight:: python
+   :linenothreshold: 1
+
+MongoDB usage examples
+======================
+
+MongoDB databases can be access through :doc:`outgoing MongoDB connection definitions <../../web-admin/outgoing/mongodb>`.
+
+Each definition creates a pool of connection objects that can be accessed by Zato services
+as below.
+
+The underlying implementation uses pymongo.MongoClient objects and it is MongoClient that maintains
+the connection pool - it is not required to explicitly open nor to close the MongoDB connections
+in one's services.
+
+
+.. _progguide-examples-mongodb-receiving:
+
+Receiving documents from MongoDB
+--------------------------------
+
+No programming is needed to receive messages from IBM MQ queues. Create a new
+:doc:`channel <../../web-admin/channels/mongodb>`
+and a given service will be invoked for each message taken off a queue.
+The request, stripped off the MQRFH2 JMS headers, will be in self.request.payload.
+
+::
+
+   from zato.server.service import Service
+
+   class MyService(Service):
+       def handle(self):
+           self.logger.info('Got message: {}'.format(self.request.payload))
+
+
+.. _progguide-examples-mongodb-sending:
+
+Sending documents to MongoDB
+----------------------------
+
+Create a new
+:doc:`outgoing MongoDB connection <../../web-admin/outgoing/mongodb>`
+and send a message like in the example below.
+
+::
+
+    # -*- coding: utf-8 -*-
+
+    # Zato
+    from zato.server.service import Service
+
+    # For type hints
+    if 0:
+        from pymongo import MongoClient
+        from pymongo.collection import Collection
+
+        Collection = Collection
+        MongoClient = MongoClient
+
+    class MyMongoDBInsert(Service):
+
+        def handle(self):
+
+            # Get a handle to a Mongo client object
+            conn = self.out.mongodb.get('My Mongo').conn.client # type: MongoClient
+
+            # Select a database and collection
+            db = conn.admin
+            collection = db.my_collection # type: Collection
+
+            result = collection.insert_one({
+                'user_name': 'Jane Doe',
+                'email': 'jane.doe@example.com'
+            })
+
+            # Print out the newly inserted document's ID
+            self.logger.info('Inserted as %s', result.inserted_id)

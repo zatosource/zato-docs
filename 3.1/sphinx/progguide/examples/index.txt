@@ -86,6 +86,9 @@ Topic                                             Examples
 :doc:`IBM MQ <./jms-wmq>`                         * :ref:`Receiving messages from queues <progguide-examples-jms-wmq-receiving>`
                                                   * :ref:`Sending messages to queues <progguide-examples-jms-wmq-sending>`
 
+:doc:`MongoDB <./mongodb>`                        * :ref:`Reading documents from MongoDB <progguide-examples-mongodb-reading>`
+                                                  * :ref:`Sending documents to MongoDB <progguide-examples-mongodb-sending>`
+
 :doc:`Redis <./redis>`                            * :ref:`Simple keys <progguide-examples-redis-simple-keys>`
                                                   * :ref:`Lists <progguide-examples-redis-lists>`
                                                   * :ref:`Dictionaries (hashmaps) <progguide-examples-redis-dictionaries>`

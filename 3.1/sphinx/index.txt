@@ -206,6 +206,7 @@ Programming guide
       :doc:`AMQP <progguide/examples/amqp>` |
       :doc:`FTP <progguide/examples/ftp>` |
       :doc:`IBM MQ <progguide/examples/jms-wmq>` |
+      :doc:`MongoDB <progguide/examples/mongodb>` |
       :doc:`Redis <progguide/examples/redis>` |
       :doc:`Scheduler <progguide/examples/scheduler>` |
       :doc:`SQL <progguide/examples/sql>` |
