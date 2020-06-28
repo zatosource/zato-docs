@@ -4,43 +4,25 @@
 MongoDB usage examples
 ======================
 
-MongoDB databases can be access through :doc:`outgoing MongoDB connection definitions <../../web-admin/outgoing/mongodb>`.
+Connections to MongoDB databases are configured through
+:doc:`outgoing MongoDB connection definitions <../../web-admin/outgoing/mongodb>`.
 
 Each definition creates a pool of connection objects that can be accessed by Zato services
-as below.
+as in the examples below.
 
-The underlying implementation uses pymongo.MongoClient objects and it is MongoClient that maintains
+The underlying implementation uses
+`pymongo.MongoClient <https://pypi.org/project/pymongo/>`_
+objects and it is MongoClient that maintains
 the connection pool - it is not required to explicitly open nor to close the MongoDB connections
-in one's services.
+in one's services, the pool is maintained automatically.
 
-
-.. _progguide-examples-mongodb-receiving:
-
-Receiving documents from MongoDB
---------------------------------
-
-No programming is needed to receive messages from IBM MQ queues. Create a new
-:doc:`channel <../../web-admin/channels/mongodb>`
-and a given service will be invoked for each message taken off a queue.
-The request, stripped off the MQRFH2 JMS headers, will be in self.request.payload.
-
-::
-
-   from zato.server.service import Service
-
-   class MyService(Service):
-       def handle(self):
-           self.logger.info('Got message: {}'.format(self.request.payload))
-
-
-.. _progguide-examples-mongodb-sending:
 
 Sending documents to MongoDB
 ----------------------------
 
 Create a new
 :doc:`outgoing MongoDB connection <../../web-admin/outgoing/mongodb>`
-and send a message like in the example below.
+and send a document like in this example.
 
 ::
 
@@ -57,11 +39,11 @@ and send a message like in the example below.
         Collection = Collection
         MongoClient = MongoClient
 
-    class MyMongoDBInsert(Service):
+    class InsertMongoDB(Service):
 
         def handle(self):
 
-            # Get a handle to a Mongo client object
+            # Get a handle to a MongoDB client object
             conn = self.out.mongodb.get('My Mongo').conn.client # type: MongoClient
 
             # Select a database and collection
@@ -69,9 +51,64 @@ and send a message like in the example below.
             collection = db.my_collection # type: Collection
 
             result = collection.insert_one({
-                'user_name': 'Jane Doe',
-                'email': 'jane.doe@example.com'
+                'My object': 'My data'
             })
 
             # Print out the newly inserted document's ID
             self.logger.info('Inserted as %s', result.inserted_id)
+
+In logs:
+
+::
+
+  INFO - Inserted as 5ef8ca91562c38025289ad84
+
+
+.. _progguide-examples-mongodb-reading:
+
+Receiving documents from MongoDB
+--------------------------------
+
+Create a new
+:doc:`outgoing MongoDB connection <../../web-admin/outgoing/mongodb>`
+and read documents like in this example.
+
+::
+
+    # -*- coding: utf-8 -*-
+
+    # Zato
+    from zato.server.service import Service
+
+    # For type hints
+    if 0:
+        from pymongo import MongoClient
+        from pymongo.collection import Collection
+
+        Collection = Collection
+        MongoClient = MongoClient
+
+    class ReadMongoDB(Service):
+
+        def handle(self):
+
+            # Get a handle to a MongoDB client object
+            conn = self.out.mongodb.get('My Mongo').conn.client # type: MongoClient
+
+            # Select a database and collection
+            db = conn.admin
+            collection = db.my_collection # type: Collection
+
+            # Read a document from the database
+            result = collection.find_one()
+
+            # Print out the document read in
+            self.logger.info('Document is %s', result)
+
+In logs:
+
+::
+
+  INFO - Document is {'_id': '5ef8ca91562c38025289ad84', 'My object': 'My data'}
+
+.. _progguide-examples-mongodb-sending:
