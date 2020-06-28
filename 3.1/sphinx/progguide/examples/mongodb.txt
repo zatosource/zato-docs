@@ -39,7 +39,7 @@ and send a document like in this example.
         Collection = Collection
         MongoClient = MongoClient
 
-    class InsertMongoDB(Service):
+    class SendMongoDB(Service):
 
         def handle(self):
 
