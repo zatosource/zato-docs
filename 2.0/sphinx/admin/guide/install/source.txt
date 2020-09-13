@@ -1,3 +1,7 @@
+.. warning::
+   You are browsing an old version of the documentation. The newest one is `here </docs/3.1>`_ .
+
+
 .. highlight:: sh
 
 Installing Zato from source code
