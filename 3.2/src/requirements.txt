@@ -1,0 +1,3 @@
+colorama
+mkdocs==1.1.2
+mkdocs-material==6.0.1
