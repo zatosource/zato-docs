@@ -5,6 +5,7 @@ MAKEFLAGS += --silent
 ENV_NAME=env
 PY_VERSION=3
 PY=python$(PY_VERSION)
+DOCS_DIR=impl
 
 default: install
 
@@ -24,4 +25,4 @@ html:
 	echo HTML
 
 serve:
-	cd $(CURDIR)/docs && ../$(ENV_NAME)/bin/mkdocs serve
+	cd $(CURDIR)/$(DOCS_DIR) && ../$(ENV_NAME)/bin/mkdocs serve

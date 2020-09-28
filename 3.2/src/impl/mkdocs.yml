@@ -1,0 +1,23 @@
+site_name: Zato 3.2 documenation
+
+extra_css:
+  - css/extra.css
+
+copyright: © Zato Source s.r.o.
+
+theme:
+  name: material
+  font:
+    text: Exo
+  custom_dir: overrides
+  logo: gfx/logo.png
+
+  features:
+    - navigation.tabs
+
+nav:
+  - Home: 'https://zato.io'
+  - Overview: 'https://zato.io'
+  - Documentation: 'https://zato.io'
+  - Getting started: 'https://zato.io'
+  - Enterprise support: 'https://zato.io'

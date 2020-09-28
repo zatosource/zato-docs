@@ -1,6 +1,0 @@
-site_name: Zato 3.2 Documentation
-
-theme:
-  name: material
-  palette:
-    primary: black
