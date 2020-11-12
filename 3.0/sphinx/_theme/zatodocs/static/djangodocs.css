@@ -134,6 +134,13 @@ dt .literal, table .literal { background:none; }
 div.admonition-philosophy { padding-left:65px; background:url(docicons-philosophy.png) .8em .8em no-repeat;}
 div.admonition-behind-the-scenes { padding-left:65px; background:url(docicons-behindscenes.png) .8em .8em no-repeat;}
 
+div.yui-g > .admonition {
+    padding-left:10px;
+    background:none;
+    background-color: #faa;
+    border:1px solid #999;
+}
+
 /*** versoinadded/changes ***/
 div.versionadded, div.versionchanged {  }
 div.versionadded span.title, div.versionchanged span.title { font-weight: bold; }

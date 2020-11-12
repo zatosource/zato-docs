@@ -1,5 +1,5 @@
 .. warning::
-   You are browsing an old version of the documentation. The newest one is `here </docs/3.1>`_ .
+   This document is for a version of Zato that is no longer supported. The newest one is `here </docs/>`_.
 
 
 zato.server.edit
@@ -25,7 +25,7 @@ Name Datatype Optional Notes
 id   int      ---      ID of the server to update
 name string   ---      Server name
 ==== ======== ======== ==========================
-            
+
 
 Response parameters
 -------------------
@@ -42,7 +42,7 @@ bind_port          string   Yes      〃
 last_join_status   string   Yes      〃
 last_join_mod_date datetime Yes      〃
 last_join_mod_by   string   Yes      〃
-up_status          string   Yes      〃 
+up_status          string   Yes      〃
 up_mod_date        datetime Yes      〃
 ================== ======== ======== ==================================================================
 
@@ -61,8 +61,8 @@ SOAP example
          </zato:zato_server_edit_request>
       </soapenv:Body>
    </soapenv:Envelope>
-      
-   <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
+
+   <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
       xmlns="https://zato.io/ns/20130518">
    <soap:Body>
        <zato_server_get_by_id_response xmlns="https://zato.io/ns/20130518">
@@ -95,7 +95,7 @@ JSON example
    {
       "id": 1
    }
-   
+
    {
      "zato_env": {
        "details": "",
