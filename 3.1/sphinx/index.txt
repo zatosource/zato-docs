@@ -399,11 +399,6 @@ Security
 
     * :doc:`Reporting security issues <security/reporting-issues>`
 
-Release policy
-==============
-
-    * :doc:`Understanding Zato life-cycle policy <release/policy>`
-
 Zato, the open-source project
 ==============================
 
