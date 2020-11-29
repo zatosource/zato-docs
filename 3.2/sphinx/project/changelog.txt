@@ -1,4 +1,4 @@
-3.1 - 2019-06-18
+3.2 - 2020-12-NN
 ================
 
 .. note::
@@ -12,6 +12,33 @@
    and
    :doc:`web-admin <../architecture/web-admin>`
    in 10 minutes.
+
+* Performance improvements that make servers run much faster, particularly in the area of REST and WebSockets
+
+* Added file transfer channels for local and remote data sources
+
+* Added SalesForce connections
+
+* Added Dropbox connections
+
+* Added an API specification and documentation generator, including HTML, OpenAPI and WSDL
+
+* Added native support for Mac
+
+* Added native support for SuSE
+
+* Added means to broadcast messages to multiple WebSocket clients at once
+
+* New command line tool - 'zato wait'
+
+* Made it easier to greenify libraries that are not gevent-aware by default (e.g. Oracle drivers)
+
+* Dropped support for Python 2.7. Python 3.6+ is now required. All existing services will continue to work with Python 3
+  without any changes.
+
+
+3.1 - 2019-06-18
+================
 
 * Enhanced support for Docker,
   including :doc:`Quickstart <../admin/guide/install/docker>`,
