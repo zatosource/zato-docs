@@ -29,11 +29,11 @@
 
 * Added means to broadcast messages to multiple WebSocket clients at once
 
-* New command line tool - 'zato wait'
-
 * Made it easier to greenify libraries that are not gevent-aware by default (e.g. Oracle drivers)
 
 * Services subclassing other services will automatically reload when their parent changes
+
+* Made servers start up faster
 
 * Dropped support for Python 2.7. Python 3.6+ is now required. All existing services will continue to work with Python 3
   without any changes.
