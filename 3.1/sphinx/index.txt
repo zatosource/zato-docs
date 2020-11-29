@@ -17,7 +17,7 @@ Getting help
 
 * Ask around on the `forum <https://forum.zato.io/>`_
 
-* Join the `#zato IRC channel <https://webchat.freenode.net/?channels=zato>`_ on Freenode network
+* Join the `Zato Gitter <https://gitter.im/zato/community>`_ community
 
 * Look up fellow professionals on `LinkedIn <https://www.linkedin.com/groups?gid=5015554>`_
 
