@@ -72,6 +72,8 @@
             {{- end -}}
 
             <div class="menu">
+                <div class="search-input"><input id="search-term" type="text"></div>
+
                 <button id="gearDropdownButton" class="menu-trigger" title='{{- i18n "options_menu" -}}' aria-label="Options and Settings" aria-controls="gearDropdownContent">
                     {{- partial "icon.html" "gear" -}}
                 </button>
@@ -91,20 +93,6 @@
 
                     {{- if not .Site.Data.args.archive -}}
                     <div role="separator"></div>
-
-                    {{- if .Params.source_repo -}}
-                    {{- $msg := i18n "generated_file" -}}
-                    {{- $title := printf $msg .Page.Params.source_repo -}}
-                    <a tabindex="-1" role="menuitem" class="disabled" title="{{- $title -}}">{{- i18n "edit_on_github" -}}</a>
-                    {{- else -}}
-                    {{- if eq $home.Lang "zh" -}}
-                    <a tabindex="-1" role="menuitem" href="https://github.com/istio/istio.io/edit/{{- .Site.Data.args.doc_branch_name -}}/content/zh/{{- .Path -}}">{{- i18n "edit_on_github" -}}</a>
-                    {{- else -}}
-                    <a tabindex="-1" role="menuitem" href="https://github.com/istio/istio.io/edit/{{- .Site.Data.args.doc_branch_name -}}/content/en/{{- .Path -}}">{{- i18n "edit_on_github" -}}</a>
-                    {{- end -}}
-                    {{- end -}}
-
-                    <a tabindex="-1" role="menuitem" href="https://github.com/istio/istio.io/issues/new?title=Issue%20with%20{{- .Path}}">{{- i18n "report_site_bugs" -}}</a>
                     {{- end -}}
 
                     <div role="separator"></div>
@@ -133,7 +121,7 @@
                 </div>
             </div>
 
-            <button id="search-show" title='{{- i18n "search" -}}' aria-label='{{- i18n "search_label" -}}'>{{- partial "icon.html" "magnifier" -}}</button>
+            <!-- <button id="search-show" title='{{- i18n "search" -}}' aria-label='{{- i18n "search_label" -}}'>{{- partial "icon.html" "magnifier" -}}</button> -->
         </div>
 
         <div id="search-form" data-max-width="500" class="menu-panel drop-down" style="top: 100%; height: auto; width: 500px;">
@@ -145,7 +133,6 @@
                             <div class="search-result-topic">
                                 <ul id="searchResults" class="list">
                                 </ul>
-                                <div class="show-more"><a class="widget-link filter" href="/search?q=netlify" title="">More...</a></div>
                             </div>
                         </div>
                     </div>
