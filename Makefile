@@ -18,7 +18,7 @@ endif
 prepare:
 	@npm install -y
 
-site:
+buildsrc:
 	@scripts/gen_site.sh
 
 build: site
