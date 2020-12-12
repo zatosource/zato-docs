@@ -2,7 +2,7 @@
 title: zato create cluster
 ---
 
-Creates a cluster\'s configuration in the [ODB\<../../architecture/sql-odb\>]. Doesn\'t create servers nor any other
+Creates a cluster\'s configuration in the [ODB](../../architecture/sql-odb). Doesn\'t create servers nor any other
 Zato components. Any passwords asked for won\'t be echoed. The command requires that
 the ODB be up and running.
 
@@ -34,17 +34,17 @@ Usage
         [--postgresql_schema POSTGRESQL_SCHEMA] [--odb_password ODB_PASSWORD]
         [--tech_account_password TECH_ACCOUNT_PASSWORD]
         odb_type odb_host odb_port odb_user odb_db_name
-        lb_host lb_port lb_agent_port 
+        lb_host lb_port lb_agent_port
         broker_host broker_port cluster_name tech_account_name
 
-    $ zato create cluster postgresql localhost 5432 zato1 zatodb1 
+    $ zato create cluster postgresql localhost 5432 zato1 zatodb1
         localhost 11223 20151 localhost 6379 PROD3 techacc1
 
-    ODB database password (will not be echoed): 
-    Enter the odb_password again (will not be echoed): 
+    ODB database password (will not be echoed):
+    Enter the odb_password again (will not be echoed):
 
-    Technical account password (will not be echoed): 
-    Enter the tech_account_password again (will not be echoed): 
+    Technical account password (will not be echoed):
+    Enter the tech_account_password again (will not be echoed):
     OK
     $
 

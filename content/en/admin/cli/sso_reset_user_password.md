@@ -6,7 +6,7 @@ Overview
 ========
 
 Changes a user\'s password to an automatically generated one which is printed to stdout. Use
-[zato sso change-user-password \<./sso-change-user-password\>] if you would like to control what password
+[zato sso change-user-password ](./sso-change-user-password) if you would like to control what password
 will be set for user.
 
 The auto-generated password is 192-bit strong. Data comes from a cryprographic source using Python\'s

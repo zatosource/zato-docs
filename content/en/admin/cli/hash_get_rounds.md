@@ -5,7 +5,7 @@ title: zato hash get-rounds
 Overview
 ========
 
-Computes the number of [rounds \<../../sso/config/index\>] for a Zato hashing algorithm so as to make it
+Computes the number of [rounds ](../../sso/config/index) for a Zato hashing algorithm so as to make it
 require a specific amount of time to complete.
 
 An algorithm, such as PBKDF2, requires a parameter called rounds that governs how complex the creation
@@ -18,7 +18,7 @@ such as the maximum login time or electricity usage.
 
 The command requires a single parameter *goal* which is the number of seconds that creating a hashed value should take,
 i.e. a single user or API client requesting the result will wait that many seconds each time the hashed value
-is computed in run-time, which happens, for instance, during user [authentication in SSO \<../../sso/topic/user/login\>].
+is computed in run-time, which happens, for instance, during user [authentication in SSO ](../../sso/topic/user/login).
 
 As an example, with a goal of 0.2 and its resulting rounds, each user\'s password verification will take 0.2 second
 (plus other relevant overhead outside of hashing, such as HTTP communication).

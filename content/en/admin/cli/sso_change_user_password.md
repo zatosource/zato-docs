@@ -5,7 +5,7 @@ title: zato sso change-user-password
 Overview
 ========
 
-Changes a user\'s password to a selected one. Use [zato sso reset-user-password \<./sso-reset-user-password\>] to have Zato
+Changes a user\'s password to a selected one. Use [zato sso reset-user-password ](./sso-reset-user-password) to have Zato
 auto-generate a strong password for user and print it to stdout.
 
 The user must already exist. Optionally, sets a non-default expiry for password or a flag to force the user to change

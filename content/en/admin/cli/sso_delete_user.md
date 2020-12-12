@@ -10,7 +10,7 @@ Deletes an existing user. The action is irrevocable, it is not possible to undo 
 The command works with both regular and super-users. A confirmation prompt to confirm the deletion is shown if \--yes is not given
 on input.
 
-Check [zato sso lock-user \<./sso-lock-user\>] for a command that will lock a user account to prevent the user from logging
+Check [zato sso lock-user ](./sso-lock-user) for a command that will lock a user account to prevent the user from logging
 in without deleting it entirely.
 
 Subcommands

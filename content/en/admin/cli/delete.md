@@ -16,4 +16,4 @@ component is simply a matter of:
 Subcommands
 ===========
 
--   [zato delete odb \<./delete-odb\>]
+-   [zato delete odb ](./delete-odb)

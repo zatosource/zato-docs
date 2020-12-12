@@ -7,7 +7,7 @@ Overview
 
 Unlocks a user account, thus allowing a user to log into it.
 
-Note that the command does not check if the account was previously [locked \<./sso-lock-user\>] or not,
+Note that the command does not check if the account was previously [locked ](./sso-lock-user) or not,
 i.e. it is not an error to run it with a user that is not currently locked.
 
 Subcommands

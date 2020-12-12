@@ -11,4 +11,4 @@ the web admin.
 Subcommands
 ===========
 
--   [zato update password\<./update-password\>]
+-   [zato update password](./update-password)

@@ -2,7 +2,7 @@
 title: zato ca create web_admin
 ---
 
-Creates a certificate and a pair of private and public keys for a [web admin console\<../../architecture/web-admin\>].
+Creates a certificate and a pair of private and public keys for a [web admin console](../../architecture/web-admin).
 
 Files will be stored in following locations, where *path* is the path to the CA used for generating the crypto material.
 

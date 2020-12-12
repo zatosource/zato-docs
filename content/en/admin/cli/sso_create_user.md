@@ -5,12 +5,12 @@ title: zato sso create-user
 Overview
 ========
 
-Creates a new regular user. Use [zato sso create-super-user \<./sso-create-super-user\>] to create new super-users.
+Creates a new regular user. Use [zato sso create-super-user ](./sso-create-super-user) to create new super-users.
 
 If password is not given on input, a prompt will be shown. In either case, password will be validated against configuration
 of the server pointed to by path.
 
-In case of any errors, an error code will be returned, consult the [list of all error codes \<../../sso/status-code\>]
+In case of any errors, an error code will be returned, consult the [list of all error codes ](../../sso/status-code)
 for details.
 
 Note that only username is a required field - in particular, all name-related attributes are optional.

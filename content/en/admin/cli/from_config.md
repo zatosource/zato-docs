@@ -6,19 +6,19 @@ Overview
 ========
 
 Runs commands from a file previously created by running any other command with
-the [\--store-config\<cli_index_common_options\>] switch. That is,
+the [\--store-config](cli_index_common_options) switch. That is,
 it\'s possible to store a command\'s input parameters and replay them later
 on using the from-config command.
 
 From the command\'s which is being exeucted point of view, there is no difference
 whether it\'s run directly or using the from-config mechanism. For instance, both of
-the methods below result in exactly the same action being performed ([dropping all ODB objects \<./delete-odb\>], in this case).
+the methods below result in exactly the same action being performed ([dropping all ODB objects ](./delete-odb), in this case).
 
     $ zato delete odb postgresql localhost 5432 zato1 zatodb1 --odb_password mysecret
     OK
     $
 
-    $ cat ./zato.2013_01_10_21_37_18_387928.config 
+    $ cat ./zato.2013_01_10_21_37_18_387928.config
     # 2013_01_10_21_37_18_387928 - zato1@dev3
     command=delete_odb
     odb_db_name=zatodb1
@@ -28,7 +28,7 @@ the methods below result in exactly the same action being performed ([dropping a
     odb_type=postgresql
     odb_user=zato1
 
-    $ zato from-config ./zato.2013_01_10_21_37_18_387928.config 
+    $ zato from-config ./zato.2013_01_10_21_37_18_387928.config
     OK
     $
 
@@ -46,7 +46,7 @@ Command-specific parameters
 
   Name   Description                                                                                                           Example value
   ------ --------------------------------------------------------------------------------------------------------------------- ----------------------------------------
-  path   Path to a Zato config file created using the [\--store-config\<cli_index_common_options\>] switch ./zat   o\. 2013_01_10_21_37_18_387928. config
+  path   Path to a Zato config file created using the [\--store-config](cli_index_common_options) switch ./zat   o\. 2013_01_10_21_37_18_387928. config
 
 Usage
 =====
@@ -54,7 +54,7 @@ Usage
     $ zato from-config [-h] [--store-log] [--verbose] [--store-config]
         path
 
-    $ zato from-config ./zato.2013_01_10_21_37_18_387928.config 
+    $ zato from-config ./zato.2013_01_10_21_37_18_387928.config
     OK
     $
 

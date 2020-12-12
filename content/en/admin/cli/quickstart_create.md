@@ -6,10 +6,10 @@ Overview
 ========
 
 Quickly creates a Zato cluster. Sets up a
-[Certificate Authority (CA)\<../../architecture/ca\>],
-[web admin\<../../architecture/web-admin\>],
-a [load-balancer\<../../architecture/load-balancer\>],
-and [Zato servers\<../../architecture/servers\>]. This is a great way to get
+[Certificate Authority (CA)](../../architecture/ca),
+[web admin](../../architecture/web-admin),
+a [load-balancer](../../architecture/load-balancer),
+and [Zato servers](../../architecture/servers). This is a great way to get
 started with Zato as its creates everything that is needed to familiarize yourself
 with how a complete Zato environment looks like.
 
@@ -21,7 +21,7 @@ Before running the command, make sure the following are up and running
 
 On a successful completion, the following environment will be created:
 
--   [ODB objects\<../../architecture/sql-odb\>], if they didn\'t already exist
+-   [ODB objects](../../architecture/sql-odb), if they didn\'t already exist
 -   A Certificate Authority
 -   web admin running on <http://localhost:8183>
 -   A load-balancer accepting HTTP connections on <http://localhost:11223>
@@ -52,7 +52,7 @@ password will be printed out to screen (such as *ohch-igor-tita-marc* in a usage
 Note that a new admin user will not be created if one already exists in the ODB, for instance,
 if there\'s already been a quickstart cluster created using the ODB connection parameters
 provided. In such case, you should use the already existing admin credentials for
-connecting to the new cluster\'s web admin console. Tip: use the [zato update password \<./update-password\>]
+connecting to the new cluster\'s web admin console. Tip: use the [zato update password ](./update-password)
 command if you don\'t remember the password.
 
 Any passwords asked for will not be echoed.

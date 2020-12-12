@@ -2,7 +2,7 @@
 title: zato ca create lb_agent
 ---
 
-Creates a certificate and a pair of private and public keys for a [Zato load-balancer\'s agent\<../../architecture/load-balancer\>].
+Creates a certificate and a pair of private and public keys for a [Zato load-balancer\'s agent](../../architecture/load-balancer).
 Files will be stored in following locations, where *path* is the path to the CA used for generating the crypto material.
 
   Name          Location
@@ -26,7 +26,7 @@ Command-specific parameters
 
 Usage
 =====
-
+```
     $ zato ca create lb_agent [-h] [--store-log] [--verbose] [--store-config]
         [--organization ORGANIZATION] [--locality LOCALITY]
         [--state-or-province STATE_OR_PROVINCE] [--country COUNTRY] [--common-name COMMON_NAME]
@@ -35,6 +35,7 @@ Usage
     $ zato ca create lb_agent ~/zato1/ca/ zato_lb_agent1
     OK
     $
+```
 
 Changelog
 =========

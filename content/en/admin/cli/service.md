@@ -10,4 +10,4 @@ Commands operating on services.
 Subcommands
 ===========
 
--   [zato service invoke\<./service-invoke\>]
+-   [zato service invoke](./service-invoke)

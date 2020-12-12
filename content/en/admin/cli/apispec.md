@@ -5,7 +5,7 @@ title: zato apispec
 Overview
 ========
 
-Generates API documentation for services that use [SimpleIO \<../../progguide/sio/index\>]. The documentation is output as a
+Generates API documentation for services that use [SimpleIO](../../progguide/sio/index). The documentation is output as a
 [Sphinx](http://sphinx-doc.org/)
 project containing an OpenAPI specification and a textual description of services.
 

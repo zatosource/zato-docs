@@ -2,7 +2,7 @@
 title: zato create user
 ---
 
-Creates a new user. As of now, the command creates new [web admin\<../../architecture/web-admin\>]
+Creates a new user. As of now, the command creates new [web admin](../../architecture/web-admin)
 users only and as such, needs an active connection to the ODB. ODB connection parameters
 are read off the web admin directory *path* points to.
 
@@ -24,8 +24,8 @@ Usage
     $ zato create user ~/prod1/web-admin
     Username (Leave blank to use 'myname'): jane.roe
     E-mail address: jane.roe@example.com
-    Password: 
-    Password (again): 
+    Password:
+    Password (again):
     OK
     $
 

@@ -10,4 +10,4 @@ Manages a quickstart environment - a one-command cluster ready to use in 10 seco
 Subcommands
 ===========
 
--   [zato quickstart create \<./quickstart-create\>]
+-   [zato quickstart create ](./quickstart-create)

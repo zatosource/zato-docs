@@ -8,7 +8,7 @@ Overview
 Deletes an ODB. Drops all the SQL objects associates with the ODB. Does not
 attempt to delete the database itself.
 
-Similarly as when [creating an ODB \<./create-odb\>], the database user will need to be
+Similarly as when [creating an ODB ](./create-odb), the database user will need to be
 granted rights required for dropping SQL objects. It is recommended that the
 during the command's execution the user be the database's owner. These elevated
 privileges can be curtailed upon the command's successful completion.
@@ -35,8 +35,8 @@ Usage
 
     $ zato delete odb postgresql localhost 5432 zato1 zatodb1
 
-    ODB database password (will not be echoed): 
-    Enter the odb_password again (will not be echoed): 
+    ODB database password (will not be echoed):
+    Enter the odb_password again (will not be echoed):
     OK
     $
 

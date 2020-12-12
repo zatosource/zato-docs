@@ -2,7 +2,7 @@
 title: zato create odb
 ---
 
-Creates an [ODB\<../../architecture/sql-odb\>]\'s structure - sets up all the SQL
+Creates an [ODB](../../architecture/sql-odb)\'s structure - sets up all the SQL
 objects needed to support multiple Zato clusters, such as tables and indexes.
 
 Depending on the database type, the database user will need to be granted rights
@@ -34,8 +34,8 @@ Usage
 
     $ zato create odb postgresql localhost 5432 zato1 zatodb1
 
-    ODB database password (will not be echoed): 
-    Enter the odb_password again (will not be echoed): 
+    ODB database password (will not be echoed):
+    Enter the odb_password again (will not be echoed):
     OK
     $
 

@@ -2,7 +2,7 @@
 title: zato create load_balancer
 ---
 
-Creates a [load-balancer\<../../architecture/load-balancer\>]. The directory the load-balancer will be created in
+Creates a [load-balancer](../../architecture/load-balancer). The directory the load-balancer will be created in
 must already exist and be empty.
 
 Command-specific parameters
@@ -40,11 +40,11 @@ Usage
     $ zato create load_balancer [-h] [--store-log] [--verbose] [--store-config]
         path pub_key_path priv_key_path cert_path ca_certs_path
 
-    $ zato create load_balancer ~/dev3/load-balancer/ 
+    $ zato create load_balancer ~/dev3/load-balancer/
         ~/crypto/zato.lbdev3.pub.pem
         ~/crypto/zato.lbdev3.priv.pem
         ~/crypto/zato.lbdev3.cert.pem
-        ~/crypto/ca-cert.pem 
+        ~/crypto/ca-cert.pem
     OK
     $
 

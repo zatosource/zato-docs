@@ -2,14 +2,14 @@
 title: zato create server
 ---
 
-Creates a [Zato server\<../../architecture/servers\>] - all the directories needed
+Creates a [Zato server](../../architecture/servers) - all the directories needed
 by a server and sets it up so it is ready to join a cluster. The directory pointed
 to by *path* must already exist and be empty. *cluster_name* must be a name of
-a cluster previously created using the [zato create cluster\<./create-cluster\>] command.
+a cluster previously created using the [zato create cluster](./create-cluster) command.
 
 The command *does not* make the server start accepting messages immediately.
-An administrator still needs to [start the server\<./start\>] and accept it into a cluster
-by [confirming the step in the web admin\<../../web-admin/servers/add-remove\>].
+An administrator still needs to [start the server](./start) and accept it into a cluster
+by [confirming the step in the web admin](../../web-admin/servers/add-remove).
 
 Command-specific parameters
 ===========================
@@ -20,17 +20,17 @@ Command-specific parameters
   \--odb_password        ODB password                                                                  BbvIzoeqvz6aE
   \--kvdb_password       Key/value DB password (Redis), if any                                         20E2q0d3wN7Gw
   \--secret_key          A random secret key previously generated with the                             jN09DcGqhICFluzHVgokQj\...
-                         [zato crypto create-secret-key \<./crypto/create-secret-key\>].   
-                         It is used to encrypt passwords and other sensitive data in ODB.              
-                         Must be the same for all servers in a single cluster. If not                  
-                         provided, a new key will be generated automatically.                          
+                         [zato crypto create-secret-key ](./crypto/create-secret-key).
+                         It is used to encrypt passwords and other sensitive data in ODB.
+                         Must be the same for all servers in a single cluster. If not
+                         provided, a new key will be generated automatically.
   \--jwt_secret          A random secret key previously generated with the                             MI8gn9ej9WCyM6LgHBSE3c\...
-                         [zato crypto create-secret-key \<./crypto/create-secret-key\>].   
-                         Used by                                                                       
-                         [JWT security definitions \<../../web-admin/security/jwt\>].      
-                         If JWT is used, must be the same for all servers in a single                  
-                         cluster. If not provided, a new key will be generated                         
-                         automatically.                                                                
+                         [zato crypto create-secret-key ](./crypto/create-secret-key).
+                         Used by
+                         [JWT security definitions ](../../web-admin/security/jwt).
+                         If JWT is used, must be the same for all servers in a single
+                         cluster. If not provided, a new key will be generated
+                         automatically.
   path                   An empty directory to install the server to                                   \~/prod3/server7/
   odb_type               ODB type, must be one of: \[\'mysql\', \'postgresql\', \'sqlite\'\]           postgresql
   odb_host               Host the ODB is running on                                                    localhost

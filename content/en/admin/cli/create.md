@@ -14,7 +14,7 @@ document describing some basic metadata regarding the given component.
 Sample .zato-info:
 
     {
-     "created_user_host": "admin1@prod17", 
+     "created_user_host": "admin1@prod17",
      "version": "1.1",
      "component": "SERVER",
      "created_ts": "2013-06-13T22:32:23.697300"
@@ -27,15 +27,15 @@ Sample .zato-info:
   version             Zato version the component was created with
   component           One of: CA, LOAD_BALANCER, SERVER or WEB_ADMIN.
                       CA is a Certificate Authority created by
-                      [quickstart clusters \<./quickstart-create\>].
+                      [quickstart clusters ](./quickstart-create).
   created_ts          When the component was created, in UTC
 
 Subcommands
 ===========
 
--   [zato create cluster\<./create-cluster\>]
--   [zato create load_balancer\<./create-load-balancer\>]
--   [zato create odb\<./create-odb\>]
--   [zato create server\<./create-server\>]
--   [zato create user\<./create-user\>]
--   [zato create web_admin\<./create-web-admin\>]
+-   [zato create cluster](./create-cluster)
+-   [zato create load_balancer](./create-load-balancer)
+-   [zato create odb](./create-odb)
+-   [zato create server](./create-server)
+-   [zato create user](./create-user)
+-   [zato create web_admin](./create-web-admin)

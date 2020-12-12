@@ -6,9 +6,9 @@ Overview
 ========
 
 Creates a new secret key that may be used by
-[Single Sign-On \<../../../sso/index\>]
+[Single Sign-On ](../../../sso/index)
 configuration and
-[create server \<../create-server\>]
+[create server ](../create-server)
 command.
 
 Subcommands

@@ -5,10 +5,10 @@ title: zato create scheduler
 Creates a new scheduler intsance - all the directories needed
 by a scheduler and sets it up so it is ready to join a cluster. The directory pointed
 to by *path* must already exist and be empty. *cluster_name* must be a name of
-a cluster previously created using the [zato create cluster\<./create-cluster\>] command.
+a cluster previously created using the [zato create cluster](./create-cluster) command.
 
 The command *does not* make the scheduler start its tasks immediately.
-An administrator still needs to [start the scheduler \<./start\>] explicitly.s
+An administrator still needs to [start the scheduler ](./start) explicitly.s
 
 Command-specific parameters
 ===========================

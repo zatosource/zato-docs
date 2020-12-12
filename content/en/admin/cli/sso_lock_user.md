@@ -5,7 +5,7 @@ title: zato sso lock-user
 Overview
 ========
 
-Locks a user account. A locked user account cannot be logged into until it is [unlocked \<./sso-unlock-user\>].
+Locks a user account. A locked user account cannot be logged into until it is [unlocked ](./sso-unlock-user).
 
 Note that the command does not check if the account is already locked or not,
 i.e. it is not an error to run it with a user that is already locked.
