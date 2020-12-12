@@ -15,6 +15,9 @@ ifeq ($(CONTEXT),production)
 baseurl := "$(URL)"
 endif
 
+prepare:
+	@npm install -y
+
 site:
 	@scripts/gen_site.sh
 

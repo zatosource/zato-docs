@@ -16,6 +16,8 @@
 
 set -e
 
+[[ -d node_modules/.bin ]] && PATH="$PATH:node_modules/.bin"
+
 mkdir -p generated/css generated/js generated/img tmp/js
 
 sass src/sass/_all.scss all.css -s compressed --no-source-map
@@ -36,7 +38,6 @@ babel --source-maps --minified --no-comments --presets minify \
   tmp/js/prism.js \
   tmp/js/codeBlocks.js \
   tmp/js/links.js \
-  tmp/js/readTracking.js \
   tmp/js/resizeObserver.js \
   tmp/js/scroll.js \
   tmp/js/overlays.js \
@@ -44,6 +45,7 @@ babel --source-maps --minified --no-comments --presets minify \
   tmp/js/callToAction.js \
   tmp/js/events.js \
   --out-file generated/js/all.min.js
+  # tmp/js/readTracking.js \
 
 babel --source-maps --minified --no-comments \
   tmp/js/themes_init.js \
