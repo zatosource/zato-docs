@@ -10,9 +10,9 @@ Overview
 
 Three contributors to Zato\'s demands on disk space are
 
--   [Logs \<admin-capacity-logs\>]
--   [SQL ODB \<admin-capacity-sql-odb\>]
--   [Redis broker \<admin-capacity-redis\>]
+-   [Logs ](admin-capacity-logs)
+-   [SQL ODB ](admin-capacity-sql-odb)
+-   [Redis broker ](admin-capacity-redis)
 
 Logs {#admin-capacity-logs}
 ----
@@ -106,7 +106,7 @@ Statistics will always generate a lot of keys and you should use tools such
 as [redis-sampler](https://github.com/antirez/redis-sampler) to get an understanding
 of how much they will take up.
 
-Note that old and uneeded statistics [can always need to be cleaned up \<../../stats/maintenance\>].
+Note that old and uneeded statistics [can always need to be cleaned up ](../../stats/maintenance).
 
 CPU
 ===
@@ -114,7 +114,7 @@ CPU
 Zato servers can use as many CPUs as you can offer - there are no hard limits or minimal
 requirements. The more CPU you will assign to systems Zato is running on the faster
 Zato itself will perform, provided
-[main.gunicorn_workers \<admin-guide-config-server-main.gunicorn_workers\>]
+[main.gunicorn_workers ](admin-guide-config-server-main.gunicorn_workers)
 is set to an optimal value.
 
 Keep in mind though that adding more CPU will rarely make the whole environment
@@ -133,7 +133,7 @@ RAM
 ===
 
 You should allow for at least 50 MB of RAM for each
-[worker process \<admin-guide-config-server-main.gunicorn_workers\>],
+[worker process ](admin-guide-config-server-main.gunicorn_workers),
 however the upper limit will depend on how big the traffic is.
 
 The load-balancer is very light on RAM and you should start with 256 MB and assign

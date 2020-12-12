@@ -15,6 +15,6 @@ client certificates.
 
 There are 3 aspects of the SSL/TLS configuration discussed in subsequent task-oriented chapters:
 
--   Traffic [from client applications to a Zato cluster \<client-lb\>]\'s load-balancer
--   Traffic [from the load-balancer to servers \<lb-servers\>] within a cluster
--   Traffic [from services running on servers to external applications \<servers-ext\>]
+-   Traffic [from client applications to a Zato cluster ](client-lb)\'s load-balancer
+-   Traffic [from the load-balancer to servers ](lb-servers) within a cluster
+-   Traffic [from services running on servers to external applications ](servers-ext)

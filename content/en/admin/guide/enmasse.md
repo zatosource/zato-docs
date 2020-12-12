@@ -5,8 +5,8 @@ title: Managing server objects en masse
 Overview
 ========
 
-In addition to the [GUI \<../../web-admin/intro\>], [CLI \<../cli/index\>]
-and [API \<../../web-admin/intro\>], you can use the
+In addition to the [GUI \<../../web-admin/intro\>], [CLI ](../cli/index)
+and [API ](../../web-admin/intro), you can use the
 [enmasse](https://zato.io/download/enmasse) command line tool to manage
 server objects as a group. This lets you store each object configuration in
 YAML or JSON files, in a repository where they can be versioned or backed up
@@ -30,7 +30,7 @@ Usage scenarios
 ===============
 
 -   You create a development cluster and quickly prototype a solution using the
-    [GUI \<../../web-admin/intro\>]. For tests and production, however, you prefer
+    [GUI ](../../web-admin/intro). For tests and production, however, you prefer
     to store the config in a git repository. Hence you use enmasse to export all server
     objects from a dev cluster into JSON. The JSON is next imported to tests and later on,
     on production.
@@ -201,19 +201,19 @@ into a cluster.
 
 :   Security definitions. \'type\' must be one of:
 
-    -   \'apikey\' for [API keys \<../../web-admin/security/apikey\>]
-    -   \'aws\' for [AWS access keys \<../../web-admin/security/aws\>]
-    -   \'basic_auth\' for [HTTP basic authentication \<../../web-admin/security/basic-auth\>]
-    -   \'jwt\' for [JWT \<../../web-admin/security/jwt\>]
-    -   \'ntlm\' for [NTLM credentials \<../../web-admin/security/ntlm\>]
-    -   \'oauth\' for [OAuth \<../../web-admin/security/oauth\>]
-    -   \'vault_connection\' for [vault connections \<../../web-admin/security/vault\>]
-    -   \'wss\' for [WS-Security definitions \<../../web-admin/security/ws-security\>]
-    -   \'xpath_sec\' for [XPath security \<../../web-admin/security/xpath\>]
+    -   \'apikey\' for [API keys ](../../web-admin/security/apikey)
+    -   \'aws\' for [AWS access keys ](../../web-admin/security/aws)
+    -   \'basic_auth\' for [HTTP basic authentication ](../../web-admin/security/basic-auth)
+    -   \'jwt\' for [JWT ](../../web-admin/security/jwt)
+    -   \'ntlm\' for [NTLM credentials ](../../web-admin/security/ntlm)
+    -   \'oauth\' for [OAuth ](../../web-admin/security/oauth)
+    -   \'vault_connection\' for [vault connections ](../../web-admin/security/vault)
+    -   \'wss\' for [WS-Security definitions ](../../web-admin/security/ws-security)
+    -   \'xpath_sec\' for [XPath security ](../../web-admin/security/xpath)
 
 `channel_amqp`
 
-:   [AMQP channels. \<../../web-admin/channels/amqp\>]
+:   [AMQP channels. ](../../web-admin/channels/amqp)
     Key \'def\' is an AMQP connection definition to use.
 
 `channel_jms_wmq`
@@ -229,57 +229,57 @@ into a cluster.
 
 `channel_soap`
 
-:   [SOAP channels. \<../../web-admin/channels/soap\>]
+:   [SOAP channels. ](../../web-admin/channels/soap)
     Key \'sec_def\' is the security definition to use. Keys \'connection\' and \'transport\'
     can be skipped.
 
 `channel_zmq`
 
-:   [Zero MQ channels. \<../../web-admin/channels/zmq\>]
+:   [Zero MQ channels. ](../../web-admin/channels/zmq)
 
 `cloud_aws_s3`
 
-:   [S3 buckets \<../../web-admin/cloud/aws/s3\>]
+:   [S3 buckets ](../../web-admin/cloud/aws/s3)
 
 `def_amqp`
 
-:   [AMQP connection definitions. \<../../web-admin/conn-def/amqp\>]
+:   [AMQP connection definitions. ](../../web-admin/conn-def/amqp)
 
 `def_cassandra`
 
-:   [Cassandra connection definitions. \<../../web-admin/conn-def/cassandra\>]
+:   [Cassandra connection definitions. ](../../web-admin/conn-def/cassandra)
 
 `def_cloud_openstack_swift`
 
-:   [OpenStack Swift definitions. \<../../web-admin/cloud/openstack/swift\>]
+:   [OpenStack Swift definitions. ](../../web-admin/cloud/openstack/swift)
 
 `def_jms_wmq`
 
-:   [IBM MQ definitions. \<../../web-admin/conn-def/jms-wmq\>]
+:   [IBM MQ definitions. ](../../web-admin/conn-def/jms-wmq)
 
 `def_namespace`
 
-:   [Message namespace definitions. \<../../web-admin/messages/xml-ns\>]
+:   [Message namespace definitions. ](../../web-admin/messages/xml-ns)
 
 `email_imap`
 
-:   [IMAP mail connections. \<../../web-admin/email/imap\>]
+:   [IMAP mail connections. ](../../web-admin/email/imap)
 
 `email_smtp`
 
-:   [SMTP mail connections. \<../../web-admin/email/smtp\>]
+:   [SMTP mail connections. ](../../web-admin/email/smtp)
 
 `json_pointer`
 
-:   [JSON pointer definitions. \<../../web-admin/messages/json-pointer\>]
+:   [JSON pointer definitions. ](../../web-admin/messages/json-pointer)
 
 `notif_cloud_openstack_swift`
 
-:   [OpenStack Swift notifiers. \<../../web-admin/notif/cloud/openstack/swift\>]
+:   [OpenStack Swift notifiers. ](../../web-admin/notif/cloud/openstack/swift)
 
 `notif_sql`
 
-:   [SQL notifiers. \<../../web-admin/notif/sql\>]
+:   [SQL notifiers. ](../../web-admin/notif/sql)
 
 `outconn_amqp`
 
@@ -289,7 +289,7 @@ into a cluster.
 
 `outconn_ftp`
 
-:   [Outgoing FTP connections. \<../../web-admin/outgoing/ftp\>]
+:   [Outgoing FTP connections. ](../../web-admin/outgoing/ftp)
 
 `outconn_jms_wmq`
 
@@ -298,15 +298,15 @@ into a cluster.
 
 `outconn_odoo`
 
-:   [Outgoing Odoo connections. \<../../web-admin/outgoing/odoo\>]
+:   [Outgoing Odoo connections. ](../../web-admin/outgoing/odoo)
 
 `outconn_sap`
 
-:   [Outgoing SAP connections. \<../../web-admin/outgoing/sap\>]
+:   [Outgoing SAP connections. ](../../web-admin/outgoing/sap)
 
 `outconn_plain_http`
 
-:   [Outgoing REST connections \<../../web-admin/outgoing/plain-http\>]. Key \'sec_def\' is the
+:   [Outgoing REST connections ](../../web-admin/outgoing/plain-http). Key \'sec_def\' is the
     security definition to use. Keys \'connection\' and \'transport\' can be skipped.
 
 `outconn_soap`
@@ -317,39 +317,39 @@ into a cluster.
 
 `outconn_sql`
 
-:   [Outgoing SQL connections. \<../../web-admin/outgoing/sql\>]
+:   [Outgoing SQL connections. ](../../web-admin/outgoing/sql)
 
 `outconn_zmq`
 
-:   [Outgoing ZeroMQ connections. \<../../web-admin/outgoing/zmq\>]
+:   [Outgoing ZeroMQ connections. ](../../web-admin/outgoing/zmq)
 
 `query_cassandra`
 
-:   [Cassandra queries. \<../../web-admin/query/cassandra\>]
+:   [Cassandra queries. ](../../web-admin/query/cassandra)
 
 `scheduler`
 
-:   [Scheduler jobs. \<../../web-admin/scheduler/main\>]
+:   [Scheduler jobs. ](../../web-admin/scheduler/main)
 
 `search_es`
 
-:   [ElasticSearch connections. \<../../web-admin/search/es\>]
+:   [ElasticSearch connections. ](../../web-admin/search/es)
 
 `search_solr`
 
-:   [Apache Solr connections. \<../../web-admin/search/solr\>]
+:   [Apache Solr connections. ](../../web-admin/search/solr)
 
 `xpath`
 
-:   [XPath message definitions. \<../../web-admin/messages/xpath\>]
+:   [XPath message definitions. ](../../web-admin/messages/xpath)
 
 `zato_channel_web_socket`
 
-:   [Web socket channel definitions. \<../../web-admin/channels/wsx\>]
+:   [Web socket channel definitions. ](../../web-admin/channels/wsx)
 
 `zato_sms_twilio`
 
-:   [Twilio notifiers. \<../../web-admin/sms/twilio\>]
+:   [Twilio notifiers. ](../../web-admin/sms/twilio)
 
 Sample YAML Files
 =================

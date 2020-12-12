@@ -75,5 +75,5 @@ Installation steps
     ubuntu$
 
 That concludes the process - you can refer to the main
-[documentation index \<../../../../index\>]
+[documentation index ](../../../../index)
 now.

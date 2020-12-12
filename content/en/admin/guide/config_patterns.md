@@ -6,15 +6,15 @@ Overview
 ========
 
 Several configuration stanzas in
-[server.conf \<./install-config/config-server\>]
+[server.conf ](./install-config/config-server)
 support the usage of string patterns to match in run-time. Regardless of the exact place
 where it\'s used, the matching process works identically and is described in this chapter.
 
 The entries that can be used with patterns are:
 
--   [deploy_patterns_allowed \<admin-guide-config-server-deploy_patterns_allowed\>]
--   [invoke_patterns_allowed \<admin-guide-config-server-invoke_patterns_allowed\>]
--   [invoke_target_patterns_allowed \<admin-guide-config-server-invoke_target_patterns_allowed\>]
+-   [deploy_patterns_allowed ](admin-guide-config-server-deploy_patterns_allowed)
+-   [invoke_patterns_allowed ](admin-guide-config-server-invoke_patterns_allowed)
+-   [invoke_target_patterns_allowed ](admin-guide-config-server-invoke_target_patterns_allowed)
 
 The first one will be used as a usage example but again, each of the supports the same mechanism in its own area.
 
@@ -54,9 +54,9 @@ separately, with wildcard operators being considered less than characters.
 
 Results of matching are cached and subsequent calls to evaluate the same pattern will be returned immediately. The cache does not
 expire and to update patterns a change to
-[server.conf \<./install-config/config-server\>]
+[server.conf ](./install-config/config-server)
 is needed followed by a server restart (zato
-[stop \<../cli/stop\>]/[start \<../cli/start\>]).
+[stop \<../cli/stop\>]/[start ](../cli/start)).
 
 To special-case the most common configuration, if an entire stanza consists only of the *order* key followed by either
 *\*=True* (as in the default configuration) or *\*=False*, a fast path evaluating to True/False, respectively, is taken each time

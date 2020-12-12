@@ -107,7 +107,7 @@ but they may be employed to configure particular details of each of the componen
   ZATO_IDE_PUBLISHER_PASSWORD   Password for user [ide_publisher], used for IDE integration. If not defined,
                                 the value has to be set manually.
   ZATO_ADMIN_INVOKE_PASSWORD    Password used for internal communication. If not defined, the value has to be set manually.
-  ZATO_ENMASSE_FILE             Full path to a file or URL to [an enmasse file \<../../enmasse\>] with object
+  ZATO_ENMASSE_FILE             Full path to a file or URL to [an enmasse file ](../../enmasse) with object
                                 definitions to been imported. If the value is a path to a file, make sure the file available to
                                 the Pod in the server.
   REDIS_HOSTNAME                Redis service hostname. Default value is **localhost**.
@@ -118,14 +118,14 @@ but they may be employed to configure particular details of each of the componen
   ODB_USERNAME                  ODB username.
   ODB_PASSWORD                  ODB password.
   SECRET_KEY                    A random secret key previously generated with
-                                [zato crypto create-secret-key \<../../../cli/crypto/create-secret-key\>].
+                                [zato crypto create-secret-key ](../../../cli/crypto/create-secret-key).
                                 It is used to encrypt passwords and other sensitive data in ODB.
                                 Must be the same for all servers in a single cluster. If not
                                 provided, a new key will be generated automatically.
   JWT_SECRET_KEY                A random secret key previously generated with
-                                [zato crypto create-secret-key \<../../../cli/crypto/create-secret-key\>].
+                                [zato crypto create-secret-key ](../../../cli/crypto/create-secret-key).
                                 Used by
-                                [JWT security definitions \<../../../../web-admin/security/jwt\>].
+                                [JWT security definitions ](../../../../web-admin/security/jwt).
                                 If JWT is used, must be the same for all servers in a single
                                 cluster. If not provided, a new key will be generated
                                 automatically.

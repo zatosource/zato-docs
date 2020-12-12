@@ -141,7 +141,7 @@ but they may be employed to configure particular details of each of the componen
   zatoIdePublisherPassword   Password for user [ide_publisher], used for IDE integration. If not defined,
                              the value has to be set manually.
   zatoAdminInvokePassword    Password used for internal communication. If not defined, the value has to be set manually.
-  zatoEnmasseFile            Full path to a file or URL to [an enmasse file \<../../enmasse\>] with object
+  zatoEnmasseFile            Full path to a file or URL to [an enmasse file ](../../enmasse) with object
                              definitions to been imported. If the value is a path to a file, make sure the file available to
                              the Pod in the server.
   redisHostname              Redis service hostname. Default value is **localhost**.
@@ -153,14 +153,14 @@ but they may be employed to configure particular details of each of the componen
   odbUsername                ODB username.
   odbPassword                ODB password.
   secretKey                  A random secret key previously generated with
-                             [zato crypto create-secret-key \<../../../cli/crypto/create-secret-key\>].
+                             [zato crypto create-secret-key ](../../../cli/crypto/create-secret-key).
                              It is used to encrypt passwords and other sensitive data in ODB.
                              Must be the same for all servers in a single cluster. If not
                              provided, a new key will be generated automatically.
   jwtSecretKey               A random secret key previously generated with
-                             [zato crypto create-secret-key \<../../../cli/crypto/create-secret-key\>].
+                             [zato crypto create-secret-key ](../../../cli/crypto/create-secret-key).
                              Used by
-                             [JWT security definitions \<../../../../web-admin/security/jwt\>].
+                             [JWT security definitions ](../../../../web-admin/security/jwt).
                              If JWT is used, must be the same for all servers in a single
                              cluster. If not provided, a new key will be generated
                              automatically.

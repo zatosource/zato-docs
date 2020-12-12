@@ -14,15 +14,15 @@ Key features:
 Tasks
 =====
 
--   Configuring a load-balancer and servers to use [use SSL/TLS without client certificates \<admin-tls-lb-no-certs\>]
--   Configuring a load-balancer and servers to use [use SSL/TLS with client certificates \<admin-tls-lb-certs\>]
+-   Configuring a load-balancer and servers to use [use SSL/TLS without client certificates ](admin-tls-lb-no-certs)
+-   Configuring a load-balancer and servers to use [use SSL/TLS with client certificates ](admin-tls-lb-certs)
 
 SSL/TLS from a load-balancer to servers - no client certificates {#admin-tls-lb-no-certs}
 ================================================================
 
 -   For each server in a cluster:
 
-    -   Open [server.conf \<../install-config/config-server\>] and set *crypto.use_tls* to True, so it reads:
+    -   Open [server.conf ](../install-config/config-server) and set *crypto.use_tls* to True, so it reads:
 
         ``` {.ini}
         [crypto]
@@ -31,12 +31,12 @@ SSL/TLS from a load-balancer to servers - no client certificates {#admin-tls-lb-
 
     -   Restart the server
 
--   Open the load-balancer\'s configuration in [source code view \<../../../web-admin/load-balancer/source-code\>]
+-   Open the load-balancer\'s configuration in [source code view ](../../../web-admin/load-balancer/source-code)
 
 -   Find lines referring to servers - contained within the *ZATO begin backend bck_http_plain* block, such as below.
     Note that the example shown splits a long line into several ones but the line must be kept long without newlines:
 
-    ``` 
+    ```
     server http_plain--server1 127.0.0.1:17010 \
       check inter 2s rise 2 fall 2 \
       # ZATO backend bck_http_plain:server--server1
@@ -61,7 +61,7 @@ SSL/TLS from a load-balancer to servers - with client certificates {#admin-tls-l
 
 -   For each server in a cluster:
 
-    -   Open [server.conf \<../install-config/config-server\>] and set:
+    -   Open [server.conf ](../install-config/config-server) and set:
 
         -   *crypto.use_tls* to True:
         -   *crypto.tls_client_certs* to required
@@ -74,12 +74,12 @@ SSL/TLS from a load-balancer to servers - with client certificates {#admin-tls-l
 
     -   Restart the server
 
--   Open the load-balancer\'s configuration in [source code view \<../../../web-admin/load-balancer/source-code\>]
+-   Open the load-balancer\'s configuration in [source code view ](../../../web-admin/load-balancer/source-code)
 
 -   Find lines referring to servers - contained within the *ZATO begin backend bck_http_plain* block, such as below.
     Note that the example shown splits a long line into several ones but the line must be kept long without newlines:
 
-    ``` 
+    ```
     server http_plain--server1 127.0.0.1:17010 \
       check inter 2s rise 2 fall 2 \
       # ZATO backend bck_http_plain:server--server1

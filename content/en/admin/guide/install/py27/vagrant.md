@@ -69,9 +69,9 @@ a default value will be automatically generated.
   Variable                      Notes
   ----------------------------- --------------------------------------------------------------------------------
   ZATO_WEB_ADMIN_PASSWORD       Password to login to web-admin with
-  ZATO_IDE_PUBLISHER_PASSWORD   Password for [IDE integration \<../../../../progguide/ide/index\>]
+  ZATO_IDE_PUBLISHER_PASSWORD   Password for [IDE integration ](../../../../progguide/ide/index)
   ZATO_PY_VERSION               Python version. One of py3 or py27.
-  ZATO_ENMASSE_FILE             Full path or URL to [an enmasse file \<../../enmasse\>] with
+  ZATO_ENMASSE_FILE             Full path or URL to [an enmasse file ](../../enmasse) with
                                 object definitions to been imported.
   ZATO_HOST_DEPLOY_DIR          Full path to folder containing the services for
-                                [hot deploy \<../../installing-services\>]
+                                [hot deploy ](../../installing-services)

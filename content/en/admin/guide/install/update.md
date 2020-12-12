@@ -2,7 +2,7 @@
 title: Installing updates to Zato installation
 ---
 
-In accordance with [Zato release life-cycle policy \<../../../release/policy\>], each major release receives
+In accordance with [Zato release life-cycle policy ](../../../release/policy), each major release receives
 periodic updates to functionality, including security and stability fixes.
 
 Each such update is always backwards-compatible within the same major release.
@@ -35,9 +35,9 @@ To install updates, run the commands below:
     -   Stop/start the scheduler
 
 -   The commands to stop and start web-admin, load-balancer and scheduler are
-    [zato stop \<../../cli/stop\>]
+    [zato stop ](../../cli/stop)
     and
-    [zato start \<../../cli/start\>]
+    [zato start ](../../cli/start)
 
 -   The command to stop servers is also *zato stop* but, additionally and unlike web-admin or load-balancer, Zato servers need
     to be started with the *\--sync-internal* flag, as below:

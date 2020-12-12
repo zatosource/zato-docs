@@ -2,7 +2,7 @@
 title: RBAC (Role-based access control)
 ---
 
-RBAC allows one to group related client credentials accessing [HTTP channels \<../../../web-admin/channels/plain-http\>]
+RBAC allows one to group related client credentials accessing [HTTP channels ](../../../web-admin/channels/plain-http)
 into roles and assign permissions -Create, Read, Update, Delete - to roles instead of clients directly.
 
 Using roles lets one cleanly separate access rights granted for individual services without an overhead of maintaining permissions
@@ -14,9 +14,9 @@ For instance - in run-time, client accessing an HTTP channel with GET will be va
 mounted on that channel.
 
 Clients belonging to one role may all use different security mechanism - e.g. some may use
-[HTTP Basic Auth \<../../../web-admin/security/basic-auth\>]
+[HTTP Basic Auth ](../../../web-admin/security/basic-auth)
 whereas the rest will be using
-[client SSL/TLS certificates \<../../../web-admin/security/tls/overview\>].
+[client SSL/TLS certificates ](../../../web-admin/security/tls/overview).
 
 Details
 =======

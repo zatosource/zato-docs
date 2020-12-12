@@ -58,7 +58,7 @@ host$ sudo docker run -it --rm -p 22 \
 Importing enmasse definitions
 -----------------------------
 
-A starting container can import [enmasse \<../../enmasse\>] definitions with objects that the cluster running in the
+A starting container can import [enmasse ](../../enmasse) definitions with objects that the cluster running in the
 container should use.
 
 In this manner, channels, connections and other pieces of a cluster\'s configuration can be recreated each time
@@ -98,7 +98,7 @@ but they may be employed to configure particular details of each of the componen
                                 the value is generated automatically at runtime.
   ZATO_IDE_PUBLISHER_PASSWORD   Password for user [ide_publisher], used for IDE integration. If not defined,
                                 the value has to be set manually.
-  ZATO_ENMASSE_FILE             Full path to [an enmasse file \<../../enmasse\>] with object definitions to been imported.
+  ZATO_ENMASSE_FILE             Full path to [an enmasse file ](../../enmasse) with object definitions to been imported.
   REDIS_HOSTNAME                Redis service hostname. Default value is **localhost**.
   ODB_TYPE                      ODB type to use. Must be one of: [mysql], [postgresql] or [sqlite]. Default value is **sqlite**.
   ODB_HOSTNAME                  ODB hostname.

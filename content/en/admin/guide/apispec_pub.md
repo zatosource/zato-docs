@@ -36,9 +36,9 @@ Granting third party access
 ===========================
 
 To grant a third party access to the service, a
-[HTTP Basic Auth credential \</web-admin/security/basic-auth\>] must be
+[HTTP Basic Auth credential ](/web-admin/security/basic-auth) must be
 created for the third party, and that credential must be associated with the
-API specification service\'s [RBAC role \</admin/guide/rbac/overview\>].
+API specification service\'s [RBAC role ](/admin/guide/rbac/overview).
 
 Update the cluster configuration
 --------------------------------
@@ -50,7 +50,7 @@ ensure that you have first [exposed the desired services
 Create a HTTP Basic Auth credential
 -----------------------------------
 
-Use the [HTTP Basic Auth \</web-admin/security/basic-auth\>] section in
+Use the [HTTP Basic Auth ](/web-admin/security/basic-auth) section in
 the Zato web administration tool to create a new credential for the user:
 
 ![image](/gfx/progguide-apispec-create-cred.png)
@@ -66,7 +66,7 @@ option:
 Associate the credential with the RBAC role
 -------------------------------------------
 
-Use the [RBAC Client Roles \</web-admin/security/basic-auth\>] section in
+Use the [RBAC Client Roles ](/web-admin/security/basic-auth) section in
 the Zato web administration tool to associate the credential with the **API
 Specification Readers** RBAC role:
 

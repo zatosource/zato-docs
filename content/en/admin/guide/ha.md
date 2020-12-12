@@ -131,4 +131,4 @@ be part of an HA plan, however how they should be
 tackled is something outside the scope of this discussion.
 
 Zato and Redis can be configured in an HA-aware fashion with sentinels, the process is documented
-in [its own chapter \<./redis-ha/sentinels\>].
+in [its own chapter ](./redis-ha/sentinels).

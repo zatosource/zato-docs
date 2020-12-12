@@ -7,24 +7,24 @@ Key features:
 -   Client applications may invoke services using SSL/TLS
 -   Services can be also optionally secured with client certificates
 -   Traffic to a Zato cluster is always terminated at the cluster\'s HAProxy load-balancer which may
-    [optionally re-encrypt \<lb-servers\>] it using its own crypto material while communicating with servers it fronts for
+    [optionally re-encrypt ](lb-servers) it using its own crypto material while communicating with servers it fronts for
 -   Load-balancer passes SSL/TLS-related information to servers as a set of custom HTTP headers that are always available to services
-    through their [self.wsgi_environ \<progguide-write-service-wsgi_environ\>] dictionary
+    through their [self.wsgi_environ ](progguide-write-service-wsgi_environ) dictionary
 
 ![image](/gfx/admin/tls/path-client-lb.png)
 
 Tasks
 =====
 
--   Configuring a cluster to [accept SSL/TLS connections without client certificates \<admin-tls-accept-no-certs\>]
--   Configuring a cluster to [optionally accept SSL/TLS client certificates \<admin-tls-optional-certs\>]
--   Configuring a cluster to [require SSL/TLS client certificates \<admin-tls-require-certs\>]
--   Configuring channels to [require specific fields in client certificates \<admin-tls-require-fields\>]
+-   Configuring a cluster to [accept SSL/TLS connections without client certificates ](admin-tls-accept-no-certs)
+-   Configuring a cluster to [optionally accept SSL/TLS client certificates ](admin-tls-optional-certs)
+-   Configuring a cluster to [require SSL/TLS client certificates ](admin-tls-require-certs)
+-   Configuring channels to [require specific fields in client certificates ](admin-tls-require-fields)
 
 Accepting SSL/TLS connections - no client certificates {#admin-tls-accept-no-certs}
 ======================================================
 
-Open the load-balancer\'s configuration in [source code view \<../../../web-admin/load-balancer/source-code\>]
+Open the load-balancer\'s configuration in [source code view ](../../../web-admin/load-balancer/source-code)
 and add the following entry at the end of the file.
 
 This will make the load-balancer bind to *0.0.0.0:21223* using a private key and certificate stored in a file
@@ -45,7 +45,7 @@ whose path is */key-and-cert.pem*:
 Accepting SSL/TLS connections - client certificates optional {#admin-tls-optional-certs}
 ============================================================
 
-Open the load-balancer\'s configuration in [source code view \<../../../web-admin/load-balancer/source-code\>]
+Open the load-balancer\'s configuration in [source code view ](../../../web-admin/load-balancer/source-code)
 and add the following entry at the end of the file.
 
 This will make the load-balancer bind to *0.0.0.0:31223* with a private key and certificate from
@@ -70,7 +70,7 @@ client certificate at all, the request will be allowed in.
 Accepting SSL/TLS connections - client certificates required {#admin-tls-require-certs}
 ============================================================
 
-Open the load-balancer\'s configuration in [source code view \<../../../web-admin/load-balancer/source-code\>]
+Open the load-balancer\'s configuration in [source code view ](../../../web-admin/load-balancer/source-code)
 and add the following entry at the end of the file.
 
 This will make the load-balancer bind to *0.0.0.0:41223* using a private key and certificate stored in a file
@@ -94,7 +94,7 @@ the certificate will be validated against the CA certificates specified in *ca-f
 Requiring specific fields in client certificates {#admin-tls-require-fields}
 ================================================
 
-It\'s possible to configure [TLS channel security definitions \<../../../web-admin/security/tls/channels\>]
+It\'s possible to configure [TLS channel security definitions ](../../../web-admin/security/tls/channels)
 to reject incoming requests unless one or more
 fields, including a fingerprint, are matched. That way Zato can verify not only that a certificate signed off by a known
 CA was used but also that it was a particular certificate out of possibly many more produced by that CA.
@@ -139,7 +139,7 @@ Assuming a client certificate with the following fields ..
     SHA1 Fingerprint=03:D5:F9:BB:B6:00:3E:86:29:82:3D:6F:81:1D:70:C8:9F:04:0C:2F
     $
 
-.. the load-balancer\'s configuration allows one to [require particular fields \<../../../web-admin/security/tls/channels\>] on input:
+.. the load-balancer\'s configuration allows one to [require particular fields ](../../../web-admin/security/tls/channels) on input:
 
 ![image](/gfx/admin/tls/channel-custom-fields.png)
 

@@ -16,9 +16,9 @@ This directory can be used to enable any libraries, dependencies or services
 themselves needed for a particular Zato installation.
 
 Each Zato component needs to be
-[stopped \<../cli/stop\>]
+[stopped ](../cli/stop)
 and
-[started \<../cli/start\>]
+[started ](../cli/start)
 again for any changes made
 to zato_extra_paths be picked up
 
