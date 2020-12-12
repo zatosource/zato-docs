@@ -72,7 +72,6 @@
             {{- end -}}
 
             <div class="menu">
-                <div class="search-input"><input id="search-term" type="text"></div>
 
                 <button id="gearDropdownButton" class="menu-trigger" title='{{- i18n "options_menu" -}}' aria-label="Options and Settings" aria-controls="gearDropdownContent">
                     {{- partial "icon.html" "gear" -}}
@@ -119,6 +118,7 @@
                     <a tabindex="-1" role="menuitem" href="https://istio.io/archive">{{- i18n "archived_releases" -}}</a>
                     {{- end -}}
                 </div>
+                <div class="search-input"><input id="search-term" type="text"></div>
             </div>
 
             <!-- <button id="search-show" title='{{- i18n "search" -}}' aria-label='{{- i18n "search_label" -}}'>{{- partial "icon.html" "magnifier" -}}</button> -->
