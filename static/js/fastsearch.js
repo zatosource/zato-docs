@@ -69,7 +69,7 @@ var resultsAvailable = false; // Did we get any search results?
 // ==========================================
 // execute search as each character is typed
 //
-document.getElementById("searchInput").onkeyup = function(e) {
+document.getElementById("search-term").onkeyup = function(e) {
   executeSearch(this.value);
 }
 
@@ -115,6 +115,18 @@ function executeSearch(term) {
     for (let item in results.slice(0,5)) { // only show first 5 results
       // searchitems = searchitems + '<li><a href="' + results[item].item.permalink + '" tabindex="0">' + '<span class="title">' + results[item].item.title + '</span><br /> <span class="sc">'+ results[item].item.section +'</span> — ' + results[item].item.date + ' — <em>' + results[item].item.desc + '</em></a></li>';
       searchitems = searchitems + '<li><a href="' + results[item].item.permalink + '" tabindex="0">' + '<span class="title">' + results[item].item.title + '</span></a></li>';
+      searchitems = searchitems + '<li class="item">' +
+      '<a class="widget-link search-link" href="' + results[item].item.permalink + '" title="">' +
+      '<span class="topic"><div class="first-line"><div class="topic-statuses"></div><span class="topic-title">' +
+      '<span>' + results[item].item.title + '</span>' +
+      '</span></div></span>' +
+      '</a></li>';
+      // '<span class="blurb">' +
+      // '<span title="Apr 27, 2020 5:29 pm" data-time="1588026582959" data-format="tiny" class="relative-date">Apr 27</span>' +
+      // '<span> - </span>' +
+      // '<span>' +
+      // '<span class="search-highlight">Netlify</span> CMS is a project by a company called <span class="search-highlight">Netlify</span>, and has it’s own support channels, listed at https://...</span>' +
+      // '</span>' +
     }
     resultsAvailable = true;
   }

@@ -3,18 +3,18 @@
 {{- $current := . -}}
 
 <header>
-    <nav >
+    <nav>
         <a id="brand" href="{{- $home.Permalink -}}">
             <span class="logo">{{- with resources.Get "inline_images/istio-whitelogo-bluebackground-rounded.svg" -}}{{- ( . | minify).Content | safeHTML -}}{{- end -}}</span>
 
             {{- if .Site.Data.args.archive_landing -}}
-                <span class="name">{{.Site.Title}}</span>
+            <span class="name">{{.Site.Title}}</span>
             {{- else if .Site.Data.args.archive -}}
-                <span class="name">{{.Site.Title}} {{- .Site.Data.args.version -}}</span>
+            <span class="name">{{.Site.Title}} {{- .Site.Data.args.version -}}</span>
             {{- else if .Site.Data.args.preliminary -}}
-                <span class="name">{{.Site.Title}} Prelim {{- .Site.Data.args.version -}}</span>
+            <span class="name">{{.Site.Title}} Prelim {{- .Site.Data.args.version -}}</span>
             {{- else -}}
-                <span class="name">{{.Site.Title}} {{- .Site.Data.args.version -}}</span>
+            <span class="name">{{.Site.Title}} {{- .Site.Data.args.version -}}</span>
             {{- end -}}
         </a>
 
@@ -24,60 +24,61 @@
 
         <div id="header-links">
             {{- if not .Site.Data.args.archive_landing -}}
-                {{- with (.Site.GetPage "/docs") -}}
-                    {{- if eq .Permalink $current.Permalink -}}
-                        <span {{- if eq $section "docs" -}}class="current" {{- end -}}title="{{- .Description -}}">{{- .LinkTitle -}}</span>
-                    {{- else -}}
-                        <a {{- if eq $section "docs" -}}class="current" {{- end -}}title="{{- .Description -}}" href="{{- .Permalink  -}}">{{- .LinkTitle -}}</a>
-                    {{- end -}}
-                {{- end -}}
+            {{- with (.Site.GetPage "/docs") -}}
+            {{- if eq .Permalink $current.Permalink -}}
+            <span {{- if eq $section "docs" -}}class="current" {{- end -}}title="{{- .Description -}}">{{- .LinkTitle -}}</span>
+            {{- else -}}
+            <a {{- if eq $section "docs" -}}class="current" {{- end -}}title="{{- .Description -}}" href="{{- .Permalink  -}}">{{- .LinkTitle -}}</a>
+            {{- end -}}
+            {{- end -}}
 
-                {{- with (.Site.GetPage "/blog") -}}
-                    {{- $posts := (where .Site.Pages "Section" "blog").ByPublishDate.Reverse -}}
-                    {{- $latest_post := index $posts 0 -}}
-                    {{- $link := printf "%v%v/" .Permalink $latest_post.PublishDate.Year -}}
+            {{- with (.Site.GetPage "/blog") -}}
+            {{- $posts := (where .Site.Pages "Section" "blog").ByPublishDate.Reverse -}}
+            {{- $latest_post := index $posts 0 -}}
+            {{- $link := printf "%v%v/" .Permalink $latest_post.PublishDate.Year -}}
 
-                    {{- if eq $link $current.Permalink -}}
-                        <span {{- if eq $section "blog" -}}class="current" {{- end -}}title="{{- .Description -}}">{{- .LinkTitle -}}<i class="dot" data-prefix="/blog"></i></span>
-                    {{- else -}}
-                        <a {{- if eq $section "blog" -}}class="current" {{- end -}}title="{{- .Description -}}" href="{{- $link -}}">{{- .LinkTitle -}}<i class="dot" data-prefix="/blog"></i></a>
-                    {{- end -}}
-                {{- end -}}
+            {{- if eq $link $current.Permalink -}}
+            <span {{- if eq $section "blog" -}}class="current" {{- end -}}title="{{- .Description -}}">{{- .LinkTitle -}}<i class="dot" data-prefix="/blog"></i>
+            </span>
+            {{- else -}}
+            <a {{- if eq $section "blog" -}}class="current" {{- end -}}title="{{- .Description -}}" href="{{- $link -}}">{{- .LinkTitle -}}<i class="dot" data-prefix="/blog"></i></a>
+            {{- end -}}
+            {{- end -}}
 
-                {{- with (.Site.GetPage "/news")  -}}
-                    {{- if eq .Permalink $current.Permalink -}}
-                        <span {{- if eq $section "news" -}}class="current" {{- end -}}title="{{- .Description -}}">{{- .LinkTitle -}}<i class="dot" data-prefix="/news"></i></span>
-                    {{- else -}}
-                        <a {{- if eq $section "news" -}}class="current" {{- end -}}title="{{- .Description -}}" href="{{- .Permalink -}}">{{- .LinkTitle -}}<i class="dot" data-prefix="/news"></i></a>
-                    {{- end -}}
-                {{- end -}}
+            {{- with (.Site.GetPage "/news")  -}}
+            {{- if eq .Permalink $current.Permalink -}}
+            <span {{- if eq $section "news" -}}class="current" {{- end -}}title="{{- .Description -}}">{{- .LinkTitle -}}<i class="dot" data-prefix="/news"></i>
+            </span>
+            {{- else -}}
+            <a {{- if eq $section "news" -}}class="current" {{- end -}}title="{{- .Description -}}" href="{{- .Permalink -}}">{{- .LinkTitle -}}<i class="dot" data-prefix="/news"></i></a>
+            {{- end -}}
+            {{- end -}}
 
-                {{- with (.Site.GetPage "/faq") -}}
-                    {{- if eq .Permalink $current.Permalink -}}
-                        <span {{- if eq $section "faq" -}}class="current" {{- end -}}title="{{- .Description -}}">{{- .LinkTitle -}}</span>
-                    {{- else -}}
-                        <a {{- if eq $section "faq" -}}class="current" {{- end -}}title="{{- .Description -}}" href="{{- .Permalink -}}">{{- .LinkTitle -}}</a>
-                    {{- end -}}
-                {{- end -}}
+            {{- with (.Site.GetPage "/faq") -}}
+            {{- if eq .Permalink $current.Permalink -}}
+            <span {{- if eq $section "faq" -}}class="current" {{- end -}}title="{{- .Description -}}">{{- .LinkTitle -}}</span>
+            {{- else -}}
+            <a {{- if eq $section "faq" -}}class="current" {{- end -}}title="{{- .Description -}}" href="{{- .Permalink -}}">{{- .LinkTitle -}}</a>
+            {{- end -}}
+            {{- end -}}
 
-                {{- with (.Site.GetPage "/about") -}}
-                    {{- if eq .Permalink $current.Permalink -}}
-                        <span {{- if eq $section "about" -}}class="current" {{- end -}}title="{{- .Description -}}">{{- .LinkTitle -}}</span>
-                    {{- else -}}
-                        <a {{- if eq $section "about" -}}class="current" {{- end -}}title="{{- .Description -}}" href="{{- .Permalink  -}}">{{- .LinkTitle -}}</a>
-                    {{- end -}}
-                {{- end -}}
+            {{- with (.Site.GetPage "/about") -}}
+            {{- if eq .Permalink $current.Permalink -}}
+            <span {{- if eq $section "about" -}}class="current" {{- end -}}title="{{- .Description -}}">{{- .LinkTitle -}}</span>
+            {{- else -}}
+            <a {{- if eq $section "about" -}}class="current" {{- end -}}title="{{- .Description -}}" href="{{- .Permalink  -}}">{{- .LinkTitle -}}</a>
+            {{- end -}}
+            {{- end -}}
             {{- end -}}
 
             <div class="menu">
-                <button id="gearDropdownButton" class="menu-trigger" title='{{- i18n "options_menu" -}}'
-                        aria-label="Options and Settings" aria-controls="gearDropdownContent">
+                <button id="gearDropdownButton" class="menu-trigger" title='{{- i18n "options_menu" -}}' aria-label="Options and Settings" aria-controls="gearDropdownContent">
                     {{- partial "icon.html" "gear" -}}
                 </button>
 
                 <div id="gearDropdownContent" class="menu-content" aria-labelledby="gearDropdownButton" role="menu">
-                    <a tabindex="-1" role="menuitem" lang="en" id="switch-lang-en" {{- if eq $home.Lang "en" -}}class="active"{{- end -}}>English</a>
-                    <a tabindex="-1" role="menuitem" lang="zh" id="switch-lang-zh" {{- if eq $home.Lang "zh" -}}class="active"{{- end -}}>中文</a>
+                    <a tabindex="-1" role="menuitem" lang="en" id="switch-lang-en" {{- if eq $home.Lang "en" -}}class="active" {{- end -}}>English</a>
+                    <a tabindex="-1" role="menuitem" lang="zh" id="switch-lang-zh" {{- if eq $home.Lang "zh" -}}class="active" {{- end -}}>中文</a>
 
                     <div role="separator"></div>
 
@@ -89,21 +90,21 @@
                     <a tabindex="-1" role="menuitem" id="syntax-coloring-item">{{- i18n "syntax_coloring" -}}</a>
 
                     {{- if not .Site.Data.args.archive -}}
-                        <div role="separator"></div>
+                    <div role="separator"></div>
 
-                        {{- if .Params.source_repo -}}
-                            {{- $msg := i18n "generated_file" -}}
-                            {{- $title := printf $msg .Page.Params.source_repo -}}
-                            <a tabindex="-1" role="menuitem" class="disabled" title="{{- $title -}}">{{- i18n "edit_on_github" -}}</a>
-                        {{- else -}}
-                            {{- if eq $home.Lang "zh" -}}
-                                <a tabindex="-1" role="menuitem" href="https://github.com/istio/istio.io/edit/{{- .Site.Data.args.doc_branch_name -}}/content/zh/{{- .Path -}}">{{- i18n "edit_on_github" -}}</a>
-                            {{- else -}}
-                                <a tabindex="-1" role="menuitem" href="https://github.com/istio/istio.io/edit/{{- .Site.Data.args.doc_branch_name -}}/content/en/{{- .Path -}}">{{- i18n "edit_on_github" -}}</a>
-                            {{- end -}}
-                        {{- end -}}
+                    {{- if .Params.source_repo -}}
+                    {{- $msg := i18n "generated_file" -}}
+                    {{- $title := printf $msg .Page.Params.source_repo -}}
+                    <a tabindex="-1" role="menuitem" class="disabled" title="{{- $title -}}">{{- i18n "edit_on_github" -}}</a>
+                    {{- else -}}
+                    {{- if eq $home.Lang "zh" -}}
+                    <a tabindex="-1" role="menuitem" href="https://github.com/istio/istio.io/edit/{{- .Site.Data.args.doc_branch_name -}}/content/zh/{{- .Path -}}">{{- i18n "edit_on_github" -}}</a>
+                    {{- else -}}
+                    <a tabindex="-1" role="menuitem" href="https://github.com/istio/istio.io/edit/{{- .Site.Data.args.doc_branch_name -}}/content/en/{{- .Path -}}">{{- i18n "edit_on_github" -}}</a>
+                    {{- end -}}
+                    {{- end -}}
 
-                        <a tabindex="-1" role="menuitem" href="https://github.com/istio/istio.io/issues/new?title=Issue%20with%20{{- .Path}}">{{- i18n "report_site_bugs" -}}</a>
+                    <a tabindex="-1" role="menuitem" href="https://github.com/istio/istio.io/issues/new?title=Issue%20with%20{{- .Path}}">{{- i18n "report_site_bugs" -}}</a>
                     {{- end -}}
 
                     <div role="separator"></div>
@@ -115,19 +116,19 @@
 
                     {{- $fileDir := "" -}}
                     {{- with .File -}}
-		                {{- $fileDir = .Dir -}}
+                    {{- $fileDir = .Dir -}}
                     {{- end -}}
 
                     {{- if or .Site.Data.args.archive .Site.Data.args.archive_landing -}}
-                        <a tabindex="-1" role="menuitem" onclick="navigateToUrlOrRoot('https://istio.io/{{- $fileDir -}}');return false;">{{- i18n "current_release" -}}</a>
-                        <a tabindex="-1" role="menuitem" onclick="navigateToUrlOrRoot('https://preliminary.istio.io/{{- $fileDir -}}');return false;">{{- i18n "next_release" -}}</a>
-                        <a tabindex="-1" role="menuitem" href="https://istio.io/archive">{{- i18n "archived_releases" -}}</a>
+                    <a tabindex="-1" role="menuitem" onclick="navigateToUrlOrRoot('https://istio.io/{{- $fileDir -}}');return false;">{{- i18n "current_release" -}}</a>
+                    <a tabindex="-1" role="menuitem" onclick="navigateToUrlOrRoot('https://preliminary.istio.io/{{- $fileDir -}}');return false;">{{- i18n "next_release" -}}</a>
+                    <a tabindex="-1" role="menuitem" href="https://istio.io/archive">{{- i18n "archived_releases" -}}</a>
                     {{- else if .Site.Data.args.preliminary -}}
-                        <a tabindex="-1" role="menuitem" onclick="navigateToUrlOrRoot('https://istio.io/{{- $fileDir -}}');return false;">{{- i18n "current_release" -}}</a>
-                        <a tabindex="-1" role="menuitem" href="https://istio.io/archive">{{- i18n "archived_releases" -}}</a>
+                    <a tabindex="-1" role="menuitem" onclick="navigateToUrlOrRoot('https://istio.io/{{- $fileDir -}}');return false;">{{- i18n "current_release" -}}</a>
+                    <a tabindex="-1" role="menuitem" href="https://istio.io/archive">{{- i18n "archived_releases" -}}</a>
                     {{- else -}}
-                        <a tabindex="-1" role="menuitem" onclick="navigateToUrlOrRoot('https://preliminary.istio.io/{{- $fileDir -}}');return false;">{{- i18n "next_release" -}}</a>
-                        <a tabindex="-1" role="menuitem" href="https://istio.io/archive">{{- i18n "archived_releases" -}}</a>
+                    <a tabindex="-1" role="menuitem" onclick="navigateToUrlOrRoot('https://preliminary.istio.io/{{- $fileDir -}}');return false;">{{- i18n "next_release" -}}</a>
+                    <a tabindex="-1" role="menuitem" href="https://istio.io/archive">{{- i18n "archived_releases" -}}</a>
                     {{- end -}}
                 </div>
             </div>
@@ -135,13 +136,44 @@
             <button id="search-show" title='{{- i18n "search" -}}' aria-label='{{- i18n "search_label" -}}'>{{- partial "icon.html" "magnifier" -}}</button>
         </div>
 
-        <div id="search-form">
-          <button id="search-close"  style="float:left; display:inline;" title='{{- i18n "search_cancel" -}}' type="reset" aria-label='{{- i18n "search_cancel" -}}'>{{- partial "icon.html" "cancel-x" -}}</button>
-          <input id="searchInput"  style="float:left; display:inline;" tabindex="0">
-          <div style="float:left; display:inline;">
-              <ul id="searchResults" style="background-color: cornflowerblue;">
-              </ul>
-          </div>
+        <div id="search-form" data-max-width="500" class="menu-panel drop-down" style="top: 100%; height: auto; width: 500px;">
+            <div class="panel-body">
+                <div class="panel-body-contents">
+                    <div class="search-input"><input id="search-term" type="text"></div>
+                    <div class="results">
+                        <div class="main-results">
+                            <div class="search-result-topic">
+                                <ul id="searchResults" class="list">
+                                </ul>
+                                <div class="show-more"><a class="widget-link filter" href="/search?q=netlify" title="">More...</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+<!--
+        <div id="search-form3" data-max-width="500" class="menu-panel drop-down" style="top: 100%; height: auto; width: 500px;">
+            <div class="panel-body">
+                <div class="panel-body-contents">
+                    <div class="search-input"><input id="search-term" type="text"></div>
+                    <div class="search-context">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="results">
+                        <div class="no-results"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="search-form2">
+            <button id="search-close" style="float:left; display:inline;" title='{{- i18n "search_cancel" -}}' type="reset" aria-label='{{- i18n "search_cancel" -}}'>{{- partial "icon.html" "cancel-x" -}}</button>
+            <input id="search-term" style="float:left; display:inline;" tabindex="0">
+            <div style="float:left; display:inline;">
+                <ul id="searchResults2" style="background-color: cornflowerblue;">
+                </ul>
+            </div>
+        </div> -->
     </nav>
 </header>

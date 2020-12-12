@@ -16,7 +16,7 @@
 function handleHeader(): void {
     const searchForm = "search-form";
     const headerLinks = "header-links";
-    const searchTextbox = "search-textbox";
+    const searchTextbox = "search-term";
     const showSearch = "show-search";
     const openHamburger = "open-hamburger";
 
