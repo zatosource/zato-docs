@@ -1,5 +1,8 @@
 ---
 title: Installing updates to Zato installation
+weight: 30
+aliases:
+    - /admin/guide/install/update
 ---
 
 In accordance with [Zato release life-cycle policy ](../../../release/policy), each major release receives

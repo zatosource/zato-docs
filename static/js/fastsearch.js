@@ -110,8 +110,11 @@ function executeSearch(term) {
     resultsAvailable = false;
     searchitems = '';
   } else { // build our html
+      // searchitems = 'results: ' + results + '<br>';
+      console.log(results);
     for (let item in results.slice(0,5)) { // only show first 5 results
-      searchitems = searchitems + '<li><a href="' + results[item].permalink + '" tabindex="0">' + '<span class="title">' + results[item].title + '</span><br /> <span class="sc">'+ results[item].section +'</span> — ' + results[item].date + ' — <em>' + results[item].desc + '</em></a></li>';
+      // searchitems = searchitems + '<li><a href="' + results[item].item.permalink + '" tabindex="0">' + '<span class="title">' + results[item].item.title + '</span><br /> <span class="sc">'+ results[item].item.section +'</span> — ' + results[item].item.date + ' — <em>' + results[item].item.desc + '</em></a></li>';
+      searchitems = searchitems + '<li><a href="' + results[item].item.permalink + '" tabindex="0">' + '<span class="title">' + results[item].item.title + '</span></a></li>';
     }
     resultsAvailable = true;
   }
