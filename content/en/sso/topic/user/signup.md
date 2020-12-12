@@ -1,0 +1,177 @@
+---
+title: Sign-up process
+---
+
+This chapter explains how users may interact with APIs to sign themselves up with the system.
+
+Information below is presented in a task-oriented manner - consult the
+reference chapters for full
+[REST \<../../api/rest/user/signup\>]
+and
+[Python \<../../api/python/user/signup\>]
+APIs.
+
+Note that signing up is a process that involves a series of message exchanges - this is unlike
+[user creation \<./create\>],
+which adds users without requiring their confirmation.
+
+Workflow
+========
+
+A flexible process is offered for users to sign up with the system which will in turn validate their credentials and
+optionally let super-users accept or reject new accounts.
+
+Note that this functionality can be turned off completely in [configuration \<../../config/index\>] if it\'s not desired to let
+users open their own accounts.
+
+If signup is enabled, the steps will be broadly as follows:
+
+-   A user signs up
+-   A signup token is generated and sent to that user\'s email address
+-   User clicks on a link which confirms that the person truly wants to sign up
+-   At this point:
+    -   If needed, a super-user may still need to approve the newly created account and a welcome message is sent afterwards
+    -   If approval is not needed, a welcome message is sent immediately
+
+![image](/gfx/sso/api/user/signup-process.png)
+
+Sign-up
+-------
+
+If user sign-up is enabled and users sign up themselves, their accounts will be created and, depending on configuration:
+
+-   Super-admins will need to accept them
+-   No acceptation will be necessary
+
+In either case, users may be required to confirm their signup by triggering an API call with a confirmation token - typically
+sent in email, which Zato can also do. The token is returned in response to the signup call.
+
+``` {.bash}
+$ curl -XPOST localhost:11223/zato/sso/user/signup -d '
+  {
+    "username":    "user1",
+    "password":    "VrF57-H31 7!HIj%fSAz :L9",
+    "email":       "user1@example.com",
+    "current_app": "CRM",
+    "app_list":    ["CRM", "ERP"]
+  }
+'
+
+{
+  "status": "ok",
+  "cid": "fc7c23028b15b35d72b8dffb",
+  "confirm_token": "oPpzMWjXFN35rvzPxN2AvcG2WEyBX71f"
+ }
+```
+
+Default validation rules of new users are:
+
+-   Keywords \'zato\', \'admin\' and \'root\' cannot be used anywhere in username
+-   Password must not be among the most commonly used ones in the world
+-   Both username and email must be unique
+-   All of the checks above are performed case-insensitively
+-   Additionally, whitespace cannot be used in username and email, but is accepted in passwords
+
+All validation rules may be
+[re-configured or implemented \<../../config/index\>]
+in a different manner, according to an environment\'s specific needs.
+
+Note that users will likely not know code names of applications they sign up to (CRM and ERPin the example below) or the code
+name of the application they use to sign up through (CRM above).
+
+Such application code names need to be provided on input by the calling API client, e.g. a frontend, and all names of applications
+must be configured beforehand in [sso.conf \<../../config/index\>].
+
+Sign-up confirmation
+--------------------
+
+If sign-up confirmation is required, users will receive a token, usually to their email inbox, that needs to be sent
+to Zato in a REST call as below:
+
+``` {.bash}
+$ curl -XPOST localhost:11223/zato/sso/user/signup/confirm -d '
+  {
+    "confirm_token": "zcnt8538ba1f6bef475a8fee1fc8cee65dac"
+  }
+'
+```
+
+At this point user will be confirmed but it may be still possible that a super-user will need to approve the account\'s creation,
+depending on configuration.
+
+If approval is not required, the user can [log in \<../session/index\>] already and use their
+account accordingly.
+
+Getting a list of users for approval
+------------------------------------
+
+An already logged-in super-admin sends a GET request to fetch the list of new signups to approve or reject. Note that the \'ust\'
+parameter is user session token obtained when a user, including a super-user, [logs in \<../session/index\>].
+
+It is possible to send GET parameters in query string, body, or the mix of the two, there is no difference. This applies to all
+Zato endpoints.
+
+``` {.bash}
+$ curl -XGET "localhost:11223/zato/sso/user/signup?status=to-approve&ust=zust1a799f0a..."
+```
+
+``` {.bash}
+$ curl -XGET localhost:11223/zato/sso/user/signup -d '
+  {
+    "status": "to-confirm",
+    "ust":    "zust1a799f00d3a147f088bb83bdfe76761c",
+  }
+'
+```
+
+In all cases, a JSON list is returned with basic data about users that can be approved or rejected, or an empty list
+if there are no pending users.
+
+``` {.bash}
+[
+  {
+   "user_id":           "zusrqgh3au1pt4b7r5rz",
+   "username":          "user1",
+   "email":             "user1@example.com",
+   "display_name":      "John Doe",
+   "sign_up_time":      "2018-02-13T15:32:24", # Always in UTC
+   "remote_ip":         "10.23.91.177",
+   "remote_addr":       "mysystem.company"
+  }
+]
+```
+
+Approving users
+---------------
+
+Super-admins approve the creation of a user account as below. There is no JSON output.
+
+``` {.bash}
+$ curl -XPOST localhost:11223/zato/sso/user/signup/approve -d '
+  {
+    "user_id": "zusrqgh3au1pt4b7r5rz"
+  }
+'
+```
+
+Afterwards, the new user may [log in \<../session/index\>].
+
+If configuration requires it, an email with a welcome message may be sent to the newly approved user now.
+
+Rejecting users
+---------------
+
+Super-admins reject a new user account as below. There is no JSON output.
+
+``` {.bash}
+$ curl -XPOST localhost:11223/zato/sso/user/signup/reject -d '
+  {
+    "user_id": "zusrqgh3au1pt4b7r5rz",
+    "reason": "Information for user why this account has been rejected",
+  }
+'
+```
+
+If told to by configuration, an email with a reason for the rejection will be sent to user.
+
+A rejected user account is deleted from the database and if the same user wants to sign up again, the person needs to start anew.

@@ -1,0 +1,199 @@
+---
+title: Outgoing SQL connections
+---
+
+Overview
+========
+
+SQL connections let one work with databases via
+[SQLAlchemy sessions](http://docs.sqlalchemy.org/en/rel_0_8/orm/session.html) obtained from
+a pool of connections
+to the SQL database specified.
+
+The database may be one of:
+
+-   Microsoft SQL Server (stored procedures)
+-   MySQL
+-   PostgreSQL
+-   Oracle (experimental)
+
+If using a database other than MS SQL, the session needs to be closed by the programmer - otherwise the pool will run out
+of connections - the easiest
+way to do it is to use the
+[with statement](http://docs.python.org/2.7/reference/datamodel.html#context-managers)
+along with the
+[closing decorator](http://docs.python.org/2.7/library/contextlib.html#contextlib.closing),
+as in an example below.
+
+The underlying SQL toolkit is [SQLAlchemy](http://www.sqlalchemy.org/).
+
+When using [Simple IO (SIO) \<../sio/index\>] in conjunction with [SQLAlchemy](http://www.sqlalchemy.org/)
+models, services are able to construct responses - JSON or XML ones - directly out of a model\'s instance,
+such as in a usage example.
+
+::: {.note}
+::: {.title}
+Note
+:::
+
+Support for Oracle connections needs to be [manually enabled \<../../admin/guide/enabling-extra-libs\>]
+by administrators.
+:::
+
+API
+===
+
+self.outgoing.sql.get(out_name).session() {#progguide-outconn-sql-get-session}
+-----------------------------------------
+
+Usage examples (non-MS SQL)
+===========================
+
+Examples in current section apply to all databases, except for MS SQL, which is documented later in this chapter.
+
+It\'s possible to issue SQL directly:
+
+``` {.python}
+# stdlib
+from contextlib import closing
+
+# Zato
+from zato.server.service import Service
+
+class MyService(Service):
+    def handle(self):
+
+        out_name = 'CRM Connection'
+        query = 'SELECT current_time'
+
+        with closing(self.outgoing.sql.get(out_name).session()) as session:
+            result = session.execute(query).fetchall()
+            self.logger.info(result)
+```
+
+``` {.python}
+INFO - [(datetime.time(20, 11, 25, 688245,
+  tzinfo=psycopg2.tz.FixedOffsetTimezone(offset=120, name=None)),)]
+```
+
+You can use SQLAlchemy models:
+
+``` {.python}
+# stdlib
+from contextlib import closing
+
+# Let's imagine your application defines an SQLAlchemy Customer model somewhere
+# from myapp.model import Customer
+
+# Zato
+from zato.server.service import Service
+
+class MyService(Service):
+    def handle(self):
+
+        out_name = 'CRM Connection'
+        cust_id = 1
+
+        with closing(self.outgoing.sql.get(out_name).session()) as session:
+            customer = session.query(Customer).\
+                filter(Customer.id==cust_id).\
+                one()
+
+            self.logger.info(customer)
+```
+
+``` {.python}
+INFO - <myapp.model.Customer object at 0x5b4c810>>
+```
+
+SQLAlchemy and [SIO \<../sio/index\>] can be used to create responses directly out
+of the former\'s models:
+
+``` {.python}
+# stdlib
+from contextlib import closing
+
+# Let's imagine your application defines an SQLAlchemy Customer model somewhere
+# from myapp.model import Customer
+
+# Zato
+from zato.server.service import Service
+
+class MyService(Service):
+
+    class SimpleIO(object):
+        output_required = ('name', 'last_name', 'is_active')
+
+    def handle(self):
+
+        out_name = 'CRM Connection'
+        cust_id = 1
+
+        with closing(self.outgoing.sql.get(out_name).session()) as session:
+            self.response.payload = session.query(Customer).\
+                filter(Customer.id==cust_id).\
+                one()
+```
+
+Always remember to close the session object:
+
+``` {.python}
+# stdlib
+from contextlib import closing
+
+# Zato
+from zato.server.service import Service
+
+class MyService(Service):
+    def handle(self):
+
+        out_name = 'CRM Connection'
+
+        # Use a decorator to automatically close the session ..
+        with closing(self.outgoing.sql.get(out_name).session()) as session:
+            pass
+
+        # .. or remember to close it manually.
+        session = self.outgoing.sql.get(out_name).session()
+        session.close()
+```
+
+Usage examples (MS SQL)
+=======================
+
+Connections of type MS SQL (Direct) let one invoke stored procedures defined in Microsoft SQL Server database. It is not
+possible to issue queries of other kinds with this database.
+
+``` {.python}
+# Zato
+from zato.server.service import Service
+
+class MyService(Service):
+    def handle(self):
+
+        # Connection to use
+        name = 'My MS SQL Connection'
+
+        # Find a connection and its session
+        conn = self.outgoing.sql.get(name)
+        session = conn.session()
+
+        # Procedure to invoke
+        proc_name = 'get_user_details'
+
+        # Arguments to invoke the procedure with,
+        # it always needs to ba list of what the procedure expects;
+        # if a procedure does not expect anything, they may be omitted.
+        args = ['my.user']
+
+        # Invoke the procedure - this variant will
+        # produce a list of dictionaries on output.
+        result = session.callproc(proc_name, args)
+
+        # If large results are expected on output,
+        # it may be more efficient to process rows
+        # one by one, without reading the whole list
+        # into memory at once. Specify 'use_yield' in that case.
+        for row in session.callproc(proc_name, args, use_yield=True):
+            process_row(row)
+```

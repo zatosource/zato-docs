@@ -1,0 +1,15 @@
+---
+title: Getting details of users
+---
+
+An already logged in user can get details of his or her account only. It is not possible for regular users to look up information
+about other users. However, [super-users \<./super\>] may read details of any other person by the other user\'s ID.
+
+Invoke [GET /zato/sso/user \<../../api/rest/user/get\>] without any input except for UST to query for user details by
+current UST (user session token). If the calling user is a regular one not a super-super, it is the only way for that user
+to look up his or her own account.
+
+If current UST belongs to a super-user, it is also possible to provide a user_id input - thus allowing administrators to access
+data about other users.
+
+Consult [REST \<../../api/rest/user/get\>] and [Python \<../../api/python/user/get\>] API docs for all details.

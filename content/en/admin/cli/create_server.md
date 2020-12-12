@@ -1,0 +1,80 @@
+---
+title: zato create server
+---
+
+Creates a [Zato server\<../../architecture/servers\>] - all the directories needed
+by a server and sets it up so it is ready to join a cluster. The directory pointed
+to by *path* must already exist and be empty. *cluster_name* must be a name of
+a cluster previously created using the [zato create cluster\<./create-cluster\>] command.
+
+The command *does not* make the server start accepting messages immediately.
+An administrator still needs to [start the server\<./start\>] and accept it into a cluster
+by [confirming the step in the web admin\<../../web-admin/servers/add-remove\>].
+
+Command-specific parameters
+===========================
+
+  Name                   Description                                                                   Example value
+  ---------------------- ----------------------------------------------------------------------------- ---------------------------------
+  \--postgresql_schema   PostgreSQL only: database schema to use                                       zato
+  \--odb_password        ODB password                                                                  BbvIzoeqvz6aE
+  \--kvdb_password       Key/value DB password (Redis), if any                                         20E2q0d3wN7Gw
+  \--secret_key          A random secret key previously generated with the                             jN09DcGqhICFluzHVgokQj\...
+                         [zato crypto create-secret-key \<./crypto/create-secret-key\>].   
+                         It is used to encrypt passwords and other sensitive data in ODB.              
+                         Must be the same for all servers in a single cluster. If not                  
+                         provided, a new key will be generated automatically.                          
+  \--jwt_secret          A random secret key previously generated with the                             MI8gn9ej9WCyM6LgHBSE3c\...
+                         [zato crypto create-secret-key \<./crypto/create-secret-key\>].   
+                         Used by                                                                       
+                         [JWT security definitions \<../../web-admin/security/jwt\>].      
+                         If JWT is used, must be the same for all servers in a single                  
+                         cluster. If not provided, a new key will be generated                         
+                         automatically.                                                                
+  path                   An empty directory to install the server to                                   \~/prod3/server7/
+  odb_type               ODB type, must be one of: \[\'mysql\', \'postgresql\', \'sqlite\'\]           postgresql
+  odb_host               Host the ODB is running on                                                    localhost
+  odb_port               Port the ODB is listening at                                                  5432
+  odb_user               Username to connect to ODB with                                               zato1
+  odb_db_name            ODB database name                                                             zatodb1
+  kvdb_host              Key/value DB host (Redis)                                                     localhost
+  kvdb_port              Key/value DB port (Redis)                                                     6379
+  pub_key_path           Path to a PEM-encoded server\'s public key                                    \~/crypto/zato.server7.pub.pem
+  priv_key_path          Path to a PEM-encoded server\'s private key                                   \~/crypto/zato.server7.priv.pem
+  cert_path              Path to a PEM-encoded server\'s certificate                                   \~/crypto/zato.server7.cert.pem
+  ca_certs_path          Path to a PEM-encoded list of CA certificates the server is to trust          \~/crypto/ca-cert.pem
+  cluster_name           Name of the cluster this server will join                                     PROD3
+  server_name            Server name                                                                   server7
+
+Usage
+=====
+
+    $ zato create server [-h] [--store-log] [--verbose] [--store-config]
+        [--postgresql_schema POSTGRESQL_SCHEMA] [--odb_password ODB_PASSWORD]
+        [--kvdb_password KVDB_PASSWORD]
+        path odb_type odb_host odb_port odb_user odb_db_name
+        kvdb_host kvdb_port pub_key_path priv_key_path
+        cert_path ca_certs_path cluster_name server_name
+
+    $ zato create server ~/prod3/server7/ postgresql localhost 5432 zato1 zatodb1
+        localhost 6379
+        ~/crypto/zato.server7.pub.pem
+        ~/crypto/zato.server7.priv.pem
+        ~/crypto/zato.server7.cert.pem
+        ~/crypto/ca-cert.pem
+        PROD3 server7
+
+    ODB database password (will not echo):
+    Odb_password again (will not echo):
+
+    Key/value database password (will not echo):
+    Kvdb_password again (will not echo):
+    OK
+    $
+
+Changelog
+=========
+
+  Version   Notes
+  --------- -----------------
+  1.0       Added initially

@@ -1,0 +1,146 @@
+---
+title: Servers
+---
+
+![image](/gfx/arch-servers.png){.align-center}
+
+Overview
+========
+
+Servers are the central point of Zato. This is where [services \<../progguide/service-dev\>] are running,
+where request issued by external applications arrive and where requests from
+Zato to other systems originate from.
+
+Each server is a part of exactly one cluster. There is no limit of how many
+servers a cluster may contain.
+
+Servers are implemented using [gunicorn](http://gunicorn.org) - this allows
+Zato servers to be asynchronous, meaning they are very fast, light on resources
+and able to accept large numbers of incoming HTTP connections.
+
+There is no upper limit to the number of servers running in a single operating system
+although how many servers there are will be typically limited by how many CPUs the are
+(CPU_COUNT) and how many gunicorn workers will be started. For instance, if a server has 4 CPUs and you want
+for each server to have 2 gunicorn workers, it will make most sense to have
+between 2-4 servers (2 workers each) so that the total number of workers doesn\'t
+exceed 2 \* CPU_COUNT. Each worker is a separate OS process so adding more servers
+or workers would make them compete for CPU too strenuously.
+
+Singletons {#arch-servers-singletons}
+==========
+
+For each cluster, exactly one server will be designated to a role of the singleton
+server. This is be the sever that will be responsible for managing the tasks
+that must not be run in more than one instance -[a cluster\'s scheduler \<arch-servers-scheduler\>] and [connectors \<arch-servers-connectors\>].
+
+When the first server in a cluster starts up, it is assigned the role of the singleton server,
+and the server will periodically update its keep-alive flag in the [ODB \<./sql-odb\>].
+Other servers joining the cluster will each check if the singleton server is still alive
+and if the keep-alive flag isn\'t updated in the expected interval, one of the other
+servers will become the singleton. This is known as the process of migrating a singleton
+server.
+
+Load-balancer
+=============
+
+In front of each cluster is a [high-availability load-balancer \<./load-balancer\>], implemented
+using an HAProxy instance running in a subprocess. The load-balancer makes sure
+the incoming HTTP traffic is evenly distributed across all the servers in a cluster
+while allowing the servers to join or leave the cluster without interrupting
+the message flow.
+
+Redis and SQL ODB
+=================
+
+Servers use [Redis \<./redis\>] and an [SQL Operational Database (ODB) \<./sql-odb\>]
+for storing their configuration and statistics.
+
+Redis is used as a message broker for exchanging information
+between servers and between the scheduler and servers. Servers never communicate
+directly, if it\'s needed for one server to send a message to one or more servers,
+the message is published in Redis and other servers receive it from Redis. This
+is an asynchronous processes.
+
+When the scheduler needs to invoke a service, it publishes a message
+to Redis, the message is picked up by one of the cluster\'s servers and again,
+there is no direct communication between the scheduler and servers.
+
+Connectors use Redis too. If a service needs to send a message to AMQP, IBM MQ
+or ZeroMQ, or if external applications use this protocols to send messages to Zato,
+they all are routed through Redis in an asynchronous manner.
+
+Scheduler {#arch-servers-scheduler}
+=========
+
+Each cluster has a scheduler which can be used to schedule services to be invoked
+periodically. This can be used, for instance, to check for new files to process on FTP
+each 15 minutes or in similar situations.
+
+Scheduler jobs can be:
+
+-   one-time - for quick one-off jobs
+-   interval-based - for recurring tasks
+-   cron-style - similar to interval-based yet using [cron syntax](https://en.wikipedia.org/wiki/Cron),
+    this is meant to aid in migrating already existing tasks from cron to Zato
+
+HTTP, FTP and SQL {#arch-servers-connectors}
+=================
+
+HTTP, FTP and SQL are protocols through which Zato services can connect to other
+applications directly, in a synchronous fashion.
+
+HTTP can be either plain HTTP or HTTPS and uses the [requests](http://pypi.python.org/pypi/requests/)
+library. Any messages can be exchanged, JSON, XML,
+CSV or any other format although Zato has special support for the first two
+if you decide to use Zato\'s [Simple IO \<../progguide/sio/index\>] mechanism.
+
+FTP should be understood as both FTP and FTPS. Note that Zato opens a new FTP
+connection for each service invocation, for instance - you scheduled a job
+to be run twice a minute, the job is to invoke a service which will fetch a file
+from an FTP. In that scenario, the service will open and close a new FTP connection twice
+a minute.
+
+Supported SQL databases are
+[Oracle](http://www.oracle.com/us/products/database/overview/index.html)
+and
+[PostgreSQL](http://www.postgresql.org).
+Access to SQL resources is implemented using the [SQLAlchemy](http://sqlalchemy.org) library.
+
+Connectors
+==========
+
+AMQP, IBM MQ and ZeroMQ are protocols that Zato uses asynchronously
+through cluster connectors. For that protocols, each channel and an outgoing connection
+will start a new connector, e.g. if there are 3 AMQP channels and 2 ZeroMQ outgoing
+connections defined, there will be 5 connectors started by the [singleton server \<arch-servers-singletons\>].
+
+Services and connectors communicate indirectly through Redis.
+
+If a channel receives a new message, the message is taken off a queue,
+published on Redis, one of the servers subscribed receives it and a service is invoked.
+
+Conversely, if a service needs to put a message on a queue, the message is first
+published to Redis, a connector pick it up and the message is sent to its destination.
+
+Note that connectors are never redundant and there are always at least 2 clusters
+running in parallel needed to secure high-availability (HA), as discussed in [a separate chapter \<../admin/guide/ha\>],
+if any connectors are used.
+
+Administrators
+==============
+
+Zato administrators use [web admin \<./web-admin\>] and the [CLI \</admin/cli/create-odb\>]
+to manage clusters.
+
+Web admin is a graphical browser-based console used for configuring most aspects of a running
+cluster. A single web admin instance can be used for connecting to more than one
+cluster. Web admin uses Zato\'s public API for the management,
+it never directly updates a cluster\'s state in the ODB.
+
+The [command-line interface \</admin/cli/create-odb\>] is used to create,
+start and stop servers running in a cluster - as a security measure, these commands
+cannot be issued remotely through the web admin. CLI is also used for updating
+cryptographical material of servers and returning
+[information \</admin/cli/info\>]
+[regarding servers \</admin/cli/component-version\>]
+that isn\'t available otherwise.

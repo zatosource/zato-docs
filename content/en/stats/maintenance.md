@@ -1,0 +1,11 @@
+---
+title: Statistics maintenance
+---
+
+Statistics need proper maintenance in order to avoid the unlimited growth
+of Redis, the place where they\'re stored.
+
+If you know you won\'t need information past or prior to a given date, you can
+use a maintenance form to delete unneeded data reclaiming disk space and RAM in this way.
+
+![image](/gfx/stats/maintenance.png){width="90.0%"}

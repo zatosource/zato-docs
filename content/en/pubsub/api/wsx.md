@@ -1,0 +1,126 @@
+---
+title: Pub/sub - API - WebSockets
+---
+
+Preliminary materials: [Pub/sub architecture \<../arch/index\>].
+
+WebSockets-based [endpoints \<../details/endpoint/index\>] use the services described below to participate
+in message publications and subscriptions.
+
+From an endpoint\'s perspective, the services are regular Zato ones
+and all the concepts and usage principles
+[documented \<../../progguide/wsx\>]
+in the chapter about WebSockets need to be observed with publish/subscribe services too.
+
+Security note - the services allow for access to arbitrary topics and queues, i.e. their callers are always
+able to subscribe to any topic and to get messages from any queue (in the latter case, provided that they know correct
+subscription keys).
+
+If such wide access is not to be allowed, all the services can be always invoked through self.invoke, in which case
+services behind WebSocket channels first check permissions and only then invoke the actual services documented below
+using self.invoke.
+
+zato.pubsub.pubapi.publish-message
+==================================
+
+Publishes a new message to input topic. Returns the message\'s ID on output.
+
+Request
+-------
+
+  Parameter       Datatype   Required   Notes
+  --------------- ---------- ---------- -------------------------------------------------------------------
+  topic_name      string     Yes        Name of the topic to publish the message to
+  data            string     Yes        Actual data of the message that is being published
+  priority        integer    \-\--      Message priority from 1 to 9 (1=min). Defaults to 5 if not given.
+  expiration      integer    \-\--      Expiration in seconds, there is no default value
+  correl_id       string     \-\--      Correlation ID. If the message belongs to a series of messages,
+                                        this can be used to correlate them.
+  in_reply_to     string     \-\--      If the message is in reply to a previous one, this is the field
+                                        with the value of the previous message\'s ID
+  ext_client_id   string     \-\--      An arbitrary string uniquely identifying the calling application
+                                        or its instance - used for logging and audit purposes
+  has_gd          bool       \-\--      Whether the message that is published should be governed by
+                                        Guaranteed Delivery (if True) or not. Defaults to False.
+
+Response
+--------
+
+  Parameter   Datatype   Required   Notes
+  ----------- ---------- ---------- ------------------------------------------------------------------
+  msg_id      string     Yes        Unique ID assigned to the input message (96 bits of random data)
+
+zato.pubsub.pubapi.subscribe
+============================
+
+Subscribes the calling WebSocket endpoint to input topic. Returns a unique subscription key on input (
+it is a secret and must never be shared) and the depth of the subscription\'s queue - there will be at least
+that many messages waiting for the subscriber already, although it may be possibly none at all.
+
+Request
+-------
+
+  Parameter    Datatype   Required   Notes
+  ------------ ---------- ---------- -----------------------------------
+  topic_name   string     Yes        Name of the topic to subscribe to
+
+Response
+--------
+
+  Parameter     Datatype   Required   Notes
+  ------------- ---------- ---------- ------------------------------------------------------------------------------------------------
+  sub_key       string     Yes        A unique subscription key generated for this client (96 bits of random data). Must be treated
+                                      as a secret and guarded accordingly
+  queue_depth   integer    Yes        How many messages are already known to have been enqueued for the calling client in this topic
+
+zato.pubsub.pubapi.get-messages
+===============================
+
+Returns all messages enqueued for input subscription key, which must point to a subscription to messages
+from input topic name.
+
+Request
+-------
+
+  Parameter    Datatype   Required   Notes
+  ------------ ---------- ---------- ---------------------------------------------
+  topic_name   string     Yes        Name of the topic to publish the message to
+  sub_key      string     Yes        Subscription key to get messages by
+
+Response
+--------
+
+  Parameter             Datatype   Required   Notes
+  --------------------- ---------- ---------- -------------------------------------------------------------------
+  data                  string     Yes        Message data, i.e. the actual business data published to topic
+  delivery_count        integer    Yes        How many attempts to deliver the message to endpoint there were
+                                              prior to this attempt (reset after each server restart)
+  expiration            integer    Yes        Message expiration time in milliseconds
+  expiration_time_iso   string     Yes        Message expiration time as an ISO-8601 timestamp
+  ext_client_id         string     \-\--      An arbitrary client ID provided by the publisher
+  has_gd                bool       Yes        Whether the message was delivery using Guaranteed Delivery or not
+  mime_type             string     Yes        Message MIME type
+  priority              integer    Yes        Priority, 1-9 (1=min)
+  pub_time_iso          string     Yes        Publication time as an ISO-8601 timestamp
+  size                  integer    Yes        Size of message in bytes (UTF-8)
+  sub_key               string     Yes        Taken from input
+  topic_name            string     Yes        Taken from input
+
+zato.pubsub.pubapi.unsubscribe
+==============================
+
+Unsubscribes the endpoint from a subscription pointed to by input sub_key which must
+be for messages from topic topic_name.
+
+Request
+-------
+
+  Parameter    Datatype   Required   Notes
+  ------------ ---------- ---------- ---------------------------------------------
+  topic_name   string     Yes        Name of the topic to publish the message to
+  sub_key      string     Yes        Subscription key to get messages by
+
+Response
+--------
+
+(No response)

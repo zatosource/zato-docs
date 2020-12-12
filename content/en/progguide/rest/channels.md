@@ -1,0 +1,146 @@
+---
+title: REST channels
+---
+
+[Plain HTTP channels \<../../web-admin/channels/plain-http\>] offer several interesting points that facilitate
+the development of REST channels, including the most popular ones using JSON.
+
+-   URL paths can include patterns
+-   URL parameters can form part of the input to a service
+-   Users can decide which parameter types take precedence over one another
+-   Access to a channel can be limited to a selected HTTP verb only
+-   Data format can be set to JSON, XML or none in particular at all
+-   Services can react to user-chosen HTTP verbs only (documented in [a separate chapter \<services\>])
+-   RBAC can be used to assign roles and actions to clients applications and HTTP verbs they use (documented in [a separate chapter \<../../admin/guide/rbac/overview\>])
+
+Note that in order to take advantage of URL path patterns and URL parameters a service needs to use
+[SimpleIO \<../sio/index\>], such as the one below which will be used throughout the chapter.
+
+``` {.python}
+# -*- coding: utf-8 -*-
+
+from __future__ import absolute_import, division, print_function, unicode_literals
+
+from zato.server.service import Service
+
+class GetBalance(Service):
+
+    class SimpleIO:
+        input_required = ('cust_no', 'account_no')
+        output_required = ('balance', 'currency')
+
+    def handle(self):
+
+        # Confirm input was received
+        self.logger.info('Customer: %s', self.request.input.cust_no)
+        self.logger.info('Account: %s', self.request.input.account_no)
+
+        # Produce sample output
+        self.response.payload.balance = '357.19'
+        self.response.payload.currency = 'EUR'
+```
+
+Clean URLs with path patterns
+=============================
+
+A sample clean URL may read <http://localhost:11223/customer/balance/37172/HAZDM017/> and to configure it from the web admin
+one would fill out a form to create a [plain HTTP channels \<../../web-admin/channels/plain-http\>] as follows.
+Note that the URL path contains parameters enclosed between *{* and *}* and *Merge URL params to req* is on.
+
+![image](/gfx/progguide/rest/clean-urls.png){width="95.0%"}
+
+Now the service can be invoked using a nice and clean URL:
+
+``` 
+$ curl http://localhost:11223/customer/balance/37172/HAZDM017/ ; echo
+{"response": {"currency": "EUR", "balance": "357.19"}}
+$
+```
+
+And the contents of server.log confirms that the input was received fine:
+
+``` 
+INFO - Customer: 37172
+INFO - Account: HAZDM017
+```
+
+Parameters in query path
+========================
+
+The same service can be mounted on another channel that will let client applications use query parameters rather than ones
+embedded in a path.
+
+![image](/gfx/progguide/rest/query-params.png){width="95.0%"}
+
+``` 
+$ curl "http://localhost:11223/customer/balance?cust_no=198271&account_no=KMZQ62M" ; echo
+{"response": {"currency": "EUR", "balance": "357.19"}}
+$
+```
+
+Again, server.log confirms the input was the same:
+
+``` 
+INFO - Customer: 198271
+INFO - Account: KMZQ62M
+```
+
+Using JSON payload
+==================
+
+Note that it\'s always possible to invoke the very same service by using JSON payload on input:
+
+``` 
+$ curl http://localhost:11223/customer/balance -d \
+    '{"cust_no":"38631", "account_no":"JZM92KH"}' ; echo
+{"response": {"currency": "EUR", "balance": "357.19"}}
+$
+```
+
+``` 
+INFO - Customer: 38631
+INFO - Account: JZM92KH
+```
+
+Parameters priority
+===================
+
+Given that there are 3 sources of parameters - payload, URL path and the query string - a two-fold priority resolution mechanism lets one
+decide which ones take precedence over another if it happens that the same parameter is provided more than once on input.
+
+*URL params priority* can be one of:
+
+> -   QS over path
+> -   Path over QS
+
+If *QS over path* then query string parameters are prefered over parameters found using path parameters. With *Path over QS*
+it\'s the other way around.
+
+Once it\'s decided if either query string or path parameters have priority, their precedence over payload gets decided.
+
+*Params priority* can be one of:
+
+> -   URL over message
+> -   Message over URL
+
+With *URL over message* parameters resulting from the previous decision take precedence over payload in the message.
+With *Message over URL* it\'s the other way around.
+
+HTTP methods
+============
+
+A channel can be limited to accept an arbitrary HTTP method only. Requests submitted using any other method will be rejected.
+
+![image](/gfx/progguide/rest/http-method.png){width="95.0%"}
+
+A service can [restrict \<services\>] the range of methods supported even if a given channel doesn\'t however once a channel
+picks the verb to react to the service will not be able to make use of any other.
+
+Data format
+===========
+
+An HTTP channel can be set to take JSON or XML on input. That allows Zato to automatically extract parameters from the incoming
+message and serialize the response out of the payload a service produces.
+
+It\'s also possible not to set the data format to any specific one, for instance, if using [HL7 v2](https://en.wikipedia.org/wiki/HL7)
+the service will parse the message itself.

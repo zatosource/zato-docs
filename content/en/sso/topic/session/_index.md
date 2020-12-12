@@ -1,0 +1,17 @@
+---
+title: Sessions
+---
+
+Sessions represent users that are logged in to the system. Each session may have a number of
+arbitrary [attributes \<../attr/index\>] associated that are stored in the database for as long as the session exists.
+There is no limit to how many sessions a single user may have active at a time.
+
+Each session is identified by a UST - user session token. A UST is a random string uniquely assigned to each session.
+It is a secret that must never be revealed to other users or outside parties. It is akin to cookies in HTTP-based web applications.
+
+More information:
+
+-   How to [log a user in \<../user/login\>]
+-   How to [log a user out \<../user/logout\>]
+-   How to [access existing sessions \<./access\>]
+-   How to access [session attributes \<../attr/index\>]

@@ -1,0 +1,39 @@
+---
+title: Then I store \"{path}\" from response under \"{name}\"
+---
+
+Usage example
+=============
+
+    Feature: zato-apitest docs
+
+    Scenario: Then I store "{path}" from response under "{name}"
+
+        Given address "http://apitest-demo.zato.io"
+        Given URL path "/demo/json"
+        Given format "JSON"
+
+        When the URL is invoked
+
+        Then I store "/a" from response under "my-variable"
+
+    Scenario: Has access to variables
+
+        Given address "http://apitest-demo.zato.io"
+        Given URL path "/demo/json"
+        Given request is "{}"
+        Given JSON pointer "/foo" in request is "#my-variable"
+
+        When the URL is invoked
+
+        Then status is "200"
+
+Discussion
+==========
+
+-   Stores values of paths, either JSON Pointers or XPath, under labels,
+    for the duration of a single test case (feature)
+-   Values can be referred to via their labels by prefixing them with a
+    \'\#\' sign
+-   This lets one define a config-like scenario as the first one to pull
+    all the necessary that will be referred to in subsequent scenarios

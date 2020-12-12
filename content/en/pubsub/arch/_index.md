@@ -1,0 +1,217 @@
+---
+title: Publish/subscribe architecture
+---
+
+High-level overview
+===================
+
+![image](/gfx/pubsub/intro.png)
+
+Publish/subscribe features are a built-in part of Zato that that lets one use it as a message broker in addition to
+[SOA/API services \<../../intro/esb-soa\>] or [SSO and user management APIs \<../../sso/index\>].
+
+Business data can be exchanged between applications using a notion of topics and delivery queues. Publishers produce messages
+that are routed by Zato to subscribers, applying transformation or security rules while flowing through the platform.
+
+Each application exchanging information using publish/subscribe may use a different connection protocol and different
+security mechanism without influencing each other.
+
+There is built-in support for Python, REST, SOAP, WebSockets, Java JMS or flat (batch) files and each can be used independently,
+thus a Zato-based publish/subscribe environment can support diverse integration needs from large CRM or ERP systems,
+through online APIs to IoT devices.
+
+Applications participating in the exchange of messages using topics and message queues are collectively known as
+endpoints. Each endpoint encapsulates information about which application connects to pub/sub as well as the endpoint\'s
+access permissions - which topics it can publish and subscribe to.
+
+Each endpoint has a role - publisher, subscriber or publisher/subscriber. In addition to it, each endpoint can be configured
+to have access for publication or subscription only to topics matching user-defined patterns.
+
+For each subscriber and each topic, a message queue is maintained automatically by Zato to keep data in until the subscriber
+confirms it has received a particular message.
+
+A delivery queue can be in-RAM or backed by persistent storage. Both types of queues will buffer messages if the subscriber is
+not available. Additionally, the latter case is called a Guaranted Delivery (GD) queue because its contents will be available even
+if all Zato servers go down which is not the case with in-RAM queues.
+
+In-RAM queues are limited by the amount of RAM available for Zato servers. GD queues store their data in an SQL database and are
+limited by the disk space assigned to the database.
+
+GD queues will survive a full restart of all Zato servers in a given environment because all of their data is kept in an
+SQL database. Conversely, in-RAM queues have no persistent storage so restarting servers will mean all their messages will
+be lost.
+
+Messages that are in transit can be modified in place - for instance, if a subscriber keeps rejecting a message it is possible
+to update it without requiring the publisher to re-publish it because it may be at times impossible.
+
+Subscriptions may be explicitly created by administrators or, if allowed to, applications may subscribe through dedicated
+API calls.
+
+A web-admin console offers access to all the configuration as well as means to browse the contents of queues
+along with commonly needed metadata such as when a topic was last published to.
+
+A detailed audit log lets administrators understand when each message was published and delivered.
+
+Topics
+======
+
+![image](/gfx/pubsub/details/topic-create.png)
+
+Each topic has a unique name that identifies the topic and its business purpose among other topics. For instance, in the
+screenshot above topic \'customer.new.1\' may be used to publish data about new customers added to a company\'s CRM
+with subscribers interested in receiving this business event.
+
+A topic can be active or inactive. An active topic can be used for message publication whereas an inactive one will reject
+any new messages.
+
+Each topic can be GD enabled or not. If it is, each published message will be by default covered by guaranteed delivery
+though this setting can be overridden on a per-message basis.
+
+API subscriptions may be enabled or disabled for topic - in the former case applications holding correct credentials and
+access permissions will be allowed to subscribe to topics using APIs such as REST. In the former case, only administrators
+will be able to create subscriptions.
+
+A topic has its maximum depth, which is maintained separately for in-RAM and GD messages. If there are subscriptions
+for a topic but subscribers do not consume messages while the messages keep arriving, at one point the topic\'s depth will
+be reached and new messages published will be rejected until the previous messages will have been consumed by subscribers
+or the topic has been cleared by administrators. Any extra GD-messages will be rejected and non-GD messages will be saved
+to log files on disk.
+
+For GD-enabled messages, maximum depth is checked globally, no matter how many servers there are in a Zato cluster. For
+in-RAM messages, the depth applies to each server separately.
+
+If a topic has no subscriptions - as opposed to having subscriptions but without subscribers currently reading messages -all messages published to the topic will be treated as GD-enabled ones, regardless of whether they were originally sent
+as GD or non-GD messages.
+
+Endpoints
+=========
+
+![image](/gfx/pubsub/details/endpoint-create.png)
+
+Endpoints - publishers and subscribers - typically represent a single application taking part in publish/subscribe-based
+processes and their names reflect it.
+
+An endpoint has its type which represents the underlying technology and protocol. Supported types are REST, SOAP, Zato services,
+Java JMS and WebSockets.
+
+Endpoints are assigned a role that broadly allows them to publish to topics, subscribe to topics, or both, no matter which
+ones in particular, e.g. if an endpoint is a publisher only then it will never be able to subscribe to any topic,
+it will be able to send but not to receive messages.
+
+Pattern-based permissions dictate what topics an endpoint can publish or subscribe to. For instance, in the screenshot
+above, endpoint ERP will be able to publish messages to topic \'customer.new.daily\', if such a topic exists, because it matches
+pattern \'customer.new.\*\' but it won\'t be able to publish to topic \'customer.updates.hourly\' because there is no corresponding
+access pattern.
+
+Subscriptions
+=============
+
+![image](/gfx/pubsub/details/sub-create.png)
+
+Provided that there are correct permission patterns and that relevant topics exist, each endpoint may subscribe to one
+or more topics.
+
+Delivery of messages for each subscription is always carried out by a single server, called a delivery server for that
+subscription. This ensures correct message ordering - if there are multiple servers in a Zato cluster each receiving messages
+ultimately destined for the subscription, they will be forwarded to that subscription\'s delivery server first.
+For in-RAM messages, they are kept in the delivery server\'s RAM.
+
+Messages can be sent on a notify or pull basis. The former means that Zato itself will be invoking the endpoint with new messages
+whereas pull means that Zato will queue messages up and the recipient itself will periodically read the contents of its queue.
+Regardless of the delivery type, messages can be sent one-by-one or in batches of a pre-configured size.
+
+Delivery of a message can be repeated up to a configured number of times, with a sleep time in between them, configurable
+depending on what kind of error was encountered - a TCP socket-level one or a different one.
+
+For each type of an endpoint, this endpoint type\'s specific options can be provided - for instance, the endpoint in the screenshot
+above is a REST one so an HTTP method can be specified that should be used to deliver messages with.
+
+Each endpoint may subscribe to topics multiple types and each time it is given a new subscription key - this is a secret that
+must be known only to the participant to whom it was issued.
+
+APIs
+====
+
++------------+---------------------------+---------------------------+
+| Name       | Usage                     | Read more                 |
++============+===========================+===========================+
+| Python     | Zato services making use  | [Docs                     |
+|            | of publish/subscribe      | \<../api/za               |
+|            |                           | to-service\>] |
++------------+---------------------------+---------------------------+
+| REST       | External clients          | [Docs                     |
+|            | exchanging messages using | \<.                       |
+|            | JSON over HTTP            | ./api/rest\>] |
++------------+---------------------------+---------------------------+
+| AMQP       | AMQP brokers receiving    | [Docs                     |
+|            | messages from Zato topics | \<../details/end          |
+|            |                           | point/amqp\>] |
++------------+---------------------------+---------------------------+
+| WebSockets | A low-overhead protocol   | [Docs                     |
+|            | particularly well suited  | \<                        |
+|            | for IoT endpoints         | ../api/wsx\>] |
++------------+---------------------------+---------------------------+
+| Java JMS   | Full integration for      | \-\--                     |
+|            | existing Java systems     |                           |
+| Flat files | using JMS                 | [Docs                     |
+|            | for enterprise messaging  | \<../details/end          |
+|            | Offers a file listener    | point/file\>] |
+|            | waiting for new files in  |                           |
+|            | the filesystem,           |                           |
+|            | e.g. batch files with     |                           |
+|            | invoices to be sent to    |                           |
+|            | multiple destinations     |                           |
++------------+---------------------------+---------------------------+
+
+GUI
+===
+
+![image](/gfx/pubsub/arch/message-publish.png){width="100.0%"}
+
+Administrators have access to a GUI through Zato\'s built-in web admin console - it offers all the features needed for
+configuration and maintenance, including ability to configure topics, endpoints, subscriptions, browse messages,
+publish new data or update existing messages in place.
+
+Security
+========
+
+Integrity and security of publish/subscribe topics are guarded on several levels.
+
+-   Each application needs to be authenticated using its protocol-specific mechanism. For instance, REST ones will send an API key.
+-   Ability to publish or subscribe to topics needs to be explicitly - by default an endpoint does not have any permissions
+    to any of topics
+-   Credentials are always stored in the database in an encrypted form (AES-128, CBC, PKCS7)
+-   As is the case with other parts of Zato, there are no default passwords anywhere
+
+Persistent storage
+==================
+
+Zato uses an SQL database for persistent storage of guaranteed delivery queues. This is the same database that the platform\'s
+other tables are kept in. Standard SQL tools and facilities may be used to backup and move publish/subscribe data if needed.
+
+Expired messages are periodically cleaned up by background jobs - the configuration is kept in the
+[server.conf \<../../admin/guide/install-config/config-server\>]
+file. By default, such messages are removed from their relevant tables after 10 seconds, but, since they are already
+expired, they will never be delivered to any endpoint no matter how often the background cleanup tasks run.
+
+Logging
+=======
+
+    2018-04-02 18:26:59,636 - INFO - PUB. CID:`4e2cba065db64cc4c69f8f79`,
+      topic:`zato.demo.sample`, from:`zato.pubsub.demo.endpoint`, ext_client_id:`n/a`,
+      pattern:`pub=zato.demo.*`, new_depth:`n/a`, GD data:`[]`, non-GD data:`[{u'data_prefix': None,
+      u'cluster_id': 1, u'data_prefix_short': None, u'size': 24, u'pub_time': 1522686419636.607,
+      u'has_gd': False, u'ext_pub_time_iso': None, u'sub_key': None, u'priority': 5,
+      u'expiration_time_iso': None, u'ext_pub_time': u'', u'topic_id': 1,
+      u'expiration_time': 3670170066636.607, u'mime_type': u'',
+      u'pub_msg_id': 'zpsmeb2e4ebe371e2bb75318de28', u'pub_time_iso': None,
+      u'pattern_matched': 'pub=zato.demo.*', u'published_by_id': 1, u'delivery_status': u'initialized',
+      u'in_reply_to': None, u'data': 'This is a sample message',
+      u'position_in_group': None, u'pub_correl_id': None, u'expiration': 2147483647, u'group_id': None,
+      u'ext_client_id': None}]
+
+For each message published a new entry is stored in the audit log. By default, this information is saved to log files
+but it can be reconfigured to send entries to other destinations such as syslog or Sentry.
+
+Each entry contains full metadata about the message, for instance, which endpoint published it, based on what security pattern
+access was granted, when the message will expire or what its priority was.

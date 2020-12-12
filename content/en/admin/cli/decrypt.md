@@ -1,0 +1,43 @@
+---
+title: zato decrypt
+---
+
+Overview
+========
+
+Decrypts secrets using a Zato component\'s secret key. The secret is assumed to
+have been previously encrypted using the very same secret key.
+
+Subcommands
+===========
+
+-   (None)
+
+Command-specific parameters
+===========================
+
+  Name        Description
+  ----------- --------------------------
+  \--secret   A secret to be decrypted
+  path        Path to a Zato component
+
+Usage
+=====
+
+    $ zato decrypt [-h] [--store-log] [--verbose] [--store-config]
+        [--secret SECRET] path
+
+    $ zato decrypt --secret gAAAAABdJkUk5K1_EcUCN0yAWHx1JxhBGBNYk8q190TWFpAa \
+      ~/env/web-admin
+    Decrypted value: `3.141592...`
+    $
+
+Changelog
+=========
+
+  Version   Notes
+  --------- --------------------------------------------------------------------
+  3.1       The path parameter needs to point to a component\'s main directory
+            rather than to its private key because keys are optional
+            starting in Zato 3.1
+  1.0       Added initially

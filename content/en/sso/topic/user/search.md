@@ -1,0 +1,58 @@
+---
+title: Searching for users
+---
+
+Super-users that are already logged in may search for other users under a variety of criteria. For each field, one string can
+be provided as a search parameter (i.e. it is not full-text search).
+
+Available search criteria are:
+
+-   User ID
+-   Username
+-   Email address (if not [encrypted \<../../config/index\>] in the database)
+-   Signup status
+-   Approval status
+-   Name fields:
+    -   Display name
+    -   First name
+    -   Middle name
+    -   Last name
+
+If no critera are specified, all users are returned, in batches of 50.
+
+Search details:
+
+-   Email and display/first/middle/last name fields are case-insensitive
+-   Email, username and user ID and status fields are considered exact values to be looked up
+-   Name fields can be AND or OR-joined and the other parameters are additionally AND-joined with them
+-   Name fields can be interpreter as either exact values or substrings to look up
+-   If any of username or user ID is given on input, all the remaning parameters are ignored - this is because
+    these two fields are always unique in the database so any other field will have no impact on the query
+-   If both username and user ID are given on input, only user ID will be used and username will be ignored
+-   A batch size with a maximum of 100 results per page can be specified
+-   On response, a list of results is returned, even if it is empty or possible with one matching element only
+-   Metadata returned in response lets one find out how many users matched input, how many pages there are in total
+    and if there is a previous/next page available to navigate to
+
+Defaults:
+
+-   Minimum search string length: 2 characters
+-   Batch size: 50
+-   Order by: display name, username, signup time, user ID - all ascending
+
+Details of OR and AND joins:
+
+-   If more than one of display/first/middle/last name is given on input, they will be AND or OR-joined, depending on input
+    configuration. By default AND is used.
+
+    For instance, looking up John in first name and Smith in last name will find all users that have
+    first name containing John and last name containing Smith, i.e. all John Smiths but it may be also told
+    to return all persons that have either first name John or last name Smith if OR is the join parameter.
+
+-   Email, username, user ID and all status fields are looked up by an exact match, i.e. looking up \"<smith@example.com>\"
+    by email will find all users whose email is \'<smith@example.com>\' but will not find \'<john.smith@example.com>\'
+
+Email encryption:
+
+-   By default all email addresses are [encrypted \<../../config/index\>] - it is not possible to use them as search criteria
+    and warning code E009001 will be returned in such a case

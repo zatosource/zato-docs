@@ -1,0 +1,67 @@
+---
+title: Pub/sub - endpoints - AMQP
+---
+
+Overview
+========
+
+AMQP brokers can automatically receive messages published to Zato topics. First, an AMQP
+[definition \<../../../web-admin/conn-def/amqp\>]
+and
+[outgoing \<../../../web-admin/outgoing/amqp\>]
+connection need to be created.
+
+Next, pub/sub endpoints should be created to grant outgoing AMQP connections access to specific topics or patterns.
+Then, a subscription combining both the endpoint and outgoing connection can be created.
+
+Afterwards, each time a message is published to one of the topics that AMQP endpoints are subscribed to, it will be forwarded
+to the remote AMQP broker. It is also possible to use specific exchanges, routing keys, encoding, content type and other metadata.
+
+Currently, AMQP endpoints may act as subscribers to topics. In future Zato versions, means will be added
+to let AMQP endpoints act as publishers to topics, i.e. messages sent from AMQP brokers will be automatically
+published to Zato topics.
+
+Endpoints
+=========
+
+![image](/gfx/pubsub/api/menu-endpoint.png)
+
+![image](/gfx/pubsub/api/endpoint-create-amqp.png)
+
+  Header           Notes
+  ---------------- ----------------------------------------------------------------------------------
+  Name             Endpoint name
+  Type             AMQP
+  Role             Currently, must be always Subscriber
+  Topics allowed   A list of patterns for topics that this endpoint will be allowed to subscribe to
+
+Subscriptions
+=============
+
+![image](/gfx/pubsub/api/menu-sub.png)
+
+![image](/gfx/pubsub/api/sub-create-amqp.png)
+
+  Header                  Notes
+  ----------------------- ------------------------------------------------------------------------------------------------------------
+  Type                    AMQP
+  Delivery server         From which server messages will be sent to AMQP brokers
+  Endpoint                An already existing pub/sub endpoint on whose behalf messages will be sent to AMQP brokers
+  Delivery method         Must be always Notify
+  Delivery batch size     At most how many messages to send in one batch to AMQP brokers
+  List required           Should messages be always be wrapped in a list element, even if there is only one message
+  Delivery max retries    How many times to retry delivery for a message until it is considered undeliverable
+  Sleep on socket error   How many seconds to sleep on receiving a TCP-level socket error in communication with AMQP brokers
+  Sleep on error error    As above but for non socket-related errors
+  Topics                  A list of topics to subscribe to - only topics to which the chosen endpoint has
+                          subscription permissions are displayed
+  AMQP outconn            An [AMQP outgoing \<../../../web-admin/outgoing/amqp\>] connection to deliver messages through
+  AMQP exchange           AMQP exchange to deliver messages to
+  AMQP routing key        AMQP routing key to use during delivery
+
+Changelog
+=========
+
+  Version   Notes
+  --------- -----------------
+  3.0       Added initially

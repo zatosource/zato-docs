@@ -1,0 +1,49 @@
+---
+title: User.unlock - REST API
+---
+
+Overview
+========
+
+Unlock a user specified by user_id. Input UST must belong to a logged in super-user.
+
+Use [User.lock \<./unlock\>] to lock users.
+
+> -   HTTP method: DELETE
+> -   URL path: /zato/sso/user/lock
+
+Request
+=======
+
+  Name          Datatype   Optional   Notes
+  ------------- ---------- ---------- -----------------------------------------------------
+  ust           string     \-\--      Current user\'s session token (UST)
+  current_app   string     \-\--      Name of application that the call is attempted from
+  user_id       string     \-\--      ID of the user to unlock
+
+Response
+========
+
+  Name         Datatype   Optional   Notes
+  ------------ ---------- ---------- ----------------------------------------------------------------------------------------------------------------
+  cid          string     \-\--      Correlation ID assigned to request
+  status       string     \-\--      Overall [status code \<../../../status-code\>]
+  sub_status   list       Yes        Returned only if status is not \"ok\", a list of [error or warning codes \<../../../status-code\>]
+
+Usage
+=====
+
+``` 
+$ curl -XDELETE localhost:17010/zato/sso/user/lock -d '
+  {
+   "ust": "gAAAAABaluMOuV63skky-6ZZzlaPs...",
+   "current_app": "CRM",
+   "user_id": "zusr20ksc6vzb29fvbg8zympcnqdm9"
+  }
+  '
+
+  {
+      "cid": "de00deb0471188dcdd9913a8",
+      "status": "ok"
+  }
+```

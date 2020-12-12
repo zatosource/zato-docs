@@ -1,0 +1,109 @@
+Installing and configuring zato-enclog for Zato
+===============================================
+
+The steps can be broken out into several phases:
+
+-   Install zato-enclog
+-   Configure logging.conf files
+-   Stop and start servers
+
+Install zato-enclog
+-------------------
+
+-   Change user to *zato*
+-   Clone zato-enclog [from GitHub](https://github.com/zatosource/zato-enclog)
+-   Build the package
+-   Symlink zato-enclog and its dependencies to */opt/zato/current/zato_extra_paths*
+-   (optionally) Add enclog CLI to \$PATH
+
+In commands below ENCLOG_DIR is the directory zato-enclog has been cloned to. EXTRA_PATHS is
+/opt/zato/current/zato_extra_paths.
+
+    $ sudo su - zato
+    $ git clone https://github.com/zatosource/zato-enclog.git
+    $ cd zato-enclog
+    $ make install2
+    $ ln -s ENCLOG_DIR/src/zato EXTRA_PATHS
+    $ ln -s ENCLOG_DIR/enclog-env/lib/python2.7/site-packages/builtins EXTRA_PATHS
+    $ ln -s ENCLOG_DIR/enclog-env/lib/python2.7/site-packages/future EXTRA_PATHS
+    $ exit
+    $ sudo ln -s ENCLOG_DIR/enclog-env/bin/enclog /usr/local/bin/enclog
+
+Configure logging.conf files
+----------------------------
+
+The configuration below allows to store encrypted data in *logs/encrypted.log* files with keys kept in logging.conf belonging to Zato servers.
+This means that user *zato* has by default access to both crypto keys and encrypted data. You should also customize file permissions
+if necessary.
+
+If this is not desirable consider using another handler instead of the default one which saves data to *logs/encrypted.log* files.
+
+zato-enclog is a logging formatter and can be plugged to any handler the standard Python\'s
+[logging](https://docs.python.org/2/library/logging.html) module supports.
+
+-   Generate a new [Fernet key](https://cryptography.io/en/latest/fernet/). The key is the only way to decrypt
+    the data. Should it be lost, decryption will not be possible.
+
+```{=html}
+<!-- -->
+```
+    $ enclog genkey
+    [snip output]
+    $
+
+-   Open logging.conf
+
+Three entries needs to be added:
+
+-   To *loggers*
+-   To *handlers*
+-   To *formatters*
+
+Update to *loggers*, should be added after *zato_singleton*:
+
+    enclog:
+        level: INFO
+        handlers: [enclog]
+        qualname: enclog
+        propagate: false
+
+Update to *handlers*, should be added after *singleton*:
+
+    enclog:
+        formatter: encrypted
+        class: logging.handlers.ConcurrentRotatingFileHandler
+        filename: './logs/encrypted.log'
+        mode: 'a'
+        maxBytes: 20000000
+        backupCount: 10
+
+Update to *formatters*, should be added after *colour*. The Fernet key generated above needs to be used here.
+
+    encrypted:
+        format: '%(asctime)s - %(levelname)s - %(process)d:%(threadName)s - %(name)s:%(lineno)d - %(message)s'
+        (): zato.enclog.EncryptedLogFormatter
+        fernet_key: Fernet key goes here
+
+Stop and start servers
+----------------------
+
+Stop and start each server in a cluster.
+
+    $ zato stop /path/to/server
+    $ zato start /path/to/server
+
+(end of steps)
+
+Usage
+=====
+
+    from logging import getLogger
+    from zato.server.service import Service
+
+    enclog = getLogger('enclog')
+
+    class MyService(Service):
+        def handle(self):
+            enclog.info('This will be encrypted')
+
+Use [enclog open \<../cli/open\>] and [enclog tailf \<../cli/tailf\>] to read encrypted logs.

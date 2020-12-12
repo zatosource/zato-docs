@@ -1,0 +1,78 @@
+---
+title: zato sso change-user-password
+---
+
+Overview
+========
+
+Changes a user\'s password to a selected one. Use [zato sso reset-user-password \<./sso-reset-user-password\>] to have Zato
+auto-generate a strong password for user and print it to stdout.
+
+The user must already exist. Optionally, sets a non-default expiry for password or a flag to force the user to change
+the password on next login.
+
+Password must be valid per input server\'s configuration.
+
+The absence of \--must-change means that its existing value will not be changed - for instance, if the flag is
+already true in the database and it was not given on input, it will continue to be true.
+
+Subcommands
+===========
+
+-   (None)
+
+Command-specific parameters
+===========================
+
++----------------+-------------------------+------------------------+
+| Name           | Description             | Example value          |
++================+=========================+========================+
+| path           | Path to a Zato server,  | /home/zato/env/server1 |
+|                | may be running or not   |                        |
++----------------+-------------------------+------------------------+
+| username       | Username of the account | user1                  |
+|                | to change the password  |                        |
+|                | of                      |                        |
++----------------+-------------------------+------------------------+
+| \--password    | New password, if not    | Vx-AJBvbZ\~XDg6:ZF3    |
+| \--expiry      | given on input a prompt |                        |
+|                | will be shown           | 2                      |
+|                | Password expiry in      |                        |
+|                | days,                   |                        |
+|                | if not given and if not |                        |
+|                | overridden in server\'s |                        |
+|                | configuration,          |                        |
+|                | the default value of    |                        |
+|                | 760 days will be used   |                        |
+|                | (2 years)               |                        |
++----------------+-------------------------+------------------------+
+| \--must-change | Whether the user must   | true                   |
+|                | change the password on  |                        |
+|                | next login.             |                        |
++----------------+-------------------------+------------------------+
+
+Usage
+=====
+
+    $ usage: zato sso change-user-password [-h] [--store-log] [--verbose]
+                                     [--store-config] [--password PASSWORD]
+                                     [--expiry EXPIRY]
+                                     [--must-change MUST_CHANGE]
+                                     path username
+
+    $ zato sso change-user-password /home/zato/env/server1 user1 --password Vx-AJBvbZ~XDg6:ZF3
+    Changed password for user `user1`
+    $
+
+    $ zato sso change-user-password /home/zato/env/server1 user1
+    New password (will not echo):
+    Password again (will not echo):
+    Changed password for user `user1`
+    $
+
+Changelog
+=========
+
+  Version   Notes
+  --------- -----------------
+  3.0       Added initially

@@ -1,0 +1,5 @@
+---
+title: "Site Search"
+---
+
+{{< search >}}

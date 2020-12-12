@@ -1,0 +1,21 @@
+---
+title: Super-users
+---
+
+For the main part, a super-user is just like any other user, and all the information about
+[regular users \<./index\>]
+applies to super-users too.
+
+The exceptions are that:
+
+-   There is no default REST endpoint to create super-users. They need to be created from command line or
+    [Python API \<../../api/python/user/create-super-user\>]. Note that the Python API may be in turn mounted on a REST
+    endpoint through an [HTTP channel \<../../../web-admin/channels/plain-http\>] but to prevent remote attacks, there is no default one.
+-   Only super-users can [create \<./create\>] other users - this is opposed to [signing up \<./signup\>].
+    The difference is that signup is a process which requires confirmation from the person that is about to become a user
+    whereas the right to create users that super-users have means that users created become activated straight-away - they may
+    still need to change their password, for instance, but there is no explicit confirmation step on their part.
+-   Regular users may manage information only about themselves but super-users can access data and metadata about other users too.
+    Note that super-users cannot learn what any other user\'s password is, this is always secret.
+-   Certain API operations are available for super-users only, e.g. locking another user\'s account. Each relevant part of
+    documentation states it whether super-user powers are required to carry out a given action.

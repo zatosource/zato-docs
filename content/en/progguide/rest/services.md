@@ -1,0 +1,110 @@
+---
+title: REST services
+---
+
+The only method required of a service to implement is [handle \<progguide-write-service-handle\>]. However, by using dedicated
+methods it is possible to make a service react to specific HTTP verbs only - thus facilitating the development of RESTful services.
+
+The convention to use is *handle_VERB* where VERB is an HTTP verb a given method should handle, for instance http_GET or http_POST,
+such as below:
+
+``` {.python}
+# stdlib
+from httplib import NO_CONTENT
+
+# Zato
+from zato.server.service import Service
+
+class MyResource(Service):
+
+    def handle_GET(self):
+        self.response.headers['Content-Type'] = 'application/vnd.example.customer'
+        self.response.payload.data = '{"cust_name":"Mike Drums"}'
+
+    def handle_DELETE(self):
+        # Delete the resource here..
+        pass
+
+        # And produce the correct status
+        self.response.status_code = NO_CONTENT
+```
+
+Now, after mounting the service on a [channel \<../../web-admin/channels/plain-http\>],
+it\'s possible to invoke it using either GET or DELETE, but not any other method - if an unsupported method is used by clients,
+HTTP 405 Method Not Allowed is returned automatically.
+
+``` {.text emphasize-lines="1,5,16,20"}
+$ curl -v localhost:11223/my/resource/123 ; echo
+* Hostname was NOT found in DNS cache
+*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 11223 (#0)
+> GET /my/resource HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:11223
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+* Server Zato is not blacklisted
+< Server: Zato
+< Date: Tue, 11 Nov 2014 14:50:56 GMT
+< Connection: close
+< Transfer-Encoding: chunked
+< Content-Type: application/vnd.example.customer
+< X-Zato-CID: K057V46CGYZJTG35J59AFNCQ3FT0
+<
+* Closing connection 0
+{"cust_name":"Mike Drums"}
+$
+```
+
+``` {.text emphasize-lines="1,5,10"}
+$ curl -v -XDELETE 127.0.0.1:11223/my/resource/123
+* Hostname was NOT found in DNS cache
+*   Trying 127.0.0.1...
+* Connected to 127.0.0.1 (127.0.0.1) port 11223 (#0)
+> DELETE /my/resource/123 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: 127.0.0.1:11223
+> Accept: */*
+>
+< HTTP/1.1 204 No Content
+* Server Zato is not blacklisted
+< Server: Zato
+< Date: Tue, 11 Nov 2014 15:13:27 GMT
+< Connection: close
+< Content-Type: application/json
+< X-Zato-CID: K077H15C4BMQV24W87Z2BSR1MZYF
+<
+* Closing connection 0
+$
+```
+
+``` {.text emphasize-lines="1,5,10"}
+$ curl -v -XPOST 127.0.0.1:11223/my/resource/123
+* Hostname was NOT found in DNS cache
+*   Trying 127.0.0.1...
+* Connected to 127.0.0.1 (127.0.0.1) port 11223 (#0)
+> POST /my/resource/123 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: 127.0.0.1:11223
+> Accept: */*
+>
+< HTTP/1.1 405 Method Not Allowed
+* Server Zato is not blacklisted
+< Server: Zato
+< Date: Tue, 11 Nov 2014 15:14:45 GMT
+< Connection: close
+< Transfer-Encoding: chunked
+< Content-Type: application/json
+< X-Zato-CID: K05CRTF6PJBZWZNR5WBYZHW2TSWM
+<
+* Closing connection 0
+$
+```
+
+Notes:
+
+-   You can either implement handle alone or a set of one or more [handle]()\* methods for each of the verbs needed, that is,
+    if you implement any of [handle]()\*, the handle method itself will be ignored.
+-   [handle]()\* methods are fully compatible with all the other Zato features, such as
+    [channels \<../../web-admin/channels/plain-http\>] and [hooks \<../../web-admin/channels/plain-http\>].

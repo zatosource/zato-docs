@@ -1,0 +1,55 @@
+---
+title: User.reset_totp_key - REST API
+---
+
+Overview
+========
+
+Changes a user\'s TOTP key and its accompanying label. If key is not given on input, one is generated and returned on output.
+
+Regular users may change their own keys only. Super-users may change any other user\'s keys.
+
+> -   HTTP method: PATCH
+> -   URL path: /zato/sso/user/totp
+
+Request
+=======
+
+  Name          Datatype   Optional   Notes
+  ------------- ---------- ---------- ------------------------------------------------------------------------------------
+  ust           string     \-\--      Current user\'s session token (UST)
+  current_app   string     \-\--      Name of application that the call is attempted from
+  user_id       string     Yes        ID of a user to change the key of.
+                                      May be provided only if input ust belongs to a super-user.
+  totp_key      string     Yes        User\'s TOTP key, one will be auto-generated for user if it is not given on input,
+                                      even if is_totp_enabled is False
+  totp_label    string     Yes        An arbitrary label assigned to user\'s TOTP key for convenience
+
+Response
+========
+
+  Name         Datatype   Optional   Notes
+  ------------ ---------- ---------- ----------------------------------------------------------------------------------------------------------------
+  cid          string     \-\--      Correlation ID assigned to request
+  status       string     \-\--      Overall [status code \<../../../status-code\>]
+  sub_status   list       Yes        Returned only if status is not \"ok\", a list of [error or warning codes \<../../../status-code\>]
+  totp_key     string     Yes        If there was no key given on input and one was generated, this is its value
+
+Usage
+=====
+
+``` 
+$ curl -XPATCH localhost:17010/zato/sso/user -d '
+  {
+   "ust":        "gAAAAABalYT1hsvrBVcrsKPBu3_gVV4pBO52IMCjii7GApNk8d14qQOZfs...",
+   "user_id":    "zusrx2efj1q1h98n9q00tgx8scefv",
+   "totp_key":   "G7WSZQ3JKCM6D",
+   "totp_label": "My SSO key"
+  }
+  '
+
+  {
+   "cid": "de00deb0471188dcdd9913a8",
+   "status": "ok"
+  }
+```

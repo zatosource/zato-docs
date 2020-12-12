@@ -1,12 +1,12 @@
 {{- $page := .page -}}
 {{- $kind := .kind -}}
-{{- $now := now }}
+{{- $now := now -}}
 
 {{- $bundle := $page.Page.GetPage "/events" -}}
 {{- with $bundle -}}
     {{- $events := .Resources.Match (printf "%ss/**.md" $kind) -}}
     {{- if gt (len $events) 0 -}}
-        <div class="{{ printf "%s-container" $kind }}">
+        <div class="{{ printf "%s-container" $kind -}}">
             {{- range $events -}}
 
                 {{- if .Params.draft -}}
@@ -49,21 +49,21 @@
                                     {{ $link = $latest_release.Permalink -}}
                                 {{- end -}}
 
-                                <a href="{{ $link }}"
-                                class="{{ $kind }}"
+                                <a href="{{ $link -}}"
+                                class="{{ $kind -}}"
                                 data-title="{{- .Params.title -}} - {{- $periodStart -}}"
-                                data-period-start='{{ div $periodStart.UnixNano 1000000 }}'
-                                data-period-end='{{ div $periodEnd.UnixNano 1000000 }}'
-                                data-max-impressions="{{ .Params.max_impressions }}"
-                                data-timeout="{{ .Params.timeout }}">
+                                data-period-start='{{ div $periodStart.UnixNano 1000000 -}}'
+                                data-period-end='{{ div $periodEnd.UnixNano 1000000 -}}'
+                                data-max-impressions="{{ .Params.max_impressions -}}"
+                                data-timeout="{{ .Params.timeout -}}">
                             {{- else -}}
                                 <div
-                                class="{{ $kind }}"
+                                class="{{ $kind -}}"
                                 data-title="{{- .Params.title -}} - {{- $periodStart -}}"
-                                data-period-start='{{ div $periodStart.UnixNano 1000000 }}'
-                                data-period-end='{{ div $periodEnd.UnixNano 1000000 }}'
-                                data-max-impressions="{{ .Params.max_impressions }}"
-                                data-timeout="{{ .Params.timeout }}">
+                                data-period-start='{{ div $periodStart.UnixNano 1000000 -}}'
+                                data-period-end='{{ div $periodEnd.UnixNano 1000000 -}}'
+                                data-max-impressions="{{ .Params.max_impressions -}}"
+                                data-timeout="{{ .Params.timeout -}}">
                             {{- end -}}
 
                             {{- if eq $kind "sticker" -}}
@@ -72,13 +72,13 @@
 
                                 <div class="wrap">
                                     <div class="content">
-                                        {{ .Content }}
+                                        {{ .Content -}}
                                     </div>
                                 </div>
                                 <div class="frame"></div>
                             {{- else -}}
                                 <div class="content">
-                                    {{ .Content }}
+                                    {{ .Content -}}
                                 </div>
                                 <div class="frame"></div>
                             {{- end -}}

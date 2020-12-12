@@ -1,7 +1,7 @@
 defaultContentLanguage = "en"
 languageCode = "en-us"
 metaDataFormat = "yaml"
-title = "Istio"
+title = "Zato"
 uglyURLs = false
 enableRobotsTXT = true
 pluralizeListTitles = false
@@ -52,12 +52,13 @@ disableAliases = true
       xHTML = false
   [markup.highlight]
     codeFences = true
+    anchorLineNos = true
     hl_Lines = ""
     lineNoStart = 1
     lineNos = false
     lineNumbersInTable = true
     noClasses = true
-    style = "monokai"
+    style = "igor"
     tabWidth = 4
   [markup.tableOfContents]
     endLevel = 3
@@ -68,7 +69,7 @@ disableAliases = true
         delimiter = ""
 
 [outputs]
-  home = ["HTML", "RSS", "REDIR", "JSON"]
+  home = ["HTML", "RSS", "JSON", "REDIR"]
   section = ["HTML"]
 
 [outputFormats]
@@ -80,31 +81,33 @@ disableAliases = true
         isPlainText = true
         notAlternative = true
     [outputFormats.JSON]
-        baseName = "_tracked_pages"
-
-[related]
-    # Only include matches with rank >= threshold. This is a normalized rank between 0 and 100.
-    threshold = 80
-
-    # To get stable "See also" sections we, by default, exclude newer related pages.
-    includeNewer = true
-
-    # Will lower case keywords in both queries and in the indexes.
-    toLower = false
-
-    [[related.indices]]
-        name = "keywords"
-        weight = 150
-
-    [[related.indices]]
-        name  = "tags"
-        weight = 100
-
+        baseName = "index"
+#
+# [related]
+#     # Only include matches with rank >= threshold. This is a normalized rank between 0 and 100.
+#     threshold = 80
+#
+#     # To get stable "See also" sections we, by default, exclude newer related pages.
+#     includeNewer = false
+#
+#     # Will lower case keywords in both queries and in the indexes.
+#     toLower = false
+#
+#     [[related.indices]]
+#         name = "keywords"
+#         weight = 150
+#
+#     [[related.indices]]
+#         name  = "tags"
+#         weight = 100
+#
 # internationalization
 [languages]
     # [languages.zh]
     #     contentDir = "content/zh"
     [languages.en]
         contentDir = "content/en"
+    [languages.es]
+        contentDir = "content/es"
     # [languages.pt-br]
     #     contentDir = "content/pt-br"

@@ -1,0 +1,45 @@
+---
+title: IDE integration overview
+---
+
+Zato supports hot-deployment of Python modules loaded in one of several supported Integrated Development Environments directly
+to a cluster, enabling faster develop/test cycles when prototyping services.
+
+Supported IDEs are:
+
+-   PyCharm
+-   Visual Studio Code
+
+Configuration overview
+======================
+
+In a newly installed Zato cluster, the IDE deployment service and channel are preconfigured and associated with an
+[RBAC role \<../../admin/guide/rbac/overview\>].
+A default account, *ide_publisher*, is created with a randomly assigned password
+and assigned to the RBAC role.
+
+In order to make use of IDE deployment, it is only necessary to reset the password for this default account.
+
+Additionally, you may create a new Basic Auth credential and assocate it with the **IDE Publishers** RBAC
+if you would like for each developer to use his or her own dedicated account.
+
+Configuration steps
+===================
+
+-   To reset the *ide_publisher*\'s password, first visit the **Security -\> HTTP Basic Auth** section of the administration UI
+    for your cluster:
+
+![image](../../gfx/progguide/ide-deploy/basic-auth.png)
+
+-   Select the **Change password** option for the pre-installed *ide_publisher* credential:
+
+![image](../../gfx/progguide/ide-deploy/change-password.png)
+
+-   Set the password to a strong one and choose **OK**.
+-   Choose a link below for details on how to install a Zato plugin for a particular IDE
+
+Supported IDEs
+==============
+
+> -   [./pycharm]
+> -   [./vscode]

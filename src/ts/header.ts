@@ -78,14 +78,14 @@ function handleHeader(): void {
     });
 
     // When the user submits the search form, initiate a search
-    listen(getById(searchForm), "submit", e => {
-        e.preventDefault();
-        const textbox = getById(searchTextbox) as HTMLInputElement;
-        const searchPageUrl = getById("search-page-url") as HTMLInputElement;
-        const url = searchPageUrl.value + "?q=" + textbox.value;
-        showNavBarLinks();
-        window.location.assign(url);
-    });
+    // listen(getById(searchForm), "submit", e => {
+    //     e.preventDefault();
+    //     const textbox = getById(searchTextbox) as HTMLInputElement;
+    //     const searchPageUrl = getById("search-page-url") as HTMLInputElement;
+    //     const url = searchPageUrl.value + "?q=" + textbox.value;
+    //     showNavBarLinks();
+    //     window.location.assign(url);
+    // });
 
     listen(getById("hamburger"), click, () => {
         const b = getById("brand");

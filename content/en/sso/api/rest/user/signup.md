@@ -1,0 +1,57 @@
+---
+title: User.signup - REST API
+---
+
+Lets users [sign up \<../../../topic/user/signup\>] themselves with the system.
+
+Input is validated according to configuration from [sso.conf \<../../../config/index\>]. All callback services
+are executed if the user has been created successfully.
+
+On output, confirmation token is returned that may be used to let a user know via email that their account has been
+prepared but needs to be confirmed by clicking on a selected link.
+
+> -   HTTP method: POST
+> -   URL path: /zato/sso/user/signup
+
+Request
+=======
+
+  Name          Datatype   Optional?   Notes
+  ------------- ---------- ----------- ----------------------------------------------------------------------
+  username      string     \-\--       Username to create
+  password      string     \-\--       User\'s password
+  email         string     Yes         User\'s email
+  current_app   string     \-\--       Name of the application the user is signing up through
+  app_list      list       \-\--       A list of applications that the user wants to sign up to
+                                       (all must exist in [sso.conf \<../../../config/index\>])
+
+Response
+========
+
+  Name            Datatype   Optional   Notes
+  --------------- ---------- ---------- ----------------------------------------------------------------------------------------------------------------
+  cid             string     \-\--      Correlation ID assigned to request
+  status          string     \-\--      Overall [status code \<../../../status-code\>]
+  sub_status      list       Yes        Returned only if status is not \"ok\", a list of [error or warning codes \<../../../status-code\>]
+  confirm_token   string     \-\--      Signup confirmation token; URL-safe and 192-bit strong
+
+Usage
+=====
+
+``` 
+$ curl -XPOST "localhost:17010/zato/sso/user/signup" -d '
+{
+ "username":"my.username",
+ "password":"8CpzwqsiaQO.U.pOKOjsxhoGHAlJ8KaX6wq0CH6NKUvTYuPQP5Tw",
+ "email":"my.username@example.com",
+ "current_app":"CRM",
+ "app_list":["CRM"]
+}'
+
+
+{
+ "cid": "259529171ff77ce4c8b26e11",
+ "status": "ok",
+ "confirm_token": "AB_d86fF-6_UBq4g7npP0mS-i3HfGfpJ"
+}
+```

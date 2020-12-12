@@ -1,0 +1,62 @@
+---
+title: Publish/subscribe security
+---
+
+Security of publish/subscribe-based processes and workflows is to be examined on several levels:
+
+-   Making sure API clients have correct credentials (authentication)
+-   Making sure API clients have permissions to access topics (authorization)
+-   Data in flight
+-   Data in rest
+-   Defaults
+-   Access to web-admin and servers
+
+Authentication
+==============
+
+-   Each API client in publish/subscribe is represented by an [endpoint \<../details/endpoint/index\>]
+-   REST, WebSockets and Java JMS endpoints may be associated with a security definition - access to pub/sub servers
+    will not be allowed unless credentials are correct
+
+Authorization
+=============
+
+-   On successful authentication, access permissions are checked to confirm if a particular endpoint can publish
+    messages to a given topic or receive messages from it
+-   Authorization is based on patterns - for each endpoint a list of patterns can be created, each pattern potentially
+    resolving in run-time to one or more topics, e.g. /customer/\*/new may point to /customer/uk/new or /customer/de/new
+    topics
+-   Access is checked each time an endpoint tries to publish messages or receive them
+-   For subscriptions, patterns are resolved when a message is published. That is, at the moment of its publication
+    all subscribers whose subscription patterns match the name of the topic the message is published to are taken into
+    account and only these subscribers will receive the message.
+
+Data in flight
+==============
+
+-   The load-balancer in front of pub/sub Zato servers may be configured to use TLS
+-   Servers within a Zato cluster may be configured to use TLS
+
+Data in rest
+============
+
+-   Data in rest is not encrypted, be it in RAM or in persistent storage - if encryption is needed, endpoints should either
+    implement it themselves or a hook service can dynamically encrypt data received from publishers
+
+Defaults
+========
+
+-   In [accordance \<../../architecture/pii\>] with the overall architecture of the platform, there are no
+    default passwords or secrets - everything is always automatically generated and set to random values (UUID4)
+-   Topic /zato/demo/sample is a demo topic created for illustration purposes
+-   Endpoint zato.pubsub.demo.endpoint is created to make it easy to access the demo /zato/demo/sample topic. This endpoint
+    has access to that one topic only.
+-   Endpoint zato.pubsub.default.internal.endpoint is created - this is used internally by Zato. The endpoint has full access
+    to all topics.
+
+Access to web-admin and servers
+===============================
+
+-   Users with credentials to web-admin can manage all pub/sub objects, including ability to browse messages, delete them
+    or to publish new ones
+-   Users with SSH access to Zato servers are able to access all pub/sub objects for any purposes

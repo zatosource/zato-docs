@@ -1,0 +1,61 @@
+---
+title: Documenting
+---
+
+Overview
+========
+
+It goes without saying that each service you develop needs to have decent
+documentation and if you have no prior documentation standard you can use Zato\'s
+own public service API as a starting point.
+
+-   A documentation should begin with a short chapter explaining
+    what the services are for in the first place
+
+    \- if confronted with several sources of information at the
+    same time your users should at first glance be able to tell whether your docs
+    are what they need in a given situation or not.
+
+-   You need a table of contents (TOC)
+    table of contents so it\'s possible to quickly locate which service group or domain a service one
+    needs to find belongs to. Groups should be sorted alphabetically in ascending order.
+
+-   A link from a TOC should point to a general
+    overview of a given service group
+    with a list of links to particular services, sorted alphabetically in ascending order.
+
+-   A
+    chapter on each service
+    should contain the following:
+
+    -   A brief description of the service
+
+    -   A True/False flag regarding whether the service returns a list of objects
+
+    -   REST or SOAP URLs, if a service is to be invoked under either
+
+    -   A link to a OpenAPI/Swagger/WSDL document if applicable
+
+    -   Lists of request and response parameters, each containing:
+
+        -   Name of the parameter
+        -   Its datatype
+        -   Whether the parameter is optional or not
+        -   Any notes helping the user in understanding what the parameter is for
+
+    -   SOAP and JSON usage examples, if either is used - these should use values that
+        are correct in the formal sense of being in accordance with the underlying data model
+        (implemented as, for instance, XSD Schema for SOAP)
+
+        They can be taken from a DEV
+        environment where customer IDs are invalid yet they conform to a given system\'s
+        format of such identifiers.
+
+        The point being, usage examples are something your users will want to lean on
+        so they should be as close to real messages as it is possible.
+
+Automatic API spec generation
+=============================
+
+In addition to manually authored documentation, Sphinx, OpenAPI/Swagger and WSDL specifications
+can be automatically generated from existing services using [command line \<../admin/cli/apispec\>].

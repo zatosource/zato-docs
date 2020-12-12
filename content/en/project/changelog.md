@@ -1,0 +1,230 @@
+3.1 - 2019-06-18
+================
+
+::: {.note}
+::: {.title}
+Note
+:::
+
+Want to quickly install Zato? Check out this [Dockerfile \<../admin/guide/install/docker\>] which will set up
+a fully working
+[cluster \<../architecture/overview\>]
+with 2
+[servers \<../architecture/servers\>],
+[load-balancer \<../architecture/load-balancer\>]
+and
+[web-admin \<../architecture/web-admin\>]
+in 10 minutes.
+:::
+
+-   Enhanced support for Docker,
+    including [Quickstart \<../admin/guide/install/docker\>],
+    [Swarm \<../admin/guide/install/swarm\>]
+    and
+    [Kubernetes \<../admin/guide/install/kubernetes\>]
+-   Added support for Python 3.6+ in addition to Python 2.7
+-   Added [MongoDB connections](https://zato.io/blog/posts/mongodb.html)
+-   Added [LDAP connections, including Active Directory](https://zato.io/blog/posts/ldap-active-directory.html)
+-   Added Microsoft SQL Server connections
+-   Added Apache Kafka connections
+-   Added [SFTP connections](https://zato.io/blog/posts/sftp.html)
+-   Added instant messaging connections: Slack and Telegram
+-   Added outgoing WebSocket connections to already existing channels
+-   Added JSON-RPC channels
+-   Added rate limiting - exact and approximate
+-   Added IP whitelisting
+-   Added a [JavaScript client \<../progguide/clients/js/index\>] for Zato services and message topics
+-   Extensions to Single-Sign On: two-factor authentication and multi-credentials accounts
+-   Added means to [list SSO user sessions \<../sso/api/rest/session/get-list\>]
+-   Added Accept headers configuration to REST channels
+-   Multiple REST channels may now [reuse URL](https://zato.io/blog/posts/http-accept-method-headers.html)
+    paths as long as their HTTP methods differ
+-   Added [JSON Schema validation](https://zato.io/blog/posts/json-schema.html)
+-   Added ability to [connect Zato clusters](https://zato.io/blog/posts/connect-clusters-websockets.html)
+    using WebSockets, including subscriptions to events in other clusters
+-   Added means to [broadcast messages](https://zato.io/blog/posts/wsx-broadcast.html)
+    to all WebSocket clients in addition to invocations of individual ones
+-   Added [TOTP two-factor authentication to web-admin](https://zato.io/blog/posts/web-admin-totp.html)
+-   Added TLS to AMQP connections
+-   Servers start and stop up to
+    [several times](https://zato.io/blog/posts/server-startup.html)
+    [faster](https://zato.io/blog/posts/deploying-services.html) than previously
+-   When creating new servers, usage of TLS CA is no longer required
+-   Deploying base services will automatically redeploy any services subclassing them
+-   General performance boosts, particularly in the area of REST connections
+-   Dropped support for RHEL/CentOS 6 (v.7 is still fully supported)
+
+3.0 - 2018-06-30
+================
+
+-   A built-in [multi-protocol message broker \<../pubsub/index\>] with publish/subscribe
+    topics and guaranteed delivery queues
+-   [Single Sign-On and user management API \<../sso/index\>]
+-   [SAP connections \<../web-admin/outgoing/sap\>]
+-   [IDE plugins \<../progguide/ide/index\>]
+    for
+    [PyCharm \<../progguide/ide/pycharm\>]
+    and
+    [Visual Studio Code \<../progguide/ide/vscode\>]
+-   New [caching layer \<../web-admin/cache/builtin/index\>]
+-   [Memcached \<../web-admin/cache/memcached\>] connections
+-   Security mechanisms to help in achieving [compliance with PII regulations \<../architecture/pii\>] (e.g. GDPR, HIPAA or PDPA)
+-   Automatic [API documentation generation \<../admin/cli/apispec\>] - Sphinx, OpenAPI/Swagger and WSDL
+-   WebSocket [channels \<../web-admin/channels/wsx\>] and [outgoing connections \<../web-admin/outgoing/wsx\>]
+-   SMS messaging with [Twilio \<../web-admin/sms/twilio\>]
+-   [HashiCorp Vault \<../web-admin/security/vault\>] security definitions
+-   [JSON Web Token \<../web-admin/security/jwt\>] security definitions (JWT)
+-   Extended hot-deployment to work with static files, including JSON, XML, CSV or any other format
+-   General performance improvements let Zato servers run up to several times faster -applies to HTTP, AMQP, ZeroMQ and IBM MQ connections
+-   Reduced RAM consumption through ability to disable selected internal components
+-   AMQP, ZeroMQ and IBM MQ connections can now be synchronous
+-   New [crypto \<../progguide/crypto/index\>] mechanisms:
+    [encryption and decryption \<../progguide/crypto/encrypt\>],
+    [hashing \<../progguide/crypto/hash\>] as well as
+    [generation of passwords and secrets \<../progguide/crypto/generate\>]
+-   Added passwords to servers
+-   New server startup hooks and callables
+-   Scheduler now runs as its own component managed from command-line interface
+-   Added optional gzip encoding to [REST \<../web-admin/channels/plain-http\>] and [SOAP \<../web-admin/channels/plain-http\>] channels
+-   New CLI commands:
+    -   [zato hash get-rounds \<../admin/cli/hash-get-rounds\>] to compute PBKDF2 rounds for secrets hashing
+    -   zato sso
+        [create-user \<../admin/cli/sso-create-user\>],
+        [create-super-user \<../admin/cli/sso-create-super-user\>],
+        [delete-user \<../admin/cli/sso-delete-user\>],
+        [change-user-password \<../admin/cli/sso-change-user-password\>],
+        [reset-user-password \<../admin/cli/sso-reset-user-password\>],
+        [lock-user \<../admin/cli/sso-lock-user\>] and
+        [unlock-user \<../admin/cli/sso-unlock-user\>]
+        for SSO users management
+-   Added an internal startup cache that makes servers boot up to several times faster
+-   Servers now cache internal services on first boot - improves startup time up to several times
+-   Removed technical accounts - already superseded by API keys in 2.0
+-   Removed the HTTP-only audit log
+-   Dropped support for SQLite under RHEL 6 (RHEL 7 and other systems continue to support it)
+
+2.0 - 2015-01-28
+================
+
+-   [Dockerfile \<../admin/guide/install/docker\>] to set up a full-featured
+    [cluster \<../architecture/overview\>]
+    with 2
+    [servers \<../architecture/servers\>],
+    [load-balancer \<../architecture/load-balancer\>]
+    and
+    [web-admin \<../architecture/web-admin\>]
+    in 10 minutes
+-   REST
+    [services \<../progguide/rest/services\>],
+    [channels \<../progguide/rest/channels\>],
+    [outgoing connections \<../progguide/rest/outconns\>]
+    and
+    [a helper JSON adapter \<../progguide/rest/json-adapter\>]
+-   [Redis-based REST publish/subscribe \<../pubsub/index\>]
+-   :HTTP GUI Audit Log for requests and responses
+-   Patterns:
+    [fan-out/fan-in \<../progguide/patterns/fan-out-fan-in\>],
+    [parallel execution \<../progguide/patterns/parallel-exec\>]
+    and
+    [invoke/retry \<../progguide/patterns/invoke-retry\>]
+-   Cloud [Amazon S3 \<../web-admin/cloud/aws/s3\>]
+-   Cloud OpenStack Swift [connections \<../web-admin/cloud/openstack/swift\>] and [notifications \<../web-admin/notif/cloud/openstack/swift\>]
+-   [SQL notifications \<../web-admin/notif/sql\>]
+-   [Cassandra connections \<../web-admin/conn-def/cassandra\>] and [pre-compiled CQL query templates \<../web-admin/query/cassandra\>]
+-   [Solr \<../web-admin/search/solr\>]
+-   [ElasticSearch \<../web-admin/search/es\>]
+-   [Odoo/OpenERP connections \<../web-admin/outgoing/odoo\>]
+-   [SSL/TLS for channels and outgoing connections \<../admin/guide/tls/overview\>]
+-   [Role-based access control (RBAC) for HTTP channels \<../admin/guide/rbac/overview\>]
+-   [OAuth \<../web-admin/security/oauth\>]
+-   [XPath-based security \<../web-admin/security/xpath\>]
+-   [API keys-based security \<../web-admin/security/apikey\>]
+-   [NTLM security \<../web-admin/security/ntlm\>]
+-   [Amazon AWS security \<../web-admin/security/aws\>]
+-   [Support for SQLite \<admin-guide-config-server-odb.engine\>]
+-   [Support for MySQL \<admin-guide-config-server-odb.engine\>]
+-   [SMTP \<../web-admin/email/smtp\>]
+-   [IMAP \<../web-admin/email/imap\>]
+-   [JSON Pointers \<../web-admin/messages/json-pointer\>]
+-   [XPath \<../web-admin/messages/xpath\>] and [XML Namespaces\<../web-admin/messages/xml-ns\>]
+-   JSON serialization in [HTTP outconns \<../web-admin/outgoing/plain-http\>]
+-   [SOAP invocations \<../web-admin/outgoing/soap\>] with suds and WSDL prefetching
+-   [Outgoing HTTP \<../web-admin/outgoing/plain-http\>] timeouts
+-   [New Relic integration \<admin-guide-config-server-newrelic\>]
+-   [Sentry integration \<admin-guide-config-server-sentry\>]
+-   [Redis HA with sentinels \<../../admin/guide/redis-ha/sentinels\>]
+-   [Statistics in Redis pruned periodically \<admin-guide-config-stats.expire_after\>]
+-   Message mappers
+-   [Distributed locks \<../progguide/dist-locks\>]
+-   [Date/time utils \<../progguide/datetime\>]
+-   Dictionary and list message navigation
+-   New [Simple IO (SIO) \<../progguide/sio/index\>] types: CSV, Dict, Float, List, ListOfDicts, Opaque
+-   Added [RPM packages for RHEL/CentOS 7 \<../admin/guide/install/rhel\>]
+-   Bash completion in [CLI \<../admin/cli/index\>]
+-   [Ability to specify user locale in servers (i.e. en_GB.UTF-8) \<admin-guide-config-server-misc.locale\>]
+-   Startup scripts to start Zato environments when an OS starts
+-   Framework for API testing (<https://github.com/zatosource/zato-apitest>)
+-   Ability to [output HTML \<../progguide/html\>] in services using Django templates
+-   [Logging configuration \<admin-guide-config-server-logging\>] migrated to YAML
+-   Ability to [hot-deploy code directly from a repository checkout \<admin-guide-config-server-hot_deploy.delete_after_pick_up\>]
+    (i.e. from GitHub)
+-   Configuration [patterns \<../admin/guide/config-patterns\>] to fine tune which services can be [deployed \<admin-guide-config-server-deploy_patterns_allowed\>] and [invoked \<admin-guide-config-server-invoke_patterns_allowed\>]
+-   Means for invoking services on [selected servers only \<admin-guide-config-server-invoke_target_patterns_allowed\>]
+-   New [hook \<../progguide/hooks/service\>] ([accept \<progguide-write-service-accept\>]) for filtering out requests that a service cannot process
+-   [Improved logging \<admin-guide-config-server-logging\>]- Apache-like HTTP access log for servers,
+    compatible with popular log parsing tools, logging config uses YAML,
+    subsystems have their own log files, web-admin\'s logs show IP of the user connecting to it
+-   Ability for users to store configutation in their own [INI-style files \<progguide-service-local-config-ini\>]
+-   [zato \--version \<cli_index_zato_version\>] is clearer what exact git commit was used to build it
+-   [Quickstart scripts \<../admin/cli/quickstart-create\>] remove stale PID files automatically
+-   Started using async Postgres driver to improve performance
+-   Made [zato start \<../admin/cli/start\>] command work much faster
+-   [Alembic migrations](https://github.com/zatosource/zato/tree/master/code/alembic/versions) to ease with [upgrades across releases \<../admin/guide/migrate/overview\>]
+-   Ability to [run servers in Python shell](https://zato.io/blog/posts/running-servers-in-foreground.html)
+-   Made [service listings in web admin much faster \<../web-admin/services/main\>]
+-   Ability to [dump threads and greenlets \<progguide-debugging-dump-signal\>] on a user signal
+-   User-defined [Lua functions \<progguide-kvdb-lua\>] for Redis
+-   New [tests \<../admin/cli/check-config\>] run prior to starting of components make sure the latter are correctly configured
+-   Command to run ipython with Zato-related packages on PYTHONPATH
+-   [Startup \<admin-guide-config-server-startup_services_first_worker\>] [services \<admin-guide-config-server-startup_services_any_worker\>] invoked when a server is starting
+-   OpenID in web admin
+-   Constants in [zato.common.broker_message](https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/broker_message.py)
+    became wrappers around integers - use *.value* attribute to reference them. For instance, SERVICE.PUBLISH.value instead of SERVICE.PUBLISH.
+-   Added a [hot_deploy.delete_after_pick_up \<admin-guide-config-server-hot_deploy.delete_after_pick_up\>] flag,
+    setting of which to False will prevent Zato from deleting hot-deployed Python code effectively
+    making servers work in a live-reload mode
+-   Made [HTTP Basic Auth \<../web-admin/security/basic-auth\>] passwords optional
+-   Made it possible to specify an HTTP method to ping outgoing
+    [HTTP \<../web-admin/outgoing/plain-http\>]/[SOAP \<../web-admin/outgoing/soap\>]
+    connections with
+-   Added the ability to specify the size of each outgoing
+    [HTTP \<../web-admin/outgoing/plain-http\>]/[SOAP \<../web-admin/outgoing/soap\>]
+    connection\'s pool size (this is a per-worker setting)
+-   Made [Service.log_input \<progguide-write-service-log_input\>]/[output \<progguide-write-service-log_output\>]
+    log the user_msg as a prefix of the dictionary of data to write out, not as part
+    of its keys
+
+1.1 - 2013-06-02
+================
+
+-   Unified [installer \<../admin/guide/install/index\>] for Ubuntu, Mint, Fedora and OS X
+-   Added the [zato check-config \<../admin/cli/check-config\>] command
+-   Fixed a bug which lead to double execution of user-defined scheduler jobs
+-   Made quickstart clusters more robust when confronted with improperly configured servers,
+    sanity checks are now performed before servers are started
+-   Changed the default value of [main.deployment_lock_expires \<admin-guide-config-server-main.deployment_lock_expires\>]
+    so it works on 32-bit systems without a need for reconfiguring servers after they\'re
+    created
+-   Made scripts generated by [zato quickstart \<../admin/cli/quickstart\>] relocatable
+-   Newly created servers start CPU_COUNT
+    [gunicorn](http://gunicorn.org)
+    [workers \<admin-guide-config-server-main.gunicorn_workers\>]
+    by default now, not CPU_COUNT \* 2 as previously
+-   HAProxy load-balancer can now bind to all interfaces. Patch provided by
+    [Myroslav Opyr](http://talk.quintagroup.com/blogs/myroslav)
+    ([quintagroup.com](http://quintagroup.com)).
+
+1.0 - 2013-05-18
+================
+
+-   Initial release

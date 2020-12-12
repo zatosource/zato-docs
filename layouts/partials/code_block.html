@@ -7,14 +7,14 @@
 {{- $snippet := .Get "snippet" -}}
 {{- $repo := .Get "repo" -}}
 
-{{- if not $repo  }}
-    {{- $repo = "istio" }}
+{{- if not $repo  -}}
+    {{- $repo = "istio" -}}
 {{- end -}}
 
 {{- $expand_links := "true" -}}
 
 {{- if .Get "expandlinks" -}}
-    {{- $expand_links = .Get "expandlinks" }}
+    {{- $expand_links = .Get "expandlinks" -}}
 {{- end -}}
 
 {{- if not (or $syntax $snippet) -}}
@@ -30,8 +30,8 @@
         {{- errorf "Can't combine inner content with a url attribute (%s)" .Position -}}
     {{- end -}}
     {{- if not $download_as -}}
-        {{- if $snippet }}
-            {{ $download_as = $snippet }}
+        {{- if $snippet -}}
+            {{- $download_as = $snippet -}}
         {{- else -}}
             {{- $tmp := split $url "/" | last 1 -}}
             {{- $download_as = index $tmp 0 -}}
@@ -44,8 +44,8 @@
             {{- errorf "Can't combine url or inner content with a file attribute (%s)" .Position -}}
         {{- end -}}
         {{- if not $download_as -}}
-            {{- if $snippet }}
-                {{ $download_as = $snippet }}
+            {{- if $snippet -}}
+                {{- $download_as = $snippet -}}
             {{- else -}}
                 {{- $tmp := split $file "/" | last 1 -}}
                 {{- $download_as = index $tmp 0 -}}
@@ -126,7 +126,7 @@
     {{- $attrs = printf "%sdata-repo='%s' " $attrs $repo -}}
 {{- end -}}
 
-{{- $anchor := "" }}
+{{- $anchor := "" -}}
 {{- if $url -}}
     {{- /* expose the URL to the link checker */ -}}
     {{- $anchor = printf "<a data-skipendnotes='true' style='display:none' href='%s'>Zip</a>" $url -}}
@@ -144,7 +144,7 @@
     {{- end -}}
 {{- end -}}
 
-{{ $result := ""}}
+{{- $result := ""}}
 {{- if $anchor -}}
     {{- $result = printf "<div>%s<pre><code class='language-%s' %s>%s</code></pre></div>" $anchor $syntax $attrs (htmlEscape $text) -}}
 {{- else -}}

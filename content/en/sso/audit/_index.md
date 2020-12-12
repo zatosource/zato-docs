@@ -1,0 +1,65 @@
+---
+title: Audit log
+---
+
+Overview
+========
+
+To help track access to PII
+([Personally identifiable information](https://en.wikipedia.org/wiki/Personally_identifiable_information)),
+Zato SSO makes use of an audit log.
+
+Each action carried out against the SSO system results in an entry added to an audit log, with each message describing the
+operation and its related metadata. This functionality is always on and cannot be disabled. User-defined services may also
+store their own log entries using the Python API documented below.
+
+    2018-03-18 15:07:52,392 - INFO - 15558:DummyThread-10 - zato_audit_pii:44 - {"cid": "236960f66c182bc",
+        "op": "signup", "extra": {"current_app": "CRM", "remote_addr": "127.0.0.1"}}
+
+Each log record captures the following information:
+
+  Name           Optional   Sample             Notes
+  -------------- ---------- ------------------ ------------------------------------------------------------------------------------------
+  cid            \-\--      5dbe1a4d           Correlation ID - a unique identified assigned to each request received by Zato.
+                                               Note that there may be multiple audit log entries with the same cid if a given request
+                                               accessed or manipulated PII more than once. For audit entries emitted by Zato, the value
+                                               of cid will the same as is stored in http_access.log for each received HTTP request
+                                               which lets one easily establish which of HTTP calls result in which audit log item.
+  op             \-\--      get_user           A textual label for the operation
+  current_user   Yes        usr1e39517         User ID of the account carrying out the operation - for entries written to log by Zato
+                                               internally during SSO calls, it is guaranteed that this value will only contain
+                                               randomly generated strings serving as user IDs, i.e. never usernames, display names
+                                               or other PII
+  target_user    Yes        usr25ec935         User ID or username of the account on whose behalf a given operation is being performed,
+                                               may possibly contain a username which in turn may be possibly PII (depending on how
+                                               usernames are created)
+  result         Yes        ok                 If applicable, result of the operation, e.g. \"ok\" if a certain call succeeded
+  extra          Yes        {\"found\":true}   A dictionary of extra parameters related to the entry, does not have a fixed format
+
+The default log file is called *audit-pii.log* and is stored along with other log files, for instance, if path to a server is
+/opt/zato/server1/logs then the audit log will be in /opt/zato/server1/logs/audit-pii.log.
+
+Standard Python logging configuration from *logging.conf* applies to audit log which means it can be reconfigured to use
+other log destinations such as syslog.
+
+Python API
+==========
+
+From one\'s own services, the audit log is available through .info, .warn and .error methods of the *self.audit_pii* object,
+as below. There is no requirement that cid given on input be self.cid - any suitable correlation identifier in a particular
+situation may be used, Zato does not interpret it in any way.
+
+    # -*- coding: utf-8 -*-
+
+    from __future__ import absolute_import, division, print_function, unicode_literals
+
+    # Zato
+    from zato.server.service import Service
+
+    class MyService(Service):
+        def handle(self):
+            self.audit_pii.info(self.cid, 'my-operation-on-info-level', 'user-id')
+            self.audit_pii.warn(self.cid, 'my-operation-on-warn-level', 'user-id')
+            self.audit_pii.error(self.cid, 'my-operation-on-error-level', 'user-id')
+
+Each of .info, .warn and .error methods has the same arguments and signature. Only *cid* and *op* are required:

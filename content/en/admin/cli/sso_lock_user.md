@@ -1,0 +1,41 @@
+---
+title: zato sso lock-user
+---
+
+Overview
+========
+
+Locks a user account. A locked user account cannot be logged into until it is [unlocked \<./sso-unlock-user\>].
+
+Note that the command does not check if the account is already locked or not,
+i.e. it is not an error to run it with a user that is already locked.
+
+Subcommands
+===========
+
+-   (None)
+
+Command-specific parameters
+===========================
+
+  Name       Description                                    Example value
+  ---------- ---------------------------------------------- ------------------------
+  path       Path to a Zato server, may be running or not   /home/zato/env/server1
+  username   Username of the account to lock                user1
+
+Usage
+=====
+
+    $ zato sso lock-user [-h] [--store-log] [--verbose] [--store-config]
+                         path username
+
+    $ zato sso lock-user /home/zato/env/server1 regular1
+    Locked user account `user1`
+    $
+
+Changelog
+=========
+
+  Version   Notes
+  --------- -----------------
+  3.0       Added initially

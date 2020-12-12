@@ -1,0 +1,67 @@
+---
+title: UserAttr.update - REST API
+---
+
+Overview
+========
+
+Updates an existing [user attribute \<../../../../topic/attr/index\>],
+optionally encrypting it before it is saved in the database. It is also possible to set expiry
+for an attribute, upon reaching of which the attribute will be no longer available.
+
+While the call\'s [Python equivalent \<../../../python/user/attr/update\>] has two versions, one for individual and the
+other for multiple attributes, with REST there is a single endpoint to cover both cases. Yet, just like in the Python
+call, it is more efficient to update multiple attributes in one REST call instead of repeatedly updating individual ones.
+
+> -   HTTP method: PATCH
+> -   URL path: /zato/sso/user/attr
+
+Request
+=======
+
+  Name          Datatype   Optional   Notes
+  ------------- ---------- ---------- ---------------------------------------------------------------------------------------
+  ust           string     \-\--      Current user\'s session token (UST)
+  current_app   string     \-\--      Name of application that the call is attempted from
+  user_id       string     Yes        ID of the user to update an attribute or attributes of
+  name          string     Yes        If a single attribute is to be updated, the attribute\'s name
+  value         string     Yes        If a single attribute is to be updated, the attribute\'s value
+  data          list       Yes        If multiple attributes are to be updated, a list of dictionaries,
+                                      each describing an individual attribute,
+                                      like in the update_many [Python API \<../../../python/user/attr/update\>]
+  encrypt       bool       Yes        Should the attribute\'s new value be encrypted before it is saved to the database.
+                                      Defaults to False.
+  expiration    int        Yes        After how many seconds from current time the attribute should expire.
+                                      By default it will never expire.
+
+Response
+========
+
+  Name         Datatype   Optional   Notes
+  ------------ ---------- ---------- --------------------------------------------------------------------------
+  cid          string     \-\--      Correlation ID assigned to request
+  status       string     \-\--      Overall [status code \<../../../../status-code\>]
+  sub_status   list       Yes        Returned only if status is not \"ok\", a list of [error or warning codes
+                                     \<../../../../status-code\>]
+
+Usage
+=====
+
+``` 
+$ curl -XPATCH localhost:17010/zato/sso/user/attr -d '
+  {
+   "current_ust": "gAAAAABavk-65BuvKI0JFPeuJ9Tp3pHtNMeFWhVUEBVKExuaVE9KDLFpik4loT7kGHtb4GR2CZbfZL1o0yFeDNyoo2tDqBD8M5h-_JHfw8qlDy7B5ea9O4k=",
+   "current_app": "CRM",
+   "user_id": "zusr6fh6fdgd4997ksjkpx7qnk659q",
+   "name": "my-rest-attribute",
+   "value": "my-rest-value",
+   "encrypt": true,
+   "expiration": 3600
+  }
+  '
+
+  {
+   "status": "ok",
+   "cid": "2c1ff1c2de7b2cecb411c71a"
+  }
+```

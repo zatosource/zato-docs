@@ -18,5 +18,16 @@ endif
 site:
 	@scripts/gen_site.sh
 
+build: site
+	@scripts/build_site.sh ""
+
+build_nominify: site
+	@scripts/build_site.sh "" -no_minify
+
+build_with_archive: site
+	@scripts/gen_site.sh
+	@scripts/build_site.sh "/latest"
+	@scripts/include_archive_site.sh
+
 serve: site
 	@hugo serve --baseURL "http://${ISTIO_SERVE_DOMAIN}:1313/latest/" --bind 0.0.0.0 --disableFastRender

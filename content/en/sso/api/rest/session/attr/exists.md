@@ -1,0 +1,62 @@
+---
+title: SessionAttr.exists - REST API
+---
+
+Overview
+========
+
+Returns a boolean flag or flags to indicate, respectively, if an input attribute or attributes exist for a session.
+
+If only the very existence of attributes needs to be checked, it is faster and less resource-extensive to invoke this
+endpoint than using [get \<./get\>].
+
+While the call\'s [Python equivalent \<../../../python/session/attr/get\>] has two versions, one for individual and the
+other for multiple attributes, with REST there is a single endpoint to cover both cases. Yet, just like in the Python
+call, it is more efficient to check multiple attributes in one REST call instead of repeatedly checking multiple attributes.
+
+> -   HTTP method: GET
+> -   URL path: /zato/sso/session/attr/exists
+
+Request
+=======
+
+  Name          Datatype   Optional   Notes
+  ------------- ---------- ---------- ----------------------------------------------------------------------------------------
+  current_ust   string     \-\--      Current user\'s session token (UST)
+  target_ust    string     \-\--      Target session\'s UST, the one that is being accessed (may be the same as current_ust)
+  current_app   string     \-\--      Name of application that the call is attempted from
+  name          string     Yes        If a single attribute is to be checked, the attribute\'s name
+  data          list       Yes        If multiple attributes are to be checked, this is a list of their names
+
+Response
+========
+
+  Name         Datatype    Optional   Notes
+  ------------ ----------- ---------- ---------------------------------------------------------------------------
+  cid          string      \-\--      Correlation ID assigned to request
+  status       string      \-\--      Overall [status code \<../../../../status-code\>]
+  sub_status   list        Yes        Returned only if status is not \"ok\", a list of [error or warning codes
+                                      \<../../../../status-code\>]
+  result       bool/list   \-\--      If a single attribute was requested, a boolean flag to express if that
+                                      attribute exists or not. With multiple attributes, a list of dictionaries
+                                      with flags, one for each input attribute name.
+
+Usage
+=====
+
+``` 
+$ curl -XGET localhost:17010/zato/sso/session/attr/exists -d '
+  {
+   "current_ust": "gAAAAABavmAV3rw6fQUS-HgREvWBQTmivO7gZ89LZ5u3RwUeO-xmVMn8FsLJ4LnN3mN49IHWMXh9GqcLg4P73Zavb5sIdSdOUt0MjT53G1ps8PM_sGVQhbQ=",
+   "target_ust": "gAAAAABavk-65BuvKI0JFPeuJ9Tp3pHtNMeFWhVUEBVKExuaVE9KDLFpik4loT7kGHtb4GR2CZbfZL1o0yFeDNyoo2tDqBD8M5h-_JHfw8qlDy7B5ea9O4k=",
+   "current_app": "CRM",
+   "name": "my-attribute"
+  }
+  '
+
+  {
+   "status": "ok",
+   "cid": "22fdd109d125f302d3c862db",
+   "result": true
+  }
+```

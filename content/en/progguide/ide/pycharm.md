@@ -1,0 +1,77 @@
+---
+title: PyCharm
+---
+
+To enable hot-deployment from PyCharm and related IDEs, ensure you have first followed the configuration instructions
+in [index].
+
+Supported products
+==================
+
+-   PyCharm and Professional
+-   IntelliJ Community and Ultimate with the Python plugin
+-   Minimal IDE version is 2016.3+
+
+Configuration
+=============
+
+As the Zato IDE hot-deployment plugin is published in the [JetBrains Plugin
+Repository](https://plugins.jetbrains.com/plugin/10375-zato-hot-deployment),
+installation on PyCharm is achieved directly from within the application.
+
+1.  Visit **Preferences -\> Plugins**, then click **Browse repositories**:
+
+    ![image](../../gfx/progguide/ide-deploy/pycharm_plugins.jpg)
+
+2.  Search for **Zato**, then click the **Install** button:
+
+    ![image](../../gfx/progguide/ide-deploy/pycharm_plugins_zato.jpg)
+
+3.  Once installation completes, visit **Preferences -\> Languages & Frameworks -\>
+    Zato** to populate connection information for your development cluster:
+
+    ![image](../../gfx/progguide/ide-deploy/pycharm_settings.jpg)
+
+Automatic deployment
+====================
+
+Automatic deployment is triggered on every file save if a Python file contains a special deployment marker
+within its first 100 lines of source code:
+
+``` {.python}
+# zato: ide-deploy=True
+```
+
+For instance:
+
+``` {.python}
+# zato: ide-deploy=True
+
+from zato.server.service import Service
+
+class MyService(Service):
+    def handle(self):
+        pass
+```
+
+![image](../../gfx/progguide/ide-deploy/pycharm_ide_deploy_true.jpg)
+
+Manual deployment
+=================
+
+With a Zato service open in an editor window, visit **Tools -\> Upload to
+default Zato server** to trigger upload manually:
+
+![image](../../gfx/progguide/ide-deploy/pycharm_deploy_menu.jpg)
+
+Success
+=======
+
+Success is indicated in the status bar at the bottom of the window:
+
+![image](../../gfx/progguide/ide-deploy/pycharm_hot_deployed.jpg)
+
+Other IDEs
+==========
+
+-   [./vscode]

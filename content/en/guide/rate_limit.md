@@ -1,0 +1,155 @@
+---
+title: IP rate-limiting and white-listing
+---
+
+Overview
+========
+
+IP rate-limiting and white-listing let one restrict access to Zato objects based on two sets of conditions:
+
+-   How many times in a given time a particular object is accessed (rate-limiting)
+-   Where incoming requests come from (white-listing)
+
+It is possible to express scenarios of varying complexity, such as the simple one below:
+
+-   This service can be used at most 1,000 times a day
+
+Or a more intricate one:
+
+-   This user may use the system at most 10,000 times a day
+    -   But only from these three IP ranges
+-   The person\'s API credentials should be included in the limit too
+    -   But they have their own additional limit - at most 50 times an hour
+    -   Unless the requests are being made from localhost in which case the limit is 200 times a minute
+
+Building blocks
+===============
+
+Rate-limiting definitions can be attached to several kinds of objects, each of which is checked in run-time in the order
+described below:
+
+-   If the incoming request uses a Basic Auth or JWT definition, that definition\'s rate limiting rules are checked
+-   If the incoming request is accessed via a REST, JSON-RPC or SOAP channel, that channel\'s definition rules are checked
+-   If the channel is secured with a user that has a linked SSO user account, that SSO user account\'s rate limiting rules are
+    checked
+-   If a service being invoked has a rate limiting rule, its definition is checked too
+
+Note that while the order of checks is fixed, all of these steps are optional and if a particular object does not have any
+definition, or if it is not enabled, it will not be checked at all.
+
+Managing definitions
+====================
+
+A definition for each type of object possible is always of the same format:
+
+-   Flags
+-   Type
+-   A set of zero or more rules
+
+For instance, below is a sample definition for a service object - all the other object types follow the same style:
+
+![](/gfx/guide/rate-limit/definition.png)
+
+Flags
+-----
+
+-   **Enabled** - dictates whether a given definition is to be processed or not. If it is not on, the definition
+    will be skipped completely, as though it did not exist.
+-   **Return errors** - if on, clients whose rate limits have been reached will be given details of such a situation,
+    otherwise a generic error message will be returned.
+
+Definition types
+----------------
+
+With the exception of SSO users, definitions may be of two types: exact or approximate ones.
+
+-   **Exact** - the definition is shared by all Zato server processes and all checks and comparisons of whether it is already
+    reached are serialized. This is not as fast as approximate ones but comes with a stronger guarantee that if a limit is
+    reached by one server then all the rest will recognize it immediately.
+-   **Approximate** - the definition is specified by each server process rather than on a cluster-level. This means that checks
+    and comparisons are after than in exact ones but it may lead to situations when one server reaches the limit while the rest
+    can still accept requests - ultimately though all servers will reach the same limit.
+
+Note that SSO users always use exact definitions, it is not possible to change it to an approximate one.
+
+Rules
+-----
+
+Each definition contains zero or more rules that are matched in runtime against incoming requests. Each rule is in its own
+line. Rules are matched in the same order as they are listed in the definition.
+
+Processing stops as soon as the first matching rule is found. If no rule matches, the request is rejected.
+
+Note that it is possible to create empty rules, that is, without any lines to match at all. This will indiscriminately reject
+all requests.
+
+Each line is in the format of **source = limit**. Whitespace around the equals sign is ignored.
+
+**Source** may be one of:
+
+-   An exact IP address, e.g. 10.151.29.11
+
+-   An IP network, e.g. 10.151.0.0/16
+
+-   An asterisk to denote \"any source address\"
+
+-   **Limit** is a rate expressed in units of time, where:
+
+    -   **d** = day
+    -   **h** = hour
+    -   **m** = minute
+    -   **\*** = no limits
+
+    For instance:
+
+    > -   10/m = ten times a minute
+    > -   500/h = five hundred times an hour
+    > -   10000/d = ten thousand times a day
+
+Applying changes to definitions
+===============================
+
+Any part of a rate-limiting definition can be changed at any time, e.g. limits may be freely changed whenever it is required.
+
+Each time a definition is changed its internal hit counter is reset - for instance:
+
+-   The definition previously let at most 1,000 requests a day
+-   A given object was already accessed 500 times
+-   Now, the definition was changed to let at most 2,000 requests a day
+-   At this point, callers will face the limit of 2,000 requests a day,
+    the fact about the already reached 500 requests will not be taken into account
+
+The only change that does not reset the counter is modifying the \"Is active\" flag - toggling the definition\'s state
+between active or inactive, no matter how many times, does not reset its hit counter.
+
+Examples
+========
+
+No matter the source address, this object may be accessed at most one thousand times a day:
+
+``` 
+* = 1000/d
+```
+
+Users from the first network block may access the object a hundred times a minute whereas the ones from another block only
+five times a day:
+
+``` 
+172.16.13.0/24 = 100/m
+192.168.79.0/24 = 5/d
+```
+
+Some addresses networks will have limits but for localhost there will be no limits:
+
+``` 
+172.16.97.0/24 = 400/h
+192.168.33.0/24 = 150/d
+192.168.1.199 = 500/d
+127.0.0.1 = *
+```
+
+No limits all, no matter the source address:
+
+``` 
+* = *
+```

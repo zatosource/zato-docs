@@ -1,0 +1,68 @@
+---
+title: User.signup - Python API
+---
+
+Lets users [sign up \<../../../topic/user/signup\>] themselves with the system. In Python, a zato.sso.SignupCtx object
+is created and filled in with details of the user about to be signed up.
+
+Input is validated according to configuration from [sso.conf \<../../../config/index\>]. All callback services
+are executed if the user has been created successfully.
+
+On output, confirmation token is returned that may be used to let a user know via email that their account has been
+prepared but needs to be confirmed by clicking on a selected link. The token is URL-safe and 192-bit strong.
+
+SignupCtx has the following properties:
+
+  Name          Datatype   Optional?   Notes
+  ------------- ---------- ----------- ----------------------------------------------------------------------
+  username      string     \-\--       Username to create
+  password      string     \-\--       User\'s password
+  email         string     Yes         User\'s email
+  current_app   string     \-\--       Name of the application the user is signing up through
+  app_list      list       \-\--       A list of applications that the user wants to sign up to
+                                       (all must exist in [sso.conf \<../../../config/index\>])
+
+API
+===
+
+self.sso.user.signup
+--------------------
+
+``` {.python}
+# -*- coding: utf-8 -*-
+
+from __future__ import absolute_import, division, print_function, unicode_literals
+
+# stdlib
+from uuid import uuid4
+
+# Zato
+from zato.server.service import Service
+from zato.sso import const, SignupCtx
+
+class SignupService(Service):
+    def handle(self):
+
+        # Signup data
+        username = 'my.username'
+        email = 'my.username@example.com'
+        password = uuid4().hex
+        app_list = ['CRM']
+
+        # Prepare the context object
+        ctx = SignupCtx()
+        ctx.username = username
+        ctx.email = email
+        ctx.password = password
+        ctx.app_list = app_list
+
+        # Sign up the user
+        confirm_token = self.sso.user.signup(self.cid, ctx, 'CRM', '127.0.0.1')
+
+        # Log the confirmation token received
+        self.logger.info('Token: %s', confirm_token)
+```
+
+``` {.python}
+INFO - Token: v9IEOwbBr0JEsboKyleAp6yuKwIEzmJ0
+```

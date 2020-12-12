@@ -1,0 +1,121 @@
+---
+title: Patterns - Parallel execution
+---
+
+Overview
+========
+
+Parallel execution lets services invoke an arbitrary number of other services providing a set of callback services
+to be executed after each of the targets completes.
+
+Target services run in parallel, asynchronously, and are not notified of each other\'s execution progress. All of the callbacks
+configured also run asynchronously without blocking each other.
+
+The diagram below depicts the feature in its full scope. 3 target services are executed, each runs independently, each with a list
+of their completion callbacks.
+
+![image](/gfx/progguide/patterns/parallel-exec.png){.align-center}
+
+Usage examples and API
+======================
+
+Common usage
+------------
+
+In the most common case, the usage will be as follows. A dictionary mapping targets and their requests along with
+a list of callbacks is provided to *self.patterns.parallel.invoke*. All of the targets are invoked in background and, once
+they all complete, each of the callbacks is invoked.
+
+``` {.python}
+from zato.server.service import Service
+
+class MyService(Service):
+
+    def handle(self):
+
+        # A dictionary of services to invoke along with requests they receive
+        targets = {
+            'service1': {'hello':'from-parallel-exec1'},
+            'service2': {'hello':'from-parallel-exec2'},
+        }
+
+        # Callbacks to invoke when each of the services finishes
+        callbacks = ['my.callback1', 'my.callback2']
+
+        # On output a Correlation ID assigned to the call is returned
+        cid = self.patterns.parallel.invoke(targets, callbacks)
+```
+
+User-defined Correlation IDs
+----------------------------
+
+Users can provide their own Correlation IDs to invoke the services with. It is user\'s responsibility to ensure the IDs are sufficiently
+enough and there will be no duplicates, should that happen - results are undefined.
+
+``` {.python}
+from zato.server.service import Service
+
+class MyService(Service):
+
+    def handle(self):
+
+        # A dictionary of services to invoke along with requests they receive
+        targets = {
+            'service1': {'hello':'from-parallel-exec1'},
+            'service2': {'hello':'from-parallel-exec2'},
+        }
+
+        # Callbacks to invoke when both services above finish
+        callbacks = ['my.callback1', 'my.callback2']
+
+        # User-provided Correlation ID
+        cid = '1632-5754-5628-5197'
+
+        # CID returned is the one received on input
+        cid = self.patterns.parallel.invoke(targets, callbacks, cid=cid)
+```
+
+Authoring callbacks
+-------------------
+
+A callback is a regular Zato service that is invoked after each of the targets finishes execution,
+no matter if any raises an exception or ot.
+
+Each callback is invoked asynchronously, in isolation from any other callbacks defined.
+
+Upon execution, each callback\'s [self.channel \<progguide-write-service-channel\>] attribute will be set to
+*PARALLEL_EXEC_ON_TARGET* from
+[zato.common.CHANNEL](https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/__init__.py).
+
+On input, a callback\'s *self.request.payload* attribute will be a Python dictionary with the contents in the format as below:
+
+``` {.python}
+{
+  'source': 'parallel1.my-service',
+  'target': 'my.service1',
+  'response': 'My response',
+  'req_ts_utc': '2015-01-19 19:55:45',
+  'resp_ts_utc': '2015-01-19 19:55:46',
+  'ok': True,
+  'exception': None,
+  'cid': 'K05129BXK5ZJJABJ41CGPEMZG4J6'
+}
+```
+
+  Key           Notes
+  ------------- --------------------------------------------------------------------------------------------------------------------------------------------
+  source        Name of a service originally issuing the parallel execution call
+  target        Name of a target service the callback is executed for
+  response      Response the service produced
+  req_ts_utc    When was the initial parallel execution call issued, in UTC
+  resp_ts_utc   When was the response created, in UTC
+  ok            True/False depending on whether the call was successful (raised no exceptions) or not
+  exception     Exception\'s traceback as string, if ok is not True
+  cid           Correlation ID the service was given to its [self.wsgi_environ \<progguide-write-service-wsgi_environ\>]\'s
+                *zato.request_ctx.parallel_exec_cid* key -this is the same CID the source service was given on output from *self.patterns.parallel.invoke*
+
+Similarities to Fan-out/Fan-in
+==============================
+
+The feature is very similar to the [Fan-out/Fan-in \<./parallel-exec\>] pattern - in addition to on-target callbacks from
+Parallel Execution, Fan-out/Fan-in adds callbacks that are executed only when all of the targets finish.

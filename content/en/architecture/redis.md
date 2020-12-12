@@ -1,0 +1,72 @@
+---
+title: Redis
+---
+
+![image](/gfx/arch-redis.png){.align-center}
+
+Redis key/value database (KVDB) is used by servers to store data that is
+of highly dynamic or volatile nature. Each cluster needs a KVDB and each KVDB
+belongs to a single cluster only, Redis cannot be shared between clusters.
+
+The data stored in Redis can be:
+
+-   [arch-redis-stats]
+-   [arch-redis-sample-req-resp]
+-   [arch-redis-slow-resp]
+-   [arch-redis-dist-lock]
+-   [arch-redis-broker]
+-   [arch-redis-data-dict]
+
+Statistics {#arch-redis-stats}
+==========
+
+Zato servers collect service statistics under keys starting with the \'zato:stats:\'
+prefix, such as \'zato:stats:<service:usage:zato.definition.amqp.GetByID>\' or
+\'zato:stats:<service:time:aggr-by-minute:zato.stats.summary.CreateSummaryByDay:2013:02:10:22:10>\'.
+
+Statistics under keys starting with \'zato:stats:<service:time:raw-by-minute>\' contain
+information regarding the execution of each of the services run during a given minute.
+Scheduler-initiated services will periodically aggregate raw data into high-order
+structures, such as statistics concerning a given hour or a day. Raw data will
+then be deleted.
+
+Sample requests and responses {#arch-redis-sample-req-resp}
+=============================
+
+It is possible for each service to store sample requests and responses in Redis.
+This is meant to facilitate the process of answering a common question of how
+a typical request/response pair for a given service might look like.
+
+Slow responses {#arch-redis-slow-resp}
+==============
+
+Services can be assigned a slow response threshold after exceeding of which,
+top 100 slow responses of a given service along with their requests and additional
+metadata will be stored in Redis.
+
+Distributed locks {#arch-redis-dist-lock}
+=================
+
+Some processes taking place within a cluster need to be performed by one
+of multiple processes or servers only. For instance, there are typically multiple
+gunicorn workers supporting a Zato server and they all start up asynchronously.
+Only one of them should be allowed to deploy services assigned to a server
+and Redis is used to implement a distributed lock for that purpose.
+
+Broker messages {#arch-redis-broker}
+===============
+
+Servers usually do not communicate directly. If one server needs to inform one or more
+servers of, for instance, a change in its configuration, a message in published
+on Redis and other servers, subscribed on Redis channels, pick it up.
+
+Likewise, a message the cluster\'s scheduler wants to send to one of the servers
+will be published to Redis and a server will receive it asynchronously.
+
+Data dictionaries {#arch-redis-data-dict}
+=================
+
+Data dictionaries are a feature that allows one to easily map values between
+applications. For instance, a CRM might use ISO 4217 currency names (US dollar is
+USD) while an accounting application could use numerical values (US dollar is 840).
+A data dictionary is a mapping between the two and it\'s stored in Redis for a quick retrieval.

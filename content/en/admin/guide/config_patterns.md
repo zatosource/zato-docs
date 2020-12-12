@@ -1,0 +1,132 @@
+---
+title: Configuration patterns
+---
+
+Overview
+========
+
+Several configuration stanzas in
+[server.conf \<./install-config/config-server\>]
+support the usage of string patterns to match in run-time. Regardless of the exact place
+where it\'s used, the matching process works identically and is described in this chapter.
+
+The entries that can be used with patterns are:
+
+-   [deploy_patterns_allowed \<admin-guide-config-server-deploy_patterns_allowed\>]
+-   [invoke_patterns_allowed \<admin-guide-config-server-invoke_patterns_allowed\>]
+-   [invoke_target_patterns_allowed \<admin-guide-config-server-invoke_target_patterns_allowed\>]
+
+The first one will be used as a usage example but again, each of the supports the same mechanism in its own area.
+
+How patterns work
+=================
+
+String patterns are used to provide a set of expressions evaluated in run-time that Zato uses to make decisions
+in places where patterns are employed.
+
+For instance:
+
+    [deploy_patterns_allowed]
+    order=true_false
+    *=True
+    crm.*=False
+    billing.*.create=False
+
+Each stanza must contain the *order* key with either of the following:
+
+-   *true_false* - In a first pass patterns that admit the given operation are matched. On top of that, patterns that forbid the operation are matched,
+    possibly overriding results from the first pass.
+-   *false_true* - In a first pass patterns that disallow the given operation are matched. On top of that, patterns that grant the operation are matched,
+    possibly overriding results from the first pass.
+
+Each stanza will additionally add one or more patterns to match in run-time. If a string doesn\'t match any pattern, the result is False.
+
+Patterns can use wildcard operators:
+
+-   *\**\* - matches any string
+-   *\** - matches any string except for slash /
+-   *?* - matches a single character
+
+Each pattern key is given a True or False value thus placing it in the list of patterns allowing or disallowing a given action.
+
+Even if not provided in such a manner by users, patterns are always evaluated lexicographically within each True/False group
+separately, with wildcard operators being considered less than characters.
+
+Results of matching are cached and subsequent calls to evaluate the same pattern will be returned immediately. The cache does not
+expire and to update patterns a change to
+[server.conf \<./install-config/config-server\>]
+is needed followed by a server restart (zato
+[stop \<../cli/stop\>]/[start \<../cli/start\>]).
+
+To special-case the most common configuration, if an entire stanza consists only of the *order* key followed by either
+*\*=True* (as in the default configuration) or *\*=False*, a fast path evaluating to True/False, respectively, is taken each time
+a decision is needed - hence even though both of the below work outwardly in the same manner, the result of a match is the same
+value of False, the second one is faster:
+
+    [deploy_patterns_allowed]
+    order=true_false
+    my.service.*=True
+    *=False
+
+    [deploy_patterns_allowed]
+    order=true_false
+    *=False
+
+Usage examples
+==============
+
+Allow everything
+----------------
+
+    [deploy_patterns_allowed]
+    order=true_false
+    *=True
+
+Don\'t allow anything
+---------------------
+
+    [deploy_patterns_allowed]
+    order=true_false
+    *=False
+
+Allow all but reject a few selected
+-----------------------------------
+
+    [deploy_patterns_allowed]
+    order=true_false
+    *=True
+    crm.*=False
+    ivr.*.delete=False
+
+Reject all but grant a few
+--------------------------
+
+    [deploy_patterns_allowed]
+    order=false_true
+    *=False
+    customer.account.*=True
+    customer.billing.*.get=True
+
+Individually let a few in and reject several others
+---------------------------------------------------
+
+    [deploy_patterns_allowed]
+    order=true_false
+    customer.account.*=True
+    customer.billing.*.get=True
+    customer.account.address=False
+    customer.phone.v1?=False
+
+Recall that by default if a string doesn\'t much any pattern, it is rejected. Hence the configuration picking individual
+names only will still work as though *\*=False* was provided.
+
+Default configuration
+=====================
+
+The default configuration is as follows:
+
+    [deploy_patterns_allowed]
+    order=true_false
+    *=True
+
+That is, match allowed entries then override with disallowed ones but by default - allow everything.

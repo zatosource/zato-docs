@@ -1,0 +1,213 @@
+---
+title: Pub/sub - endpoints - SOAP
+---
+
+Overview
+========
+
+Messages from pub/sub topics can be sent to SOAP subscribers and the contents below describes how to do it.
+There are several steps involved:
+
+-   Creating an [outgoing SOAP connection \<../../../web-admin/outgoing/soap\>] based on a WSDL file
+-   Creating an endpoint
+-   Creating a subscription
+-   Authoring a SOAP hook service
+
+The SOAP server is required to expose a WSDL based on which Zato creates a pool of SOAP clients to invoke it.
+
+A user-defined hook service is needed to transform the messages from topics to SOAP format and to invoke the remote
+SOAP server.
+
+Outgoing SOAP connections
+=========================
+
+![image](/gfx/pubsub/api/menu-outconn-soap.png)
+
+![image](/gfx/pubsub/api/outconn-soap-create.png)
+
+A connection definition point to the remote SOAP server is needed for Zato to know which server to invoke
+with pub/sub message - details of how to fine-tune outgoing SOAP connections are provided in their
+[own chapter \<../../../web-admin/outgoing/soap\>].
+
+Two aspects are of importance:
+
+-   URL path must be one pointing to a WSDL file
+-   Serialization type must be *Suds*
+
+Endpoints
+=========
+
+![image](/gfx/pubsub/api/menu-endpoint.png)
+
+![image](/gfx/pubsub/api/endpoint-create-soap.png)
+
+  Header           Notes
+  ---------------- ----------------------------------------------------------------------------------
+  Name             Endpoint name
+  Type             SOAP
+  Role             Currently, must be always Subscriber
+  Topics allowed   A list of patterns for topics that this endpoint will be allowed to subscribe to
+                   (i.e. receive messages from)
+
+Subscriptions
+=============
+
+![image](/gfx/pubsub/api/menu-sub.png)
+
+![image](/gfx/pubsub/api/sub-create-soap.png)
+
+  Header                  Notes
+  ----------------------- ---------------------------------------------------------------------------------------------------------------
+  Type                    SOAP
+  Delivery server         From which server messages will be sent to the SOAP server
+  Endpoint                An already existing pub/sub endpoint on whose behalf messages will be sent to the SOAP server
+  Delivery method         Must be always Notify
+  Delivery batch size     At most how many messages to send in one batch
+  List required           Should messages be always be wrapped in a list element, even if there is only one message
+  Delivery max retries    How many times to retry delivery for a message until it is considered undeliverable
+  Sleep on socket error   How many seconds to sleep on receiving a TCP-level socket error in communication with the SOAP server
+  Sleep on error error    As above but for non socket-related errors
+  Topics                  A list of topics to subscribe to - only topics to which the chosen endpoint has
+                          subscription permissions are displayed
+  SOAP outconn            An [outgoing SOAP connection \<../../../web-admin/outgoing/soap\>] through which to send messages
+
+SOAP hook services
+==================
+
+Given that pub/sub messages are most often sent through
+[REST endpoints \<../../api/rest\>],
+in JSON, or
+via [flat files \<./file\>],
+a matter arises of how
+to make SOAP recipients receive messages formatted as XML.
+
+This function is fulfilled by SOAP hook services optionally attached to each channel - they are invoked for each batch of
+messages that are to be sent to SOAP servers. Their chief task is to transform messages from the original format
+into one expected by SOAP recipients as indicated by data model in a recipient\'s WSDL and to use built-in
+[functionality \<progguide-examples-soap-invoking-wsdl\>] to invoke the remote server.
+
+Each service has full access to metadata and business data about messages and subscribers and the same hook service
+may be used to implement transformation logic for multiple topics or subscribers.
+
+Hook services are not restricted to transformation alone. If needed in a particular situation, they may reach out
+to other services, other external systems or perhaps suppress publication of a given message if specific conditions
+require it.
+
+Indeed, hook services are not even strictly required to invoke the SOAP server - if the service decides that
+the server should be invoked then it may very well not do it.
+
+As long as the hook service does not raise an exception, Zato assumes that that the service completed successfully
+and all the messages have been delivered without any issues. Conversely, raising any sort of exception will signal
+to Zato that delivery of the messages should be repeated after a short break - after as many seconds as configured
+through \"Sleep on error error\" above.
+
+A SOAP hook service subclasses *zato.server.service.PubSubHook* and implements *on_outgoing_soap_invoke* method, as below:
+
+    # -*- coding: utf-8 -*-
+
+    from __future__ import absolute_import, division, print_function, unicode_literals
+
+    # Zato
+    from zato.server.service import PubSubHook
+
+    class MyHook(PubSubHook):
+        """ Sample SOAP pub/sub hook.
+        """
+        def on_outgoing_soap_invoke(self):
+
+            # SOAP hook logic goes here
+            pass
+
+Such a service needs to be configured for each topic whose subscribers include SOAP endpoints - note that only services
+that subclass PubSubHook will be shown in the HTML drop-down list.
+
+![image](/gfx/pubsub/api/sub-update-topic.png)
+
+Each SOAP hook service may make use of the following attributes, accessed via *self.request.input.ctx*,
+e.g. self.request.input.ctx.hook_type:
+
+  self.request.input.ctx   Notes
+  ------------------------ ------------------------------------------------------------------------------------------------------------
+  hook_type                Always \"on_topic_outgoing_soap_invoke\"
+  outconn_name             Name of an [outgoing SOAP \<../../../web-admin/outgoing/soap\>] connection to which input data
+                           should be [sent \<progguide-examples-soap-invoking-wsdl\>]
+  topic                    Object describing the topic that input data was sent to, described below
+  msg                      Contains business data and metadata about the message(s) taken from topic. By default, this is
+                           a list of messages to send to the remote SOAP end but note that depending
+                           on how the subscription is [configured \<../sub/index\>] (flag \"list required\"),
+                           this element may be possibly a list even if there is only one message. Each message has
+                           a series of attributes, described below.
+
+  Topic object   Notes                                       Sample
+  -------------- ------------------------------------------- ---------------------
+  name           Name of the topic that input messages are   /customer/update/fr
+                 received from. Note that it will be also    
+                 repeated with each message.                 
+
+  Message object        Notes                                                Sample
+  --------------------- ---------------------------------------------------- ----------------------------------------------------------
+  msg_id                Message ID                                           zpsm20fb970d4014f4d356c50f2a
+  data                  Business payload                                     {\"acc\":\"123\", \"op\":\"deduct\", \"amount\":\"175\",
+                                                                             \"currency\":\"EUR\"}
+  size                  Data size, in bytes (UTF-8)                          62
+  topic_name            Topic to which this message was published            /customer/update/fr
+  sub_key               Subscription key of the SOAP subscriber              zpsk.soap.315383075e2ec2ac2c149c6b
+  pub_time_iso          When the message was published, in UTC               2018-07-19T10:13:59.442880
+  expiration_time_iso   When the message will expire, in UTC                 2086-08-06T13:28:06.442880
+  expiration            Expiration time in milliseconds since pub_time_iso   2147483647000
+  mime_type             What MIME type the business data is of               text/plain
+  priority              Message priority, 1-9 (1=min)                        7
+  delivery_count        How many previous attempts to deliver this message   0
+                        to the subscriber there have been already            
+  has_gd                Was the message published with Guaranteed Delivery   True
+                        turned on                                            
+
+Upon its invocation, a hook service can transform each message to the format that the SOAP server expects and send
+the result out, as below.
+
+Note that the object returned by *self.outgoing.soap.get* is a [Suds](https://bitbucket.org/jurko/suds/wiki/Original%20Documentation)
+SOAP client - anything Suds can do is also available to the hook service.
+
+    # -*- coding: utf-8 -*-
+
+    from __future__ import absolute_import, division, print_function, unicode_literals
+
+    # Zato
+    from zato.server.service import PubSubHook
+
+    class MyHook(PubSubHook):
+        """ Sample SOAP pub/sub hook.
+        """
+        def on_outgoing_soap_invoke(self):
+
+            # Local aliase
+            ctx = self.request.input.ctx
+
+            # Log information that we are about to send out SOAP requests from topic
+            self.logger.info('About to publish %d message(s) from topic `%s` to SOAP connection `%s`',
+                len(ctx.msg), ctx.topic.name, ctx.outconn_name)
+
+            # Obtain SOAP client from the pool ..
+            with self.outgoing.soap.get(ctx.outconn_name).conn.client() as client:
+
+                # .. assume that each business message has this format:
+                # {"acc":"123", "op":"deduct", "amount":"157", "currency":"EUR"}
+
+                # .. for each message received from the topic ..
+                for item in ctx.msg:
+
+                    # .. get a reference to actual business data ..
+                    data = item.data
+
+                    # .. and invoke the SOAP server
+                    output = client.service.accountDeduct(data['acc'], data['amount'], data['currency'])
+
+                    # Log response from the remote SOAP end
+                    self.logger.info('SOAP status received `%s`', output.StatusCode)
+
+Changelog
+=========
+
+  Version   Notes
+  --------- -----------------
+  3.0       Added initially

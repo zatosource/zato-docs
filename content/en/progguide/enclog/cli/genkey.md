@@ -1,0 +1,14 @@
+---
+title: enclog genkey
+---
+
+Generates a new
+[Fernet key](https://cryptography.io/en/latest/fernet/)
+and outputs it on screen.
+
+Usage
+=====
+
+    $ enclog genkey
+    fPdM5ETGs9JValjNchbHqHHGy4WB1MSzQ ..
+    $ 

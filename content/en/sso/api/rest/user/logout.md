@@ -1,0 +1,48 @@
+---
+title: User.logout - REST API
+---
+
+Overview
+========
+
+Logs a user out of an existing SSO session - this makes the user no longer logged into any of the SSO-based applications.
+
+This call never reports if input UST was valid or not, it always returns status \"ok\" even if UST did not exist. This is in order
+to make it more difficult for attackers to discover what of UST they may have access to are, or were, valid.
+
+Note that there may be additional details in server logs in case of input validation errors.
+
+> -   HTTP method: POST
+> -   URL path: /zato/sso/user/logout
+
+Request
+=======
+
+  Name          Datatype   Optional   Notes
+  ------------- ---------- ---------- -----------------------------------------------------
+  ust           string     \-\--      User session token to log out by
+  current_app   string     \-\--      Name of application that the call is attempted from
+
+Response
+========
+
+  Name     Datatype   Optional   Notes
+  -------- ---------- ---------- ------------------------------------
+  cid      string     \-\--      Correlation ID assigned to request
+  status   string     \-\--      Always equal to \"ok\"
+
+Usage
+=====
+
+``` 
+$ curl -XPOST localhost:17010/zato/sso/user/logout -d '
+  {
+  "ust":         "gAAAAABak99-tQYi0TncwDhNTGR...",
+  "current_app": "CRM"
+  }'
+
+{
+  "status": "ok",
+  "cid": "229d2d989a88f633ddebc505"
+}
+```

@@ -1,0 +1,13 @@
+---
+title: zato quickstart
+---
+
+Overview
+========
+
+Manages a quickstart environment - a one-command cluster ready to use in 10 seconds
+
+Subcommands
+===========
+
+-   [zato quickstart create \<./quickstart-create\>]
