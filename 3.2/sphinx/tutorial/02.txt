@@ -31,7 +31,7 @@ the connection it will use the new location just like that.
 
 We don't have a CRM and payments systems handy but for the purpose of the tutorial
 we can imitate them by invoking some previously prepared services available over at
-http://tutorial.zato.io/get-customer and http://tutorial.zato.io/get-last-payment.
+http://zato.io:9193/tutorial/get-customer and http://zato.io:9193/tutorial/get-last-payment.
 
 We'll connect to the fraud detection system with ZeroMQ in a while.
 
@@ -46,16 +46,16 @@ CRM connection
 
 .. image:: /gfx/tutorial/outconn-crm.png
 
-=========== ========================
+=========== ==============================
 Header      Value
-=========== ========================
+=========== ==============================
 Name        CRM
 Active      Yes
-Host        http://tutorial.zato.io
+Host        http://zato.io:9193
 Data format JSON
-URL path    /get-customer
+URL path    /tutorial/get-customer
 Security    No security
-=========== ========================
+=========== ==============================
 
 (Rest of the parameters is left default)
 
@@ -64,16 +64,16 @@ Payments connection
 
 .. image:: /gfx/tutorial/outconn-payments.png
 
-=========== ========================
+=========== ==============================
 Header      Value
-=========== ========================
+=========== ==============================
 Name        Payments
 Active      Yes
-Host        http://tutorial.zato.io
+Host        http://zato.io:9193
 Data format JSON
-URL path    /get-last-payment
+URL path    /tutorial/get-last-payment
 Security    No security
-=========== ========================
+=========== ==============================
 
 (Rest of the parameters is left default)
 
@@ -81,8 +81,8 @@ Synchronous invocations
 -----------------------
 
 The newly created connections can be used straightaway. Visiting
-`the <http://tutorial.zato.io/get-customer>`_
-`services <http://tutorial.zato.io/get-last-payment>`_
+`the <http://zato.io:9193/tutorial/get-customer>`_
+`services <http://zato.io:9193/tutorial/get-last-payment>`_
 they point to lets us discover the data they produce is
 
 ::
