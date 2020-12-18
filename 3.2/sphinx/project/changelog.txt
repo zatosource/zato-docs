@@ -13,11 +13,11 @@
    :doc:`web-admin <../architecture/web-admin>`
    in 10 minutes.
 
-* Performance improvements that make servers run much faster, particularly in the area of REST and WebSockets
+* Performance improvements that make servers run much faster, particularly in the area of REST and JSON
+
+* Added support for HL7, including MLLP and REST
 
 * Added file transfer channels for local and remote data sources
-
-* Added SalesForce connections
 
 * Added Dropbox connections
 
@@ -32,6 +32,8 @@
 * Made it easier to greenify libraries that are not gevent-aware by default (e.g. Oracle drivers)
 
 * Services subclassing other services will automatically reload when their parent changes
+
+* Services can be now recipients of publish/subscribe messages
 
 * Made servers start up faster
 
