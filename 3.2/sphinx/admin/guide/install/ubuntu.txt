@@ -1,7 +1,59 @@
 Zato installation on Ubuntu
 ===========================
 
-Instructions for:
+Requirements
+------------
 
-* :doc:`Python 2.7 <./py27/ubuntu>`
-* :doc:`Python 3.x <./py3/ubuntu>`
+* Ubuntu 18.04 LTS, 20.04 LTS (64-bit)
+* Sudo rights
+
+Installation steps
+------------------
+
+* Install helper programs
+
+::
+
+    ubuntu$ sudo apt-get install apt-transport-https curl
+    ubuntu$ sudo apt-get install software-properties-common
+    ubuntu$ sudo add-apt-repository universe
+    ubuntu$ sudo apt-get install tzdata
+
+* Add the package signing key
+
+::
+
+    ubuntu$ curl -s https://zato.io/repo/zato-3.2-8678EFE11DA60B63.pgp.txt | sudo apt-key add -
+
+* Add Zato repository
+
+::
+
+    ubuntu$ sudo add-apt-repository \
+       "deb [arch=amd64] https://zato.io/repo/stable/3.2/ubuntu $(lsb_release -cs) main"
+
+* Install Zato
+
+::
+
+    ubuntu$ sudo apt-get install zato
+
+* Install latest additions
+
+::
+
+    ubuntu$ sudo su - zato
+    ubuntu$ cd /opt/zato/current && git checkout -- ./requirements.txt
+    ubuntu$ ./update.sh
+
+* Confirm the installation:
+
+::
+
+    ubuntu$ zato --version
+    Zato 3.2+rev.nnnnnnn-py3.n.n
+    ubuntu$
+
+That concludes the process - you can refer to the main
+:doc:`documentation index <../../../index>`
+now.
