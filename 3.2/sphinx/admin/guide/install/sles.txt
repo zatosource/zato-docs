@@ -20,8 +20,8 @@ Installation steps
 
 ::
 
-    sles# curl -sO https://zato.io/repo/zato-3.2-8678EFE11DA60B63.pgp.txt
-    sles# rpm --import ~/zato-3.2-8678EFE11DA60B63.pgp.txt
+    sles# curl -sO https://zato.io/repo/zato-3.2-48849AAD40BCBB0E.pgp.txt
+    sles# rpm --import ~/zato-3.2-48849AAD40BCBB0E.pgp.txt
 
 * Enable PackageHub repository
 

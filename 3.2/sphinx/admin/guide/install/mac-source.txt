@@ -1,11 +1,11 @@
-Zato installation from source code
-==================================
+Zato installation on Mac
+========================
 
 Requirements
 ------------
 
-* RHEL/CentOS, Ubuntu, Debian, Mac, Suse or Alpine Linux
-* Sudo powers
+* macOS X
+* Homebrew
 
 Installation steps
 ------------------
@@ -24,6 +24,8 @@ Installation steps
 
 ::
 
+    code$ brew install python@3.8
+    code$ brew link python@3.8
     code$ ./install.sh -p python3
     [snip]
 
@@ -33,9 +35,9 @@ Installation steps
 ::
 
     code$ ./bin/zato --version
-    Zato 3.1+rev.nnnnnnn-py3.n.n
+    Zato 3.2+rev.nnnnnnn-py3.n.n
     code$
 
 That concludes the process - you can refer to the main
-:doc:`documentation index <../../../../index>`
+:doc:`documentation index <../../../index>`
 now.

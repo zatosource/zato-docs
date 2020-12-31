@@ -23,7 +23,7 @@ Installation steps
 
 ::
 
-    ubuntu$ curl -s https://zato.io/repo/zato-3.2-8678EFE11DA60B63.pgp.txt | sudo apt-key add -
+    ubuntu$ curl -s https://zato.io/repo/zato-3.2-48849AAD40BCBB0E.pgp.txt | sudo apt-key add -
 
 * Add Zato repository
 
