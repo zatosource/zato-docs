@@ -484,7 +484,8 @@ hence you need to grep in both of them and look for an entry similar to the one 
 
 ::
 
-  INFO - 5428:Dummy-178 - my-service.get-client-details:703 - {u'impl_name': u'my_service.GetClientDetails',
+  INFO - 5428:Dummy-178 - my-service.get-client-details:703 -
+    {u'impl_name': u'my_service.GetClientDetails',
     u'name': u'my-service.get-client-details',
     u'cid': u'K05A9DMYMJ023SB2E4B57BS6N3FW',
     u'invocation_time': datetime.datetime(2014, 12, 3, 21, 17, 16, 480128),
@@ -495,7 +496,8 @@ hence you need to grep in both of them and look for an entry similar to the one 
       u'zato.request_timestamp_utc': <Arrow [2014-12-03T21:17:16.427072+00:00]>,
       'SERVER_PROTOCOL': 'HTTP/1.1',
       'SERVER_SOFTWARE': 'Zato',
-      u'zato.http.channel_item': Bunch(audit_enabled=False, audit_max_payload=0, audit_repl_patt_type=None,
+      u'zato.http.channel_item': Bunch(audit_enabled=False, audit_max_payload=0,
+      audit_repl_patt_type=None,
         connection=u'channel', data_format=u'json', has_rbac=False, host=None, id=536L,
         impl_name=u'my_service.GetClientDetails', is_active=True, is_internal=False,
         match_target=u':::/tutorial/first-service',
