@@ -48,12 +48,12 @@ Deploy Zato to local Kubernetes
 
     host$ cat myoptions.yml
     # Some customization variables:
-    secretKey: "hS4KVhIMPUGxoS1M6xYLq1UW0_lZOFe5eDoRs9Q9Hy0="
-    jwt_secretKey: "p5m2wJxDF3xxFrZLdDu8m15fRUak4eZDPJl5Bfz_wm8="
-    zatoWebAdminPassword: "zato"
-    zatoIdePublisherPassword: "zato"
-    zatoAdminInvokePassword: "c97f1aa4-8a20-441e-b46d-d37711a06afc"
-    odbPassword: "zato"
+    secretKey: "...................="
+    jwtSecretKey: "..................="
+    zatoWebAdminPassword: ".."
+    zatoIdePublisherPassword: ".."
+    zatoAdminInvokePassword: "................"
+    odbPassword: ".."
     ingress:
         enabled: true
         hosts:
@@ -70,8 +70,8 @@ When the ingress is enabled:
 
 ::
 
-    host$ helm install -f myoptions.yml --generate-name helm/
-    NAME: helm-1583114280
+    host$ helm install -f myoptions.yml zato helm/
+    NAME: zato
     LAST DEPLOYED: Sun Mar  1 20:58:07 2020
     NAMESPACE: default
     STATUS: deployed
@@ -84,8 +84,8 @@ When the parameter \-\-set can be used to override values too:
 
 ::
 
-    host$ helm install -f myoptions.yml --generate-name --set ingress.enabled=false helm/
-    NAME: helm-1583115498
+    host$ helm install -f myoptions.yml --set ingress.enabled=false zato helm/
+    NAME: zato
     LAST DEPLOYED: Sun Mar  1 21:18:24 2020
     NAMESPACE: default
     STATUS: deployed
