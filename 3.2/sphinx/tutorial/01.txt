@@ -7,167 +7,183 @@ Tutorial - part 1/2
 Introduction
 ------------
 
-This tutorial will guide you through a process of creating a simple service that
-will be integrated with 3 external applications over HTTP and Zero MQ using
-JSON or XML as a data exchange format.
+Before you begin, make sure to read the `high-level overview <./02>`_ for a general introduction to Zato and API integrations.
 
-But what is a service?
+This **Zato** programming tutorial will guide you through the process of creating a real-world API service that,
+with Python, will integrate three applications using REST and AMQP. The result will be a solution
+ready to use in production.
 
-To paraphrase the :doc:`programming guide <../progguide/overview>`,
-a service is a piece of functionality that does something useful and interesting
-to any party that would like to use it. It's like a function or a method but
-running on a massively higher level - instead of exposing functions to other parts of
-code in a single application, a service is exposed as an API to other systems.
+But first, here are some examples of production environments designed and built with Zato - note that Zato is a general-purpose
+platform and the samples span various distinct industries and domains. The platform can be used in all kinds
+of scenarios that require integrations of distributed systems.
 
-Such an atomic and reusable building block as a service can be used to create any online
-:doc:`middleware and backend <../intro/overview-high-level>`
-:doc:`application <../intro/overview-tech>`
-for any purpose.
+* A platform for processing **payments** from consumer devices
 
-Services can can
-:doc:`invoke <../progguide/outconn/overview>`
-or
-:doc:`accept connections <../progguide/channels>`
-through many
-protocols and transports -
-:doc:`plain HTTP REST, SOAP, JSON <../progguide/outconn/http>`,
-:doc:`AMQP <../progguide/outconn/amqp>`,
-:doc:`IBM MQ<../progguide/outconn/jms-wmq>`,
-:doc:`ZeroMQ <../progguide/outconn/zmq>`,
-:doc:`SQL <../progguide/outconn/sql>`,
-:doc:`FTP(S) <../progguide/outconn/ftp>`
-:doc:`Cassandra CQL <../progguide/examples/cassandra>`,
-:doc:`Amazon S3 <../progguide/examples/cloud/aws/s3>`,
-:doc:`OpenStack Swift <../progguide/examples/cloud/openstack/swift>`,
-:doc:`Odoo/OpenERP <../progguide/examples/odoo>`
-:doc:`SMTP <../progguide/examples/smtp>`
-or
-:doc:`IMAP <../progguide/examples/imap>`
+* A system for **a telecommunication operator** integrating CRM, ERP, Billing and other systems
+  as well as applications of the operator's external partners
 
-Integration patterns -
-:doc:`fan-out/fan-in <../progguide/patterns/fan-out-fan-in>`,
-:doc:`parallel execution <../progguide/patterns/parallel-exec>`
-:doc:`invoke/retry <../progguide/patterns/invoke-retry>`,
+* A **data science** system for processing of information related to securities transactions (FIX)
+
+* A platform for **public administration** systems, helping achieve **healthcare data interoperability**
+  through the integration of independent data sources, databases and health information exchanges (HIE)
+
+* A global **IoT platform** integrating medical devices
+
+* A platform to process events produced by **early warning systems**
+
+* Backend **e-commerce** systems managing multiple suppliers, marketplaces and process flows
+
+* **B2B** platforms to accept and process multi-channel orders in cooperation with backend **ERP** and **CRM** systems
+
+* Platforms integrating **real-estate** applications, collecting data from independent data sources to present unified APIs
+  to internal and external applications
+
+* A system for the management of hardware resources of an **enterprise cloud** provider
+
+* **Online auction** sites
+
+* **E-learning** platforms
+
+What they all have in common is the level of complexity involved in integration processes. It is typical for such environments
+to have at least several and sometimes several dozen or several hundred independent applications exchanging messages,
+each possibly using a different technology and data format.
+
+API services
+============
+
+If Zato is a platform for API services then what is a service?
+
+In essence, a service is a piece of server-side functionality carrying out a business action that is useful and interesting
+to applications that would like to use it. This is a high-level definition and this is the correct way to think about it.
+
+It all stems from the fact that you should think about the systems and applications comprising your architecture
+in terms of consumers and providers of services. Each part of the architecture offers services to other parts and,
+conversely, each part consumes services offered by other pieces of the architecture.
+
+Taken together, services form higher-level processes which fullfil actual business needs, no matter in what domain
+you employ them, be it telco, financial services, healthcare, retail, utilities, public sector, education
+or anything else. The same principles hold everywhere.
+
+Zato is a multi-protocol platform and services are often not tied to any specific protocol. It means that it is possible
+to design services that can be invoked through REST but the same ones can listen for messages from AMQP, IBM MQ queues
+or SQL tables too. They can also accept HL7 MLLP, SOAP, WebSocket, SFTP, FTP, e-mail, JSON-RPC and ZeroMQ-based messages.
+
+Naturally, REST is uniquitous and usually this is the way that most APIs are exposed through but it is not the only way
+and in various scenarios other means of communication are employed.
+
+Zato ships with connectors and adapters for REST, AWS S3, AMQP, Kafka, MongoDB, Redis, HL7, Odoo, SAP, IBM MQ,
+SQL, SOAP, FTP, SFTP, LDAP, Cassandra, Dropbox, Twilio, IMAP, SMTP, ElasticSearch, Solr, Swift, Slack, Telegram,
+WebSockets and ZeroMQ. Because it is written in Python, you have access to many third-party libraries which
+provide connectivity to other types of systems.
+
+Because API platforms often need dashboards, it is also possible to use Django templates with Zato to output user interfaces.
+
+Built-in security options include API keys, Basic Auth, JWT, NTLM, OAuth, RBAC, SSL/TLS, Vault, WS-Security and XPath.
+It is always possible to secure services using other, non-built in, means.
+
+In terms of its implementation, an individual Zato service is a Python class implementing a specific method called self.handle.
+The service receives input, processes it according to its business requirements and then some output is produced.
+Note that both input and output are optional, e.g. a background service transfering files between applications
+will usually have neither whereas a typical CRUD service will have both.
+
+Because a service is merely a Python class, it means that each one consumes very little resources and it is possible
+to deploy hundreds or thousands of services on a single Zato server. And because Zato can use multiple CPUs and multiple
+Linux instances, it scales without limits both horizontally and vertically.
+
+Services accept their input through channels - a channel tells Zato that it should make a particular service
+available to the outside world using such and such protocol, data format and security definition. For instance, a service can
+be mounted on independent REST channels, sometimes using API keys and sometimes using Basic Auth. Additionally,
+each channel type has its own specific pieces of configuration, such as caching, timeouts or other options.
+
+Services can invoke other Zato services too - this is just a regular Python method call, within the same
+Python process. It means that it is very efficient to invoke other services - it is simply like invoking another Python
+method.
+
+Services are hot-deployed to Zato servers. It means that no restarts are needed for a change to a service to become
+available to its consumers. During development, it works in a deploy-on-save manner - there are plugins for
+:doc:`Visual Studio Code </progguide/ide/vscode>`
 and
-:doc:`invoke with callbacks <../progguide/patterns/async-invoke>`
-let one form complex workflows running asynchronously.
+:doc:`PyCharm </progguide/ide/pycharm>`
+that automatically deploy your service each time you save it in your IDE. Other code editors or IDEs can be used too.
 
-There's also
-:doc:`Redis key/value database <../progguide/kvdb>`
-and a built-in
-:doc:`scheduler <../progguide/scheduler>`
-which is used for executing recurring tasks.
-
-Services can also make use of
-:doc:`HTTP Basic Auth <../web-admin/security/basic-auth>`,
-:doc:`WS-Security <../web-admin/security/ws-security>`
-:doc:`API keys <../web-admin/security/apikey>`,
-:doc:`AWS <../web-admin/security/aws>`,
-:doc:`NTLM <../web-admin/security/ntlm>`,
-:doc:`OAuth <../web-admin/security/oauth>`,
-:doc:`SSL/TLS <../web-admin/security/tls/overview>`,
-:doc:`XPath-based <../web-admin/security/xpath>`,
-or
-:doc:`RBAC (Role-Based Access Control) <../web-admin/security/rbac/overview>`
-security definitions.
-
-And there are
-:doc:`CLI <../admin/cli/index>`,
-API
-and a fabulous
-:doc:`web admin <../web-admin/intro>`
-console for admins to use.
-
-If you haven't done it yet, take a look at Zato's
-:doc:`architecture <../architecture/overview>`
-to get an understanding of how all the various pieces play together.
-
-Also note that **Zato is a middleware and backend server** as explained in the
-:doc:`ESB/SOA introduction <../intro/esb-soa>`
-and in
-:doc:`other <../intro/overview-high-level>`
-:doc:`chapters <../intro/overview-tech>`.
-
-This means that it can be used to create applications, such as administration panels of backend systems
-but typically it is used for APIs, systems of systems and microservices, not for frontend programming.
+During development, usually the built-in web-admin dashboard is used to create and manage channels or other Zato objects.
+As soon as a solution is ready for DevOps automatiom, Zato configuration can be deployed automatically from
+:doc:`command line </admin/guide/enmasse>`
+or directly from a git clone.
 
 What will the tutorial achieve, exactly?
 ----------------------------------------
 
-The service we'll create will be:
+After completing the tutorial, we will have:
 
-* Accepting input in JSON or XML through HTTP
-* Invoking HTTP JSON services of 2 systems
-* Optionally notifying a 3rd system using JSON over Zero MQ
-* Fetching business rules from Redis
-
-After finishing the tutorial you'll also have a good understanding of key
-Zato features, such as
-:doc:`CLI <../admin/cli/index>`,
-:doc:`web admin <../web-admin/intro>`,
-:doc:`hot-deployment <../admin/guide/installing-services>`,
-:doc:`statistics <../stats/guide>`
-and several more.
-
-This all will be only a tip of the iceberg but still should give you a thorough
-introduction to Zato.
+* A complete integration environment
+* An API service offered via REST and JSON
+* The service will invoke two REST endpoints to collect information
+* The service will send notifications to an AMQP broker
 
 .. _tutorial-01-message-flow:
 
-The message flow
-----------------
+Message flow
+------------
 
 .. image:: /gfx/tutorial/service-complete.png
 
-We'll be building part of what could be a beginning of a bank application.
+We will be implementing an API integration process typical to banks and other financial institutions.
 
-* A client applications wishes to learn a couple of things about a customer given their CUST_ID.
-  The data it expects is:
+* A client application wishes to learn details about a customer given the person's ID
+* Customer data is stored in a CRM
+* Payments history is stored in a different application
+* For certain customer types, there is a business requirement that a fraud detection
+  system be notified of any operations regarding such customers and we send notifications
+  to the system accordingly
 
-  * Customer's first and last name
-  * Last time the client made a payment
-  * The payment amount
+The Client App is a building block that we will not be developing in the tutorial - this is where
+Django, React, Vue, .NET and other frameworks can be used in actual projects.
 
-* Customer data is stored in a `CRM <https://en.wikipedia.org/wiki/Consumer_relationship_system>`_
-* Payments are stored in a different application
-* For certain customer types, there's a business requirement that a fraud detection
-  system be notified of any operations regarding such customers, so our service
-  needs to comply with it even though it's merely reading customer-related data,
-  it doesn't really transfer money between accounts.
+On the other hand, remember that other backend systems can invoke the service too - that is key, the same
+one can be made available to many applications, each with its own access channel, even if in the tutorial
+we will assume there is only one.
 
-Note that in the diagram above both the service and Redis are of the same color,
-this is because they both are part of the same Zato
-:doc:`cluster <../architecture/overview>`
-while the other parties don't be belong to Zato.
+Installing Zato
+---------------
 
-The Client App is something we won't cover - this is where Django, RoR, .NET forms,
-Groovy, PHP and many other frontend technologies come into play - a Client App can
-be simply anything that can invoke a Zato service and in this tutorial the Client App
-will be simulated by
-`curl <http://curl.haxx.se/>`_.
+If you pick Docker or Vagrant, not only will this install Zato but the installer will automatically
+set up a working quickstart cluster itself too. You can use this installation method everywhere, on Windows, Mac or Linux.
 
-Installing Zato and creating a quickstart cluster
--------------------------------------------------
+* :doc:`Docker <../admin/guide/install/docker>`
+* :doc:`Vagrant <../admin/guide/install/vagrant>`
 
-As a prerequisite - you need access to `Redis 2.8.4+ <http://redis.io>`_ - this is an external component
-which is not shipped with Zato and needs to be installed separately. So first, install Redis and start it.
+Otherwise, you can install a Zato package for your selected Linux distribution and configure a quickstart cluster yourself -
+this will take about 2 additional minutes.
 
-Now you can install Zato itself - there are package repositories prepared for:
-
+* :doc:`Ubuntu <../admin/guide/install/ubuntu>` (make sure you have an LTS release)
 * :doc:`RHEL/CentOS <../admin/guide/install/rhel>`
-* :doc:`Ubuntu <../admin/guide/install/ubuntu>`
+* :doc:`Suse <../admin/guide/install/rhel>`
 * :doc:`Debian <../admin/guide/install/debian>`
 
-Windows and OS X users are recommended to install
-`Ubuntu 16.04 LTS <http://ubuntu.com>`_
-under
-`VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_
-and proceed to
-:doc:`installation instructions <../admin/guide/install/ubuntu>`
-for Ubuntu.
 
-You can install Zato :doc:`under Docker <../admin/guide/install/docker>` this will install everything
-including a sample quickstart cluster.
+You can author Zato services with any code editor and you can also install a plugin for your IDE to auto-deploy your
+services on file save.
+
+* :doc:`Visual Studio Code </progguide/ide/vscode>`
+* :doc:`PyCharm </progguide/ide/pycharm>`
+
+Refer to the chapters below, depending on your chosen installation method and IDE.
+
+If you installed Zato under Docker
+----------------------------------
+
+If you installed Zato under Vagrant
+-----------------------------------
+
+If you installed Zato from a Linux package
+------------------------------------------
+
+If you have Visual Studio Code or PyCharm
+-----------------------------------------
+
+If you have another IDE or code editor
+--------------------------------------
 
 Done yet? OK, so if you are not using Docker, let's create a quickstart cluster, which is a sort of a cluster
 created by running the

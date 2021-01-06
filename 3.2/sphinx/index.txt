@@ -11,11 +11,9 @@ Getting help
 
 * `Priority commercial support and training <https://zato.io/support.html>`_
 
-* `Visit GitHub <https://github.com/zatosource/zato>`_ to fork code and contribute ideas
-
 * Read the `Zato Blog <https://zato.io/blog/index.html>`_
 
-* Ask around on the `forum <https://forum.zato.io/>`_
+* Sign up on the `forum <https://forum.zato.io/>`_
 
 * Join the `Zato Gitter <https://gitter.im/zato/community>`_ community
 
@@ -23,7 +21,7 @@ Getting help
 
 * `Twitter <https://twitter.com/zatosource>`_ for quick questions and answers
 
-* Documentation for: `3.2 </docs/3.2/>`_ (in-dev) · `3.1 </docs/3.1/>`_ (current)
+* Documentation for: `3.2 </docs/3.2/>`_ (current) · `3.1 </docs/3.1/>`_ (previous)
 
 
 What makes Zato unique
@@ -31,18 +29,13 @@ What makes Zato unique
 
 * **Open-source ESB**, **SOA**, **REST**, **APIs**, **SSO** and **Cloud Integrations** in **Python**
 
-* Includes a multi-protocol **message broker** with **publish/subscribe topics** and guaranteed delivery **message queues**
-
-* Using Python alone offers **increased productivity**
-
-* **HA load-balancer**, **hot-deployment** and **hot-reconfiguration** almost everywhere -
-  forget server restarts
+* **HA load-balancer**, **hot-deployment** and **hot-reconfiguration** - no server restarts required
 
 * Browser-based **GUI**, **CLI** and **API** - easy to use and customize
 
-* **Protocols**, **industry standards** and **data formats** - **SAP**, **Odoo** and **IBM MQ** as well as REST, JSON, SOAP, AMQP,
-  JMS, ZeroMQ, WebSockets, Redis, SQL, Cassandra, Amazon S3, OpenStack Swift,
-  LDAP, Active Directory, Apache, Kafka, SMTP, IMAP, FTP, Solr, ElasticSearch, Memcached, SMS Twilio, Vault,
+* **Protocols**, **industry standards** and **data formats** - **REST**, **SAP**, **Odoo**, **IBM MQ**, **HL7**,
+  JSON, SOAP, AMQP, JMS, ZeroMQ, WebSockets, Redis, SQL, Cassandra, Amazon S3, Swift,
+  LDAP, Active Directory, Kafka, SMTP, IMAP, FTP, SFTP, ElasticSearch, Solr, Memcached, Twilio, Vault,
   Slack, Telegram, RBAC, integration patterns, cryptography, security and more
 
 * **Commercial support** and **training** available. Growing **community** around the project.
@@ -286,30 +279,6 @@ Programming guide
       :doc:`Overview <progguide/ide/index>` |
       :doc:`PyCharm <progguide/ide/pycharm>` |
       :doc:`Visual Studio Code <progguide/ide/vscode>`
-
-Publish/subscribe
-=================
-
-  * **Overview:**
-    :doc:`Introduction <./pubsub/index>` |
-    :doc:`Architecture <./pubsub/arch/index>`
-
-  * **Details:**
-    :doc:`Topics <./pubsub/details/topic/index>` |
-    :doc:`Endpoints <./pubsub/details/endpoint/index>` |
-    :doc:`Subscriptions <./pubsub/details/sub/index>`
-
-  * **Usage:**
-    :doc:`REST <./pubsub/api/rest>` |
-    :doc:`AMQP <./pubsub/details/endpoint/amqp>` |
-    :doc:`SOAP <./pubsub/details/endpoint/soap>` |
-    :doc:`WebSockets <./pubsub/api/wsx>` |
-    :doc:`Zato services <./pubsub/api/zato-service>` |
-    :doc:`File transfer <./pubsub/details/endpoint/file>`
-
-  * **Security:**
-    :doc:`Securing access to topics and queues <./pubsub/sec/index>`
-
 
 Single Sign-On and user management API
 ======================================

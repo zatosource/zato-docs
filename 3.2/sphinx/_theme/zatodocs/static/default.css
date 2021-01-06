@@ -48,11 +48,16 @@ h3, h4, h5 {
     float:right !important;
     background-color:#ddd !important;
     padding:12px !important;
-    min-height: 310px !important;
+    min-height: 278px !important;
 }
 
 #what-makes-zato-unique {
     background-color:#ddd !important;
     padding:12px !important;
-    min-height: 310px !important;
+    min-height: 278px !important;
+}
+
+
+#what-makes-zato-unique h2 {
+    padding-bottom: 9px;
 }
