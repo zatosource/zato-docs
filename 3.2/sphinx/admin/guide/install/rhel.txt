@@ -20,8 +20,8 @@ Installation steps
 
 ::
 
-    rhel# curl -sO https://zato.io/repo/zato-3.2-8678EFE11DA60B63.pgp.txt
-    rhel# rpm --import ~/zato-3.2-8678EFE11DA60B63.pgp.txt
+    rhel# curl -sO https://zato.io/repo/zato-3.2-48849AAD40BCBB0E.pgp.txt
+    rhel# rpm --import ~/zato-3.2-48849AAD40BCBB0E.pgp.txt
 
 * Add the following repository definition
 
@@ -34,7 +34,7 @@ Installation steps
     baseurl=https://zato.io/repo/stable/3.2/rhel/el$releasever/$basearch
     enabled=1
     gpgcheck=1
-    gpgkey=https://zato.io/repo/zato-3.2-8678EFE11DA60B63.pgp.txt
+    gpgkey=https://zato.io/repo/zato-3.2-48849AAD40BCBB0E.pgp.txt
 
 * Refresh the package list
 

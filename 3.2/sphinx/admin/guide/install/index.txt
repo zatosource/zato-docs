@@ -7,19 +7,20 @@ Operating system considerations
 The following platforms are supported. For each of the systems packages for Python 2.7 and 3.x are available. Both Python
 lines are fully supported and there are no functional differences in packages for either.
 
-======================= ====================== ================================================================================
-System                  Version                Notes
-======================= ====================== ================================================================================
-Windows                 Any                    Install `Ubuntu 18.04 LTS or 20.04 LTS <http://ubuntu.com>`_
-                                               under `VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_ and proceed to
-                                               :doc:`installation instructions on Ubuntu <./ubuntu>`
-Mac                     Any                    (ditto)
-Docker Quickstart       Any                    :doc:`Install <./docker>`
-Docker Swarm            Any                    :doc:`Install <./swarm>`
-Docker Kubernetes       Any                    :doc:`Install <./kubernetes>`
-Docker Kubernetes Helm  Any                    :doc:`Install <./kubernetes-helm>`
-Ubuntu                  18.04, 20.04           :doc:`Install <./ubuntu>`
-RHEL/CentOS             7.x, 8.x               :doc:`Install <./rhel>`
-Debian                  10.x                   :doc:`Install <./debian>`
-Source                  Any                    :doc:`Install <./source>`
-======================= ====================== ================================================================================
+============================ ====================== ================================================================================
+System                       Version                Notes
+============================ ====================== ================================================================================
+Windows                      Any                    Install `Ubuntu 18.04 LTS or 20.04 LTS <http://ubuntu.com>`_
+                                                    under `VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_ and proceed to
+                                                    :doc:`installation instructions on Ubuntu <./ubuntu>`
+Mac                          Any                    (ditto)
+Docker Quickstart            Any                    :doc:`Install <./docker>`
+Docker Swarm                 Any                    :doc:`Install <./swarm>`
+Docker Kubernetes            Any                    :doc:`Install <./kubernetes>`
+Docker Kubernetes Helm       Any                    :doc:`Install <./kubernetes-helm>`
+Ubuntu                       18.04, 20.04           :doc:`Install <./ubuntu>`
+RHEL/CentOS                  7.x, 8.x               :doc:`Install <./rhel>`
+Debian                       10.x                   :doc:`Install <./debian>`
+Suse Linux Enterprise Server 15.x                   :doc:`Install <./sles>`
+Source                       Any                    :doc:`Install <./source>`
+============================ ====================== ================================================================================

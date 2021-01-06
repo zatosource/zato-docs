@@ -1,0 +1,62 @@
+Zato installation on Suse Linux Enterprise Server
+=================================================
+
+Requirements
+------------
+
+* Suse Linux Enterprise Server 15 SP2
+* Root access
+
+Installation steps
+------------------
+
+* Log on as root
+
+::
+
+    sles$ su -
+
+* Add the package signing key
+
+::
+
+    sles# curl -sO https://zato.io/repo/zato-3.2-48849AAD40BCBB0E.pgp.txt
+    sles# rpm --import ~/zato-3.2-48849AAD40BCBB0E.pgp.txt
+
+* Enable PackageHub repository
+
+::
+
+    sles# SUSEConnect -p PackageHub/15.2/x86_64
+
+* Add the following repository definition
+
+::
+
+    sles# zypper addrepo https://zato.io/repo/stable/3.2/suse zato
+
+* Install Zato
+
+::
+
+    sles# zypper install zato
+
+* Install latest additions
+
+::
+
+    sles# su - zato
+    sles$ cd /opt/zato/current && pull
+    sles$ ./update.sh
+
+* Confirm the installation
+
+::
+
+    sles$ zato --version
+    Zato 3.2+rev.nnnnnnn-py3.n.n
+    sles$
+
+That concludes the process - you can refer to the main
+:doc:`documentation index <../../../index>`
+now.
