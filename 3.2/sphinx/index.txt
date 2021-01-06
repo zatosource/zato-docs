@@ -280,30 +280,6 @@ Programming guide
       :doc:`PyCharm <progguide/ide/pycharm>` |
       :doc:`Visual Studio Code <progguide/ide/vscode>`
 
-Publish/subscribe
-=================
-
-  * **Overview:**
-    :doc:`Introduction <./pubsub/index>` |
-    :doc:`Architecture <./pubsub/arch/index>`
-
-  * **Details:**
-    :doc:`Topics <./pubsub/details/topic/index>` |
-    :doc:`Endpoints <./pubsub/details/endpoint/index>` |
-    :doc:`Subscriptions <./pubsub/details/sub/index>`
-
-  * **Usage:**
-    :doc:`REST <./pubsub/api/rest>` |
-    :doc:`AMQP <./pubsub/details/endpoint/amqp>` |
-    :doc:`SOAP <./pubsub/details/endpoint/soap>` |
-    :doc:`WebSockets <./pubsub/api/wsx>` |
-    :doc:`Zato services <./pubsub/api/zato-service>` |
-    :doc:`File transfer <./pubsub/details/endpoint/file>`
-
-  * **Security:**
-    :doc:`Securing access to topics and queues <./pubsub/sec/index>`
-
-
 Single Sign-On and user management API
 ======================================
 

@@ -107,7 +107,7 @@ and
 that automatically deploy your service each time you save it in your IDE. Other code editors or IDEs can be used too.
 
 During development, usually the built-in web-admin dashboard is used to create and manage channels or other Zato objects.
-Once a solution is ready for DevOps automatiom though, Zato configuration can be deployed automatically from
+As soon as a solution is ready for DevOps automatiom, Zato configuration can be deployed automatically from
 :doc:`command line </admin/guide/enmasse>`
 or directly from a git clone.
 
@@ -135,23 +135,23 @@ We will be implementing an API integration process typical to banks and other fi
 * Payments history is stored in a different application
 * For certain customer types, there is a business requirement that a fraud detection
   system be notified of any operations regarding such customers and we send notifications
-  to the system in accordance with the requirement
+  to the system accordingly
 
-The Client App is a building block that we will not be in the tutorial - this is where
-Django, React, Vue.JS, .NET and other frameworks can be used in actual projects.
+The Client App is a building block that we will not be developing in the tutorial - this is where
+Django, React, Vue, .NET and other frameworks can be used in actual projects.
 
-On the other hand, other backend systems can invoke the service too - that is key, the same
+On the other hand, remember that other backend systems can invoke the service too - that is key, the same
 one can be made available to many applications, each with its own access channel, even if in the tutorial
-will assume there is only one.
+we will assume there is only one.
 
 Installing Zato
 ---------------
 
 If you pick Docker or Vagrant, not only will this install Zato but the installer will automatically
-set up a working quickstart cluster itself too. You can use it everywhere, on Windows, Mac or Linux.
+set up a working quickstart cluster itself too. You can use this installation method everywhere, on Windows, Mac or Linux.
 
-* :doc:`Docker <../admin/guide/install/rhel>`
-* :doc:`Vagrant <../admin/guide/install/ubuntu>`
+* :doc:`Docker <../admin/guide/install/docker>`
+* :doc:`Vagrant <../admin/guide/install/vagrant>`
 
 Otherwise, you can install a Zato package for your selected Linux distribution and configure a quickstart cluster yourself -
 this will take about 2 additional minutes.
