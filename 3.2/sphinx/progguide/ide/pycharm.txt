@@ -9,9 +9,8 @@ in :doc:`index`.
 Supported products
 ~~~~~~~~~~~~~~~~~~
 
-* PyCharm and Professional
+* PyCharm
 * IntelliJ Community and Ultimate with the Python plugin
-* Minimal IDE version is 2016.3+
 
 Configuration
 ~~~~~~~~~~~~~
@@ -32,8 +31,6 @@ installation on PyCharm is achieved directly from within the application.
    Zato** to populate connection information for your development cluster:
 
    .. image:: ../../gfx/progguide/ide-deploy/pycharm_settings.jpg
-
-
 
 Automatic deployment
 ~~~~~~~~~~~~~~~~~~~~

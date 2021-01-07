@@ -13,7 +13,7 @@ This **Zato** programming tutorial will guide you through the process of creatin
 with Python, will integrate three applications using REST and AMQP. The result will be a solution
 ready to use in production.
 
-But first, here are some examples of production environments designed and built with Zato - note that Zato is a general-purpose
+But first, here are some real-world examples of what Zato can be used for - note that Zato is a general-purpose
 platform and the samples span various distinct industries and domains. The platform can be used in all kinds
 of scenarios that require integrations of distributed systems.
 
@@ -53,22 +53,19 @@ API services
 
 If Zato is a platform for API services then what is a service?
 
-In essence, a service is a piece of server-side functionality carrying out a business action that is useful and interesting
+In essence, a service is a piece of server-side functionality carrying out a business action useful and interesting
 to applications that would like to use it. This is a high-level definition and this is the correct way to think about it.
 
 It all stems from the fact that you should think about the systems and applications comprising your architecture
 in terms of consumers and providers of services. Each part of the architecture offers services to other parts and,
-conversely, each part consumes services offered by other pieces of the architecture.
-
-Taken together, services form higher-level processes which fullfil actual business needs, no matter in what domain
-you employ them, be it telco, financial services, healthcare, retail, utilities, public sector, education
-or anything else. The same principles hold everywhere.
+conversely, each part consumes services offered by other elements of the architecture. Taken together, services form
+higher-level processes fullfiling business needs set before the IT architecture.
 
 Zato is a multi-protocol platform and services are often not tied to any specific protocol. It means that it is possible
-to design services that can be invoked through REST but the same ones can listen for messages from AMQP, IBM MQ queues
-or SQL tables too. They can also accept HL7 MLLP, SOAP, WebSocket, SFTP, FTP, e-mail, JSON-RPC and ZeroMQ-based messages.
+to design services that can be invoked through REST but they can also listen for data from AMQP, IBM MQ queues
+or SQL databases. They can also accept HL7 MLLP, SOAP, WebSocket, SFTP, FTP, e-mail, JSON-RPC and ZeroMQ-based messages.
 
-Naturally, REST is uniquitous and usually this is the way that most APIs are exposed through but it is not the only way
+Naturally, REST is uniquitous and usually this is the way that most APIs are exposed through but there are other ways too
 and in various scenarios other means of communication are employed.
 
 Zato ships with connectors and adapters for REST, AWS S3, AMQP, Kafka, MongoDB, Redis, HL7, Odoo, SAP, IBM MQ,
@@ -82,7 +79,8 @@ Built-in security options include API keys, Basic Auth, JWT, NTLM, OAuth, RBAC, 
 It is always possible to secure services using other, non-built in, means.
 
 In terms of its implementation, an individual Zato service is a Python class implementing a specific method called self.handle.
-The service receives input, processes it according to its business requirements and then some output is produced.
+The service receives input, processes it according to its business requirements, which may involve communicating with
+other systems, applications or services, and then some output is produced.
 Note that both input and output are optional, e.g. a background service transfering files between applications
 will usually have neither whereas a typical CRUD service will have both.
 
@@ -96,20 +94,22 @@ be mounted on independent REST channels, sometimes using API keys and sometimes 
 each channel type has its own specific pieces of configuration, such as caching, timeouts or other options.
 
 Services can invoke other Zato services too - this is just a regular Python method call, within the same
-Python process. It means that it is very efficient to invoke other services - it is simply like invoking another Python
+Python process. It means that it is very efficient to invoke them - it is simply like invoking another Python
 method.
 
-Services are hot-deployed to Zato servers. It means that no restarts are needed for a change to a service to become
-available to its consumers. During development, it works in a deploy-on-save manner - there are plugins for
+Services are hot-deployed to Zato servers without server restarts and a service may be made
+available to its consumers immediatly after deployment.
+
+There are plugins for
 :doc:`Visual Studio Code </progguide/ide/vscode>`
 and
 :doc:`PyCharm </progguide/ide/pycharm>`
 that automatically deploy your service each time you save it in your IDE. Other code editors or IDEs can be used too.
 
 During development, usually the built-in web-admin dashboard is used to create and manage channels or other Zato objects.
-As soon as a solution is ready for DevOps automatiom, Zato configuration can be deployed automatically from
+As soon as a solution is ready for DevOps automatiom, configuration of a solution can be deployed automatically from
 :doc:`command line </admin/guide/enmasse>`
-or directly from a git clone.
+or directly from a git clone which makes it easy to use Zato with tools such as Terraform, Ansible or Puppet.
 
 What will the tutorial achieve, exactly?
 ----------------------------------------
@@ -118,7 +118,7 @@ After completing the tutorial, we will have:
 
 * A complete integration environment
 * An API service offered via REST and JSON
-* The service will invoke two REST endpoints to collect information
+* The service will invoke two REST endpoints to collect data
 * The service will send notifications to an AMQP broker
 
 .. _tutorial-01-message-flow:
@@ -140,14 +140,14 @@ We will be implementing an API integration process typical to banks and other fi
 The Client App is a building block that we will not be developing in the tutorial - this is where
 Django, React, Vue, .NET and other frameworks can be used in actual projects.
 
-On the other hand, remember that other backend systems can invoke the service too - that is key, the same
+On the other hand, remember that other backend systems can invoke the service too - this is crucial, the same
 one can be made available to many applications, each with its own access channel, even if in the tutorial
-we will assume there is only one.
+we will assume there is only one API client.
 
 Installing Zato
 ---------------
 
-The most straightforward way to get started with Zato is picking Docker or Vagrant. Not only will this install Zato
+The most straightforward way to get started with Zato is installing it with Docker or Vagrant. Not only will this install Zato
 but the installer will automatically set up a working quickstart cluster for you too. You can use this
 installation method everywhere, on Windows, Mac or Linux.
 
@@ -188,11 +188,40 @@ Port     Host-visible Purpose                   Notes
                                     servers through the load-balancer.
 11223    Yes          Load-balancer API clients invoke services through the load-balancer and each server
                                     always belongs to a cluster even if there is only one server in it
-17010    ---          Zato server   Like in a real environment, the server is only accessible through
-                                    a load-balancer which is why its TCP port is not mapped to the host directly
+17010    ---          Zato server   The server is only accessible through a load-balancer which is why its TCP
+                                    port is not mapped to the host directly
 ======== ============ ============= ===============================================================================
 
-We can check if the environment is running by issuing the curl command below - it will invoke a built-in service
+Before we use the environment, we will need passwords to log in to it.
+
+Run the command below to extract them from the container or VM. Note that if you are using Docker the passwords
+will be regenerated each time you start a new container.
+
+.. code-block:: text
+
+  # Docker
+  $ docker exec zato /opt/zato/get-credentials
+
+  # Vagrant
+  $ cd ~/directory/with/zato/Vagrantfile
+  $ vagrant ssh -c 'cat  /opt/zato/show-credentials'
+
+The result will be the same in either case:
+
+.. code-block:: text
+
+  $
+
+  SSH: oaWMFmbt5Faq6
+  IDE: LWdasXlqVrO8Gur00Y3ncGjmHWNLZvr
+  Dashboard: YUm7ufehorVEw
+
+  $
+
+You can now go to the Dashboard at https://localhost:8183 and log in with user 'admin' and password printed
+to screen above.
+
+We can also check if the server is running by issuing the curl command below - it will invoke a built-in service
 to confirm that the server started.
 
 .. code-block:: text
@@ -201,15 +230,8 @@ to confirm that the server started.
   {"pong":"zato","zato_env":{"result":"ZATO_OK","cid":"a5060e06b675cb20017a357d","details":""}
   $
 
-
- /opt/zato/show-credentials
-
- SSH: oaWMFmbt5Faq6
-IDE: LWdasXlqVrO8Gur00Y3ncGjmHWNLZvr
-Dashboard: YUm7ufehorVEw
-
-You can have a look at the next section about configuring Zato installed from a Linux package
-or you can scroll below for information how to set up your IDE or editor now.
+The next section details how to install Zato from a Linux package and how to create a quickstart cluster manually.
+You can scroll down further for information how to set up your IDE or editor now.
 
 If you installed Zato from a Linux package
 ------------------------------------------
@@ -223,7 +245,7 @@ To create a quickstart environment, you need to install Redis first, e.g.
 
   $ sudo apt install redis-server
 
-From now one, with the Zato package and Redis installed, all the commands can be executed as user zato, root powers
+From now on, with the Zato package and Redis installed, all the commands can be executed as user zato - root powers
 are never needed to manage Zato environments.
 
 Let's create a new environment in the ~/env/qs-1 directory.
@@ -249,10 +271,10 @@ Let's create a new environment in the ~/env/qs-1 directory.
   $
 
 Observe the highlighted line with credentials to the Dashboard - the auto-generated password will never be shown again.
-In case you need to change it, simply run this command ``zato update password ~/env/qs-1/web-admin admin``.
+In case you need to change it, run this command: ``zato update password ~/env/qs-1/web-admin admin``.
 
 Let's start all the components now - note the '--fg' flag when starting the server, this will start
-it in foreground, thanks to which we will be able to stop it with Ctrl/Cmd-c.
+it in foreground, thanks to which we will be able to stop it with Ctrl/Cmd-C.
 
 .. code-block:: text
 
@@ -286,200 +308,137 @@ In another terminal window, confirm that the environment is ready to accept API 
  {"pong":"zato","zato_env":{"result":"ZATO_OK","cid":"2fd7536d956b17fcbed24122","details":""}
  $
 
-The next step now is setting up your IDE or editor.
+The next step is setting up your IDE or code editor.
 
 If you have Visual Studio Code or PyCharm
 -----------------------------------------
 
-If you have another IDE or code editor
---------------------------------------
+To install an IDE plugin you will first need to have credentials for the IDE user to connect to Zato with.
+
+* Username: ide_publisher
+* Password: Auto-generated, read below how to get it
+
+If you are under Docker or Vagrant, run the command below to get the ide_publisher's password (it will be different
+in each installation):
+
+.. code-block:: text
+  :emphasize-lines: 4
+
+  $ /opt/zato/show-credentials
+
+  SSH: oaWMFmbt5Faq6
+  IDE: LWdasXlqVrO8Gur00Y3ncGjmHWNLZvr
+  Dashboard: YUm7ufehorVEw
+
+  $
+
+If you created the quickstart container yourself, the ide_publisher's password was auto-generated
+so it is not possible to read it and you can reset it with the command below.
+This will also work if you log in to the container / VM directly and execute it from command line.
+
+.. code-block:: text
+
+  $ zato set-ide-password ~/env/qs-1/server1
+  aSiieQXgo6M4OS1Qv83cpHjhGR0emXN8
+  $
+
+Now, you can visit installation instructions for the selected IDE.
+
+* :doc:`Visual Studio Code </progguide/ide/vscode>`
+* :doc:`PyCharm </progguide/ide/pycharm>`
+
+
+Introducing hot-deployment
+--------------------------
+
+Hot-deployment is a key concept in Zato. The term means the process of transferring your service to a cluster.
+It is considered ``hot`` because afterwards it does not require server restarts, i.e. you hot-deploy a service
+and it is immediately available on all the servers.
+
+If there is more than one server in the cluster, it suffices to hot-deploy the service to only one of them and
+it will synchronise with other nodes in the cluster.
+
+There are a few ways to hot-deploy services. The first two will be used in the tutorial but we will describe each to
+let you understand what the options are and when to use them.
+
+* **From your IDE**
+
+  Commonly used during development - once you install a plugin for the IDE, each time you press Ctrl/Cmd-S to save
+  a service on disk, it will be auto-deployed to your cluster and made available for immediate use.
+
+* **Command line**
+
+  This is used for deployment automation or if you have an IDE or editor without a Zato plugin.
+
+  Each Zato server monitors a specific directory, called a hot-deploy directory, and each time Python
+  files with your services are saved there, that server will pick them up and hot-deploy throughout the cluster.
+
+  In the quickstart cluster from this tutorial, the directory is **~/env/qs-1/server1/pickup/incoming/services**.
+
+  During development, you can save your files with Zato services directly in this directory and then, when you press Ctrl/Cmd-S,
+  the file will be deployed to the cluster. You can also clone your git repository directly
+  into this directory.
+
+  Another way to use it during development is to make it point to a git clone residing in another directory and again,
+  each time you save a file its contents is sent to all the servers.
+
+  This method is used for automation too - simply use ``cp`` to copy files into the directory and all the services
+  from these files will be deployed.
+
+* **Dashboard**
+
+  When you log in to Dashboard and navigate to Services, you will note a button called "Upload services". This will let
+  you deploy local files to a remote server. This is useful when there is no direct connection to the server, e.g.
+  no way to ssh into it.
+
+* **Local config file**
+
+  This method is usually used for automated deployments only - it lets you point a starting server to
+  files from the file system that it should deploy.
+
+  The difference between it and a hot-deploy directory is that the latter requires for the server
+  to be already running whereas this one tells a server what it should do while it is still starting up.
+
+  This option is most often employed when building one's own Docker images or using Terraform, Packer and similar tools.
+
+* **Remote file transfer**
+
+  This automation method uses `file transfer <https://zato.io/blog/posts/file-transfer.html>`_ to let
+  servers listen for changes in directories of remote servers.
+
+  For instance, you can have a central git clone of a repository for multiple environments and Zato
+  servers will connect to it via SFTP, download any new or changed ones and deploy them locally.
+
+In terms of the end result, there is no difference between the methods, they achieve exactly the same result.
+
+This is actually a good example of the way Zato itself is designed around reusable services - all these deployment
+methods, all these channels, ultimately lead to the same services that deploy your code and it is only the manner
+in which they are accessed that differs.
 
 Hot-deploying your first service
 --------------------------------
 
-Fire up your favorite programming editor and let's finally create our own Zato service.
+We can now create the first service and hot-deploy it. Create a new file called api.py with the contents below. This
+is a basis of the service that we will fill in with details later on.
 
-Save the following code as my_service.py
+.. code-block:: python
 
-::
+  # -*- coding: utf-8 -*-
 
   from zato.server.service import Service
 
-  class GetClientDetails(Service):
+  class GetUserDetails(Service):
+      """ Returns details of a user by the person's ID.
+      """
+      name = 'api.user.get-details'
+
       def handle(self):
-          self.log_input()
+
+          # For now, return static data only
+          self.response.payload = {
+              'user_name': 'John Doe',
+              'user_type': 'SRT'
+          }
 
 
-* Each
-  :doc:`service <../progguide/service-dev>`
-  always subclasses zato.server.service.Service
-
-* :ref:`handle(self) <progguide-write-service-handle>`
-  is the only method that a service must implement,
-  this is where the actual action takes place, this is the heart of a service
-
-* :ref:`log_input <progguide-write-service-log_input>`
-  is one of the helper methods a service has access to. As you can imagine,
-  this one dumps all the input data into server logs.
-
-Code saved? Good, now we can hot-deploy it.
-
-The story is, there are
-:doc:`several ways <../../admin/guide/installing-services>`
-to make code available to Zato and hot-deployment is one of them.
-
-Either through command line or using the web admin, you can push services to one
-of the servers in a cluster and it will be picked up automatically by all the nodes
-without any restarts. This includes updates to services that already exist.
-
-To hot-deploy a service from command line you need to copy the Python module
-it's in into a pick-up directory.
-
-In the tutorial you can use either $path/server1/pickup/incoming/services or
-$path/server2/pickup/incoming/services, it doesn't matter which one you'll choose as the other
-server will instantly synchronize its state with the one that will receive the service.
-
-So, choosing $path/server1/pickup/incoming/services, copy the module:
-
-.. code-block:: text
-
-  $ cp my_service.py $path/server1/pickup/incoming/services
-
-Now, in each server log - ./logs/server.log - there will be as many confirmations
-of a successful deployment as there are worker processes running in your cluster.
-
-::
-
-  INFO - zato.hot-deploy.create:33 - Uploaded package id:[1], payload_name:[my_service.py]
-
-Our service is there but we can't reach it from the client application yet because
-it's not exposed through any
-:doc:`channels <../../progguide/channels>` - a single service can be used over
-many independent channels, each using different security configuration, transport
-protocols, data format etc.
-
-You need to explicitly tell Zato how to make a given service available to all
-and each of external systems interested in invoking it. You do it in the
-web admin so let's visit http://localhost:8183/ with a browser now.
-
-Log in using the credentials you surely noted down a couple of steps above
-or :doc:`update <../../admin/cli/update-password>` the admin's password
-if you can't access it anymore.
-
-.. image:: /gfx/tutorial/web-admin-login.png
-
-From the main menu pick *Services*, choose your cluster, type *get-client* in the
-search box and click *Show services*.
-
-.. image:: /gfx/tutorial/web-admin-search.png
-   :width: 95%
-
-This confirms that the service indeed exists on the cluster even though it's
-still not possible to access it from the outside.
-
-A question may arise, how come the service is called my-service.get-client-details?
-It's because Zato uncamelifies strings such as MyFancyName or PrepareCustomerDocuments
-into my-fancy-name or prepare-customer-documents to make them more Pythonic.
-Naturally, this can be :ref:`overridden <progguide-write-service-get_name>`.
-
-Exposing a service over HTTP and invoking it
---------------------------------------------
-
-OK, the service is deployed so why don't we make it possible for others to invoke it.
-
-Still in the web admin, navigate to Connections -> Channels -> Plain HTTP
-
-.. image:: /gfx/tutorial/web-admin-channels.png
-  :width: 95%
-
-.. and create a new channel ..
-
-.. image:: /gfx/tutorial/web-admin-channels-new.png
-
-Some of the fields may not be self-explanatory so there is, of course,
-:doc:`a chapter <../web-admin/channels/plain-http>`
-in the
-:doc:`web admin guide <../web-admin/intro>`
-where it's all detailed.
-
-Note that in order to emphasize the point that a service's name is decoupled
-from names of any channels that may be using it or from an HTTP path it's mounted
-under, those values are all different in the tutorial.
-
-.. image:: /gfx/tutorial/web-admin-channels-new-success.png
-
-And that's it. The channel has been created, all servers have been notified of
-its having been formed so they automatically hot-updated their HTTP configuration and we can
-now use curl again to invoke our creation.
-
-.. code-block:: text
-
-  $ curl localhost:11223/tutorial/first-service
-  $
-
-This doesn't produce any output because the service returns none, it's only
-logging its input data to server logs so this is where we need to look for
-a palpable proof that a service was indeed invoked.
-
-Note that the request went through a load-balancer and because we use local
-files instead of logging to syslog, we can't be sure which server's logs to check
-hence you need to grep in both of them and look for an entry similar to the one below
-(reformatted a bit for clarity)
-
-::
-
-  INFO - 5428:Dummy-178 - my-service.get-client-details:703 - {u'impl_name': u'my_service.GetClientDetails',
-    u'name': u'my-service.get-client-details',
-    u'cid': u'K05A9DMYMJ023SB2E4B57BS6N3FW',
-    u'invocation_time': datetime.datetime(2014, 12, 3, 21, 17, 16, 480128),
-    u'job_type': None, u'data_format': u'json',
-    u'slow_threshold': 99999, u'request.payload': u'',
-    u'wsgi_environ': {u'zato.http.POST': <QueryDict: {}>,
-      u'zato.http.remote_addr': '127.0.0.1',
-      u'zato.request_timestamp_utc': <Arrow [2014-12-03T21:17:16.427072+00:00]>,
-      'SERVER_PROTOCOL': 'HTTP/1.1',
-      'SERVER_SOFTWARE': 'Zato',
-      u'zato.http.channel_item': Bunch(audit_enabled=False, audit_max_payload=0, audit_repl_patt_type=None,
-        connection=u'channel', data_format=u'json', has_rbac=False, host=None, id=536L,
-        impl_name=u'my_service.GetClientDetails', is_active=True, is_internal=False,
-        match_target=u':::/tutorial/first-service',
-        match_target_compiled=<Parser u':::/tutorial/firs...'>,
-        merge_url_params_req=True, method=u'', name=u'Get Client Details',
-        params_pri=u'channel-params-over-msg', ping_method=None,
-        pool_size=None, replace_patterns_json_pointer=[],
-        replace_patterns_xpath=[], service_id=386L,
-        service_impl_name=u'my_service.GetClientDetails',
-        service_name=u'my-service.get-client-details',
-        soap_action=u'', soap_version=None,
-        transport=u'plain_http', url_params_pri=u'qs-over-path',
-        url_path=u'/tutorial/first-service'),
-      'SCRIPT_NAME': '',
-      'wsgi.input': <gunicorn.http.body.Body object at 0x7f3d399f3690>,
-      'REQUEST_METHOD': 'GET', 'HTTP_HOST': 'localhost:11223',
-      'PATH_INFO': '/tutorial/first-service', 'wsgi.multithread': False,
-      'QUERY_STRING': '', 'HTTP_CONNECTION': 'close',
-      u'zato.oauth.post_data': {}, 'HTTP_ACCEPT': '*/*',
-      u'zato.local_tz': <DstTzInfo 'Europe/Berlin' PMT+0:58:00 STD>,
-      'HTTP_USER_AGENT': 'curl/7.35.0', 'wsgi.version': (1, 0),
-      'REMOTE_PORT': '80', 'RAW_URI': '/tutorial/first-service',
-      'REMOTE_ADDR': '127.0.0.1', 'wsgi.run_once': False,
-      'wsgi.errors': <open file '<stderr>', mode 'w' at 0x7f3d5c6631e0>,
-      'wsgi.multiprocess': True,
-      u'zato.request_timestamp': datetime.datetime(
-        2014, 12, 3, 22, 17, 16, 427072, tzinfo=<DstTzInfo 'Europe/Berlin' CET+1:00:00 STD>),
-      u'zato.http.GET': {}, 'wsgi.url_scheme': 'http',
-      'gunicorn.socket': <socket at 0x7f3d397e3050
-        fileno=46 sock=127.0.0.1:17010 peer=127.0.0.1:58083>,
-      'SERVER_NAME': 'localhost', 'SERVER_PORT': '11223',
-      u'zato.http.response.headers': {u'X-Zato-CID': u'K05A9DMYMJ023SB2E4B57BS6N3FW'},
-      'HTTP_X_FORWARDED_FOR': '127.0.0.1',
-      'wsgi.file_wrapper': <class gunicorn.http.wsgi.FileWrapper at 0x7f3d4de107a0>},
-      u'environ': {}, u'usage': 1,
-      u'channel': u'http-soap'}
-
-And that concludes the first part! You've created a cluster, a service, hot-deployed it
-and then invoked it successfully. The :doc:`next part <./02>` will focus much
-more on the business functionality now that the general framework to work within has
-been laid down.
-
-:doc:`Continue on to part 2/2 <./02>`
+*(Note to editor: this is everything for now - the rest of the article is in progress)*
