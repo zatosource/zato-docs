@@ -24,7 +24,7 @@ Quickstart cluster
 
 ::
 
-    host$ sudo docker run -it --rm -p 22022:22 -p 8183:8183 -p 17010:17010 -p 11223:11223 \
+    host$ sudo docker run --pull=always -it --rm -p 22022:22 -p 8183:8183 -p 11223:11223 \
             --name zato registry.gitlab.com/zatosource/docker-registry/quickstart:3.2
 
 * Retrieve your dynamically generated passwords. The first one is to Zato web-admin, the other is for ssh connections.
@@ -50,7 +50,7 @@ For instance, to map local directory **/my/services** to **/opt/hot-deploy** in 
 
 ::
 
-    host$ sudo docker run -it --rm -p 22022:22 -p 8183:8183 -p 17010:17010 -p 11223:11223 \
+    host$ sudo docker run --pull=always -it --rm -p 22022:22 -p 8183:8183 -p 11223:11223 \
         -v /my/services/:/opt/hot-deploy/ --name zato \
         registry.gitlab.com/zatosource/docker-registry/quickstart:3.2
 
@@ -76,7 +76,7 @@ For instance:
 
 ::
 
-    host$ sudo docker run -it --rm -p 22022:22 -p 8183:8183 -p 17010:17010 -p 11223:11223 \
+    host$ sudo docker run --pull=always -it --rm -p 22022:22 -p 8183:8183 -p 11223:11223 \
         -v /my/services/:/opt/hot-deploy/  -v /my/enmasse/:/opt/enmasse/ \
         -e ZATO_ENMASSE_FILE=/opt/enmasse/export.yml --name zato \
         registry.gitlab.com/zatosource/docker-registry/quickstart:3.2
