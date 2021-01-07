@@ -18,7 +18,7 @@ Download the Docker image for local usage:
 
 ::
 
-    host$ sudo docker pull registry.gitlab.com/zatosource/docker-registry/cloud:3.1-py27
+    host$ sudo docker pull registry.gitlab.com/zatosource/docker-registry/cloud:3.2
 
 
 Start a local Docker Swarm
