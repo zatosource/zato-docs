@@ -147,8 +147,9 @@ we will assume there is only one.
 Installing Zato
 ---------------
 
-If you pick Docker or Vagrant, not only will this install Zato but the installer will automatically
-set up a working quickstart cluster itself too. You can use this installation method everywhere, on Windows, Mac or Linux.
+The most straightforward way to get started with Zato is picking Docker or Vagrant. Not only will this install Zato
+but the installer will automatically set up a working quickstart cluster for you too. You can use this
+installation method everywhere, on Windows, Mac or Linux.
 
 * :doc:`Docker <../admin/guide/install/docker>`
 * :doc:`Vagrant <../admin/guide/install/vagrant>`
@@ -161,7 +162,6 @@ this will take about 2 additional minutes.
 * :doc:`Suse <../admin/guide/install/rhel>`
 * :doc:`Debian <../admin/guide/install/debian>`
 
-
 You can author Zato services with any code editor and you can also install a plugin for your IDE to auto-deploy your
 services on file save.
 
@@ -170,201 +170,129 @@ services on file save.
 
 Refer to the chapters below, depending on your chosen installation method and IDE.
 
-If you installed Zato under Docker
-----------------------------------
+If you installed Zato under Docker or Vagrant
+---------------------------------------------
 
-If you installed Zato under Vagrant
------------------------------------
+After installing Zato using Docker or Vagrant you have a container / VM with a quickstart cluster and a few
+TCP ports mapped to your host and one port unmapped.
+
+.. image:: /gfx/tutorial/quickstart-ports-docker-vm.png
+
+======== ============ ============= ===============================================================================
+Port     Host-visible Purpose                   Notes
+======== ============ ============= ===============================================================================
+22022    Yes          SSH           For SSH connections to the Linux system the cluster runs in,
+                                    just in case it is needed
+8183     Yes          Dashboard     Web-admin dashboard used to manage Zato environments. Your browser connects
+                                    to it and the dashboard itself is an API client of Zato services so it invokes
+                                    servers through the load-balancer.
+11223    Yes          Load-balancer API clients invoke services through the load-balancer and each server
+                                    always belongs to a cluster even if there is only one server in it
+17010    ---          Zato server   Like in a real environment, the server is only accessible through
+                                    a load-balancer which is why its TCP port is not mapped to the host directly
+======== ============ ============= ===============================================================================
+
+We can check if the environment is running by issuing the curl command below - it will invoke a built-in service
+to confirm that the server started.
+
+.. code-block:: text
+
+  $ curl localhost:11223/zato/ping ; echo
+  {"pong":"zato","zato_env":{"result":"ZATO_OK","cid":"a5060e06b675cb20017a357d","details":""}
+  $
+
+
+ /opt/zato/show-credentials
+
+ SSH: oaWMFmbt5Faq6
+IDE: LWdasXlqVrO8Gur00Y3ncGjmHWNLZvr
+Dashboard: YUm7ufehorVEw
+
+You can have a look at the next section about configuring Zato installed from a Linux package
+or you can scroll below for information how to set up your IDE or editor now.
 
 If you installed Zato from a Linux package
 ------------------------------------------
+
+After installing Zato from a .deb or .rpm, a new user called 'zato' was created and all of the platform's binaries
+are in /opt/zato.
+
+To create a quickstart environment, you need to install Redis first, e.g.
+
+.. code-block:: text
+
+  $ sudo apt install redis-server
+
+From now one, with the Zato package and Redis installed, all the commands can be executed as user zato, root powers
+are never needed to manage Zato environments.
+
+Let's create a new environment in the ~/env/qs-1 directory.
+
+.. code-block:: text
+  :emphasize-lines: 14
+
+  $ sudo su - zato
+  $ mkdir -p ~/env/qs-1
+  $ zato quickstart create ~/env/qs1 sqlite localhost 6379
+  [1/8] Certificate authority created
+  [2/8] ODB schema created
+  [3/8] ODB initial data created
+  [4/8] server1 created
+  [5/8] Load-balancer created
+  Superuser created successfully.
+  [6/8] Dashboard created
+  [7/8] Scheduler created
+  [8/8] Management scripts created
+  Quickstart cluster quickstart-904765 created
+  Dashboard user:[admin], password:[F7qCOiabas5ToQ7EWupLrHOn9iVHzyBv]
+  Visit https://zato.io/support for more information and support options
+  $
+
+Observe the highlighted line with credentials to the Dashboard - the auto-generated password will never be shown again.
+In case you need to change it, simply run this command ``zato update password ~/env/qs-1/web-admin admin``.
+
+Let's start all the components now - note the '--fg' flag when starting the server, this will start
+it in foreground, thanks to which we will be able to stop it with Ctrl/Cmd-c.
+
+.. code-block:: text
+
+  $ zato start ~/env/qs-1/load-balancer
+  OK
+  $
+
+  $ zato start ~/env/qs-1/dashboard
+  OK
+  $
+
+  $ zato start ~/env/qs-1/scheduler
+  OK
+  $
+
+  $ zato start ~/env/qs-1/server1 --fg
+  INFO - Starting Zato 3.2+rev.da807efbc-py3.6.9
+  INFO - Listening at: http://0.0.0.0:17010 (19475)
+  [...]
+
+.. image:: /gfx/tutorial/quickstart-ports.png
+
+Visit http://localhost:8183, enter the credentials printed out above and browse around to get a feeling
+for how the Dashboard looks like.
+
+In another terminal window, confirm that the environment is ready to accept API requests.
+
+.. code-block:: text
+
+ $ curl localhost:11223/zato/ping ; echo
+ {"pong":"zato","zato_env":{"result":"ZATO_OK","cid":"2fd7536d956b17fcbed24122","details":""}
+ $
+
+The next step now is setting up your IDE or editor.
 
 If you have Visual Studio Code or PyCharm
 -----------------------------------------
 
 If you have another IDE or code editor
 --------------------------------------
-
-Done yet? OK, so if you are not using Docker, let's create a quickstart cluster, which is a sort of a cluster
-created by running the
-:doc:`CLI commands <../../admin/cli/index>`,
-appropriately called
-:doc:`zato quickstart create <../../admin/cli/quickstart-create>`.
-
-You need to prepare:
-
-* As user zato, an empty directory ($path), such as ~/env/qs-1
-* Host, port and a password for connecting to Redis ($kvdb_host, $kvdb_port and $kvdb_password)
-
-Note that user user zato created during installation does not have any default password. It means that you need either to
-execute 'sudo su - zato' or 'su - zato' to switch to that user or change the zato user's password first as root or another
-account with elevated privileges.
-
-Now run the following command as user zato, substituting placeholders with the information
-you've prepared. You'll be asked for passwords and they won't be echoed.
-
-In the command below, observe that the Redis password can be empty - indeed, if you've just installed Redis without
-configuring anything, it must be empty because by default Redis doesn't require it.
-
-.. code-block:: text
-
-  $ zato quickstart create $path sqlite $kvdb_host $kvdb_port \
-    --kvdb_password $kvdb_password --verbose
-
-For instance:
-
-.. code-block:: text
-  :emphasize-lines: 14
-
-  $ zato quickstart create ~/env/qs-1 sqlite localhost 6379 \
-    --kvdb_password '' --verbose
-
-  [1/8] Certificate authority created
-  [2/8] ODB schema created
-  [3/8] ODB initial data created
-  [4/8] server1 created
-  [5/8] server2 created
-  [6/8] Load-balancer created
-  Superuser created successfully.
-  [7/8] Web admin created
-  [8/8] Management scripts created
-  Quickstart cluster quickstart-962637 created
-  Web admin user:[admin], password:[Fc8-43IRUVeyWVgKtUR8YqXJSQriJt6x]
-  Start the cluster by issuing the /opt/zato/env/qs-1/zato-qs-start.sh command
-  Visit https://zato.io/support for more information and support options
-  $
-
-Note the highlighted line - these are credentials you'll need to log into a
-:doc:`web admin's instance <../web-admin/intro>`
-just created. In case you feel the
-`randomly generated password <https://github.com/zatosource/zato/blob/support/2.0/code/zato-common/src/zato/common/markov_passwords.py>`_,
-even  a human-readable one, should still be changed, you can do it using the
-:doc:`zato update password <../../admin/cli/update-password>`
-command.
-
-What was created by invoking zato quickstart create:
-
-* A development CA
-* 2 servers
-* An HA load-balancer in front of the two
-* A web-admin panel instance and an admin user
-* ODB structure in SQLite and Redis
-* Scripts to (re-)start the environment and stop it
-
-The whole of it uses randomly generated crypto material (keys and certificates),
-and is automatically configured so that all the parts are aware of each other,
-e.g. the load balancer knows what servers to route the traffic to, the web admin
-understands where all the components to manage are and so on.
-
-In short, the command has just created a complete environment.
-
-Important TCP ports that will be used are:
-
-================================== =======================================================================
-Port                               Notes
-================================== =======================================================================
-`11223 <http://localhost:11223>`_  Load-balancer's HTTP port
-                                   (this is what external applications use to invoke services you develop)
-`17010 <http://localhost:17010>`_  server1's HTTP port
-`17011 <http://localhost:17011>`_  server2's HTTP port
-`8183 <http://localhost:8183>`_    Web admin's HTTP port (this is where you point your browser to and log
-                                   in as an admin user)
-================================== =======================================================================
-
-.. image:: /gfx/tutorial/quickstart-ports.png
-
-The load-balancer and servers can all run on different hosts, but to keep focused
-on basic things first, the tutorial uses a quickstart cluster which installs everything
-on localhost.
-
-And although this is a tutorial only, this can be a good approach to easily
-create any serious Zato environment later on. Just create a quickstart
-cluster, rename it to 'dev1' or similarly and start
-:doc:`adding and configuring <../../admin/guide/install-config/overview>`
-as many servers as you need.
-
-Invoking services with cURL
----------------------------
-
-.. note ::
-
-  At this point, **you need to make sure that Redis is up,
-  running and it allows for Zato connections**, i.e. the credentials you provided
-  earlier, if any, are valid.
-
-  You can check it by running these commands:
-
-.. code-block:: text
-
-    $ zato check-config $path/server1
-    SQL ODB connection OK
-    Redis connection OK
-    $
-
-.. code-block:: text
-
-    $ zato check-config $path/server2
-    SQL ODB connection OK
-    Redis connection OK
-    $
-
-  If there's no output as shown above, the
-  ./zato-qs-start.sh command below will not succeed and if you continue you'll hit upon
-  issues in later steps so you'll be scratching your head trying to figure out
-  what went wrong.
-
-  **Again, please make sure Redis will allow Zato to establish connections.**
-
-First off, let's start the thing we've just brought to this world:
-
-.. code-block:: text
-
-  $ ./zato-qs-start.sh
-  Starting the Zato quickstart environment
-  Running sanity checks
-  [1/6] Redis connection OK
-  [2/6] SQL ODB connection OK
-  [3/6] Load-balancer started
-  [4/6] server1 started
-  [5/6] server2 started
-  [6/6] Web admin started
-  Zato quickstart environment started
-  Visit https://zato.io/support for more information and support options
-  $
-
-Zato comes with several goodies meant to ease with development and one of them
-is the zato.ping service which is automatically mounted on /zato/ping so it
-can be invoked through the load-balancer using curl (output below is slightly reformatted for clarity).
-
-.. code-block:: text
-
-  $ curl localhost:11223/zato/ping ; echo
-  {
-    "zato_env": {"details": "", "result": "ZATO_OK", "cid": "K06KKS03EESNYYPHBWE74ZEJ4X56"},
-    "zato_ping_response": {"pong": "zato"}
-  }
-  $
-
-The response produced by zato.ping happens to be a JSON document.
-
-* We can see  there were no errors encountered (ZATO_OK)
-* The :ref:`correlation ID <progguide-write-service-cid>` (cid) serves as an
-  identifier which can be used to reconcile information regarding the fate of a service's
-  invocation across multiple systems
-
-.. note ::
-
-  Now that you've learned how to invoke a load-balancer you might be tempted to start
-  benchmarking the ping service, but before you start doing it - stop for
-  a while and read
-  :doc:`how to configure a server <../../admin/guide/install-config/config-server>`,
-  in particular, have a look at gunicorn_workers
-  and play with it for a while.
-
-  Also note, Zato is not meant to take part in HelloWorld contests - it's much
-  more than a plain HTTP daemon and it doesn't make much sense to compare it against
-  raw-`WSGI <https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface>`_ servers.
-
 
 Hot-deploying your first service
 --------------------------------
