@@ -59,13 +59,13 @@ to applications that would like to use it. This is a high-level definition and t
 It all stems from the fact that you should think about the systems and applications comprising your architecture
 in terms of consumers and providers of services. Each part of the architecture offers services to other parts and,
 conversely, each part consumes services offered by other elements of the architecture. Taken together, services form
-higher-level processes fullfiling business needs set before the IT architecture.
+higher-level processes fulfilling business needs set before the IT architecture.
 
 Zato is a multi-protocol platform and services are often not tied to any specific protocol. It means that it is possible
 to design services that can be invoked through REST but they can also listen for data from AMQP, IBM MQ queues
 or SQL databases. They can also accept HL7 MLLP, SOAP, WebSocket, SFTP, FTP, e-mail, JSON-RPC and ZeroMQ-based messages.
 
-Naturally, REST is uniquitous and usually this is the way that most APIs are exposed through but there are other ways too
+Naturally, REST is ubiquitous and usually this is the way that most APIs are exposed through but there are other ways too
 and in various scenarios other means of communication are employed.
 
 Zato ships with connectors and adapters for REST, AWS S3, AMQP, Kafka, MongoDB, Redis, HL7, Odoo, SAP, IBM MQ,
@@ -81,7 +81,7 @@ It is always possible to secure services using other, non-built in, means.
 In terms of its implementation, an individual Zato service is a Python class implementing a specific method called self.handle.
 The service receives input, processes it according to its business requirements, which may involve communicating with
 other systems, applications or services, and then some output is produced.
-Note that both input and output are optional, e.g. a background service transfering files between applications
+Note that both input and output are optional, e.g. a background service transferring files between applications
 will usually have neither whereas a typical CRUD service will have both.
 
 Because a service is merely a Python class, it means that each one consumes very little resources and it is possible
