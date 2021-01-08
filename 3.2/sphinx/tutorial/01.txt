@@ -107,7 +107,7 @@ and
 that automatically deploy your service each time you save it in your IDE. Other code editors or IDEs can be used too.
 
 During development, usually the built-in web-admin dashboard is used to create and manage channels or other Zato objects.
-As soon as a solution is ready for DevOps automatiom, configuration of a solution can be deployed automatically from
+As soon as a solution is ready for DevOps automation, configuration of a solution can be deployed automatically from
 :doc:`command line </admin/guide/enmasse>`
 or directly from a git clone which makes it easy to use Zato with tools such as Terraform, Ansible or Puppet.
 
@@ -271,7 +271,7 @@ Let's create a new environment in the ~/env/qs-1 directory.
   $
 
 Observe the highlighted line with credentials to the Dashboard - the auto-generated password will never be shown again.
-In case you need to change it, run this command: ``zato update password ~/env/qs-1/web-admin admin``.
+In case you need to change it, run this command: **zato update password ~/env/qs-1/dashboard admin**.
 
 Let's start all the components now - note the '--fg' flag when starting the server, this will start
 it in foreground, thanks to which we will be able to stop it with Ctrl/Cmd-C.
@@ -422,8 +422,10 @@ We can now create the first service and hot-deploy it. Create a new file called 
 is a basis of the service that we will fill in with details later on.
 
 .. code-block:: python
+  :emphasize-lines: 2
 
   # -*- coding: utf-8 -*-
+  # zato: ide-deploy=True
 
   from zato.server.service import Service
 
@@ -440,5 +442,94 @@ is a basis of the service that we will fill in with details later on.
               'user_type': 'SRT'
           }
 
+If you configured a plugin for PyCharm or Visual Studio Code, note the hlighlighted line - this is a special marker which
+lets the plugin know that saving this file should result in the IDE's deploying it to your cluster.
 
-*(Note to editor: this is everything for now - the rest of the article is in progress)*
+Without a plugin, you need to save the file in the server's ~/env/qs-1/server1/pickup/incoming/services directory.
+
+If you use Docker and Vagrant but you do not have the plugin, you first need to map the directory to one in the host
+system and save the file in the latter.
+
+And if you want to deploy it to a Zato server from your browser, log in to the Dashboard, go to Services and click
+Upload package.
+
+Dashboard's address is http://localhost:8183, username is admin and if you need to reset the password, this is the command:
+
+.. code-block:: text
+
+  $ zato update password ~/env/qs-1/dashboard admin
+
+Having deployed the code, we can confirm in the Dashboard that the service is there.
+
+Once you logged in to the Dashboard, navigate to Services -> Enter "get-details" in the search box -> Show services -> Click View
+and this will display basic information about the deployed service. You can click Source code to confirm that this is the same
+service.
+
+We have a service so now we can create a REST channel for it.
+
+Creating your first channel
+---------------------------
+
+We want to invoke our API service using REST but we also want to make sure that access to it is secured so we will
+first create a security definition for our API client.
+
+In Dashboard, go to Security -> Basic Auth -> Click "Create a new definition" and enter:
+
+* Name: API Credentials
+* Username: api
+* Domain: API
+
+Clicking OK will create the definition with its user's password automatically set to a random uuid4
+so we need to reset it by clicking "Change password" and providing a new one - it is up to you to decide what it should be.
+
+Now, we can create a REST channel by going to Connections -> Channels -> REST, as below:
+
+.. image:: /gfx/tutorial/rest-menu.png
+
+Click Create a new REST channel link:
+
+.. image:: /gfx/tutorial/rest-create-link.png
+
+Fill out the form as here, the fields to provide values for are:
+
+* Name
+* URL path
+* Data format
+* Service
+* Security definition
+
+.. image:: /gfx/tutorial/rest-create-form.png
+
+Clicking OK will create the channel and we will be able to invoke the API service now.
+
+Invoking your first service
+---------------------------
+
+We are going to use curl to invoke the service - we will access it through the load-balancer's port of 11223, as below.
+Note that you need to enter the API client's password too.
+
+.. code-block:: text
+
+  $ curl http://api:<password-here>@localhost:11223/api/v1/user ; echo
+  {"user_name":"John Doe","user_type":"SRT"}
+  $
+
+Everything works as expected - you have just created and invoked your first API service! Note that the response is a JSON
+document, just as would be expected from our channel's data format.
+
+Now, try to see what happens
+if you provide an invalid password or a URL path - your requests will not be allowed.
+
+This concludes the first part of the tutorial and the next one will have the service integrate with external systems
+to transform and enrich their replies before producing the final response to the API client.
+
+But first, there is one observation to be made - the quickstart cluster that you created is a real, fully functional
+environment. If you were to create it from scratch, by adding each component individually, the dashboard, server, load-balancer
+and scheduler, the outcome would be precisely the same.
+
+In other words, quickstart clusters are just a convenient method for creation of new environments and they can be very well
+used not only for development but for testing and production too.
+
+Now, we are ready to
+:doc:`go to the second part <./02>`
+of the tutorial.
