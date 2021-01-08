@@ -445,10 +445,9 @@ is a basis of the service that we will fill in with details later on.
 If you configured a plugin for PyCharm or Visual Studio Code, note the hlighlighted line - this is a special marker which
 lets the plugin know that saving this file should result in the IDE's deploying it to your cluster.
 
-Without a plugin, you need to save the file in the server's ~/env/qs-1/server1/pickup/incoming/services directory.
-
-If you use Docker and Vagrant but you do not have the plugin, you first need to map the directory to one in the host
-system and save the file in the latter.
+Without a plugin, you need to save the file in the server's ~/env/qs-1/server1/pickup/incoming/services directory. If you use
+Docker and Vagrant but you do not have the plugin, you first need to map this directory to one in the host system
+and save the file in the latter.
 
 And if you want to deploy it to a Zato server from your browser, log in to the Dashboard, go to Services and click
 Upload package.
@@ -514,20 +513,17 @@ Note that you need to enter the API client's password too.
   {"user_name":"John Doe","user_type":"SRT"}
   $
 
-Everything works as expected - you have just created and invoked your first API service! Note that the response is a JSON
-document, just as would be expected from our channel's data format.
-
-Now, try to see what happens
+Everything works as expected - you have just created and invoked your first API service! Now, try to see what happens
 if you provide an invalid password or a URL path - your requests will not be allowed.
 
-This concludes the first part of the tutorial and the next one will have the service integrate with external systems
+This concludes the first part of the tutorial and the next one will see the service integrate with external systems
 to transform and enrich their replies before producing the final response to the API client.
 
 But first, there is one observation to be made - the quickstart cluster that you created is a real, fully functional
-environment. If you were to create it from scratch, by adding each component individually, the dashboard, server, load-balancer
+environment. If you were to create it from scratch, by adding each component individually, Dashboard, server, load-balancer
 and scheduler, the outcome would be precisely the same.
 
-In other words, quickstart clusters are just a convenient method for creation of new environments and they can be very well
+In other words, quickstart clusters are a convenient method for creation of new environments and they can be very well
 used not only for development but for testing and production too.
 
 Now, we are ready to
