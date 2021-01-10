@@ -170,10 +170,127 @@ All the outgoing connections are created so we can now shift our attention back 
 Back to the service
 -------------------
 
+The logic of our service shall be:
+
+* Accept user_name on input
+* Invoke CRM to get basic user data, including account_number and user_type
+* Invoke Payments to get account details by account_number
+* If user_type matches configuration, notify Fraud detection about it all
+
+In a bigger integration project, an individual user would have more than one bank account
+but here we keep it simple and assume that each user has one bank account.
+
+Here is the full Python implementation of the logic above. You can also find it on GitHub ZXCZXCZXC.
+
+.. code-block:: python
+  :linenos:
+
+    # -*- coding: utf-8 -*-
+    # zato: ide-deploy=True
+
+    # Zato
+    from zato.server.service import Service
+
+    class GetUserDetails(Service):
+        """ Returns details of a user by the person's ID.
+        """
+        name = 'api.user.get-details'
+
+        def handle(self):
+
+            # For later use
+            user_name = self.request.payload['user_name']
+
+            # Get data from CRM ..
+            crm_data = self.invoke_crm(user_name)
+
+            # .. extract the CRM information we are interested in ..
+            user_type = crm_response['UserType']
+            account_no = crm_response['AccountNumber']
+
+            # .. get data from Payments ..
+            payments_data = self.invoke_payments(user_name, account_no)
+
+            # .. extract the CRM data we are interested in ..
+            account_balance = payments_data['ACC_BALANCE']
+
+            # .. optionally, notify the fraud detection system ..
+            if self.should_notify_fraud_detection(user_type):
+                self.notify_fraud_detection(user_name, account_no)
+
+            # .. now, produce the response for our caller.
+            self.response.payload = {
+              'user_name': user_name,
+              'user_type': user_type,
+              'account_no': account_no,
+              'account_balance': account_no,
+          }
+
+    # ##############################################################################
+
+        def invoke_crm(self, user_name):
+
+            # Obtain a connection to CRM ..
+            conn = self.out.rest['CRM'].conn
+
+            # .. produce a request for CRM ..
+            request = {
+                'UserName': user_name,
+            }
+
+            # .. invoke the CRM ..
+            crm_response = conn.get(self.cid, request)
+
+            # .. return data received from CRM.
+            return crm_response.data
+
+    # # ##############################################################################
+
+        def invoke_payments(self, user_name, account_no):
+
+            # Log what we are about to do
+            self.logger.info('Invoking Payments; %s %s', user_name, account_no)
+
+            # Obtain a connection to Payments ..
+            conn = self.out.rest['Payments'].conn
+
+            # .. prepare a request for Payments ..
+            request = {
+                'ACC_NUM': account_no
+            }
+
+            # .. invoke Payments ..
+            response = crm_conn.post(self.cid, user_name=user_name)
+
+            # .. return data received from Payments.
+            return response.data
+
+    # ##############################################################################
+
+        def notify_fraud_detection(self, account_no):
+
+            # Data to send to the Fraud detection system
+            data = 'Account {} was accessed on {}'.format(
+                account_no, self.time.utcnow())
+
+            # AMQP configuration
+            outconn = 'Fraud Detection Connection'
+            exchange = '/tutorial'
+            routing_key = 'api'
+
+            # Send the message to an AMQP broker
+            self.out.amqp.send(data, outconn, exchange, routing_key)
+
+    # ##############################################################################
+
+        def should_notify_fraud_detection(self, user_type):
+            return self.kvdb.get('tutorial.notify.fraud.detection.{}'.format(user_type))
+
+    # ##############################################################################
+
+
 Runtime configuration
 ---------------------
-
-Complete source code on GitHub.
 
 API testing
 -----------
