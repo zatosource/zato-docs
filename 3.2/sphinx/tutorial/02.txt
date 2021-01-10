@@ -18,7 +18,8 @@ a REST API channel through which the service was invoked.
 .. image:: /gfx/tutorial/service-complete.png
 
 In this part we will make the service actually obtain data from remote systems and process it in accordance
-with its business requirements.
+with its business requirements. Initial chapters of this part of the tutorial will mostly use the Dashboard
+to configure external connections and we will return to Python afterwards.
 
 To invoke other systems, applications and APIs, Zato services uses outgoing connections which is the
 concept we will cover now.
@@ -98,7 +99,7 @@ Click it and confirm that the response is similar to the one below - as long as 
 .. image:: /gfx/tutorial/dashboard-outconn-rest-ping-result.png
 
 The connection is pinged not from your localhost but from one of the servers in your cluster - in this way you can confirm
-that it is your servers, rather than your local connection, has access to a remote endpoint.
+that it truly is your servers, rather than your local connection, that has access to a remote endpoint.
 
 AMQP outgoing connections
 -------------------------
@@ -127,12 +128,12 @@ Username     api
 ============ ==========================
 
 This created a new AMQP connection definition and we need to set the user's password. Click Change password and enter
-``wTGL6pQ9KxH2U`` - note that the password changes frequently in the tutorial's broker.
+**wTGL6pQ9KxH2U** - note that the password changes frequently and it may be different if you visit the tutorial in some time.
 
-At this point, we have a definition but in itself, it will not connect to an AMQP broker, it is only channels or outconns
+At this point, we have a definition but by itself, it will not connect to an AMQP broker, it is only channels or outconns
 that connect using configuration and credentials from their definitions.
 
-Hence, create a new AMQP outconn at Connections -> Outgoing -> AMQP, like below. Except for the two specific values
+Hence, create a new AMQP outconn at Connections -> Outgoing -> AMQP. Except for the two specific values below
 you can leave the rest unchanged with blank or default values.
 
 ========== ==========================
@@ -145,8 +146,43 @@ Definition Fraud Detection Definition
 Pinging AMQP with publications
 ------------------------------
 
+We can ping a remote AMQP broker by publishing a message to it. While in Connections -> Outgoing -> AMQP
+and click Publish.
+
+.. image:: /gfx/tutorial/dashboard-outconn-amqp-publish-button.png
+
+Now, send a test message using the configuration below.
+
+============ ==========================
+Header       Value
+============ ==========================
+Data         (Any)
+Exchange     /tutorial
+Routing key  api
+============ ==========================
+
+There will be a response on a green background confirming that the message was published successfully.
+
+.. image:: /gfx/tutorial/dashboard-outconn-amqp-publish-form.png
+
+All the outgoing connections are created so we can now shift our attention back to the Python service.
+
 Back to the service
 -------------------
 
+Runtime configuration
+---------------------
+
+Complete source code on GitHub.
+
+API testing
+-----------
+
 Enmasse automation
 ------------------
+
+More features
+-------------
+
+Getting support
+---------------
