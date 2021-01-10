@@ -223,7 +223,7 @@ Here is the full Python implementation of the logic above. You can also find it 
               'user_name': user_name,
               'user_type': user_type,
               'account_no': account_no,
-              'account_balance': account_no,
+              'account_balance': account_balance,
           }
 
     # ##############################################################################
@@ -267,24 +267,23 @@ Here is the full Python implementation of the logic above. You can also find it 
 
     # ##############################################################################
 
-        def notify_fraud_detection(self, account_no):
+        def notify_fraud_detection(self, user_name, account_no):
 
             # Data to send to the Fraud detection system
-            data = 'Account {} was accessed on {}'.format(
-                account_no, self.time.utcnow())
+            data = 'User `{}` accessed `{}`'.format(user_name, account_no)
 
             # AMQP configuration
             outconn = 'Fraud Detection Connection'
             exchange = '/tutorial'
             routing_key = 'api'
 
-            # Send the message to an AMQP broker
+            # Send the message to Fraud Detection
             self.out.amqp.send(data, outconn, exchange, routing_key)
 
     # ##############################################################################
 
         def should_notify_fraud_detection(self, user_type):
-            return self.kvdb.get('tutorial.notify.fraud.detection.{}'.format(user_type))
+            return self.kvdb.get('notify.fraud.detection.{}'.format(user_type))
 
     # ##############################################################################
 
