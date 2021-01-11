@@ -287,6 +287,27 @@ Here is the full Python implementation of the logic above. You can also find it 
 
     # ##############################################################################
 
+We can immediately observe that:
+
+* This is high-level code - implementation-wise, we operate on the level of Python dicts
+  and a few methods
+
+* The service is to a great part independent of the underlying systems it needs to implement;
+  it does not concern itself with details of any of the protocols that are used in
+  this integration effort
+
+* We use simple methods, like .get, .post or .send to connect to external systems and it
+  is the job of the Zato platform to translate it into actual invocations, e.g. the service
+  only sends data to 'CRM', 'Payments or 'Fraud Detection Connection' but it does not need to know which
+  REST endpoint AMQP broker is meant by that exactly
+
+* We check whether to send notifications to the fraud detection system using self.kvdb -
+  this stands for a key/value database and it points to Redis, which is where we elect
+  to keep our runtime configuration in this particular service and we will return to the subject
+  shortly but first, seeing as the service is ready, let's invoke it.
+
+Invoking the service
+--------------------
 
 Runtime configuration
 ---------------------
