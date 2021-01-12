@@ -388,6 +388,16 @@ an AMQP message too:
   INFO - Invoking Payments; u=my.user, a=123456
   INFO - Notifying Fraud detection; u=my.user
 
+As far as the implementation goes, we are done, this is everything.
+
+Even if we have only covered the tip of the iceberg in terms of Zato offers, what we have already is a fully working integration
+platform and a service integrating API clients with three backend systems. All of that in a manner that is scalable
+and easy to customise.
+
+There is still one aspect though - so far, we have been only using the Dashboard. This is good but when it comes
+to automated deployment, we would like to have a way to export our configuration from one environment to another.
+This is what we will be dealing with in the next section.
+
 Enmasse automation
 ------------------
 
