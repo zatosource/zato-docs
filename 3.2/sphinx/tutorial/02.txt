@@ -67,8 +67,8 @@ it in the section.
 Header      Value
 =========== ==============================
 Name        CRM
-Host        \http://zato.io:9193
-URL path    /tutorial/get-customer
+Host        \http://tutorial.zato.io:9193
+URL path    /get-user
 Data format JSON
 Security    No security
 =========== ==============================
@@ -80,8 +80,8 @@ are the same but note that the URL path contains a string pattern - we will talk
 Header      Value
 =========== ==================================
 Name        Payments
-Host        \http://zato.io:9193
-URL path    /tutorial/get-balance/{account_id}
+Host        \http://tutorial.zato.io:9193
+URL path    /balance/get
 Data format JSON
 Security    No security
 =========== ==================================
@@ -121,14 +121,14 @@ Thus, go to Connections -> Definitions -> AMQP and create a new definition as in
 Header       Value
 ============ ==========================
 Name         Fraud Detection Definition
-Host         zato.io
-Port         34034
-Virtual host /tutorial
-Username     api
+Host         tutorial.zato.io
+Port         25701
+Virtual host tutorial
+Username     api1
 ============ ==========================
 
 This created a new AMQP connection definition and we need to set the user's password. Click Change password and enter
-**wTGL6pQ9KxH2U** - note that the password changes frequently and it may be different if you visit the tutorial in some time.
+**PJs4TEeui118A** - note that the password changes periodically and it may be different if you visit the tutorial in some time.
 
 At this point, we have a definition but by itself, it will not connect to an AMQP broker, it is only channels or outconns
 that connect using configuration and credentials from their definitions.
@@ -185,107 +185,120 @@ Here is the full Python implementation of the logic above. You can also find it 
 .. code-block:: python
   :linenos:
 
-    # -*- coding: utf-8 -*-
-    # zato: ide-deploy=True
+  # -*- coding: utf-8 -*-
+  # zato: ide-deploy=True
 
-    # Zato
-    from zato.server.service import Service
+  # Zato
+  from zato.server.service import Service
 
-    class GetUserDetails(Service):
-        """ Returns details of a user by the person's ID.
-        """
-        name = 'api.user.get-details'
+  # ##############################################################################
 
-        def handle(self):
+  class GetUserDetails(Service):
+      """ Returns details of a user by the person's ID.
+      """
+      name = 'api.user.get-details'
 
-            # For later use
-            user_name = self.request.payload['user_name']
+      def handle(self):
 
-            # Get data from CRM ..
-            crm_data = self.invoke_crm(user_name)
+          # For later use
+          user_name = self.request.payload['user_name']
 
-            # .. extract the CRM information we are interested in ..
-            user_type = crm_response['UserType']
-            account_no = crm_response['AccountNumber']
+          # Get data from CRM ..
+          crm_data = self.invoke_crm(user_name)
 
-            # .. get data from Payments ..
-            payments_data = self.invoke_payments(user_name, account_no)
+          # .. extract the CRM information we are interested in ..
+          user_type = crm_data['UserType']
+          account_no = crm_data['AccountNumber']
 
-            # .. extract the CRM data we are interested in ..
-            account_balance = payments_data['ACC_BALANCE']
 
-            # .. optionally, notify the fraud detection system ..
-            if self.should_notify_fraud_detection(user_type):
-                self.notify_fraud_detection(user_name, account_no)
+          # .. get data from Payments ..
+          payments_data = self.invoke_payments(user_name, account_no)
 
-            # .. now, produce the response for our caller.
-            self.response.payload = {
-              'user_name': user_name,
-              'user_type': user_type,
-              'account_no': account_no,
-              'account_balance': account_balance,
+          # .. extract the CRM data we are interested in ..
+          account_balance = payments_data['ACC_BALANCE']
+
+          # .. optionally, notify the fraud detection system ..
+          if self.should_notify_fraud_detection(user_type):
+              self.notify_fraud_detection(user_name, account_no)
+
+          # .. now, produce the response for our caller.
+          self.response.payload = {
+            'user_name': user_name,
+            'user_type': user_type,
+            'account_no': account_no,
+            'account_balance': account_balance,
+        }
+
+  # ##############################################################################
+
+      def invoke_crm(self, user_name):
+
+          # Log what we are about to do
+          self.logger.info('Invoking CRM; u=%s', user_name)
+
+          # Obtain a connection to CRM ..
+          conn = self.out.rest['CRM'].conn
+
+          # .. produce a request for CRM ..
+          request = {
+              'UserName': user_name,
           }
 
-    # ##############################################################################
+          # .. invoke the CRM ..
+          crm_response = conn.get(self.cid, request)
 
-        def invoke_crm(self, user_name):
+          # .. return data received from CRM.
+          return crm_response.data
 
-            # Obtain a connection to CRM ..
-            conn = self.out.rest['CRM'].conn
+  # ##############################################################################
 
-            # .. produce a request for CRM ..
-            request = {
-                'UserName': user_name,
-            }
+      def invoke_payments(self, user_name, account_no):
 
-            # .. invoke the CRM ..
-            crm_response = conn.get(self.cid, request)
+          # Log what we are about to do
+          self.logger.info('Invoking Payments; u=%s, a=%s', user_name, account_no)
 
-            # .. return data received from CRM.
-            return crm_response.data
+          # Obtain a connection to Payments ..
+          conn = self.out.rest['Payments'].conn
 
-    # # ##############################################################################
+          # .. prepare a request for Payments ..
+          request = {
+              'ACC_NUM': account_no,
+          }
 
-        def invoke_payments(self, user_name, account_no):
+          # .. prepare query string parameters ..
+          params={'USER':user_name}
 
-            # Log what we are about to do
-            self.logger.info('Invoking Payments; %s %s', user_name, account_no)
+          # .. invoke Payments ..
+          response = conn.post(self.cid, params=params)
 
-            # Obtain a connection to Payments ..
-            conn = self.out.rest['Payments'].conn
+          # .. return data received from Payments.
+          return response.data
 
-            # .. prepare a request for Payments ..
-            request = {
-                'ACC_NUM': account_no
-            }
+  # ##############################################################################
 
-            # .. invoke Payments ..
-            response = crm_conn.post(self.cid, user_name=user_name)
+      def notify_fraud_detection(self, user_name, account_no):
 
-            # .. return data received from Payments.
-            return response.data
+          # Log what we are about to do
+          self.logger.info('Notifying Fraud detection; u=%s', user_name)
 
-    # ##############################################################################
+          # Data to send to the Fraud detection system
+          data = 'User `{}` accessed `{}`'.format(user_name, account_no)
 
-        def notify_fraud_detection(self, user_name, account_no):
+          # AMQP configuration
+          outconn = 'Fraud Detection Connection'
+          exchange = '/tutorial'
+          routing_key = 'api'
 
-            # Data to send to the Fraud detection system
-            data = 'User `{}` accessed `{}`'.format(user_name, account_no)
+          # Send the message to Fraud Detection
+          self.out.amqp.send(data, outconn, exchange, routing_key)
 
-            # AMQP configuration
-            outconn = 'Fraud Detection Connection'
-            exchange = '/tutorial'
-            routing_key = 'api'
+  # ##############################################################################
 
-            # Send the message to Fraud Detection
-            self.out.amqp.send(data, outconn, exchange, routing_key)
+      def should_notify_fraud_detection(self, user_type):
+          return self.kvdb.conn.get('notify.fraud.{}'.format(user_type))
 
-    # ##############################################################################
+  # ##############################################################################
 
-        def should_notify_fraud_detection(self, user_type):
-            return self.kvdb.get('notify.fraud.detection.{}'.format(user_type))
-
-    # ##############################################################################
 
 We can immediately observe that:
 
@@ -306,14 +319,21 @@ We can immediately observe that:
   to keep our runtime configuration in this particular service and we will return to the subject
   shortly but first, seeing as the service is ready, let's invoke it.
 
+There is nothing else to implement - the code and configuration are ready, we can invoke the service now.
+
 Invoking the service
 --------------------
 
+Let's use curl to access the service:
+
+.. code-block:: text
+
+  curl -XPOST localhost:11223/api/v1/user \
+       -d '{"user_name": "my.user"}'
+
+
 Runtime configuration
 ---------------------
-
-API testing
------------
 
 Enmasse automation
 ------------------
