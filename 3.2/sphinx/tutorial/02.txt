@@ -317,9 +317,7 @@ We can immediately observe that:
 * We check whether to send notifications to the fraud detection system using self.kvdb -
   this stands for a key/value database and it points to Redis, which is where we elect
   to keep our runtime configuration in this particular service and we will return to the subject
-  shortly but first, seeing as the service is ready, let's invoke it.
-
-There is nothing else to implement - the code and configuration are ready, we can invoke the service now.
+  shortly but first, seeing as the service is ready, we can invoke it.
 
 Invoking the service
 --------------------
@@ -328,12 +326,67 @@ Let's use curl to access the service:
 
 .. code-block:: text
 
-  curl -XPOST localhost:11223/api/v1/user \
+  # Make sure to use here the password set in the first part of the tutorial
+  $ curl -XPOST https://api:<password>@localhost:11223/api/v1/user \
        -d '{"user_name": "my.user"}'
 
+  # Here is our response
+  {"user_name":"my.user","user_type":"RGV","account_no":"123456","account_balance":"357.9"}
+  $
+
+In server logs (found in ~/env/qs-1/server1/logs/server.log):
+
+.. code-block:: text
+
+  INFO - Invoking CRM; u=my.user
+  INFO - Invoking Payments; u=my.user, a=123456
+
+We are almost done now - the only remaining part is ensuring that the Fraud detection
+system is notified when needed. For that, we need to discuss our runtime configuration options.
 
 Runtime configuration
 ---------------------
+
+Each project needs to keep its runtime configuration in some location. What is stored in such
+configuration are project-specific details like business rules or conditions.
+
+Broadly, there are two kinds of locations where it can be kept. Both kinds are a good choice and
+it is mostly an architect's choice what to use.
+
+* Configuration files
+* Databases, such as Redis, MongoDB, Vault, SQL or similar ones
+
+It is worth to say that in Zato configuration files
+are reloaded automatically and cached in RAM each time they are updated. This means that you
+can change their contents without server restarts and without a need to redeploy your services.
+
+But, to showcase what other options are possible, in our case we decided to keep the runtime
+configuration in Redis, which is what the ``self.kvdb.conn`` attribute refers to.
+
+Specifically, the self.kvdb.conn.get call checks if there is any value under the chosen
+key - which will be notify.fraud.RGV here because RGV is the user_type returned by the CRM -
+and if there is a value, the Fraud detection system is notified.
+
+We can set this key directly from the Dashboard. Go to Key/value DB -> Remote commands and enter this command followed
+by clicking the Execute button:
+
+.. code-block:: text
+
+  set notify.fraud.RGV 1
+
+Here is the result in the Dashboard. "True" is the response from Redis indicating that it processed the command
+successfully.
+
+.. image:: /gfx/tutorial/kvdb-execute-form.png
+
+If we now invoke the service, we will notice a new entry in server logs because this time around we are sending
+an AMQP message too:
+
+.. code-block:: text
+
+  INFO - Invoking CRM; u=my.user
+  INFO - Invoking Payments; u=my.user, a=123456
+  INFO - Notifying Fraud detection; u=my.user
 
 Enmasse automation
 ------------------
