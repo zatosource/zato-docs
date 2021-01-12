@@ -4,27 +4,10 @@ zato-apitest - API Testing for Humans
 Introduction
 ------------
 
-zato-apitest is a friendly command line tool for creating beautiful
-tests of HTTP-based REST, XML and SOAP APIs with as little hassle as
-possible.
+zato-apitest is a command line tool for automated REST API testing. Tests are written in plain English,
+with no programming needed, and can be easily extended in Python if need be.
 
-Tests are written in plain English, with no programming needed, and can
-be trivially easy extended in Python if need be.
-
-Note that zato-apitest is meant to test APIs only. It's doesn't simulate
-a browser nor any sort of user interactions. It's meant purely for
-machine-machine API testing.
-
-The tool is the recommended way to test :doc:`Zato-based solutions <../../index>`
-but is completely independent from the core Zato platform and can be used to test
-any other APIs as well.
-
-In addition to HTTP, Zato itself supports AMQP, ZeroMQ, IBM MQ,
-including JMS, Redis, FTP, OpenERP, SMTP, IMAP, SQL, Amazon S3,
-OpenStack Swift and more so it's guaranteed zato-apitest will grow
-support for more protocols and transport layers with time.
-
-Here's how a built-in demo test case looks like:
+Here is how a built-in demo test case looks like:
 
 .. figure:: ../../gfx/test/apitest-demo.png
    :alt: zato-apitest demo run
@@ -32,17 +15,16 @@ Here's how a built-in demo test case looks like:
 What it can do
 --------------
 
--  Invoke HTTP APIs
+-  Invoke REST APIs
 
 -  Use `JSON Pointers <https://zato.io/blog/posts/json-pointer-rfc-6901.html>`_
-   `XPath <https://en.wikipedia.org/wiki/XPath>`_
    to set request's elements to
    strings, integers, floats, lists, random ones from a set of values,
    random strings, dates now/random/before/after/between.
 
--  Check that JSON and XML elements, exist, don't exist, that an element
+-  Check that elements, exist, do not exist, that an element
    is an integer, float, list, empty, non-empty, that it belongs to a
-   list or doesn't.
+   list or does not.
 
 -  Set custom HTTP headers, user agent strings, method and SOAP action.
 
@@ -56,41 +38,17 @@ What it can do
    steps, i.e. get a list of objects, pick ID of the first one and use
    this ID in later steps.
 
--  Can be integrated with JUnit
-
--  Can be very easily extended in Python
-
 Download and install
 --------------------
 
 Newest releases are always available
 `on PyPI <https://pypi.python.org/pypi/zato-apitest>`_
 and can be installed with
-`pip <https://pip.pypa.io/en/latest/installing.html>`_
-after installing a few system prequisites:
-
--  PostgreSQL development libraries
--  XML development-related libraries
--  Python headers
--  YAML headers
-
-For instance, on Debian/Ubuntu:
+`pip <https://pip.pypa.io/en/latest/installing.html>`_, e.g.:
 
 .. code-block:: bash
 
-    $ sudo apt-get install -y libpq-dev libxml2-dev libxslt1-dev python-dev libyaml-dev
-
-Or on Fedora (use yum if on earlier Fedora versions without dnf):
-
-.. code-block:: bash
-
-    $ sudo dnf install libpqxx-devel libxml2-devel libxslt-devel python-devel libyaml-devel
-
-Now, on to zato-apitest:
-
-.. code-block:: bash
-
-    $ sudo pip install zato-apitest
+    $ pip install zato-apitest
 
 Run a demo test
 ---------------
@@ -99,8 +57,8 @@ Having installed the program, running ``apitest demo`` will set up a
 demo test case, run it against a live environment and present the
 results, as on the screenshot in Introduction above.
 
-Note that it may a good idea to check the demo closer, copy it over to a
-directory of your choice, and customize things to learn by playing with
+It is recommended that you study the demo closer, copy it over to a
+directory of your choice, and customise it to learn by experimenting with
 an actual set of assertions.
 
 Workflow
@@ -109,16 +67,9 @@ Workflow
 1. Install zato-apitest
 2. Initialize a test environment by running
    ``apitest init /path/to/an/empty/directory``
-3. Update tests
-4. Execute ``apitest run /path/to/tests/directory`` when you are done
-   with updates
-5. Jump to 3.
-
-Note that when you give additional options to the ``apitest run``
-command, they will be passed to the behave test runner, just like the
-options stored in the config.ini file. For instance, in a test run you
-can exclude and include only certain features using the ``-e`` option
-and ``-i`` options provided by the behave test runner.
+3. Add tests
+4. Execute ``apitest run /path/to/tests/directory`` to run tests
+5. Repeat tests 3 and 4 as often as needed
 
 Tests and related resources
 ---------------------------
@@ -140,34 +91,26 @@ Let's dissect directories that were created after running
         │       └── demo.json
         ├── steps
         │   └── steps.py
-        ├── xml
-        │   ├── request
-        │   │   └── demo.xml
-        │   └── response
         └── form
-            ├── request
+            └── request
                └── report.xls
 
 +----------------------------------+--------------------------------------------------------------------------------------------------------------------------+
 | Path                             | Description                                                                                                              |
 +==================================+==========================================================================================================================+
-| ``./features/config.ini``        | Low-level configuration that is passed to the underlying `behave <https://pypi.python.org/pypi/behave>`_ library as-is.  |
+| ``./features/config.ini``        | Low-level configuration that is passed to the underlying `behave <https://pypi.python.org/pypi/behave>`_ library as-is   |
 +----------------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``./features/demo.feature``      | A set of tests for a single feature under consideration.                                                                 |
+| ``./features/demo.feature``      | A set of tests for a single feature under consideration                                                                  |
 +----------------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``./features/environment.py``    | Place to keep hooks invoked throughout a test case's life-cycle in.                                                      |
+| ``./features/environment.py``    | Place to keep hooks invoked throughout a test case's life-cycle in                                                       |
 +----------------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``./features/json/request/*``    | JSON requests, if any, needed as input to APIs under tests.                                                              |
+| ``./features/json/request/*``    | JSON requests, if any, needed as input to APIs under tests                                                               |
 +----------------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``./features/json/response/*``   | JSON responses you expect for APIs to produce, used for smart comparison.                                                |
+| ``./features/json/response/*``   | JSON responses you expect for APIs to produce, used for smart comparison                                                 |
 +----------------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``./features/steps/steps.py``    | Custom assertions go here.                                                                                               |
+| ``./features/steps/steps.py``    | Used-defined, custom steps.                                                                                              |
 +----------------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``./features/xml/request/*``     | XML requests (including SOAP), if any, needed as input to APIs under tests.                                              |
-+----------------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``./features/xml/response/*``    | *(Currently not used, future versions will allow for comparing XML/SOAP responses directly)*                             |
-+----------------------------------+--------------------------------------------------------------------------------------------------------------------------+
-| ``./features/form/request/*``    | Multipart-Encoded File uploads, if any to send in requests.                                                              |
+| ``./features/form/request/*``    | Multipart-encoded File uploads, if any, to send in requests                                                              |
 +----------------------------------+--------------------------------------------------------------------------------------------------------------------------+
 
 Each set of related tests concerned with a particular feature is kept in
@@ -183,38 +126,17 @@ customers, you could have the following files:
         └── cust-update.feature
 
 How you structure the tests is completely up to you as long as
-individual files end in \*.feature.
+individual files end in the \*.feature file name patterns.
 
-Anatomy of a test
------------------
+How does a test work?
+---------------------
 
-Here's how a sample test kept in ``./features/cust-update.feature`` may
-look like. For comparison, it shows both SOAP and REST assertions. This
-is the literal copy of a test, everything is in plain English:
+Here is how a sample test kept in ``./features/cust-update.feature`` may
+look like. This is the literal copy of a test, everything is in plain English:
 
 ::
 
     Feature: Customer update
-
-    Scenario: SOAP customer update
-
-        Given address "http://example.com"
-        Given URL path "/xml/customer"
-        Given SOAP action "update:cust"
-        Given HTTP method "POST"
-        Given format "XML"
-        Given namespace prefix "cust" of "http://example.com/cust"
-        Given request "cust-update.xml"
-        Given XPath "//cust:name" in request is "Maria"
-        Given XPath "//cust:last-seen" in request is a random date \
-                    before "2015-03-17" "default"
-
-        When the URL is invoked
-
-        Then XPath "//cust:action/cust:code" is an integer "0"
-        And XPath "//cust:action/cust:msg" is "Ok, updated"
-
-        And context is cleaned up
 
     Scenario: REST customer update
 
@@ -223,22 +145,20 @@ is the literal copy of a test, everything is in plain English:
         Given query string "?id=123"
         Given HTTP method "PUT"
         Given format "JSON"
-        Given header "X-Node" "server-test-19"
+        Given header "X-Server" "server-test-19"
         Given request "cust-update.json"
-        Given JSON Pointer "/name" in request is "Maria"
-        Given JSON Pointer "/last-seen" in request is UTC now "default"
+        Given path "/name" in request is "Maria"
+        Given path "/last-seen" in request is UTC now "default"
 
         When the URL is invoked
 
-        Then JSON Pointer "/action/code" is an integer "0"
-        And JSON Pointer "/action/message" is "Ok, updated"
+        Then path "/action/code" is an integer "0"
+        And path "/action/message" is "Ok, updated"
         And status is "200"
-        And header "X-My-Header" is "Cool"
+        And header "X-My-Header" is "My.Value"
 
 -  Each test begins with a ``Feature:`` preamble which denotes what is
    being tested
--  A test may have multiple scenarios - here one scenario has been
-   created for each SOAP and REST
 -  Each scenario has 3 parts, corresponding to building a request,
    invoking an URL and running assertions on a response received:
 
@@ -256,12 +176,6 @@ is the literal copy of a test, everything is in plain English:
    between double quotation marks, for instance
    ``Given address "http://example.com"`` is an invocation of a
    ``Given address "{address}"`` pattern.
-
-Available steps and assertions
-------------------------------
-
-All the :doc:`default steps are listed separately <./step/index>`.
-The list also contains links to usage examples.
 
 Where to keep configuration
 ---------------------------
@@ -297,7 +211,7 @@ one below.
         Given format "JSON"
         Given I store "Maria Garca" under "cust_name"
         Given request is "{}"
-        Given JSON Pointer "/customer_id" in request is "$MYAPP_DEFAULT_CUSTOMER"
+        Given path "/customer_id" in request is "$MYAPP_DEFAULT_CUSTOMER"
 
         When the URL is invoked
 
@@ -309,8 +223,8 @@ one below.
         Given URL path "@MYAPP_PATH_PAYMENTS"
         Given format "JSON"
         Given request is "{}"
-        Given JSON Pointer "/cust_login" in request is "#cust_login"
-        Given JSON Pointer "/cust_name" in request is "#cust_name"
+        Given path "/cust_login" in request is "#cust_login"
+        Given path "/cust_name" in request is "#cust_name"
 
         When the URL is invoked
 
@@ -328,19 +242,22 @@ Discussion:
 -  Variable 'cust\_login' is set to a value returned in response to the
    fist scenario
 -  Second scenario makes use of data prepared by the first one
--  Remember to
-   :doc:`clean up the context <step/then_context_is_cleaned_up>` if you
-   actually do not want for any config variables to be carried over from
+-  Remember to use clean up the current execution context using the "Then context is cleaned up"
+   if you actually do not want for any config variables to be carried over from
    a step to subsequent ones
+
+Note that when you give additional options to the ``apitest run``
+command, they will be passed to the underlying test runner, just like the
+options stored in the config.ini file. For instance, in a test run you
+can exclude and include only certain features using the ``-e`` option
+and ``-i`` options.
 
 Extending zato-apitest and adding custom assertions
 ---------------------------------------------------
 
-zato-apitest comes with almost :doc:`100 of default steps <./step/index>` and
-it's easy to add new ones.
-
-Let's say that we need to add a step that will return the name of any
-weekday coming after one provided on input. So, for instance, if it's
+It is easy to add new steps - let's say that we need to add a step
+that will return the name of any
+weekday coming after one provided on input. So, for instance, if it is
 Thursday on input, the step should return Friday, Saturday or Sunday.
 
 Each zato-apitest environment contains a ``./features/steps/steps.py``
@@ -350,7 +267,7 @@ simply add your own steps to it. They are always based
 so that is where all the additional
 details are explained.
 
-Here's what needs to be added to ``./features/steps/steps.py`` for the
+Here is what needs to be added to ``./features/steps/steps.py`` for the
 new step to be available:
 
 .. code-block:: python
@@ -361,7 +278,7 @@ new step to be available:
 
     week_days = 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'
 
-    @given('JSON Pointer "{path}" in request is a weekday after "{start}"')
+    @given('path "{path}" in request is a weekday after "{start}"')
     @obtain_values
     def given_weekday_after(ctx, path, start):
         """ Returns any weekday after the start one.
@@ -396,7 +313,7 @@ Now you can make use of it in tests, for instance:
         Given URL path "/demo/json"
         Given format "JSON"
         Given request is "{}"
-        Given JSON Pointer "/day" in request is a weekday after "Fri"
+        Given path "/day" in request is a weekday after "Fri"
 
         When the URL is invoked
 
@@ -405,65 +322,77 @@ Now you can make use of it in tests, for instance:
 Naming conventions
 ------------------
 
-The name 'Zato', case insensitive, cannot be used anywhere in your
-tests. Don't use it as a prefix, suffix or anywhere else. This applies
-to step names, variables, functions, anything. This is a system name
-reserved for the tool's own purposes.
+The name 'Zato', case insensitive, cannot be used anywhere in your tests. Don't use it as a prefix, suffix or anywhere else.
+This applies to step names, variables, functions, anything. This is a system name reserved for the tool's own purposes.
 
-Changelog
----------
+Available steps and assertions
+------------------------------
 
--  **1.12** - 26-10-2018
+Keep in mind that the very first assertion starts with "Then" but then all the following one start with "And"
+instead of "Then".
 
--  Added compatibility with PostgreSQL 10+
--  Dropped the requirement to depend on exact versions of external dependencies
-
--  **1.11** - 29-01-2017
-
--  Use non-zero process exit code if any of test scenarios fail
-
--  **1.10** - 22-01-2016
-
--  Added steps for validating list elements in JSON responses
-
--  **1.9** - 18-03-2015
-
--  Updated dependencies so it's easier to install zato-apitest under
-   virtualenv
-
--  **1.8** - 29-12-2014
-
--  Added RAW requests and responses
-
--  **1.7** - 01-12-2014
-
--  Absolutize Cassandra CSV paths
-
--  **1.6** - 01-12-2014
-
--  Fixed Cassandra test cases
-
--  **1.5** - 01-12-2014
-
--  Fixed Cassandra queries not being submitted
-
--  **1.4** - 21-10-2014
-
--  Fixed inconsistent release number with 1.3
-
--  **1.3** - 12-10-2014
-
--  Fixed installation issues with pip
-
--  **1.2** - 04-10-2014
-
--  Added SQL
--  Added Cassandra
-
--  **1.1** - 26-06-2014
-
--  Added HTTP Basic Auth
-
--  **1.0** - 06-06-2014
-
--  Initial release
+=============================================================================== ==========================================================================================================================
+Pattern                                                                         Notes
+=============================================================================== ==========================================================================================================================
+Given address "{address}"                                                       An address of the API to invoke
+Given Basic Auth "{username}" "{password}"                                      Username and password for HTTP Basic Authentication
+Given URL path "{url_path}"                                                     URL path to invoke
+Given HTTP method "{method}"                                                    HTTP method to use for invoking
+Given request file "{name}" is "{value}"                                        Specifies the path to a file upload, relative to the ./features/form/request directory. This will send the request
+                                                                                with http header Content-Type: multipart/form-data; boundary=\<boundary\>
+Given request param "{name}" is "{value}"                                       This will send the request with HTTP header Content-Type: application/x-www-form-urlencoded
+Given format "{format}"                                                         Either 'JSON' or 'POST'
+Given user agent is "{value}"                                                   User-Agent string to use
+Given header "{header}" "{value}"                                               Arbitrary HTTP header to provide to the API
+Given request "{request_path}"                                                  Name of a file the request is kept in. ``./features/json/request`` or ``./features/form/request`` will be prepended
+                                                                                automatically.
+Given request is "{data}"                                                       Request to use, inlined.
+Given query string "{query_string}"                                             Query string parameters in format of ?a=1&amp;b=2, including the question mark
+Given date format "{name}" "{format}"                                           Stores a date format ``format`` under a label ``name`` for use in later assertions
+Given I store "{value}" under "{name}"                                          Stores an arbitrary ``value`` under a ``name`` for use in later assertions
+Given path "{path}" in request is "{value}"                                     Sets ``path`` to a string ``value`` in the request
+Given path "{path}" in request is an integer "{value}"                          Sets ``path`` to an integer ``value`` in the request
+Given path "{path}" in request is a float "{value}"                             Sets ``path`` to a float ``value`` in the request
+Given path "{path}" in request is a list "{value}"                              Sets ``path`` to a list ``value`` in the request
+Given path "{path}" in request is a random string                               Sets ``path`` to a randomly generated string in the request
+Given path "{path}" in request is a random integer                              Sets ``path`` to a randomly generated integer in the request
+Given path "{path}" in request is a random float                                Sets ``path`` to a randomly generated float in the request
+Given path "{path}" in request is one of "{value}"                              Sets ``path`` to a randomly chosen string out of ``value`` in the request
+Given path "{path}" in request is a random date "{format}"                      Sets ``path`` to a randomly generated date using format ``format``
+Given path "{path}" in request is a random date after "{date_start}" "{format}"
+Given path "{path}" in request is a random date before "{date_end}" "{format}"
+Given path "{path}" in request is now "{format}"                                Sets ``path`` to now in local timezone, using format ``format``
+Given path "{path}" in request is UTC now "{format}"                            Sets ``path`` to now in UTC, using format ``format``
+Given path "{path}" in request is a random date between                         Sets ``path`` to a randomly generated date between ``date_start`` and ``date_end``, using format ``format``
+"{date_start}" and "{date_end}" "{format}"
+When the URL is invoked                                                         Invokes the HTTP-based API under test
+Then status is "{status}"                                                       Asserts that the HTTP status code in response is ``status``
+Then context is cleaned up
+                                                                                Cleans up any scenario-specific data, such as namespaces or date formats. Without it, they are carried over to
+                                                                                subsequent scenarios
+Then header "{header}" is "{value}"                                             Asserts that a ``header`` exists and has value ``value``
+Then header "{header}" is not "{value}"                                         Asserts that a ``header`` exists and does not have value ``value``
+Then header "{header}" contains "{value}"                                       Asserts that a ``header`` exists and contains substring ``value``
+Then header "{header}" does not contain {value}"                                Asserts that a ``header`` exists and does not contain substring ``value``
+Then header "{header}" exists                                                   Asserts that a ``header`` exists, regardless of its value
+Then header "{header}" does not exist                                           Asserts that a ``header`` does not exist
+Then header "{header}" is empty                                                 Asserts that a ``header`` exists and is an empty string
+Then header "{header}" is not empty                                             Asserts that a ``header`` exists and is any non-empty string
+Then header "{header}" starts with "{value}"                                    Asserts that a ``header`` exists and starts with substring ``value``
+Then header "{header}" does not start with {value}"                             Asserts that a ``header`` exists and does not start with substring ``value``
+Then header "{header}" ends with "{value}"                                      Asserts that a ``header`` exists and ends with substring ``value``
+Then header "{header}" does not end with "{value}"                              Asserts that a ``header`` exists and does not end with substring ``value``
+Then I store "{path}" from response under "{name}"                              Stores values of paths under labels for the duration of a single test case (feature)
+Then I store "{path}" from response under "{name}", default "{default}"         Like above but default value will be used if the response does not contain the provided path
+Then path "{path}" contains "{value}"                                           Asserts that ``value`` is in the ``path``, that it is its substring
+Then path "{path}" is "{value}"                                                 Asserts that ``path`` is of the ``value`` provided
+Then path "{path}" is a float "{value}"                                         As above, confirming additionally that ``value`` is a float
+Then path "{path}" is a list "{value}"                                          As above, confirming additionally that ``value`` is a list
+Then path "{path}" is an integer "{value}"                                      As above, confirming additionally that ``value`` is an integer
+Then path "{path}" is empty                                                     Asserts that ``path`` exists and that it is an empty string
+Then path "{path}" is one of "{value}"                                          Asserts that ``path`` contains a value from the ``value`` elements
+Then path "{path}" is not one of "{value}"                                      The opposite of the above
+Then path "{path}" is not empty                                                 Asserts that ``path`` exists with any value
+Then response is equal to "{expected}"                                          Asserts that the entire response is equal to ``expected``
+Then response is equal to that  from "{path}"                                   Asserts that the entire response is equal to what is found in the file pointed to by ``path``
+=============================================================================== ==========================================================================================================================
