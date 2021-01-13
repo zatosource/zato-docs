@@ -528,6 +528,6 @@ Getting support
 This concludes the tutorial - you are now ready to :doc:`explore the platform <../index>` further and build your own API solutions
 using Zato.
 
-If you require assistance, remember that Zato has full commercial, enterprise development as well as 24x7x365
-production support. Visit the dedicated `support page <https://zato.io/support.html?t>`_ for more details
-and always feel free to contact info@zato.io with any kind of questions.
+If you have any questions, remember that Zato has full commercial, enterprise support, including
+development and production assistance. Visit the dedicated `support page <https://zato.io/support.html?t>`_ for more details
+and always feel free to contact info@zato.io with any kind of inquiries.
