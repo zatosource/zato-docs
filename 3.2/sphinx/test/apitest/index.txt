@@ -1,5 +1,5 @@
-zato-apitest - API Testing for Humans
-=====================================
+apitest - Zato API Testing
+==========================
 
 Introduction
 ------------

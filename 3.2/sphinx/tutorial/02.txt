@@ -130,8 +130,8 @@ Username     api1
 This created a new AMQP connection definition and we need to set the user's password. Click Change password and enter
 **PJs4TEeui118A** - note that the password changes periodically and it may be different if you visit the tutorial in some time.
 
-At this point, we have a definition but by itself, it will not connect to an AMQP broker, it is only channels or outconns
-that connect using configuration and credentials from their definitions.
+At this point, we have a definition but by itself, it will not exchange messages with an AMQP broker, it is only channels or outconns
+that to do it using configuration and credentials from their parent definitions.
 
 Hence, create a new AMQP outconn at Connections -> Outgoing -> AMQP. Except for the two specific values below
 you can leave the rest unchanged with blank or default values.
@@ -146,8 +146,8 @@ Definition Fraud Detection Definition
 Pinging AMQP with publications
 ------------------------------
 
-We can ping a remote AMQP broker by publishing a message to it. While in Connections -> Outgoing -> AMQP
-and click Publish.
+We can ping a remote AMQP broker by publishing a message to it. Go to Connections -> Outgoing -> AMQP
+and click Publish in the table displayed.
 
 .. image:: /gfx/tutorial/dashboard-outconn-amqp-publish-button.png
 
@@ -388,21 +388,146 @@ an AMQP message too:
   INFO - Invoking Payments; u=my.user, a=123456
   INFO - Notifying Fraud detection; u=my.user
 
-As far as the implementation goes, we are done, this is everything.
-
-Even if we have only covered the tip of the iceberg in terms of Zato offers, what we have already is a fully working integration
-platform and a service integrating API clients with three backend systems. All of that in a manner that is scalable
-and easy to customise.
-
-There is still one aspect though - so far, we have been only using the Dashboard. This is good but when it comes
-to automated deployment, we would like to have a way to export our configuration from one environment to another.
-This is what we will be dealing with in the next section.
-
-Enmasse automation
-------------------
+As far as the implementation goes, we are done, this is everything. What we have now is a fully working integration
+platform and a service integrating API clients with three backend systems.
 
 More features
 -------------
 
+We have only covered the tip of the iceberg in terms of Zato offers so let's quickly list all the various features
+that are available for building API and server-side systems.
+
+* Message broker with publish/subscribe topics and message queues
+* File transfer
+* Task scheduler
+* REST and Python Single Sign-On
+* Statistics
+* Channels: AMQP, HL7, IBM MQ, JSON-RPC, REST, SOAP, WebSockets and ZeroMQ
+* Outgoing connections: AMQP, FTP, HL7, IBM MQ, LDAP, Redis, MongoDB, Odoo, REST, SAP RFC, SFTP, SOAP, SQL, WebSockets and ZeroMQ
+* More connection types: AWS S3, Dropbox, Built-in cache, Memcached, ElasticSearch, Solr, Swift, Cassandra, Slack, Telegram,
+  IMAP, SMTP and Twilio
+* Security: API keys, HTTP Basic Auth, JWT, NTLM, OAuth, RBAC, SSL/TLS, Vault, WS-Security and XPath
+* CLI and API offered as services (e.g. Dashboard itself is an API client of the platform's own public services)
+* Numerous smaller tools and utilities
+
+Let's also have a quick look at two features in particular - deployment automation and API testing.
+
+Enmasse automation
+------------------
+
+Throughout the tutorial, we have been only using the Dashboard to configure Zato objects, such as channels or outgoing
+connections. This is good but when it comes to automated deployment, we would like to have a way to export our configuration
+and import it in another environment. This is just what we will do now.
+
+Among other command line options is :doc:`zato enmasse <../admin/guide/enmasse>` - this command lets you export definitions of Zato objects,
+merge multiple ones and import them in other environments. The data format it uses is either YAML or JSON, depending on one's
+preferences.
+
+The typical workflow with enmasse is to progressively keep exporting definitions from a development environment and store
+them in a code repository, exporting them to other environments when the time comes. Because they are simple human-readable
+files, it is easy to diff them or replace their contents during deployment.
+
+In practice, enmasse is used as here:
+
+.. code-block:: text
+
+  $ zato enmasse ~/env/qs-1/server1 --export-odb
+  ODB objects read
+  ODB objects merged in
+  Data exported to /opt/zato/zato-export-2021-01-13T15_27_35_609729.yml
+  $
+
+The resulting file will contain definitions of all the objects found in the cluster the server
+the tool is connecting to contains. For instance, we can find our AMQP outgoing connection among them:
+
+.. code-block:: text
+
+  ..
+
+  outconn_amqp:
+
+    - def_name: 'Fraud Detection Definition'
+      name: 'Fraud Detection Connection'
+      priority: 5
+  ..
+
+After preprocessing, such a file can be stored in git. Moreover, to reduce any chance for conflicts, multiple developers
+can each have his or her own file of that sort and enmasse will combine them when it is time to import the objects as a whole.
+
+As to how importing works, it is akin to the previous call. Note the usage of the ``--replace-odb-objects`` flag - this tells
+enmasse to update already existing objects in-place, otherwise it would refuse to continue lest it was not actually
+your intention to replace what is already stored in the cluster's Operational Database (ODB).
+
+.. code-block:: text
+
+  $ zato enmasse ~/env/qs-1/server1 --import \
+    --input ./zato-export-2021-01-13T15_27_35_609729.yml \
+    --replace-odb-objects
+  Invoking zato.outgoing.amqp.edit for outconn_amqp
+  Updated object `Fraud Detection Connection`
+  $
+
+
+API testing
+-----------
+
+We have implementation, configuration and automated deployment so now we can add API tests.
+
+Zato has a command line tool called :doc:`apitest <../test/apitest/index>` which lets you write tests in pure English
+and we can use it to test the integration scenario developed in this tutorial:
+
+.. image:: /gfx/tutorial/apitest-result.png
+
+Let's copy the test below to make it easier to analyse it:
+
+.. code-block:: text
+
+  Feature: Zato Tutorial
+
+  Scenario: *** Call api.user.get-details ***
+
+      Given address "http://localhost:11223"
+      Given Basic Auth "api" "<password>"
+      Given URL path "/api/v1/user"
+      Given format "JSON"
+      Given HTTP method "GET"
+      Given request is "{}"
+      Given path "/user_name" in request is "my.user"
+
+      When the URL is invoked
+
+      Then path "/user_name" is "my.user"
+      And path "/user_type" is "RGV"
+      And path "/account_no" is "123456"
+      And path "/account_balance" is "357.9"
+      And status is "200"
+      And header "X-Zato-CID" is not empty
+
+* All API tests are written in English, without a need for any programming - this makes it easy for everyone
+  to participate in their creation
+
+* Tests are broken out into features and scenarios. E.g. a feature may be "User Account Management" with
+  individual scenarios testing CRUD and other parts of the functionality.
+
+* Scenarios may relay information and context across tests, e.g. it is possible
+  to have a setup scenario preparing data to test with, followed by tests and ending with a tear down phase
+  that cleans up test data. This is just like with unit-tests except that here we test entire APIs
+  using live environments
+
+* It is possible to form chain of tests invocations, e.g. one test may get user data, extract what is needed
+  and pass it on to another test that needs this information
+
+* Tests configuration can be kept in external files or environment variables - it means that the same tests
+  can be used with different input, output or different environments
+
+* Because apitest runs from command line, it is easy to plug it into any kind of a development and deployment pipeline
+
 Getting support
 ---------------
+
+This concludes the tutorial - you are now ready to explore the platform further and build your own API solutions
+using Zato.
+
+If you require assistance, remember that Zato has full commercial, enterprise development and 24x7x365
+production support. Visit the dedicated `support page <https://zato.io/support.html?t>`_ for more details
+and always feel free to contact info@zato.io with any kind of questions.
