@@ -180,7 +180,7 @@ The logic of our service shall be:
 In a bigger integration project, an individual user would have more than one bank account
 but here we keep it simple and assume that each user has one bank account.
 
-Here is the full Python implementation of the logic above. You can also find it on GitHub ZXCZXCZXC.
+Here is the full Python implementation of the logic above.
 
 .. code-block:: python
   :linenos:
@@ -525,9 +525,9 @@ Let's copy the test below to make it easier to analyse it:
 Getting support
 ---------------
 
-This concludes the tutorial - you are now ready to explore the platform further and build your own API solutions
+This concludes the tutorial - you are now ready to :doc:`explore the platform <../index>` further and build your own API solutions
 using Zato.
 
-If you require assistance, remember that Zato has full commercial, enterprise development and 24x7x365
+If you require assistance, remember that Zato has full commercial, enterprise development as well as 24x7x365
 production support. Visit the dedicated `support page <https://zato.io/support.html?t>`_ for more details
 and always feel free to contact info@zato.io with any kind of questions.
