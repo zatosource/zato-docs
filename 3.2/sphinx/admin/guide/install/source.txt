@@ -4,7 +4,7 @@ Zato installation from source code
 Requirements
 ------------
 
-* RHEL/CentOS, Ubuntu, Debian, Mac, Suse or Alpine Linux
+* Ubuntu, RHEL/CentOS, Suse or Debian
 * Sudo powers
 
 Installation steps

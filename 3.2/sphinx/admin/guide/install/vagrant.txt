@@ -20,7 +20,7 @@ Quickstart
 
     user@host$ mkdir -p ~/zato-vagrant && cd ~/zato-vagrant
     user@host$ curl \
-        https://raw.githubusercontent.com/zatosource/zato-build/master/vagrant/zato-3.1/download.sh | \
+        https://raw.githubusercontent.com/zatosource/zato-build/master/vagrant/zato-3.1/Vagrantfile | \
         bash
 
 * Deploy Zato in Vagrant.
@@ -73,7 +73,6 @@ Variable                    Notes
 =========================== ==================================================================
 ZATO_WEB_ADMIN_PASSWORD     Password to login to web-admin with
 ZATO_IDE_PUBLISHER_PASSWORD Password for :doc:`IDE integration <../../../../progguide/ide/index>`
-ZATO_PY_VERSION             Python version. One of py3 or py27.
 ZATO_ENMASSE_FILE           Full path or URL to :doc:`an enmasse file <../../enmasse>` with
                             object definitions to been imported.
 ZATO_HOST_DEPLOY_DIR        Full path to folder containing the services for

@@ -7,15 +7,11 @@ Tutorial - part 1/2
 Introduction
 ------------
 
-Before you begin, make sure to read the `high-level overview <./02>`_ for a general introduction to Zato and API integrations.
-
 This **Zato** programming tutorial will guide you through the process of creating a real-world API service that,
 with Python, will integrate three applications using REST and AMQP. The result will be a solution
 ready to use in production.
 
-But first, here are some real-world examples of what Zato can be used for - note that Zato is a general-purpose
-platform and the samples span various distinct industries and domains. The platform can be used in all kinds
-of scenarios that require integrations of distributed systems.
+But first, here are some real-world examples of what Zato can be used for:
 
 * A platform for processing **payments** from consumer devices
 
@@ -47,6 +43,10 @@ of scenarios that require integrations of distributed systems.
 What they all have in common is the level of complexity involved in integration processes. It is typical for such environments
 to have at least several and sometimes several dozen or several hundred independent applications exchanging messages,
 each possibly using a different technology and data format.
+
+Note that Zato is a general-purpose
+platform and the samples span various distinct industries and domains. The platform can be used in all kinds
+of scenarios that require integrations of distributed systems.
 
 API services
 ============

@@ -4,8 +4,7 @@ Installing Zato binaries
 Operating system considerations
 -------------------------------
 
-The following platforms are supported. For each of the systems packages for Python 2.7 and 3.x are available. Both Python
-lines are fully supported and there are no functional differences in packages for either.
+Below are all of the supported systems and versions. Under Ubuntu, make sure that you install Zato using an LTS release.
 
 ============================ ====================== ================================================================================
 System                       Version                Notes
@@ -14,13 +13,14 @@ Windows                      Any                    Install `Ubuntu 18.04 LTS or
                                                     under `VirtualBox <https://www.virtualbox.org/wiki/Downloads>`_ and proceed to
                                                     :doc:`installation instructions on Ubuntu <./ubuntu>`
 Mac                          Any                    (ditto)
-Docker Quickstart            Any                    :doc:`Install <./docker>`
-Docker Swarm                 Any                    :doc:`Install <./swarm>`
-Docker Kubernetes            Any                    :doc:`Install <./kubernetes>`
-Docker Kubernetes Helm       Any                    :doc:`Install <./kubernetes-helm>`
 Ubuntu                       18.04, 20.04           :doc:`Install <./ubuntu>`
 RHEL/CentOS                  7.x, 8.x               :doc:`Install <./rhel>`
 Debian                       10.x                   :doc:`Install <./debian>`
 Suse Linux Enterprise Server 15.x                   :doc:`Install <./sles>`
+Vagrant                      Any                    :doc:`Install <./vagrant>`
+Docker Quickstart            Any                    :doc:`Install <./docker>`
+Docker Swarm                 Any                    :doc:`Install <./swarm>`
+Docker Kubernetes            Any                    :doc:`Install <./kubernetes>`
+Docker Kubernetes Helm       Any                    :doc:`Install <./kubernetes-helm>`
 Source                       Any                    :doc:`Install <./source>`
 ============================ ====================== ================================================================================

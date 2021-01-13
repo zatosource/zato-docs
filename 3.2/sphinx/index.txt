@@ -21,7 +21,7 @@ Getting help
 
 * `Twitter <https://twitter.com/zatosource>`_ for quick questions and answers
 
-* Documentation for: `3.2 </docs/3.2/>`_ (current) · `3.1 </docs/3.1/>`_ (previous)
+* Documentation for: `3.2 </docs/3.2/>`_ (coming soon) · `3.1 </docs/3.1/>`_ (stable)
 
 
 What makes Zato unique
@@ -383,8 +383,6 @@ Zato, the open-source project
    admin/cli/crypto/*
    admin/guide/*
    admin/guide/install/*
-   admin/guide/install/py27/*
-   admin/guide/install/py3/*
    admin/guide/install-config/*
    admin/guide/migrate/*
    admin/guide/rbac/*

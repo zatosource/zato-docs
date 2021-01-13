@@ -525,9 +525,9 @@ Let's copy the test below to make it easier to analyse it:
 Getting support
 ---------------
 
-This concludes the tutorial - you are now ready to :doc:`explore the platform <../index>` further and build your own API solutions
-using Zato.
-
 If you have any questions, remember that Zato has full commercial, enterprise support, including
 development and production assistance. Visit the dedicated `support page <https://zato.io/support.html?t>`_ for more details
 and always feel free to contact info@zato.io with any kind of inquiries.
+
+This concludes the tutorial - you are now ready to :doc:`explore the platform <../index>` further and build your own API solutions
+using Zato.
