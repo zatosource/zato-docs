@@ -21,7 +21,7 @@ In this part we will make the service actually obtain data from remote systems a
 with its business requirements. Initial chapters of this part of the tutorial will mostly use the Dashboard
 to configure external connections and we will return to Python afterwards.
 
-To invoke other systems, applications and APIs, Zato services uses outgoing connections which is the
+To invoke other systems, applications and APIs, Zato services use outgoing connections which is the
 concept we will cover now.
 
 Outgoing connections
@@ -31,37 +31,37 @@ Outgoing connections are the natural counterpart to channels. Whereas channels a
 Zato services become available to external API clients, with outgoing connections (outconns for short)
 it is Zato services that invoke endpoints of external systems.
 
-All outconns are invoked using attributes from **self.out**, e.g. self.out.rest, self.out.amqp, self.out.sap and so on,
+Outconns are typically invoked using attributes from **self.out**, e.g. self.out.rest, self.out.amqp, self.out.sap and so on,
 maintaining a connection pool internally when needed so that services can just focus on the invocation part.
 
 Outgoing connections, like channels or other Zato elements, let you insulate the business logic of services
 from their configuration. As we will see later, a service only refers to abstract names like "CRM" when it wants
-to access some external resource, without a need for it to know when the CRM actually is, under what address and secured
+to access some external resource, without a need for it to know where the CRM actually is, under what address and secured
 with what credentials.
 
 Separating logic from configuration lets you deploy the same unchanged code to multiple environments. It also means
 that it is easy migrate to new or modified environments. For instance, if today your service connects to a REST API
 with a Basic Auth security definition but tomorrow the API will be secured with TLS private keys, it will be only
-a matter of an update to configuration, but the service will continue to work uninterrupted, without any downtime.
+a matter of an update to configuration and the service will continue to work uninterrupted, without any downtime.
 
-Throughout the tutorial we mostly use the Dashboard to manage configuration but it can be exported to YAML and imported
-in other environments too, we will tell of it later.
+Speaking of configuration, throughout the tutorial we mostly use the Dashboard to manage configuration
+but it can be exported to YAML or JSON and imported in other environments too, we will tell of it later.
 
 In addition to outconns, it is also possible to install libraries from `PyPI <https://pypi.org>`_ and invoke remote
 systems using client libraries for connection types other than what Zato has built-in.
 
-For the purposes of the tutorial, all the REST and AMQP endpoints are already prepared on zato.io so that you do not
+For the purposes of the tutorial, all the REST and AMQP endpoints are already prepared for you so that you do not
 need to set up anything and we can start by creating the outconns now.
 
 REST outgoing connections
 -------------------------
 
-In Dashboard at http://localhost:8183, go to Connections -> Outgoing -> REST and click  Create a new REST outgoing connection.
+In Dashboard at http://localhost:8183, go to ``Connections -> Outgoing -> REST`` and click ``Create a new REST outgoing connection``.
 
 .. image:: /gfx/tutorial/dashboard-outconn-rest-menu.png
 
 A form will pop up, fill it out per the table below. Note the default HEAD ping method, we are going to make use of
-it in the section.
+it in the next section.
 
 =========== ==============================
 Header      Value
@@ -73,8 +73,7 @@ Data format JSON
 Security    No security
 =========== ==============================
 
-We need a REST outgoing connection to the Payments system too, as in the following table. Most of the details
-are the same but note that the URL path contains a string pattern - we will talk about it in a moment.
+We need a REST outgoing connection to the Payments system too, as in the following table.
 
 =========== ==================================
 Header      Value
@@ -90,7 +89,7 @@ Pinging REST outgoing connections
 ---------------------------------
 
 Having created REST outconns, we can check if they have connectivity to the systems they point to by pinging them - there is
-Ping link for each outconn.
+a ``Ping`` link for each outconn.
 
 .. image:: /gfx/tutorial/dashboard-outconn-rest-ping-button.png
 
@@ -99,23 +98,24 @@ Click it and confirm that the response is similar to the one below - as long as 
 .. image:: /gfx/tutorial/dashboard-outconn-rest-ping-result.png
 
 The connection is pinged not from your localhost but from one of the servers in your cluster - in this way you can confirm
-that it truly is your servers, rather than your local connection, that has access to a remote endpoint.
+that it truly is your servers, rather than your local system, that has access to a remote endpoint.
 
 AMQP outgoing connections
 -------------------------
 
 AMQP connections are created similarly to the REST ones except that instead of going directly to outgoing connections,
-we first visit Connections -> Definitions -> AMQP in the Dashboard.
+we first visit ``Connections -> Definitions -> AMQP`` in the Dashboard.
 
-Connection definitions are reusable configuration objects that are used if a given technology or protocol can be used
+Connection definitions are reusable configuration objects that are employed if a given technology or protocol can be used
 in both channels and outgoing connections which is the case with AMQP. The tutorial only sends messages to AMQP
-but in another project you may have both AMQP channels and outconns pointing to the same broker.
+but in another project you may have both AMQP channels and outconns pointing to the same broker and one definition
+encompasses configuration for both.
 
 Having a single definition with credentials for both types makes it convenient
-to update the common parts of the configuration in one place only, i.e. after you change a username or host in
+to update the common parts of the configuration in one place only, e.g. after you change a username or host in
 an AMQP definition, all channels and outgoing connections using this definition will auto-reconfigure and reconnect as needed.
 
-Thus, go to Connections -> Definitions -> AMQP and create a new definition as in this table.
+Thus, go to ``Connections -> Definitions -> AMQP`` and create a new definition as in this table.
 
 ============ ==========================
 Header       Value
@@ -127,13 +127,13 @@ Virtual host tutorial
 Username     api1
 ============ ==========================
 
-This created a new AMQP connection definition and we need to set the user's password. Click Change password and enter
+This created a new AMQP connection definition and we need to set the user's password. Click ``Change password`` and enter
 **PJs4TEeui118A** - note that the password changes periodically and it may be different if you visit the tutorial in some time.
 
 At this point, we have a definition but by itself, it will not exchange messages with an AMQP broker, it is only channels or outconns
 that to do it using configuration and credentials from their parent definitions.
 
-Hence, create a new AMQP outconn at Connections -> Outgoing -> AMQP. Except for the two specific values below
+Hence, create a new AMQP outconn at ``Connections -> Outgoing -> AMQP``. Except for the two specific values below
 you can leave the rest unchanged with blank or default values.
 
 ========== ==========================
@@ -146,8 +146,8 @@ Definition Fraud Detection Definition
 Pinging AMQP with publications
 ------------------------------
 
-We can ping a remote AMQP broker by publishing a message to it. Go to Connections -> Outgoing -> AMQP
-and click Publish in the table displayed.
+We can ping a remote AMQP broker by publishing a message to it. Go to ``Connections -> Outgoing -> AMQP``
+and click ``Publish`` in the table that will display.
 
 .. image:: /gfx/tutorial/dashboard-outconn-amqp-publish-button.png
 
@@ -157,7 +157,7 @@ Now, send a test message using the configuration below.
 Header       Value
 ============ ==========================
 Data         (Any)
-Exchange     /tutorial
+Exchange     tutorial
 Routing key  api
 ============ ==========================
 
@@ -175,7 +175,7 @@ The logic of our service shall be:
 * Accept user_name on input
 * Invoke CRM to get basic user data, including account_number and user_type
 * Invoke Payments to get account details by account_number
-* If user_type matches configuration, notify Fraud detection about it all
+* If user_type matches configuration, notify Fraud detection
 
 In a bigger integration project, an individual user would have more than one bank account
 but here we keep it simple and assume that each user has one bank account.
@@ -305,19 +305,19 @@ We can immediately observe that:
 * This is high-level code - implementation-wise, we operate on the level of Python dicts
   and a few methods
 
-* The service is to a great part independent of the underlying systems it needs to implement;
+* The service is to a great part independent of the underlying systems it needs to integrate;
   it does not concern itself with details of any of the protocols that are used in
   this integration effort
 
 * We use simple methods, like .get, .post or .send to connect to external systems and it
   is the job of the Zato platform to translate it into actual invocations, e.g. the service
   only sends data to 'CRM', 'Payments or 'Fraud Detection Connection' but it does not need to know which
-  REST endpoint AMQP broker is meant by that exactly
+  REST endpoint or an AMQP broker is meant by that exactly
 
 * We check whether to send notifications to the fraud detection system using self.kvdb -
   this stands for a key/value database and it points to Redis, which is where we elect
   to keep our runtime configuration in this particular service and we will return to the subject
-  shortly but first, seeing as the service is ready, we can invoke it.
+  shortly but first, seeing as the service is ready, we are going to invoke it.
 
 Invoking the service
 --------------------
@@ -360,15 +360,15 @@ It is worth to say that in Zato configuration files
 are reloaded automatically and cached in RAM each time they are updated. This means that you
 can change their contents without server restarts and without a need to redeploy your services.
 
-But, to showcase what other options are possible, in our case we decided to keep the runtime
+But, to showcase what other options are possible, in our service we decided to keep the runtime
 configuration in Redis, which is what the ``self.kvdb.conn`` attribute refers to.
 
 Specifically, the self.kvdb.conn.get call checks if there is any value under the chosen
 key - which will be notify.fraud.RGV here because RGV is the user_type returned by the CRM -
 and if there is a value, the Fraud detection system is notified.
 
-We can set this key directly from the Dashboard. Go to Key/value DB -> Remote commands and enter this command followed
-by clicking the Execute button:
+We can set this key directly from the Dashboard. Go to ``Key/value DB -> Remote commands`` and enter this command followed
+by clicking the ``Execute`` button:
 
 .. code-block:: text
 
@@ -379,7 +379,7 @@ successfully.
 
 .. image:: /gfx/tutorial/kvdb-execute-form.png
 
-If we now invoke the service, we will notice a new entry in server logs because this time around we are sending
+If we now invoke the service again, we will notice a new entry in server logs because this time around we are sending
 an AMQP message too:
 
 .. code-block:: text
@@ -437,8 +437,8 @@ In practice, enmasse is used as here:
   Data exported to /opt/zato/zato-export-2021-01-13T15_27_35_609729.yml
   $
 
-The resulting file will contain definitions of all the objects found in the cluster the server
-the tool is connecting to contains. For instance, we can find our AMQP outgoing connection among them:
+The resulting file will contain definitions of all the objects found in the cluster's database.
+For instance, we can find our AMQP outgoing connection among them:
 
 .. code-block:: text
 
@@ -452,7 +452,8 @@ the tool is connecting to contains. For instance, we can find our AMQP outgoing 
   ..
 
 After preprocessing, such a file can be stored in git. Moreover, to reduce any chance for conflicts, multiple developers
-can each have his or her own file of that sort and enmasse will combine them when it is time to import the objects as a whole.
+can each have his or her own file with configuration and enmasse will combine them when it is time to import the objects
+as a whole.
 
 As to how importing works, it is akin to the previous call. Note the usage of the ``--replace-odb-objects`` flag - this tells
 enmasse to update already existing objects in-place, otherwise it would refuse to continue lest it was not actually
@@ -474,7 +475,7 @@ API testing
 We have implementation, configuration and automated deployment so now we can add API tests.
 
 Zato has a command line tool called :doc:`apitest <../test/apitest/index>` which lets you write tests in pure English
-and we can use it to test the integration scenario developed in this tutorial:
+and we can use it to test the integration process developed in this tutorial:
 
 .. image:: /gfx/tutorial/apitest-result.png
 
