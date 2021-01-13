@@ -210,7 +210,6 @@ Here is the full Python implementation of the logic above.
           user_type = crm_data['UserType']
           account_no = crm_data['AccountNumber']
 
-
           # .. get data from Payments ..
           payments_data = self.invoke_payments(user_name, account_no)
 
