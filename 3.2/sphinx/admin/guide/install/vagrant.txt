@@ -53,7 +53,7 @@ Specify environment variables
 
 .. code-block:: shell-session
 
-    user@host$ ZATO_WEB_ADMIN_PASSWORD=3f4bd629-ef5e-4e37-97a9-3ae67d4c98de vagrant up
+    user@host$ ZATO_WEB_ADMIN_PASSWORD=<password-here> vagrant up
 
 * Specify ZATO_HOST_DEPLOY_DIR.
 
