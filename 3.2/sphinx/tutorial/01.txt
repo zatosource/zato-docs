@@ -138,7 +138,7 @@ We will be implementing an API integration process typical to banks and other fi
   to the system accordingly
 
 The Client App is a building block that we will not be developing in the tutorial - this is where
-Django, React, Vue, .NET and other frameworks can be used in actual projects.
+Django, React, Vue, Angular, ASP.NET and other frameworks can be used in actual projects.
 
 On the other hand, remember that other backend systems can invoke the service too - this is crucial, the same
 one can be made available to many applications, each with its own access channel, even if in the tutorial
