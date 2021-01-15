@@ -326,7 +326,7 @@ Let's use curl to access the service:
 .. code-block:: text
 
   # Make sure to use here the password set in the first part of the tutorial
-  $ curl -XPOST https://api:<password>@localhost:11223/api/v1/user \
+  $ curl -XPOST http://api:<password>@localhost:11223/api/v1/user \
        -d '{"user_name": "my.user"}'
 
   # Here is our response

@@ -204,7 +204,7 @@ will be regenerated each time you start a new container.
 
   # Vagrant
   $ cd ~/directory/with/zato/Vagrantfile
-  $ vagrant ssh -c 'cat  /opt/zato/show-credentials'
+  $ vagrant ssh -c 'cat  /opt/zato/get-credentials'
 
 The result will be the same in either case:
 
@@ -324,7 +324,7 @@ in each installation):
 .. code-block:: text
   :emphasize-lines: 4
 
-  $ /opt/zato/show-credentials
+  $ /opt/zato/get-credentials
 
   SSH: oaWMFmbt5Faq6
   IDE: LWdasXlqVrO8Gur00Y3ncGjmHWNLZvr
