@@ -48,7 +48,7 @@ Introduction
       :doc:`High-level overview <intro/overview-high-level>` |
       :doc:`Technical overview <intro/overview-tech>` |
       :doc:`Nomenclature <intro/nomen>` |
-      :doc:`What's new in 3.1 <project/changelog>`
+      :doc:`What's new in 3.2 <project/changelog>`
 
     * **Tutorial:**
       :doc:`Part 1 <tutorial/01>` |
@@ -67,6 +67,103 @@ I18N
       *NL* :doc:`Wat zijn ESB en SOA eigenlijk? <intro/esb-soa-nl>` |
       *PT*  :doc:`O que ESB e SOA são, afinal? <intro/esb-soa-pt>` |
       *TR* :doc:`ESB ve SOA ne anlama geliyor yani? <intro/esb-soa-tr>`
+
+Programming guide
+=================
+
+    * **Examples**
+      :doc:`Overview <progguide/examples/index>` |
+      :doc:`REST <progguide/examples/http>` |
+      :doc:`SimpleIO (SIO) <progguide/examples/sio>` |
+      :doc:`JSON <progguide/examples/json>` |
+      :doc:`XML <progguide/examples/xml>` |
+      :doc:`SOAP <progguide/examples/soap>` |
+      :doc:`CSV <progguide/examples/csv>` |
+      :doc:`Other data formats <progguide/examples/other-formats>` |
+      :doc:`AMQP <progguide/examples/amqp>` |
+      :doc:`FTP <progguide/examples/ftp>` |
+      :doc:`IBM MQ <progguide/examples/jms-wmq>` |
+      :doc:`Redis <progguide/examples/redis>` |
+      :doc:`Scheduler <progguide/examples/scheduler>` |
+      :doc:`SQL <progguide/examples/sql>` |
+      :doc:`ZeroMQ <progguide/examples/zmq>` |
+      :doc:`Cassandra CQL <progguide/examples/cassandra>` |
+      :doc:`SMTP <progguide/examples/smtp>` |
+      :doc:`IMAP <progguide/examples/imap>` |
+      :doc:`Amazon S3 <progguide/examples/cloud/aws/s3>` |
+      :doc:`OpenStack Swift <progguide/examples/cloud/openstack/swift>` |
+      :doc:`ElasticSearch <progguide/examples/search/es>` |
+      :doc:`Solr <progguide/examples/search/solr>` |
+      :doc:`Odoo (OpenERP) <progguide/examples/odoo>` |
+      :doc:`WebSockets <progguide/examples/wsx>` |
+      :doc:`JSON Pointers <progguide/examples/json-pointer>` |
+      :doc:`XPath <progguide/examples/xpath>` |
+      :doc:`Cryptography <progguide/examples/crypto>` |
+      :doc:`Rate-limiting <guide/rate-limit>`
+
+    * **Developing services and applications:**
+      :doc:`Overview <progguide/overview>` |
+      :doc:`Developing services <progguide/service-dev>` |
+      :doc:`Request and response objects <progguide/reqresp/index>` |
+      :doc:`Channels <progguide/channels>` |
+      :doc:`Outgoing connections <progguide/outconn/overview>` |
+      :doc:`Key/value DB (Redis) <progguide/kvdb>` |
+      :doc:`Scheduler <progguide/scheduler>` |
+      :doc:`WebSockets <progguide/wsx>` |
+      :doc:`Invoking other services <progguide/invoking-services>` |
+      :doc:`Distributed locks <progguide/dist-locks>` |
+      :doc:`Date/time utils <progguide/datetime>` |
+      :doc:`Security <progguide/security>` |
+      :doc:`Where to keep configuration <progguide/service-local-config>` |
+      :doc:`HTML with Django templates <progguide/html>` |
+      :doc:`Helpers <progguide/helpers>` |
+      :doc:`Public API <api/index>`
+
+    * **REST:**
+      :doc:`Services <progguide/rest/services>` |
+      :doc:`Channels <progguide/rest/channels>` |
+      :doc:`Outgoing connections <progguide/rest/outconns>` |
+      :doc:`JSON adapter <progguide/rest/json-adapter>`
+
+    * **Patterns:**
+      :doc:`Publish/subscribe <pubsub/index>` |
+      :doc:`Fan-out/fan-in <progguide/patterns/fan-out-fan-in>` |
+      :doc:`Parallel execution <progguide/patterns/parallel-exec>` |
+      :doc:`Invoke/retry <progguide/patterns/invoke-retry>` |
+      :doc:`Async invocation with a callback <progguide/patterns/async-invoke>`
+
+    * **Request/response documents:**
+      :doc:`Overview <progguide/reqresp/index>` |
+      :doc:`SimpleIO (SIO) <progguide/sio/index>` |
+      :doc:`JSON <progguide/json>` |
+      :doc:`XML <progguide/xml>` |
+      :doc:`Other data formats <progguide/other-formats>`
+
+    * **Hooks:**
+      :doc:`Service hooks<progguide/hooks/service>`
+
+    * **Clients:**
+      :doc:`Python <progguide/clients/python>` |
+      :doc:`JavaScript <progguide/clients/js/index>` |
+      :doc:`Django and Flask integration <progguide/clients/django-flask>`
+
+    * **Logging and debugging techniques:**
+      :doc:`Logging <progguide/logging>` |
+      :doc:`Encrypted logs <progguide/enclog/index>` |
+      :doc:`Debugging <progguide/debugging>`
+
+    * **Cryptography:**
+      :doc:`Overview <progguide/crypto/index>` |
+      :doc:`Encryption and decryption <progguide/crypto/encrypt>` |
+      :doc:`Hashing secrets <progguide/crypto/hash>`
+
+    * **Customizing web admin:**
+      :doc:`Making sure you work in the right environment <progguide/web-admin-settings>`
+
+    * **IDE integration:**
+      :doc:`Overview <progguide/ide/index>` |
+      :doc:`PyCharm <progguide/ide/pycharm>` |
+      :doc:`Visual Studio Code <progguide/ide/vscode>`
 
 Web admin reference
 ===================
@@ -183,128 +280,6 @@ Web admin reference
     * **User settings:**
       :doc:`Main view <web-admin/settings/main>`
 
-Programming guide
-=================
-
-    * **Examples**
-      :doc:`Overview <progguide/examples/index>` |
-      :doc:`REST <progguide/examples/http>` |
-      :doc:`SimpleIO (SIO) <progguide/examples/sio>` |
-      :doc:`JSON <progguide/examples/json>` |
-      :doc:`XML <progguide/examples/xml>` |
-      :doc:`SOAP <progguide/examples/soap>` |
-      :doc:`CSV <progguide/examples/csv>` |
-      :doc:`Other data formats <progguide/examples/other-formats>` |
-      :doc:`AMQP <progguide/examples/amqp>` |
-      :doc:`FTP <progguide/examples/ftp>` |
-      :doc:`IBM MQ <progguide/examples/jms-wmq>` |
-      :doc:`Redis <progguide/examples/redis>` |
-      :doc:`Scheduler <progguide/examples/scheduler>` |
-      :doc:`SQL <progguide/examples/sql>` |
-      :doc:`ZeroMQ <progguide/examples/zmq>` |
-      :doc:`Cassandra CQL <progguide/examples/cassandra>` |
-      :doc:`SMTP <progguide/examples/smtp>` |
-      :doc:`IMAP <progguide/examples/imap>` |
-      :doc:`Amazon S3 <progguide/examples/cloud/aws/s3>` |
-      :doc:`OpenStack Swift <progguide/examples/cloud/openstack/swift>` |
-      :doc:`ElasticSearch <progguide/examples/search/es>` |
-      :doc:`Solr <progguide/examples/search/solr>` |
-      :doc:`Odoo (OpenERP) <progguide/examples/odoo>` |
-      :doc:`WebSockets <progguide/examples/wsx>` |
-      :doc:`JSON Pointers <progguide/examples/json-pointer>` |
-      :doc:`XPath <progguide/examples/xpath>` |
-      :doc:`Cryptography <progguide/examples/crypto>` |
-      :doc:`Rate-limiting <guide/rate-limit>`
-
-    * **Developing services and applications:**
-      :doc:`Overview <progguide/overview>` |
-      :doc:`Developing services <progguide/service-dev>` |
-      :doc:`Request and response objects <progguide/reqresp/index>` |
-      :doc:`Channels <progguide/channels>` |
-      :doc:`Outgoing connections <progguide/outconn/overview>` |
-      :doc:`Key/value DB (Redis) <progguide/kvdb>` |
-      :doc:`Scheduler <progguide/scheduler>` |
-      :doc:`WebSockets <progguide/wsx>` |
-      :doc:`Invoking other services <progguide/invoking-services>` |
-      :doc:`Distributed locks <progguide/dist-locks>` |
-      :doc:`Date/time utils <progguide/datetime>` |
-      :doc:`Security <progguide/security>` |
-      :doc:`Where to keep configuration <progguide/service-local-config>` |
-      :doc:`HTML with Django templates <progguide/html>` |
-      :doc:`Helpers <progguide/helpers>` |
-      :doc:`Public API <api/index>`
-
-    * **REST:**
-      :doc:`Services <progguide/rest/services>` |
-      :doc:`Channels <progguide/rest/channels>` |
-      :doc:`Outgoing connections <progguide/rest/outconns>` |
-      :doc:`JSON adapter <progguide/rest/json-adapter>`
-
-    * **Patterns:**
-      :doc:`Publish/subscribe <pubsub/index>` |
-      :doc:`Fan-out/fan-in <progguide/patterns/fan-out-fan-in>` |
-      :doc:`Parallel execution <progguide/patterns/parallel-exec>` |
-      :doc:`Invoke/retry <progguide/patterns/invoke-retry>` |
-      :doc:`Async invocation with a callback <progguide/patterns/async-invoke>`
-
-    * **Request/response documents:**
-      :doc:`Overview <progguide/reqresp/index>` |
-      :doc:`SimpleIO (SIO) <progguide/sio/index>` |
-      :doc:`JSON <progguide/json>` |
-      :doc:`XML <progguide/xml>` |
-      :doc:`Other data formats <progguide/other-formats>`
-
-    * **Hooks:**
-      :doc:`Service hooks<progguide/hooks/service>`
-
-    * **Clients:**
-      :doc:`Python <progguide/clients/python>` |
-      :doc:`JavaScript <progguide/clients/js/index>` |
-      :doc:`Django and Flask integration <progguide/clients/django-flask>`
-
-    * **Logging and debugging techniques:**
-      :doc:`Logging <progguide/logging>` |
-      :doc:`Encrypted logs <progguide/enclog/index>` |
-      :doc:`Debugging <progguide/debugging>`
-
-    * **Cryptography:**
-      :doc:`Overview <progguide/crypto/index>` |
-      :doc:`Encryption and decryption <progguide/crypto/encrypt>` |
-      :doc:`Hashing secrets <progguide/crypto/hash>`
-
-    * **Customizing web admin:**
-      :doc:`Making sure you work in the right environment <progguide/web-admin-settings>`
-
-    * **IDE integration:**
-      :doc:`Overview <progguide/ide/index>` |
-      :doc:`PyCharm <progguide/ide/pycharm>` |
-      :doc:`Visual Studio Code <progguide/ide/vscode>`
-
-Single Sign-On and user management API
-======================================
-
-    * **Overview:**
-      :doc:`Introduction to SSO and user auth API <sso/index>`
-
-    * **Guides:**
-      :doc:`Users <sso/topic/user/index>` |
-      :doc:`Sessions <sso/topic/session/index>` |
-      :doc:`Passwords <sso/topic/password/index>`
-
-    * **Administration:**
-      :doc:`Configuration <sso/config/index>` |
-      :doc:`Command line interface (CLI) <admin/cli/sso>` |
-      :doc:`Audit log <sso/audit/index>`
-
-    * **API Reference:**
-      :doc:`Quick index <sso/ref>` |
-      :doc:`Status codes <sso/status-code>`
-
-API Testing
-===========
-
-    * **REST APIs**:
-      :doc:`Testing REST APIs with apitest <test/apitest/index>`
 
 Administration guide
 ====================
@@ -350,6 +325,33 @@ Architecture
 
     * **Personally Identifiable Information:**
       :doc:`PII - GDPR, HIPAA, PDPA and other regulations <architecture/pii>`
+
+API Testing
+===========
+
+    * **REST APIs**:
+      :doc:`Testing REST APIs with apitest <test/apitest/index>`
+
+
+Single Sign-On and user management API
+======================================
+
+    * **Overview:**
+      :doc:`Introduction to SSO and user auth API <sso/index>`
+
+    * **Guides:**
+      :doc:`Users <sso/topic/user/index>` |
+      :doc:`Sessions <sso/topic/session/index>` |
+      :doc:`Passwords <sso/topic/password/index>`
+
+    * **Administration:**
+      :doc:`Configuration <sso/config/index>` |
+      :doc:`Command line interface (CLI) <admin/cli/sso>` |
+      :doc:`Audit log <sso/audit/index>`
+
+    * **API Reference:**
+      :doc:`Quick index <sso/ref>` |
+      :doc:`Status codes <sso/status-code>`
 
 Statistics
 ==========

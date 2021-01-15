@@ -23,9 +23,7 @@
 
 * Added an API specification and documentation generator, including HTML, OpenAPI and WSDL output
 
-* Added native support for Mac
-
-* Added native support for SUSE
+* Added native support for Suse
 
 * Added means to broadcast messages to multiple WebSocket clients at once
 
