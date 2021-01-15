@@ -54,8 +54,7 @@ Installation steps
 ::
 
     rhel# su - zato
-    rhel$ cd /opt/zato/current && git checkout -- ./requirements.txt
-    rhel$ ./update.sh
+    rhel$ cd /opt/zato/current && ./update.sh
 
 * Confirm the installation
 

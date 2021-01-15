@@ -21,8 +21,7 @@ To install updates, run the commands below:
   ::
 
     $ sudo su - zato
-    zato$ cd /pkg/zato/current
-    zato$ git pull
+    zato$ cd /opt/zato/current && ./update.sh
 
 * Next, regardless of the OS:
 

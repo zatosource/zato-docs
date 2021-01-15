@@ -45,9 +45,8 @@ Installation steps
 
 ::
 
-    sles# su - zato
-    sles$ cd /opt/zato/current && pull
-    sles$ ./update.sh
+    sles$ sudo su - zato
+    sles$ cd /opt/zato/current && ./update.sh
 
 * Confirm the installation
 

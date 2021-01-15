@@ -20,7 +20,7 @@ Quickstart
 
     user@host$ mkdir -p ~/zato-vagrant && cd ~/zato-vagrant
     user@host$ curl \
-        https://raw.githubusercontent.com/zatosource/zato-build/master/vagrant/zato-3.1/Vagrantfile | \
+        https://raw.githubusercontent.com/zatosource/zato-build/master/vagrant/zato-3.2/download.sh | \
         bash
 
 * Deploy Zato in Vagrant.

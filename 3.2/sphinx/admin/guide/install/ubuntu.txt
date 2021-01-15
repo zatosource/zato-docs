@@ -43,8 +43,7 @@ Installation steps
 ::
 
     ubuntu$ sudo su - zato
-    ubuntu$ cd /opt/zato/current && git checkout -- ./requirements.txt
-    ubuntu$ ./update.sh
+    ubuntu$ cd /opt/zato/current && ./update.sh
 
 * Confirm the installation:
 
