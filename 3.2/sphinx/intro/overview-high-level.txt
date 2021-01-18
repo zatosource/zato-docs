@@ -1,108 +1,117 @@
-====================
+==============================================
+What is Zato and why using Python makes sense?
+==============================================
+
 High-level overview
-====================
+-------------------
 
+Zato is a highly scalable, Python-based integration platform for APIs, SOA and microservices. It is used to connect
+distributed systems or data sources and to build API-first, backend applications. The platform is designed and built
+specifically with Python users in mind.
 
-The three-layer architecture
-============================
+Zato is used for enterprise, business integrations, data science, IoT and other scenarios that require integrations
+of multiple systems.
 
-In the classical three-layer architecture of fronted, middleware and backend
-processes, Zato is best suited at the middle or far backend of your IT
-infrastructure.
+Real-world, production Zato environments include:
 
-Areas where Zato shines are business integration - such as implementing an `Enterprise Service Bus (ESB)`_,
-and core services - billing, customer management,
-purchase processing, supporting marketing campaigns, core banking and many
-similar activities that form a backbone of an enterprise.
+* A platform for processing **payments** from consumer devices
 
-.. _Enterprise Service Bus (ESB): https://en.wikipedia.org/wiki/Enterprise_service_bus
+* A system for **a telecommunication operator** integrating CRM, ERP, Billing and other systems as well as applications
+  of the operator's external partners
 
-.. image:: /gfx/three-layer-arch2.png
-   :alt:
+* A **data science** system for processing of information related to securities transactions (FIX)
 
+* A platform for **public administration** systems, helping achieve **healthcare data interoperability** through the
+  integration of independent data sources, databases and health information exchanges (HIE)
 
-Zato can serve as either an ESB or an application server and a successful implementation
-of a Zato environment allows for:
+* A global **IoT platform** integrating medical devices
 
-* aiding in introducing and optimizing complex business processes
-* creating software solutions in less time
-* connecting dispersed applications
-* enabling the communication between systems with incompatible interfaces
-* unifying access methods to independent applications
-* introducing a common security model across different parts of the IT infrastructure
+* A platform to process events produced by **early warning systems**
 
-Zato environments are composed of clusters, each of which is a set of servers
-and supporting applications running in an :doc:`HA<../admin/guide/ha>` configuration.
+* Backend **e-commerce** systems managing multiple suppliers, marketplaces and process flows
 
-Message processing
-==================
+* **B2B** platforms to accept and process multi-channel orders in cooperation with backend **ERP** and **CRM** systems
 
-At its very core, the Zato's production ready processing capabilities allow you
-to:
+* Platforms integrating **real-estate** applications, collecting data from independent data sources to present unified
+  APIs to internal and external applications
 
-* create reusable services
-* transform messages between different formats
-* orchestrate the services of multiple autonomous systems
-* send and receive messages between multiple transport protocols available, using either
-  synchronous or asynchronous methods
-* log, audit and monitor messages flowing through the platform
-* validate the messages according to certain business rules
-* enrich the messages from different sources
-* queue the messages if the applications involved within the integration scenarios run at
-  different processing speeds
-* implement services in less time using `Python`_, a very high-level programming language
-  that promotes ease of use and development speed. A Hello World
-  service is shown below. Such a service can be hot-deployed onto a cluster
-  without a need to restart servers.
+* A system for the management of hardware resources of an **enterprise cloud** provider
 
-  ::
+* **Online auction** sites
 
-      from zato.server.service import Service
+* **E-learning** platforms
 
-      class HelloWorld(Service):
-          def handle(self):
-              self.response.payload = 'How goes it?'
+Zato offers connectors to all the popular technologies, such as REST, SOAP, AMQP, IBM MQ, SQL, Odoo, SAP, HL7, Redis,
+MongoDB, WebSockets, S3 and many more.
 
-.. _Python: http://python.org/
+Running on premises, in the cloud, or under Docker, Kubernetes and other container technologies, Zato services are
+optimised for high performance - it is easily possible to run hundreds and thousands of services on typical server
+instances as offered by Amazon, Google Cloud, Azure or other cloud providers.
 
-Interfaces
-==========
+Zato servers offer high availability and no-downtime deployment. Servers form clusters that are used to scale
+systems both horizontally and vertically.
 
-Various interfaces that Zato can access allow one for reaching out to any application,
-regardless of its origin and programming language used. The interfaces include:
+The software is 100% Open Source with commercial and community `support <https://zato.io/support.html?ohl1>`_ available
 
-* The ubiquitous HTTP protocol
-* REST
-* SOAP
-* Redis-based publish/subscribe for REST applications
-* FTP(S)
-* AMQP
-* IBM MQ
-* ZeroMQ
-* JMS
-* SOAP
-* SQL
-* Redis
-* Cassandra CQL
-* Amazon S3
-* OpenStack Swift
-* Odoo/OpenERP
-* SMTP
-* IMAP
+A platform and language for interesting, reusable and atomic services
+---------------------------------------------------------------------
 
-Web admin
-=========
+Zato promotes the design of, and helps you build, solutions composed of services which are interesting, reusable and atomic (IRA):
 
-Zato has a slick and powerful web admin application for administrator to manage
-the environments. Web admin allows one to perform routine, planned as well as
-ad-hoc activities, such as deploying services, configuring security, access channels,
-browsing the messages and more.
+* **I** for **Interesting** - each service should make its clients want to use it more and more. People should immediately see
+  the value of using the service in their processes. An interesting service is one that strikes everyone as immediately
+  useful in wider contexts, preferrably with few or no conditions, prerequisites and obligations. An interesting service
+  is aesthetically pleasing, both in terms of its technical usage as well as in its potential applicability in fields broader
+  than originally envisaged. If people check the service and say "I know, we will definitely use it" or "Why don't we use it"
+  you know that the service is interesting. If they say "Oh no, not this one again" or "No, thanks, I already know it"
+  then it is the opposite.
+* **R** for **Reusable** - services can be used in different, independent business processes
+* **A** for **Atomic** - each service fullfils a single, atomic business need
 
-.. note ::
+Each service is deployed independently and, as a whole, they constitute an implementation of business processes taking place
+in your company or organisation.
 
-  Almost **no server restarts are required**. Servers automatically reload their configuration
-  without disrupting the message processing. Almost all changes propagate across all nodes
-  of a cluster completely behind the scenes.
+With Zato, developers use Python to focus on the business logic exclusively and the platform takes care of scalability,
+availability, communication protocols, messaging, security or routing. This lets developers concentrate only on what
+is the very core of systems integrations - making sure their services are IRA.
 
-.. image:: /gfx/webadmin1.jpg
-   :alt:
+Python is the perfect choice for API integrations, SOA and microservices, because it hits the sweet spot under several
+key headings:
+
+* It is a very high level language, with syntax close to how grammar of various spoken languages works,
+  which makes it easy to translate business requirements into implementation
+* Yet, it is a solid, mainstream and full-featured, real programming language rather than a domain-specific one which
+  means that it offers to developers a great degree of flexibility and choice in expressing their needs
+* Many Python developers have a strong web programming / open source background which means that it is little effort
+  to take a step further, towards API integrations and backend servers. In turn, this means that it is easy
+  to find good people for API projects.
+* Many Python developers have knowledge of multiple programming languages - this is very useful in the context
+  of integration projects where one is typically faced with dozens of technologies, vendors or integration methods and techniques
+* Lower maintenance costs - thanks to the language's unique design, Python programmers
+  tend to produce code that is easy to read and understand. From the perspective of multi-year maintenance, reading and analysing
+  code, rather than writing it, is what most programmers do most of the time so it makes sense to use a language which
+  makes it easy to carry out the most common tasks.
+
+In short, Python can be construed as executable pseudo-code with many of its users already having roots in
+modern server-side programming so Zato, both from a technical and strategic perspective, is a natural choice for complex
+and sophisticated API solutions as a platform built in the language and designed for Python developers from day one.
+
+More than services
+------------------
+
+Systems integrations commonly require two more features that Zato offers as well:
+
+* File transfer - allows you to move batch data between locations and to distribute it among systems and APIs
+
+* Single Sign-On (SSO) - a convenient REST interface lets you easily provide authentication and authorisation to
+  users across multiple systems
+
+Next steps
+----------
+
+* Start :doc:`the tutorial <../tutorial/01>` to learn more technical details about Zato, including its architecture,
+  installation and usage. After completing it, you will have a multi-protocol service representing a sample scenario
+  often seen in banking systems with several applications cooperating to provide a single, consistent API to its callers.
+
+* Visit `the support page <https://zato.io/support.html?ohl3>`_ if you would like to discuss Zato with its creators
+

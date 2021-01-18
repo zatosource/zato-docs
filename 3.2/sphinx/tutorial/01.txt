@@ -271,7 +271,7 @@ Let's create a new environment in the ~/env/qs-1 directory.
   $
 
 Observe the highlighted line with credentials to the Dashboard - the auto-generated password will never be shown again.
-In case you need to change it, run this command: **zato update password ~/env/qs-1/dashboard admin**.
+In case you need to change it, run this command: **zato update password ~/env/qs-1/web-admin admin**.
 
 Let's start all the components now - note the '--fg' flag when starting the server, this will start
 it in foreground, thanks to which we will be able to stop it with Ctrl/Cmd-C.
@@ -282,7 +282,7 @@ it in foreground, thanks to which we will be able to stop it with Ctrl/Cmd-C.
   OK
   $
 
-  $ zato start ~/env/qs-1/dashboard
+  $ zato start ~/env/qs-1/web-admin
   OK
   $
 
@@ -456,7 +456,7 @@ Dashboard's address is http://localhost:8183, username is admin and if you need 
 
 .. code-block:: text
 
-  $ zato update password ~/env/qs-1/dashboard admin
+  $ zato update password ~/env/qs-1/web-admin admin
 
 Having deployed the code, we can confirm in the Dashboard that the service is there.
 

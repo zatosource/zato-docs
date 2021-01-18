@@ -29,6 +29,9 @@
 
 * Made it easier to greenify libraries that are not gevent-aware by default (e.g. Oracle drivers)
 
+* It is now possible to hot-deploy Python code other than services too, e.g. utilities or data models,
+  and invoke it like regular Python code
+
 * Services subclassing other services will automatically reload when their parent changes
 
 * Services can be now recipients of publish/subscribe messages

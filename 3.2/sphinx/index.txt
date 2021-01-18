@@ -21,22 +21,22 @@ Getting help
 
 * `Twitter <https://twitter.com/zatosource>`_ for quick questions and answers
 
-* Documentation for: `3.2 </docs/3.2/>`_ (coming soon) · `3.1 </docs/3.1/>`_ (stable)
+* Documentation for: `3.2 </docs/3.2/>`_ (dev) · `3.1 </docs/3.1/>`_ (stable)
 
 
 What makes Zato unique
 ======================
 
-* **Open-source ESB**, **SOA**, **REST**, **APIs**, **SSO** and **Cloud Integrations** in **Python**
+* **Open Source API Integrations**, **Microservices**, **SOA** and **ESB** in **Python**
 
-* **HA load-balancer**, **hot-deployment** and **hot-reconfiguration** - no server restarts required
+* **HA load-balancer**, **hot-deployment** and **hot-reconfiguration** - deploy with no downtime
 
 * Browser-based **GUI**, **CLI** and **API** - easy to use and customize
 
-* **Protocols**, **industry standards** and **data formats** - **REST**, **SAP**, **Odoo**, **IBM MQ**, **HL7**,
-  JSON, SOAP, AMQP, JMS, ZeroMQ, WebSockets, Redis, SQL, Cassandra, Amazon S3, Swift,
+* **Protocols**, **industry standards** and **data formats** - **REST**, **SOAP**, **Odoo**, **AMQP**, **HL7**,
+  **MongoDB**, **Redis**, **SAP**, **IBM MQ**, **SQL**, **OpenAPI**, ZeroMQ, WebSockets, Cassandra, Amazon S3, Swift,
   LDAP, Active Directory, Kafka, SMTP, IMAP, FTP, SFTP, ElasticSearch, Solr, Memcached, Twilio, Vault,
-  Slack, Telegram, RBAC, integration patterns, cryptography, security and more
+  Slack, Telegram, RBAC, JMS, integration patterns, cryptography, security and more
 
 * **Commercial support** and **training** available. Growing **community** around the project.
 
@@ -44,10 +44,8 @@ Introduction
 ============
 
     * **Basic concepts:**
+      :doc:`What is Zato and why is it in Python? <intro/overview-high-level>` |
       :doc:`No-nonsense intro to ESB and SOA <intro/esb-soa>` |
-      :doc:`High-level overview <intro/overview-high-level>` |
-      :doc:`Technical overview <intro/overview-tech>` |
-      :doc:`Nomenclature <intro/nomen>` |
       :doc:`What's new in 3.2 <project/changelog>`
 
     * **Tutorial:**
@@ -71,35 +69,28 @@ I18N
 Programming guide
 =================
 
-    * **Examples**
-      :doc:`Overview <progguide/examples/index>` |
-      :doc:`REST <progguide/examples/http>` |
-      :doc:`SimpleIO (SIO) <progguide/examples/sio>` |
-      :doc:`JSON <progguide/examples/json>` |
-      :doc:`XML <progguide/examples/xml>` |
+    * **Popular examples:**
+      :doc:`REST <progguide/examples/rest>` |
       :doc:`SOAP <progguide/examples/soap>` |
-      :doc:`CSV <progguide/examples/csv>` |
-      :doc:`Other data formats <progguide/examples/other-formats>` |
       :doc:`AMQP <progguide/examples/amqp>` |
-      :doc:`FTP <progguide/examples/ftp>` |
-      :doc:`IBM MQ <progguide/examples/jms-wmq>` |
-      :doc:`Redis <progguide/examples/redis>` |
-      :doc:`Scheduler <progguide/examples/scheduler>` |
+      :doc:`Odoo <progguide/examples/odoo>` |
+      `IBM MQ <https://zato.io/blog/posts/python-ibm-mq-part-1.html>`_ |
+      :doc:`Task scheduler <progguide/examples/scheduler>` |
       :doc:`SQL <progguide/examples/sql>` |
-      :doc:`ZeroMQ <progguide/examples/zmq>` |
-      :doc:`Cassandra CQL <progguide/examples/cassandra>` |
-      :doc:`SMTP <progguide/examples/smtp>` |
-      :doc:`IMAP <progguide/examples/imap>` |
-      :doc:`Amazon S3 <progguide/examples/cloud/aws/s3>` |
-      :doc:`OpenStack Swift <progguide/examples/cloud/openstack/swift>` |
-      :doc:`ElasticSearch <progguide/examples/search/es>` |
-      :doc:`Solr <progguide/examples/search/solr>` |
-      :doc:`Odoo (OpenERP) <progguide/examples/odoo>` |
+      `MongoDB <https://zato.io/blog/posts/mongodb.html>`_ |
+      :doc:`Redis <progguide/examples/redis>` |
       :doc:`WebSockets <progguide/examples/wsx>` |
-      :doc:`JSON Pointers <progguide/examples/json-pointer>` |
-      :doc:`XPath <progguide/examples/xpath>` |
+      :doc:`All examples <progguide/examples/index>`
+
+    * **More examples:**
+      :doc:`API testing <progguide/examples/apitest>` |
+      :doc:`Caching <progguide/examples/cache>` |
+      :doc:`Rate limiting <progguide/examples/rate-limit>` |
+      :doc:`E-mail <progguide/examples/email>` |
+      :doc:`S3 <progguide/examples/s3>` |
+      :doc:`ElasticSearch <progguide/examples/es>` |
       :doc:`Cryptography <progguide/examples/crypto>` |
-      :doc:`Rate-limiting <guide/rate-limit>`
+
 
     * **Developing services and applications:**
       :doc:`Overview <progguide/overview>` |

@@ -1,0 +1,337 @@
+.. highlight:: python
+   :linenothreshold: 1
+
+REST programming examples
+=========================
+
+Calling REST APIs
+-----------------
+
+* All data can be prepared as dict objects - this includes the payload, query string parameters,
+  path parameters and HTTP headers too
+
+* Zato will fill in patterns in URL paths, e.g. if the path is ``/api/billing/{phone_no}``
+  then the code below will substitute 271637517 for phone_no and the rest of the parameters
+  will go the query string
+
+::
+
+    # -*- coding: utf-8 -*-
+
+    # Zato
+    from zato.server.service import Service
+
+    class SetBillingInfo(Service):
+        """ Updates billing information for customer.
+        """
+        def handle(self):
+
+        # Python dict representing the payload we want to send across
+        payload = {'billing':'395.7', 'currency':'EUR'}
+
+        # Python dict with all the query parameters, including path and query string
+        params = {'cust_id':'39175', 'phone_no':'271637517', 'priority':'normal'}
+
+        # Headers the endpoint expects
+        headers = {'X-App-Name': 'Zato', 'X-Environment':'Production'}
+
+        # Obtains a connection object
+        conn = self.out.rest['Billing'].conn
+
+        # Invoke the resource providing all the information on input
+        response = conn.post(self.cid, payload, params, headers=headers)
+
+        # The response is auto-deserialised for us to a Python dict
+        json_dict = response.data
+
+        # Assign the returned dict to our response - Zato will serialise it to JSON
+        # and our caller will get a JSON message from us.
+        self.response.payload = json_dict
+
+Accepting REST calls
+--------------------
+
+* Use ``self.request.payload`` to access input data - it is a dict object created by Zato out of the parsed JSON request
+
+::
+
+    # -*- coding: utf-8 -*-
+
+    # Zato
+    from zato.server.service import Service
+
+    class LogInputData(Service):
+        """ Logs input data.
+        """
+        def handle(self):
+
+            # Read input received
+            user_id = self.request.payload['user_id']
+            user_name = self.request.payload['user_name']
+
+            # Store input in logs
+            self.logger.info('uid:%s; username:%s', user_id, user_name)
+
+Invoke it:
+
+.. code-block:: text
+
+  $ curl localhost:11223/api/log-input-data -d '{"user_id":"123", "user_name":"my.user"}'
+
+In server logs:
+
+.. code-block:: text
+
+  INFO - uid:123; username:my.user
+
+
+Reacting to REST verbs
+----------------------
+
+* Implement ``handle_<VERB>`` to react to specific HTTP verbs when accepting requests
+
+* If the service is invoked with a verb that it does not implement, the API client receives status ``405 Method Not Allowed``
+
+::
+
+    # -*- coding: utf-8 -*-
+
+    # Zato
+    from zato.server.service import Service
+
+    class MultiVerb(Service):
+        """ Logs input data.
+        """
+        def handle_GET(self):
+            self.logger.info('I was invoked via GET')
+
+        def handle_POST(self):
+            self.logger.info('I was invoked via POST')
+
+These two will receive HTTP 200:
+
+.. code-block:: text
+
+  $ curl -XGET localhost:11223/api/multi-verb -d '{"user_id":"123"}'
+  $ curl -XPOST localhost:11223/api/multi-verb -d '{"user_id":"123", "user_name":"my.user"}'
+
+But this one will receive HTTP 405:
+
+.. code-block:: text
+
+  $ curl -XDELETE localhost:11223/api/multi-verb -d '{"user_id":"123"}'
+
+Choosing REST verbs to call
+---------------------------
+
+* When invoking REST APIs, each connection object has methods representing a specific HTTP verb, e.g. ``.post``, ``.get``,
+  ``.delete`` and the others. This means that a single connection object can be used to invoke the same endpoint using
+  multiple verbs.
+
+* Method ``.send`` is an alias to ``.post``
+
+::
+
+    # -*- coding: utf-8 -*-
+
+    # Zato
+    from zato.server.service import Service
+
+    class MultiVerbCaller(Service):
+
+        # Data to send
+        payload = {'user_id': '123'}
+
+        # Obtains a connection object
+        conn = self.out.rest['REST Endpoint'].conn
+
+        # Invoke the endpoint with POST
+        response = conn.post(self.cid, payload)
+
+        # Invoke the endpoint with GET
+        response = conn.get(self.cid, payload)
+
+        # Invoke the endpoint with DELETE
+        response = conn.delete(self.cid, payload)
+
+        # This is the same as .post
+        response = conn.send(self.cid, payload)
+
+Request and response objects
+----------------------------
+
+* All data and metadata is available via ``self.request`` and ``self.response`` attributes. Security-related details
+  are in ``self.channel.security``.
+
+Request object:
+
+::
+
+    # -*- coding: utf-8 -*-
+
+    # Zato
+    from zato.server.service import Service
+
+    class RequestObject(Service):
+
+        def handle(self):
+
+            # Here is all input data parsed to a Python object
+            self.request.payload
+
+            # Here is input data before parsing, as a string
+            self.request.raw_request
+
+            # Correlation ID - a unique ID assigned to this request
+            self.request.cid
+
+            # A dictionary of GET parameters
+            self.request.http.GET
+
+            # A dictionary of POST parameters
+            self.request.http.POST
+
+            # REST method we are invoked with, e.g. GET, POST, PATCH etc.
+            self.request.http.method
+
+            # URL path the service was invoked through
+            self.request.http.path
+
+            # Query string and path parameters
+            self.request.http.params
+
+            # This is a method, not an attribute,
+            # it will return form data in case we were invoked with one on input.
+            form_data = self.request.http.get_form_data()
+
+            # Username used to invoke the service, if any
+            self.channel.security.username
+
+            # A convenience method returning security-related details
+            # pertaining to this request.
+            sec_info = self.channel.security.to_dict()
+
+Response object:
+
+::
+
+    # -*- coding: utf-8 -*-
+
+    # Zato
+    from zato.server.service import Service
+
+    class ResponseObject(Service):
+
+        # Returning responses as a dict will make Zato serialise it to JSON
+        self.response.payload = {'user_id': '123', 'user_name': 'my.user'}
+
+        # String data can also be always be returned too,
+        # e.g. because you already have data serialised to JSON or to another data format
+        self.response.payload = '{"my":"response"}'
+
+        # Sets HTTP status code
+        self.response.status_code = 200
+
+        # Sets HTTP Content-Encoding header
+        self.response.content_encoding = 'gzip'
+
+        # Sets HTTP Content-Type - note that Zato itself
+        # sets it for JSON, you do not need to do it.
+        self.response.content_type = 'text/xml; charset=UTF-8'
+
+        # A dictionary of arbitrary HTTP headers to return
+        self.response.headers = {
+            'Strict-Transport-Security': 'Strict-Transport-Security: max-age=16070400',
+            'X-Powered-By': 'My-API-Server',
+            'X-My-Header': 'My-Value',
+        }
+
+Configuring CORS
+----------------
+
+* Implement ``handle_OPTIONS`` and set CORS headers as required in your application
+
+* The actual implementation of the service goes to other methods, handle_POST, handle_GET,
+  as needed by the service
+
+::
+
+    # -*- coding: utf-8 -*-
+
+    # Zato
+    from zato.server.service import Service
+
+    class ConfiguringCORS(Service):
+
+        def handle_POST(self):
+
+            # Actual implementation goes here
+            pass
+
+        def handle_OPTIONS(self):
+
+            # We only allow requests from this particular origin
+            allow_from_name = 'Access-Control-Allow-Origin'
+            allow_from_value = 'https://www.example.com'
+
+            self.response.headers[allow_from_name] = allow_from
+
+
+Returning responses other than JSON
+-----------------------------------
+
+* If data assigned to ``self.response.payload`` is a string, Zato will never try to serialise it
+  or inspect it in any way. In this manner, you can return any kind of response other than JSON,
+  simply serialise it to string yourself and assign it to self.response.payload.
+
+* Attribute ``self.response.content_type`` can be used to set the correct content type for payload returned
+
+::
+
+    # -*- coding: utf-8 -*-
+
+    # Zato
+    from zato.server.service import Service
+
+    class ServiceCSV(Service):
+
+        def handle(self):
+
+            # We return CSV here
+            csv_data = '1,2,3\n4,5,6'
+
+            # Assign data to our response
+            self.response.payload = csv_data
+
+            # Let the caller know what we are returning
+            self.response.content_type = 'text/csv'
+
+
+Returning attachments
+---------------------
+
+Use self.response.payload to set the attachment's body and the HTTP
+Content-Disposition header to signal to clients that you are returning an attachment
+and to indicate what name it is.
+
+In the example, a static string is returned but the attachment's contents
+could as well be read from a file, S3, SFTP or any other data source.
+
+::
+
+   # -*- coding: utf-8 -*-
+
+   from zato.server.service import Service
+
+   class MyService(Service):
+       def handle(self):
+           self.response.payload = 'Hello, this is an attachment'
+           self.response.headers['Content-Disposition'] = 'attachment; filename=hello.txt'
+
+Next steps
+----------
+
+* Start the :doc:`tutorial <../../tutorial/01>`
+* Read about `REST API channels <https://zato.io/blog/posts/rest-api-channels.html>`_
+* Read about `API rate limiting <https://zato.io/blog/posts/api-rate-limiting-intro.html>`_
+* Browse :doc:`more examples <./index>`
