@@ -80,17 +80,8 @@ Programming guide
       `MongoDB <https://zato.io/blog/posts/mongodb.html>`_ |
       :doc:`Redis <progguide/examples/redis>` |
       :doc:`WebSockets <progguide/examples/wsx>` |
-      :doc:`All examples <progguide/examples/index>`
-
-    * **More examples:**
-      :doc:`API testing <progguide/examples/apitest>` |
-      :doc:`Caching <progguide/examples/cache>` |
-      :doc:`Rate limiting <progguide/examples/rate-limit>` |
-      :doc:`E-mail <progguide/examples/email>` |
-      :doc:`S3 <progguide/examples/s3>` |
-      :doc:`ElasticSearch <progguide/examples/es>` |
       :doc:`Cryptography <progguide/examples/crypto>` |
-
+      :doc:`All examples <progguide/examples/index>`
 
     * **Developing services and applications:**
       :doc:`Overview <progguide/overview>` |
