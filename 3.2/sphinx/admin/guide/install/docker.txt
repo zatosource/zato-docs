@@ -57,7 +57,7 @@ For instance, to map local directory **/my/services** to **/opt/hot-deploy** in 
 Importing enmasse definitions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A starting container can import :doc:`enmasse <../../enmasse>` definitions with objects that the cluster running in the
+A starting container can import :doc:`enmasse <../enmasse>` definitions with objects that the cluster running in the
 container should use.
 
 In this manner, channels, connections and other pieces of a cluster's configuration can be recreated each time
@@ -99,7 +99,7 @@ ZATO_WEB_ADMIN_PASSWORD      Password for the web admin’s technical account us
                              the value is generated automatically at runtime.
 ZATO_IDE_PUBLISHER_PASSWORD  Password for user `ide_publisher`, used for IDE integration. If not defined,
                              the value has to be set manually.
-ZATO_ENMASSE_FILE            Full path to :doc:`an enmasse file <../../enmasse>` with object definitions to been imported.
+ZATO_ENMASSE_FILE            Full path to :doc:`an enmasse file <../enmasse>` with object definitions to been imported.
 REDIS_HOSTNAME               Redis service hostname. Default value is **localhost**.
 ODB_TYPE                     ODB type to use. Must be one of: `mysql`, `postgresql` or `sqlite`. Default value is **sqlite**.
 ODB_HOSTNAME                 ODB hostname.
