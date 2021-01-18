@@ -3,15 +3,10 @@
 
 .. note::
 
-   Want to quickly install Zato? Check out this :doc:`Dockerfile <../admin/guide/install/docker>` which will set up
-   a fully working
-   :doc:`cluster <../architecture/overview>`
-   with 2
-   :doc:`servers <../architecture/servers>`,
-   :doc:`load-balancer <../architecture/load-balancer>`
-   and
-   :doc:`web-admin <../architecture/web-admin>`
-   in 10 minutes.
+   Do you want to quickly get started with Zato?
+
+   Visit :doc:`the tutorial <../tutorial/01>` which will guide you through everything, from design principles through
+   architecture, installation to API integration services, processes, API testing and more.
 
 * Performance improvements that make servers run much faster, particularly in the area of REST and JSON
 
