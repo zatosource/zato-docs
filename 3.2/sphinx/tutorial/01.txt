@@ -7,6 +7,11 @@ Tutorial - part 1/2
 Introduction
 ------------
 
+.. note::
+
+  Please read the :doc:`high-level overview <../intro/overview-high-level>` if you have not done it already to
+  for an introduction of how Zato and Python help with complex and advanced systems integrations.
+
 This **Zato** programming tutorial will guide you through the process of creating a real-world API service that,
 with Python, will integrate three applications using REST and AMQP. The result will be a solution
 ready to use in production.

@@ -80,6 +80,7 @@ Programming guide
       `MongoDB <https://zato.io/blog/posts/mongodb.html>`_ |
       :doc:`Redis <progguide/examples/redis>` |
       :doc:`WebSockets <progguide/examples/wsx>` |
+      :doc:`API testing <test/apitest/index>` |
       :doc:`Cryptography <progguide/examples/crypto>` |
       :doc:`All examples <progguide/examples/index>`
 
