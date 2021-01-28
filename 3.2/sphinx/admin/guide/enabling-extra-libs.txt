@@ -61,13 +61,24 @@ To enable support for the optional connectivity to IBM MQ queue managers:
 cx_Oracle and Oracle Database
 -----------------------------
 
-To enable optional support for the Oracle Database:
+To enable support for the Oracle Database:
 
-* Install `cx_Oracle <https://pypi.python.org/pypi/cx_Oracle>`_
-* Create a symlink from cx_Oracle to zato_extra_paths, e.g. assuming cx_Oracle
-  has been installed to /usr/local/lib/python2.7/dist-packages and Zato binaries
-  are in /opt/zato/3.0
+* Install the `cx_Oracle <https://pypi.python.org/pypi/cx_Oracle>`_ client library using pip available in your Zato installation
 
   ::
 
-    $ ln -s /usr/local/lib/python2.7/dist-packages/cx_Oracle.so /opt/zato/3.0/zato_extra_paths
+    $ cd /opt/zato/current
+    $ ./code/bin/pip install cx_Oracle
+
+* Install an `Oracle DB client <https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html>`_
+
+* Add a directory pointing to the Oracle DB client to LD_LIBRARY_PATH, e.g. by adding the following export command
+  to the zato user's ~/.bashrc. Below "/path/to/oracle/instantclient" is that directory where **libclntsh.so** can be found.
+
+  ::
+
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/path/to/oracle/instantclient
+
+* Log out and log in as zato again
+
+* Restart all the servers that will be connecting to Oracle DB
