@@ -16,6 +16,13 @@ Installation steps
 
     rhel$ su -
 
+* Install helper programs
+
+::
+
+    rhel# yum update
+    rhel# yum install patch
+
 * Add the package signing key
 
 ::
