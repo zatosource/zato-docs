@@ -1,0 +1,537 @@
+.. highlight:: python
+   :linenothreshold: 1
+
+Tutorial - parte 1/2
+===================
+
+Introducción
+------------
+
+.. note::
+
+  Por favor, lea nuestra :doc:`descripción general <../intro/overview-high-level>` para una
+  introducción de cómo Zato y Python ayudan con integraciones de sistemas complejas y avanzadas.
+
+Este tutorial de programación con **Zato** le guiará en el proceso de crear un servicio API real que,
+con Python, integrarán tres aplicaciones utilizando REST y AMQP. El resultado será una solución lista para
+ser utilizada en producción.
+
+Pero primero, acá hay algunos ejemplos de la vida real de para qué se puede utilizar Zato:
+
+* Una plataforma para procesar **pagos** desde otros dispositivos.
+
+* Un sistema de **un operador de telecomunicaciones** para integrar CRM, ERP, Facturación y otros
+  sistemas como las aplicaciones de los socios externos del operador.
+
+* Un sistema de **ciencia de datos** para el procesamiento de información relacionada con transacciones de valores (FIX)
+
+* Una plataforma para sistemas de **administración pública **, que ayude a lograr **interoperabilidad de datos sanitarios**
+   mediante la integración de fuentes de datos independientes, bases de datos e intercambios de información sanitaria (HIE)
+
+* Una **plataforma de IoT** global que integre dispositivos médicos.
+
+* Una plataforma para procesar eventos producidos por **sistemas de alerta temprana**.
+
+* Sistemas de backend **e-commerce** que gestione múltiples proveedores, mercados y flujos de procesos.
+
+* Plataformas **B2B** para aceptar y procesar pedidos multicanal en cooperación con sistemas backend **ERP** y **CRM**.
+
+* Plataformas que integran aplicaciones **inmobiliarias**, recopilando datos de fuentes de datos independientes para
+  presentar API unificadas a aplicaciones internas y externas.
+
+* Un sistema para la gestión de los recursos de hardware de un proveedor de **nube empresarial**.
+
+* Sitios de **subastas en línea**.
+
+* Plataformas **e-learning**.
+
+Lo que todos tienen en común es el nivel de complejidad involucrado en los procesos de integración. Es típico que estos entornos
+involucren al menos más de una, y a veces varias docenas o varios cientos de aplicaciones independientes que intercambian mensajes,
+cada uno posiblemente usando una tecnología y formato de datos diferente.
+
+Tenga en cuenta que Zato es una plataforma de uso general y las muestras abarcan varias industrias y dominios distintos.
+La plataforma se puede utilizar en todo tipo de escenarios que requieren integraciones de sistemas distribuidos.
+
+Servicios API
+=============
+
+Si Zato es una plataforma para servicios API, ¿qué es un servicio?
+
+En esencia, un servicio es una pieza de funcionalidad del lado del servidor (remota) que lleva a cabo una acción comercial útil
+e interesante para las aplicaciones que deseen utilizarlo. Esta es una definición de alto nivel y esta es la forma correcta de
+pensar en ella.
+
+Todo se debe al hecho de que debe pensar en los sistemas y aplicaciones que componen su arquitectura, en términos de consumidores
+y proveedores de servicios. Cada parte de la arquitectura ofrece servicios a otras partes y, a la inversa, cada parte consume
+servicios ofrecidos por otros elementos de la arquitectura. En conjunto, los servicios forman procesos de nivel superior que
+satisfacen las necesidades comerciales establecidas antes de la arquitectura de TI.
+
+Zato es una plataforma multiprotocolo y los servicios a menudo no están vinculados a ningún protocolo específico. Esto significa
+que es posible diseñar servicios que se pueden invocar a través de un canal REST, pero también pueden escuchar datos desde AMQP,
+colas de IBM MQ o bases de datos SQL. También pueden aceptar mensajes utilizando HL7 MLLP, SOAP, WebSocket, SFTP, FTP, correo
+electrónico, JSON-RPC y ZeroMQ.
+
+Naturalmente, REST es muy utilizado y, por lo general, esta es la forma en que se exponen la mayoría de las API, pero también
+hay otras formas, y en varios escenarios se emplean otros medios de comunicación.
+
+Zato incluye conectores y adaptadores para REST, AWS S3, AMQP, Kafka, MongoDB, Redis, HL7, Odoo, SAP, IBM MQ,
+SQL, SOAP, FTP, SFTP, LDAP, Cassandra, Dropbox, Twilio, IMAP, SMTP, ElasticSearch, Solr, Swift, Slack, Telegram,
+WebSockets y ZeroMQ. Debido a que está escrito en Python, tiene acceso a muchas bibliotecas de terceros que
+proporcionah conectividad a otros tipos de sistemas.
+
+Debido a que las plataformas API a menudo necesitan paneles de control, también es posible usar plantillas de Django con Zato
+para generar interfaces de usuario.
+
+Las opciones de seguridad integradas incluyen claves API, autenticación básica, JWT, NTLM, OAuth, RBAC, SSL / TLS, Vault, WS-Security y XPath.
+Siempre es posible proteger los servicios utilizando otros medios aún no integrados.
+
+En términos de su implementación, un servicio individual de Zato es una clase de Python que implementa un método específico
+llamado self.handle. El servicio recibe información, la procesa de acuerdo con sus requisitos comerciales, lo que puede implicar
+la comunicación con otros sistemas, aplicaciones o servicios, y luego se produce algún resultado. Tenga en cuenta que tanto la
+entrada como la salida son opcionales, Ej. un servicio en segundo plano que transfiere archivos entre aplicaciones normalmente no
+tendrá ninguno, mientras que un servicio CRUD típico tendrá ambos.
+
+Debido a que un servicio es simplemente una clase de Python, cada uno consume muy pocos recursos y es posible implementar cientos
+o miles de servicios en un solo servidor Zato. Y como Zato puede utilizar varias CPU y varias instancias de Linux, puede escalar sin
+límites tanto horizontal como verticalmente.
+
+Los servicios aceptan su entrada a través de canales: un canal le dice a Zato que debe dar acceso a un servicio en particular
+para el mundo exterior utilizando éste o aquel protocolo, formato de datos y definición de seguridad. Por ejemplo, un servicio
+puede accederse en canales REST independientes, a veces usando claves API y, a veces, usando autenticación básica. Adicionalmente,
+cada tipo de canal tiene sus propias piezas específicas de configuración, como almacenamiento en caché, tiempos de espera u otras opciones.
+
+Los servicios también pueden invocar otros servicios de Zato, ésta es solo una llamada regular al método de Python, dentro del mismo
+proceso de Python. Por lo que es muy eficiente invocarlos y es tan simple como utilizar otro método en Python.
+
+Los servicios se pueden adicionar o actualizar en caliente en los servidores de Zato, sin reiniciar el servidor, y el servicio se
+puede quedar disponible para sus consumidores inmediatamente después de la implementación.
+
+Hay complementos para :doc:`Visual Studio Code </progguide/ide/vscode>` y :doc:`PyCharm </progguide/ide/pycharm>` que implementan
+automáticamente su servicio cada vez que lo guarda en su IDE. También se pueden utilizar otros editores de código o IDE.
+
+Durante el desarrollo, por lo general, el panel de administración web integrado en Zato se utiliza para crear y administrar canales
+u otros objetos de Zato. Tan pronto como una solución esté lista para la automatización de DevOps, la configuración de una solución
+se puede implementar automáticamente desde :doc:`command line </admin/guide/enmasse>` o directamente desde un clon de git que
+facilite el uso de Zato con herramientas como Terraform, Ansible o Puppet.
+
+¿Qué logrará exactamente el tutorial?
+-------------------------------------
+
+Después de completar el tutorial, tendremos:
+
+* Un entorno de integración completo
+* Un servicio de API ofrecido a través de REST y JSON
+* El servicio invocará dos canales REST para recopilar datos
+* El servicio enviará notificaciones a un corredor de mensajes de AMQP
+
+.. _tutorial-01-message-flow:
+
+Flujo de mensajes
+-----------------
+
+.. image:: /gfx/tutorial/service-complete.png
+
+Implementaremos un proceso de integración API típico de los bancos y otras instituciones financieras.
+
+* Una aplicación de cliente desea conocer detalles sobre un cliente dada la identificación de la persona
+* Los datos del cliente se almacenan en un CRM
+* El historial de pagos se almacena en una aplicación diferente
+* Para ciertos tipos de clientes, existe un requisito comercial de que una detección de fraude
+  el sistema sea notificado de cualquier operación relacionada con dichos clientes y enviamos notificaciones
+  al sistema en consecuencia
+
+La aplicación cliente es un componente básico que no desarrollaremos en el tutorial; aquí es donde Django, React, Vue,
+Flutter, ASP.NET y otros frameworks se pueden usar en proyectos reales.
+
+Por otro lado, recuerde que otros sistemas backend también pueden invocar el servicio; esto es crucial, lo mismo
+uno puede estar disponible para muchas aplicaciones, cada una con su propio canal de acceso, incluso si está en el tutorial
+asumiremos que solo hay una API cliente.
+
+Instalando Zato
+---------------
+
+La forma más sencilla de comenzar con Zato es instalarlo con Docker o Vagrant. Esto no solo instalará Zato
+sino que el instalador también configurará automáticamente un clúster de inicio rápido que funcione. Puedes usar este
+método de instalación en todas partes, en Windows, Mac o Linux.
+
+* :doc:`Docker <../admin/guide/install/docker>`
+* :doc:`Vagrant <../admin/guide/install/vagrant>`
+
+De lo contrario, puede instalar un paquete de Zato para su distribución de Linux seleccionada y configurar un clúster de inicio
+rápido usted mismo, esto tardará unos 2 minutos más.
+
+* :doc:`Ubuntu <../admin/guide/install/ubuntu>` (asegúrese de tener una versión LTS)
+* :doc:`RHEL/CentOS <../admin/guide/install/rhel>`
+* :doc:`Suse <../admin/guide/install/rhel>`
+* :doc:`Debian <../admin/guide/install/debian>`
+
+Puede crear servicios de Zato con cualquier editor de código, también puede instalar un complemento para que su IDE implemente
+automáticamente su servicios cuando los guarde.
+
+* :doc:`Visual Studio Code </progguide/ide/vscode>`
+* :doc:`PyCharm </progguide/ide/pycharm>`
+
+Consulte los capítulos siguientes, según el método de instalación e IDE que haya elegido.
+
+Si instaló Zato con Docker o Vagrant
+------------------------------------
+
+Después de instalar Zato usando Docker o Vagrant, tiene un contenedor / VM con un clúster de inicio rápido con algunos
+puertos TCP asignados a su host y un puerto sin asignar.
+
+.. image:: /gfx/tutorial/quickstart-ports-docker-vm.png
+
+======== ========= ============= ==================================================================================
+Puerto   Accesible Propósito     Notas
+======== ========= ============= ==================================================================================
+22022    Sí        SSH           Para conexiones SSH al sistema Linux en el que se ejecuta el clúster, en caso
+                                 de que sea necesario.
+8183     Sí        Dashboard     Panel de administración web utilizado para administrar entornos Zato. Su navegador
+                                 se conecta a él y el panel en sí es un cliente a la API de los servicios de Zato,
+                                 por lo que consulta los servidores a través del balanceador de carga.
+11223    Sí        Load-balancer Los clientes invocan servicios a través del balanceador de carga y cada servidor
+                                 siempre pertenece a un clúster, incluso si solo hay un servidor en él.
+17010    ---       Zato server   Solo se puede acceder al servidor a través de un balanceador de carga, por lo que
+                                 su puerto TCP no se asigna directamente al host.
+======== ========= ============= ==================================================================================
+
+Antes de utilizar el entorno, necesitaremos contraseñas para iniciar sesión.
+
+Ejecute el siguiente comando para extraerlos del contenedor o VM. Tenga en cuenta que si está utilizando Docker,
+las contraseñas se regenerará cada vez que inicie un nuevo contenedor.
+
+.. code-block:: text
+
+  # Docker
+  $ docker exec zato /opt/zato/get-credentials
+
+  # Vagrant
+  $ cd ~/directory/with/zato/Vagrantfile
+  $ vagrant ssh -c 'cat  /opt/zato/get-credentials'
+
+El resultado será el mismo en cualquier caso:
+
+.. code-block:: text
+
+  $
+
+  SSH: oaWMFmbt5Faq6
+  IDE: LWdasXlqVrO8Gur00Y3ncGjmHWNLZvr
+  Dashboard: YUm7ufehorVEw
+
+  $
+
+Ahora puede ir al Panel de control en https://localhost:8183 e iniciar sesión con el usuario 'admin' y la contraseña
+impresa a la pantalla de arriba.
+
+También podemos verificar si el servidor se está ejecutando ejecutando el siguiente comando curl, el invocará un servicio
+integrado para confirmar si el servidor se inició.
+
+.. code-block:: text
+
+  $ curl localhost:11223/zato/ping ; echo
+  {"pong":"zato","zato_env":{"result":"ZATO_OK","cid":"a5060e06b675cb20017a357d","details":""}
+  $
+
+La siguiente sección detalla cómo instalar Zato desde un paquete de Linux y cómo crear un clúster de inicio rápido manualmente.
+Puede desplazarse más hacia abajo para obtener información sobre cómo configurar su IDE o editor ahora.
+
+Si instaló Zato desde un paquete de Linux
+-----------------------------------------
+
+Después de instalar Zato desde un .deb o .rpm, se creará un nuevo usuario llamado 'zato' y todos los archivos de la plataforma
+están en /opt/zato.
+
+Para crear un entorno de inicio rápido, primero debe instalar Redis, por ejemplo:
+
+.. code-block:: text
+
+  $ sudo apt install redis-server
+
+A partir de ahora, con los paquetes Zato y Redis instalados, todos los comandos se pueden ejecutar como usuario zato; nunca
+necesitará acceso de usuario root para administrar entornos Zato.
+
+Creemos un nuevo entorno en el directorio~/env/qs-1.
+
+.. code-block:: text
+  :emphasize-lines: 14
+
+  $ sudo su - zato
+  $ mkdir -p ~/env/qs-1
+  $ zato quickstart create ~/env/qs1 sqlite localhost 6379
+  [1/8] Certificate authority created
+  [2/8] ODB schema created
+  [3/8] ODB initial data created
+  [4/8] server1 created
+  [5/8] Load-balancer created
+  Superuser created successfully.
+  [6/8] Dashboard created
+  [7/8] Scheduler created
+  [8/8] Management scripts created
+  Quickstart cluster quickstart-904765 created
+  Dashboard user:[admin], password:[F7qCOiabas5ToQ7EWupLrHOn9iVHzyBv]
+  Visit https://zato.io/support for more information and support options
+  $
+
+Observe la línea resaltada con las credenciales en el panel; la contraseña generada automáticamente nunca se volverá a mostrar.
+En caso de que necesite cambiarla, ejecute este comando: **zato update password ~/env/qs-1/web-admin admin**.
+
+Iniciemos ahora todos los componentes, observe la opción '--fg' para iniciar el servidor, esto lo iniciará en primer plano,
+gracias a lo cual podremos detenerlo con Ctrl/Cmd-C.
+
+.. code-block:: text
+
+  $ zato start ~/env/qs-1/load-balancer
+  OK
+  $
+
+  $ zato start ~/env/qs-1/web-admin
+  OK
+  $
+
+  $ zato start ~/env/qs-1/scheduler
+  OK
+  $
+
+  $ zato start ~/env/qs-1/server1 --fg
+  INFO - Starting Zato 3.2+rev.da807efbc-py3.6.9
+  INFO - Listening at: http://0.0.0.0:17010 (19475)
+  [...]
+
+.. image:: /gfx/tutorial/quickstart-ports.png
+
+Visite http://localhost:8183, ingrese las credenciales impresas arriba y navegue para que tenga una idea de cómo se ve
+el Panel de control.
+
+En otra terminal, confirme que el entorno está listo para aceptar solicitudes a las API.
+
+.. code-block:: text
+
+ $ curl localhost:11223/zato/ping ; echo
+ {"pong":"zato","zato_env":{"result":"ZATO_OK","cid":"2fd7536d956b17fcbed24122","details":""}
+ $
+
+El siguiente paso es configurar su IDE o editor de código.
+
+Si tiene Visual Studio Code o PyCharm
+-------------------------------------
+
+Para instalar un complemento al IDE, primero deberá tener las credenciales para el usuario con el que el IDE se conectará a Zato.
+
+* Username: ide_publisher
+* Password: Auto-generated, read below how to get it
+
+Si está usando Docker o Vagrant, ejecute el siguiente comando para obtener la contraseña de ide_publisher (será diferente en cada
+instalación):
+
+.. code-block:: text
+  :emphasize-lines: 4
+
+  $ /opt/zato/get-credentials
+
+  SSH: oaWMFmbt5Faq6
+  IDE: LWdasXlqVrO8Gur00Y3ncGjmHWNLZvr
+  Dashboard: YUm7ufehorVEw
+
+  $
+
+If you created the quickstart container yourself, the ide_publisher's password was auto-generated
+so it is not possible to read it and you can reset it with the command below.
+This will also work if you log in to the container / VM directly and execute it from command line.
+
+Si creó el contenedor de inicio rápido usted mismo, la contraseña del usuario ide_publisher se generó automáticamente, por
+lo que no es posible leerla y puede obtener una nueva con el siguiente comando.
+Esto también funcionará si inicia sesión en el contenedor / VM directamente y lo ejecuta desde la línea de comando.
+
+.. code-block:: text
+
+  $ zato set-ide-password ~/env/qs-1/server1
+  aSiieQXgo6M4OS1Qv83cpHjhGR0emXN8
+  $
+
+Ahora, puede visitar las instrucciones de instalación para el IDE seleccionado.
+
+* :doc:`Visual Studio Code </progguide/ide/vscode>`
+* :doc:`PyCharm </progguide/ide/pycharm>`
+
+
+Presentamos la implementación en caliente
+-----------------------------------------
+
+La implementación en caliente es un concepto clave en Zato. El término significa el proceso de transferir su servicio a un clúster.
+Se considera ``caliente`` porque no requiere reiniciar el servidor, es decir, se implementa un servicio y está disponible de
+inmediato en todos los servidores.
+
+Si hay más de un servidor en el clúster, basta con implementar el servicio en caliente solo en uno de ellos y se sincronizará
+con otros nodos del clúster.
+
+Hay algunas formas de implementar servicios en caliente. Los dos primeros se utilizarán en el tutorial, pero describiremos cada
+uno para que pueda comprender cuáles son las opciones disponibles y cuándo utilizarlas.
+
+* **Desde su IDE**
+
+  Se usa comúnmente durante el desarrollo: una vez que instala un complemento para el IDE, cada vez que presiona Ctrl/Cmd-S para
+  guardar un servicio en disco, se implementará automáticamente en su clúster y estará disponible para su uso inmediato.
+
+* **Línea de comando**
+
+  Esto se usa para la automatización de la implementación o si tiene un IDE o editor sin un complemento para Zato.
+
+  Cada servidor de Zato monitorea un directorio específico, llamado directorio de implementación en caliente, y cada vez que los
+  archivos de Python con sus servicios se guardan allí, ese servidor los recogerá y los implementará en todo el clúster.
+
+  En el clúster de inicio rápido de este tutorial, el directorio es **~/env/qs-1/server1/pickup/incoming/services**.
+
+  Durante el desarrollo, puede guardar sus archivos con los servicios de Zato directamente en este directorio y luego, cuando
+  presione Ctrl/Cmd-S, el archivo se implementará en el clúster. También puede clonar su repositorio git directamente en este directorio.
+
+  Otra forma de usarlo durante el desarrollo es hacer que apunte a un clon de git que reside en otro directorio y, nuevamente,
+  cada vez que guarde un archivo, su contenido se envía a todos los servidores.
+
+  Este método también se usa para la automatización: simplemente use ``cp`` para copiar archivos en el directorio y todos
+  los servicios de estos archivos se implementarán.
+
+* **Dashboard o Panel de control**
+
+  Cuando inicie sesión en el Panel de control y navegue hasta Services, verá un botón llamado "Upload package". Esto le
+  permitirá implementar archivos locales en un servidor remoto. Esto es útil cuando no hay conexión directa con el servidor,
+  por ejemplo, cuando no hay forma de entrar en él.
+
+* **Archivo de configuración local**
+
+  Este método generalmente se usa solo para implementaciones automatizadas: le permite apuntar un servidor a los archivos del
+  sistema que debe implementar.
+
+  La diferencia entre este y un directorio de implementación en caliente es que este último requiere que el servidor ya esté
+  en ejecución, mientras que esta opción le dice al servidor lo que debe hacer mientras aún se está iniciando.
+
+  Esta opción se emplea con mayor frecuencia al crear las imágenes propias de Docker o al utilizar Terraform, Packer y
+  herramientas similares.
+
+* **Transferencia remota de archivos**
+
+  Este método de automatización utiliza la `transferencia de archivos <https://zato.io/blog/posts/file-transfer.html>`_ para
+  permitir que los servidores escuchen cambios en directorios de servidores remotos.
+
+  Por ejemplo, puede tener un clon git central de un repositorio para múltiples entornos y los servidores de Zato se conectarán
+  a él a través de SFTP, descargarán cualquier archivo nuevo o modificado y lo implementarán localmente.
+
+En cuanto al resultado final, no hay diferencia entre los métodos, logran exactamente el mismo resultado.
+
+En realidad, este es un buen ejemplo de la forma en que Zato está diseñado en torno a los servicios reutilizables: todos estos
+métodos de implementación, todos estos canales, en última instancia, conducen a los mismos servicios que implementan su código
+y es solo la forma en que se accede a ellos lo que difiere.
+
+Implementación en caliente de su primer servicio
+------------------------------------------------
+
+Ahora podemos crear el primer servicio e implementarlo en caliente. Cree un nuevo archivo llamado api.py con el siguiente
+contenido. Esta es una base del servicio que completaremos con detalles más adelante.
+
+.. code-block:: python
+  :emphasize-lines: 2
+
+  # -*- coding: utf-8 -*-
+  # zato: ide-deploy=True
+
+  from zato.server.service import Service
+
+  class GetUserDetails(Service):
+      """ Returns details of a user by the person's ID.
+      """
+      name = 'api.user.get-details'
+
+      def handle(self):
+
+          # For now, return static data only
+          self.response.payload = {
+              'user_name': 'John Doe',
+              'user_type': 'SRT'
+          }
+
+
+Si configuró un complemento para PyCharm o Visual Studio Code, tenga en cuenta la línea resaltada: este es un marcador especial
+que le permite al complemento saber que al guardar este archivo debería dar como resultado que el IDE lo implemente en su clúster.
+
+Sin un complemento, debe guardar el archivo en el directorio ~/env/qs-1/server1/pickup/incoming/services del servidor. Si usa
+Docker y Vagrant pero no tiene el complemento, primero debe asignar este directorio a uno en el sistema host y guardar el archivo
+en este último.
+
+Y si desea implementarlo en un servidor Zato desde su navegador, inicie sesión en el Panel de control, vaya a Services y haga clic
+en Upload package.
+
+La dirección del panel es http://localhost:8183, el nombre de usuario es admin y si necesita restablecer la contraseña, este es
+el comando:
+
+.. code-block:: text
+
+  $ zato update password ~/env/qs-1/web-admin admin
+
+Una vez implementado el código, podemos confirmar en el Panel que el servicio está ahí.
+
+Una vez que haya iniciado sesión en el Panel, navegue a Services -> Ingrese a "get-details" en el cuadro de búsqueda -> Show services -> Click View.
+
+Tenemos un servicio por lo que ahora podemos crear un canal REST para él.
+
+Creando tu primer canal
+-----------------------
+
+Queremos invocar nuestro servicio API mediante REST, pero también queremos asegurarnos de que el acceso a él esté protegido,
+por lo que primero crearemos una definición de seguridad para nuestra API cliente.
+
+En el panel, vaya a Security -> Basic Auth -> De click en "Create a new definition" y entre:
+
+* Name: API Credentials
+* Username: api
+* Domain: API
+
+Al hacer clic en OK, se creará la definición con la contraseña de su usuario configurada automáticamente a un uuid4 aleatorio,
+por lo que debemos restablecerla haciendo clic en "Change password" y proporcionando una nueva. Depende de usted decidir cuál
+debe ser.
+
+Ahora, podemos crear un canal REST yendo a Connections -> Channels -> REST, como se muestra a continuación:
+
+.. image:: /gfx/tutorial/rest-menu.png
+
+Haga clic en el link "Create a new REST channel":
+
+.. image:: /gfx/tutorial/rest-create-link.png
+
+Complete el formulario como aquí, los campos para proporcionar valores son:
+
+* Name
+* URL path
+* Data format
+* Service
+* Security definition
+
+.. image:: /gfx/tutorial/rest-create-form.png
+
+Al hacer clic en OK, se creará el canal y ahora podremos invocar el servicio API.
+
+Invocando su primer servicio
+----------------------------
+
+Vamos a utilizar curl para invocar el servicio; accederemos a él a través del puerto 11223 del balanceador de carga, como
+se muestra a continuación. Tenga en cuenta que también debe ingresar la contraseña de la API.
+
+.. code-block:: text
+
+  $ curl http://api:<password-here>@localhost:11223/api/v1/user ; echo
+  {"user_name":"John Doe","user_type":"SRT"}
+  $
+
+Todo funciona como se esperaba: ¡acaba de crear e invocar su primer servicio API! Ahora, intente ver qué sucede si proporciona
+una contraseña no válida u otra ruta URL: sus solicitudes no serán permitidas.
+
+Esto concluye la primera parte del tutorial y en la siguiente verá cómo el servicio se integra con sistemas externos para
+transformar y enriquecer sus respuestas antes de producir la respuesta final en la API.
+
+Pero primero, hay que hacer una observación: el clúster de inicio rápido que creó es un entorno real y completamente funcional.
+Si lo creara desde cero, agregando cada componente individualmente, tablero, servidor, balanceador de carga y planificador, el
+resultado sería exactamente el mismo.
+
+En otras palabras, los clústeres de inicio rápido son un método conveniente para la creación de nuevos entornos y pueden ser muy útiles
+si se utiliza no solo para el desarrollo, sino también para pruebas y producción.
+
+Ahora, estamos listos para :doc:`ir a la segunda parte <./02-es>` del tutorial.
